@@ -85,25 +85,6 @@ InfoTemplate::InfoTemplate(QWidget *parent) :
     hlayout->addWidget(widget3);
 
 
-    // Menu
-//    fileMenu = menuBar()->addMenu(tr("&File"));
-//    projectMenu = menuBar()->addMenu(tr("&Project"));
-//    helpMenu = menuBar()->addMenu(tr("&Help"));
-
-//    newAct = new QAction(tr("&New"), this);
-//    exitAct = new QAction(tr("&Exit"), this);
-//    buildAct = new QAction(tr("&Build App"), this);
-//    howitworksAct = new QAction(tr("&How it works"), this);
-//    aboutAct = new QAction(tr("&About"), this);
-
-//    fileMenu->addAction(newAct);
-//    fileMenu->addAction(exitAct);
-
-//    projectMenu->addAction(buildAct);
-
-//    helpMenu->addAction(howitworksAct);
-//    helpMenu->addAction(aboutAct);
-
 
 
     iProcess = new QProcess(this);

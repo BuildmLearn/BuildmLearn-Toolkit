@@ -7,6 +7,8 @@
 #include "InfoTemplate.h"
 #include "QuizTemplate.h"
 
+#define HELP_URL "http://buildmlearn.wordpress.com/download/"
+
 namespace Ui {
 class MainWindow;
 }
@@ -24,6 +26,9 @@ public:
 public slots:
     void startProject(int);
     void aboutClicked();
+    void helpClicked();
+    void generateClicked();
+    void newClicked();
 private:
     // Menus
     QMenu *fileMenu;
