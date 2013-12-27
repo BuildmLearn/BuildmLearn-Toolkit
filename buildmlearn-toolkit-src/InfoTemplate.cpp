@@ -1,4 +1,5 @@
 #include "InfoTemplate.h"
+#include "GlobalData.h"
 
 InfoTemplate::InfoTemplate(QWidget *parent) :
     QWidget(parent)
@@ -155,6 +156,13 @@ void InfoTemplate::on_backButton_clicked()
 
 void InfoTemplate::on_generateButton_clicked()
 {
+    if (iTitleList.count()==0)
+    {
+      QMessageBox::information(this,"No topics added!" , "Please add some topics, and content before generating the application!");
+      return;
+    }
+
+
     QMessageBox::information(this,"Application generated" , "Your application has been generated. For the installation file, please check /applications folder. ");
 }
 
@@ -168,3 +176,38 @@ void InfoTemplate::execWindowsCommandDetached(QString command)
 
 }
 
+void InfoTemplate::on_save_clicked()
+{
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save File"),
+                                "MyInfoApp.buildmlearn",
+                                tr("*.buildmlearn"));
+    QFile indexFile(fileName);
+    indexFile.open(QIODevice::WriteOnly | QIODevice::Text);
+    QTextStream out(&indexFile);
+
+    out<<"InfoTemplate";
+
+    for (int i=0; i<iTitleList.count(); i++)
+    {
+        out << GlobalData::IO_LD;
+        out << iTitleList.at(i);
+        out << GlobalData::IO_ILD;
+        out << iDescriptionList.at(i);
+    }
+    indexFile.close();
+}
+
+void InfoTemplate::on_open_clicked(QStringList dataList)
+{
+    iTitleList.clear();
+    iDescriptionList.clear();
+    for (int i=0; i<dataList.length();i++)
+    {
+        QStringList data = dataList.at(i).split(GlobalData::IO_ILD);
+        iTitleList.append(data.at(0));
+        iDescriptionList.append(data.at(1));
+    }
+
+    itemList->addItems(iTitleList);
+    itemList_phone->addItems(iTitleList);
+}

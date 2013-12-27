@@ -13,9 +13,11 @@ NewProjectWidget::NewProjectWidget(QWidget *parent) :
 {
     // Initializing lists
     iTemplateInfoList <<"Choose this template if you wish to create an Informative app. The template presents a list and a detail view."
-    << "Choose this template if you wish to create a test or quiz application.";
+    << "Choose this template if you wish to create a test or quiz application."
+     << "Choose this template if you wish to create a flashcard collection.";
 
-    iTemplateImageList <<"background-image: url(:/images/InfoTemplate.png)" << "background-image: url(:/images/QuizTemplate.png)";
+    iTemplateImageList <<"background-image: url(:/images/InfoTemplate.png)" << "background-image: url(:/images/QuizTemplate.png)"
+                         << "background-image: url(:/images/FlashCardsTemplate.png)";
 
     setFixedSize(560,480);
     setWindowTitle("New Application");
@@ -36,10 +38,11 @@ NewProjectWidget::NewProjectWidget(QWidget *parent) :
     iTemplateList = new QListWidget(this);
 
     iTemplateList->setFixedSize(TEMPLATE_WIDTH,TEMPLATE_HEIGHT- iChooseTemplateLabel->height());
-    iTemplateList->setStyleSheet("font-size: 16px;");
+    iTemplateList->setStyleSheet("font-size: 20px;");
 
     iTemplateList->addItem("Informative");
     iTemplateList->addItem("Quiz / Test");
+    iTemplateList->addItem("Flashcards");
 
     h_layout1->addWidget(iTemplateList);
 
@@ -79,10 +82,13 @@ NewProjectWidget::NewProjectWidget(QWidget *parent) :
     v_layout->addLayout(h_layout1);
 
 
+    iOpenButton = new QPushButton("Open Existing Application", this);
+
     iChooseButton = new QPushButton("Choose",this);
     iChooseButton->setFixedWidth(100);
 //    iCancelButton= new QPushButton("Cancel",this);
 //    iCancelButton->setFixedWidth(100);
+    h_layout2->addWidget(iOpenButton,0, Qt::AlignLeft);
     h_layout2->addWidget(iChooseButton,0, Qt::AlignRight);
 
     v_layout->addLayout(h_layout2);
@@ -90,6 +96,7 @@ NewProjectWidget::NewProjectWidget(QWidget *parent) :
 
     connect(iTemplateList, SIGNAL(currentRowChanged(int)), this, SLOT(TemplateSelectionChanged(int)));
     connect(iChooseButton, SIGNAL(clicked()), this, SLOT(iChooseButton_clicked()));
+    connect(iOpenButton, SIGNAL(clicked()), this, SLOT(iOpenButton_clicked()));
 
     iTemplateList->setCurrentRow(1);
 
@@ -106,4 +113,10 @@ void NewProjectWidget::iChooseButton_clicked()
 {
     this->hide();
     startProject(iTemplateList->currentRow());
+}
+
+void NewProjectWidget::iOpenButton_clicked()
+{
+    this->hide();
+    startProject(-1);
 }

@@ -6,6 +6,7 @@
 #include "newprojectwidget.h"
 #include "InfoTemplate.h"
 #include "QuizTemplate.h"
+#include "FlashcardTemplate.h"
 
 #define HELP_URL "http://buildmlearn.wordpress.com/download/"
 
@@ -29,6 +30,10 @@ public slots:
     void helpClicked();
     void generateClicked();
     void newClicked();
+    void saveClicked();
+    void openClicked();
+    void loadOpenFile();
+    void resetWidgets();
 private:
     // Menus
     QMenu *fileMenu;
@@ -37,10 +42,15 @@ private:
 
     // Action
     QAction *newAct;
+    QAction *saveAct;
+    QAction *openAct;
     QAction *exitAct;
     QAction *buildAct;
     QAction *howitworksAct;
     QAction *aboutAct;
+
+    // Toolbar
+    QToolBar* toolBar;
 
     // Other widgets
     QStackedWidget* iStackedWidget;
@@ -54,6 +64,8 @@ private:
     InfoTemplate* iInfoTemplateWidget;
     // Create QuizTemplate Widget
     QuizTemplate* iQuizTemplateWidget;
+    // Create Flashcards Widget
+    FlashcardTemplate* iFlashCardsWidget;
 };
 
 #endif // MAINWINDOW_H

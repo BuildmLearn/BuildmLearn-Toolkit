@@ -18,14 +18,16 @@ SOURCES += main.cpp\
     GlobalData.cpp \
     InfoTemplate.cpp \
     QuizTemplate.cpp \
-    QuestionItem.cpp
+    QuestionItem.cpp \
+    FlashcardTemplate.cpp
 
 HEADERS  +=  mainwindow.h \
     newprojectwidget.h \
     GlobalData.h \
     InfoTemplate.h \
     QuizTemplate.h \
-    QuestionItem.h
+    QuestionItem.h \
+    FlashcardTemplate.h
 
 FORMS    += mainwindow.ui
 

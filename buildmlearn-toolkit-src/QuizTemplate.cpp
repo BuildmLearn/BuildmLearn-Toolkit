@@ -1,4 +1,5 @@
 #include "QuizTemplate.h"
+#include "GlobalData.h"
 
 QuizTemplate::QuizTemplate(QWidget *parent) :
     QWidget(parent)
@@ -31,6 +32,12 @@ QuizTemplate::QuizTemplate(QWidget *parent) :
     questionEdit->setFixedHeight(100);
     questionLabel->setFixedHeight(40);
     optionsLabel->setFixedHeight(40);
+
+
+    option1Edit->setPlaceholderText("Option 1");
+    option2Edit->setPlaceholderText("Option 2");
+    option3Edit->setPlaceholderText("Option 3");
+    option4Edit->setPlaceholderText("Option 4");
 
     connect(option1Edit, SIGNAL(editingFinished()), this, SLOT(optionAdded()));
     connect(option2Edit, SIGNAL(editingFinished()), this, SLOT(optionAdded()));
@@ -172,6 +179,17 @@ QuizTemplate::QuizTemplate(QWidget *parent) :
     screen2_vlayout->addWidget(option4_phone);
     screen2_vlayout->addWidget(submitButton_phone, 0, Qt::AlignCenter|Qt::AlignBottom);
 
+    //screen3
+    QVBoxLayout* screen3_vlayout = new QVBoxLayout(screen3);
+    screen3_vlayout->setGeometry(widget3->geometry());
+    quizComplete_Label_phone = new QLabel( "Quiz completed!", screen3);
+    quizComplete_Label_phone->setStyleSheet("font-size:24px;");
+    restartQuiz_phone = new QPushButton("Start again", screen3);
+    restartQuiz_phone->setStyleSheet("background-color: lightgrey; color: black;font-size:18px;");
+    screen3_vlayout->addWidget(quizComplete_Label_phone, 0, Qt::AlignTop);
+    screen3_vlayout->addWidget(restartQuiz_phone, Qt::AlignBottom);
+    connect(restartQuiz_phone, SIGNAL(clicked()), this, SLOT(restartQuiz_phone_clicked()));
+
     phoneWidget->setCurrentIndex(0);
 //phoneWidget->setEnabled(false);
 
@@ -182,6 +200,8 @@ QuizTemplate::QuizTemplate(QWidget *parent) :
     hlayout->addWidget(iScrollArea);
     hlayout->addWidget(widget3);
 
+    widget1->setFixedHeight(600);
+    hlayout->setAlignment(widget1, Qt::AlignTop);
 
     iProcess = new QProcess(this);
 
@@ -193,28 +213,41 @@ QuizTemplate::QuizTemplate(QWidget *parent) :
 
 void QuizTemplate::on_addButton_cicked()
 {
-    QString quesText = "<br><br>" +questionEdit->toPlainText()+" <br><br>";
+    if (questionEdit->toPlainText().isEmpty())
+    {
+        QMessageBox::information(this,"Add question" , "Please add the question text first.");
+        return;
+    }
+    else if (option1Edit->text().isEmpty() && option2Edit->text().isEmpty() &&
+             option3Edit->text().isEmpty() && option4Edit->text().isEmpty())
+    {
+        QMessageBox::information(this,"Add options" , "Please add some options for your question first.");
+        return;
+    }
+
+    QString qText = questionEdit->toPlainText().replace("\n", " ");
+    QString quesText = "<br><br>" +qText+" <br><br>";
     QString optionsText;
-    if (option1Edit->text()!="")
+    if (!option1Edit->text().isEmpty())
     {
         quesText.append("- " + option1Edit->text() + "<br>");
         optionsText.append(option1Edit->text());
     }
-    if (option2Edit->text()!="")
+    if (!option2Edit->text().isEmpty())
     {
         optionsText.append("==");
         quesText.append("- " + option2Edit->text() + "<br>");
         optionsText.append(option2Edit->text());
 
     }
-    if (option3Edit->text()!="")
+    if (!option3Edit->text().isEmpty())
     {
         optionsText.append("==");
         quesText.append("- " + option3Edit->text() + "<br>");
         optionsText.append(option3Edit->text());
 
     }
-    if (option4Edit->text()!="")
+    if (!option4Edit->text().isEmpty())
     {
         optionsText.append("==");
         quesText.append("- " + option4Edit->text() + "<br>");
@@ -226,7 +259,7 @@ void QuizTemplate::on_addButton_cicked()
     connect(iQuestionItemList.at(noOfQues), SIGNAL(removeClicked(int)), this, SLOT(removeQuestion(int)));
     noOfQues++;
 
-    iQuestionTextList.append(questionEdit->toPlainText());
+    iQuestionTextList.append(qText);
     iOptionsList.append(optionsText);
     iAnsList.append(comboBox->currentIndex());
 
@@ -247,6 +280,13 @@ void QuizTemplate::on_addButton_cicked()
 
 void QuizTemplate::on_generateButton_clicked()
 {
+    if (iQuestionTextList.count()==0)
+    {
+          QMessageBox::information(this,"No questions added!" , "Please add some questions before generating the application!");
+          return;
+    }
+
+
     QMessageBox::information(this,"Application generated" , "Your application has been generated. For the installation file, please check /applications folder. ");
 }
 
@@ -432,6 +472,11 @@ void QuizTemplate::submitButton_phone_clicked()
 
 }
 
+void QuizTemplate::restartQuiz_phone_clicked()
+{
+    phoneWidget->setCurrentIndex(0);
+}
+
 int QuizTemplate::getSelectedOption()
 {
     int selected = -1;
@@ -450,4 +495,86 @@ void QuizTemplate::updateStartPage_phone()
 {
     quizNameLabel_phone->setText(quizName);
     quizAuthorLabel_phone->setText(authorName);
+}
+
+void QuizTemplate::on_save_clicked()
+{
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save File"),
+                                "MyQuizApp.buildmlearn",
+                                tr("*.buildmlearn"));
+
+
+    QFile indexFile(fileName);
+    indexFile.open(QIODevice::WriteOnly | QIODevice::Text);
+    QTextStream out(&indexFile);
+    QString headers = QString("QuizTemplate") + GlobalData::IO_LD + quizName + GlobalData::IO_LD + authorName;
+    out << headers;
+    qDebug()<<headers;
+
+    for (int i=0; i<iQuestionTextList.count(); i++)
+    {
+        out <<GlobalData::IO_LD;
+        out << iQuestionTextList.at(i) + "==" + iOptionsList.at(i)+"=="+QString::number(iAnsList.at(i));
+    }
+    indexFile.close();
+
+}
+void QuizTemplate::on_open_clicked(QStringList dataList)
+{
+    qDebug()<<dataList;
+    iQuestionItemList.clear();
+    iQuestionTextList.clear();
+    iOptionsList.clear();
+    iAnsList.clear();
+
+    quizName = dataList.at(0);
+    authorName = dataList.at(1);
+    qDebug()<<quizName<<quizName.count()<<QString(quizName.right(1));
+    dataList.removeFirst();
+    dataList.removeFirst();
+
+    updateStartPage_phone();
+
+    questionCounter=0;
+    noOfQues = 0;
+
+    for (int i=0; i<dataList.length();i++)
+    {
+//        if (dataList.at(i).isEmpty())
+//        {
+//            continue;
+//        }
+        QStringList data = dataList.at(i).split("==");
+        iQuestionTextList.append(data.first());
+        data.removeFirst();
+        iAnsList.append(data.last().toInt());
+        data.removeLast();
+
+
+        QString quesText = "<br><br>" +iQuestionTextList.at(i)+" <br><br>";
+
+        QString options;
+        for (int j=0; j<data.count();j++)
+        {
+            options.append(data.at(j));
+            if (j!=data.count()-1)
+            {
+                options.append("==");
+            }
+
+            quesText.append("- " + data.at(j) + "<br>");
+        }
+        iOptionsList.append(options);
+
+        iQuestionItemList.append(new QuestionItem(noOfQues,quesText));
+        widget2_vlayout->addWidget(iQuestionItemList.at(noOfQues));
+        connect(iQuestionItemList.at(noOfQues), SIGNAL(removeClicked(int)), this, SLOT(removeQuestion(int)));
+        noOfQues++;
+    }
+    qDebug()<<"===============";
+    qDebug()<<quizName<<authorName;
+    qDebug()<<iQuestionTextList;
+    qDebug()<<iOptionsList;
+    qDebug()<<iAnsList;
+    qDebug()<<"===============";
 }

@@ -20,7 +20,7 @@ QuestionItem::QuestionItem(int index, QString ques_text,QWidget *parent) :
 
 //    iGroupBox = new QGroupBox("Question",this);
     iText=ques_text;
-    iQuestionLabel = new QLabel("<b>Question "+QString::number(index+1)+"</b>" + iText);
+    iQuestionLabel = new QLabel("<b><u>Question "+QString::number(index+1)+"</u></b>" + iText);
     iRemoveButton = new QPushButton("Remove");
 
     iQuestionLabel->setStyleSheet("padding:10px");
@@ -47,7 +47,7 @@ int QuestionItem::getIndex()
 void QuestionItem::setIndex(int index)
 {
     iListIndex = index;
-    iQuestionLabel->setText("<b>Question "+QString::number(index+1)+"</b>" + iText);
+    iQuestionLabel->setText("<b><u>Question "+QString::number(index+1)+"</u></b>" + iText);
     if (iListIndex%2==0)
     {
         setStyleSheet("background-color:white");

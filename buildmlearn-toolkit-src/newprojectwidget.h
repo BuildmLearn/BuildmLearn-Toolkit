@@ -15,13 +15,15 @@ signals:
 
 public slots:
     void TemplateSelectionChanged(int index);
-void iChooseButton_clicked();
+    void iChooseButton_clicked();
+    void iOpenButton_clicked();
 private:
     QWidget* iWidget;
     QWidget* iLeftWidget;
 
     QListWidget* iTemplateList;
     QLabel* iChooseTemplateLabel;
+    QPushButton* iOpenButton;
     QPushButton* iChooseButton;
     QPushButton* iCancelButton;
     QWidget* iRightWidget;

@@ -24,6 +24,8 @@ public slots:
 
     void execWindowsCommand(QString);
     void execWindowsCommandDetached(QString);
+    void on_save_clicked();
+    void on_open_clicked(QStringList dataList);
 
 private:
     QWidget* widget1;

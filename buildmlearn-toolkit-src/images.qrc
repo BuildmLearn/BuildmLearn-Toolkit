@@ -7,5 +7,13 @@
         <file>images/phone_right.png</file>
         <file>images/QuizTemplate.png</file>
         <file>images/InfoTemplate.png</file>
+        <file>images/about.png</file>
+        <file>images/generate.png</file>
+        <file>images/help.png</file>
+        <file>images/new_project.png</file>
+        <file>images/save.png</file>
+        <file>images/simulator.png</file>
+        <file>images/open.png</file>
+        <file>images/FlashCardsTemplate.png</file>
     </qresource>
 </RCC>

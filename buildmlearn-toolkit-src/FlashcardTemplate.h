@@ -1,14 +1,14 @@
-#ifndef QuizTemplate_H
-#define QuizTemplate_H
+#ifndef FlashcardTemplate_H
+#define FlashcardTemplate_H
 
 #include <QtGui>
 #include "QuestionItem.h"
 
-class QuizTemplate : public QWidget
+class FlashcardTemplate : public QWidget
 {
     Q_OBJECT
 public:
-    explicit QuizTemplate(QWidget *parent = 0);
+    explicit FlashcardTemplate(QWidget *parent = 0);
 
 public slots:
     void on_addButton_cicked();
@@ -20,6 +20,7 @@ public slots:
 //    void on_itemList_phone_selected();
 //    void on_backButton_clicked();
     void on_generateButton_clicked();
+    void on_chooseImageButton_clicked();
 
     void execWindowsCommand(QString);
     void execWindowsCommandDetached(QString);
@@ -31,8 +32,10 @@ public slots:
     void startQuiz();
     void populateQuiz(int);
 
-    void submitButton_phone_clicked();
-    int getSelectedOption();
+    void flipButton_phone_clicked();
+    void prevButton_phone_clicked();
+    void nextButton_phone_clicked();
+
 
     void updateStartPage_phone();
     void restartQuiz_phone_clicked();
@@ -48,14 +51,17 @@ private:
     // for widget 1
     QPushButton* addButton;
     QTextEdit* questionEdit;
-    QLineEdit* option1Edit;
-    QLineEdit* option2Edit;
-    QLineEdit* option3Edit;
-    QLineEdit* option4Edit;
+    QLineEdit* fcAnswerEdit;
+    QLineEdit* fcHintEdit;
+
     QLabel* questionLabel;
-    QLabel* optionsLabel;
+    QLabel* fcImageLabel;
+    QLabel* fcImagePathLabel;
     QLabel* correctAnserLabel;
+    QLabel* hintLabel;
+
     QComboBox* comboBox;
+    QPushButton* chooseImageButton;
 
 
     // for widget 2
@@ -76,12 +82,17 @@ private:
 
     QLabel* questionLabel_phone;
     QLabel* questionText_phone;
-    QRadioButton* option1_phone;
-    QRadioButton* option2_phone;
-    QRadioButton* option3_phone;
-    QRadioButton* option4_phone;
-    QList<QRadioButton*> optionsList_phone;
-    QPushButton* submitButton_phone;
+//    QRadioButton* option1_phone;
+//    QRadioButton* option2_phone;
+//    QRadioButton* option3_phone;
+//    QRadioButton* option4_phone;
+//    QList<QRadioButton*> optionsList_phone;
+    QLabel* fcImage_phone;
+    QLabel* fcHintLabel_phone;
+    QLabel* fcAnswerLabel_phone;
+    QPushButton* prevButton_phone;
+    QPushButton* nextButton_phone;
+    QPushButton* flipButton_phone;
     QLabel* quizComplete_Label_phone;
     QPushButton* restartQuiz_phone;
     QPushButton* backButton;
@@ -120,12 +131,14 @@ private:
 
     // Engine
     QStringList iQuestionTextList;
-    QStringList iOptionsList;
-    QList<int> iAnsList;
+    QStringList iImageList;
+    QStringList iHintList;
+    QList<QString> iAnsList;
     QList<QuestionItem*> iQuestionItemList;
+
 public:
     QString quizName;
     QString authorName;
 };
 
-#endif // QuizTemplate_H
+#endif // FlashcardTemplate_H
