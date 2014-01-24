@@ -25,7 +25,8 @@ HEADERS  +=  mainwindow.h \
 
 FORMS    += mainwindow.ui
 
-OTHER_FILES +=
+OTHER_FILES += \
+    LICENSE.txt
 
 RESOURCES += \
     images.qrc
