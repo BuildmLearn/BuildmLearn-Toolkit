@@ -207,7 +207,7 @@ void MainWindow::newClicked()
 void MainWindow::aboutClicked()
 {
 
-QMessageBox::information(this,"About" , "BuildmLearn Toolkit\nVersion 1.0.0\n\nBuildmLearn Toolkit is an easy-to-use program that helps the users make mobile apps without any knowledge of application development. The toolkit helps creating mobile application with various functionality and allows teachers to input their custom content. Targeted at teachers, this toolkit helps them make learning fun and engaging through mobile apps.\n\nFor more information visit: http://buildmlearn.wordpress.com \n\nContact the developer at croozeus@gmail.com for any other information or suggestions.");
+    QMessageBox::information(this,"About" , "BuildmLearn Toolkit\nVersion 2.0.0\n\nBuildmLearn Toolkit is an easy-to-use program that helps the users make mobile apps without any knowledge of application development. The toolkit helps creating mobile application with various functionality and allows teachers to input their custom content. Targeted at teachers, this toolkit helps them make learning fun and engaging through mobile apps.\n\nFor more information visit: http://buildmlearn.org \n\nContact the developers at BuildmLearn Google Group (https://groups.google.com/forum/#!forum/buildmlearn) for any other information or suggestions. Alternatively, you can email the core developers at croozeus@gmail.com. ");
 }
 
 void MainWindow::helpClicked()

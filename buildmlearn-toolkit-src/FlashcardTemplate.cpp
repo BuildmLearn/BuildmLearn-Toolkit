@@ -72,9 +72,9 @@ FlashcardTemplate::FlashcardTemplate(QWidget *parent) :
     fcImageLabel->setFixedHeight(40);
 
     questionLabel->setStyleSheet("font-size:24px;");
-    fcImageLabel->setStyleSheet("font-size:22px;");
-    hintLabel->setStyleSheet("font-size:22px;");
-    correctAnserLabel->setStyleSheet("font-size:22px;");
+    fcImageLabel->setStyleSheet("font-size:18px;");
+    hintLabel->setStyleSheet("font-size:14px;");
+    correctAnserLabel->setStyleSheet("font-size:18px;");
 
     widget1_vlayout->addWidget(questionLabel);
     widget1_vlayout->addWidget(questionEdit);
@@ -267,7 +267,7 @@ widget1_vlayout->setAlignment(Qt::AlignTop);
 void FlashcardTemplate::on_chooseImageButton_clicked()
 {
     QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"), "",
-                                                    tr("Images (*.png *.jpg)"));
+                                                    tr("Images (*.png)"));
 
     fcImagePathLabel->setText(fileName);
 }
