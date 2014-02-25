@@ -31,7 +31,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 #include "mainwindow.h"
 #include <QDebug>
 
-void main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
@@ -44,5 +44,5 @@ void main(int argc, char *argv[])
         QMessageBox::information(&w,QString("Oops") , QString("Something went wrong. The toolkit will now close. Please relaunch the toolkit to create your apps. \nError:") + e.what());
     }
 
-    a.exec();
+    return a.exec();
 }
