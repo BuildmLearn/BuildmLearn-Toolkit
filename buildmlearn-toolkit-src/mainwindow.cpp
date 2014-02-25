@@ -36,6 +36,7 @@ MainWindow::MainWindow(QWidget *parent) :
     setWindowTitle("BuildmLearn Toolkit");
     showMaximized();
     iNewProjectWidget = new NewProjectWidget(this);
+    iNewProjectWidget->setWindowModality(Qt::ApplicationModal);
     iNewProjectWidget->show();
 
     iStackedWidget = new QStackedWidget(this);
