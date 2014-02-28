@@ -190,18 +190,67 @@ void InfoTemplate::on_generateButton_clicked()
       return;
     }
 
+    QDir dir;
+    dir.mkdir("assets");
+    QFile indexFile("assets/index.txt");
+    indexFile.open(QIODevice::WriteOnly | QIODevice::Text);
+    QTextStream out(&indexFile);
+
+    for (int i=0; i<iTitleList.count(); i++)
+    {
+        out << iTitleList.at(i);
+        out << "\n";
+    }
+    indexFile.close();
+
+
+//    qDebug()<<iDescriptionList;
+
+    for (int i=0;i<iDescriptionList.count(); i++)
+    {
+        QFile file("assets/"+ iTitleList.at(i)+".txt");
+        file.open(QIODevice::WriteOnly | QIODevice::Text);
+        QTextStream out(&file);
+
+        out << iDescriptionList.at(i);
+
+        file.close();
+    }
+
+    execWindowsCommand("copy config\\templates\\BuildmLearnInfo.apk config\\BuildmLearnInfo_in_use.zip");
+    execWindowsCommand("config\\templates\\7za.exe a config\\BuildmLearnInfo_in_use.zip assets");
+    execWindowsCommand("config\\templates\\signapk.jar config\\templates\\certificate.pem config\\templates\\key.pk8 config\\BuildmLearnInfo_in_use.zip applications\\BuildmLearnInfo_signed.apk");
+    execWindowsCommand("del config\\BuildmLearnInfo_in_use.zip");
+
+    // delete temp files
+
+    for (int i=0;i<iDescriptionList.count(); i++)
+    {
+        QFile file("assets/"+ iTitleList.at(i)+".txt");
+            file.remove();
+    }
+    indexFile.remove();
+    dir.rmdir("assets");
 
     QMessageBox::information(this,"Application generated" , "Your application has been generated. For the installation file, please check /applications folder. ");
 }
 
 void InfoTemplate::execWindowsCommand(QString command)
 {
+    qDebug()<<"cmd: "+command;
+    QStringList args;
+    args<<"/C"<<command;
+    iProcess->start("cmd.exe",args);
+    iProcess->waitForFinished(-1);
 }
 
 
 void InfoTemplate::execWindowsCommandDetached(QString command)
 {
-
+    qDebug()<<"detached cmd: "+command;
+    QStringList args;
+    args<<"/C"<<command;
+    iProcess->startDetached("cmd.exe",args);
 }
 
 void InfoTemplate::on_save_clicked()

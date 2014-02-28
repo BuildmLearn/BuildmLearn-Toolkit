@@ -314,19 +314,52 @@ void QuizTemplate::on_generateButton_clicked()
           return;
     }
 
+    QDir dir;
+    dir.mkdir("assets");
+    QFile indexFile("assets/quiz_content.txt");
+    indexFile.open(QIODevice::WriteOnly | QIODevice::Text);
+    QTextStream out(&indexFile);
 
+    out << quizName;
+    out << "\n";
+    out << authorName;
+    out << "\n";
+
+    for (int i=0; i<iQuestionTextList.count(); i++)
+    {
+        out << iQuestionTextList.at(i) + "==" + iOptionsList.at(i)+"=="+QString::number(iAnsList.at(i));
+        out << "\n";
+    }
+    indexFile.close();
+
+
+
+    execWindowsCommand("copy config\\templates\\BuildmLearnQuiz.apk config\\BuildmLearnQuiz_in_use.zip");
+    execWindowsCommand("config\\templates\\7za.exe a config\\BuildmLearnQuiz_in_use.zip assets");
+    execWindowsCommand("config\\templates\\signapk.jar config\\templates\\certificate.pem config\\templates\\key.pk8 config\\BuildmLearnQuiz_in_use.zip applications\\BuildmLearnQuiz_signed.apk");
+    execWindowsCommand("del config\\BuildmLearnQuiz_in_use.zip");
+
+    indexFile.remove();
+    dir.rmdir("assets");
     QMessageBox::information(this,"Application generated" , "Your application has been generated. For the installation file, please check /applications folder. ");
 }
 
 void QuizTemplate::execWindowsCommand(QString command)
 {
-
+    qDebug()<<"cmd: "+command;
+    QStringList args;
+    args<<"/C"<<command;
+    iProcess->start("cmd.exe",args);
+    iProcess->waitForFinished(-1);
 }
 
 
 void QuizTemplate::execWindowsCommandDetached(QString command)
 {
-
+    qDebug()<<"detached cmd: "+command;
+    QStringList args;
+    args<<"/C"<<command;
+    iProcess->startDetached("cmd.exe",args);
 }
 
 void QuizTemplate::removeQuestion(int index)

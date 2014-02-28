@@ -336,7 +336,77 @@ void FlashcardTemplate::on_generateButton_clicked()
           return;
     }
 
+    QDir dir;
+    dir.mkdir("assets");
+    dir.mkdir("res");
+    dir.mkdir("res/drawable-hdpi");
+    QFile indexFile("assets/flashcard_content.txt");
+    indexFile.open(QIODevice::WriteOnly | QIODevice::Text);
+    QTextStream out(&indexFile);
 
+    out << quizName;
+    out << "\n";
+    out << authorName;
+    out << "\n";
+
+    for (int i=0; i<iQuestionTextList.count(); i++)
+    {
+        QString str_to_write =  "";
+        qDebug()<< "W" + iImageList.at(i) +"EOM";
+        if (iImageList.at(i) == "")
+        {
+        str_to_write = "NOIMAGE__" + iQuestionTextList.at(i) + "==" + iAnsList.at(i);
+        }
+        else{
+            str_to_write = "IMAGE__" + iQuestionTextList.at(i) + "==" + iAnsList.at(i);
+        }
+
+        if (iHintList.at(i) != "")
+        {
+            str_to_write.append("=="+ iHintList.at(i));
+        }
+        out << str_to_write;
+        out << "\n";
+    }
+    indexFile.close();
+
+    qDebug()<<iImageList;
+
+    for (int i=0; i<iImageList.length();i++)
+    {
+        QString image = iImageList.at(i);
+        qDebug()<<image;
+        if (image != "")
+        {
+            QString fileExt = image.split(".").last();
+            qDebug()<<fileExt;
+            QFile::copy(image, "res/drawable-hdpi/image"+QString::number(i) + "."+ fileExt);
+        }
+    }
+
+    execWindowsCommand("copy config\\templates\\BuildmLearnFlashCards.apk config\\BuildmLearnFlashCards_in_use.zip");
+    execWindowsCommand("config\\templates\\7za.exe a config\\BuildmLearnFlashCards_in_use.zip assets");
+    execWindowsCommand("config\\templates\\7za.exe a config\\BuildmLearnFlashCards_in_use.zip res");
+    execWindowsCommand("config\\templates\\signapk.jar config\\templates\\certificate.pem config\\templates\\key.pk8 config\\BuildmLearnFlashCards_in_use.zip applications\\BuildmLearnFlashCards_signed.apk");
+    //execWindowsCommand("java -jar templates\\signapk.jar config\\templates\\certificate.pem config\\templates\\key.pk8 config\\BuildmLearnFlashCards_in_use.zip BuildmLearnFlashCards_signed.apk");
+    execWindowsCommand("del config\\BuildmLearnFlashCards_in_use.zip");
+
+    for (int i=0; i<iImageList.length();i++)
+    {
+        QString image = iImageList.at(i);
+        qDebug()<<image;
+        if (image != "")
+        {
+            QString fileExt = image.split(".").last();
+            qDebug()<<fileExt;
+            QFile::remove("res/drawable-hdpi/image"+QString::number(i) + "."+ fileExt);
+        }
+    }
+
+    indexFile.remove();
+    dir.rmdir("assets");
+    dir.rmdir("res/drawable-hdpi");
+    dir.rmdir("res");
     QMessageBox::information(this,"Application generated" , "Your application has been generated. For the installation file, please check /applications folder. ");
 
 }
@@ -344,13 +414,24 @@ void FlashcardTemplate::on_generateButton_clicked()
 
 void FlashcardTemplate::execWindowsCommand(QString command)
 {
-
+    QTime time;
+    qDebug()<<time.currentTime().toString();
+    qDebug()<<"cmd: "+command;
+    QStringList args;
+    args<<"/C"<<command;
+    iProcess->start("cmd.exe",args);
+    iProcess->waitForFinished(-1);
+    qDebug()<<iProcess->readAll()<<time.currentTime().toString();
 
 }
 
 
 void FlashcardTemplate::execWindowsCommandDetached(QString command)
 {
+    qDebug()<<"detached cmd: "+command;
+    QStringList args;
+    args<<"/C"<<command;
+    iProcess->startDetached("cmd.exe",args);
 }
 
 void FlashcardTemplate::removeQuestion(int index)
