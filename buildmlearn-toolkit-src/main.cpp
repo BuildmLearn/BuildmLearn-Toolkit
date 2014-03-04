@@ -33,6 +33,16 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 
 int main(int argc, char *argv[])
 {
+#ifdef Q_OS_MACX
+#if QT_VERSION < 0x040806
+    if (QSysInfo::MacintoshVersion > QSysInfo::MV_10_8)
+    {
+        // fix Mac OS X 10.9 (mavericks) font issue
+        // https://bugreports.qt-project.org/browse/QTBUG-32789
+        QFont::insertSubstitution(".Lucida Grande UI", "Lucida Grande");
+    }
+#endif
+#endif
     QApplication a(argc, argv);
 
     MainWindow w;
