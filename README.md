@@ -1,5 +1,5 @@
-buildmlearn-toolkit-src
------------------------
+BuildmLearn-Toolkit
+-------------------
 This folder contains the source code for the toolkit. Please put all the experimental code in the 'playground'.
 
 playground
@@ -7,6 +7,22 @@ playground
 This folder contains 'work in progress' code. Contributors can use this repository for checking in their code. This may include experimental code.
 
 For any questions, please ask in the google group.
+
+Building
+--------
+see [INSTALL.md]()
+
+Contributing
+------------
+1. Find a thing to fix/implement in 
+[Issues](https://github.com/BuildmLearn/BuildmLearn-Toolkit/issues) or come up 
+with your own idea, [create a discussion issue](https://github.com/BuildmLearn/BuildmLearn-Toolkit/issues/new)
+for it and get a feedback.
+2. [Fork the repo](https://help.github.com/articles/fork-a-repo)
+3. Create your feature branch (`git checkout -b my-new-feature`)
+4. Commit your changes (`git commit -am 'Add some feature'`)
+5. Push to the branch (`git push origin my-new-feature`)
+6. Create new Pull Request
 
 License for use and distribution
 ---------------------------------
