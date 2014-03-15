@@ -29,6 +29,10 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 #ifndef QUESTIONITEM_H
 #define QUESTIONITEM_H
 
+#include <QGroupBox>
+#include <QLabel>
+#include <QPushButton>
+
 #include <QtGui>
 
 class QuestionItem : public QWidget

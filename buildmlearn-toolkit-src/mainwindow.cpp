@@ -30,6 +30,10 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 #include "ui_mainwindow.h"
 #include "GlobalData.h"
 
+#include <QMessageBox>
+#include<QFileDialog>
+#include<QInputDialog>
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
 {

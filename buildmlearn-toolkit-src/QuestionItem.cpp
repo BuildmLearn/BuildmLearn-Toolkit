@@ -29,6 +29,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 
 #include "QuestionItem.h"
 
+#include<QVBoxLayout>
+#include<QLineEdit>
+#include<QHBoxLayout>
+#include<QMessageBox>
+#include<QFileDialog>
+
 QuestionItem::QuestionItem(int index, QString ques_text,QWidget *parent) :
     QWidget(parent)
 {

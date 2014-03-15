@@ -29,6 +29,18 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 #ifndef FlashcardTemplate_H
 #define FlashcardTemplate_H
 
+#include<QVBoxLayout>
+#include<QLineEdit>
+#include<QHBoxLayout>
+#include<QMessageBox>
+#include<QFileDialog>
+#include <QTextEdit>
+#include <QPlainTextEdit>
+#include <QListWidget>
+#include <QScrollArea>
+#include <QStackedWidget>
+#include <QComboBox>
+
 #include <QtGui>
 #include "QuestionItem.h"
 

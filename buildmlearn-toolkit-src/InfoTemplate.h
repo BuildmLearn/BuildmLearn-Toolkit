@@ -29,9 +29,16 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 #ifndef INFOTEMPLATE_H
 #define INFOTEMPLATE_H
 
+#include<QPlainTextEdit>
+#include<QStackedWidget>
+#include <QWidget>
 #include <QtGui>
+#include<QListWidget>
+#include<QLabel>
+#include<QPushButton>
+#include<QMainWindow>
 
-
+#include <QtGui>
 
 class InfoTemplate : public QWidget
 {
