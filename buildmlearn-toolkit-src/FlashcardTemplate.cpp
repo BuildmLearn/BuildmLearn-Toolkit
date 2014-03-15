@@ -417,9 +417,9 @@ void FlashcardTemplate::execWindowsCommand(QString command)
     QTime time;
     qDebug()<<time.currentTime().toString();
     qDebug()<<"cmd: "+command;
-    QStringList args;
-    args<<"/C"<<command;
-    iProcess->start("cmd.exe",args);
+    //QStringList args;
+    //args<<"/C"<<command;
+    iProcess->start(command,QStringList() << "");
     iProcess->waitForFinished(-1);
     qDebug()<<iProcess->readAll()<<time.currentTime().toString();
 
