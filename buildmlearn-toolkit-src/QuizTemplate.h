@@ -29,6 +29,14 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 #ifndef QuizTemplate_H
 #define QuizTemplate_H
 
+#include<QComboBox>
+#include<QPlainTextEdit>
+#include<QListWidget>
+#include<QScrollArea>
+#include<QVBoxLayout>
+#include<QStackedWidget>
+#include<QRadioButton>
+
 #include <QtGui>
 #include "QuestionItem.h"
 

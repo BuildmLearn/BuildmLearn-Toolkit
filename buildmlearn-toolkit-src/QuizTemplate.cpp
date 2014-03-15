@@ -29,6 +29,10 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 #include "QuizTemplate.h"
 #include "GlobalData.h"
 
+#include<QLineEdit>
+#include<QMessageBox>
+#include<QFileDialog>
+
 QuizTemplate::QuizTemplate(QWidget *parent) :
     QWidget(parent)
 {
