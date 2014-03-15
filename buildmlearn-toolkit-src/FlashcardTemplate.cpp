@@ -384,19 +384,21 @@ void FlashcardTemplate::on_generateButton_clicked()
         }
     }
 
-    QFile::copy("config/templates/BuildmLearnFlashCards.apk", "config/BuildmLearnFlashCards_in_use.zip");
-    //execWindowsCommand("copy config/templates/BuildmLearnFlashCards.apk config/BuildmLearnFlashCards_in_use.zip");
-
     QString zipBin = "7za";
     #if defined(WIN32) ||  defined(_WIN32) ||  defined(__WIN32)
         zipBin += ".exe";
+        QDir::setCurrent(QCoreApplication::applicationDirPath());
     #endif
+
+    QFile::copy("config/templates/BuildmLearnFlashCards.apk", "config/BuildmLearnFlashCards_in_use.zip");
+    //execWindowsCommand("copy config/templates/BuildmLearnFlashCards.apk config/BuildmLearnFlashCards_in_use.zip");
+
     execWindowsCommand("config/templates/" +  zipBin + " a config/BuildmLearnFlashCards_in_use.zip assets");
     execWindowsCommand("config/templates/" +  zipBin + " a config/BuildmLearnFlashCards_in_use.zip res");
     execWindowsCommand("java -jar config/templates/signapk.jar config/templates/certificate.pem config/templates/key.pk8 config/BuildmLearnFlashCards_in_use.zip applications/BuildmLearnFlashCards_signed.apk");
     //execWindowsCommand("java -jar templates/signapk.jar config/templates/certificate.pem config/templates/key.pk8 config/BuildmLearnFlashCards_in_use.zip BuildmLearnFlashCards_signed.apk");
 
-    //QFile::remove("config/BuildmLearnFlashCards_in_use.zip");
+    QFile::remove("config/BuildmLearnFlashCards_in_use.zip");
     //execWindowsCommand("del config/BuildmLearnFlashCards_in_use.zip");
 
     for (int i=0; i<iImageList.length();i++)
