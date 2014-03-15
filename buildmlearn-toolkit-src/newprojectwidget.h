@@ -37,8 +37,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 #include <QWidget>
 #include <QtGui>
 
-#include <QtWidgets>
-
 class NewProjectWidget : public QMainWindow
 {
     Q_OBJECT
