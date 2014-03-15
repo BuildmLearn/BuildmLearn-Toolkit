@@ -384,12 +384,20 @@ void FlashcardTemplate::on_generateButton_clicked()
         }
     }
 
-    execWindowsCommand("copy config\\templates\\BuildmLearnFlashCards.apk config\\BuildmLearnFlashCards_in_use.zip");
-    execWindowsCommand("config\\templates\\7za.exe a config\\BuildmLearnFlashCards_in_use.zip assets");
-    execWindowsCommand("config\\templates\\7za.exe a config\\BuildmLearnFlashCards_in_use.zip res");
-    execWindowsCommand("config\\templates\\signapk.jar config\\templates\\certificate.pem config\\templates\\key.pk8 config\\BuildmLearnFlashCards_in_use.zip applications\\BuildmLearnFlashCards_signed.apk");
-    //execWindowsCommand("java -jar templates\\signapk.jar config\\templates\\certificate.pem config\\templates\\key.pk8 config\\BuildmLearnFlashCards_in_use.zip BuildmLearnFlashCards_signed.apk");
-    execWindowsCommand("del config\\BuildmLearnFlashCards_in_use.zip");
+    QFile::copy("config/templates/BuildmLearnFlashCards.apk", "config/BuildmLearnFlashCards_in_use.zip");
+    //execWindowsCommand("copy config/templates/BuildmLearnFlashCards.apk config/BuildmLearnFlashCards_in_use.zip");
+
+    QString zipBin = "7za";
+    #if defined(WIN32) ||  defined(_WIN32) ||  defined(__WIN32)
+        zipBin += ".exe";
+    #endif
+    execWindowsCommand("config/templates/" +  zipBin + " a config/BuildmLearnFlashCards_in_use.zip assets");
+    execWindowsCommand("config/templates/" +  zipBin + " a config/BuildmLearnFlashCards_in_use.zip res");
+    execWindowsCommand("java -jar config/templates/signapk.jar config/templates/certificate.pem config/templates/key.pk8 config/BuildmLearnFlashCards_in_use.zip applications/BuildmLearnFlashCards_signed.apk");
+    //execWindowsCommand("java -jar templates/signapk.jar config/templates/certificate.pem config/templates/key.pk8 config/BuildmLearnFlashCards_in_use.zip BuildmLearnFlashCards_signed.apk");
+
+    //QFile::remove("config/BuildmLearnFlashCards_in_use.zip");
+    //execWindowsCommand("del config/BuildmLearnFlashCards_in_use.zip");
 
     for (int i=0; i<iImageList.length();i++)
     {
@@ -419,7 +427,7 @@ void FlashcardTemplate::execWindowsCommand(QString command)
     qDebug()<<"cmd: "+command;
     //QStringList args;
     //args<<"/C"<<command;
-    iProcess->start(command,QStringList() << "");
+    iProcess->start(command);
     iProcess->waitForFinished(-1);
     qDebug()<<iProcess->readAll()<<time.currentTime().toString();
 
