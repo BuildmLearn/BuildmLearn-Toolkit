@@ -143,15 +143,17 @@ void InfoTemplate::on_addButton_cicked()
 
 void InfoTemplate::on_removedButton_cicked()
 {
-    itemList->takeItem(itemList->currentRow());
-    itemList_phone->takeItem(itemList->currentRow());
-    iTitleList.removeAt(itemList->currentRow());
-    iDescriptionList.removeAt(itemList->currentRow());
+    int temp = itemList->currentRow();
+    itemList->takeItem(temp);
+    itemList_phone->takeItem(temp);
+    iTitleList.removeAt(temp);
+    iDescriptionList.removeAt(temp);
 }
 
 void InfoTemplate::on_itemList_selected()
 {
-    textEdit->setPlainText(iDescriptionList.at(itemList->currentRow()));
+    if(itemList->currentItem() != 0)
+      textEdit->setPlainText(iDescriptionList.at(itemList->currentRow()));
 }
 
 void InfoTemplate::on_textEdit_textChanged()
