@@ -30,6 +30,15 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 #define QuizTemplate_H
 
 #include <QtGui>
+#include <QComboBox>
+#include <QScrollArea>
+#include <QRadioButton>
+#include <QVBoxLayout>
+#include <QWidget>
+#include <QTextEdit>
+#include <QPlainTextEdit>
+#include <QListWidget>
+#include <QStackedWidget>
 #include "QuestionItem.h"
 
 class QuizTemplate : public QWidget
@@ -71,6 +80,8 @@ private:
     QWidget* widget1;
     QWidget* widget2;
     QWidget* widget3;
+    QWidget* widget4;
+    QWidget* widget5;
     QWidget* mainWidget;
 
     // for widget 1

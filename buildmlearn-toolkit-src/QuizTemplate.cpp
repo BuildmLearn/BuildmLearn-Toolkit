@@ -27,6 +27,10 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 
 #include "QuizTemplate.h"
+#include <QWidget>
+#include <QLineEdit>
+#include <qfiledialog.h>
+#include <qmessagebox.h>
 #include "GlobalData.h"
 
 QuizTemplate::QuizTemplate(QWidget *parent) :
@@ -38,6 +42,8 @@ QuizTemplate::QuizTemplate(QWidget *parent) :
     widget1 = new QWidget();
     widget2 = new QWidget();
     widget3 = new QWidget();
+    widget4 = new QWidget();
+    widget5 = new QWidget();
 
     iScrollArea = new QScrollArea();
     iScrollArea->setWidgetResizable(true);
@@ -48,6 +54,7 @@ QuizTemplate::QuizTemplate(QWidget *parent) :
     widget1_vlayout->setSpacing(0);
     widget1_vlayout->setMargin(10);
     questionEdit =  new QTextEdit(widget1);
+
     option1Edit =  new QLineEdit(widget1);
     option2Edit =  new QLineEdit(widget1);
     option3Edit =  new QLineEdit(widget1);
@@ -96,8 +103,15 @@ QuizTemplate::QuizTemplate(QWidget *parent) :
     widget2->setStyleSheet("background-color:grey");
     widget2_vlayout->update();
 
-    startSimulation = new QPushButton("Start Simulation", widget3);
-//    startSimulation->setGeometry(120,20,100,30);
+
+    QVBoxLayout* widget4_vlayout=  new QVBoxLayout(widget4);
+    widget4_vlayout->setMargin(10);
+    widget4->setFixedHeight(300);
+    widget4_vlayout->setAlignment(Qt::AlignCenter);
+    widget4_vlayout->update();
+
+    startSimulation = new QPushButton("Start Simulation", widget4);
+    startSimulation->setGeometry(120,500,100,30);
     connect(startSimulation, SIGNAL(clicked()), this, SLOT(startSimulaton_clicked()));
 
 
@@ -111,15 +125,16 @@ QuizTemplate::QuizTemplate(QWidget *parent) :
     phoneWidget->setStyleSheet("background: #255593; color: white;");
     phoneWidget->setGeometry(30,95,270,447);
 
-    backButton = new QPushButton("<-");
+    backButton = new QPushButton("<-",widget4);
     backButton->setFixedWidth(phoneWidget->width());
 
-    generateButton = new QPushButton("Generate Application");
+    generateButton = new QPushButton("Generate Application",widget4);
     generateButton->setFixedWidth(phoneWidget->width());
 
     widget3_vlayout->addWidget(phoneBody);
-    widget3_vlayout->addWidget(backButton);
-    widget3_vlayout->addWidget(generateButton);
+    widget4_vlayout->addWidget(startSimulation);
+    widget4_vlayout->addWidget(backButton);
+    widget4_vlayout->addWidget(generateButton);
 
     screen1 = new QWidget();
     screen2 = new QWidget();
@@ -222,7 +237,25 @@ QuizTemplate::QuizTemplate(QWidget *parent) :
 //phoneWidget->setEnabled(false);
 
     ///
+    QGridLayout *gridlayout=new QGridLayout(widget5);
+    iScrollArea->setFixedHeight(500);
+    gridlayout->addWidget(iScrollArea,0,0,Qt::AlignTop);
+//    iScrollArea->setFixedHeight(500);
+  //  gridlayout->addWidget(iScrollArea,0,1,Qt::AlignTop);
+    //widget4->setFixedHeight(200);
+        widget4->setFixedHeight(100);
+    gridlayout->addWidget(widget4,1,0,Qt::AlignTop);
+//    gridlayout->addWidget(widget3,0,2,Qt::AlignTop);
+    //gridlayout->addLayout(gridlayout,0,3,Qt::AlignTop);
+
     QHBoxLayout* hlayout = new QHBoxLayout(this);
+
+    hlayout->addWidget(widget1,Qt::AlignTop);
+    hlayout->addWidget(widget5,Qt::AlignTop);
+    hlayout->addWidget(widget3,Qt::AlignTop);
+
+/*    QHBoxLayout* hlayout = new QHBoxLayout(this);
+
 
     hlayout->addWidget(widget1);
     hlayout->addWidget(iScrollArea);
@@ -231,7 +264,7 @@ QuizTemplate::QuizTemplate(QWidget *parent) :
     widget1->setFixedHeight(600);
     hlayout->setAlignment(widget1, Qt::AlignTop);
 
-    iProcess = new QProcess(this);
+  */  iProcess = new QProcess(this);
 
     // Signal and slots
 

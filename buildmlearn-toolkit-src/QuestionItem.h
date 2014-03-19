@@ -30,7 +30,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 #define QUESTIONITEM_H
 
 #include <QtGui>
-
+#include <QLabel>
+#include <QPushButton>
+#include <QGroupBox>
 class QuestionItem : public QWidget
 {
     Q_OBJECT

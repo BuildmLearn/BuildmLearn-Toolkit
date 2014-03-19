@@ -30,6 +30,14 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 #define FlashcardTemplate_H
 
 #include <QtGui>
+#include <qlineedit.h>
+#include <qcombobox.h>
+#include <qplaintextedit.h>
+#include <qlistwidget.h>
+#include <qscrollarea.h>
+#include <QVBoxLayout>
+#include <qstackedwidget.h>
+
 #include "QuestionItem.h"
 
 class FlashcardTemplate : public QWidget
@@ -74,6 +82,8 @@ private:
     QWidget* widget1;
     QWidget* widget2;
     QWidget* widget3;
+    QWidget* widget4;
+    QWidget* widget5;
     QWidget* mainWidget;
 
     // for widget 1

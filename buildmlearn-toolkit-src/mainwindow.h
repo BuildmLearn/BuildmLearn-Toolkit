@@ -31,6 +31,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 
 #include <QMainWindow>
 #include <QtGui>
+#include <QStackedWidget>
 #include "newprojectwidget.h"
 #include "InfoTemplate.h"
 #include "QuizTemplate.h"
