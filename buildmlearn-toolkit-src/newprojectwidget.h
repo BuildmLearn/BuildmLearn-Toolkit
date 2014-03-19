@@ -30,7 +30,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 #define NEWPROJECTWIDGET_H
 
 #include <QWidget>
+#include <QListWidget>
+#include <QPushButton>
+#include <QLabel>
 #include <QtGui>
+#include <QMainWindow>
 
 class NewProjectWidget : public QMainWindow
 {

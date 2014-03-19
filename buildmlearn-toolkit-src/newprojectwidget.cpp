@@ -27,6 +27,11 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 
 #include "newprojectwidget.h"
+#include <QWidget>
+#include <QMainWindow>
+#include <QVBoxLayout>
+#include <QHBoxLayout>
+#include <QListWidget>
 
 int WIDGET_WIDTH = 560;
 int WIDGET_HEIGHT = 480;

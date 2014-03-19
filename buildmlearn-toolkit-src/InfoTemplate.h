@@ -30,9 +30,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 #define INFOTEMPLATE_H
 
 #include <QtGui>
-
-
-
+#include <QListWidget>
+#include <QLineEdit>
+#include <QPlainTextEdit>
+#include <QPushButton>
+#include <QStackedWidget>
+#include <QLabel>
 class InfoTemplate : public QWidget
 {
     Q_OBJECT
@@ -59,6 +62,8 @@ private:
     QWidget* widget1;
     QWidget* widget2;
     QWidget* widget3;
+    QWidget* widget4;
+    QWidget* widget5;
     QWidget* mainWidget;
 
     // for widget 1
