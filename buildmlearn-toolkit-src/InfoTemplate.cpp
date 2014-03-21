@@ -216,13 +216,24 @@ void InfoTemplate::on_generateButton_clicked()
 
         file.close();
     }
+#ifdef Q_OS_WIN32
 
-    execWindowsCommand("copy config\\templates\\BuildmLearnInfo.apk config\\BuildmLearnInfo_in_use.zip");
-    execWindowsCommand("config\\templates\\7za.exe a config\\BuildmLearnInfo_in_use.zip assets");
-    execWindowsCommand("config\\templates\\signapk.jar config\\templates\\certificate.pem config\\templates\\key.pk8 config\\BuildmLearnInfo_in_use.zip applications\\BuildmLearnInfo_signed.apk");
-    execWindowsCommand("del config\\BuildmLearnInfo_in_use.zip");
+        execWindowsCommand("copy config\\templates\\BuildmLearnInfo.apk config\\BuildmLearnInfo_in_use.zip");
+        execWindowsCommand("config\\templates\\7za.exe a config\\BuildmLearnInfo_in_use.zip assets");
+        execWindowsCommand("config\\templates\\signapk.jar config\\templates\\certificate.pem config\\templates\\key.pk8 config\\BuildmLearnInfo_in_use.zip applications\\BuildmLearnInfo_signed.apk");
+        execWindowsCommand("del config\\BuildmLearnInfo_in_use.zip");
+  #endif
 
-    // delete temp files
+  #ifdef Q_OS_LINUX
+          execLinuxCommand("cp config/templates/BuildmLearnInfo.apk config/BuildmLearnInfo_in_use.zip");
+          execLinuxCommand("zip -R config/BuildmLearnInfo_in_use.zip assets/*");
+          execLinuxCommand("java -jar config/templates/signapk.jar config/templates/certificate.pem config/templates/key.pk8 config/BuildmLearnInfo_in_use.zip applications/BuildmLearnInfo_signed.apk");
+          execLinuxCommand("rm config/BuildmLearnInfo_in_use.zip");
+
+  #endif
+
+
+   // delete temp files
 
     for (int i=0;i<iDescriptionList.count(); i++)
     {
@@ -243,7 +254,16 @@ void InfoTemplate::execWindowsCommand(QString command)
     iProcess->start("cmd.exe",args);
     iProcess->waitForFinished(-1);
 }
-
+void InfoTemplate::execLinuxCommand(QString command)
+{
+    qDebug()<<"sh: "+command;
+    iProcess->start(command);
+    iProcess->waitForFinished(-1);
+    QString p_stdout = iProcess->readAllStandardOutput();
+    QString p_stderr = iProcess->readAllStandardError();
+    qDebug()<<p_stdout;
+     qDebug()<<p_stderr;
+}
 
 void InfoTemplate::execWindowsCommandDetached(QString command)
 {

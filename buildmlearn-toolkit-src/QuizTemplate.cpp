@@ -334,11 +334,22 @@ void QuizTemplate::on_generateButton_clicked()
 
 
 
+
+#ifdef Q_OS_WIN32
+
     execWindowsCommand("copy config\\templates\\BuildmLearnQuiz.apk config\\BuildmLearnQuiz_in_use.zip");
     execWindowsCommand("config\\templates\\7za.exe a config\\BuildmLearnQuiz_in_use.zip assets");
     execWindowsCommand("config\\templates\\signapk.jar config\\templates\\certificate.pem config\\templates\\key.pk8 config\\BuildmLearnQuiz_in_use.zip applications\\BuildmLearnQuiz_signed.apk");
     execWindowsCommand("del config\\BuildmLearnQuiz_in_use.zip");
+  #endif
 
+  #ifdef Q_OS_LINUX
+          execLinuxCommand("cp config/templates/BuildmLearnQuiz.apk config/BuildmLearnQuiz_in_use.zip");
+          execLinuxCommand("zip -R config/BuildmLearnQuiz_in_use.zip assets/*");
+          execLinuxCommand("java -jar config/templates/signapk.jar config/templates/certificate.pem config/templates/key.pk8 config/BuildmLearnQuiz_in_use.zip applications/BuildmLearnQuiz_signed.apk");
+          execLinuxCommand("rm config/BuildmLearnQuiz_in_use.zip");
+
+  #endif
     indexFile.remove();
     dir.rmdir("assets");
     QMessageBox::information(this,"Application generated" , "Your application has been generated. For the installation file, please check /applications folder. ");
@@ -353,7 +364,16 @@ void QuizTemplate::execWindowsCommand(QString command)
     iProcess->waitForFinished(-1);
 }
 
-
+void QuizTemplate::execLinuxCommand(QString command)
+{
+    qDebug()<<"sh: "+command;
+    iProcess->start(command);
+    iProcess->waitForFinished(-1);
+    QString p_stdout = iProcess->readAllStandardOutput();
+    QString p_stderr = iProcess->readAllStandardError();
+    qDebug()<<p_stdout;
+     qDebug()<<p_stderr;
+}
 void QuizTemplate::execWindowsCommandDetached(QString command)
 {
     qDebug()<<"detached cmd: "+command;

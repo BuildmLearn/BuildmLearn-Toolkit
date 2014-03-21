@@ -51,6 +51,7 @@ public slots:
     void on_generateButton_clicked();
 
     void execWindowsCommand(QString);
+    void execLinuxCommand(QString);
     void execWindowsCommandDetached(QString);
     void on_save_clicked();
     void on_open_clicked(QStringList dataList);
