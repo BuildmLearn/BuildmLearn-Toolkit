@@ -51,7 +51,7 @@ public slots:
 
     void execWindowsCommand(QString);
     void execWindowsCommandDetached(QString);
-
+    void execLinuxCommand(QString command);
     void removeQuestion(int);
     void optionAdded();
     void startSimulaton_clicked();
