@@ -53,7 +53,7 @@ FlashcardTemplate::FlashcardTemplate(QWidget *parent) :
     fcHintEdit  =  new QLineEdit(widget1);
 
     chooseImageButton = new QPushButton("Browse to choose image", widget1);
-    chooseImageButton->setFixedWidth(150);
+    //chooseImageButton->setFixedWidth(150);
     addButton = new QPushButton("Add Flashcard", widget1);
 
     questionLabel = new QLabel("Enter your question:", widget1);
