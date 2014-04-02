@@ -111,9 +111,10 @@ NewProjectWidget::NewProjectWidget(QWidget *parent) :
 
 
     iOpenButton = new QPushButton("Open Existing Application", this);
+    iOpenButton->setDefault(true);
 
     iChooseButton = new QPushButton("Choose",this);
-    iChooseButton->setShortcut(Qt::Key_Return);
+    iChooseButton->setDefault(true);
     iChooseButton->setFixedWidth(100);
 //    iCancelButton= new QPushButton("Cancel",this);
 //    iCancelButton->setFixedWidth(100);
