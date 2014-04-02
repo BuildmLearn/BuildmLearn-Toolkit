@@ -81,6 +81,7 @@ MainWindow::MainWindow(QWidget *parent) :
     helpMenu->addAction(howitworksAct);
     helpMenu->addAction(aboutAct);
 
+    buildAct->setShortcut(Qt::Key_F11);
 
     // Toolbar
     toolBar = addToolBar(tr("toolbar"));
