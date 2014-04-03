@@ -127,6 +127,7 @@ NewProjectWidget::NewProjectWidget(QWidget *parent) :
     connect(iTemplateList, SIGNAL(currentRowChanged(int)), this, SLOT(TemplateSelectionChanged(int)));
     connect(iChooseButton, SIGNAL(clicked()), this, SLOT(iChooseButton_clicked()));
     connect(iOpenButton, SIGNAL(clicked()), this, SLOT(iOpenButton_clicked()));
+    connect(iTemplateList, SIGNAL(itemDoubleClicked(QListWidgetItem*)),this, SLOT(iChooseButton_clicked()));
 
     iTemplateList->setCurrentRow(1);
 
