@@ -98,9 +98,11 @@ MainWindow::MainWindow(QWidget *parent) :
     toolBar->addSeparator();
     toolBar->addAction(aboutAct);
 
-    //Giving Keyboard shortcuts to 'open' and 'save'
+    //Giving Keyboard shortcuts to 'new', 'open','save'and 'quit'
+    newAct->setShortcut(QKeySequence::New);
     openAct->setShortcut(QKeySequence::Open);
     saveAct->setShortcut(QKeySequence::Save);
+    exitAct->setShortcut(QKeySequence::Quit);
 
     connect(iNewProjectWidget, SIGNAL(startProject(int)), this, SLOT(startProject(int)));
     connect(aboutAct, SIGNAL(triggered()), this ,SLOT(aboutClicked()));
