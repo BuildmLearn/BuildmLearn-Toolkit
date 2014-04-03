@@ -98,6 +98,10 @@ MainWindow::MainWindow(QWidget *parent) :
     toolBar->addSeparator();
     toolBar->addAction(aboutAct);
 
+    //Giving Keyboard shortcuts to 'open' and 'save'
+    openAct->setShortcut(QKeySequence::Open);
+    saveAct->setShortcut(QKeySequence::Save);
+
     connect(iNewProjectWidget, SIGNAL(startProject(int)), this, SLOT(startProject(int)));
     connect(aboutAct, SIGNAL(triggered()), this ,SLOT(aboutClicked()));
     connect(newAct, SIGNAL(triggered()), this ,SLOT(newClicked()));
@@ -276,7 +280,7 @@ void MainWindow::startProject(int index)
        // if Flashcards template is selected
        bool ok;
        iFlashCardsWidget->quizName = QInputDialog::getText(this, "Enter the name of the Flashcards collection",
-                                                           "Colllection's' Name:", QLineEdit::Normal,
+                                                           "Collection's' Name:", QLineEdit::Normal,
                                         "", &ok);
        if (!ok || iFlashCardsWidget->quizName.isEmpty())
        {
