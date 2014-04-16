@@ -94,6 +94,9 @@ private:
     QuizTemplate* iQuizTemplateWidget;
     // Create Flashcards Widget
     FlashcardTemplate* iFlashCardsWidget;
+    qreal pixels;
+    qreal px_width;
+    qreal px_height;
 };
 
 #endif // MAINWINDOW_H

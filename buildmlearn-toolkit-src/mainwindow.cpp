@@ -39,6 +39,15 @@ MainWindow::MainWindow(QWidget *parent) :
     iNewProjectWidget->setWindowModality(Qt::ApplicationModal);
     iNewProjectWidget->show();
 
+    //Test code to check for resolutions
+
+    QDesktopWidget desk;
+    px_width= desk.width();
+    pixels = desk.height();
+
+    qDebug()<< "width" << px_width;  //Output on my PC: 1366
+    qDebug()<< "height" << pixels;   //Output on my PC: 768
+
     iStackedWidget = new QStackedWidget(this);
     iBlankWidget = new QWidget(this);
     iInfoTemplateWidget = new InfoTemplate(this);
