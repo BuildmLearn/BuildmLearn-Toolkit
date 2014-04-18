@@ -39,6 +39,15 @@ MainWindow::MainWindow(QWidget *parent) :
     iNewProjectWidget->setWindowModality(Qt::ApplicationModal);
     iNewProjectWidget->show();
 
+    //Test code to check for resolutions
+
+    QDesktopWidget desk;
+    px_width= desk.width();
+    pixels = desk.height();
+
+    qDebug()<< "width" << px_width;  //Output on my PC: 1366
+    qDebug()<< "height" << pixels;   //Output on my PC: 768
+
     iStackedWidget = new QStackedWidget(this);
     iBlankWidget = new QWidget(this);
     iInfoTemplateWidget = new InfoTemplate(this);
@@ -55,7 +64,6 @@ MainWindow::MainWindow(QWidget *parent) :
     iStackedWidget->addWidget(iFlashCardsWidget);
 
     iStackedWidget->setCurrentIndex(0);
-
     setCentralWidget(iStackedWidget);
 
     // Menu
@@ -81,6 +89,7 @@ MainWindow::MainWindow(QWidget *parent) :
     helpMenu->addAction(howitworksAct);
     helpMenu->addAction(aboutAct);
 
+    buildAct->setShortcut(Qt::Key_F11);
 
     // Toolbar
     toolBar = addToolBar(tr("toolbar"));
@@ -96,6 +105,12 @@ MainWindow::MainWindow(QWidget *parent) :
     toolBar->addAction(howitworksAct);
     toolBar->addSeparator();
     toolBar->addAction(aboutAct);
+
+    //Giving Keyboard shortcuts to 'new', 'open','save'and 'quit'
+    newAct->setShortcut(QKeySequence::New);
+    openAct->setShortcut(QKeySequence::Open);
+    saveAct->setShortcut(QKeySequence::Save);
+    exitAct->setShortcut(QKeySequence::Quit);
 
     connect(iNewProjectWidget, SIGNAL(startProject(int)), this, SLOT(startProject(int)));
     connect(aboutAct, SIGNAL(triggered()), this ,SLOT(aboutClicked()));
@@ -275,7 +290,7 @@ void MainWindow::startProject(int index)
        // if Flashcards template is selected
        bool ok;
        iFlashCardsWidget->quizName = QInputDialog::getText(this, "Enter the name of the Flashcards collection",
-                                                           "Colllection's' Name:", QLineEdit::Normal,
+                                                           "Collection's' Name:", QLineEdit::Normal,
                                         "", &ok);
        if (!ok || iFlashCardsWidget->quizName.isEmpty())
        {
@@ -307,4 +322,20 @@ void MainWindow::resetWidgets()
     iStackedWidget->addWidget(iInfoTemplateWidget);
     iStackedWidget->addWidget(iQuizTemplateWidget);
     iStackedWidget->addWidget(iFlashCardsWidget);
+}
+
+bool MainWindow:: eventFilter(QObject *rec, QEvent * event)
+{
+    if(event->type()==QEvent::Resize)
+    {
+        changeScreenSizeDynamically();
+        qDebug()<< "Resolution changed";
+        return true;
+    }
+    return false;
+}
+
+void MainWindow:: changeScreenSizeDynamically(void)
+{
+    setGeometry(QApplication::desktop()->availableGeometry());
 }

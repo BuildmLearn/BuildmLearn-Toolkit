@@ -51,6 +51,7 @@ QuestionItem::QuestionItem(int index, QString ques_text,QWidget *parent) :
     iText=ques_text;
     iQuestionLabel = new QLabel("<b><u>Question "+QString::number(index+1)+"</u></b>" + iText);
     iRemoveButton = new QPushButton("Remove");
+    iRemoveButton->setDefault(true);
 
     iQuestionLabel->setStyleSheet("padding:10px");
     iRemoveButton->setStyleSheet("border-color:grey;border-width:1px;");

@@ -111,8 +111,10 @@ NewProjectWidget::NewProjectWidget(QWidget *parent) :
 
 
     iOpenButton = new QPushButton("Open Existing Application", this);
+    iOpenButton->setDefault(true);
 
     iChooseButton = new QPushButton("Choose",this);
+    iChooseButton->setDefault(true);
     iChooseButton->setFixedWidth(100);
 //    iCancelButton= new QPushButton("Cancel",this);
 //    iCancelButton->setFixedWidth(100);
@@ -125,6 +127,7 @@ NewProjectWidget::NewProjectWidget(QWidget *parent) :
     connect(iTemplateList, SIGNAL(currentRowChanged(int)), this, SLOT(TemplateSelectionChanged(int)));
     connect(iChooseButton, SIGNAL(clicked()), this, SLOT(iChooseButton_clicked()));
     connect(iOpenButton, SIGNAL(clicked()), this, SLOT(iOpenButton_clicked()));
+    connect(iTemplateList, SIGNAL(itemDoubleClicked(QListWidgetItem*)),this, SLOT(iChooseButton_clicked()));
 
     iTemplateList->setCurrentRow(1);
 

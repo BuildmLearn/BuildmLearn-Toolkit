@@ -50,7 +50,8 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    
+    virtual bool eventFilter(QObject *rec, QEvent * event);
+    virtual void changeScreenSizeDynamically(void);
 
 public slots:
     void startProject(int);
@@ -94,6 +95,9 @@ private:
     QuizTemplate* iQuizTemplateWidget;
     // Create Flashcards Widget
     FlashcardTemplate* iFlashCardsWidget;
+    qreal pixels;
+    qreal px_width;
+    qreal px_height;
 };
 
 #endif // MAINWINDOW_H
