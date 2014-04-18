@@ -64,7 +64,6 @@ MainWindow::MainWindow(QWidget *parent) :
     iStackedWidget->addWidget(iFlashCardsWidget);
 
     iStackedWidget->setCurrentIndex(0);
-
     setCentralWidget(iStackedWidget);
 
     // Menu
@@ -323,4 +322,20 @@ void MainWindow::resetWidgets()
     iStackedWidget->addWidget(iInfoTemplateWidget);
     iStackedWidget->addWidget(iQuizTemplateWidget);
     iStackedWidget->addWidget(iFlashCardsWidget);
+}
+
+bool MainWindow:: eventFilter(QObject *rec, QEvent * event)
+{
+    if(event->type()==QEvent::Resize)
+    {
+        changeScreenSizeDynamically();
+        qDebug()<< "Resolution changed";
+        return true;
+    }
+    return false;
+}
+
+void MainWindow:: changeScreenSizeDynamically(void)
+{
+    setGeometry(QApplication::desktop()->availableGeometry());
 }

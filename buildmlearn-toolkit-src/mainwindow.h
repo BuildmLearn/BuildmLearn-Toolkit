@@ -50,7 +50,8 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    
+    virtual bool eventFilter(QObject *rec, QEvent * event);
+    virtual void changeScreenSizeDynamically(void);
 
 public slots:
     void startProject(int);
