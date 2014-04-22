@@ -17,6 +17,7 @@ You can use source code tarball available direct from here to build the software
 Links
 -----
 * [www.buildmlearn.org](http://buildmlearn.org/)  ~homepage,
+* [www.build.opensuse.org/project/show/home:skunkos:buildmlearn] (https://build.opensuse.org/project/show/home:skunkos:buildmlearn)  ~OBS homepage,
 * [www.cmake.org](http://www.cmake.org/)  ~build system,
 * [www.qt-project.org](http://qt-project.org/)  ~Qt libraries.
 
