@@ -1,10 +1,24 @@
 BuildmLearn Toolkit
--------------------
+===================
 BuildmLearn Toolkit is an easy-to-use program that helps the users make mobile apps without any knowledge of application development.
 
 Portage
 -------
 Portage branch contains code developed by BuildmLearn development team and Martin Rotter. This code is developed as part of GSoC 2014 program by Martin Rotter.
+
+Packages
+--------
+You can use source code tarball available direct from here to build the software. Precompiled binary packages are available for some other platforms:
+
+* TBA  ~Archlinux, openSUSE, Fedora, *Ubuntu, Debian,
+* TBA  ~Windows (XP or newer),
+* TBA  ~OS/2 (eComStation).
+
+Links
+-----
+* [www.buildmlearn.org](http://buildmlearn.org/)  ~homepage,
+* [www.cmake.org](http://www.cmake.org/)  ~build system,
+* [www.qt-project.org](http://qt-project.org/)  ~Qt libraries.
 
 License for use and distribution
 ---------------------------------
