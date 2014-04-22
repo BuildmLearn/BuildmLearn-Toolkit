@@ -1,12 +1,10 @@
-buildmlearn-toolkit-src
------------------------
-This folder contains the source code for the toolkit. Please put all the experimental code in the 'playground'.
+BuildmLearn Toolkit
+-------------------
+BuildmLearn Toolkit is an easy-to-use program that helps the users make mobile apps without any knowledge of application development.
 
-playground
------------
-This folder contains 'work in progress' code. Contributors can use this repository for checking in their code. This may include experimental code.
-
-For any questions, please ask in the google group.
+Portage
+-------
+Portage branch contains code developed by BuildmLearn development team and Martin Rotter. This code is developed as part of GSoC 2014 program by Martin Rotter.
 
 License for use and distribution
 ---------------------------------
