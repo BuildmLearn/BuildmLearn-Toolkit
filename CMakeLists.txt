@@ -341,6 +341,28 @@ else(${USE_QT_5})
   )
 endif(${USE_QT_5})
 
+# Installation stage.
+if(WIN32 OR OS2)
+  message(STATUS "[${APP_LOW_NAME}] You will probably install on Windows or OS/2.")
+  install(TARGETS ${EXE_NAME}
+          RUNTIME DESTINATION ./)
+elseif(APPLE)
+
+elseif(UNIX)
+  message(STATUS "[${APP_LOW_NAME}] You will probably install on Linux.")
+  install(TARGETS ${EXE_NAME}
+          RUNTIME DESTINATION bin)
+endif(WIN32 OR OS2)
+
+# Custom target for packaging.
+set(CPACK_GENERATOR "ZIP")
+set(CPACK_PACKAGE_NAME ${APP_LOW_NAME})
+set(CPACK_PACKAGE_VERSION ${APP_VERSION})
+set(CPACK_IGNORE_FILES "\\\\.psd$;/CVS/;/\\\\.svn/;/\\\\.git/;\\\\.swp$;/CMakeLists.txt.user;\\\\.#;/#;\\\\.tar.gz$;/CMakeFiles/;CMakeCache.txt;\\\\.qm$;/build/;\\\\.diff$;.DS_Store'")
+set(CPACK_SOURCE_GENERATOR "TGZ")
+set(CPACK_SOURCE_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}")
+set(CPACK_SOURCE_IGNORE_FILES ${CPACK_IGNORE_FILES})
+
 # Load packaging facilities.
 include(CPack)
 
