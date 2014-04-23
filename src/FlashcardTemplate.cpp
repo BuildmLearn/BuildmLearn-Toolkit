@@ -29,6 +29,18 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 #include "FlashcardTemplate.h"
 #include "GlobalData.h"
 
+
+#include <QScrollArea>
+#include <QVBoxLayout>
+#include <QTextEdit>
+#include <QLineEdit>
+#include <QPushButton>
+#include <QLabel>
+#include <QStackedWidget>
+#include <QFileDialog>
+#include <QMessageBox>
+
+
 FlashcardTemplate::FlashcardTemplate(QWidget *parent) :
     QWidget(parent)
 {

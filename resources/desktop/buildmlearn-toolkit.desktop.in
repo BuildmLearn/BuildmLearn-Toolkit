@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Encoding=UTF-8
+Exec=@EXE_NAME@
+Name=@APP_NAME@
+GenericName=Easy-to-use program that helps users make mobile apps
+Comment=Easy-to-use program that helps users make mobile apps
+Icon=@EXE_NAME@
+Terminal=false
+Categories=Qt;Education;Office;Utility;

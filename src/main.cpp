@@ -26,23 +26,24 @@ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 
-#include <QApplication>
-#include <QtCore>
 #include "mainwindow.h"
-#include <QDebug>
+
+#include <QApplication>
+#include <QMessageBox>
+
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
+  QApplication a(argc, argv);
 
-    MainWindow w;
+  MainWindow w;
 
-    try{
+  try{
     w.show();
-    }
-    catch(std::exception& e){
-        QMessageBox::information(&w,QString("Oops") , QString("Something went wrong. The toolkit will now close. Please relaunch the toolkit to create your apps. \nError:") + e.what());
-    }
+  }
+  catch(std::exception& e){
+    QMessageBox::information(&w,QString("Oops") , QString("Something went wrong. The toolkit will now close. Please relaunch the toolkit to create your apps. \nError:") + e.what());
+  }
 
-    return a.exec();
+  return a.exec();
 }

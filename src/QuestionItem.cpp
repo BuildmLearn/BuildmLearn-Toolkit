@@ -29,6 +29,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 
 #include "QuestionItem.h"
 
+#include <QLabel>
+#include <QPushButton>
+#include <QVBoxLayout>
+
+
 QuestionItem::QuestionItem(int index, QString ques_text,QWidget *parent) :
     QWidget(parent)
 {

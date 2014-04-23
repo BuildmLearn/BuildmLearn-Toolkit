@@ -32,6 +32,21 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 #include <QtGui>
 #include "QuestionItem.h"
 
+
+class QRadioButton;
+class QMessageBox;
+class QMenu;
+class QLabel;
+class QTextEdit;
+class QLineEdit;
+class QComboBox;
+class QPlainTextEdit;
+class QScrollArea;
+class QListWidget;
+class QVBoxLayout;
+class QStackedWidget;
+class QScrollBar;
+
 class QuizTemplate : public QWidget
 {
     Q_OBJECT

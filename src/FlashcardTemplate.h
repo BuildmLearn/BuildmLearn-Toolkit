@@ -30,7 +30,19 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 #define FlashcardTemplate_H
 
 #include <QtGui>
+
 #include "QuestionItem.h"
+
+class QMenu;
+class QLabel;
+class QTextEdit;
+class QLineEdit;
+class QComboBox;
+class QPlainTextEdit;
+class QScrollArea;
+class QListWidget;
+class QVBoxLayout;
+class QStackedWidget;
 
 class FlashcardTemplate : public QWidget
 {

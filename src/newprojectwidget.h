@@ -29,8 +29,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 #ifndef NEWPROJECTWIDGET_H
 #define NEWPROJECTWIDGET_H
 
-#include <QWidget>
-#include <QtGui>
+#include <QMainWindow>
+
+
+class QListWidget;
+class QLabel;
+class QPushButton;
 
 class NewProjectWidget : public QMainWindow
 {

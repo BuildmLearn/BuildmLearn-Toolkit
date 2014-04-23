@@ -29,6 +29,22 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 #include "InfoTemplate.h"
 #include "GlobalData.h"
 
+
+#include <QScrollArea>
+#include <QVBoxLayout>
+#include <QTextEdit>
+#include <QLineEdit>
+#include <QPushButton>
+#include <QLabel>
+#include <QStackedWidget>
+#include <QFileDialog>
+#include <QMessageBox>
+#include <QDebug>
+#include <QListWidget>
+#include <QPlainTextEdit>
+#include <QProcess>
+
+
 InfoTemplate::InfoTemplate(QWidget *parent) :
     QWidget(parent)
 {

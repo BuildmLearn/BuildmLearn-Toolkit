@@ -35,6 +35,12 @@ int TEMPLATE_HEIGHT = 400;
 int RIGHT_WIDGET_WIDTH = 300;
 int INFO_WIDGET_HEIGHT = 50;
 
+#include <QVBoxLayout>
+#include <QHBoxLayout>
+#include <QLabel>
+#include <QListWidget>
+#include <QPushButton>
+
 
 NewProjectWidget::NewProjectWidget(QWidget *parent) :
     QMainWindow(parent)
