@@ -29,16 +29,58 @@
 */
 
 #include "gui/formmain.h"
+#include "definitions/definitions.h"
+#include "miscellaneous/application.h"
+#include "miscellaneous/debugging.h"
+#include "miscellaneous/settings.h"
 
-#include <QApplication>
-#include <QMessageBox>
+#include <QThread>
+#include <QTranslator>
+#include <QDebug>
 
 
 int main(int argc, char *argv[]) {
-  QApplication a(argc, argv);
+  //: Name of language, e.g. English.
+  QObject::tr("LANG_NAME");
+  //: Abbreviation of language.
+  //: Use ISO 639-1 code here combined with ISO 3166-1 (alpha-2) code.
+  //: Examples: "cs_CZ", "en_GB", "en_US".
+  QObject::tr("LANG_ABBREV");
+  //: Name of translator - optional.
+  QObject::tr("LANG_AUTHOR");
+  //: Email of translator - optional.
+  QObject::tr("LANG_EMAIL");
+
+  // Ensure that ini format is used as application settings storage on Mac OS.
+#ifdef Q_OS_MAC
+  QSettings::setDefaultFormat(QSettings::IniFormat);
+#endif
+
+  // Setup debug output system.
+#if QT_VERSION >= 0x050000
+  qInstallMessageHandler(Debugging::debugHandler);
+#else
+  qInstallMsgHandler(Debugging::debugHandler);
+#endif
+
+  Application application(argc, argv);
+
+  // These settings needs to be set before any QSettings object.
+  Application::setApplicationName(APP_NAME);
+  Application::setApplicationVersion(APP_VERSION);
+  Application::setOrganizationName(APP_AUTHOR);
+  Application::setOrganizationDomain(APP_URL);
+  Application::setWindowIcon(QIcon(APP_ICON_PATH));
+
+  qDebug().nospace() << "Creating main application form in thread: \'" <<
+                        QThread::currentThreadId() << "\'.";
+
   FormMain main_form;
+
+  // Set correct information for main window.
+  main_form.setWindowTitle(APP_LONG_NAME);
 
   main_form.show();
 
-  return a.exec();
+  return Application::exec();
 }

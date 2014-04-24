@@ -23,6 +23,14 @@
      <height>21</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menu_Help">
+    <property name="title">
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="actionCheck_for_updates"/>
+    <addaction name="action_About_BuildmLearn_Toolkit"/>
+   </widget>
+   <addaction name="menu_Help"/>
   </widget>
   <widget class="QToolBar" name="m_toolBar">
    <attribute name="toolBarArea">
@@ -33,6 +41,16 @@
    </attribute>
   </widget>
   <widget class="QStatusBar" name="m_statusBar"/>
+  <action name="actionCheck_for_updates">
+   <property name="text">
+    <string>Check for updates</string>
+   </property>
+  </action>
+  <action name="action_About_BuildmLearn_Toolkit">
+   <property name="text">
+    <string>&amp;About BuildmLearn Toolkit</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

@@ -34,6 +34,7 @@
 #include "ui_formmain.h"
 
 #include "gui/formnewproject.h"
+
 #include "InfoTemplate.h"
 #include "QuizTemplate.h"
 #include "FlashcardTemplate.h"
@@ -52,9 +53,9 @@ class FormMain : public QMainWindow {
     Q_OBJECT
     
   public:
+    // Constructors and destructors.
     explicit FormMain(QWidget *parent = 0);
     virtual ~FormMain();
-    
 
   public slots:
     void startProject(int);
@@ -66,11 +67,13 @@ class FormMain : public QMainWindow {
     void openClicked();
     void loadOpenFile();
     void resetWidgets();
+
   private:
+    Ui::FormMain *m_ui;
+
     // Menus
     QMenu *fileMenu;
     QMenu *projectMenu;
-    QMenu *helpMenu;
 
     // Action
     QAction *newAct;
@@ -78,8 +81,6 @@ class FormMain : public QMainWindow {
     QAction *openAct;
     QAction *exitAct;
     QAction *buildAct;
-    QAction *howitworksAct;
-    QAction *aboutAct;
 
     // Toolbar
     QToolBar* toolBar;

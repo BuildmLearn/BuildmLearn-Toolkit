@@ -29,7 +29,6 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 ########################################################################################
-########################################################################################
 #
 # BuildmLearn Toolkit compilation script for CMake.
 #
@@ -56,7 +55,6 @@
 #
 # Authors and contributors:
 #   - BuildmLearn Contributors listed at http://buildmlearn.org/people/,
-#   - Martin Rotter
 #
 ########################################################################################
 
@@ -234,8 +232,15 @@ set(APP_SOURCES
   ${APP_SOURCES}
   
   src/main.cpp
+
   src/gui/formmain.cpp
   src/gui/formnewproject.cpp
+
+  src/miscellaneous/application.cpp
+  src/miscellaneous/settings.cpp
+  src/miscellaneous/debugging.cpp
+
+  src/network-web/webfactory.cpp
 
   src/FlashcardTemplate.cpp
   src/InfoTemplate.cpp
@@ -249,6 +254,12 @@ set(APP_HEADERS
   
   src/gui/formmain.h
   src/gui/formnewproject.h
+
+  src/miscellaneous/application.h
+  src/miscellaneous/settings.h
+  src/miscellaneous/debugging.h
+
+  src/network-web/webfactory.h
 
   src/FlashcardTemplate.h
   src/InfoTemplate.h
