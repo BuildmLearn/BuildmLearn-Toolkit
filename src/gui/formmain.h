@@ -28,17 +28,76 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include "gui/formmain.h"
+#ifndef FORMMAIN_H
+#define FORMMAIN_H
 
-#include <QApplication>
-#include <QMessageBox>
+#include "ui_formmain.h"
+
+#include "gui/formnewproject.h"
+#include "InfoTemplate.h"
+#include "QuizTemplate.h"
+#include "FlashcardTemplate.h"
+
+#include <QMainWindow>
+#include <QtGui>
+
+#define HELP_URL "http://buildmlearn.wordpress.com/download/"
 
 
-int main(int argc, char *argv[]) {
-  QApplication a(argc, argv);
-  FormMain main_form;
-
-  main_form.show();
-
-  return a.exec();
+namespace Ui {
+  class FormMain;
 }
+
+class FormMain : public QMainWindow {
+    Q_OBJECT
+    
+  public:
+    explicit FormMain(QWidget *parent = 0);
+    virtual ~FormMain();
+    
+
+  public slots:
+    void startProject(int);
+    void aboutClicked();
+    void helpClicked();
+    void generateClicked();
+    void newClicked();
+    void saveClicked();
+    void openClicked();
+    void loadOpenFile();
+    void resetWidgets();
+  private:
+    // Menus
+    QMenu *fileMenu;
+    QMenu *projectMenu;
+    QMenu *helpMenu;
+
+    // Action
+    QAction *newAct;
+    QAction *saveAct;
+    QAction *openAct;
+    QAction *exitAct;
+    QAction *buildAct;
+    QAction *howitworksAct;
+    QAction *aboutAct;
+
+    // Toolbar
+    QToolBar* toolBar;
+
+    // Other widgets
+    QStackedWidget* iStackedWidget;
+
+    // Create NewProject Widget
+    FormNewProject *iNewProjectWidget;
+
+    //  Blank widget
+    QWidget* iBlankWidget;
+    // Create InfoTemplate Widget
+    InfoTemplate* iInfoTemplateWidget;
+    // Create QuizTemplate Widget
+    QuizTemplate* iQuizTemplateWidget;
+    // Create Flashcards Widget
+    FlashcardTemplate* iFlashCardsWidget;
+};
+
+#endif // FORMMAIN_H

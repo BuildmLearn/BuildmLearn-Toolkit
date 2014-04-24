@@ -1,34 +1,36 @@
-/* Copyright (c) 2012, BuildmLearn Contributors listed at http://buildmlearn.org/people/
-All rights reserved.
+/*
+  Copyright (c) 2012, BuildmLearn Contributors listed at http://buildmlearn.org/people/
+  All rights reserved.
 
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are met:
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions are met:
 
-* Redistributions of source code must retain the above copyright notice, this
-  list of conditions and the following disclaimer.
+  * Redistributions of source code must retain the above copyright notice, this
+    list of conditions and the following disclaimer.
 
-* Redistributions in binary form must reproduce the above copyright notice,
-  this list of conditions and the following disclaimer in the documentation
-  and/or other materials provided with the distribution.
+  * Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
-* Neither the name of the BuildmLearn nor the names of its
-  contributors may be used to endorse or promote products derived from
-  this software without specific prior written permission.
+  * Neither the name of the BuildmLearn nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+  FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+  SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+  OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
 
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
-#include "GlobalData.h"
+#include "gui/formmain.h"
+
+#include "definitions/definitions.h"
 
 #include <QStackedWidget>
 #include <QMessageBox>
@@ -38,12 +40,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 #include <QVBoxLayout>
 
 
-MainWindow::MainWindow(QWidget *parent) :
+FormMain::FormMain(QWidget *parent) :
     QMainWindow(parent)
 {
     setWindowTitle("BuildmLearn Toolkit");
     showMaximized();
-    iNewProjectWidget = new NewProjectWidget(this);
+    iNewProjectWidget = new FormNewProject(this);
     iNewProjectWidget->setWindowModality(Qt::ApplicationModal);
     iNewProjectWidget->show();
 
@@ -115,11 +117,11 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(exitAct, SIGNAL(triggered()), this ,SLOT(close()));
 }
 
-MainWindow::~MainWindow()
+FormMain::~FormMain()
 {
 }
 
-void MainWindow::saveClicked()
+void FormMain::saveClicked()
 {
     if (iStackedWidget->currentIndex()==0)
     {
@@ -139,7 +141,7 @@ void MainWindow::saveClicked()
     }
 }
 
-void MainWindow::openClicked()
+void FormMain::openClicked()
 {
     if (iStackedWidget->currentIndex() !=0)
     {
@@ -159,7 +161,7 @@ void MainWindow::openClicked()
 
 }
 
-void MainWindow::loadOpenFile()
+void FormMain::loadOpenFile()
 {
     QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"),
                                                     "",tr("*.buildmlearn"));
@@ -168,7 +170,7 @@ void MainWindow::loadOpenFile()
 
     QString data = indexFile.readAll();
     indexFile.close();
-    QStringList dataList = data.split(GlobalData::IO_LD);
+    QStringList dataList = data.split(DELIMITER_LINE);
     qDebug()<<dataList;
 
     QString selectedTemplate = dataList.first();
@@ -194,7 +196,7 @@ void MainWindow::loadOpenFile()
 
 }
 
-void MainWindow::newClicked()
+void FormMain::newClicked()
 {
     if (iStackedWidget->currentIndex() !=0)
     {
@@ -213,18 +215,18 @@ void MainWindow::newClicked()
     }
 }
 
-void MainWindow::aboutClicked()
+void FormMain::aboutClicked()
 {
 
     QMessageBox::information(this,"About" , "BuildmLearn Toolkit\nVersion 2.0.0\n\nBuildmLearn Toolkit is an easy-to-use program that helps the users make mobile apps without any knowledge of application development. The toolkit helps creating mobile application with various functionality and allows teachers to input their custom content. Targeted at teachers, this toolkit helps them make learning fun and engaging through mobile apps.\n\nFor more information visit: http://buildmlearn.org \n\nContact the developers at BuildmLearn Google Group (https://groups.google.com/forum/#!forum/buildmlearn) for any other information or suggestions. Alternatively, you can email the core developers at croozeus@gmail.com. ");
 }
 
-void MainWindow::helpClicked()
+void FormMain::helpClicked()
 {
  QDesktopServices::openUrl(QString(HELP_URL));
 }
 
-void MainWindow::generateClicked()
+void FormMain::generateClicked()
 {
     if (iStackedWidget->currentIndex()==0)
     {
@@ -244,7 +246,7 @@ void MainWindow::generateClicked()
     }
 }
 
-void MainWindow::startProject(int index)
+void FormMain::startProject(int index)
 {
     if (index == -1)
     {
@@ -302,7 +304,7 @@ void MainWindow::startProject(int index)
        iFlashCardsWidget->updateStartPage_phone();
    }
 }
-void MainWindow::resetWidgets()
+void FormMain::resetWidgets()
 {
     iStackedWidget->removeWidget(iFlashCardsWidget);
     iStackedWidget->removeWidget(iQuizTemplateWidget);

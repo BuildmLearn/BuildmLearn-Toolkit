@@ -27,8 +27,8 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 
 #include "InfoTemplate.h"
-#include "GlobalData.h"
 
+#include "definitions/definitions.h"
 
 #include <QScrollArea>
 #include <QVBoxLayout>
@@ -282,9 +282,9 @@ void InfoTemplate::on_save_clicked()
 
     for (int i=0; i<iTitleList.count(); i++)
     {
-        out << GlobalData::IO_LD;
+        out << DELIMITER_LINE;
         out << iTitleList.at(i);
-        out << GlobalData::IO_ILD;
+        out << DELIMITER_INLINE;
         out << iDescriptionList.at(i);
     }
     indexFile.close();
@@ -296,7 +296,7 @@ void InfoTemplate::on_open_clicked(QStringList dataList)
     iDescriptionList.clear();
     for (int i=0; i<dataList.length();i++)
     {
-        QStringList data = dataList.at(i).split(GlobalData::IO_ILD);
+        QStringList data = dataList.at(i).split(DELIMITER_INLINE);
         iTitleList.append(data.at(0));
         iDescriptionList.append(data.at(1));
     }

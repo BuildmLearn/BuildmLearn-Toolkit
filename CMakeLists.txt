@@ -148,6 +148,12 @@ if(UNIX)
   set(DESKTOP_ENTRY_PATH ${CMAKE_INSTALL_PREFIX}/share/applications)
 endif(UNIX)
 
+# Configure internal C++ defines.
+configure_file (
+  ${PROJECT_SOURCE_DIR}/src/definitions/definitions.h.in
+  ${CMAKE_CURRENT_BINARY_DIR}/src/definitions/definitions.h
+)
+
 # Define some useful DEBUG for, ehrm, debug build.
 if(CMAKE_BUILD_TYPE STREQUAL "release" OR CMAKE_BUILD_TYPE STREQUAL "Release" OR CMAKE_BUILD_TYPE STREQUAL "RELEASE")
   message(STATUS "[${APP_LOW_NAME}] A release build (non-debug) is chosen. Debugging outputs are silently ignored.")
@@ -227,12 +233,12 @@ endif(${USE_QT_5})
 set(APP_SOURCES
   ${APP_SOURCES}
   
-  src/FlashcardTemplate.cpp
-  src/GlobalData.cpp
-  src/InfoTemplate.cpp
   src/main.cpp
-  src/mainwindow.cpp
-  src/newprojectwidget.cpp
+  src/gui/formmain.cpp
+  src/gui/formnewproject.cpp
+
+  src/FlashcardTemplate.cpp
+  src/InfoTemplate.cpp
   src/QuestionItem.cpp
   src/QuizTemplate.cpp
 )
@@ -241,18 +247,18 @@ set(APP_SOURCES
 set(APP_HEADERS
   ${APP_HEADERS}
   
+  src/gui/formmain.h
+  src/gui/formnewproject.h
+
   src/FlashcardTemplate.h
-  src/GlobalData.h
   src/InfoTemplate.h
-  src/mainwindow.h
-  src/newprojectwidget.h
   src/QuestionItem.h
   src/QuizTemplate.h
 )
 
 # APP form files.
 set(APP_FORMS
-  src/mainwindow.ui
+  src/gui/formmain.ui
 )
 
 set(APP_RESOURCES
@@ -295,6 +301,7 @@ endif(${USE_QT_5})
 # Include additional directory paths.
 include_directories (
   ${CMAKE_CURRENT_SOURCE_DIR}/src
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/gui
   ${CMAKE_CURRENT_BINARY_DIR}
   ${CMAKE_CURRENT_BINARY_DIR}/src
 )

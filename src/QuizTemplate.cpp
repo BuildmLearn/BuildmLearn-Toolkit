@@ -27,7 +27,8 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 
 #include "QuizTemplate.h"
-#include "GlobalData.h"
+
+#include "definitions/definitions.h"
 
 #include <QScrollArea>
 #include <QVBoxLayout>
@@ -581,13 +582,13 @@ void QuizTemplate::on_save_clicked()
     QFile indexFile(fileName);
     indexFile.open(QIODevice::WriteOnly | QIODevice::Text);
     QTextStream out(&indexFile);
-    QString headers = QString("QuizTemplate") + GlobalData::IO_LD + quizName + GlobalData::IO_LD + authorName;
+    QString headers = QString("QuizTemplate") + DELIMITER_LINE + quizName + DELIMITER_LINE + authorName;
     out << headers;
     qDebug()<<headers;
 
     for (int i=0; i<iQuestionTextList.count(); i++)
     {
-        out <<GlobalData::IO_LD;
+        out << DELIMITER_LINE;
         out << iQuestionTextList.at(i) + "==" + iOptionsList.at(i)+"=="+QString::number(iAnsList.at(i));
     }
     indexFile.close();

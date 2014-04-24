@@ -27,7 +27,8 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 
 #include "FlashcardTemplate.h"
-#include "GlobalData.h"
+
+#include "definitions/definitions.h"
 
 
 #include <QScrollArea>
@@ -625,11 +626,11 @@ void FlashcardTemplate::on_save_clicked()
     indexFile.open(QIODevice::WriteOnly | QIODevice::Text);
     QTextStream out(&indexFile);
 
-    out << "FlashCardsTemplate" + GlobalData::IO_LD + quizName + GlobalData::IO_LD + authorName;
+    out << QString("FlashCardsTemplate") + DELIMITER_LINE + quizName + DELIMITER_LINE + authorName;
 
     for (int i=0; i<iQuestionTextList.count(); i++)
     {
-        out << GlobalData::IO_LD;
+        out << DELIMITER_LINE;
         QString str_to_write =  "";
 
         if (iImageList.at(i) == "")
