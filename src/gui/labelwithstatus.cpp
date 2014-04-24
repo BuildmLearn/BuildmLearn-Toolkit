@@ -28,56 +28,32 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#ifndef FORMUPDATE_H
-#define FORMUPDATE_H
+#include "gui/labelwithstatus.h"
 
-#include "ui_formupdate.h"
+#include "gui/plaintoolbutton.h"
 
-#include "miscellaneous/systemfactory.h"
-
-#include <QDialog>
-#include <QPushButton>
-#include <QNetworkReply>
+#include <QHBoxLayout>
 
 
-namespace Ui {
-  class FormUpdate;
+LabelWithStatus::LabelWithStatus(QWidget *parent)
+  : WidgetWithStatus(parent) {
+  m_wdgInput = new QLabel(this);
+
+  // Set correct size for the tool button.
+  int label_height = m_wdgInput->sizeHint().height();
+  m_btnStatus->setFixedSize(label_height, label_height);
+
+  // Compose the layout.
+  m_layout->addWidget(m_wdgInput);
+  m_layout->addWidget(m_btnStatus);
 }
 
-class Downloader;
+LabelWithStatus::~LabelWithStatus() {
+}
 
-class FormUpdate : public QDialog {
-    Q_OBJECT
-
-  public:
-    // Constructors and destructors.
-    explicit FormUpdate(QWidget *parent = 0);
-    virtual ~FormUpdate();
-
-    // Returns true if current update provides
-    // installation file for current platform.
-    bool isUpdateForThisSystem() const;
-
-    // Returns true if application can self-update
-    // on current platform.
-    bool isSelfUpdateSupported() const;
-
-  protected slots:
-    // Check for updates and interprets the results.
-    void checkForUpdates();
-    void startUpdate();
-
-    void updateProgress(qint64 bytes_received, qint64 bytes_total);
-    void updateCompleted(QNetworkReply::NetworkError status, QByteArray contents);
-    void saveUpdateFile(const QByteArray &file_contents);
-
-  private:
-    Downloader *m_downloader;
-    bool m_readyToInstall;
-    QString m_updateFilePath;
-    Ui::FormUpdate *m_ui;
-    UpdateInfo m_updateInfo;
-    QPushButton *m_btnUpdate;
-};
-
-#endif // FORMUPDATE_H
+void LabelWithStatus::setStatus(WidgetWithStatus::StatusType status,
+                                const QString &label_text,
+                                const QString &status_text) {
+  WidgetWithStatus::setStatus(status, status_text);
+  label()->setText(label_text);
+}

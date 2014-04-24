@@ -235,10 +235,16 @@ set(APP_SOURCES
 
   src/gui/formmain.cpp
   src/gui/formnewproject.cpp
+  #src/gui/formupdate.cpp
+  src/gui/widgetwithstatus.cpp
+  src/gui/labelwithstatus.cpp
+  src/gui/plaintoolbutton.cpp
 
   src/miscellaneous/application.cpp
   src/miscellaneous/settings.cpp
   src/miscellaneous/debugging.cpp
+  src/miscellaneous/iconfactory.cpp
+  src/miscellaneous/systemfactory.cpp
 
   src/network-web/webfactory.cpp
 
@@ -254,10 +260,16 @@ set(APP_HEADERS
   
   src/gui/formmain.h
   src/gui/formnewproject.h
+  #src/gui/formupdate.h
+  src/gui/widgetwithstatus.h
+  src/gui/labelwithstatus.h
+  src/gui/plaintoolbutton.h
 
   src/miscellaneous/application.h
   src/miscellaneous/settings.h
   src/miscellaneous/debugging.h
+  src/miscellaneous/iconfactory.h
+  src/miscellaneous/systemfactory.h
 
   src/network-web/webfactory.h
 
@@ -270,6 +282,7 @@ set(APP_HEADERS
 # APP form files.
 set(APP_FORMS
   src/gui/formmain.ui
+  #src/gui/formupdate.ui
 )
 
 set(APP_RESOURCES
@@ -313,6 +326,8 @@ endif(${USE_QT_5})
 include_directories (
   ${CMAKE_CURRENT_SOURCE_DIR}/src
   ${CMAKE_CURRENT_SOURCE_DIR}/src/gui
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/miscellaneous
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/network-web
   ${CMAKE_CURRENT_BINARY_DIR}
   ${CMAKE_CURRENT_BINARY_DIR}/src
 )

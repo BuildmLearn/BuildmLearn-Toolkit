@@ -28,56 +28,60 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#ifndef FORMUPDATE_H
-#define FORMUPDATE_H
+#include "gui/widgetwithstatus.h"
 
-#include "ui_formupdate.h"
+#include "gui/plaintoolbutton.h"
+#include "miscellaneous/iconfactory.h"
 
-#include "miscellaneous/systemfactory.h"
-
-#include <QDialog>
-#include <QPushButton>
-#include <QNetworkReply>
+#include <QHBoxLayout>
 
 
-namespace Ui {
-  class FormUpdate;
+WidgetWithStatus::WidgetWithStatus(QWidget *parent)
+  : QWidget(parent), m_wdgInput(NULL) {
+  m_layout = new QHBoxLayout(this);
+  m_btnStatus = new PlainToolButton(this);
+  m_btnStatus->setFocusPolicy(Qt::NoFocus);
+
+  m_iconInformation = IconFactory::instance()->fromTheme("dialog-information");
+  m_iconWarning = IconFactory::instance()->fromTheme("dialog-warning");
+  m_iconError = IconFactory::instance()->fromTheme("dialog-error");
+  m_iconOk = IconFactory::instance()->fromTheme("dialog-yes");
+
+  // Set layout properties.
+  m_layout->setMargin(0);
+
+  setLayout(m_layout);
+  setStatus(Information, QString());
 }
 
-class Downloader;
+WidgetWithStatus::~WidgetWithStatus() {
+}
 
-class FormUpdate : public QDialog {
-    Q_OBJECT
+void WidgetWithStatus::setStatus(WidgetWithStatus::StatusType status,
+                                 const QString &tooltip_text) {
+  m_status = status;
 
-  public:
-    // Constructors and destructors.
-    explicit FormUpdate(QWidget *parent = 0);
-    virtual ~FormUpdate();
+  switch (status) {
+    case Information:
+      m_btnStatus->setIcon(m_iconInformation);
+      break;
 
-    // Returns true if current update provides
-    // installation file for current platform.
-    bool isUpdateForThisSystem() const;
+    case Warning:
+      m_btnStatus->setIcon(m_iconWarning);
+      break;
 
-    // Returns true if application can self-update
-    // on current platform.
-    bool isSelfUpdateSupported() const;
+    case Error:
+      m_btnStatus->setIcon(m_iconError);
+      break;
 
-  protected slots:
-    // Check for updates and interprets the results.
-    void checkForUpdates();
-    void startUpdate();
+    case Ok:
+      m_btnStatus->setIcon(m_iconOk);
+      break;
 
-    void updateProgress(qint64 bytes_received, qint64 bytes_total);
-    void updateCompleted(QNetworkReply::NetworkError status, QByteArray contents);
-    void saveUpdateFile(const QByteArray &file_contents);
+    default:
+      break;
+  }
 
-  private:
-    Downloader *m_downloader;
-    bool m_readyToInstall;
-    QString m_updateFilePath;
-    Ui::FormUpdate *m_ui;
-    UpdateInfo m_updateInfo;
-    QPushButton *m_btnUpdate;
-};
-
-#endif // FORMUPDATE_H
+  // Setup the tooltip text.
+  m_btnStatus->setToolTip(tooltip_text);
+}

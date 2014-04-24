@@ -28,56 +28,30 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#ifndef FORMUPDATE_H
-#define FORMUPDATE_H
+#ifndef LABELWITHSTATUS_H
+#define LABELWITHSTATUS_H
 
-#include "ui_formupdate.h"
+#include "gui/widgetwithstatus.h"
 
-#include "miscellaneous/systemfactory.h"
-
-#include <QDialog>
-#include <QPushButton>
-#include <QNetworkReply>
+#include <QLabel>
 
 
-namespace Ui {
-  class FormUpdate;
-}
-
-class Downloader;
-
-class FormUpdate : public QDialog {
+class LabelWithStatus : public WidgetWithStatus {
     Q_OBJECT
 
   public:
     // Constructors and destructors.
-    explicit FormUpdate(QWidget *parent = 0);
-    virtual ~FormUpdate();
+    explicit LabelWithStatus(QWidget *parent = 0);
+    virtual ~LabelWithStatus();
 
-    // Returns true if current update provides
-    // installation file for current platform.
-    bool isUpdateForThisSystem() const;
+    void setStatus(StatusType status,
+                   const QString &label_text,
+                   const QString &status_text);
 
-    // Returns true if application can self-update
-    // on current platform.
-    bool isSelfUpdateSupported() const;
-
-  protected slots:
-    // Check for updates and interprets the results.
-    void checkForUpdates();
-    void startUpdate();
-
-    void updateProgress(qint64 bytes_received, qint64 bytes_total);
-    void updateCompleted(QNetworkReply::NetworkError status, QByteArray contents);
-    void saveUpdateFile(const QByteArray &file_contents);
-
-  private:
-    Downloader *m_downloader;
-    bool m_readyToInstall;
-    QString m_updateFilePath;
-    Ui::FormUpdate *m_ui;
-    UpdateInfo m_updateInfo;
-    QPushButton *m_btnUpdate;
+    // Access to label.
+    inline QLabel *label() const {
+      return static_cast<QLabel*>(m_wdgInput);
+    }
 };
 
-#endif // FORMUPDATE_H
+#endif // LABELWITHSTATUS_H

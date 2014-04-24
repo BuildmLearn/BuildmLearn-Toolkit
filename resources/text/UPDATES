@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<releases>
+  <release version="2.0.1" type="maintenance">
+    <url platform="x86" os="Windows">URL</url>
+    <url platform="x86" os="OS2">URL</url>
+    <changes>
+<![CDATA[html-changelog]]>
+    </changes>
+  </release>
+</releases>

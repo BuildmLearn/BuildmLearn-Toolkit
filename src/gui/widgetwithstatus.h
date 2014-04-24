@@ -28,56 +28,49 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#ifndef FORMUPDATE_H
-#define FORMUPDATE_H
+#ifndef WIDGETWITHSTATUS_H
+#define WIDGETWITHSTATUS_H
 
-#include "ui_formupdate.h"
-
-#include "miscellaneous/systemfactory.h"
-
-#include <QDialog>
-#include <QPushButton>
-#include <QNetworkReply>
+#include <QWidget>
+#include <QIcon>
 
 
-namespace Ui {
-  class FormUpdate;
-}
+class PlainToolButton;
+class QHBoxLayout;
 
-class Downloader;
-
-class FormUpdate : public QDialog {
+class WidgetWithStatus : public QWidget {
     Q_OBJECT
 
   public:
+    enum StatusType {
+      Information,
+      Warning,
+      Error,
+      Ok
+    };
+
     // Constructors and destructors.
-    explicit FormUpdate(QWidget *parent = 0);
-    virtual ~FormUpdate();
+    explicit WidgetWithStatus(QWidget *parent);
+    virtual ~WidgetWithStatus();
 
-    // Returns true if current update provides
-    // installation file for current platform.
-    bool isUpdateForThisSystem() const;
+    // Sets custom status for this control.
+    void setStatus(StatusType status, const QString &tooltip_text);
 
-    // Returns true if application can self-update
-    // on current platform.
-    bool isSelfUpdateSupported() const;
+    inline StatusType status() const {
+      return m_status;
+    }
 
-  protected slots:
-    // Check for updates and interprets the results.
-    void checkForUpdates();
-    void startUpdate();
+  protected:
+    StatusType m_status;
+    QWidget *m_wdgInput;
+    PlainToolButton *m_btnStatus;
+    QHBoxLayout *m_layout;
 
-    void updateProgress(qint64 bytes_received, qint64 bytes_total);
-    void updateCompleted(QNetworkReply::NetworkError status, QByteArray contents);
-    void saveUpdateFile(const QByteArray &file_contents);
-
-  private:
-    Downloader *m_downloader;
-    bool m_readyToInstall;
-    QString m_updateFilePath;
-    Ui::FormUpdate *m_ui;
-    UpdateInfo m_updateInfo;
-    QPushButton *m_btnUpdate;
+    QIcon m_iconInformation;
+    QIcon m_iconWarning;
+    QIcon m_iconError;
+    QIcon m_iconOk;
 };
 
-#endif // FORMUPDATE_H
+
+#endif // WIDGETWITHSTATUS_H
