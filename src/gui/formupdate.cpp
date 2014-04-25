@@ -33,10 +33,10 @@
 #include "definitions/definitions.h"
 #include "miscellaneous/systemfactory.h"
 #include "miscellaneous/iconfactory.h"
-#include "network-web/networkfactory.h"
 #include "network-web/webfactory.h"
 #include "network-web/downloader.h"
-#include "gui/messagebox.h"
+#include "network-web/networkfactory.h"
+#include "gui/custommessagebox.h"
 #include "gui/systemtrayicon.h"
 
 #include <QNetworkReply>
@@ -74,8 +74,9 @@ bool FormUpdate::isUpdateForThisSystem() const {
 }
 
 bool FormUpdate::isSelfUpdateSupported() const {
+  // DO NOT allow self-updating for now.
 #if defined(Q_OS_WIN) || defined(Q_OS_OS2)
-  return true;
+  return false;
 #else
   return false;
 #endif
@@ -111,7 +112,7 @@ void FormUpdate::checkForUpdates() {
                                 tr("Installation file is not available directly.\n"
                                    "Go to application website to obtain it manually."));
 
-      if (isUpdateForThisSystem() && isSelfUpdateSupported()) {
+      if (isUpdateForThisSystem() /* && isSelfUpdateSupported() */ ) {
         m_btnUpdate->setText(tr("Download update"));
       }
     }
@@ -207,39 +208,17 @@ void FormUpdate::startUpdate() {
   }
 
   if (m_readyToInstall) {
-    // Some package is downloaded and it can be installed
-    // via self-update feature.
-    close();
+    // Some package is downloaded and now we have to navigate user to it.
 
-    qDebug("Preparing to launch external updater '%s'.", APP_UPDATER_EXECUTABLE);
+    // m_updateFilePath
 
-    if (!QProcess::startDetached(APP_UPDATER_EXECUTABLE,
-                                 QStringList() <<
-                                 APP_VERSION <<
-                                 m_updateInfo.m_availableVersion <<
-                                 QDir::toNativeSeparators(qApp->applicationFilePath()) <<
-                                 QDir::toNativeSeparators(m_updateFilePath))) {
-      qDebug("External updater was not launched due to error.");
-
-      if (SystemTrayIcon::isSystemTrayActivated()) {
-        SystemTrayIcon::instance()->showMessage(tr("Cannot update application"),
-                                                tr("Cannot launch external updater. Update application manually."),
-                                                QSystemTrayIcon::Warning);
-      }
-      else {
-        MessageBox::show(this,
-                         QMessageBox::Warning,
-                         tr("Cannot update application"),
-                         tr("Cannot launch external updater. Update application manually."));
-      }
-    }
   }
-  else if (update_for_this_system && isSelfUpdateSupported()) {
+  else if (update_for_this_system /* && isSelfUpdateSupported() */ ) {
     // Nothing is downloaded yet, but update for this system
-    // is available and self-update feature is present.
+    // is available.
 
     if (m_downloader == NULL) {
-      // Initialie downloader.
+      // Initialize downloader.
       m_downloader = new Downloader(this);
 
       connect(m_downloader, SIGNAL(progress(qint64,qint64)),
@@ -254,7 +233,7 @@ void FormUpdate::startUpdate() {
     m_downloader->downloadFile(url_file);
 
   } else {
-    // Self-update and package are not available.
+    // Package are not available.
     if (!WebFactory::instance()->openUrlInExternalBrowser(url_file)) {
       if (SystemTrayIcon::isSystemTrayActivated()) {
         SystemTrayIcon::instance()->showMessage(tr("Cannot update application"),
@@ -263,11 +242,11 @@ void FormUpdate::startUpdate() {
                                                 QSystemTrayIcon::Warning);
       }
       else {
-        MessageBox::show(this,
-                         QMessageBox::Warning,
-                         tr("Cannot update application"),
-                         tr("Cannot navigate to installation file. Check new installation downloads "
-                            "manually on project website."));
+        CustomMessageBox::show(this,
+                               QMessageBox::Warning,
+                               tr("Cannot update application"),
+                               tr("Cannot navigate to installation file. Check new installation downloads "
+                                  "manually on project website."));
       }
     }
   }

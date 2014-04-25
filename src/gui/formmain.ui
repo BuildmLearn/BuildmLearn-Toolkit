@@ -27,8 +27,8 @@
     <property name="title">
      <string>&amp;Help</string>
     </property>
-    <addaction name="actionCheck_for_updates"/>
-    <addaction name="action_About_BuildmLearn_Toolkit"/>
+    <addaction name="m_actionCheckForUpdates"/>
+    <addaction name="m_actionAboutToolkit"/>
    </widget>
    <addaction name="menu_Help"/>
   </widget>
@@ -41,12 +41,12 @@
    </attribute>
   </widget>
   <widget class="QStatusBar" name="m_statusBar"/>
-  <action name="actionCheck_for_updates">
+  <action name="m_actionCheckForUpdates">
    <property name="text">
     <string>Check for updates</string>
    </property>
   </action>
-  <action name="action_About_BuildmLearn_Toolkit">
+  <action name="m_actionAboutToolkit">
    <property name="text">
     <string>&amp;About BuildmLearn Toolkit</string>
    </property>

@@ -28,81 +28,42 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#ifndef FORMMAIN_H
-#define FORMMAIN_H
 
-#include "ui_formmain.h"
+#include "network-web/silentnetworkaccessmanager.h"
 
-#include "gui/formnewproject.h"
-
-#include "InfoTemplate.h"
-#include "QuizTemplate.h"
-#include "FlashcardTemplate.h"
-
-#include <QMainWindow>
-#include <QtGui>
-
-#define HELP_URL "http://buildmlearn.wordpress.com/download/"
+#include <QNetworkReply>
+#include <QAuthenticator>
 
 
-namespace Ui {
-  class FormMain;
+SilentNetworkAccessManager::SilentNetworkAccessManager(QObject *parent)
+  : BaseNetworkAccessManager(parent) {
+  connect(this, SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)),
+          this, SLOT(onAuthenticationRequired(QNetworkReply*,QAuthenticator*)));
 }
 
-class FormMain : public QMainWindow {
-    Q_OBJECT
-    
-  public:
-    // Constructors and destructors.
-    explicit FormMain(QWidget *parent = 0);
-    virtual ~FormMain();
+SilentNetworkAccessManager::~SilentNetworkAccessManager() {
+  qDebug("Destroying SilentNetworkAccessManages instance.");
+}
 
+void SilentNetworkAccessManager::onAuthenticationRequired(QNetworkReply *reply,
+                                                          QAuthenticator *authenticator) {
+  QObject *originating_object = reply->request().originatingObject();
 
-  private slots:
-    void showUpdates();
+  if (originating_object->property("protected").toBool()) {
+    // This feed contains authentication information, it is good.
+    authenticator->setUser(originating_object->property("username").toString());
+    authenticator->setPassword(originating_object->property("password").toString());
 
-  public slots:
-    void startProject(int);
-    void aboutClicked();
-    void helpClicked();
-    void generateClicked();
-    void newClicked();
-    void saveClicked();
-    void openClicked();
-    void loadOpenFile();
-    void resetWidgets();
+    qDebug("Feed '%s' requested authentication and got it.",
+           qPrintable(reply->url().toString()));
 
-  private:
-    Ui::FormMain *m_ui;
+    reply->setProperty("authentication-given", true);
+  }
+  else {
+    // Authentication is required but this feed does not contain it.
+    qDebug("Feed '%s' requested authentication but username/password is not available.",
+           qPrintable(reply->url().toString()));
 
-    // Menus
-    QMenu *fileMenu;
-    QMenu *projectMenu;
-
-    // Action
-    QAction *newAct;
-    QAction *saveAct;
-    QAction *openAct;
-    QAction *exitAct;
-    QAction *buildAct;
-
-    // Toolbar
-    QToolBar* toolBar;
-
-    // Other widgets
-    QStackedWidget* iStackedWidget;
-
-    // Create NewProject Widget
-    FormNewProject *iNewProjectWidget;
-
-    //  Blank widget
-    QWidget* iBlankWidget;
-    // Create InfoTemplate Widget
-    InfoTemplate* iInfoTemplateWidget;
-    // Create QuizTemplate Widget
-    QuizTemplate* iQuizTemplateWidget;
-    // Create Flashcards Widget
-    FlashcardTemplate* iFlashCardsWidget;
-};
-
-#endif // FORMMAIN_H
+    reply->setProperty("authentication-given", false);
+  }
+}

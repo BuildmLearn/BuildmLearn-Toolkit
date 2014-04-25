@@ -29,49 +29,35 @@
 */
 
 
-#include "network-web/webfactory.h"
+#ifndef BASENETWORKACCESSMANAGER_H
+#define BASENETWORKACCESSMANAGER_H
 
-#include "definitions/definitions.h"
-#include "miscellaneous/settings.h"
-#include "miscellaneous/application.h"
-
-#include <QRegExp>
-#include <QProcess>
-#include <QUrl>
-#include <QDesktopServices>
+#include <QNetworkAccessManager>
 
 
-QPointer<WebFactory> WebFactory::s_instance;
+// This is base class for all network access managers.
+class BaseNetworkAccessManager : public QNetworkAccessManager {
+    Q_OBJECT
 
-WebFactory::WebFactory(QObject *parent)
-  : QObject(parent) {
-}
+  public:
+    // Constructors and desctructors.
+    explicit BaseNetworkAccessManager(QObject *parent = 0);
+    virtual ~BaseNetworkAccessManager();
 
-WebFactory::~WebFactory() {
-  qDebug("Destroying WebFactory instance.");
-}
+  public slots:
+    // Loads network settings for this instance.
+    // NOTE: This sets up proxy settings.
+    virtual void loadSettings();
 
-bool WebFactory::openUrlInExternalBrowser(const QString &url) {
-  if (qApp->settings()->value(APP_CFG_BROWSER,
-                              "custom_external_browser",
-                              false).toBool()) {
-    QString browser = qApp->settings()->value(APP_CFG_BROWSER,
-                                              "external_browser_executable").toString();
-    QString arguments = qApp->settings()->value(APP_CFG_BROWSER,
-                                                "external_browser_arguments",
-                                                "%1").toString();
+  protected slots:
+    void onSslErrors(QNetworkReply *reply,
+                     const QList<QSslError> &error);
 
-    return QProcess::startDetached(browser, QStringList() << arguments.arg(url));
-  }
-  else {
-    return QDesktopServices::openUrl(url);
-  }
-}
+  protected:
+    // Creates custom request.
+    QNetworkReply *createRequest(Operation op,
+                                 const QNetworkRequest &request,
+                                 QIODevice *outgoingData);
+};
 
-WebFactory *WebFactory::instance() {
-  if (s_instance.isNull()) {
-    s_instance = new WebFactory(qApp);
-  }
-
-  return s_instance;
-}
+#endif // BASENETWORKACCESSMANAGER_H

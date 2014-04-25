@@ -288,14 +288,14 @@ endif(MINGW AND WIN32)
 set(APP_SOURCES
   ${APP_SOURCES}
   
-  src/main.cpp
-
   src/gui/formmain.cpp
   src/gui/formnewproject.cpp
-  #src/gui/formupdate.cpp
+  src/gui/formupdate.cpp
   src/gui/widgetwithstatus.cpp
   src/gui/labelwithstatus.cpp
   src/gui/plaintoolbutton.cpp
+  src/gui/systemtrayicon.cpp
+  src/gui/custommessagebox.cpp
 
   src/miscellaneous/application.cpp
   src/miscellaneous/settings.cpp
@@ -304,11 +304,17 @@ set(APP_SOURCES
   src/miscellaneous/systemfactory.cpp
 
   src/network-web/webfactory.cpp
+  src/network-web/basenetworkaccessmanager.cpp
+  src/network-web/silentnetworkaccessmanager.cpp
+  src/network-web/downloader.cpp
+  src/network-web/networkfactory.cpp
 
   src/FlashcardTemplate.cpp
   src/InfoTemplate.cpp
   src/QuestionItem.cpp
   src/QuizTemplate.cpp
+
+  src/main.cpp
 )
 
 # APP headers.
@@ -317,10 +323,12 @@ set(APP_HEADERS
   
   src/gui/formmain.h
   src/gui/formnewproject.h
-  #src/gui/formupdate.h
+  src/gui/formupdate.h
   src/gui/widgetwithstatus.h
   src/gui/labelwithstatus.h
   src/gui/plaintoolbutton.h
+  src/gui/custommessagebox.h
+  src/gui/systemtrayicon.h
 
   src/miscellaneous/application.h
   src/miscellaneous/settings.h
@@ -329,6 +337,10 @@ set(APP_HEADERS
   src/miscellaneous/systemfactory.h
 
   src/network-web/webfactory.h
+  src/network-web/basenetworkaccessmanager.h
+  src/network-web/silentnetworkaccessmanager.h
+  src/network-web/downloader.h
+  src/network-web/networkfactory.h
 
   src/FlashcardTemplate.h
   src/InfoTemplate.h
@@ -339,7 +351,7 @@ set(APP_HEADERS
 # APP form files.
 set(APP_FORMS
   src/gui/formmain.ui
-  #src/gui/formupdate.ui
+  src/gui/formupdate.ui
 )
 
 # APP translations.

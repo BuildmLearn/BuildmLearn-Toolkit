@@ -31,8 +31,10 @@
 #include "gui/formmain.h"
 
 #include "definitions/definitions.h"
+#include "gui/formupdate.h"
 
 #include <QStackedWidget>
+#include <QPointer>
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QInputDialog>
@@ -43,6 +45,14 @@
 FormMain::FormMain(QWidget *parent) :
   QMainWindow(parent), m_ui(new Ui::FormMain) {
   m_ui->setupUi(this);
+
+
+
+
+
+  connect(m_ui->m_actionCheckForUpdates, SIGNAL(triggered()),
+          this, SLOT(showUpdates()));
+
 
   setWindowTitle("BuildmLearn Toolkit");
   showMaximized();
@@ -111,6 +121,12 @@ FormMain::~FormMain() {
   delete m_ui;
 
   qDebug("Destroying FormMain instance.");
+}
+
+void FormMain::showUpdates() {
+  QPointer<FormUpdate> form_update = new FormUpdate(this);
+  form_update.data()->exec();
+  delete form_update.data();
 }
 
 void FormMain::saveClicked()

@@ -29,49 +29,42 @@
 */
 
 
-#include "network-web/webfactory.h"
+#ifndef MESSAGEBOX_H
+#define MESSAGEBOX_H
 
-#include "definitions/definitions.h"
-#include "miscellaneous/settings.h"
-#include "miscellaneous/application.h"
+#include <QMessageBox>
 
-#include <QRegExp>
-#include <QProcess>
-#include <QUrl>
-#include <QDesktopServices>
+#include <QDialogButtonBox>
 
 
-QPointer<WebFactory> WebFactory::s_instance;
+class CustomMessageBox : public QMessageBox {
+    Q_OBJECT
 
-WebFactory::WebFactory(QObject *parent)
-  : QObject(parent) {
-}
+  public:
+    // Constructors and destructors.
+    explicit CustomMessageBox(QWidget *parent = 0);
+    virtual ~CustomMessageBox();
 
-WebFactory::~WebFactory() {
-  qDebug("Destroying WebFactory instance.");
-}
+    // Custom icon setting.
+    void setIcon(QMessageBox::Icon icon);
 
-bool WebFactory::openUrlInExternalBrowser(const QString &url) {
-  if (qApp->settings()->value(APP_CFG_BROWSER,
-                              "custom_external_browser",
-                              false).toBool()) {
-    QString browser = qApp->settings()->value(APP_CFG_BROWSER,
-                                              "external_browser_executable").toString();
-    QString arguments = qApp->settings()->value(APP_CFG_BROWSER,
-                                                "external_browser_arguments",
-                                                "%1").toString();
+    // Performs icon replacements for given button box.
+    static void iconify(QDialogButtonBox *button_box);
 
-    return QProcess::startDetached(browser, QStringList() << arguments.arg(url));
-  }
-  else {
-    return QDesktopServices::openUrl(url);
-  }
-}
+    // Displays custom message box.
+    static QMessageBox::StandardButton show(QWidget *parent,
+                                            QMessageBox::Icon icon,
+                                            const QString &title,
+                                            const QString &text,
+                                            const QString &informative_text = QString(),
+                                            const QString &detailed_text = QString(),
+                                            QMessageBox::StandardButtons buttons = QMessageBox::Ok,
+                                            QMessageBox::StandardButton default_button = QMessageBox::Ok);
 
-WebFactory *WebFactory::instance() {
-  if (s_instance.isNull()) {
-    s_instance = new WebFactory(qApp);
-  }
+  private:
+    // Returns icons for standard roles/statuses.
+    static QIcon iconForRole(QDialogButtonBox::StandardButton button);
+    static QIcon iconForStatus(QMessageBox::Icon status);
+};
 
-  return s_instance;
-}
+#endif // MESSAGEBOX_H

@@ -28,81 +28,26 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#ifndef FORMMAIN_H
-#define FORMMAIN_H
 
-#include "ui_formmain.h"
+#ifndef SILENTNETWORKACCESSMANAGER_H
+#define SILENTNETWORKACCESSMANAGER_H
 
-#include "gui/formnewproject.h"
+#include "network-web/basenetworkaccessmanager.h"
 
-#include "InfoTemplate.h"
-#include "QuizTemplate.h"
-#include "FlashcardTemplate.h"
-
-#include <QMainWindow>
-#include <QtGui>
-
-#define HELP_URL "http://buildmlearn.wordpress.com/download/"
+#include <QPointer>
 
 
-namespace Ui {
-  class FormMain;
-}
-
-class FormMain : public QMainWindow {
+// Network manager used for more communication for feeds.
+class SilentNetworkAccessManager : public BaseNetworkAccessManager {
     Q_OBJECT
-    
+
   public:
     // Constructors and destructors.
-    explicit FormMain(QWidget *parent = 0);
-    virtual ~FormMain();
+    explicit SilentNetworkAccessManager(QObject *parent = 0);
+    virtual ~SilentNetworkAccessManager();
 
-
-  private slots:
-    void showUpdates();
-
-  public slots:
-    void startProject(int);
-    void aboutClicked();
-    void helpClicked();
-    void generateClicked();
-    void newClicked();
-    void saveClicked();
-    void openClicked();
-    void loadOpenFile();
-    void resetWidgets();
-
-  private:
-    Ui::FormMain *m_ui;
-
-    // Menus
-    QMenu *fileMenu;
-    QMenu *projectMenu;
-
-    // Action
-    QAction *newAct;
-    QAction *saveAct;
-    QAction *openAct;
-    QAction *exitAct;
-    QAction *buildAct;
-
-    // Toolbar
-    QToolBar* toolBar;
-
-    // Other widgets
-    QStackedWidget* iStackedWidget;
-
-    // Create NewProject Widget
-    FormNewProject *iNewProjectWidget;
-
-    //  Blank widget
-    QWidget* iBlankWidget;
-    // Create InfoTemplate Widget
-    InfoTemplate* iInfoTemplateWidget;
-    // Create QuizTemplate Widget
-    QuizTemplate* iQuizTemplateWidget;
-    // Create Flashcards Widget
-    FlashcardTemplate* iFlashCardsWidget;
+  protected slots:
+    void onAuthenticationRequired(QNetworkReply * reply, QAuthenticator *authenticator);
 };
 
-#endif // FORMMAIN_H
+#endif // SILENTNETWORKACCESSMANAGER_H

@@ -28,81 +28,39 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#ifndef FORMMAIN_H
-#define FORMMAIN_H
 
-#include "ui_formmain.h"
+#ifndef NETWORKFACTORY_H
+#define NETWORKFACTORY_H
 
-#include "gui/formnewproject.h"
-
-#include "InfoTemplate.h"
-#include "QuizTemplate.h"
-#include "FlashcardTemplate.h"
-
-#include <QMainWindow>
-#include <QtGui>
-
-#define HELP_URL "http://buildmlearn.wordpress.com/download/"
+#include <QNetworkReply>
+#include <QCoreApplication>
 
 
-namespace Ui {
-  class FormMain;
-}
-
-class FormMain : public QMainWindow {
-    Q_OBJECT
-    
-  public:
-    // Constructors and destructors.
-    explicit FormMain(QWidget *parent = 0);
-    virtual ~FormMain();
-
-
-  private slots:
-    void showUpdates();
-
-  public slots:
-    void startProject(int);
-    void aboutClicked();
-    void helpClicked();
-    void generateClicked();
-    void newClicked();
-    void saveClicked();
-    void openClicked();
-    void loadOpenFile();
-    void resetWidgets();
+class NetworkFactory {
+    Q_DECLARE_TR_FUNCTIONS(NetworkFactory)
 
   private:
-    Ui::FormMain *m_ui;
+    // Constructor.
+    explicit NetworkFactory();
 
-    // Menus
-    QMenu *fileMenu;
-    QMenu *projectMenu;
+  public:
+    // Returns human readable text for given network error.
+    static QString networkErrorText(QNetworkReply::NetworkError error_code);
 
-    // Action
-    QAction *newAct;
-    QAction *saveAct;
-    QAction *openAct;
-    QAction *exitAct;
-    QAction *buildAct;
+    // Performs SYNCHRONOUS download if favicon for the site,
+    // given URL belongs to.
+    static QNetworkReply::NetworkError downloadIcon(const QString &url,
+                                                    int timeout,
+                                                    QIcon &output);
 
-    // Toolbar
-    QToolBar* toolBar;
-
-    // Other widgets
-    QStackedWidget* iStackedWidget;
-
-    // Create NewProject Widget
-    FormNewProject *iNewProjectWidget;
-
-    //  Blank widget
-    QWidget* iBlankWidget;
-    // Create InfoTemplate Widget
-    InfoTemplate* iInfoTemplateWidget;
-    // Create QuizTemplate Widget
-    QuizTemplate* iQuizTemplateWidget;
-    // Create Flashcards Widget
-    FlashcardTemplate* iFlashCardsWidget;
+    // Performs SYNCHRONOUS download of file with given URL
+    // and given timeout.
+    static QNetworkReply::NetworkError downloadFeedFile(const QString &url,
+                                                        int timeout,
+                                                        QByteArray &output,
+                                                        bool protected_contents = false,
+                                                        const QString &username = QString(),
+                                                        const QString &password = QString());
 };
 
-#endif // FORMMAIN_H
+#endif // NETWORKFACTORY_H

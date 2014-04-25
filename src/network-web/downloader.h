@@ -29,49 +29,59 @@
 */
 
 
-#include "network-web/webfactory.h"
+#ifndef DOWNLOADER_H
+#define DOWNLOADER_H
+
+#include <QObject>
+
+#include <QNetworkReply>
+#include <QSslError>
 
 #include "definitions/definitions.h"
-#include "miscellaneous/settings.h"
-#include "miscellaneous/application.h"
-
-#include <QRegExp>
-#include <QProcess>
-#include <QUrl>
-#include <QDesktopServices>
 
 
-QPointer<WebFactory> WebFactory::s_instance;
+class SilentNetworkAccessManager;
+class QTimer;
 
-WebFactory::WebFactory(QObject *parent)
-  : QObject(parent) {
-}
+class Downloader : public QObject {
+    Q_OBJECT
 
-WebFactory::~WebFactory() {
-  qDebug("Destroying WebFactory instance.");
-}
+  public:
+    // Constructors and destructors.
+    explicit Downloader(QObject *parent = 0);
+    virtual ~Downloader();
 
-bool WebFactory::openUrlInExternalBrowser(const QString &url) {
-  if (qApp->settings()->value(APP_CFG_BROWSER,
-                              "custom_external_browser",
-                              false).toBool()) {
-    QString browser = qApp->settings()->value(APP_CFG_BROWSER,
-                                              "external_browser_executable").toString();
-    QString arguments = qApp->settings()->value(APP_CFG_BROWSER,
-                                                "external_browser_arguments",
-                                                "%1").toString();
+  public slots:
+    // Performs asynchronous download of given file.
+    // Redirections are handled.
+    void downloadFile(const QString &url,
+                      bool protected_contents = false,
+                      const QString &username = QString(),
+                      const QString &password = QString());
 
-    return QProcess::startDetached(browser, QStringList() << arguments.arg(url));
-  }
-  else {
-    return QDesktopServices::openUrl(url);
-  }
-}
+  signals:
+    // Emitted when new progress is known.
+    void progress(qint64 bytes_received, qint64 bytes_total);
+    void completed(QNetworkReply::NetworkError status, QByteArray contents = QByteArray());
 
-WebFactory *WebFactory::instance() {
-  if (s_instance.isNull()) {
-    s_instance = new WebFactory(qApp);
-  }
+  private slots:
+    // Called when current reply is processed.
+    void finished(QNetworkReply *reply);
 
-  return s_instance;
-}
+    // Called when progress of downloaded file changes.
+    void progressInternal(qint64 bytes_received, qint64 bytes_total);
+
+    // Called when current operation times out.
+    void timeout();
+
+  private:
+    void runRequest(const QNetworkRequest &request);
+
+  private:
+    QNetworkReply *m_activeReply;
+
+    SilentNetworkAccessManager *m_downloadManager;
+    QTimer *m_timer;
+};
+
+#endif // DOWNLOADER_H

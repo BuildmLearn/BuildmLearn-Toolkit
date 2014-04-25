@@ -31,7 +31,7 @@
 #include "miscellaneous/systemfactory.h"
 
 #include "definitions/definitions.h"
-//#include "network-web/networkfactory.h"
+#include "network-web/networkfactory.h"
 #include "application.h"
 
 #if defined(Q_OS_WIN)
@@ -64,7 +64,7 @@ SystemFactory *SystemFactory::instance() {
 
 QPair<UpdateInfo, QNetworkReply::NetworkError> SystemFactory::checkForUpdates() {
   QPair<UpdateInfo, QNetworkReply::NetworkError> result;
-  /*QByteArray releases_xml;
+  QByteArray releases_xml;
 
   result.second = NetworkFactory::downloadFeedFile(RELEASES_LIST,
                                                    5000,
@@ -72,7 +72,7 @@ QPair<UpdateInfo, QNetworkReply::NetworkError> SystemFactory::checkForUpdates() 
 
   if (result.second == QNetworkReply::NoError) {
     result.first = parseUpdatesFile(releases_xml);
-  }*/
+  }
 
   return result;
 }
