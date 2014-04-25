@@ -64,7 +64,7 @@ project(buildmlearn-toolkit)
 set(APP_NAME "BuildmLearn Toolkit")
 set(APP_LOW_NAME "buildmlearn-toolkit")
 set(APP_VERSION "2.0.1")
-set(FILE_VERSION "2.0.1.0")
+set(FILE_VERSION "2,0,1,0")
 set(APP_AUTHOR "BuildmLearn Contributors")
 set(APP_URL "http://buildmlearn.org/")
 set(APP_URL_ISSUES "https://github.com/BuildmLearn/BuildmLearn-Toolkit/issues")
@@ -73,8 +73,13 @@ set(APP_EMAIL "rotter.martinos@gmail.com")
 set(MINIMUM_QT_VERSION 4.7.3)
 set(EXE_NAME ${APP_LOW_NAME})
 
+if(APPLE)
+  set(APP_URL_BACKWARDS "org.buildmlearn.toolkit")
+endif(APPLE)
+
 # Options declaration.
 option(USE_QT_5 "Use Qt 5 for building" OFF)
+option(BUNDLE_ICON_THEMES "Equip installation with custom icon themes" ON)
 
 if(POLICY CMP0012)
   cmake_policy(SET CMP0012 NEW)
@@ -88,6 +93,12 @@ endif(${USE_QT_5})
 
 message(STATUS "[${APP_LOW_NAME}] Welcome to ${APP_NAME} compilation process.")
 message(STATUS "[${APP_LOW_NAME}] Compilation process begins right now.")
+
+if(BUNDLE_ICON_THEMES)
+  message(STATUS "[${APP_LOW_NAME}] Custom icon themes will be installed.")
+else(BUNDLE_ICON_THEMES)
+  message(STATUS "[${APP_LOW_NAME}] Custom icon themes will NOT be installed.")
+endif(BUNDLE_ICON_THEMES)
 
 # Setup misc options.
 set(CMAKE_COLOR_MAKEFILE ON)
@@ -119,7 +130,6 @@ message(STATUS "[${APP_LOW_NAME}] Obtaining revision number.")
 if(EXISTS "${PROJECT_SOURCE_DIR}/.git")
   find_package(Git)
   if(GIT_FOUND)
-    # TODO: https://wiki.archlinux.org/index.php/VCS_PKGBUILD_Guidelines#Git
     execute_process(
       COMMAND ${GIT_EXECUTABLE} rev-parse --short HEAD
       WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
@@ -151,6 +161,8 @@ configure_file (
   ${PROJECT_SOURCE_DIR}/src/definitions/definitions.h.in
   ${CMAKE_CURRENT_BINARY_DIR}/src/definitions/definitions.h
 )
+
+# TODO: Configure Doxyfile (overwrite original).
 
 # Define some useful DEBUG for, ehrm, debug build.
 if(CMAKE_BUILD_TYPE STREQUAL "release" OR CMAKE_BUILD_TYPE STREQUAL "Release" OR CMAKE_BUILD_TYPE STREQUAL "RELEASE")
@@ -227,6 +239,51 @@ else(NOT ${QTVERSION} VERSION_LESS 4.8.0)
   message(STATUS "[${APP_LOW_NAME}] Disabling fast QString concatenation.")
 endif(${USE_QT_5})
 
+# Configure executable "properties" for Windows or OS2.
+if(WIN32)
+  message(STATUS "[${APP_LOW_NAME}] Generating executable file properties for Windows.")
+  configure_file (
+    ${PROJECT_SOURCE_DIR}/resources/executable_properties/${APP_LOW_NAME}_win.rc.in
+    ${CMAKE_CURRENT_BINARY_DIR}/resources/executable_properties/${APP_LOW_NAME}_win.rc
+  )
+elseif(OS2)
+  message(STATUS "[${APP_LOW_NAME}] Generating executable file properties for OS2.")
+  configure_file (
+    ${PROJECT_SOURCE_DIR}/resources/executable_properties/${APP_LOW_NAME}_os2.rc.in
+    ${CMAKE_CURRENT_BINARY_DIR}/resources/executable_properties/${APP_LOW_NAME}_os2.rc
+  )
+endif(WIN32)
+
+# Compile application icon if compiling with MinGW on WIN32 or with OS2.
+if(MINGW AND WIN32)
+  enable_language(RC)
+  set(CMAKE_RC_COMPILER_INIT windres)
+  message(STATUS "[${APP_LOW_NAME}] Icon file binary will be builded for Windows.")
+  message(STATUS "[${APP_LOW_NAME}] Used tool is: ${CMAKE_RC_COMPILER}")
+  set(CMAKE_RC_COMPILE_OBJECT
+      "<CMAKE_RC_COMPILER> -i <SOURCE> -o <OBJECT>")
+
+  set(APP_SOURCES
+      ${APP_SOURCES}
+      ${CMAKE_CURRENT_BINARY_DIR}/resources/executable_properties/${APP_LOW_NAME}_win.rc)
+elseif(OS2)
+  enable_language(RC)
+  set(CMAKE_RC_COMPILER_INIT rc)
+  message(STATUS "[${APP_LOW_NAME}] Icon file binary will be builded for OS2.")
+  message(STATUS "[${APP_LOW_NAME}] Used tool is: ${CMAKE_RC_COMPILER}")
+  set(CMAKE_RC_COMPILE_OBJECT
+      "<CMAKE_RC_COMPILER> -n -r <SOURCE> <OBJECT>")
+  set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Zstack 0x2000 -Zlinker \"DISABLE 1121\" -s -Zlinker /PM:PM -Zno-fork -Zhigh-mem -Zmap")
+
+  set(APP_SOURCES
+      ${APP_SOURCES}
+      ${CMAKE_CURRENT_BINARY_DIR}/resources/executable_properties/${APP_LOW_NAME}_os2.rc)
+elseif(WIN32 AND MSVC)
+  # MSVC takes care of this automatically - no need to use windres.exe
+  # for MSVC compilers.
+  set(APP_SOURCES ${APP_SOURCES} ${CMAKE_CURRENT_BINARY_DIR}/resources/executable_properties/${APP_LOW_NAME}_win.rc)
+endif(MINGW AND WIN32)
+
 # APP source files.
 set(APP_SOURCES
   ${APP_SOURCES}
@@ -285,26 +342,31 @@ set(APP_FORMS
   #src/gui/formupdate.ui
 )
 
-set(APP_RESOURCES
-  src/images.qrc
-)
-
 # APP translations.
 set(APP_TRANSLATIONS
+  #localization/${APP_LOW_NAME}-cs_CZ.ts
+  #localization/${APP_LOW_NAME}-en_GB.ts
+  localization/qt-cs_CZ.ts
 )
 
 set(APP_TRANSLATIONS_WO_QT
+  #localization/${APP_LOW_NAME}-cs_CZ.ts
+  #localization/${APP_LOW_NAME}-en_GB.ts
 )
 
 set(APP_TEXT
+  resources/text/CHANGELOG
   resources/text/LICENSE
 )
 
+# Add custom icon on Mac OS X.
+if(APPLE)
+  SET (APP_SOURCES ${APP_SOURCES} resources/graphics/${APP_LOW_NAME}.icns)
+endif(APPLE)
 
 # Wrap files, create moc files.
 if(${USE_QT_5})
   qt5_wrap_ui(APP_UI ${APP_FORMS})
-  qt5_add_resources(APP_RCC ${APP_RESOURCES})
   
   # Load translations.
   if(Qt5LinguistTools_FOUND)
@@ -316,7 +378,6 @@ if(${USE_QT_5})
 else(${USE_QT_5})
   qt4_wrap_cpp(APP_MOC ${APP_HEADERS})
   qt4_wrap_ui(APP_UI ${APP_FORMS})
-  qt4_add_resources(APP_RCC ${APP_RESOURCES})
   
   # Load translations.
   qt4_add_translation(APP_QM ${APP_TRANSLATIONS})
@@ -337,7 +398,6 @@ if(${USE_QT_5})
   add_executable(${EXE_NAME} WIN32 MACOSX_BUNDLE
     ${APP_SOURCES}
     ${APP_FORMS}
-    ${APP_RCC}
     ${APP_QM}
   )
 
@@ -359,7 +419,6 @@ else(${USE_QT_5})
     ${APP_SOURCES}
     ${APP_FORMS}
     ${APP_MOC}
-    ${APP_RCC}
     ${APP_QM}
   )
 
@@ -379,12 +438,72 @@ if(WIN32 OR OS2)
   message(STATUS "[${APP_LOW_NAME}] You will probably install on Windows or OS/2.")
   install(TARGETS ${EXE_NAME}
           RUNTIME DESTINATION ./)
-elseif(APPLE)
 
+  if(BUNDLE_ICON_THEMES)
+    install(DIRECTORY resources/graphics/icons/mini-kfaenza
+            DESTINATION ./icons)
+  endif(BUNDLE_ICON_THEMES)
+
+  install(FILES resources/graphics/${APP_LOW_NAME}_128.png
+          DESTINATION ./
+          RENAME ${APP_LOW_NAME}.png)
+  install(FILES resources/graphics/${APP_LOW_NAME}.ico
+          DESTINATION ./)
+  install(FILES ${APP_QM}
+          DESTINATION ./l10n)
+  install(FILES ${APP_TEXT}
+          DESTINATION ./)
+elseif(APPLE)
+  message(STATUS "[${APP_LOW_NAME}] You will probably install on Mac OS X.")
+
+  SET(MACOSX_BUNDLE_ICON_FILE ${APP_LOW_NAME}.icns)
+  SET(MACOSX_BUNDLE_INFO_STRING "${EXE_NAME} ${APP_VERSION}")
+  SET(MACOSX_BUNDLE_GUI_IDENTIFIER "${APP_URL_BACKWARDS}")
+  SET(MACOSX_BUNDLE_LONG_VERSION_STRING "${APP_VERSION}")
+  SET(MACOSX_BUNDLE_BUNDLE_NAME "${EXE_NAME}")
+  SET(MACOSX_BUNDLE_SHORT_VERSION_STRING "${APP_VERSION}")
+  SET(MACOSX_BUNDLE_BUNDLE_VERSION "${APP_VERSION}")
+  SET(MACOSX_BUNDLE_COPYRIGHT "(c) ${APP_AUTHOR}")
+  SET_SOURCE_FILES_PROPERTIES(${CMAKE_SOURCE_DIR}/resources/graphics/${APP_LOW_NAME}.icns
+                              PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
+
+  install(TARGETS ${EXE_NAME}
+          BUNDLE DESTINATION ${CMAKE_INSTALL_PREFIX})
+
+  # Setup custom "bundle" prefix.
+  set(APPLE_PREFIX ${CMAKE_INSTALL_PREFIX}/${APP_LOW_NAME}.app/Contents/Resources/)
+
+  if(BUNDLE_ICON_THEMES)
+    install(DIRECTORY resources/graphics/icons/mini-kfaenza
+            DESTINATION ${APPLE_PREFIX}/share/${APP_LOW_NAME}/icons)
+  endif(BUNDLE_ICON_THEMES)
+
+  install(FILES resources/graphics/${APP_LOW_NAME}_128.png
+          DESTINATION ${APPLE_PREFIX}/share/pixmaps
+          RENAME ${APP_LOW_NAME}.png)
+  install(FILES ${APP_QM}
+          DESTINATION ${APPLE_PREFIX}/share/${APP_LOW_NAME}/l10n)
+  install(FILES ${APP_TEXT}
+          DESTINATION ${APPLE_PREFIX}/share/${APP_LOW_NAME}/information)
 elseif(UNIX)
   message(STATUS "[${APP_LOW_NAME}] You will probably install on Linux.")
   install(TARGETS ${EXE_NAME}
           RUNTIME DESTINATION bin)
+
+  if(BUNDLE_ICON_THEMES)
+    install(DIRECTORY resources/graphics/icons/mini-kfaenza
+            DESTINATION share/${APP_LOW_NAME}/icons)
+  endif(BUNDLE_ICON_THEMES)
+
+  install(FILES ${CMAKE_CURRENT_BINARY_DIR}/resources/desktop/${APP_LOW_NAME}.desktop
+          DESTINATION share/applications)
+  install(FILES resources/graphics/${APP_LOW_NAME}_128.png
+          DESTINATION share/pixmaps
+          RENAME ${APP_LOW_NAME}.png)
+  install(FILES ${APP_QM}
+          DESTINATION share/${APP_LOW_NAME}/l10n)
+  install(FILES ${APP_TEXT}
+          DESTINATION share/${APP_LOW_NAME}/information)
 endif(WIN32 OR OS2)
 
 # Custom target for packaging.
