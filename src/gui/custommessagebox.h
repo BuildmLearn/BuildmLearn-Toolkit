@@ -48,9 +48,6 @@ class CustomMessageBox : public QMessageBox {
     // Custom icon setting.
     void setIcon(QMessageBox::Icon icon);
 
-    // Performs icon replacements for given button box.
-    static void iconify(QDialogButtonBox *button_box);
-
     // Displays custom message box.
     static QMessageBox::StandardButton show(QWidget *parent,
                                             QMessageBox::Icon icon,

@@ -1,31 +1,38 @@
 <body>
 <center><h2>2.0.1</h2></center>
 
+Main:
+<ul>
+<li>First GSoC-related toolkit release.</li>
+<li>Initial code reworking.</li>
+</ul>
+
 Fixed:
 <ul>
+<li>Nothing.</li>
 </ul>
 
 Added:
 <ul>
-</ul>
-
-Changed:
-<ul>
+<li>Nothing.</li>
 </ul>
 
 <hr/>
 <center><h2>2.0.0</h2></center>
 
+Main:
+<ul>
+<li>Last pre-GSoC release.</li>
+</ul>
+
 Fixed:
 <ul>
+<li>Not noted.</li>
 </ul>
 
 Added:
 <ul>
-</ul>
-
-Changed:
-<ul>
+<li>Not noted.</li>
 </ul>
 
 </body>

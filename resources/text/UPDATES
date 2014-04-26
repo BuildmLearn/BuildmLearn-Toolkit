@@ -1,10 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <releases>
   <release version="2.0.1" type="maintenance">
-    <url platform="x86" os="Windows">URL</url>
-    <url platform="x86" os="OS2">URL</url>
+    <url platform="x86" os="Windows">https://github.com/BuildmLearn/BuildmLearn-Toolkit/archive/master.zip</url>
+    <url platform="x86" os="OS2">https://github.com/BuildmLearn/BuildmLearn-Toolkit/archive/master.zip</url>
     <changes>
-<![CDATA[html-changelog]]>
+<![CDATA[
+<body>
+  Main:
+  <ul>
+  <li>First GSoC-related toolkit release.</li>
+  <li>Initial code reworking.</li>
+  </ul>
+
+  Fixed:
+  <ul>
+  <li>Nothing.</li>
+  </ul>
+
+  Added:
+  <ul>
+  <li>Nothing.</li>
+  </ul>
+</body>
+]]>
     </changes>
   </release>
 </releases>

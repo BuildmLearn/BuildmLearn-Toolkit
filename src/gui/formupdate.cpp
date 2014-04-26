@@ -57,9 +57,6 @@ FormUpdate::FormUpdate(QWidget *parent)
 
   connect(m_btnUpdate, SIGNAL(clicked()), this, SLOT(startUpdate()));
 
-#if !defined(Q_OS_WIN)
-  MessageBox::iconify(m_ui->m_buttonBox);
-#endif
 
   m_ui->m_lblCurrentRelease->setText(APP_VERSION);
   checkForUpdates();

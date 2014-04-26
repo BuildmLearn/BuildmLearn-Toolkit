@@ -33,6 +33,8 @@
 #include "miscellaneous/application.h"
 #include "miscellaneous/debugging.h"
 #include "miscellaneous/settings.h"
+#include "miscellaneous/iconfactory.h"
+
 
 #include <QThread>
 #include <QTranslator>
@@ -64,6 +66,11 @@ int main(int argc, char *argv[]) {
 #endif
 
   Application application(argc, argv);
+
+  // Add an extra path for non-system icon themes and set current icon theme
+  // and skin.
+  IconFactory::instance()->setupSearchPaths();
+  IconFactory::instance()->loadCurrentIconTheme();
 
   // These settings needs to be set before any QSettings object.
   Application::setApplicationName(APP_NAME);

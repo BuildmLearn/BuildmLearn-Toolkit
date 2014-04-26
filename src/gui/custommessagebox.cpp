@@ -60,12 +60,6 @@ void CustomMessageBox::setIcon(QMessageBox::Icon icon) {
                                            icon_size));
 }
 
-void CustomMessageBox::iconify(QDialogButtonBox *button_box) {
-  foreach (QAbstractButton *button, button_box->buttons()) {
-    button->setIcon(iconForRole(button_box->standardButton(button)));
-  }
-}
-
 QIcon CustomMessageBox::iconForRole(QDialogButtonBox::StandardButton button) {
   switch (button) {
     case QMessageBox::Ok:
