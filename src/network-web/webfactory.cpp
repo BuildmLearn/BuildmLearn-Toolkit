@@ -52,6 +52,9 @@ WebFactory::~WebFactory() {
 }
 
 bool WebFactory::openUrlInExternalBrowser(const QString &url) {
+  qDebug("Opening url '%s' in external browser.",
+         qPrintable(url));
+
   if (qApp->settings()->value(APP_CFG_BROWSER,
                               "custom_external_browser",
                               false).toBool()) {

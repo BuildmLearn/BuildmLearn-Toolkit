@@ -43,25 +43,36 @@
 class SilentNetworkAccessManager;
 class QTimer;
 
+/// \brief Simple file downloader with progress reporting.
 class Downloader : public QObject {
     Q_OBJECT
 
   public:
-    // Constructors and destructors.
+    /// \brief Constructor.
+    /// \param parent Parent to this instance.
     explicit Downloader(QObject *parent = 0);
     virtual ~Downloader();
 
   public slots:
-    // Performs asynchronous download of given file.
-    // Redirections are handled.
+    /// \brief Performs asynchronous download of given file. Redirections are handled.
+    /// \param url URL of file to be downloaded.
+    /// \param protected_contents Are contents of URL protected?
+    /// \param username Username if contents are protected.
+    /// \param password Password if contents are protected.
     void downloadFile(const QString &url,
                       bool protected_contents = false,
                       const QString &username = QString(),
                       const QString &password = QString());
 
   signals:
-    // Emitted when new progress is known.
+    /// \brief Emitted when new progress is known.
+    /// \param bytes_received Number of bytes received.
+    /// \param bytes_total Number of bytes total.
     void progress(qint64 bytes_received, qint64 bytes_total);
+
+    /// \brief Emitted if file download completes (un)successfully.
+    /// \param status Status of file download.
+    /// \param contents QByteArray containging downloaded file (if any).
     void completed(QNetworkReply::NetworkError status, QByteArray contents = QByteArray());
 
   private slots:
@@ -75,11 +86,11 @@ class Downloader : public QObject {
     void timeout();
 
   private:
+    // Issues new network request.
     void runRequest(const QNetworkRequest &request);
 
   private:
     QNetworkReply *m_activeReply;
-
     SilentNetworkAccessManager *m_downloadManager;
     QTimer *m_timer;
 };

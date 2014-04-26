@@ -35,26 +35,33 @@
 #include <QNetworkAccessManager>
 
 
-// This is base class for all network access managers.
+/// \brief Base class for all network access managers.
 class BaseNetworkAccessManager : public QNetworkAccessManager {
     Q_OBJECT
 
   public:
-    // Constructors and desctructors.
+    /// \brief Constructor.
     explicit BaseNetworkAccessManager(QObject *parent = 0);
     virtual ~BaseNetworkAccessManager();
 
   public slots:
-    // Loads network settings for this instance.
-    // NOTE: This sets up proxy settings.
+    /// \brief Loads network settings for this instance.
+    /// \remarks This sets up proxy settings.
     virtual void loadSettings();
 
   protected slots:
+    /// \brief Catches and processes SSL errors.
+    /// \param reply Network reply for which error came up.
+    /// \param error Error description.
     void onSslErrors(QNetworkReply *reply,
                      const QList<QSslError> &error);
 
   protected:
-    // Creates custom request.
+    /// \brief Creates custom request.
+    /// \param op Requested operation.
+    /// \param request The request object itself.
+    /// \param outgoingData Buffer for writting output data.
+    /// \return Returns newly created reply for given request.
     QNetworkReply *createRequest(Operation op,
                                  const QNetworkRequest &request,
                                  QIODevice *outgoingData);

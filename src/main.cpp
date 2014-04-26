@@ -41,7 +41,16 @@
 #include <QTranslator>
 #include <QDebug>
 
-
+/*!
+ * \brief main Main entry point to the application
+ *
+ * Main function is the "main" entry point to toolkit.
+ *
+ * \param argc Number of arguments passed to the program.
+ * \param argv Array of strings passed to the program.
+ * \return Function returns EXIT_SUCCESS when it succeedes
+ * or another integer value when it fails.
+ */
 int main(int argc, char *argv[]) {
   //: Name of language, e.g. English.
   QObject::tr("LANG_NAME");

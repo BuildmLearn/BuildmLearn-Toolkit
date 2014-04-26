@@ -206,49 +206,19 @@ void FormUpdate::startUpdate() {
     url_file = APP_URL;
   }
 
-  if (m_readyToInstall) {
-    // Some package is downloaded and now we have to navigate user to it.
-    openDownloadedFile();
-  }
-  else if (update_for_this_system /* && isSelfUpdateSupported() */ ) {
-    // Nothing is downloaded yet, but update for this system
-    // is available.
-
-    WebFactory::instance()->openUrlInExternalBrowser(url_file);
-
-    /*
-    if (m_downloader == NULL) {
-      // Initialize downloader.
-      m_downloader = new Downloader(this);
-
-      connect(m_downloader, SIGNAL(progress(qint64,qint64)),
-              this, SLOT(updateProgress(qint64,qint64)));
-      connect(m_downloader, SIGNAL(completed(QNetworkReply::NetworkError,QByteArray)),
-              this, SLOT(updateCompleted(QNetworkReply::NetworkError,QByteArray)));
+  if (!WebFactory::instance()->openUrlInExternalBrowser(url_file)) {
+    if (SystemTrayIcon::isSystemTrayActivated()) {
+      qApp->trayIcon()->showMessage(tr("Cannot update application"),
+                                    tr("Cannot navigate to installation file. Check new installation downloads "
+                                       "manually on project website."),
+                                    QSystemTrayIcon::Warning);
     }
-
-    m_btnUpdate->setText(tr("Downloading update..."));
-    m_btnUpdate->setEnabled(false);
-
-    m_downloader->downloadFile(url_file);
-    */
-
-  } else {
-    // Package are not available.
-    if (!WebFactory::instance()->openUrlInExternalBrowser(url_file)) {
-      if (SystemTrayIcon::isSystemTrayActivated()) {
-        qApp->trayIcon()->showMessage(tr("Cannot update application"),
-                                      tr("Cannot navigate to installation file. Check new installation downloads "
-                                         "manually on project website."),
-                                      QSystemTrayIcon::Warning);
-      }
-      else {
-        CustomMessageBox::show(this,
-                               QMessageBox::Warning,
-                               tr("Cannot update application"),
-                               tr("Cannot navigate to installation file. Check new installation downloads "
-                                  "manually on project website."));
-      }
+    else {
+      CustomMessageBox::show(this,
+                             QMessageBox::Warning,
+                             tr("Cannot update application"),
+                             tr("Cannot navigate to installation file. Check new installation downloads "
+                                "manually on project website."));
     }
   }
 }
