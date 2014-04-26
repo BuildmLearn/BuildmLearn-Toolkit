@@ -8,4 +8,4 @@ GenericName=Easy-to-use program that helps users make mobile apps
 Comment=Easy-to-use program that helps users make mobile apps
 Icon=@EXE_NAME@
 Terminal=false
-Categories=Qt;Education;Office;Utility;
+Categories=Education;Office;Utility;
