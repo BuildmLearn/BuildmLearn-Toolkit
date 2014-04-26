@@ -28,83 +28,36 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#ifndef FORMMAIN_H
-#define FORMMAIN_H
+#ifndef TEXTFACTORY_H
+#define TEXTFACTORY_H
 
-#include "ui_formmain.h"
+#include "definitions/definitions.h"
 
-#include "gui/formnewproject.h"
-
-#include "InfoTemplate.h"
-#include "QuizTemplate.h"
-#include "FlashcardTemplate.h"
-
-#include <QMainWindow>
-#include <QtGui>
-
-#define HELP_URL "http://buildmlearn.wordpress.com/download/"
+#include <QDateTime>
+#include <QMap>
 
 
-namespace Ui {
-  class FormMain;
-}
-
-class FormMain : public QMainWindow {
-    Q_OBJECT
-    
-  public:
-    // Constructors and destructors.
-    explicit FormMain(QWidget *parent = 0);
-    virtual ~FormMain();
-
-
-  private slots:
-    void setupIcons();
-    void showAbout();
-    void showUpdates();
-
-  public slots:
-    void startProject(int);
-    void aboutClicked();
-    void helpClicked();
-    void generateClicked();
-    void newClicked();
-    void saveClicked();
-    void openClicked();
-    void loadOpenFile();
-    void resetWidgets();
-
+class TextFactory {
   private:
-    Ui::FormMain *m_ui;
+    // Constructors and destructors.
+    explicit TextFactory();
 
-    // Menus
-    QMenu *fileMenu;
-    QMenu *projectMenu;
+  public:
+    static inline bool isCaseInsensitiveLessThan(const QString &lhs, const QString &rhs) {
+      return lhs.toLower() < rhs.toLower();
+    }
 
-    // Action
-    QAction *newAct;
-    QAction *saveAct;
-    QAction *openAct;
-    QAction *exitAct;
-    QAction *buildAct;
+    // Tries to parse input textual date/time representation.
+    // Returns invalid date/time if processing fails.
+    // NOTE: This method tries to always return time in UTC+00:00.
+    static QDateTime parseDateTime(const QString &date_time);
 
-    // Toolbar
-    QToolBar* toolBar;
+    // Converts 1970-epoch miliseconds to date/time.
+    // NOTE: This apparently returns date/time in localtime.
+    static QDateTime parseDateTime(qint64 milis_from_epoch);
 
-    // Other widgets
-    QStackedWidget* iStackedWidget;
-
-    // Create NewProject Widget
-    FormNewProject *iNewProjectWidget;
-
-    //  Blank widget
-    QWidget* iBlankWidget;
-    // Create InfoTemplate Widget
-    InfoTemplate* iInfoTemplateWidget;
-    // Create QuizTemplate Widget
-    QuizTemplate* iQuizTemplateWidget;
-    // Create Flashcards Widget
-    FlashcardTemplate* iFlashCardsWidget;
+    // Shortens input string according to given length limit.
+    static QString shorten(const QString &input, int text_length_limit);
 };
 
-#endif // FORMMAIN_H
+#endif // TEXTFACTORY_H

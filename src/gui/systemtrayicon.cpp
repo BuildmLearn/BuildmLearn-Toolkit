@@ -70,6 +70,9 @@ void SystemTrayIcon::onActivated(const QSystemTrayIcon::ActivationReason &reason
     case SystemTrayIcon::DoubleClick:
     case SystemTrayIcon::MiddleClick:
       break;
+
+    default:
+      break;
   }
 }
 

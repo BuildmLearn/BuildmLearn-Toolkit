@@ -84,6 +84,8 @@ int main(int argc, char *argv[]) {
 
   FormMain main_form;
 
+  application.setMainForm(&main_form);
+
   // Set correct information for main window.
   main_form.setWindowTitle(APP_LONG_NAME);
 

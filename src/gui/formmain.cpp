@@ -32,6 +32,8 @@
 
 #include "definitions/definitions.h"
 #include "gui/formupdate.h"
+#include "gui/formabout.h"
+#include "miscellaneous/iconfactory.h"
 
 #include <QStackedWidget>
 #include <QPointer>
@@ -46,16 +48,17 @@ FormMain::FormMain(QWidget *parent) :
   QMainWindow(parent), m_ui(new Ui::FormMain) {
   m_ui->setupUi(this);
 
-
-
+  setupIcons();
 
 
   connect(m_ui->m_actionCheckForUpdates, SIGNAL(triggered()),
           this, SLOT(showUpdates()));
+  connect(m_ui->m_actionAboutToolkit, SIGNAL(triggered()),
+          this, SLOT(showAbout()));
 
 
-  setWindowTitle("BuildmLearn Toolkit");
-  showMaximized();
+  //setWindowTitle("BuildmLearn Toolkit");
+  //showMaximized();
   iNewProjectWidget = new FormNewProject(this);
   iNewProjectWidget->setWindowModality(Qt::ApplicationModal);
   iNewProjectWidget->show();
@@ -121,6 +124,17 @@ FormMain::~FormMain() {
   delete m_ui;
 
   qDebug("Destroying FormMain instance.");
+}
+
+void FormMain::setupIcons() {
+  m_ui->m_actionAboutToolkit->setIcon(IconFactory::instance()->fromTheme("application-about"));
+  m_ui->m_actionCheckForUpdates->setIcon(IconFactory::instance()->fromTheme("check-for-updates"));
+}
+
+void FormMain::showAbout() {
+  QPointer<FormAbout> form_about = new FormAbout(this);
+  form_about.data()->exec();
+  delete form_about.data();
 }
 
 void FormMain::showUpdates() {

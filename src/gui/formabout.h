@@ -28,14 +28,31 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include "miscellaneous/application.h"
+#ifndef FORMABOUT_H
+#define FORMABOUT_H
+
+#include "ui_formabout.h"
+
+#include "definitions/definitions.h"
+
+#include <QDialog>
 
 
-Application::Application(int &argc, char **argv)
-  : QApplication(argc, argv), m_settings(NULL) {
+namespace Ui {
+  class FormAbout;
 }
 
-Application::~Application() {
-}
+class FormAbout : public QDialog {
+    Q_OBJECT
+
+  public:
+    // Constructors and destructors.
+    explicit FormAbout(QWidget *parent);
+    virtual ~FormAbout();
+
+  private:
+    Ui::FormAbout *m_ui;
+};
 
 
+#endif // FORMABOUT_H

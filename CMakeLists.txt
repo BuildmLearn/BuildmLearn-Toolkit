@@ -296,12 +296,14 @@ set(APP_SOURCES
   src/gui/plaintoolbutton.cpp
   src/gui/systemtrayicon.cpp
   src/gui/custommessagebox.cpp
+  src/gui/formabout.cpp
 
   src/miscellaneous/application.cpp
   src/miscellaneous/settings.cpp
   src/miscellaneous/debugging.cpp
   src/miscellaneous/iconfactory.cpp
   src/miscellaneous/systemfactory.cpp
+  src/miscellaneous/textfactory.cpp
 
   src/network-web/webfactory.cpp
   src/network-web/basenetworkaccessmanager.cpp
@@ -329,12 +331,14 @@ set(APP_HEADERS
   src/gui/plaintoolbutton.h
   src/gui/custommessagebox.h
   src/gui/systemtrayicon.h
+  src/gui/formabout.h
 
   src/miscellaneous/application.h
   src/miscellaneous/settings.h
   src/miscellaneous/debugging.h
   src/miscellaneous/iconfactory.h
   src/miscellaneous/systemfactory.h
+  src/miscellaneous/textfactory.h
 
   src/network-web/webfactory.h
   src/network-web/basenetworkaccessmanager.h
@@ -352,6 +356,7 @@ set(APP_HEADERS
 set(APP_FORMS
   src/gui/formmain.ui
   src/gui/formupdate.ui
+  src/gui/formabout.ui
 )
 
 # APP translations.

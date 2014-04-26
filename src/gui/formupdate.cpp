@@ -99,7 +99,7 @@ void FormUpdate::checkForUpdates() {
     m_ui->m_lblAvailableRelease->setText(update.first.m_availableVersion);
     m_ui->m_txtChanges->setText(update.first.m_changes);
 
-    if (update.first.m_availableVersion > APP_VERSION) {
+    if (update.first.m_availableVersion >= APP_VERSION) {
       m_ui->m_lblStatus->setStatus(WidgetWithStatus::Ok,
                                    tr("New release available."),
                                    tr("This is new version which can be\ndownloaded and installed."));
@@ -150,7 +150,7 @@ void FormUpdate::saveUpdateFile(const QByteArray &file_contents) {
 
     if (output_file.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
       qDebug("Storing update file to temporary location '%s'.",
-             qPrintable(output_file_name));
+             qPrintable(output_file.fileName()));
 
       output_file.write(file_contents);
       output_file.flush();
@@ -179,14 +179,16 @@ void FormUpdate::updateCompleted(QNetworkReply::NetworkError status, QByteArray 
     case QNetworkReply::NoError:
       saveUpdateFile(contents);
 
-      m_ui->m_lblStatus->setStatus(WidgetWithStatus::Ok, tr("Downloaded successfully"),
+      m_ui->m_lblStatus->setStatus(WidgetWithStatus::Ok,
+                                   tr("Downloaded successfully, stored in file '%1'.").arg(m_updateFilePath),
                                    tr("Package was downloaded successfully."));
-      m_btnUpdate->setText(tr("Install update"));
+      m_btnUpdate->setText(tr("Open update file"));
       m_btnUpdate->setEnabled(true);
       break;
 
     default:
-      m_ui->m_lblStatus->setStatus(WidgetWithStatus::Error, tr("Error occured"),
+      m_ui->m_lblStatus->setStatus(WidgetWithStatus::Error,
+                                   tr("Error occured."),
                                    tr("Error occured during downloading of the package."));
       m_btnUpdate->setText(tr("Error occured"));
       break;
@@ -206,9 +208,7 @@ void FormUpdate::startUpdate() {
 
   if (m_readyToInstall) {
     // Some package is downloaded and now we have to navigate user to it.
-
-    // m_updateFilePath
-
+    openDownloadedFile();
   }
   else if (update_for_this_system /* && isSelfUpdateSupported() */ ) {
     // Nothing is downloaded yet, but update for this system
@@ -247,4 +247,12 @@ void FormUpdate::startUpdate() {
       }
     }
   }
-}     
+}
+
+void FormUpdate::openDownloadedFile() {
+#if defined(Q_OS_WIN)
+  QDesktopServices::openUrl(m_updateFilePath);
+#else
+  QDesktopServices::openUrl(m_updateFilePath);
+#endif
+}

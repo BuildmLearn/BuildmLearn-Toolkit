@@ -33,6 +33,8 @@
 
 #include <QApplication>
 
+#include "miscellaneous/settings.h"
+
 #if defined(qApp)
 #undef qApp
 #endif
@@ -41,7 +43,7 @@
 #define qApp (Application::instance())
 
 
-class Settings;
+class FormMain;
 
 // TODO: presunout nektery veci sem, settings atp
 class Application : public QApplication {
@@ -52,7 +54,21 @@ class Application : public QApplication {
     explicit Application(int &argc, char **argv);
     virtual ~Application();
 
-    Settings *settings();
+    inline Settings *settings() {
+      if (m_settings == NULL) {
+        m_settings = Settings::setupSettings(this);
+      }
+
+      return m_settings;
+    }
+
+    inline FormMain *mainForm() {
+      return m_mainForm;
+    }
+
+    void setMainForm(FormMain *main_form) {
+      m_mainForm = main_form;
+    }
 
     // Returns pointer to "GOD" application singleton.
     inline static Application *instance() {
@@ -61,6 +77,7 @@ class Application : public QApplication {
 
   private:
     Settings *m_settings;
+    FormMain *m_mainForm;
 };
 
 #endif // APPLICATION_H
