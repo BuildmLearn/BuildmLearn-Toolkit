@@ -125,12 +125,6 @@ QMessageBox::StandardButton CustomMessageBox::show(QWidget *parent,
   msg_box.setStandardButtons(buttons);
   msg_box.setDefaultButton(default_button);
 
-  // Setup button box icons.
-#if !defined(Q_OS_WIN)
-  QDialogButtonBox *button_box = msg_box.findChild<QDialogButtonBox*>();
-  iconify(button_box);
-#endif
-
   // Display it.
   if (msg_box.exec() == -1) {
     return QMessageBox::Cancel;
