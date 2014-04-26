@@ -70,6 +70,7 @@ set(APP_URL "http://buildmlearn.org/")
 set(APP_URL_ISSUES "https://github.com/BuildmLearn/BuildmLearn-Toolkit/issues")
 set(APP_URL_ISSUES_NEW "https://github.com/BuildmLearn/BuildmLearn-Toolkit/issues/new")
 set(APP_EMAIL "rotter.martinos@gmail.com")
+set(APP_BRIEF "BuildmLearn Toolkit is an easy-to-use program that helps users make mobile apps without any knowledge of application development.")
 set(MINIMUM_QT_VERSION 4.7.3)
 set(EXE_NAME ${APP_LOW_NAME})
 
@@ -162,7 +163,11 @@ configure_file (
   ${CMAKE_CURRENT_BINARY_DIR}/src/definitions/definitions.h
 )
 
-# TODO: Configure Doxyfile (overwrite original).
+# Configure Doxygen documentation file.
+configure_file (
+  ${PROJECT_SOURCE_DIR}/resources/documentation/Doxyfile.in
+  ${CMAKE_CURRENT_BINARY_DIR}/resources/documentation/Doxyfile
+)
 
 # Define some useful DEBUG for, ehrm, debug build.
 if(CMAKE_BUILD_TYPE STREQUAL "release" OR CMAKE_BUILD_TYPE STREQUAL "Release" OR CMAKE_BUILD_TYPE STREQUAL "RELEASE")

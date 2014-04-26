@@ -47,8 +47,7 @@ TrayIconMenu::~TrayIconMenu() {
 }
 
 bool TrayIconMenu::event(QEvent *event) {
-  if (Application::activeModalWidget() != NULL &&
-      event->type() == QEvent::Show) {
+  if (Application::activeModalWidget() != NULL && event->type() == QEvent::Show) {
     QTimer::singleShot(0, this, SLOT(hide()));
     qApp->trayIcon()->showMessage(APP_LONG_NAME,
                                   tr("Close opened modal dialogs first."),
@@ -80,17 +79,10 @@ bool SystemTrayIcon::isSystemTrayAvailable() {
 }
 
 bool SystemTrayIcon::isSystemTrayActivated() {
-  return SystemTrayIcon::isSystemTrayAvailable() && qApp->settings()->value(APP_CFG_GUI,
-                                                                            "use_tray_icon",
-                                                                            true).toBool();
+  return SystemTrayIcon::isSystemTrayAvailable();
 }
 
 void SystemTrayIcon::showPrivate() {
-  // Make sure that application does not exit some window (for example
-  // the settings window) gets closed. Behavior for main window
-  // is handled explicitly by FormMain::closeEvent() method.
-  //qApp->setQuitOnLastWindowClosed(false);
-
   // Display the tray icon.
   QSystemTrayIcon::show();
   qDebug("Tray icon displayed.");
@@ -104,7 +96,7 @@ void SystemTrayIcon::show() {
 #else
   // Delay avoids race conditions and tray icon is properly displayed.
   qDebug("Showing tray icon with 1000 ms delay.");
-  QTimer::singleShot(1000, this, SLOT(showPrivate()));
+  QTimer::singleShot(TRAY_ICON_DELAY, this, SLOT(showPrivate()));
 #endif
 }
 
@@ -114,11 +106,15 @@ void SystemTrayIcon::onActivated(QSystemTrayIcon::ActivationReason reason) {
     qApp->trayIcon()->showMessage(APP_LONG_NAME,
                                   tr("Close opened modal dialogs first."),
                                   QSystemTrayIcon::Warning);
+    return;
   }
-  else {
-    emit triggered(reason);
-  }
-#else
-  emit triggered(reason);
 #endif
+  switch (reason) {
+    case QSystemTrayIcon::Trigger:
+      emit leftMouseClicked();
+      break;
+
+    default:
+      break;
+  }
 }

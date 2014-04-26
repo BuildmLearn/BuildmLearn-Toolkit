@@ -32,11 +32,12 @@
 #define SYSTEMTRAYICON_H
 
 #include <QSystemTrayIcon>
-#include <QPointer>
+
+#if defined(Q_OS_WIN)
 #include <QMenu>
+#endif
 
 
-class FormMain;
 class QEvent;
 
 #if defined(Q_OS_WIN)
@@ -76,7 +77,7 @@ class SystemTrayIcon : public QSystemTrayIcon {
     void showPrivate();
 
   signals:
-    void triggered(QSystemTrayIcon::ActivationReason reason);
+    void leftMouseClicked();
 };
 
 #endif // SYSTEMTRAYICON_H

@@ -87,14 +87,14 @@ int main(int argc, char *argv[]) {
 
   application.setMainForm(&main_form);
 
-  // Set correct information for main window.
+  // Set correct information for main window and show it.
   main_form.setWindowTitle(APP_LONG_NAME);
-
   main_form.show();
 
   if (SystemTrayIcon::isSystemTrayActivated()) {
-    QObject::connect(application.trayIcon(), SIGNAL(triggered(QSystemTrayIcon::ActivationReason)),
+    QObject::connect(application.trayIcon(), SIGNAL(leftMouseClicked()),
                      &main_form, SLOT(switchVisibility()));
+    application.trayIcon()->setContextMenu(main_form.trayMenu());
     application.trayIcon()->show();
   }
 

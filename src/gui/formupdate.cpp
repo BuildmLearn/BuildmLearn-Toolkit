@@ -214,6 +214,9 @@ void FormUpdate::startUpdate() {
     // Nothing is downloaded yet, but update for this system
     // is available.
 
+    WebFactory::instance()->openUrlInExternalBrowser(url_file);
+
+    /*
     if (m_downloader == NULL) {
       // Initialize downloader.
       m_downloader = new Downloader(this);
@@ -228,15 +231,16 @@ void FormUpdate::startUpdate() {
     m_btnUpdate->setEnabled(false);
 
     m_downloader->downloadFile(url_file);
+    */
 
   } else {
     // Package are not available.
     if (!WebFactory::instance()->openUrlInExternalBrowser(url_file)) {
       if (SystemTrayIcon::isSystemTrayActivated()) {
         qApp->trayIcon()->showMessage(tr("Cannot update application"),
-                                                tr("Cannot navigate to installation file. Check new installation downloads "
-                                                   "manually on project website."),
-                                                QSystemTrayIcon::Warning);
+                                      tr("Cannot navigate to installation file. Check new installation downloads "
+                                         "manually on project website."),
+                                      QSystemTrayIcon::Warning);
       }
       else {
         CustomMessageBox::show(this,

@@ -50,6 +50,7 @@ FormMain::FormMain(QWidget *parent) :
   m_ui->setupUi(this);
 
   setupIcons();
+  setupTrayMenu();
 
   connect(m_ui->m_actionCheckForUpdates, SIGNAL(triggered()),
           this, SLOT(showUpdates()));
@@ -129,6 +130,21 @@ FormMain::~FormMain() {
 void FormMain::setupIcons() {
   m_ui->m_actionAboutToolkit->setIcon(IconFactory::instance()->fromTheme("application-about"));
   m_ui->m_actionCheckForUpdates->setIcon(IconFactory::instance()->fromTheme("check-for-updates"));
+}
+
+void FormMain::setupTrayMenu() {
+  if (SystemTrayIcon::isSystemTrayActivated()) {
+#if defined(Q_OS_WIN)
+    m_trayMenu = new TrayIconMenu(APP_NAME, this);
+#else
+    m_trayMenu = new QMenu(APP_NAME, this);
+#endif
+
+    // Add needed items to the menu.
+    m_trayMenu->addAction(m_ui->m_actionCheckForUpdates);
+
+    qDebug("Creating tray icon menu.");
+  }
 }
 
 void FormMain::showAbout() {

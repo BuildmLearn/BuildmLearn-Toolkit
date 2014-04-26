@@ -61,6 +61,7 @@
 #define DOWNLOAD_TIMEOUT                5000
 #define ELLIPSIS_LENGTH                 3
 #define STARTUP_UPDATE_DELAY            4000
+#define TRAY_ICON_DELAY                 1000
 
 // Line delimiters.
 #define DELIMITER_LINE                  "##L##"

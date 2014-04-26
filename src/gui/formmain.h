@@ -57,6 +57,12 @@ class FormMain : public QMainWindow {
     explicit FormMain(QWidget *parent = 0);
     virtual ~FormMain();
 
+    inline QMenu *trayMenu() const {
+      return m_trayMenu;
+    }
+
+  private:
+    void setupTrayMenu();
 
   private slots:
     void setupIcons();
@@ -83,6 +89,8 @@ class FormMain : public QMainWindow {
 
   private:
     Ui::FormMain *m_ui;
+
+    QMenu *m_trayMenu;
 
     // Menus
     QMenu *fileMenu;
