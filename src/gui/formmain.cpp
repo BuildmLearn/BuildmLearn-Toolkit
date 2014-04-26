@@ -33,6 +33,7 @@
 #include "definitions/definitions.h"
 #include "gui/formupdate.h"
 #include "gui/formabout.h"
+#include "gui/systemtrayicon.h"
 #include "miscellaneous/iconfactory.h"
 
 #include <QStackedWidget>
@@ -49,7 +50,6 @@ FormMain::FormMain(QWidget *parent) :
   m_ui->setupUi(this);
 
   setupIcons();
-
 
   connect(m_ui->m_actionCheckForUpdates, SIGNAL(triggered()),
           this, SLOT(showUpdates()));
@@ -141,6 +141,34 @@ void FormMain::showUpdates() {
   QPointer<FormUpdate> form_update = new FormUpdate(this);
   form_update.data()->exec();
   delete form_update.data();
+}
+
+void FormMain::switchVisibility(bool force_hide) {
+  if (force_hide || isVisible()) {
+    if (SystemTrayIcon::isSystemTrayActivated()) {
+      hide();
+    }
+    else {
+      // Window gets minimized in single-window mode.
+      showMinimized();
+    }
+  }
+  else {
+    display();
+  }
+}
+
+void FormMain::display() {
+  // Make sure window is not minimized.
+  setWindowState(windowState() & ~Qt::WindowMinimized);
+
+  // Display the window and make sure it is raised on top.
+  show();
+  activateWindow();
+  raise();
+
+  // Raise alert event. Check the documentation for more info on this.
+  Application::alert(this);
 }
 
 void FormMain::saveClicked()
@@ -339,4 +367,12 @@ void FormMain::resetWidgets()
   iStackedWidget->addWidget(iInfoTemplateWidget);
   iStackedWidget->addWidget(iQuizTemplateWidget);
   iStackedWidget->addWidget(iFlashCardsWidget);
+}
+
+void FormMain::closeEvent(QCloseEvent *event) {
+  if (SystemTrayIcon::isSystemTrayActivated()) {
+    qApp->trayIcon()->hide();
+  }
+
+  event->accept();
 }

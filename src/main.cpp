@@ -30,6 +30,7 @@
 
 #include "gui/formmain.h"
 #include "definitions/definitions.h"
+#include "gui/systemtrayicon.h"
 #include "miscellaneous/application.h"
 #include "miscellaneous/debugging.h"
 #include "miscellaneous/settings.h"
@@ -90,6 +91,12 @@ int main(int argc, char *argv[]) {
   main_form.setWindowTitle(APP_LONG_NAME);
 
   main_form.show();
+
+  if (SystemTrayIcon::isSystemTrayActivated()) {
+    QObject::connect(application.trayIcon(), SIGNAL(triggered(QSystemTrayIcon::ActivationReason)),
+                     &main_form, SLOT(switchVisibility()));
+    application.trayIcon()->show();
+  }
 
   return Application::exec();
 }

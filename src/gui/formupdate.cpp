@@ -80,7 +80,7 @@ bool FormUpdate::isSelfUpdateSupported() const {
 }
 
 void FormUpdate::checkForUpdates() {
-  QPair<UpdateInfo, QNetworkReply::NetworkError> update = SystemFactory::instance()->checkForUpdates();
+  QPair<UpdateInfo, QNetworkReply::NetworkError> update = qApp->checkForUpdates();
 
   m_updateInfo = update.first;
 
@@ -233,7 +233,7 @@ void FormUpdate::startUpdate() {
     // Package are not available.
     if (!WebFactory::instance()->openUrlInExternalBrowser(url_file)) {
       if (SystemTrayIcon::isSystemTrayActivated()) {
-        SystemTrayIcon::instance()->showMessage(tr("Cannot update application"),
+        qApp->trayIcon()->showMessage(tr("Cannot update application"),
                                                 tr("Cannot navigate to installation file. Check new installation downloads "
                                                    "manually on project website."),
                                                 QSystemTrayIcon::Warning);

@@ -33,7 +33,6 @@
 
 #include <QObject>
 
-#include <QPointer>
 #include <QMutex>
 #include <QMetaType>
 #include <QHash>
@@ -72,25 +71,16 @@ Q_DECLARE_METATYPE(UpdateInfo)
 class SystemFactory : public QObject {
     Q_OBJECT
 
-  private:
+  public:
     // Constructors and destructors.
     explicit SystemFactory(QObject *parent = 0);
+    virtual ~SystemFactory();
 
     // Performs parsing of downloaded file with list of updates.
     UpdateInfo parseUpdatesFile(const QByteArray &updates_file);
 
-  public:
-    // Constructors and destructors.
-    virtual ~SystemFactory();
-
     // Tries to download list with new updates.
     QPair<UpdateInfo, QNetworkReply::NetworkError> checkForUpdates();
-
-    // Singleton getter.
-    static SystemFactory *instance();
-
-  private:
-    static QPointer<SystemFactory> s_instance;
 };
 
 #endif // SYSTEMFACTORY_H

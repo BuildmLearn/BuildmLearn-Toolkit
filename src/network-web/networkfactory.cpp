@@ -119,7 +119,7 @@ QNetworkReply::NetworkError NetworkFactory::downloadIcon(const QString &url,
 #endif
   QByteArray icon_data;
 
-  QNetworkReply::NetworkError network_result =  downloadFeedFile(google_s2_with_url,
+  QNetworkReply::NetworkError network_result =  downloadFile(google_s2_with_url,
                                                                  timeout,
                                                                  icon_data);
 
@@ -132,7 +132,7 @@ QNetworkReply::NetworkError NetworkFactory::downloadIcon(const QString &url,
   return network_result;
 }
 
-QNetworkReply::NetworkError NetworkFactory::downloadFeedFile(const QString &url,
+QNetworkReply::NetworkError NetworkFactory::downloadFile(const QString &url,
                                                              int timeout,
                                                              QByteArray &output,
                                                              bool protected_contents,

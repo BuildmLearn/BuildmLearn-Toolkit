@@ -45,8 +45,6 @@
 #include <QDomAttr>
 
 
-QPointer<SystemFactory> SystemFactory::s_instance;
-
 SystemFactory::SystemFactory(QObject *parent) : QObject(parent) {
 }
 
@@ -54,19 +52,11 @@ SystemFactory::~SystemFactory() {
   qDebug("Destroying SystemFactory instance.");
 }
 
-SystemFactory *SystemFactory::instance() {
-  if (s_instance.isNull()) {
-    s_instance = new SystemFactory(qApp);
-  }
-
-  return s_instance;
-}
-
 QPair<UpdateInfo, QNetworkReply::NetworkError> SystemFactory::checkForUpdates() {
   QPair<UpdateInfo, QNetworkReply::NetworkError> result;
   QByteArray releases_xml;
 
-  result.second = NetworkFactory::downloadFeedFile(RELEASES_LIST,
+  result.second = NetworkFactory::downloadFile(RELEASES_LIST,
                                                    5000,
                                                    releases_xml);
 

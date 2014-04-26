@@ -34,6 +34,9 @@
 #include <QApplication>
 
 #include "miscellaneous/settings.h"
+#include "miscellaneous/systemfactory.h"
+
+#include <QNetworkReply>
 
 #if defined(qApp)
 #undef qApp
@@ -44,6 +47,7 @@
 
 
 class FormMain;
+class SystemTrayIcon;
 
 // TODO: presunout nektery veci sem, settings atp
 class Application : public QApplication {
@@ -53,6 +57,9 @@ class Application : public QApplication {
     // Constructors and destructors.
     explicit Application(int &argc, char **argv);
     virtual ~Application();
+
+    // Tries to download list with new updates.
+    QPair<UpdateInfo, QNetworkReply::NetworkError> checkForUpdates();
 
     inline Settings *settings() {
       if (m_settings == NULL) {
@@ -70,6 +77,8 @@ class Application : public QApplication {
       m_mainForm = main_form;
     }
 
+    SystemTrayIcon *trayIcon();
+
     // Returns pointer to "GOD" application singleton.
     inline static Application *instance() {
       return static_cast<Application*>(QCoreApplication::instance());
@@ -77,6 +86,8 @@ class Application : public QApplication {
 
   private:
     Settings *m_settings;
+    SystemFactory *m_systemFactory;
+    SystemTrayIcon *m_trayIcon;
     FormMain *m_mainForm;
 };
 

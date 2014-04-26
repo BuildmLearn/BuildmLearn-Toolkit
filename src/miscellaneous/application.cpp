@@ -30,12 +30,30 @@
 
 #include "miscellaneous/application.h"
 
+#include "definitions/definitions.h"
+#include "miscellaneous/systemfactory.h"
+#include "gui/systemtrayicon.h"
+
 
 Application::Application(int &argc, char **argv)
-  : QApplication(argc, argv), m_settings(NULL) {
+  : QApplication(argc, argv), m_settings(NULL), m_systemFactory(NULL), m_trayIcon(NULL) {
 }
 
 Application::~Application() {
 }
 
+QPair<UpdateInfo, QNetworkReply::NetworkError> Application::checkForUpdates() {
+  if (m_systemFactory == NULL) {
+    m_systemFactory = new SystemFactory(this);
+  }
 
+  return m_systemFactory->checkForUpdates();
+}
+
+SystemTrayIcon *Application::trayIcon() {
+  if (m_trayIcon == NULL) {
+    m_trayIcon = new SystemTrayIcon(APP_ICON_PATH, this);
+  }
+
+  return m_trayIcon;
+}

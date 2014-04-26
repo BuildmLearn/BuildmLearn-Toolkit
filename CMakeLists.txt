@@ -41,7 +41,7 @@
 #
 # Arguments:
 #   "-DCMAKE_INSTALL_PREFIX=/usr"
-#     Installation path, replace with something like "C:\rssguard" on Windows.
+#     Installation path, replace with something like "C:\buildmlearn-toolkit" on Windows.
 #
 #   "-DUSE_QT_5=OFF"
 #     Specifies which major Qt version to use. Qt 4 and Qt 5 are supported.

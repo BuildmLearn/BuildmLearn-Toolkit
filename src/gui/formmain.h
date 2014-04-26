@@ -64,6 +64,10 @@ class FormMain : public QMainWindow {
     void showUpdates();
 
   public slots:
+    // Switches visibility of main window.
+    void switchVisibility(bool force_hide = false);
+    void display();
+
     void startProject(int);
     void aboutClicked();
     void helpClicked();
@@ -73,6 +77,9 @@ class FormMain : public QMainWindow {
     void openClicked();
     void loadOpenFile();
     void resetWidgets();
+
+  protected:
+    void closeEvent(QCloseEvent *event);
 
   private:
     Ui::FormMain *m_ui;
