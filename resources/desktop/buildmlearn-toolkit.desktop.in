@@ -10,4 +10,4 @@ Comment=A (very) tiny feed reader
 Comment[cs]=Velmi jednoduchá čtečka kanálů
 Icon=buildmlearn-toolkit
 Terminal=false
-Categories=Qt;Network;News;
+Categories=Education;
