@@ -33,10 +33,6 @@
 #include "miscellaneous/iconfactory.h"
 #include "miscellaneous/textfactory.h"
 
-#if !defined(Q_OS_WIN)
-#include "gui/messagebox.h"
-#endif
-
 #include <QFile>
 #include <QTextStream>
 
