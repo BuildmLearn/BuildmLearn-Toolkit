@@ -366,14 +366,14 @@ set(APP_FORMS
 
 # APP translations.
 set(APP_TRANSLATIONS
-  #localization/${APP_LOW_NAME}-cs_CZ.ts
-  #localization/${APP_LOW_NAME}-en_GB.ts
+  localization/${APP_LOW_NAME}-en_GB.ts
+  localization/${APP_LOW_NAME}-hi_IN.ts
   localization/qt-cs_CZ.ts
 )
 
 set(APP_TRANSLATIONS_WO_QT
-  #localization/${APP_LOW_NAME}-cs_CZ.ts
-  #localization/${APP_LOW_NAME}-en_GB.ts
+  localization/${APP_LOW_NAME}-en_GB.ts
+  localization/${APP_LOW_NAME}-hi_IN.ts
 )
 
 set(APP_TEXT
