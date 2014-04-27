@@ -397,25 +397,25 @@ currently installed one.</source>
         <location filename="../src/main.cpp" line="56"/>
         <source>LANG_NAME</source>
         <extracomment>Name of language, e.g. English.</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>English</translation>
     </message>
     <message>
         <location filename="../src/main.cpp" line="60"/>
         <source>LANG_ABBREV</source>
         <extracomment>Abbreviation of language. Use ISO 639-1 code here combined with ISO 3166-1 (alpha-2) code. Examples: &quot;cs_CZ&quot;, &quot;en_GB&quot;, &quot;en_US&quot;.</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>en_GB</translation>
     </message>
     <message>
         <location filename="../src/main.cpp" line="62"/>
         <source>LANG_AUTHOR</source>
         <extracomment>Name of translator - optional.</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Martin Rotter</translation>
     </message>
     <message>
         <location filename="../src/main.cpp" line="64"/>
         <source>LANG_EMAIL</source>
         <extracomment>Email of translator - optional.</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>rotter.martinos@gmail.com</translation>
     </message>
 </context>
 <context>

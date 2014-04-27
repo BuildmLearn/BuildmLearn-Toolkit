@@ -35,6 +35,7 @@
 #include "miscellaneous/debugging.h"
 #include "miscellaneous/settings.h"
 #include "miscellaneous/iconfactory.h"
+#include "miscellaneous/localization.h"
 
 
 #include <QThread>
@@ -157,6 +158,9 @@ int main(int argc, char *argv[]) {
   // and skin.
   IconFactory::instance()->setupSearchPaths();
   IconFactory::instance()->loadCurrentIconTheme();
+
+  // Load localization and setup locale before any widget is constructed.
+  Localization::instance()->load();
 
   // These settings needs to be set before any QSettings object.
   Application::setApplicationName(APP_NAME);

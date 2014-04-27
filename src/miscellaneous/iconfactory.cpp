@@ -89,9 +89,7 @@ void IconFactory::setupSearchPaths() {
 
 
 void IconFactory::setCurrentIconTheme(const QString &theme_name) {
-  qApp->settings()->setValue(APP_CFG_GUI,
-                             "icon_theme",
-                             theme_name);
+  qApp->settings()->setValue(APP_CFG_GUI, "icon_theme", theme_name);
 }
 
 void IconFactory::loadCurrentIconTheme() {

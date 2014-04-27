@@ -33,6 +33,7 @@
 #include "definitions/definitions.h"
 #include "gui/formupdate.h"
 #include "gui/formabout.h"
+#include "gui/formsettings.h"
 #include "gui/systemtrayicon.h"
 #include "miscellaneous/iconfactory.h"
 
@@ -93,6 +94,8 @@ void FormMain::createConnections() {
           this, SLOT(showUpdates()));
   connect(m_ui->m_actionAboutToolkit, SIGNAL(triggered()),
           this, SLOT(showAbout()));
+  connect(m_ui->m_actionSettings, SIGNAL(triggered()),
+          this, SLOT(showSettings()));
 
   // Project connections.
   connect(m_ui->m_actionNewProject, SIGNAL(triggered()),
@@ -108,6 +111,7 @@ void FormMain::createConnections() {
 void FormMain::setupIcons() {
   IconFactory *factory = IconFactory::instance();
 
+  m_ui->m_actionSettings->setIcon(factory->fromTheme("application-settings"));
   m_ui->m_actionQuit->setIcon(factory->fromTheme("application-exit"));
   m_ui->m_actionAboutToolkit->setIcon(factory->fromTheme("application-about"));
   m_ui->m_actionCheckForUpdates->setIcon(factory->fromTheme("check-for-updates"));
@@ -128,6 +132,12 @@ void FormMain::setupTrayMenu() {
 
     qDebug("Creating tray icon menu.");
   }
+}
+
+void FormMain::showSettings() {
+  QPointer<FormSettings> form_pointer = new FormSettings(this);
+  form_pointer.data()->exec();
+  delete form_pointer.data();
 }
 
 void FormMain::showAbout() {

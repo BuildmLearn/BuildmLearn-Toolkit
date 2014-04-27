@@ -47,6 +47,17 @@
 #     Specifies which major Qt version to use. Qt 4 and Qt 5 are supported.
 #     If "OFF" is passed as an argument, then Qt 4 is used. Default is "OFF".
 #
+#   "-DBUNDLE_ICON_THEMES=ON"
+#     If "ON", then custom icons theme(s) will be bundled with application
+#     installation. If "OFF", then no icon theme(s) will be available for
+#     the application and application will run in iconless mode.
+#     Default and recommended value is "ON".
+#
+#   "-DINSTALL_ALL_LANGUAGES"
+#     If "ON", then all available localizations are installed.
+#     If "OFF", then only basic set of localizations is installed.
+#
+#
 # Other information:
 #   - supports Windows, Linux, OS/2 (eComStation),
 #   - Qt 4.7.3 and higher is required,
@@ -81,6 +92,7 @@ endif(APPLE)
 # Options declaration.
 option(USE_QT_5 "Use Qt 5 for building" OFF)
 option(BUNDLE_ICON_THEMES "Equip installation with custom icon themes" ON)
+option(INSTALL_ALL_LANGUAGES "Install all available localizations" ON)
 
 if(POLICY CMP0012)
   cmake_policy(SET CMP0012 NEW)
@@ -302,6 +314,7 @@ set(APP_SOURCES
   src/gui/systemtrayicon.cpp
   src/gui/custommessagebox.cpp
   src/gui/formabout.cpp
+  src/gui/formsettings.cpp
 
   src/miscellaneous/application.cpp
   src/miscellaneous/settings.cpp
@@ -309,6 +322,7 @@ set(APP_SOURCES
   src/miscellaneous/iconfactory.cpp
   src/miscellaneous/systemfactory.cpp
   src/miscellaneous/textfactory.cpp
+  src/miscellaneous/localization.cpp
 
   src/network-web/webfactory.cpp
   src/network-web/basenetworkaccessmanager.cpp
@@ -337,6 +351,7 @@ set(APP_HEADERS
   src/gui/custommessagebox.h
   src/gui/systemtrayicon.h
   src/gui/formabout.h
+  src/gui/formsettings.h
 
   src/miscellaneous/application.h
   src/miscellaneous/settings.h
@@ -344,6 +359,7 @@ set(APP_HEADERS
   src/miscellaneous/iconfactory.h
   src/miscellaneous/systemfactory.h
   src/miscellaneous/textfactory.h
+  src/miscellaneous/localization.h
 
   src/network-web/webfactory.h
   src/network-web/basenetworkaccessmanager.h
@@ -362,6 +378,7 @@ set(APP_FORMS
   src/gui/formmain.ui
   src/gui/formupdate.ui
   src/gui/formabout.ui
+  src/gui/formsettings.ui
 )
 
 # APP translations.
@@ -374,6 +391,11 @@ set(APP_TRANSLATIONS_WO_QT
   localization/${APP_LOW_NAME}-en_GB.ts
   localization/${APP_LOW_NAME}-hi_IN.ts
 )
+
+if(INSTALL_ALL_LANGUAGES)
+  # Add remaining languages to the basic set.
+endif(INSTALL_ALL_LANGUAGES)
+
 
 set(APP_TEXT
   resources/text/CHANGELOG

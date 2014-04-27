@@ -47,8 +47,15 @@
     <addaction name="separator"/>
     <addaction name="m_actionGenerateApkFile"/>
    </widget>
+   <widget class="QMenu" name="m_menuTools">
+    <property name="title">
+     <string>&amp;Tools</string>
+    </property>
+    <addaction name="m_actionSettings"/>
+   </widget>
    <addaction name="n_menuApplication"/>
    <addaction name="m_menuProject"/>
+   <addaction name="m_menuTools"/>
    <addaction name="m_menuHelp"/>
   </widget>
   <widget class="QToolBar" name="m_toolBar">
@@ -98,6 +105,11 @@
   <action name="m_actionLoadProject">
    <property name="text">
     <string>&amp;Load project...</string>
+   </property>
+  </action>
+  <action name="m_actionSettings">
+   <property name="text">
+    <string>&amp;Settings</string>
    </property>
   </action>
  </widget>

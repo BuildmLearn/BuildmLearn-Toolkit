@@ -67,6 +67,7 @@ class FormMain : public QMainWindow {
     void setupTrayMenu();
 
   private slots:
+    void showSettings();
     void showAbout();
     void showUpdates();
 
