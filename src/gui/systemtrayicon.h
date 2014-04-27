@@ -41,35 +41,49 @@
 class QEvent;
 
 #if defined(Q_OS_WIN)
+/// \brief Tray icon Windows-specific menu.
 class TrayIconMenu : public QMenu {
     Q_OBJECT
 
   public:
-    // Constructors and destructors.
+    /// \brief Constructor.
+    /// \param title Title of the tray icon.
+    /// \param parent Parent for the tray icon.
     explicit TrayIconMenu(const QString &title, QWidget *parent);
     virtual ~TrayIconMenu();
 
   protected:
+    /// \brief Custom event handler.
+    /// \param event Information about the event which just occurred.
+    /// \return Returns true if event was handler, otherwise returns false.
     bool event(QEvent *event);
 };
 #endif
 
+/// \brief Application-wide tray icon.
 class SystemTrayIcon : public QSystemTrayIcon {
     Q_OBJECT
 
   public:
-    // Constructors and destructors.
+    /// \brief Constructor.
+    /// \param icon Icon for tray icon.
+    /// \param parent Parent of tray icon.
     explicit SystemTrayIcon(const QString &icon, QObject *parent = 0);
     virtual ~SystemTrayIcon();
 
-    // Returns true if tray icon CAN be constructed on this machine.
+    /// \brief Indicates whether tray icon is supported.
+    /// \return Returns true if tray icon is supported.
+    /// \see isSystemTrayActivated()
     static bool isSystemTrayAvailable();
 
-    // Returns true if tray icon CAN be costructed and IS enabled in
-    // application settings.
+    /// \brief Indicates whether tray icon is supported AND enabled.
+    /// \return Returns true if tray icon CAN be costructed and IS enabled in
+    /// application settings.
+    /// \see isSystemTrayAvailable().
     static bool isSystemTrayActivated();
     
   public slots:
+    /// \brief Displays tray icon.
     void show();
 
   private slots:
@@ -77,6 +91,7 @@ class SystemTrayIcon : public QSystemTrayIcon {
     void showPrivate();
 
   signals:
+    /// \brief Emitted if user clicks tray icon with left mouse button.
     void leftMouseClicked();
 };
 

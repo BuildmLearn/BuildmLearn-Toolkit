@@ -36,7 +36,16 @@
 
 
 Application::Application(int &argc, char **argv)
-  : QApplication(argc, argv), m_settings(NULL), m_systemFactory(NULL), m_trayIcon(NULL) {
+  : QApplication(argc, argv),
+    m_settings(NULL),
+    m_systemFactory(NULL),
+    m_trayIcon(NULL) {
+  connect(this, SIGNAL(aboutToQuit()),
+          this, SLOT(onAboutToQuit()));
+  connect(this, SIGNAL(commitDataRequest(QSessionManager&)),
+          this, SLOT(onCommitData(QSessionManager&)));
+  connect(this, SIGNAL(saveStateRequest(QSessionManager&)),
+          this, SLOT(onSaveState(QSessionManager&)));
 }
 
 Application::~Application() {
@@ -56,4 +65,22 @@ SystemTrayIcon *Application::trayIcon() {
   }
 
   return m_trayIcon;
+}
+
+void Application::onAboutToQuit() {
+  qDebug("Quitting the application.");
+}
+
+void Application::onCommitData(QSessionManager &manager) {
+  qDebug("OS asked application to commit its data.");
+
+  manager.setRestartHint(QSessionManager::RestartNever);
+  manager.release();
+}
+
+void Application::onSaveState(QSessionManager &manager) {
+  qDebug("OS asked application to save its state.");
+
+  manager.setRestartHint(QSessionManager::RestartNever);
+  manager.release();
 }

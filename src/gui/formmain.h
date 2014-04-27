@@ -46,7 +46,7 @@
 
 
 namespace Ui {
-  class FormMain;
+ class FormMain;
 }
 
 class FormMain : public QMainWindow {
@@ -62,10 +62,11 @@ class FormMain : public QMainWindow {
     }
 
   private:
+    void createConnections();
+    void setupIcons();
     void setupTrayMenu();
 
   private slots:
-    void setupIcons();
     void showAbout();
     void showUpdates();
 
@@ -75,8 +76,6 @@ class FormMain : public QMainWindow {
     void display();
 
     void startProject(int);
-    void aboutClicked();
-    void helpClicked();
     void generateClicked();
     void newClicked();
     void saveClicked();
@@ -91,20 +90,6 @@ class FormMain : public QMainWindow {
     Ui::FormMain *m_ui;
 
     QMenu *m_trayMenu;
-
-    // Menus
-    QMenu *fileMenu;
-    QMenu *projectMenu;
-
-    // Action
-    QAction *newAct;
-    QAction *saveAct;
-    QAction *openAct;
-    QAction *exitAct;
-    QAction *buildAct;
-
-    // Toolbar
-    QToolBar* toolBar;
 
     // Other widgets
     QStackedWidget* iStackedWidget;

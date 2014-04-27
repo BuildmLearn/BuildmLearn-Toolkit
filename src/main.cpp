@@ -41,16 +41,92 @@
 #include <QTranslator>
 #include <QDebug>
 
-/*!
- * \brief main Main entry point to the application
- *
- * Main function is the "main" entry point to toolkit.
- *
- * \param argc Number of arguments passed to the program.
- * \param argv Array of strings passed to the program.
- * \return Function returns EXIT_SUCCESS when it succeedes
- * or another integer value when it fails.
- */
+// TODO: Napad jak na rozhrani s templatama
+// kazdej template bude mit dve hlavni vstupni tridy
+//
+// mejme treba template Flashcard
+// da bude mit teda dve hlavni tridy FlashCardEntryPoint (dedi
+// z predka TemplateEntryPoint)
+// a FlashCardCore (dedi z predka TemplateCore)
+// predek TemplateEntryPoint bude mit rohzrani
+/*
+TemplateEntryPoint {
+
+public
+  TemplateCore *getPlainCore(Application *application);
+  TemplateCore *loadCoreFromFile(const QString &file_contents,
+                                 Application *application);
+
+  QString name(); //treba "template.flashcard"
+  QString humanName(); // treba "FlashCard";
+  QString author(); // John Doe
+  QString version(); // 1.0.1
+  QString copyright() // (c) Martin Rotter 2013
+  QPixmap thumbnailImage(); // obrazek pro prehled sablon
+}
+  */
+// tedy predek TemplateEntryPoint bude specifikovat
+// metadata templatu a navic bude nabizet metodu
+// TemplateCore *plainCore(Application *application); ktera
+// bude vytvaret skutecny objekt "jadra" sablony -
+// ten bude prave obsahovat ty dva widgety (jeden je samotna
+// sablona a druhy je widget pro simulator
+// - navic TemplateEntryPoint bude definovat metodu
+// pro nacteni sablony z projektoveho souboru a ta metoda
+// tedy bude taky vracet ukazatel na "jadro", tedy metoda to bude
+// loadCoreFromFile (viz vyse)
+//
+// metody plainCore a loadCoreFromFile berou taky ukazatel
+// na aplikaci, aby mely treba pristup do nastaveni atp
+//
+// trida template core by mohla vypadat takhle
+/*
+TemplateCore {
+public:
+  QWidget *editor();
+  QWidget *simulator()
+
+  void startSimulator();
+  void stopSimulator()
+
+  void saveToProject(const QString &file_name);
+  void generateApkFile(const QString &file_name);
+  }
+*/
+// a todle kazda templata reimplementuje
+// takze templata si musi zajistit nejspis navazani udalosti
+// mezi widgetem editoru a widgetem simulatoru.
+//
+// co se tyce rozliseni simulatoru, tak to muze bejt problem
+// ale mozna to udelat tak ze k simulatoru
+// dat combobox s polozkama small, medium, big, tedy
+// definovat tri rozliseni simulatoru mozna
+// sablona by mohla specifikovat ktera rozliseni (big, medium, small)
+// podporuje a podle toho by se odvijel zbytek
+// takze by treba TemplateCore mohla mit metodu
+//
+// QWidget *simulator(Resolution resolution), kde Resuolution
+// bude vycet Small, Medium, Large atd atd.
+
+
+
+/// \mainpage Welcome to documentation!!!
+/// The BuildmLearn Toolkit is an easy-to-use
+/// program that helps users make mobile apps
+/// without any knowledge of application development.
+/// The toolkit helps creating mobile application with
+/// various functionality and allows teachers to input
+/// their custom content. Targeted at teachers, this program
+/// helps them make learning fun and engaging through mobile apps.
+
+/// \brief main Main entry point to the application
+///
+/// Main function is the "main" entry point to toolkit.
+///
+/// \param argc Number of arguments passed to the program.
+/// \param argv Array of strings passed to the program.
+/// \return Function returns EXIT_SUCCESS when it succeedes
+/// or another integer value when it fails.
 int main(int argc, char *argv[]) {
   //: Name of language, e.g. English.
   QObject::tr("LANG_NAME");

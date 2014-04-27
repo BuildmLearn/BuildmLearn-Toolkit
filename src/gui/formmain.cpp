@@ -37,7 +37,6 @@
 #include "miscellaneous/iconfactory.h"
 
 #include <QStackedWidget>
-#include <QPointer>
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QInputDialog>
@@ -52,17 +51,10 @@ FormMain::FormMain(QWidget *parent) :
   setupIcons();
   setupTrayMenu();
 
-  connect(m_ui->m_actionCheckForUpdates, SIGNAL(triggered()),
-          this, SLOT(showUpdates()));
-  connect(m_ui->m_actionAboutToolkit, SIGNAL(triggered()),
-          this, SLOT(showAbout()));
+  createConnections();
 
-
-  //setWindowTitle("BuildmLearn Toolkit");
-  //showMaximized();
   iNewProjectWidget = new FormNewProject(this);
   iNewProjectWidget->setWindowModality(Qt::ApplicationModal);
-  iNewProjectWidget->show();
 
   iStackedWidget = new QStackedWidget(this);
   iBlankWidget = new QWidget(this);
@@ -83,42 +75,8 @@ FormMain::FormMain(QWidget *parent) :
 
   setCentralWidget(iStackedWidget);
 
-  // Menu
-  fileMenu = menuBar()->addMenu(tr("&File"));
-  projectMenu = menuBar()->addMenu(tr("&Project"));
-
-  newAct = new QAction(QIcon(":/images/new_project.png"),tr("&New Application"), this);
-  saveAct = new QAction(QIcon(":/images/save.png"),tr("&Save"), this);
-  openAct = new QAction(QIcon(":/images/open.png"),tr("&Open"), this);
-  exitAct = new QAction(tr("&Exit BuildmLearn Toolkit"), this);
-  buildAct = new QAction(QIcon(":/images/generate.png"),tr("&Generate Application"), this);
-
-  fileMenu->addAction(newAct);
-  fileMenu->addAction(saveAct);
-  fileMenu->addAction(openAct);
-  fileMenu->addAction(exitAct);
-
-  projectMenu->addAction(buildAct);
-
-  // Toolbar
-  toolBar = addToolBar(tr("toolbar"));
-  toolBar->setMovable(false);
-  toolBar->addAction(newAct);
-  toolBar->addSeparator();
-  toolBar->addAction(openAct);
-  toolBar->addSeparator();
-  toolBar->addAction(saveAct);
-  toolBar->addSeparator();
-  toolBar->addAction(buildAct);
-  toolBar->addSeparator();
-  toolBar->addSeparator();
-
-  connect(iNewProjectWidget, SIGNAL(startProject(int)), this, SLOT(startProject(int)));
-  connect(newAct, SIGNAL(triggered()), this ,SLOT(newClicked()));
-  connect(saveAct, SIGNAL(triggered()), this ,SLOT(saveClicked()));
-  connect(openAct, SIGNAL(triggered()), this ,SLOT(openClicked()));
-  connect(buildAct, SIGNAL(triggered()), this ,SLOT(generateClicked()));
-  connect(exitAct, SIGNAL(triggered()), this ,SLOT(close()));
+  connect(iNewProjectWidget, SIGNAL(startProject(int)),
+          this, SLOT(startProject(int)));
 }
 
 FormMain::~FormMain() {
@@ -127,9 +85,32 @@ FormMain::~FormMain() {
   qDebug("Destroying FormMain instance.");
 }
 
+void FormMain::createConnections() {
+  // General connections.
+  connect(m_ui->m_actionQuit, SIGNAL(triggered()),
+          qApp, SLOT(quit()));
+  connect(m_ui->m_actionCheckForUpdates, SIGNAL(triggered()),
+          this, SLOT(showUpdates()));
+  connect(m_ui->m_actionAboutToolkit, SIGNAL(triggered()),
+          this, SLOT(showAbout()));
+
+  // Project connections.
+  connect(m_ui->m_actionNewProject, SIGNAL(triggered()),
+          this ,SLOT(newClicked()));
+  connect(m_ui->m_actionSaveProject, SIGNAL(triggered()),
+          this ,SLOT(saveClicked()));
+  connect(m_ui->m_actionLoadProject, SIGNAL(triggered()),
+          this ,SLOT(openClicked()));
+  connect(m_ui->m_actionGenerateApkFile, SIGNAL(triggered()),
+          this ,SLOT(generateClicked()));
+}
+
 void FormMain::setupIcons() {
-  m_ui->m_actionAboutToolkit->setIcon(IconFactory::instance()->fromTheme("application-about"));
-  m_ui->m_actionCheckForUpdates->setIcon(IconFactory::instance()->fromTheme("check-for-updates"));
+  IconFactory *factory = IconFactory::instance();
+
+  m_ui->m_actionQuit->setIcon(factory->fromTheme("application-exit"));
+  m_ui->m_actionAboutToolkit->setIcon(factory->fromTheme("application-about"));
+  m_ui->m_actionCheckForUpdates->setIcon(factory->fromTheme("check-for-updates"));
 }
 
 void FormMain::setupTrayMenu() {
@@ -142,6 +123,8 @@ void FormMain::setupTrayMenu() {
 
     // Add needed items to the menu.
     m_trayMenu->addAction(m_ui->m_actionCheckForUpdates);
+    m_trayMenu->addSeparator();
+    m_trayMenu->addAction(m_ui->m_actionQuit);
 
     qDebug("Creating tray icon menu.");
   }
@@ -279,17 +262,6 @@ void FormMain::newClicked()
   {
     iNewProjectWidget->show();
   }
-}
-
-void FormMain::aboutClicked()
-{
-
-  QMessageBox::information(this,"About" , "BuildmLearn Toolkit\nVersion 2.0.0\n\nBuildmLearn Toolkit is an easy-to-use program that helps the users make mobile apps without any knowledge of application development. The toolkit helps creating mobile application with various functionality and allows teachers to input their custom content. Targeted at teachers, this toolkit helps them make learning fun and engaging through mobile apps.\n\nFor more information visit: http://buildmlearn.org \n\nContact the developers at BuildmLearn Google Group (https://groups.google.com/forum/#!forum/buildmlearn) for any other information or suggestions. Alternatively, you can email the core developers at croozeus@gmail.com. ");
-}
-
-void FormMain::helpClicked()
-{
-  QDesktopServices::openUrl(QString(HELP_URL));
 }
 
 void FormMain::generateClicked()

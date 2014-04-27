@@ -23,14 +23,33 @@
      <height>21</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menu_Help">
+   <widget class="QMenu" name="m_menuHelp">
     <property name="title">
      <string>&amp;Help</string>
     </property>
     <addaction name="m_actionCheckForUpdates"/>
     <addaction name="m_actionAboutToolkit"/>
    </widget>
-   <addaction name="menu_Help"/>
+   <widget class="QMenu" name="n_menuApplication">
+    <property name="title">
+     <string>&amp;Application</string>
+    </property>
+    <addaction name="m_actionQuit"/>
+   </widget>
+   <widget class="QMenu" name="m_menuProject">
+    <property name="title">
+     <string>&amp;Project</string>
+    </property>
+    <addaction name="m_actionNewProject"/>
+    <addaction name="m_actionSaveProject"/>
+    <addaction name="m_actionSaveProjectAs"/>
+    <addaction name="m_actionLoadProject"/>
+    <addaction name="separator"/>
+    <addaction name="m_actionGenerateApkFile"/>
+   </widget>
+   <addaction name="n_menuApplication"/>
+   <addaction name="m_menuProject"/>
+   <addaction name="m_menuHelp"/>
   </widget>
   <widget class="QToolBar" name="m_toolBar">
    <attribute name="toolBarArea">
@@ -49,6 +68,36 @@
   <action name="m_actionAboutToolkit">
    <property name="text">
     <string>&amp;About BuildmLearn Toolkit</string>
+   </property>
+  </action>
+  <action name="m_actionQuit">
+   <property name="text">
+    <string>&amp;Quit</string>
+   </property>
+  </action>
+  <action name="m_actionGenerateApkFile">
+   <property name="text">
+    <string>&amp;Generate .apk file</string>
+   </property>
+  </action>
+  <action name="m_actionNewProject">
+   <property name="text">
+    <string>&amp;New project</string>
+   </property>
+  </action>
+  <action name="m_actionSaveProject">
+   <property name="text">
+    <string>&amp;Save project</string>
+   </property>
+  </action>
+  <action name="m_actionSaveProjectAs">
+   <property name="text">
+    <string>Save project &amp;as...</string>
+   </property>
+  </action>
+  <action name="m_actionLoadProject">
+   <property name="text">
+    <string>&amp;Load project...</string>
    </property>
   </action>
  </widget>

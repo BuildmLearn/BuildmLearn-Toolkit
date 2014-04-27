@@ -37,6 +37,7 @@
 #include "miscellaneous/systemfactory.h"
 
 #include <QNetworkReply>
+#include <QSessionManager>
 
 #if defined(qApp)
 #undef qApp
@@ -49,18 +50,26 @@
 class FormMain;
 class SystemTrayIcon;
 
-// TODO: presunout nektery veci sem, settings atp
+/// \brief Key application class containing all critical
+/// elements of the application.
+/// \see Settings, FormMain, UpdateInfo, SystemTrayIcon
 class Application : public QApplication {
     Q_OBJECT
 
   public:
-    // Constructors and destructors.
+    /// \brief Constructor.
+    /// \param argc Count of arguments passed to the executable file.
+    /// \param argv Array of strings of arguments.
     explicit Application(int &argc, char **argv);
     virtual ~Application();
 
-    // Tries to download list with new updates.
+    /// \brief Tries to download list with new updates.
+    /// \return Returns pair of information: metadata of update and
+    /// network status of update.
     QPair<UpdateInfo, QNetworkReply::NetworkError> checkForUpdates();
 
+    /// \brief Access to application-wide settings.
+    /// \return
     inline Settings *settings() {
       if (m_settings == NULL) {
         m_settings = Settings::setupSettings(this);
@@ -69,20 +78,34 @@ class Application : public QApplication {
       return m_settings;
     }
 
+    /// \brief Access to main application form.
+    /// \return Returns pointer to main application form.
     inline FormMain *mainForm() {
       return m_mainForm;
     }
 
+    /// \brief Setter for main application form.
+    /// \param main_form Pointer to main application form.
     void setMainForm(FormMain *main_form) {
       m_mainForm = main_form;
     }
 
+    /// \brief Access to application tray icon.
+    /// \return Returns pointer to application tray icon.
+    /// \warning Always use this in cooperation with
+    /// SystemTrayIcon::isSystemTrayActivated().
     SystemTrayIcon *trayIcon();
 
-    // Returns pointer to "GOD" application singleton.
+    /// \brief Main static getter of global Application instance.
+    /// \return Returns singleton for Application.
     inline static Application *instance() {
       return static_cast<Application*>(QCoreApplication::instance());
     }
+
+  private slots:
+    void onAboutToQuit();
+    void onCommitData(QSessionManager &manager);
+    void onSaveState(QSessionManager &manager);
 
   private:
     Settings *m_settings;
