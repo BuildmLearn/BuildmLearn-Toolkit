@@ -93,6 +93,7 @@ FormSettings::FormSettings(QWidget *parent)
           this, SLOT(selectBrowserExecutable()));
 
   // Load all settings.
+  loadGeneral();
   loadInterface();
   loadProxy();
   loadBrowser();
@@ -205,6 +206,7 @@ void FormSettings::saveSettings() {
   }
 
   // Save all settings.
+  saveGeneral();
   saveInterface();
   saveProxy();
   saveBrowser();
@@ -214,6 +216,18 @@ void FormSettings::saveSettings() {
   promptForRestart();
 
   accept();
+}
+
+void FormSettings::loadGeneral() {
+  m_ui->m_checkCheckForUpdatesOnStartup->setChecked(qApp->settings()->value(APP_CFG_GEN,
+                                                                            "check_for_updates_startup",
+                                                                            true).toBool());
+}
+
+void FormSettings::saveGeneral() {
+  qApp->settings()->setValue(APP_CFG_GEN,
+                             "check_for_updates_startup",
+                             m_ui->m_checkCheckForUpdatesOnStartup->isChecked());
 }
 
 void FormSettings::onProxyTypeChanged(int index) {

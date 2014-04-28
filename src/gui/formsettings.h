@@ -67,6 +67,9 @@ class FormSettings : public QDialog {
     // Saves settings into global configuration.
     void saveSettings();
 
+    void loadGeneral();
+    void saveGeneral();
+
     void loadInterface();
     void saveInterface();
 

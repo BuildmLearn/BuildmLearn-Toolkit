@@ -41,6 +41,7 @@
 #include <QThread>
 #include <QTranslator>
 #include <QDebug>
+#include <QTimer>
 
 // TODO: Napad jak na rozhrani s templatama
 // kazdej template bude mit dve hlavni vstupni tridy
@@ -185,6 +186,10 @@ int main(int argc, char *argv[]) {
                      &main_form, SLOT(switchVisibility()));
     application.trayIcon()->setContextMenu(main_form.trayMenu());
     application.trayIcon()->show();
+
+    QTimer::singleShot(STARTUP_UPDATE_DELAY,
+                       &application,
+                       SLOT(checkForUpdatesOnBackground()));
   }
 
   return Application::exec();

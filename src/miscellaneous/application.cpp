@@ -32,6 +32,7 @@
 
 #include "definitions/definitions.h"
 #include "miscellaneous/systemfactory.h"
+#include "network-web/networkfactory.h"
 #include "gui/systemtrayicon.h"
 #include "gui/formmain.h"
 
@@ -63,9 +64,44 @@ QPair<UpdateInfo, QNetworkReply::NetworkError> Application::checkForUpdates() {
 SystemTrayIcon *Application::trayIcon() {
   if (m_trayIcon == NULL) {
     m_trayIcon = new SystemTrayIcon(APP_ICON_PATH, m_mainForm);
+    m_trayIcon->setToolTip(APP_LONG_NAME);
   }
 
   return m_trayIcon;
+}
+
+void Application::checkForUpdatesOnBackground() {
+  if (!settings()->value(APP_CFG_GEN,
+                         "check_for_updates_startup",
+                         true).toBool()) {
+    qDebug("Checking for updates after application startup is not allowed.");
+  }
+  else {
+    qDebug("Checking for updates after application has started.");
+
+    QPair<UpdateInfo, QNetworkReply::NetworkError> updates = checkForUpdates();
+
+    switch (updates.second) {
+      case QNetworkReply::NoError:
+        if (updates.first.m_availableVersion > APP_VERSION) {
+          trayIcon()->showMessage(tr("Update available"),
+                                  tr("New application update is available."),
+                                  QSystemTrayIcon::Information);
+        }
+        else {
+          trayIcon()->showMessage(tr("No updates available"),
+                                  tr("No new updates are available."),
+                                  QSystemTrayIcon::Information);
+        }
+        break;
+
+      default:
+        trayIcon()->showMessage(tr("Update check error"),
+                                tr("Could not check for updates: %1.").arg(NetworkFactory::networkErrorText(updates.second)),
+                                QSystemTrayIcon::Warning);
+        break;
+    }
+  }
 }
 
 void Application::onAboutToQuit() {

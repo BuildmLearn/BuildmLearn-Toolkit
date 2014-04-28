@@ -102,6 +102,9 @@ class Application : public QApplication {
       return static_cast<Application*>(QCoreApplication::instance());
     }
 
+  public slots:
+    void checkForUpdatesOnBackground();
+
   private slots:
     void onAboutToQuit();
     void onCommitData(QSessionManager &manager);
