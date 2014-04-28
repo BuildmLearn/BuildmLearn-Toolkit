@@ -337,8 +337,6 @@ void FormSettings::saveLanguage() {
 }
 
 void FormSettings::loadInterface() {
-  Settings *settings = qApp->settings();
-
   // Load settings of icon theme.
   QString current_theme = IconFactory::instance()->currentIconTheme();
 
