@@ -373,4 +373,5 @@ void FormMain::closeEvent(QCloseEvent *event) {
   }
 
   event->accept();
+  qApp->quit();
 }

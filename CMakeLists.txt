@@ -355,17 +355,14 @@ set(APP_HEADERS
 
   src/miscellaneous/application.h
   src/miscellaneous/settings.h
-  src/miscellaneous/debugging.h
   src/miscellaneous/iconfactory.h
   src/miscellaneous/systemfactory.h
-  src/miscellaneous/textfactory.h
   src/miscellaneous/localization.h
 
   src/network-web/webfactory.h
   src/network-web/basenetworkaccessmanager.h
   src/network-web/silentnetworkaccessmanager.h
   src/network-web/downloader.h
-  src/network-web/networkfactory.h
 
   src/FlashcardTemplate.h
   src/InfoTemplate.h

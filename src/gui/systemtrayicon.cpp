@@ -70,8 +70,7 @@ SystemTrayIcon::SystemTrayIcon(const QString &icon, QObject *parent)
 }
 
 SystemTrayIcon::~SystemTrayIcon() {
-  qDebug("Destroying SystemTrayIcon instance.");
-  hide();
+  //qDebug("Destroying SystemTrayIcon instance.");
 }
 
 bool SystemTrayIcon::isSystemTrayAvailable() {
@@ -98,6 +97,8 @@ void SystemTrayIcon::show() {
   qDebug("Showing tray icon with 1000 ms delay.");
   QTimer::singleShot(TRAY_ICON_DELAY, this, SLOT(showPrivate()));
 #endif
+
+  qApp->setQuitOnLastWindowClosed(false);
 }
 
 void SystemTrayIcon::onActivated(QSystemTrayIcon::ActivationReason reason) {

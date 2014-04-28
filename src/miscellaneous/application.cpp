@@ -33,6 +33,7 @@
 #include "definitions/definitions.h"
 #include "miscellaneous/systemfactory.h"
 #include "gui/systemtrayicon.h"
+#include "gui/formmain.h"
 
 
 Application::Application(int &argc, char **argv)
@@ -61,7 +62,7 @@ QPair<UpdateInfo, QNetworkReply::NetworkError> Application::checkForUpdates() {
 
 SystemTrayIcon *Application::trayIcon() {
   if (m_trayIcon == NULL) {
-    m_trayIcon = new SystemTrayIcon(APP_ICON_PATH, this);
+    m_trayIcon = new SystemTrayIcon(APP_ICON_PATH, m_mainForm);
   }
 
   return m_trayIcon;
