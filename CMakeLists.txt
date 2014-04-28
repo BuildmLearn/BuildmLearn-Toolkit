@@ -57,6 +57,10 @@
 #     If "ON", then all available localizations are installed.
 #     If "OFF", then only basic set of localizations is installed.
 #
+#   "-DUSE_NSIS"
+#     If "ON", then NSIS generator is used instead of ZIP generator.
+#     If "OFF", then default ZIP generator is used.
+#
 #
 # Other information:
 #   - supports Windows, Linux, OS/2 (eComStation),
@@ -93,6 +97,7 @@ endif(APPLE)
 option(USE_QT_5 "Use Qt 5 for building" OFF)
 option(BUNDLE_ICON_THEMES "Equip installation with custom icon themes" ON)
 option(INSTALL_ALL_LANGUAGES "Install all available localizations" ON)
+option(USE_NSIS "Use NSIS generator to produce installer" OFF)
 
 if(POLICY CMP0012)
   cmake_policy(SET CMP0012 NEW)
@@ -115,7 +120,9 @@ endif(BUNDLE_ICON_THEMES)
 
 # Setup misc options.
 set(CMAKE_COLOR_MAKEFILE ON)
-set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/resources/cmake ${CMAKE_MODULE_PATH})
+set(CMAKE_MODULE_PATH
+  ${PROJECT_SOURCE_DIR}/resources/nsis
+  ${CMAKE_MODULE_PATH})
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 # Eliminate a warning when building in Windows that relates
@@ -547,7 +554,12 @@ elseif(UNIX)
 endif(WIN32 OR OS2)
 
 # Custom target for packaging.
-set(CPACK_GENERATOR "ZIP")
+if(USE_NSIS)
+  set(CPACK_GENERATOR "NSIS")
+else(USE_NSIS)
+  set(CPACK_GENERATOR "ZIP")
+endif(USE_NSIS)
+
 set(CPACK_PACKAGE_NAME ${APP_LOW_NAME})
 set(CPACK_PACKAGE_VERSION ${APP_VERSION})
 set(CPACK_IGNORE_FILES "\\\\.psd$;/CVS/;/\\\\.svn/;/\\\\.git/;\\\\.swp$;/CMakeLists.txt.user;\\\\.#;/#;\\\\.tar.gz$;/CMakeFiles/;CMakeCache.txt;\\\\.qm$;/build/;\\\\.diff$;.DS_Store'")
