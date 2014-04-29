@@ -77,7 +77,7 @@
 #define APP_CFG_BROWSER     "browser"
 
 #if defined(Q_OS_OSX)
-#define APP_PREFIX          "@CMAKE_INSTALL_PREFIX@/@APP_LOW_NAME@.app/Contents/Resources"
+#define APP_PREFIX          "@CMAKE_INSTALL_PREFIX@/@EXE_NAME@.app/Contents/Resources"
 #else
 #define APP_PREFIX          "@CMAKE_INSTALL_PREFIX@"
 #endif
@@ -103,10 +103,8 @@
 #endif
 
 // System-dependent constants.
-#if defined(Q_OS_LINUX) || defined(Q_OS_OSX)
+#if defined(Q_OS_LINUX)
 #define APP_7ZA_EXECUTABLE "7za"
-#define APP_DESKTOP_ENTRY_PATH "@DESKTOP_ENTRY_PATH@"
-#define APP_DESKTOP_ENTRY_FILE "@APP_LOW_NAME@.desktop"
 #define APP_LANG_PATH APP_PREFIX + QString("/share/@APP_LOW_NAME@/l10n")
 #define APP_SKIN_PATH APP_PREFIX + QString("/share/@APP_LOW_NAME@/skins")
 #define APP_INFO_PATH APP_PREFIX + QString("/share/@APP_LOW_NAME@/information")
@@ -114,6 +112,15 @@
 #define APP_MISC_PATH APP_PREFIX + QString("/share/@APP_LOW_NAME@/misc")
 #define APP_TEMPLATES_PATH APP_PREFIX + QString("/share/@APP_LOW_NAME@/templates")
 #define APP_ICON_PATH APP_PREFIX + QString("/share/pixmaps/@APP_LOW_NAME@.png")
+#elif defined(Q_OS_OSX)
+#define APP_7ZA_EXECUTABLE "7za"
+#define APP_LANG_PATH APP_PREFIX + QString("/l10n")
+#define APP_SKIN_PATH APP_PREFIX + QString("/skins")
+#define APP_INFO_PATH APP_PREFIX + QString("/information")
+#define APP_THEME_PATH APP_PREFIX + QString("/icons")
+#define APP_MISC_PATH APP_PREFIX + QString("/misc")
+#define APP_TEMPLATES_PATH APP_PREFIX + QString("/templates")
+#define APP_ICON_PATH APP_PREFIX + QString("/@APP_LOW_NAME@.png")
 #elif defined(Q_OS_WIN) || defined(Q_OS_OS2)
 #define APP_7ZA_EXECUTABLE "7za.exe"
 #define APP_LANG_PATH QApplication::applicationDirPath() + QString("/l10n")

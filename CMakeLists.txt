@@ -51,6 +51,9 @@
 # Generating source tarballs:
 #   make dist
 #
+# Creating "bundle" on Mac OS X:
+#   make bundle
+#
 # Generating binary tarballs (or NSIS packages):
 #   make package (For more see -DUSE_NSIS argument description.)#
 #
@@ -415,11 +418,24 @@ if(INSTALL_ALL_LANGUAGES)
   # Add remaining languages to the basic set.
 endif(INSTALL_ALL_LANGUAGES)
 
-
 set(APP_TEXT
   resources/text/CHANGELOG
   resources/text/LICENSE
 )
+
+# Define additional resources.
+set(APP_SIGNAPK
+  resources/binaries/independent/signapk/certificate.pem
+  resources/binaries/independent/signapk/key.pk8
+  resources/binaries/independent/signapk/signapk.jar
+)
+
+if(WIN32)
+  set(APP_7ZA
+    resources/binaries/windows/7za/7za.exe
+    resources/binaries/windows/7za/7za_license.txt
+  )
+endif(WIN32)
 
 # Add custom icon on Mac OS X.
 if(APPLE)
@@ -506,6 +522,13 @@ if(WIN32 OR OS2)
             DESTINATION ./icons)
   endif(BUNDLE_ICON_THEMES)
 
+  if(WIN32)
+    install(FILES ${APP_7ZA}
+            DESTINATION ./7za)
+  endif(WIN32)
+
+  install(FILES ${APP_SIGNAPK}
+          DESTINATION ./signapk)
   install(FILES resources/graphics/${APP_LOW_NAME}_128.png
           DESTINATION ./
           RENAME ${APP_LOW_NAME}.png)
@@ -518,6 +541,13 @@ if(WIN32 OR OS2)
 elseif(APPLE)
   message(STATUS "[${APP_LOW_NAME}] You will probably install on Mac OS X.")
 
+  set_target_properties(${EXE_NAME}
+                        PROPERTIES
+                        MACOSX_BUNDLE_INFO_PLIST "${CMAKE_SOURCE_DIR}/resources/macosx/Info.plist.in")
+
+  set_source_files_properties(${CMAKE_SOURCE_DIR}/resources/macosx/${APP_LOW_NAME}.icns
+                              PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
+
   SET(MACOSX_BUNDLE_ICON_FILE ${APP_LOW_NAME}.icns)
   SET(MACOSX_BUNDLE_INFO_STRING "${EXE_NAME} ${APP_VERSION}")
   SET(MACOSX_BUNDLE_GUI_IDENTIFIER "${APP_URL_BACKWARDS}")
@@ -526,27 +556,35 @@ elseif(APPLE)
   SET(MACOSX_BUNDLE_SHORT_VERSION_STRING "${APP_VERSION}")
   SET(MACOSX_BUNDLE_BUNDLE_VERSION "${APP_VERSION}")
   SET(MACOSX_BUNDLE_COPYRIGHT "(c) ${APP_AUTHOR}")
-  SET_SOURCE_FILES_PROPERTIES(${CMAKE_SOURCE_DIR}/resources/graphics/${APP_LOW_NAME}.icns
-                              PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
 
   install(TARGETS ${EXE_NAME}
           BUNDLE DESTINATION ${CMAKE_INSTALL_PREFIX})
 
   # Setup custom "bundle" prefix.
-  set(APPLE_PREFIX ${CMAKE_INSTALL_PREFIX}/${APP_LOW_NAME}.app/Contents/Resources/)
+  set(APPLE_PREFIX ${CMAKE_INSTALL_PREFIX}/${EXE_NAME}.app/Contents/Resources)
 
   if(BUNDLE_ICON_THEMES)
     install(DIRECTORY resources/graphics/icons/mini-kfaenza
-            DESTINATION ${APPLE_PREFIX}/share/${APP_LOW_NAME}/icons)
+            DESTINATION ${APPLE_PREFIX}/icons)
   endif(BUNDLE_ICON_THEMES)
 
+  install(FILES ${APP_SIGNAPK}
+          DESTINATION ${APPLE_PREFIX}/binaries/signapk)
   install(FILES resources/graphics/${APP_LOW_NAME}_128.png
-          DESTINATION ${APPLE_PREFIX}/share/pixmaps
+          DESTINATION ${APPLE_PREFIX}
           RENAME ${APP_LOW_NAME}.png)
   install(FILES ${APP_QM}
-          DESTINATION ${APPLE_PREFIX}/share/${APP_LOW_NAME}/l10n)
+          DESTINATION ${APPLE_PREFIX}/l10n)
   install(FILES ${APP_TEXT}
-          DESTINATION ${APPLE_PREFIX}/share/${APP_LOW_NAME}/information)
+          DESTINATION ${APPLE_PREFIX}/information)
+
+  # Create a "transportable" bundle - all libs into the bundle.
+  configure_file(
+    ${CMAKE_SOURCE_DIR}/resources/macosx/bundle.cmake.in
+    ${CMAKE_CURRENT_BINARY_DIR}/bundle.cmake @ONLY
+  )
+  add_custom_target(bundle
+    ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/bundle.cmake)
 elseif(UNIX)
   message(STATUS "[${APP_LOW_NAME}] You will probably install on Linux.")
   install(TARGETS ${EXE_NAME}
