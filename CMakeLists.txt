@@ -32,12 +32,27 @@
 #
 # BuildmLearn Toolkit compilation script for CMake.
 #
-# Usage:
-#   a) DEBUG build for testing.
-#     cmake -DCMAKE_BUILD_TYPE=debug -DCMAKE_INSTALL_PREFIX=/usr -DUSE_QT_5=ON
+# Build process (navigate to root source folder first):
+#   a) Windows RELEASE build.
+#     mkdir build && cd build
+#     cmake ../ -DCMAKE_BUILD_TYPE=release -DCMAKE_INSTALL_PREFIX=/usr -DUSE_QT_5=ON
+#     nmake (or mingw32-make if you use MinGW compiler)
+#     nmake install (or mingw32-make if you use MinGW compiler)
 #
-#   b) RELEASE build for production use.
-#     cmake -DCMAKE_BUILD_TYPE=release -DCMAKE_INSTALL_PREFIX=/usr -DUSE_QT_5=ON
+#   b) Linux RELEASE build.
+#     mkdir build && cd build
+#     cmake ../ -DCMAKE_BUILD_TYPE=release -DCMAKE_INSTALL_PREFIX=/usr -DUSE_QT_5=ON
+#     make
+#     make install
+#
+# Refreshing translations:
+#   make lupdate
+#
+# Generating source tarballs:
+#   make dist
+#
+# Generating binary tarballs (or NSIS packages):
+#   make package (For more see -DUSE_NSIS argument description.)#
 #
 # Arguments:
 #   "-DCMAKE_INSTALL_PREFIX=/usr"

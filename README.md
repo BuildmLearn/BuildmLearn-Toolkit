@@ -14,6 +14,10 @@ You can use source code tarball available direct from here to build the software
 * TBA  ~Windows (XP or newer),
 * TBA  ~OS/2 (eComStation).
 
+How to build
+------------
+Information regarding build process can be found in CMakeLists.txt file.
+
 Links
 -----
 * [www.buildmlearn.org](http://buildmlearn.org/)  ~homepage,
@@ -24,7 +28,6 @@ Links
 
 License for use and distribution
 ---------------------------------
-
 All the code in this repository (unless specified otherwise) is governed by the BSD (3-Clause) License quoted below.
 
 Copyright (c) 2012, BuildmLearn Contributors listed at http://buildmlearn.org/people/
