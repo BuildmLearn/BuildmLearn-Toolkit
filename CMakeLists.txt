@@ -55,7 +55,8 @@
 #   make bundle
 #
 # Generating binary tarballs (or NSIS packages):
-#   make package (For more see -DUSE_NSIS argument description.)#
+#   make package (For more see -DUSE_NSIS argument description.)
+#   cpack -G PACKAGE_TYPE (for example cpack -G NSIS or cpack -G ZIP)
 #
 # Arguments:
 #   "-DCMAKE_INSTALL_PREFIX=/usr"
@@ -548,14 +549,14 @@ elseif(APPLE)
   set_source_files_properties(${CMAKE_SOURCE_DIR}/resources/macosx/${APP_LOW_NAME}.icns
                               PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
 
-  SET(MACOSX_BUNDLE_ICON_FILE ${APP_LOW_NAME}.icns)
-  SET(MACOSX_BUNDLE_INFO_STRING "${EXE_NAME} ${APP_VERSION}")
-  SET(MACOSX_BUNDLE_GUI_IDENTIFIER "${APP_URL_BACKWARDS}")
-  SET(MACOSX_BUNDLE_LONG_VERSION_STRING "${APP_VERSION}")
-  SET(MACOSX_BUNDLE_BUNDLE_NAME "${EXE_NAME}")
-  SET(MACOSX_BUNDLE_SHORT_VERSION_STRING "${APP_VERSION}")
-  SET(MACOSX_BUNDLE_BUNDLE_VERSION "${APP_VERSION}")
-  SET(MACOSX_BUNDLE_COPYRIGHT "(c) ${APP_AUTHOR}")
+  set(MACOSX_BUNDLE_ICON_FILE ${APP_LOW_NAME}.icns)
+  set(MACOSX_BUNDLE_INFO_STRING "${EXE_NAME} ${APP_VERSION}")
+  set(MACOSX_BUNDLE_GUI_IDENTIFIER "${APP_URL_BACKWARDS}")
+  set(MACOSX_BUNDLE_LONG_VERSION_STRING "${APP_VERSION}")
+  set(MACOSX_BUNDLE_BUNDLE_NAME "${EXE_NAME}")
+  set(MACOSX_BUNDLE_SHORT_VERSION_STRING "${APP_VERSION}")
+  set(MACOSX_BUNDLE_BUNDLE_VERSION "${APP_VERSION}")
+  set(MACOSX_BUNDLE_COPYRIGHT "(c) ${APP_AUTHOR}")
 
   install(TARGETS ${EXE_NAME}
           BUNDLE DESTINATION ${CMAKE_INSTALL_PREFIX})
@@ -615,6 +616,7 @@ endif(USE_NSIS)
 
 set(CPACK_PACKAGE_NAME ${APP_LOW_NAME})
 set(CPACK_PACKAGE_VERSION ${APP_VERSION})
+set(CPACK_PACKAGE_VERSION_PATCH "0")
 set(CPACK_IGNORE_FILES "\\\\.psd$;/CVS/;/\\\\.svn/;/\\\\.git/;\\\\.swp$;/CMakeLists.txt.user;\\\\.#;/#;\\\\.tar.gz$;/CMakeFiles/;CMakeCache.txt;\\\\.qm$;/build/;\\\\.diff$;.DS_Store'")
 set(CPACK_SOURCE_GENERATOR "TGZ")
 set(CPACK_SOURCE_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}")
