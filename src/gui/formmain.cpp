@@ -86,6 +86,21 @@ FormMain::~FormMain() {
   qDebug("Destroying FormMain instance.");
 }
 
+QHash<QString, QAction *> FormMain::allActions() {
+  QHash<QString, QAction*> actions;
+
+  actions.insert(m_ui->m_actionCheckForUpdates->objectName(), m_ui->m_actionCheckForUpdates);
+  actions.insert(m_ui->m_actionGenerateApkFile->objectName(), m_ui->m_actionGenerateApkFile);
+  actions.insert(m_ui->m_actionLoadProject->objectName(), m_ui->m_actionLoadProject);
+  actions.insert(m_ui->m_actionNewProject->objectName(), m_ui->m_actionNewProject);
+  actions.insert(m_ui->m_actionSaveProject->objectName(), m_ui->m_actionSaveProject);
+  actions.insert(m_ui->m_actionSaveProjectAs->objectName(), m_ui->m_actionSaveProjectAs);
+  actions.insert(m_ui->m_actionQuit->objectName(), m_ui->m_actionQuit);
+  actions.insert(m_ui->m_actionSettings->objectName(), m_ui->m_actionSettings);
+
+  return actions;
+}
+
 void FormMain::createConnections() {
   // General connections.
   connect(m_ui->m_actionQuit, SIGNAL(triggered()),

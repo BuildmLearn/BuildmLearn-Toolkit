@@ -28,87 +28,44 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#ifndef FORMMAIN_H
-#define FORMMAIN_H
+#ifndef DYNAMICSHORTCUTSWIDGET_H
+#define DYNAMICSHORTCUTSWIDGET_H
 
-#include "ui_formmain.h"
-
-#include "gui/formnewproject.h"
-
-#include "InfoTemplate.h"
-#include "QuizTemplate.h"
-#include "FlashcardTemplate.h"
-
-#include <QMainWindow>
-#include <QHash>
-#include <QtGui>
-
-#define HELP_URL "http://buildmlearn.wordpress.com/download/"
+#include <QWidget>
 
 
-namespace Ui {
- class FormMain;
-}
+class QGridLayout;
+class ShortcutCatcher;
 
-class FormMain : public QMainWindow {
+typedef QPair<QAction*, ShortcutCatcher*> ActionBinding;
+
+class DynamicShortcutsWidget : public QWidget {
     Q_OBJECT
     
   public:
     // Constructors and destructors.
-    explicit FormMain(QWidget *parent = 0);
-    virtual ~FormMain();
+    explicit DynamicShortcutsWidget(QWidget *parent = 0);
+    virtual ~DynamicShortcutsWidget();
 
-    inline QMenu *trayMenu() const {
-      return m_trayMenu;
-    }
+    // Updates shortcuts of all actions according to changes.
+    // NOTE: No access to settings is done here.
+    // Shortcuts are fetched from settings when applications starts
+    // and stored back to settings when application quits.
+    void updateShortcuts();
 
-    QHash<QString, QAction*> allActions();
+    // Returns true if all shortcuts are unique,
+    // otherwise false.
+    bool areShortcutsUnique();
 
-  private:
-    void createConnections();
-    void setupIcons();
-    void setupTrayMenu();
-
-  private slots:
-    void showSettings();
-    void showAbout();
-    void showUpdates();
-
-  public slots:
-    // Switches visibility of main window.
-    void switchVisibility(bool force_hide = false);
-    void display();
-
-    void startProject(int);
-    void generateClicked();
-    void newClicked();
-    void saveClicked();
-    void openClicked();
-    void loadOpenFile();
-    void resetWidgets();
-
-  protected:
-    void closeEvent(QCloseEvent *event);
+    // Populates this widget with shortcut widgets for given actions.
+    // NOTE: This gets initial shortcut for each action from its properties, NOT from
+    // the application settings, so shortcuts from settings need to be
+    // assigned to actions before calling this method.
+    void populate(const QList<QAction*> actions);
 
   private:
-    Ui::FormMain *m_ui;
-
-    QMenu *m_trayMenu;
-
-    // Other widgets
-    QStackedWidget* iStackedWidget;
-
-    // Create NewProject Widget
-    FormNewProject *iNewProjectWidget;
-
-    //  Blank widget
-    QWidget* iBlankWidget;
-    // Create InfoTemplate Widget
-    InfoTemplate* iInfoTemplateWidget;
-    // Create QuizTemplate Widget
-    QuizTemplate* iQuizTemplateWidget;
-    // Create Flashcards Widget
-    FlashcardTemplate* iFlashCardsWidget;
+    QGridLayout *m_layout;
+    QList<ActionBinding> m_actionBindings;
 };
 
-#endif // FORMMAIN_H
+#endif // DYNAMICSHORTCUTSOVERVIEW_H

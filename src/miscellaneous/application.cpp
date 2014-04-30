@@ -39,6 +39,7 @@
 
 Application::Application(int &argc, char **argv)
   : QApplication(argc, argv),
+    m_availableActions(QHash<QString, QAction*>()),
     m_settings(NULL),
     m_systemFactory(NULL),
     m_trayIcon(NULL) {
@@ -59,6 +60,19 @@ QPair<UpdateInfo, QNetworkReply::NetworkError> Application::checkForUpdates() {
   }
 
   return m_systemFactory->checkForUpdates();
+}
+
+QHash<QString, QAction *> Application::availableActions() {
+  if (m_mainForm == NULL) {
+    return QHash<QString, QAction*>();
+  }
+  else {
+    if (m_availableActions.isEmpty()) {
+      m_availableActions = m_mainForm->allActions();
+    }
+
+    return m_availableActions;
+  }
 }
 
 SystemTrayIcon *Application::trayIcon() {

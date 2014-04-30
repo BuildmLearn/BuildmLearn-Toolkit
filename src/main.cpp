@@ -36,6 +36,7 @@
 #include "miscellaneous/settings.h"
 #include "miscellaneous/iconfactory.h"
 #include "miscellaneous/localization.h"
+#include "dynamic-shortcuts/dynamicshortcuts.h"
 
 
 #include <QThread>
@@ -192,6 +193,9 @@ int main(int argc, char *argv[]) {
   FormMain main_form;
 
   application.setMainForm(&main_form);
+
+  // Load keyboard shortcuts.
+  DynamicShortcuts::load(application.availableActions().values());
 
   // Set correct information for main window and show it.
   main_form.setWindowTitle(APP_LONG_NAME);

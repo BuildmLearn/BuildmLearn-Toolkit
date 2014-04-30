@@ -41,6 +41,8 @@
 #include "gui/formmain.h"
 #include "gui/custommessagebox.h"
 #include "miscellaneous/application.h"
+#include "dynamic-shortcuts/dynamicshortcutswidget.h"
+#include "dynamic-shortcuts/dynamicshortcuts.h"
 
 #include <QProcess>
 #include <QNetworkProxy>
@@ -95,6 +97,7 @@ FormSettings::FormSettings(QWidget *parent)
   // Load all settings.
   loadGeneral();
   loadInterface();
+  loadShortcuts();
   loadProxy();
   loadBrowser();
   loadLanguage();
@@ -208,6 +211,7 @@ void FormSettings::saveSettings() {
   // Save all settings.
   saveGeneral();
   saveInterface();
+  saveShortcuts();
   saveProxy();
   saveBrowser();
   saveLanguage();
@@ -394,4 +398,16 @@ void FormSettings::saveInterface() {
   if (selected_icon_theme != original_icon_theme) {
     m_changedDataTexts.append(tr("icon theme changed"));
   }
+}
+
+void FormSettings::loadShortcuts() {
+  m_ui->m_shortcutsEditor->populate(qApp->availableActions().values());
+}
+
+void FormSettings::saveShortcuts() {
+  // Update the actual shortcuts of some actions.
+  m_ui->m_shortcutsEditor->updateShortcuts();
+
+  // Save new shortcuts to the settings.
+  DynamicShortcuts::save(qApp->availableActions().values());
 }

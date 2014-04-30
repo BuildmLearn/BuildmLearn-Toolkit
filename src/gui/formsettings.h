@@ -73,6 +73,9 @@ class FormSettings : public QDialog {
     void loadInterface();
     void saveInterface();
 
+    void loadShortcuts();
+    void saveShortcuts();
+
     void loadLanguage();
     void saveLanguage();
 

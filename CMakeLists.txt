@@ -342,6 +342,11 @@ set(APP_SOURCES
   src/gui/formabout.cpp
   src/gui/formsettings.cpp
 
+  src/dynamic-shortcuts/shortcutcatcher.cpp
+  src/dynamic-shortcuts/shortcutbutton.cpp
+  src/dynamic-shortcuts/dynamicshortcutswidget.cpp
+  src/dynamic-shortcuts/dynamicshortcuts.cpp
+
   src/miscellaneous/application.cpp
   src/miscellaneous/settings.cpp
   src/miscellaneous/debugging.cpp
@@ -378,6 +383,10 @@ set(APP_HEADERS
   src/gui/systemtrayicon.h
   src/gui/formabout.h
   src/gui/formsettings.h
+
+  src/dynamic-shortcuts/dynamicshortcutswidget.h
+  src/dynamic-shortcuts/shortcutcatcher.h
+  src/dynamic-shortcuts/shortcutbutton.h
 
   src/miscellaneous/application.h
   src/miscellaneous/settings.h
@@ -468,6 +477,7 @@ include_directories (
   ${CMAKE_CURRENT_SOURCE_DIR}/src/gui
   ${CMAKE_CURRENT_SOURCE_DIR}/src/miscellaneous
   ${CMAKE_CURRENT_SOURCE_DIR}/src/network-web
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/dynamic-shortcuts
   ${CMAKE_CURRENT_BINARY_DIR}
   ${CMAKE_CURRENT_BINARY_DIR}/src
 )

@@ -38,6 +38,7 @@
 
 #include <QNetworkReply>
 #include <QSessionManager>
+#include <QHash>
 
 #if defined(qApp)
 #undef qApp
@@ -49,6 +50,7 @@
 
 class FormMain;
 class SystemTrayIcon;
+class QAction;
 
 /// \brief Key application class containing all critical
 /// elements of the application.
@@ -90,6 +92,10 @@ class Application : public QApplication {
       m_mainForm = main_form;
     }
 
+    /// \brief Access to all application-wide useable actions.
+    /// \return Return list of user actions.
+    QHash<QString, QAction*> availableActions();
+
     /// \brief Access to application tray icon.
     /// \return Returns pointer to application tray icon.
     /// \warning Always use this in cooperation with
@@ -111,6 +117,7 @@ class Application : public QApplication {
     void onSaveState(QSessionManager &manager);
 
   private:
+    QHash<QString, QAction*> m_availableActions;
     Settings *m_settings;
     SystemFactory *m_systemFactory;
     SystemTrayIcon *m_trayIcon;
