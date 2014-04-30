@@ -203,7 +203,7 @@ void FormUpdate::startUpdate() {
     url_file = m_updateInfo.m_urls.value(OS_ID).m_fileUrl;
   }
   else {
-    url_file = APP_URL;
+    url_file = APP_URL_DOWNLOADS;
   }
 
   if (!WebFactory::instance()->openUrlInExternalBrowser(url_file)) {
@@ -221,12 +221,4 @@ void FormUpdate::startUpdate() {
                                 "manually on project website."));
     }
   }
-}
-
-void FormUpdate::openDownloadedFile() {
-#if defined(Q_OS_WIN)
-  QDesktopServices::openUrl(m_updateFilePath);
-#else
-  QDesktopServices::openUrl(m_updateFilePath);
-#endif
 }

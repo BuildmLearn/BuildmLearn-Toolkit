@@ -66,7 +66,6 @@ class FormUpdate : public QDialog {
     // Check for updates and interprets the results.
     void checkForUpdates();
     void startUpdate();
-    void openDownloadedFile();
 
     void updateProgress(qint64 bytes_received, qint64 bytes_total);
     void updateCompleted(QNetworkReply::NetworkError status, QByteArray contents);
