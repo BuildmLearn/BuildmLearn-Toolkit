@@ -80,10 +80,16 @@
    <property name="text">
     <string>Check for updates</string>
    </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
   </action>
   <action name="m_actionAboutToolkit">
    <property name="text">
     <string>&amp;About BuildmLearn Toolkit</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
    </property>
   </action>
   <action name="m_actionQuit">
@@ -93,6 +99,9 @@
    <property name="shortcut">
     <string notr="true">Ctrl+Q</string>
    </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
   </action>
   <action name="m_actionGenerateApkFile">
    <property name="text">
@@ -100,6 +109,9 @@
    </property>
    <property name="shortcut">
     <string notr="true">Ctrl+G</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
    </property>
   </action>
   <action name="m_actionNewProject">
@@ -109,6 +121,9 @@
    <property name="shortcut">
     <string notr="true">Ctrl+N</string>
    </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
   </action>
   <action name="m_actionSaveProject">
    <property name="text">
@@ -116,6 +131,9 @@
    </property>
    <property name="shortcut">
     <string notr="true">Ctrl+S</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
    </property>
   </action>
   <action name="m_actionSaveProjectAs">
@@ -125,6 +143,9 @@
    <property name="shortcut">
     <string notr="true">Ctrl+Shift+S</string>
    </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
   </action>
   <action name="m_actionLoadProject">
    <property name="text">
@@ -133,13 +154,19 @@
    <property name="shortcut">
     <string notr="true">Ctrl+L</string>
    </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
   </action>
   <action name="m_actionSettings">
    <property name="text">
     <string>&amp;Settings</string>
    </property>
    <property name="shortcut">
-    <string notr="true">Ctrl+S</string>
+    <string notr="true">Ctrl+T</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
    </property>
   </action>
  </widget>

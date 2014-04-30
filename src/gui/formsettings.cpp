@@ -139,6 +139,12 @@ bool FormSettings::doSaveCheck() {
   bool everything_ok = true;
   QStringList resulting_information;
 
+  // Setup indication of settings consistence.
+  if (!m_ui->m_shortcutsEditor->areShortcutsUnique()) {
+    everything_ok = false;
+    resulting_information.append(tr("some keyboard shortcuts are not unique"));
+  }
+
   // User selected custom external browser but did not set its
   // properties.
   if (m_ui->m_grpCustomExternalBrowser->isChecked() &&

@@ -36,7 +36,7 @@
        <item row="0" column="0">
         <widget class="QCheckBox" name="m_checkCheckForUpdatesOnStartup">
          <property name="text">
-          <string>Check for updates when application starts</string>
+          <string>Check for updates when application starts (update is triggered with time delay.)</string>
          </property>
         </widget>
        </item>
@@ -328,10 +328,15 @@
               <item row="3" column="0" colspan="2">
                <widget class="QLabel" name="label">
                 <property name="text">
-                 <string>Note that &quot;%1&quot; (without quotation marks) is placeholder for URL of selected message.</string>
+                 <string>Note that &quot;%1&quot; (without quotation marks) is placeholder for URL of selected message. If you don't know what to put in &quot;Executable parameters&quot; field, then use simply &quot;%1&quot;.
+
+External web browser set on this page is used application-wide. For example, it is used for opening new update files for the application. If no specific external web browser is set, then application tries to use system default web browser.</string>
                 </property>
                 <property name="alignment">
-                 <set>Qt::AlignCenter</set>
+                 <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+                </property>
+                <property name="wordWrap">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
