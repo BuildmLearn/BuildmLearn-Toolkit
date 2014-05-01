@@ -28,6 +28,7 @@
      <string>&amp;Help</string>
     </property>
     <addaction name="m_actionCheckForUpdates"/>
+    <addaction name="m_actionHelp"/>
     <addaction name="m_actionAboutToolkit"/>
    </widget>
    <widget class="QMenu" name="n_menuApplication">
@@ -164,6 +165,17 @@
    </property>
    <property name="shortcut">
     <string notr="true">Ctrl+T</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="m_actionHelp">
+   <property name="text">
+    <string>&amp;Help</string>
+   </property>
+   <property name="shortcut">
+    <string notr="true">Ctrl+H</string>
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>
