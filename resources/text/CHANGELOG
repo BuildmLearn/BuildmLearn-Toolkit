@@ -9,12 +9,24 @@ Main:
 
 Fixed:
 <ul>
-<li>Nothing.</li>
+<li>Fixed bugs #20, #23, #16, #15, #7, #5, #6, #3.</li>
 </ul>
 
 Added:
 <ul>
-<li>Nothing.</li>
+<li>Added CMake-based compilation scripts and related stuff.</li>
+<li>Added support for application-wide dynamic keyboard shortcuts (check settings).</li>
+<li>Added custom message box -> better API.</li>
+<li>New "about" and "check-for-updates" dialogs.</li>
+<li>New application-wide settings, both backend and frontend GUI.</li>
+<li>Added ability to check for updates, manually or when application starts.</li>
+<li>Added OBS service for generating packages for major Linux distributions.</li>
+<li>Added new custom widgets - labels, tool buttons.</li>
+<li>Added new tray icon which allows to do some basic operations and hide main window on supported platforms.</li>
+<li>Added better handling of debugging console messages.</li>
+<li>Added application-wide icon handling mechanism.</li>
+<li>Added support for application localization, both backend and frontend GUI.</li>
+<li>Added basic support for proxy server settings + API for downloading files.</li>
 </ul>
 
 <hr/>

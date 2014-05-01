@@ -207,7 +207,7 @@ int main(int argc, char *argv[]) {
     application.trayIcon()->setContextMenu(main_form.trayMenu());
     application.trayIcon()->show();
 
-    QTimer::singleShot(STARTUP_UPDATE_DELAY,
+    QTimer::singleShot(2000,
                        &application,
                        SLOT(checkForUpdatesOnBackground()));
   }

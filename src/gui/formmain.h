@@ -73,6 +73,7 @@ class FormMain : public QMainWindow {
     void showSettings();
     void showAbout();
     void showUpdates();
+    void showUpdatesAfterBubbleClick();
 
   public slots:
     // Switches visibility of main window.

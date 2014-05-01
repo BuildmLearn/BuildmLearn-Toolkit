@@ -73,6 +73,30 @@ SystemTrayIcon::~SystemTrayIcon() {
   //qDebug("Destroying SystemTrayIcon instance.");
 }
 
+void SystemTrayIcon::showMessage(const QString &title,
+                                 const QString &message,
+                                 QSystemTrayIcon::MessageIcon icon,
+                                 int milliseconds_timeout_hint,
+                                 QObject *click_target,
+                                 const char *click_slot) {
+  if (m_bubbleClickTarget != NULL && m_bubbleClickSlot != NULL) {
+    // Disconnect previous bubble click signalling.
+    disconnect(this, SIGNAL(messageClicked()), m_bubbleClickTarget, m_bubbleClickSlot);
+  }
+
+  m_bubbleClickSlot = (char*) click_slot;
+  m_bubbleClickTarget = click_target;
+
+  if (click_target != NULL && click_slot != NULL) {
+    // Establish new connection for bubble click.
+    connect(this, SIGNAL(messageClicked()), click_target, click_slot);
+  }
+
+  // NOTE: If connections do not work, then use QMetaObject::invokeMethod(...).
+
+  QSystemTrayIcon::showMessage(title, message, icon, milliseconds_timeout_hint);
+}
+
 bool SystemTrayIcon::isSystemTrayAvailable() {
   return QSystemTrayIcon::isSystemTrayAvailable() && QSystemTrayIcon::supportsMessages();
 }

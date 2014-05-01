@@ -167,6 +167,11 @@ void FormMain::showUpdates() {
   delete form_update.data();
 }
 
+void FormMain::showUpdatesAfterBubbleClick() {
+  display();
+  showUpdates();
+}
+
 void FormMain::switchVisibility(bool force_hide) {
   if (force_hide || isVisible()) {
     if (SystemTrayIcon::isSystemTrayActivated()) {
