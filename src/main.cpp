@@ -138,7 +138,7 @@ public:
 /// their custom content. Targeted at teachers, this program
 /// helps them make learning fun and engaging through mobile apps.
 
-/// \brief main Main entry point to the application
+/// \brief main Main entry point to the application.
 ///
 /// Main function is the "main" entry point to toolkit.
 ///
