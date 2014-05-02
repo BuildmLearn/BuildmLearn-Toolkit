@@ -636,6 +636,11 @@ set(CPACK_SOURCE_IGNORE_FILES ${CPACK_IGNORE_FILES})
 # Load packaging facilities.
 include(CPack)
 
+configure_file(
+  ${PROJECT_SOURCE_DIR}/resources/nsis/NSIS.definitions.nsh.in
+  ${CMAKE_CURRENT_BINARY_DIR}/resources/nsis/NSIS.definitions.nsh
+)
+
 # make dist implementation.
 add_custom_target(dist COMMAND ${CMAKE_MAKE_PROGRAM} package_source)
 
