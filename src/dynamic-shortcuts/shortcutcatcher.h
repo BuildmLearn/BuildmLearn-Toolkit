@@ -36,6 +36,7 @@ class QHBoxLayout;
 class QToolButton;
 class ShortcutButton;
 
+/// \brief Represents extra widget for changing single keyboard shortcut.
 class ShortcutCatcher : public QWidget {
     Q_OBJECT
 
@@ -54,21 +55,27 @@ class ShortcutCatcher : public QWidget {
       return m_currentSequence;
     }
 
+    /// \brief Sets default shortcut for the widget.
+    /// \param key Shortcut to set.
     inline void setDefaultShortcut(const QKeySequence &key) {
       m_defaultSequence = key;
       setShortcut(key);
     }
 
+    /// \brief Sets active shortcut for the widget.
+    /// \param key Shortcut to set.
     inline void setShortcut(const QKeySequence &key) {
       m_currentSequence = key;
       doneRecording();
     }
 
   public slots:
+    /// \brief Resets active shortcut to default shortcut.
     inline void resetShortcut() {
       setShortcut(m_defaultSequence);
     }
 
+    /// \brief Clears current active shortcut.
     inline void clearShortcut() {
       setShortcut(QKeySequence());
     }

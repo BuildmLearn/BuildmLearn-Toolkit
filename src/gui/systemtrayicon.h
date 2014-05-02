@@ -33,6 +33,8 @@
 
 #include <QSystemTrayIcon>
 
+#include "definitions/definitions.h"
+
 #if defined(Q_OS_WIN)
 #include <QMenu>
 #endif
@@ -71,6 +73,13 @@ class SystemTrayIcon : public QSystemTrayIcon {
     explicit SystemTrayIcon(const QString &icon, QObject *parent = 0);
     virtual ~SystemTrayIcon();
 
+    void showMessage(const QString &title,
+                     const QString &message,
+                     MessageIcon icon = Information,
+                     int milliseconds_timeout_hint = TRAY_ICON_BUBBLE_TIMEOUT,
+                     QObject *click_target = NULL,
+                     const char *click_slot = NULL);
+
     /// \brief Indicates whether tray icon is supported.
     /// \return Returns true if tray icon is supported.
     /// \see isSystemTrayActivated()
@@ -93,6 +102,10 @@ class SystemTrayIcon : public QSystemTrayIcon {
   signals:
     /// \brief Emitted if user clicks tray icon with left mouse button.
     void leftMouseClicked();
+
+  private:
+    QObject *m_bubbleClickTarget;
+    char *m_bubbleClickSlot;
 };
 
 #endif // SYSTEMTRAYICON_H

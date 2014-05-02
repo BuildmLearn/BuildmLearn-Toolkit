@@ -39,28 +39,35 @@ class ShortcutCatcher;
 
 typedef QPair<QAction*, ShortcutCatcher*> ActionBinding;
 
+/// \brief Widget for displaying and editing shortcuts.
 class DynamicShortcutsWidget : public QWidget {
     Q_OBJECT
     
   public:
-    // Constructors and destructors.
+    /// \brief Constructor.
+    /// \param parent Pointer to parent object.
     explicit DynamicShortcutsWidget(QWidget *parent = 0);
+
+    /// \brief Destructor.
     virtual ~DynamicShortcutsWidget();
 
-    // Updates shortcuts of all actions according to changes.
-    // NOTE: No access to settings is done here.
-    // Shortcuts are fetched from settings when applications starts
-    // and stored back to settings when application quits.
+    /// \brief Updates shortcuts of all actions according to changes.
+    ///
+    /// No access to settings is done here.
+    /// Shortcuts are fetched from settings when applications starts
+    /// and stored back to settings when application quits.
     void updateShortcuts();
 
-    // Returns true if all shortcuts are unique,
-    // otherwise false.
+    /// \brief Checks whether set shortcuts are unique.
+    /// \returns Returns true if all shortcuts are unique,
+    /// otherwise false.
     bool areShortcutsUnique();
 
-    // Populates this widget with shortcut widgets for given actions.
-    // NOTE: This gets initial shortcut for each action from its properties, NOT from
-    // the application settings, so shortcuts from settings need to be
-    // assigned to actions before calling this method.
+    /// \brief Populates this widget with shortcut widgets for given actions.
+    ///
+    /// This gets initial shortcut for each action from its properties, NOT from
+    /// the application settings, so shortcuts from settings need to be
+    /// assigned to actions before calling this method.
     void populate(const QList<QAction*> actions);
 
   private:

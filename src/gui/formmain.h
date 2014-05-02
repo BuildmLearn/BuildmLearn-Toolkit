@@ -43,8 +43,6 @@
 #include <QHash>
 #include <QtGui>
 
-#define HELP_URL "http://buildmlearn.wordpress.com/download/"
-
 
 namespace Ui {
  class FormMain;
@@ -73,6 +71,8 @@ class FormMain : public QMainWindow {
     void showSettings();
     void showAbout();
     void showUpdates();
+    void showHelp(bool enable_do_not_show_again_option = false);
+    void showUpdatesAfterBubbleClick();
 
   public slots:
     // Switches visibility of main window.

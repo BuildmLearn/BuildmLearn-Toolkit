@@ -36,14 +36,18 @@
 
 class QAction;
 
+/// \brief Access for methods for loading/saving keyboard shortcuts to/from settings.
+/// \see DynamicShortcutsWidget, ShortcutButton, ShortcutCatcher
 class DynamicShortcuts {
   public:
-    // Checks the application settings and then initializes shortcut of
-    // each action from actions from the settings.
+    /// \brief Checks the application settings and then initializes shortcut of
+    /// each action from actions from the settings.
+    /// \param actions List of actions for which we want to load shortcuts.
     static void load(const QList<QAction*> &actions);
 
-    // Stores shortcut of each action from actions into the application
-    // settings.
+    /// \brief Stores shortcut of each action from actions into the application
+    /// settings.
+    /// \param actions List of actions for which we want to save shortcuts.
     static void save(const QList<QAction*> &actions);
 
   private:

@@ -34,6 +34,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 class ShortcutCatcher;
 
+/// \brief Represents single button for changing keyboard shortcut.
 class ShortcutButton : public QPushButton {
     Q_OBJECT
 

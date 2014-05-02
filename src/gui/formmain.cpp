@@ -35,6 +35,7 @@
 #include "gui/formabout.h"
 #include "gui/formsettings.h"
 #include "gui/systemtrayicon.h"
+#include "gui/formhelp.h"
 #include "miscellaneous/iconfactory.h"
 
 #include <QStackedWidget>
@@ -97,6 +98,7 @@ QHash<QString, QAction *> FormMain::allActions() {
   actions.insert(m_ui->m_actionSaveProjectAs->objectName(), m_ui->m_actionSaveProjectAs);
   actions.insert(m_ui->m_actionQuit->objectName(), m_ui->m_actionQuit);
   actions.insert(m_ui->m_actionSettings->objectName(), m_ui->m_actionSettings);
+  actions.insert(m_ui->m_actionHelp->objectName(), m_ui->m_actionHelp);
 
   return actions;
 }
@@ -111,6 +113,8 @@ void FormMain::createConnections() {
           this, SLOT(showAbout()));
   connect(m_ui->m_actionSettings, SIGNAL(triggered()),
           this, SLOT(showSettings()));
+  connect(m_ui->m_actionHelp, SIGNAL(triggered()),
+          this, SLOT(showHelp()));
 
   // Project connections.
   connect(m_ui->m_actionNewProject, SIGNAL(triggered()),
@@ -130,6 +134,7 @@ void FormMain::setupIcons() {
   m_ui->m_actionQuit->setIcon(factory->fromTheme("application-exit"));
   m_ui->m_actionAboutToolkit->setIcon(factory->fromTheme("application-about"));
   m_ui->m_actionCheckForUpdates->setIcon(factory->fromTheme("check-for-updates"));
+  m_ui->m_actionHelp->setIcon(factory->fromTheme("dialog-question"));
 }
 
 void FormMain::setupTrayMenu() {
@@ -165,6 +170,17 @@ void FormMain::showUpdates() {
   QPointer<FormUpdate> form_update = new FormUpdate(this);
   form_update.data()->exec();
   delete form_update.data();
+}
+
+void FormMain::showHelp(bool enable_do_not_show_again_option) {
+  QPointer<FormHelp> form_help = new FormHelp(enable_do_not_show_again_option, this);
+  form_help.data()->exec();
+  delete form_help.data();
+}
+
+void FormMain::showUpdatesAfterBubbleClick() {
+  display();
+  showUpdates();
 }
 
 void FormMain::switchVisibility(bool force_hide) {

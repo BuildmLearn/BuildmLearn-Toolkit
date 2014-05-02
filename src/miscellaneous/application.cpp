@@ -100,7 +100,10 @@ void Application::checkForUpdatesOnBackground() {
         if (updates.first.m_availableVersion > APP_VERSION) {
           trayIcon()->showMessage(tr("Update available"),
                                   tr("New application update is available."),
-                                  QSystemTrayIcon::Information);
+                                  QSystemTrayIcon::Information,
+                                  TRAY_ICON_BUBBLE_TIMEOUT,
+                                  qApp->mainForm(),
+                                  SLOT(showUpdatesAfterBubbleClick()));
         }
         else {
           trayIcon()->showMessage(tr("No updates available"),

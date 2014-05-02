@@ -37,6 +37,7 @@
 #include <QDialogButtonBox>
 
 
+/// \brief Custom message boxes.
 class CustomMessageBox : public QMessageBox {
     Q_OBJECT
 
@@ -45,10 +46,20 @@ class CustomMessageBox : public QMessageBox {
     explicit CustomMessageBox(QWidget *parent = 0);
     virtual ~CustomMessageBox();
 
-    // Custom icon setting.
+    /// \brief Custom icon setting.
+    /// \param icon Icon to set.
     void setIcon(QMessageBox::Icon icon);
 
-    // Displays custom message box.
+    /// \brief Displays custom message box.
+    /// \param parent Parent object.
+    /// \param icon Icon of message box.
+    /// \param title Title of message box.
+    /// \param text Text of message box.
+    /// \param informative_text Informative text of message box.
+    /// \param detailed_text Detailed text of message box.
+    /// \param buttons Which buttons to display?
+    /// \param default_button Which button highlight as default one?
+    /// \return Returns the status of message box (e.g. which button was pressed.
     static QMessageBox::StandardButton show(QWidget *parent,
                                             QMessageBox::Icon icon,
                                             const QString &title,
