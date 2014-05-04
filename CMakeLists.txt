@@ -99,6 +99,7 @@ set(APP_NAME "BuildmLearn Toolkit")
 set(APP_LOW_NAME "buildmlearn-toolkit")
 set(APP_VERSION "2.0.1")
 set(FILE_VERSION "2,0,1,0")
+set(APP_COMPANY "BuildmLearn")
 set(APP_AUTHOR "BuildmLearn Contributors")
 set(APP_URL "http://buildmlearn.org/")
 set(APP_URL_ISSUES "https://github.com/BuildmLearn/BuildmLearn-Toolkit/issues")
@@ -449,6 +450,19 @@ if(WIN32)
     resources/binaries/windows/7za/7za.exe
     resources/binaries/windows/7za/7za_license.txt
   )
+
+  set(APP_DLLS_QT4_MSVS2010
+    resources/binaries/windows/deployment/qt4-msvc2010/libeay32.dll
+    resources/binaries/windows/deployment/qt4-msvc2010/msvcp100.dll
+    resources/binaries/windows/deployment/qt4-msvc2010/msvcr100.dll
+    resources/binaries/windows/deployment/qt4-msvc2010/QtCore4.dll
+    resources/binaries/windows/deployment/qt4-msvc2010/QtGui4.dll
+    resources/binaries/windows/deployment/qt4-msvc2010/QtNetwork4.dll
+    resources/binaries/windows/deployment/qt4-msvc2010/QtSql4.dll
+    resources/binaries/windows/deployment/qt4-msvc2010/QtWebKit4.dll
+    resources/binaries/windows/deployment/qt4-msvc2010/QtXml4.dll
+    resources/binaries/windows/deployment/qt4-msvc2010/ssleay32.dll
+  )
 endif(WIN32)
 
 # Add custom icon on Mac OS X.
@@ -538,8 +552,11 @@ if(WIN32 OR OS2)
   endif(BUNDLE_ICON_THEMES)
 
   if(WIN32)
+    # Install custom binary files for windows, dlls, exes.
     install(FILES ${APP_7ZA}
             DESTINATION ./7za)
+    install(FILES ${APP_DLLS_QT4_MSVS2010}
+            DESTINATION ./)
   endif(WIN32)
 
   install(FILES ${APP_SIGNAPK}
@@ -631,14 +648,22 @@ endif(USE_NSIS)
 set(CPACK_PACKAGE_NAME ${APP_LOW_NAME})
 set(CPACK_PACKAGE_VERSION ${APP_VERSION})
 set(CPACK_PACKAGE_VERSION_PATCH "0")
+set(CPACK_PACKAGE_VENDOR ${APP_COMPANY})
+set(CPACK_PACKAGE_INSTALL_REGISTRY_KEY ${APP_NAME})
 set(CPACK_IGNORE_FILES "\\\\.psd$;/CVS/;/\\\\.svn/;/\\\\.git/;\\\\.swp$;/CMakeLists.txt.user;\\\\.#;/#;\\\\.tar.gz$;/CMakeFiles/;CMakeCache.txt;\\\\.qm$;/build/;\\\\.diff$;.DS_Store'")
 set(CPACK_SOURCE_GENERATOR "TGZ")
 set(CPACK_SOURCE_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}")
 set(CPACK_SOURCE_IGNORE_FILES ${CPACK_IGNORE_FILES})
 
+set(CPACK_NSIS_INSTALLED_ICON_NAME "${APP_LOW_NAME}.ico")
+set(CPACK_NSIS_HELP_LINK ${APP_URL})
+set(CPACK_NSIS_URL_INFO_ABOUT ${APP_URL})
+set(CPACK_NSIS_CONTACT ${APP_EMAIL})
+
 # Load packaging facilities.
 include(CPack)
 
+# Configure file with custom definitions for NSIS.
 configure_file(
   ${PROJECT_SOURCE_DIR}/resources/nsis/NSIS.definitions.nsh.in
   ${CMAKE_CURRENT_BINARY_DIR}/resources/nsis/NSIS.definitions.nsh
