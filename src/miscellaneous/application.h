@@ -47,6 +47,7 @@
 // Define new qApp macro. Yeaaaaah.
 #define qApp (Application::instance())
 
+typedef QPair<UpdateInfo, QNetworkReply::NetworkError> UpdateCheck;
 
 class FormMain;
 class SystemTrayIcon;
@@ -68,7 +69,7 @@ class Application : public QApplication {
     /// \brief Tries to download list with new updates.
     /// \return Returns pair of information: metadata of update and
     /// network status of update.
-    QPair<UpdateInfo, QNetworkReply::NetworkError> checkForUpdates();
+    UpdateCheck checkForUpdates();
 
     /// \brief Access to application-wide settings.
     /// \return

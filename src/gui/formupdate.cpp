@@ -80,7 +80,7 @@ bool FormUpdate::isSelfUpdateSupported() const {
 }
 
 void FormUpdate::checkForUpdates() {
-  QPair<UpdateInfo, QNetworkReply::NetworkError> update = qApp->checkForUpdates();
+  UpdateCheck update = qApp->checkForUpdates();
 
   m_updateInfo = update.first;
 

@@ -36,6 +36,8 @@
 #include "gui/systemtrayicon.h"
 #include "gui/formmain.h"
 
+#include <QtConcurrentRun>
+
 
 Application::Application(int &argc, char **argv)
   : QApplication(argc, argv),
@@ -54,7 +56,7 @@ Application::Application(int &argc, char **argv)
 Application::~Application() {
 }
 
-QPair<UpdateInfo, QNetworkReply::NetworkError> Application::checkForUpdates() {
+UpdateCheck Application::checkForUpdates() {
   if (m_systemFactory == NULL) {
     m_systemFactory = new SystemFactory(this);
   }
@@ -93,7 +95,7 @@ void Application::checkForUpdatesOnBackground() {
   else {
     qDebug("Checking for updates after application has started.");
 
-    QPair<UpdateInfo, QNetworkReply::NetworkError> updates = checkForUpdates();
+    UpdateCheck updates = checkForUpdates();
 
     switch (updates.second) {
       case QNetworkReply::NoError:
@@ -119,6 +121,10 @@ void Application::checkForUpdatesOnBackground() {
         break;
     }
   }
+}
+
+void Application::handleCheckForUpdates() {
+
 }
 
 void Application::onAboutToQuit() {
