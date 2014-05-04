@@ -36,11 +36,12 @@
 #include "gui/systemtrayicon.h"
 #include "gui/formmain.h"
 
-#include <QtConcurrentRun>
+#include <QMutex>
 
 
 Application::Application(int &argc, char **argv)
   : QApplication(argc, argv),
+    m_closeLock(new QMutex()),
     m_availableActions(QHash<QString, QAction*>()),
     m_settings(NULL),
     m_systemFactory(NULL),
@@ -54,6 +55,7 @@ Application::Application(int &argc, char **argv)
 }
 
 Application::~Application() {
+  delete m_closeLock;
 }
 
 UpdateCheck Application::checkForUpdates() {
@@ -123,12 +125,23 @@ void Application::checkForUpdatesOnBackground() {
   }
 }
 
-void Application::handleCheckForUpdates() {
-
-}
-
 void Application::onAboutToQuit() {
   qDebug("Quitting the application.");
+  qDebug("Cleaning up resources and saving application state.");
+
+  if (closeLock()->tryLock(CLOSE_LOCK_TIMEOUT)) {
+    // Application obtained permission to close
+    // in a safety way.
+    qDebug("Close lock was obtained safely.");
+
+    // We locked the lock to exit peacefully, unlock it to avoid warnings.
+    closeLock()->unlock();
+  }
+  else {
+    // Request for write lock timed-out. This means
+    // that some critical action can be processed right now.
+    qDebug("Close lock timed-out.");
+  }
 }
 
 void Application::onCommitData(QSessionManager &manager) {

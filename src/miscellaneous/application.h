@@ -52,6 +52,7 @@ typedef QPair<UpdateInfo, QNetworkReply::NetworkError> UpdateCheck;
 class FormMain;
 class SystemTrayIcon;
 class QAction;
+class QMutex;
 
 /// \brief Key application class containing all critical
 /// elements of the application.
@@ -79,6 +80,11 @@ class Application : public QApplication {
       }
 
       return m_settings;
+    }
+
+    // Access to application-wide close lock.
+    inline QMutex *closeLock() const {
+      return m_closeLock;
     }
 
     /// \brief Access to main application form.
@@ -118,6 +124,7 @@ class Application : public QApplication {
     void onSaveState(QSessionManager &manager);
 
   private:
+    QMutex *m_closeLock;
     QHash<QString, QAction*> m_availableActions;
     Settings *m_settings;
     SystemFactory *m_systemFactory;
