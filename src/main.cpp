@@ -57,7 +57,7 @@ TemplateEntryPoint {
 
 public
   TemplateCore *getPlainCore(Application *application);
-  TemplateCore *loadCoreFromFile(const QString &file_contents,
+  TemplateCore *loadCoreFromFile(const QByteArray &file_contents,
                                  Application *application);
 
   QString name(); //treba "template.flashcard"
