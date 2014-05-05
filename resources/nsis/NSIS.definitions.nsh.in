@@ -35,4 +35,6 @@
 !define LICENSE_FILE "@PROJECT_SOURCE_DIR@\resources\text\LICENSE"
 !define MUI_ICON "@PROJECT_SOURCE_DIR@\resources\graphics\@APP_LOW_NAME@.ico"
 !define MUI_UNICON "@PROJECT_SOURCE_DIR@\resources\graphics\@APP_LOW_NAME@.ico"
+!define MUI_WELCOMEFINISHPAGE_BITMAP "@PROJECT_SOURCE_DIR@\resources\graphics\@APP_LOW_NAME@-banner.bmp"
+!define MUI_UNWELCOMEFINISHPAGE_BITMAP "@PROJECT_SOURCE_DIR@\resources\graphics\@APP_LOW_NAME@-banner.bmp"
 !define PATCH  "0"

@@ -74,6 +74,7 @@ RequestExecutionLevel admin
 !insertmacro MUI_PAGE_WELCOME
 !insertmacro MUI_PAGE_LICENSE "${LICENSE_FILE}"
 !insertmacro MUI_PAGE_DIRECTORY
+!insertmacro MUI_PAGE_COMPONENTS
 
 ;Start Menu Folder Page Configuration
 !define MUI_STARTMENUPAGE_REGISTRY_ROOT "HKCU" 
@@ -173,6 +174,9 @@ RequestExecutionLevel admin
 Function .onInit
   ; Display language selection dialog.
   !insertmacro MUI_LANGDLL_DISPLAY
+  
+  IntOp $0 ${SF_SELECTED} | ${SF_RO}
+  SectionSetFlags ${Core} $0
 FunctionEnd
 
 ; Conditional saving to registry.
@@ -187,8 +191,8 @@ FunctionEnd
 ;--------------------------------
 ; Sections.
 
-; Installer section.
-Section "Install"
+; Installer sections.
+Section "!Core" Core
   SetOutPath "$INSTDIR"
   
   ; Install core application files.
@@ -242,6 +246,24 @@ Section "Install"
   !insertmacro MUI_STARTMENU_WRITE_END
 SectionEnd
 
+Section "Desktop Icon" DesktopIcon
+  CreateShortCut "$DESKTOP\${APP_NAME}.lnk" "$INSTDIR\${EXE_NAME}"
+SectionEnd
+
+Section "Quick Launch Icon" QuickLaunchIcon  
+  CreateShortCut "$QUICKLAUNCH\${APP_NAME}.lnk" "$INSTDIR\${EXE_NAME}"
+SectionEnd
+
+LangString DESC_Core ${LANG_ENGLISH} "Core installation files for ${APP_NAME}."
+LangString DESC_DesktopIcon ${LANG_ENGLISH} "Desktop icon for ${APP_NAME}."
+LangString DESC_QuickLaunchIcon ${LANG_ENGLISH} "Quick launch icon for ${APP_NAME}."
+
+!insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
+  !insertmacro MUI_DESCRIPTION_TEXT ${Core} $(DESC_Core)
+  !insertmacro MUI_DESCRIPTION_TEXT ${DesktopIcon} $(DESC_DesktopIcon)
+  !insertmacro MUI_DESCRIPTION_TEXT ${QuickLaunchIcon} $(DESC_QuickLaunchIcon)
+!insertmacro MUI_FUNCTION_DESCRIPTION_END
+
 ; Uninstaller section.
 Section "Uninstall"
   ; Remove core application files & directories.
@@ -263,6 +285,9 @@ Section "Uninstall"
   Delete "$SMPROGRAMS\$STARTMENU_FOLDER\${APP_NAME}.lnk"
   Delete "$SMPROGRAMS\$STARTMENU_FOLDER\Uninstall.lnk"
   RMDir "$SMPROGRAMS\$STARTMENU_FOLDER"
+  
+  Delete "$DESKTOP\${APP_NAME}.lnk"
+  Delete "$QUICKLAUNCH\${APP_NAME}.lnk"
 
   DeleteRegKey /ifempty HKCU "Software\${APP_NAME}"
 SectionEnd
