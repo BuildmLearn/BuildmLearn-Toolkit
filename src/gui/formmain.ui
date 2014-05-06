@@ -98,7 +98,7 @@
     <string>&amp;Quit</string>
    </property>
    <property name="shortcut">
-    <string notr="true">Ctrl+Q</string>
+    <string notr="true"/>
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>
@@ -109,7 +109,7 @@
     <string>&amp;Generate .apk file</string>
    </property>
    <property name="shortcut">
-    <string notr="true">Ctrl+G</string>
+    <string notr="true"/>
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>
@@ -120,7 +120,7 @@
     <string>&amp;New project</string>
    </property>
    <property name="shortcut">
-    <string notr="true">Ctrl+N</string>
+    <string notr="true"/>
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>
@@ -131,7 +131,7 @@
     <string>&amp;Save project</string>
    </property>
    <property name="shortcut">
-    <string notr="true">Ctrl+S</string>
+    <string notr="true"/>
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>
@@ -142,7 +142,7 @@
     <string>Save project &amp;as...</string>
    </property>
    <property name="shortcut">
-    <string notr="true">Ctrl+Shift+S</string>
+    <string notr="true"/>
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>
@@ -153,7 +153,7 @@
     <string>&amp;Load project...</string>
    </property>
    <property name="shortcut">
-    <string notr="true">Ctrl+L</string>
+    <string notr="true"/>
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>
@@ -164,7 +164,7 @@
     <string>&amp;Settings</string>
    </property>
    <property name="shortcut">
-    <string notr="true">Ctrl+T</string>
+    <string notr="true"/>
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>
@@ -175,7 +175,7 @@
     <string>&amp;Help</string>
    </property>
    <property name="shortcut">
-    <string notr="true">Ctrl+H</string>
+    <string notr="true"/>
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>

@@ -42,11 +42,13 @@ namespace Ui {
   class FormAbout;
 }
 
+/// \brief Form for displaying "about" information.
 class FormAbout : public QDialog {
     Q_OBJECT
 
   public:
-    // Constructors and destructors.
+    /// \brief Constructor.
+    /// \param parent Parent widget.
     explicit FormAbout(QWidget *parent);
     virtual ~FormAbout();
 

@@ -28,13 +28,21 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include "formhelp.h"
+#include "gui/formhelp.h"
+
+#include "miscellaneous/iconfactory.h"
 
 
 FormHelp::FormHelp(bool do_not_show_again_enabled, QWidget *parent)
   : QDialog(parent), m_ui(new Ui::FormHelp) {
   m_ui->setupUi(this);
   m_ui->m_cmbDoNotShowAgain->setVisible(do_not_show_again_enabled);
+
+  setWindowFlags(Qt::MSWindowsFixedSizeDialogHint | Qt::Dialog | Qt::WindowSystemMenuHint | Qt::WindowTitleHint);
+  setWindowIcon(IconFactory::instance()->fromTheme("application-help"));
+
+  //: About toolkit dialog title.
+  setWindowTitle(tr("Help"));
 }
 
 FormHelp::~FormHelp() {

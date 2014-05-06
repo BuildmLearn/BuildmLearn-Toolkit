@@ -44,7 +44,8 @@ class ShortcutCatcher : public QWidget {
     friend class DynamicShortcutsWidget;
 
   public:
-    // Constructors and destructors.
+    /// \brief Constructor.
+    /// \param parent Pointer to parent widget.
     explicit ShortcutCatcher(QWidget *parent = 0);
     virtual ~ShortcutCatcher();
 

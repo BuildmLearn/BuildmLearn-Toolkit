@@ -50,8 +50,10 @@ FormMain::FormMain(QWidget *parent) :
   QMainWindow(parent), m_ui(new Ui::FormMain) {
   m_ui->setupUi(this);
 
+  setupActionShortcuts();
   setupIcons();
   setupTrayMenu();
+  setupToolbar();
 
   createConnections();
 
@@ -127,6 +129,30 @@ void FormMain::createConnections() {
           this ,SLOT(generateClicked()));
 }
 
+void FormMain::setupActionShortcuts() {
+#if defined(Q_OS_OSX)
+  // TODO: Finalize Mac OS X default shortcuts.
+  m_ui->m_actionCheckForUpdates->setShortcut(QKeySequence("", QKeySequence::PortableText));
+  m_ui->m_actionGenerateApkFile->setShortcut(QKeySequence("", QKeySequence::PortableText));
+  m_ui->m_actionLoadProject->setShortcut(QKeySequence("", QKeySequence::PortableText));
+  m_ui->m_actionNewProject->setShortcut(QKeySequence("", QKeySequence::PortableText));
+  m_ui->m_actionSaveProject->setShortcut(QKeySequence("", QKeySequence::PortableText));
+  m_ui->m_actionSaveProjectAs->setShortcut(QKeySequence("", QKeySequence::PortableText));
+  m_ui->m_actionQuit->setShortcut(QKeySequence("", QKeySequence::PortableText));
+  m_ui->m_actionSettings->setShortcut(QKeySequence("", QKeySequence::PortableText));
+  m_ui->m_actionHelp->setShortcut(QKeySequence("", QKeySequence::PortableText));
+#else
+  m_ui->m_actionGenerateApkFile->setShortcut(QKeySequence("Ctrl+G", QKeySequence::PortableText));
+  m_ui->m_actionLoadProject->setShortcut(QKeySequence("Ctrl+L", QKeySequence::PortableText));
+  m_ui->m_actionNewProject->setShortcut(QKeySequence("Ctrl+N", QKeySequence::PortableText));
+  m_ui->m_actionSaveProject->setShortcut(QKeySequence("Ctrl+S", QKeySequence::PortableText));
+  m_ui->m_actionSaveProjectAs->setShortcut(QKeySequence("Ctrl+Shift+S", QKeySequence::PortableText));
+  m_ui->m_actionQuit->setShortcut(QKeySequence("Ctrl+Q", QKeySequence::PortableText));
+  m_ui->m_actionSettings->setShortcut(QKeySequence("Ctrl+T", QKeySequence::PortableText));
+  m_ui->m_actionHelp->setShortcut(QKeySequence("F1", QKeySequence::PortableText));
+#endif
+}
+
 void FormMain::setupIcons() {
   IconFactory *factory = IconFactory::instance();
 
@@ -135,6 +161,16 @@ void FormMain::setupIcons() {
   m_ui->m_actionAboutToolkit->setIcon(factory->fromTheme("application-about"));
   m_ui->m_actionCheckForUpdates->setIcon(factory->fromTheme("check-for-updates"));
   m_ui->m_actionHelp->setIcon(factory->fromTheme("dialog-question"));
+}
+
+void FormMain::setupToolbar() {
+  m_ui->m_toolBar->addAction(m_ui->m_actionNewProject);
+  m_ui->m_toolBar->addAction(m_ui->m_actionLoadProject);
+  m_ui->m_toolBar->addAction(m_ui->m_actionSaveProject);
+  m_ui->m_toolBar->addAction(m_ui->m_actionSaveProjectAs);
+  m_ui->m_toolBar->addSeparator();
+  m_ui->m_toolBar->addAction(m_ui->m_actionGenerateApkFile);
+  m_ui->m_toolBar->addAction(m_ui->m_actionHelp);
 }
 
 void FormMain::setupTrayMenu() {

@@ -40,7 +40,7 @@ namespace Ui {
   class FormSettings;
 }
 
-// Structure holding some initial values.
+/// \brief Structure holding some initial values.
 struct TemporarySettings {
 
   public:
@@ -48,19 +48,21 @@ struct TemporarySettings {
     }
 };
 
+/// \brief Form for displaying and editting settings.
 class FormSettings : public QDialog {
     Q_OBJECT
     
   public:
-    // Constructors and destructors.
+    /// \brief Constructor.
+    /// \param parent Parent widget.
     explicit FormSettings(QWidget *parent = 0);
     virtual ~FormSettings();
 
-  protected:
+  private:
     // Does check of controls before dialog can be submitted.
     bool doSaveCheck();
 
-  protected slots:
+  private slots:
     // Displays "restart" dialog if some critical settings changed.
     void promptForRestart();
 

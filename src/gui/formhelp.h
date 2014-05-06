@@ -35,14 +35,20 @@
 
 #include <QDialog>
 
+
 namespace Ui {
   class FormHelp;
 }
 
+/// \brief Form for displaying application help.
 class FormHelp : public QDialog {
     Q_OBJECT
 
   public:
+    ///
+    /// \brief Constructor.
+    /// \param do_not_show_again_enabled If true, then "do not show again" checkbox is hidden.
+    /// \param parent Parent widget.
     explicit FormHelp(bool do_not_show_again_enabled, QWidget *parent = 0);
     virtual ~FormHelp();
 

@@ -48,23 +48,30 @@ namespace Ui {
  class FormMain;
 }
 
+/// \brief Main application window.
 class FormMain : public QMainWindow {
     Q_OBJECT
     
   public:
-    // Constructors and destructors.
+    /// \brief Constructor.
+    /// \param parent Parent widget.
     explicit FormMain(QWidget *parent = 0);
     virtual ~FormMain();
 
+    /// \brief Access to tray menu.
     inline QMenu *trayMenu() const {
       return m_trayMenu;
     }
 
+    /// \brief Access to all actions provided by this window.
+    /// \see DynamicShortcuts
     QHash<QString, QAction*> allActions();
 
   private:
     void createConnections();
+    void setupActionShortcuts();
     void setupIcons();
+    void setupToolbar();
     void setupTrayMenu();
 
   private slots:
@@ -75,8 +82,11 @@ class FormMain : public QMainWindow {
     void showUpdatesAfterBubbleClick();
 
   public slots:
-    // Switches visibility of main window.
+    /// \brief Switches visibility of main window.
+    /// \param force_hide If true, then window is not switched but hidden.
     void switchVisibility(bool force_hide = false);
+
+    /// \brief Displays the window.
     void display();
 
     void startProject(int);
@@ -88,6 +98,8 @@ class FormMain : public QMainWindow {
     void resetWidgets();
 
   protected:
+    /// \brief Executed when main application window is closed.
+    /// \param event Event message.
     void closeEvent(QCloseEvent *event);
 
   private:
