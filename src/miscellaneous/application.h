@@ -51,6 +51,8 @@ typedef QPair<UpdateInfo, QNetworkReply::NetworkError> UpdateCheck;
 
 class FormMain;
 class SystemTrayIcon;
+class SystemFactory;
+class SkinFactory;
 class QAction;
 class QMutex;
 
@@ -86,6 +88,10 @@ class Application : public QApplication {
     inline QMutex *closeLock() const {
       return m_closeLock;
     }
+
+    /// \brief Access to application-wide skin facilities.
+    /// \return Returns pointer to skin facilities.
+    SkinFactory *skinFactory();
 
     /// \brief Access to main application form.
     /// \return Returns pointer to main application form.
@@ -128,6 +134,7 @@ class Application : public QApplication {
     QHash<QString, QAction*> m_availableActions;
     Settings *m_settings;
     SystemFactory *m_systemFactory;
+    SkinFactory *m_skinFactory;
     SystemTrayIcon *m_trayIcon;
     FormMain *m_mainForm;
 };

@@ -86,7 +86,7 @@
 // Themes & signalling constants.
 #define APP_QUIT_INSTANCE   "app_quit"
 #define APP_IS_RUNNING      "app_is_running"
-#define APP_SKIN_DEFAULT    "base/default.xml"
+#define APP_SKIN_DEFAULT    "base/greeen.xml"
 #define APP_THEME_DEFAULT   "mini-kfaenza"
 #define APP_NO_THEME        "-"
 #define APP_THEME_SUFFIX    ".png"

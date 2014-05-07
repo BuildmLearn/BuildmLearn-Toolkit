@@ -32,6 +32,7 @@
 
 #include "definitions/definitions.h"
 #include "miscellaneous/systemfactory.h"
+#include "miscellaneous/skinfactory.h"
 #include "network-web/networkfactory.h"
 #include "gui/systemtrayicon.h"
 #include "gui/formmain.h"
@@ -45,6 +46,7 @@ Application::Application(int &argc, char **argv)
     m_availableActions(QHash<QString, QAction*>()),
     m_settings(NULL),
     m_systemFactory(NULL),
+    m_skinFactory(NULL),
     m_trayIcon(NULL) {
   connect(this, SIGNAL(aboutToQuit()),
           this, SLOT(onAboutToQuit()));
@@ -64,6 +66,14 @@ UpdateCheck Application::checkForUpdates() {
   }
 
   return m_systemFactory->checkForUpdates();
+}
+
+SkinFactory *Application::skinFactory() {
+  if (m_skinFactory == NULL) {
+    m_skinFactory = new SkinFactory(this);
+  }
+
+  return m_skinFactory;
 }
 
 QHash<QString, QAction *> Application::availableActions() {

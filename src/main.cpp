@@ -35,6 +35,7 @@
 #include "miscellaneous/debugging.h"
 #include "miscellaneous/settings.h"
 #include "miscellaneous/iconfactory.h"
+#include "miscellaneous/skinfactory.h"
 #include "miscellaneous/localization.h"
 #include "dynamic-shortcuts/dynamicshortcuts.h"
 
@@ -176,6 +177,9 @@ int main(int argc, char *argv[]) {
   // and skin.
   IconFactory::instance()->setupSearchPaths();
   IconFactory::instance()->loadCurrentIconTheme();
+
+  // Load current skin.
+  application.skinFactory()->loadCurrentSkin();
 
   // Load localization and setup locale before any widget is constructed.
   Localization::instance()->load();

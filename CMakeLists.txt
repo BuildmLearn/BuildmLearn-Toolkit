@@ -357,6 +357,7 @@ set(APP_SOURCES
   src/miscellaneous/systemfactory.cpp
   src/miscellaneous/textfactory.cpp
   src/miscellaneous/localization.cpp
+  src/miscellaneous/skinfactory.cpp
 
   src/network-web/webfactory.cpp
   src/network-web/basenetworkaccessmanager.cpp
@@ -397,6 +398,7 @@ set(APP_HEADERS
   src/miscellaneous/iconfactory.h
   src/miscellaneous/systemfactory.h
   src/miscellaneous/localization.h
+  src/miscellaneous/skinfactory.h
 
   src/network-web/webfactory.h
   src/network-web/basenetworkaccessmanager.h
@@ -559,6 +561,8 @@ if(WIN32 OR OS2)
             DESTINATION ./)
   endif(WIN32)
 
+  install(DIRECTORY resources/skins
+          DESTINATION ./)
   install(FILES ${APP_SIGNAPK}
           DESTINATION ./signapk)
   install(FILES resources/graphics/${APP_LOW_NAME}_128.png
@@ -600,6 +604,8 @@ elseif(APPLE)
             DESTINATION ${APPLE_PREFIX}/icons)
   endif(BUNDLE_ICON_THEMES)
 
+  install(DIRECTORY resources/skins
+          DESTINATION ${APPLE_PREFIX})
   install(FILES ${APP_SIGNAPK}
           DESTINATION ${APPLE_PREFIX}/binaries/signapk)
   install(FILES resources/graphics/${APP_LOW_NAME}_128.png
@@ -627,6 +633,8 @@ elseif(UNIX)
             DESTINATION share/${APP_LOW_NAME}/icons)
   endif(BUNDLE_ICON_THEMES)
 
+  install(DIRECTORY resources/skins
+          DESTINATION share/${APP_LOW_NAME})
   install(FILES ${CMAKE_CURRENT_BINARY_DIR}/resources/desktop/${APP_LOW_NAME}.desktop
           DESTINATION share/applications)
   install(FILES resources/graphics/${APP_LOW_NAME}_128.png

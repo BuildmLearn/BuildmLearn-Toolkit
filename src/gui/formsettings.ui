@@ -14,6 +14,62 @@
    <string>Settings</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QListWidget" name="m_listSettings">
+     <property name="minimumSize">
+      <size>
+       <width>220</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>220</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="showDropIndicator" stdset="0">
+      <bool>false</bool>
+     </property>
+     <property name="alternatingRowColors">
+      <bool>false</bool>
+     </property>
+     <property name="movement">
+      <enum>QListView::Static</enum>
+     </property>
+     <property name="selectionRectVisible">
+      <bool>false</bool>
+     </property>
+     <property name="currentRow">
+      <number>-1</number>
+     </property>
+     <item>
+      <property name="text">
+       <string>General</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>User interface</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Keyboard shortcuts</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string extracomment="Language settings section.">Language</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Web browser &amp; proxy</string>
+      </property>
+     </item>
+    </widget>
+   </item>
    <item row="0" column="1">
     <widget class="QStackedWidget" name="m_stackedSettings">
      <property name="currentIndex">
@@ -99,9 +155,73 @@
                </rect>
               </property>
               <layout class="QFormLayout" name="formLayout">
-               <property name="fieldGrowthPolicy">
-                <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
-               </property>
+               <item row="1" column="1">
+                <widget class="QGroupBox" name="groupBox_2">
+                 <property name="title">
+                  <string>Skins</string>
+                 </property>
+                 <layout class="QFormLayout" name="formLayout_9">
+                  <item row="0" column="0" colspan="2">
+                   <widget class="QTreeWidget" name="m_treeSkins">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="alternatingRowColors">
+                     <bool>false</bool>
+                    </property>
+                    <property name="indentation">
+                     <number>0</number>
+                    </property>
+                    <property name="rootIsDecorated">
+                     <bool>false</bool>
+                    </property>
+                    <property name="itemsExpandable">
+                     <bool>false</bool>
+                    </property>
+                    <property name="expandsOnDoubleClick">
+                     <bool>false</bool>
+                    </property>
+                    <column>
+                     <property name="text">
+                      <string notr="true">1</string>
+                     </property>
+                    </column>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="m_lblActiveCaption">
+                    <property name="text">
+                     <string>Active skin:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QLabel" name="m_lblActiveContents">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QLabel" name="m_lblSelectedCaption">
+                    <property name="text">
+                     <string>Selected skin:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="1">
+                   <widget class="QLabel" name="m_lblSelectedContents">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
                <item row="0" column="0" colspan="2">
                 <widget class="QGroupBox" name="groupBox">
                  <property name="title">
@@ -164,8 +284,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>576</width>
-            <height>380</height>
+            <width>100</width>
+            <height>30</height>
            </rect>
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -507,62 +627,6 @@ External web browser set on this page is used application-wide. For example, it 
      <property name="standardButtons">
       <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
      </property>
-    </widget>
-   </item>
-   <item row="0" column="0">
-    <widget class="QListWidget" name="m_listSettings">
-     <property name="minimumSize">
-      <size>
-       <width>220</width>
-       <height>0</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>220</width>
-       <height>16777215</height>
-      </size>
-     </property>
-     <property name="showDropIndicator" stdset="0">
-      <bool>false</bool>
-     </property>
-     <property name="alternatingRowColors">
-      <bool>false</bool>
-     </property>
-     <property name="movement">
-      <enum>QListView::Static</enum>
-     </property>
-     <property name="selectionRectVisible">
-      <bool>false</bool>
-     </property>
-     <property name="currentRow">
-      <number>-1</number>
-     </property>
-     <item>
-      <property name="text">
-       <string>General</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>User interface</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Keyboard shortcuts</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string extracomment="Language settings section.">Language</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Web browser &amp; proxy</string>
-      </property>
-     </item>
     </widget>
    </item>
   </layout>

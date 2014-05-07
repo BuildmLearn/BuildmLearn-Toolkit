@@ -41,6 +41,7 @@
 #include "gui/formmain.h"
 #include "gui/custommessagebox.h"
 #include "miscellaneous/application.h"
+#include "miscellaneous/skinfactory.h"
 #include "dynamic-shortcuts/dynamicshortcutswidget.h"
 #include "dynamic-shortcuts/dynamicshortcuts.h"
 
@@ -68,18 +69,38 @@ FormSettings::FormSettings(QWidget *parent)
                                          << tr("Author")
                                          << tr("Email"));
 
+  m_ui->m_treeSkins->setColumnCount(4);
+  m_ui->m_treeSkins->setHeaderHidden(false);
+  m_ui->m_treeSkins->setHeaderLabels(QStringList()
+                                     << /*: Skin list name column. */ tr("Name")
+                                     << /*: Version column of skin list. */ tr("Version")
+                                     << tr("Author")
+                                     << tr("Email"));
+
 #if QT_VERSION >= 0x050000
   // Setup languages.
   m_ui->m_treeLanguages->header()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
   m_ui->m_treeLanguages->header()->setSectionResizeMode(1, QHeaderView::ResizeToContents);
   m_ui->m_treeLanguages->header()->setSectionResizeMode(2, QHeaderView::ResizeToContents);
   m_ui->m_treeLanguages->header()->setSectionResizeMode(3, QHeaderView::ResizeToContents);
+
+  // Setup skins.
+  m_ui->m_treeSkins->header()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
+  m_ui->m_treeSkins->header()->setSectionResizeMode(1, QHeaderView::ResizeToContents);
+  m_ui->m_treeSkins->header()->setSectionResizeMode(2, QHeaderView::ResizeToContents);
+  m_ui->m_treeSkins->header()->setSectionResizeMode(3, QHeaderView::ResizeToContents);
 #else
   // Setup languages.
   m_ui->m_treeLanguages->header()->setResizeMode(0, QHeaderView::ResizeToContents);
   m_ui->m_treeLanguages->header()->setResizeMode(1, QHeaderView::ResizeToContents);
   m_ui->m_treeLanguages->header()->setResizeMode(2, QHeaderView::ResizeToContents);
   m_ui->m_treeLanguages->header()->setResizeMode(3, QHeaderView::ResizeToContents);
+
+  // Setup skins.
+  m_ui->m_treeSkins->header()->setResizeMode(0, QHeaderView::ResizeToContents);
+  m_ui->m_treeSkins->header()->setResizeMode(1, QHeaderView::ResizeToContents);
+  m_ui->m_treeSkins->header()->setResizeMode(2, QHeaderView::ResizeToContents);
+  m_ui->m_treeSkins->header()->setResizeMode(3, QHeaderView::ResizeToContents);
 #endif
 
   // Establish needed connections.
@@ -392,6 +413,33 @@ void FormSettings::loadInterface() {
     }
 #endif
   }
+
+  // Load skin.
+  QString selected_skin = qApp->skinFactory()->selectedSkinName();
+
+  foreach (const Skin &skin, qApp->skinFactory()->installedSkins()) {
+    QTreeWidgetItem *new_item = new QTreeWidgetItem(QStringList() <<
+                                                    skin.m_visibleName <<
+                                                    skin.m_version <<
+                                                    skin.m_author <<
+                                                    skin.m_email);
+    new_item->setData(0, Qt::UserRole, QVariant::fromValue(skin));
+
+    // Add this skin and mark it as active if its active now.
+    m_ui->m_treeSkins->addTopLevelItem(new_item);
+
+    if (skin.m_baseName == selected_skin) {
+      m_ui->m_treeSkins->setCurrentItem(new_item);
+      m_ui->m_lblActiveContents->setText(skin.m_visibleName);
+    }
+  }
+
+  if (m_ui->m_treeSkins->currentItem() == NULL &&
+      m_ui->m_treeSkins->topLevelItemCount() > 0) {
+    // Currently active skin is NOT available, select another one as selected
+    // if possible.
+    m_ui->m_treeSkins->setCurrentItem(m_ui->m_treeSkins->topLevelItem(0));
+  }
 }
 
 void FormSettings::saveInterface() {
@@ -403,6 +451,16 @@ void FormSettings::saveInterface() {
   // Check if icon theme was changed.
   if (selected_icon_theme != original_icon_theme) {
     m_changedDataTexts.append(tr("icon theme changed"));
+  }
+
+  // Save and activate new skin.
+  if (m_ui->m_treeSkins->selectedItems().size() > 0) {
+    Skin active_skin = m_ui->m_treeSkins->currentItem()->data(0, Qt::UserRole).value<Skin>();
+
+    if (qApp->skinFactory()->selectedSkinName() != active_skin.m_baseName) {
+      qApp->skinFactory()->setCurrentSkinName(active_skin.m_baseName);
+      m_changedDataTexts.append(tr("skin changed"));
+    }
   }
 }
 
