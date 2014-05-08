@@ -84,7 +84,10 @@ class Application : public QApplication {
       return m_settings;
     }
 
-    // Access to application-wide close lock.
+    /// \brief Access to application-wide close lock.
+    /// \return Returns pointer to application-wide close lock.
+    /// \remarks Application-wide close lock is used to determine if
+    /// application can be closed securely.
     inline QMutex *closeLock() const {
       return m_closeLock;
     }

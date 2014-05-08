@@ -38,9 +38,14 @@
 #include "gui/formmain.h"
 
 #include <QMutex>
-#include <QtConcurrent/QtConcurrentRun>
 #include <QFuture>
 #include <QFutureWatcher>
+
+#if QT_VERSION >= 0x050000
+#include <QtConcurrent/QtConcurrentRun>
+#else
+#include <QtConcurrentRun>
+#endif
 
 
 Application::Application(int &argc, char **argv)
