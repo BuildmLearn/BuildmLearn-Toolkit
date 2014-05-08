@@ -38,6 +38,9 @@
 #include "gui/formmain.h"
 
 #include <QMutex>
+#include <QtConcurrent/QtConcurrentRun>
+#include <QFuture>
+#include <QFutureWatcher>
 
 
 Application::Application(int &argc, char **argv)
@@ -45,7 +48,6 @@ Application::Application(int &argc, char **argv)
     m_closeLock(new QMutex()),
     m_availableActions(QHash<QString, QAction*>()),
     m_settings(NULL),
-    m_systemFactory(NULL),
     m_skinFactory(NULL),
     m_trayIcon(NULL) {
   connect(this, SIGNAL(aboutToQuit()),
@@ -61,11 +63,7 @@ Application::~Application() {
 }
 
 UpdateCheck Application::checkForUpdates() {
-  if (m_systemFactory == NULL) {
-    m_systemFactory = new SystemFactory(this);
-  }
-
-  return m_systemFactory->checkForUpdates();
+  return SystemFactory::checkForUpdates();
 }
 
 SkinFactory *Application::skinFactory() {
@@ -98,6 +96,43 @@ SystemTrayIcon *Application::trayIcon() {
   return m_trayIcon;
 }
 
+void Application::handleBackgroundUpdatesCheck() {
+  QFutureWatcher<UpdateCheck> *future_watcher = static_cast<QFutureWatcher<UpdateCheck>*>(sender());
+  UpdateCheck updates = future_watcher->result();
+
+  switch (updates.second) {
+    case QNetworkReply::NoError:
+      if (updates.first.m_availableVersion > APP_VERSION) {
+        if (SystemTrayIcon::isSystemTrayActivated()) {
+          trayIcon()->showMessage(tr("Update available"),
+                                  tr("New application update is available."),
+                                  QSystemTrayIcon::Information,
+                                  TRAY_ICON_BUBBLE_TIMEOUT,
+                                  qApp->mainForm(),
+                                  SLOT(showUpdatesAfterBubbleClick()));
+        }
+      }
+      else {
+        if (SystemTrayIcon::isSystemTrayActivated()) {
+          trayIcon()->showMessage(tr("No updates available"),
+                                  tr("No new updates are available."),
+                                  QSystemTrayIcon::Information);
+        }
+      }
+
+      break;
+
+    default:
+      if (SystemTrayIcon::isSystemTrayActivated()) {
+        trayIcon()->showMessage(tr("Update check error"),
+                                tr("Could not check for updates: %1.").arg(NetworkFactory::networkErrorText(updates.second)),
+                                QSystemTrayIcon::Warning);
+      }
+
+      break;
+  }
+}
+
 void Application::checkForUpdatesOnBackground() {
   if (!settings()->value(APP_CFG_GEN,
                          "check_for_updates_startup",
@@ -107,31 +142,10 @@ void Application::checkForUpdatesOnBackground() {
   else {
     qDebug("Checking for updates after application has started.");
 
-    UpdateCheck updates = checkForUpdates();
+    QFutureWatcher<UpdateCheck> *watcher_for_future = new QFutureWatcher<UpdateCheck>(this);
 
-    switch (updates.second) {
-      case QNetworkReply::NoError:
-        if (updates.first.m_availableVersion > APP_VERSION) {
-          trayIcon()->showMessage(tr("Update available"),
-                                  tr("New application update is available."),
-                                  QSystemTrayIcon::Information,
-                                  TRAY_ICON_BUBBLE_TIMEOUT,
-                                  qApp->mainForm(),
-                                  SLOT(showUpdatesAfterBubbleClick()));
-        }
-        else {
-          trayIcon()->showMessage(tr("No updates available"),
-                                  tr("No new updates are available."),
-                                  QSystemTrayIcon::Information);
-        }
-        break;
-
-      default:
-        trayIcon()->showMessage(tr("Update check error"),
-                                tr("Could not check for updates: %1.").arg(NetworkFactory::networkErrorText(updates.second)),
-                                QSystemTrayIcon::Warning);
-        break;
-    }
+    connect(watcher_for_future, SIGNAL(finished()), this, SLOT(handleBackgroundUpdatesCheck()));
+    watcher_for_future->setFuture(QtConcurrent::run(this, &Application::checkForUpdates));
   }
 }
 

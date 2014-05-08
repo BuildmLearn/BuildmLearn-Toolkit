@@ -31,9 +31,6 @@
 #ifndef SYSTEMFACTORY_H
 #define SYSTEMFACTORY_H
 
-#include <QObject>
-
-#include <QMutex>
 #include <QMetaType>
 #include <QHash>
 #include <QPair>
@@ -68,19 +65,18 @@ class UpdateInfo {
 
 Q_DECLARE_METATYPE(UpdateInfo)
 
-class SystemFactory : public QObject {
-    Q_OBJECT
-
+class SystemFactory {
   public:
-    // Constructors and destructors.
-    explicit SystemFactory(QObject *parent = 0);
     virtual ~SystemFactory();
 
     // Performs parsing of downloaded file with list of updates.
-    UpdateInfo parseUpdatesFile(const QByteArray &updates_file);
+    static UpdateInfo parseUpdatesFile(const QByteArray &updates_file);
 
     // Tries to download list with new updates.
-    QPair<UpdateInfo, QNetworkReply::NetworkError> checkForUpdates();
+    static QPair<UpdateInfo, QNetworkReply::NetworkError> checkForUpdates();
+
+  private:
+    explicit SystemFactory();
 };
 
 #endif // SYSTEMFACTORY_H

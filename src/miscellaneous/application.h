@@ -47,11 +47,11 @@
 // Define new qApp macro. Yeaaaaah.
 #define qApp (Application::instance())
 
+
 typedef QPair<UpdateInfo, QNetworkReply::NetworkError> UpdateCheck;
 
 class FormMain;
 class SystemTrayIcon;
-class SystemFactory;
 class SkinFactory;
 class QAction;
 class QMutex;
@@ -122,6 +122,11 @@ class Application : public QApplication {
     }
 
   public slots:
+    /// \brief Schedules check for updates.
+    ///
+    /// Check for updates is executed in separate thread. Result is announced
+    /// via tray icon balloon tip. If tray icon is not available, then
+    /// result is not announced and is suppressed.
     void checkForUpdatesOnBackground();
 
   private slots:
@@ -129,11 +134,12 @@ class Application : public QApplication {
     void onCommitData(QSessionManager &manager);
     void onSaveState(QSessionManager &manager);
 
+    void handleBackgroundUpdatesCheck();
+
   private:
     QMutex *m_closeLock;
     QHash<QString, QAction*> m_availableActions;
     Settings *m_settings;
-    SystemFactory *m_systemFactory;
     SkinFactory *m_skinFactory;
     SystemTrayIcon *m_trayIcon;
     FormMain *m_mainForm;

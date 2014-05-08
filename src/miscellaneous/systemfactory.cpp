@@ -45,11 +45,10 @@
 #include <QDomAttr>
 
 
-SystemFactory::SystemFactory(QObject *parent) : QObject(parent) {
+SystemFactory::SystemFactory() {
 }
 
 SystemFactory::~SystemFactory() {
-  qDebug("Destroying SystemFactory instance.");
 }
 
 QPair<UpdateInfo, QNetworkReply::NetworkError> SystemFactory::checkForUpdates() {
@@ -57,8 +56,8 @@ QPair<UpdateInfo, QNetworkReply::NetworkError> SystemFactory::checkForUpdates() 
   QByteArray releases_xml;
 
   result.second = NetworkFactory::downloadFile(RELEASES_LIST,
-                                                   5000,
-                                                   releases_xml);
+                                               5000,
+                                               releases_xml);
 
   if (result.second == QNetworkReply::NoError) {
     result.first = parseUpdatesFile(releases_xml);

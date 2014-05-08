@@ -59,7 +59,9 @@ bool TrayIconMenu::event(QEvent *event) {
 #endif
 
 SystemTrayIcon::SystemTrayIcon(const QString &icon, QObject *parent)
-  : QSystemTrayIcon(parent)  {
+  : QSystemTrayIcon(parent),
+    m_bubbleClickTarget(NULL),
+    m_bubbleClickSlot(NULL) {
   qDebug("Creating SystemTrayIcon instance.");
 
   setIcon(QIcon(icon));
@@ -70,7 +72,7 @@ SystemTrayIcon::SystemTrayIcon(const QString &icon, QObject *parent)
 }
 
 SystemTrayIcon::~SystemTrayIcon() {
-  //qDebug("Destroying SystemTrayIcon instance.");
+  qDebug("Destroying SystemTrayIcon instance.");
 }
 
 void SystemTrayIcon::showMessage(const QString &title,

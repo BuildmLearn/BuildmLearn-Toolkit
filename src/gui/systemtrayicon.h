@@ -73,6 +73,14 @@ class SystemTrayIcon : public QSystemTrayIcon {
     explicit SystemTrayIcon(const QString &icon, QObject *parent = 0);
     virtual ~SystemTrayIcon();
 
+    /// \brief Displays new balloon tip with message.
+    /// \param title Title of message.
+    /// \param message Content of message.
+    /// \param icon Icon of message.
+    /// \param milliseconds_timeout_hint Number of miliseconds for message to being visible.
+    /// \param click_target Target object for balloon tip click.
+    /// \param click_slot Target object method for balloon tip click.
+    /// \warning Use this in cooperation with isSystemTrayActivated() method.
     void showMessage(const QString &title,
                      const QString &message,
                      MessageIcon icon = Information,
