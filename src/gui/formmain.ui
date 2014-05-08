@@ -31,12 +31,6 @@
     <addaction name="m_actionHelp"/>
     <addaction name="m_actionAboutToolkit"/>
    </widget>
-   <widget class="QMenu" name="n_menuApplication">
-    <property name="title">
-     <string>&amp;Application</string>
-    </property>
-    <addaction name="m_actionQuit"/>
-   </widget>
    <widget class="QMenu" name="m_menuProject">
     <property name="title">
      <string>&amp;Project</string>
@@ -47,6 +41,8 @@
     <addaction name="m_actionLoadProject"/>
     <addaction name="separator"/>
     <addaction name="m_actionGenerateApkFile"/>
+    <addaction name="separator"/>
+    <addaction name="m_actionQuit"/>
    </widget>
    <widget class="QMenu" name="m_menuTools">
     <property name="title">
@@ -54,7 +50,6 @@
     </property>
     <addaction name="m_actionSettings"/>
    </widget>
-   <addaction name="n_menuApplication"/>
    <addaction name="m_menuProject"/>
    <addaction name="m_menuTools"/>
    <addaction name="m_menuHelp"/>
