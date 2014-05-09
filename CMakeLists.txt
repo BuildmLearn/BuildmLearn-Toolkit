@@ -396,7 +396,6 @@ set(APP_HEADERS
   src/miscellaneous/application.h
   src/miscellaneous/settings.h
   src/miscellaneous/iconfactory.h
-  src/miscellaneous/systemfactory.h
   src/miscellaneous/localization.h
   src/miscellaneous/skinfactory.h
 

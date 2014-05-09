@@ -33,11 +33,6 @@
 !include MUI2.nsh
 
 ;--------------------------------
-; Variables definitons.
-
-Var STARTMENU_FOLDER
-
-;--------------------------------
 ; Basic values definitions.
 !define INST_DIR "@CPACK_TEMPORARY_DIRECTORY@"
 
@@ -78,7 +73,6 @@ RequestExecutionLevel admin
 !define MUI_STARTMENUPAGE_REGISTRY_KEY "Software\${APP_NAME}" 
 !define MUI_STARTMENUPAGE_REGISTRY_VALUENAME "Start Menu Folder"
 
-!insertmacro MUI_PAGE_STARTMENU Application $STARTMENU_FOLDER
 !insertmacro MUI_PAGE_INSTFILES
 
 ; Offer user to launch the application right when it is installed.
@@ -109,16 +103,6 @@ RequestExecutionLevel admin
 
 ; Executed when installer starts.
 Function .onInit
-  ReadRegStr $R0 SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APP_NAME}" "UninstallString"
-  IfFileExists $R0 +1 NotInstalled
-  
-  MessageBox MB_OKCANCEL|MB_ICONEXCLAMATION "${APP_NAME} is already installed. $\n$\nClick 'OK' to remove the previous version or 'Cancel' to cancel this upgrade." IDOK Uninstall
-  Quit
- 
-Uninstall: 
-  ExecWait $R0
-
-NotInstalled:
   IntOp $0 ${SF_SELECTED} | ${SF_RO}
   SectionSetFlags ${Core} $0
 FunctionEnd
@@ -137,6 +121,14 @@ FunctionEnd
 
 ; Installer sections.
 Section "!Core" Core
+  ReadRegStr $R0 SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APP_NAME}" "UninstallString"
+  IfFileExists $R0 +1 NotInstalled
+  MessageBox MB_OK|MB_ICONEXCLAMATION "${APP_NAME} is already installed. $\n$\nClick 'OK' to uninstall it then continue with current installation." IDOK Uninstall
+  
+Uninstall:  
+  ExecWait '"$R0" /S'
+
+NotInstalled:
   SetOutPath "$INSTDIR"
   
   ; Install core application files.
@@ -179,15 +171,6 @@ Section "!Core" Core
   Push "Contact"
   Push "@CPACK_NSIS_CONTACT@"
   Call ConditionalAddToRegisty
-  
-  !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
-  
-  ;Create shortcuts.
-  CreateDirectory "$SMPROGRAMS\$STARTMENU_FOLDER"
-  CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\${APP_NAME}.lnk" "$INSTDIR\${EXE_NAME}"
-  CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\Uninstall.lnk" "$INSTDIR\Uninstall.exe"
-  
-  !insertmacro MUI_STARTMENU_WRITE_END
 SectionEnd
 
 Section "Desktop Icon" DesktopIcon
@@ -198,14 +181,22 @@ Section "Quick Launch Icon" QuickLaunchIcon
   CreateShortCut "$QUICKLAUNCH\${APP_NAME}.lnk" "$INSTDIR\${EXE_NAME}"
 SectionEnd
 
+Section "Start Menu Shortcuts" StartMenuShortcuts
+  CreateDirectory "$SMPROGRAMS\${APP_NAME}"
+  CreateShortCut "$SMPROGRAMS\${APP_NAME}\${APP_NAME}.lnk" "$INSTDIR\${EXE_NAME}"
+  CreateShortCut "$SMPROGRAMS\${APP_NAME}\Uninstall.lnk" "$INSTDIR\Uninstall.exe"
+SectionEnd
+
 LangString DESC_Core ${LANG_ENGLISH} "Core installation files for ${APP_NAME}."
 LangString DESC_DesktopIcon ${LANG_ENGLISH} "Desktop icon for ${APP_NAME}."
 LangString DESC_QuickLaunchIcon ${LANG_ENGLISH} "Quick launch icon for ${APP_NAME}."
+LangString DESC_StartMenuShortcuts ${LANG_ENGLISH} "Start Menu Shortcuts for ${APP_NAME}."
 
 !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
   !insertmacro MUI_DESCRIPTION_TEXT ${Core} $(DESC_Core)
   !insertmacro MUI_DESCRIPTION_TEXT ${DesktopIcon} $(DESC_DesktopIcon)
   !insertmacro MUI_DESCRIPTION_TEXT ${QuickLaunchIcon} $(DESC_QuickLaunchIcon)
+  !insertmacro MUI_DESCRIPTION_TEXT ${StartMenuShortcuts} $(DESC_StartMenuShortcuts)
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
 
 ; Uninstaller section.
@@ -223,12 +214,10 @@ Section "Uninstall"
   ; Remove rest of installed files.
   ; Custom files are left intact.
   RMDir "$INSTDIR"
-  
-  !insertmacro MUI_STARTMENU_GETFOLDER Application $STARTMENU_FOLDER
-  
-  Delete "$SMPROGRAMS\$STARTMENU_FOLDER\${APP_NAME}.lnk"
-  Delete "$SMPROGRAMS\$STARTMENU_FOLDER\Uninstall.lnk"
-  RMDir "$SMPROGRAMS\$STARTMENU_FOLDER"
+    
+  Delete "$SMPROGRAMS\${APP_NAME}\${APP_NAME}.lnk"
+  Delete "$SMPROGRAMS\${APP_NAME}\Uninstall.lnk"
+  RMDir "$SMPROGRAMS\${APP_NAME}"
   
   Delete "$DESKTOP\${APP_NAME}.lnk"
   Delete "$QUICKLAUNCH\${APP_NAME}.lnk"
