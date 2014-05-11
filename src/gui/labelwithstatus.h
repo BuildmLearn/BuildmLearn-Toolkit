@@ -36,11 +36,12 @@
 #include <QLabel>
 
 
+/// \brief Iconified label widget.
 class LabelWithStatus : public WidgetWithStatus {
     Q_OBJECT
 
   public:
-    // Constructors and destructors.
+    /// \brief Constructor.
     explicit LabelWithStatus(QWidget *parent = 0);
     virtual ~LabelWithStatus();
 
@@ -48,7 +49,8 @@ class LabelWithStatus : public WidgetWithStatus {
                    const QString &label_text,
                    const QString &status_text);
 
-    // Access to label.
+    /// \brief Access to label.
+    /// \return Returns pointer to label of the widget.
     inline QLabel *label() const {
       return static_cast<QLabel*>(m_wdgInput);
     }

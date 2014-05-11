@@ -34,20 +34,27 @@
 #include <QToolButton>
 
 
+/// \brief Tool button without frame.
+///
+/// This class represents tool button with simple graphics,
+/// no frames, no mouse hover shadows or animations.
 class PlainToolButton : public QToolButton {
     Q_OBJECT
 
   public:
-    // Contructors and destructors.
+    // Contructor.
     explicit PlainToolButton(QWidget *parent = 0);
     virtual ~PlainToolButton();
 
-    // Padding changers.
+    /// \brief Padding accessor.
+    /// \return Returns padding.
+    /// \see setPadding()
     int padding() const;
     void setPadding(int padding);
 
   protected:
-    // Custom look.
+    /// \brief Custom look.
+    /// \param e Info about painting event.
     void paintEvent(QPaintEvent *e);
 
   private:

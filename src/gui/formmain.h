@@ -59,6 +59,7 @@ class FormMain : public QMainWindow {
     virtual ~FormMain();
 
     /// \brief Access to tray menu.
+    /// \see SystemTrayIcon
     inline QMenu *trayMenu() const {
       return m_trayMenu;
     }
@@ -86,7 +87,12 @@ class FormMain : public QMainWindow {
     /// \param force_hide If true, then window is not switched but hidden.
     void switchVisibility(bool force_hide = false);
 
+    /// \brief Displays window.
+    /// \see display(), switchVisibility()
+    void show();
+
     /// \brief Displays the window.
+    /// \see show()
     void display();
 
     void startProject(int);
@@ -103,8 +109,8 @@ class FormMain : public QMainWindow {
     void closeEvent(QCloseEvent *event);
 
   private:
+    bool m_firstTimeShow;
     Ui::FormMain *m_ui;
-
     QMenu *m_trayMenu;
 
     // Other widgets

@@ -42,7 +42,7 @@ class CustomMessageBox : public QMessageBox {
     Q_OBJECT
 
   public:
-    // Constructors and destructors.
+    /// \brief Constructor.
     explicit CustomMessageBox(QWidget *parent = 0);
     virtual ~CustomMessageBox();
 

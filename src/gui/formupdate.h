@@ -46,6 +46,8 @@ namespace Ui {
 
 class Downloader;
 
+/// \brief Dialog for showing update details.
+/// \see UpdateInfo, UpdateUrl, SystemFactory::checkForUpdates()
 class FormUpdate : public QDialog {
     Q_OBJECT
 

@@ -43,8 +43,17 @@ FormHelp::FormHelp(bool do_not_show_again_enabled, QWidget *parent)
 
   //: About toolkit dialog title.
   setWindowTitle(tr("Help"));
+
+  // Establish connections.
+  connect(this, SIGNAL(accepted()), this, SLOT(onAccepted()));
 }
 
 FormHelp::~FormHelp() {
   delete m_ui;
+}
+
+void FormHelp::onAccepted() {
+  qApp->settings()->setValue(APP_CFG_GUI,
+                             "show_help_startup",
+                             !m_ui->m_cmbDoNotShowAgain->isChecked());
 }

@@ -38,10 +38,13 @@
 class PlainToolButton;
 class QHBoxLayout;
 
+/// \brief Base class for custom widgets with status icons.
+/// \see LabelWithStatus.
 class WidgetWithStatus : public QWidget {
     Q_OBJECT
 
   public:
+    /// \brief Specifies type of status icon.
     enum StatusType {
       Information,
       Warning,
@@ -49,11 +52,13 @@ class WidgetWithStatus : public QWidget {
       Ok
     };
 
-    // Constructors and destructors.
+    // Constructor.
     explicit WidgetWithStatus(QWidget *parent);
     virtual ~WidgetWithStatus();
 
-    // Sets custom status for this control.
+    /// \brief Sets custom status for this control.
+    /// \param status Status to set.
+    /// \param tooltip_text Custom tooltip text to display.
     void setStatus(StatusType status, const QString &tooltip_text);
 
     inline StatusType status() const {
@@ -71,6 +76,5 @@ class WidgetWithStatus : public QWidget {
     QIcon m_iconError;
     QIcon m_iconOk;
 };
-
 
 #endif // WIDGETWITHSTATUS_H

@@ -47,7 +47,9 @@
 
 
 FormMain::FormMain(QWidget *parent) :
-  QMainWindow(parent), m_ui(new Ui::FormMain) {
+  QMainWindow(parent),
+  m_firstTimeShow(true),
+  m_ui(new Ui::FormMain) {
   m_ui->setupUi(this);
 
   setupActionShortcuts();
@@ -231,6 +233,18 @@ void FormMain::switchVisibility(bool force_hide) {
   }
   else {
     display();
+  }
+}
+
+void FormMain::show() {
+  QMainWindow::show();
+
+  if (m_firstTimeShow) {
+    m_firstTimeShow = false;
+
+    if (qApp->settings()->value(APP_CFG_GUI, "show_help_startup", true).toBool()) {
+      showHelp(true);
+    }
   }
 }
 

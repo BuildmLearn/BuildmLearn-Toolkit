@@ -52,6 +52,9 @@ class FormHelp : public QDialog {
     explicit FormHelp(bool do_not_show_again_enabled, QWidget *parent = 0);
     virtual ~FormHelp();
 
+  private slots:
+    void onAccepted();
+
   private:
     Ui::FormHelp *m_ui;
 };
