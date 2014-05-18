@@ -45,6 +45,8 @@ struct Skin {
     QString m_email;
     QString m_version;
     QString m_rawData;
+
+    QString m_simulatorBackgroundMain;
 };
 
 Q_DECLARE_METATYPE(Skin)

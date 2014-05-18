@@ -163,6 +163,11 @@ void FormMain::setupIcons() {
   m_ui->m_actionAboutToolkit->setIcon(factory->fromTheme("application-about"));
   m_ui->m_actionCheckForUpdates->setIcon(factory->fromTheme("check-for-updates"));
   m_ui->m_actionHelp->setIcon(factory->fromTheme("dialog-question"));
+  m_ui->m_actionNewProject->setIcon(factory->fromTheme("project-new"));
+  m_ui->m_actionSaveProject->setIcon(factory->fromTheme("project-save"));
+  m_ui->m_actionSaveProjectAs->setIcon(factory->fromTheme("project-save-as"));
+  m_ui->m_actionLoadProject->setIcon(factory->fromTheme("project-load"));
+  m_ui->m_actionGenerateApkFile->setIcon(factory->fromTheme("project-generate"));
 }
 
 void FormMain::setupToolbar() {

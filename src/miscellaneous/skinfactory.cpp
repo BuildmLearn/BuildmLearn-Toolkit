@@ -160,6 +160,15 @@ Skin SkinFactory::skinInfo(const QString &skin_name, bool *ok) {
   // Obtain other information.
   skin.m_baseName = QString(skin_name).replace(QDir::separator(), '/');
 
+  // Obtain simulator images.
+  // TODO: ....
+  QDomNode simulator_node = dokument.namedItem("simulator");
+
+  /*skin.m_simulatorBackgroundMain =
+      APP_SKIN_PATH + QDir::separator() +
+      skin.m_baseName + QDir::separator() +
+      simulator_node.namedItem("main").toElement().text();*/
+
   // Free resources.
   skin_file.close();
   skin_file.deleteLater();
