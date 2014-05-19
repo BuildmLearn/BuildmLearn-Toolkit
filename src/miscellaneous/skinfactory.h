@@ -37,8 +37,10 @@
 #include <QMetaType>
 
 
+/// \brief Skin representation.
 struct Skin {
     QString m_baseName;
+    QString m_baseFolder;
     QString m_visibleName;
     QStringList m_stylesNames;
     QString m_author;
@@ -51,31 +53,41 @@ struct Skin {
 
 Q_DECLARE_METATYPE(Skin)
 
+///
+/// \brief Main features for skinning.
 class SkinFactory : public QObject {
     Q_OBJECT
 
   public:
-    // Constructor.
+    /// \brief Constructor.
     explicit SkinFactory(QObject *parent = 0);
 
-    // Destructor.
+    /// \brief Destructor.
     virtual ~SkinFactory();
 
-    // Loads skin name from settings and sets it as active.
+    /// \brief Loads skin name from settings and sets it as active.
     void loadCurrentSkin();
 
-    // Returns the name of the skin, that should be activated
-    // after application restart.
+    /// \brief Name of this "activated" skin.
+    /// \return Returns the name of the skin, that should be activated
+    /// after application restart.
     QString selectedSkinName();
 
-    // Gets skin about a particular skin.
+    /// \brief Gets skin about a particular skin.
     Skin skinInfo(const QString &skin_name, bool *ok = NULL);
 
-    // Returns list of installed skins.
+    /// \brief Returns list of installed skins.
     QList<Skin> installedSkins();
 
-    // Sets the desired skin as the active one if it exists.
+    /// \brief Sets the desired skin as the active one if it exists.
     void setCurrentSkinName(const QString &skin_name);
+
+    /// \brief Access to activated skin.
+    /// \return Returns Skin instance which holds data of currently
+    /// active skin.
+    inline Skin currentSkin() const {
+      return m_currentSkin;
+    }
 
   private:
     // Loads the skin from give skin_data.

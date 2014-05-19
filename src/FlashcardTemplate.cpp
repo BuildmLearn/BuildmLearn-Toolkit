@@ -29,7 +29,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 #include "FlashcardTemplate.h"
 
 #include "definitions/definitions.h"
-
+#include "miscellaneous/application.h"
+#include "miscellaneous/skinfactory.h"
 
 #include <QScrollArea>
 #include <QVBoxLayout>
@@ -122,7 +123,7 @@ widget1_vlayout->setAlignment(Qt::AlignTop);
     QVBoxLayout* widget3_vlayout=  new QVBoxLayout(widget3);
 
     phoneBody->setFixedSize(327,639);
-    phoneBody->setStyleSheet("background-image: url(:/images/phone.png)");
+    phoneBody->setStyleSheet(QString("background-image: url(%1)").arg(qApp->skinFactory()->currentSkin().m_simulatorBackgroundMain));
 
     phoneWidget = new QStackedWidget(phoneBody);
     phoneWidget->setStyleSheet("background: #255593; color: white;");

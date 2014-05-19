@@ -67,21 +67,7 @@ void SkinFactory::loadCurrentSkin() {
 }
 
 bool SkinFactory::loadSkinFromData(const Skin &skin) {
-  QStringList skin_parts = skin.m_baseName.split('/', QString::SkipEmptyParts);
-
-  // Skin does not contain leading folder name or the actual skin file name.
-  if (skin_parts.size() != 2) {
-    qDebug("Loading of sking '%s' failed because skin name does not contain "
-           "base folder name or the actual skin name.",
-           qPrintable(skin.m_baseName));
-    return false;
-  }
-  else {
-    qDebug("Loading skin '%s'.", qPrintable(skin.m_baseName));
-  }
-
-  // Create needed variables and create QFile object representing skin contents.
-  QString skin_folder = skin_parts.at(0);
+  qDebug("Loading skin '%s'.", qPrintable(skin.m_baseName));
 
   // Here we use "/" instead of QDir::separator() because CSS2.1 url field
   // accepts '/' as path elements separator.
@@ -96,7 +82,7 @@ bool SkinFactory::loadSkinFromData(const Skin &skin) {
   if (!raw_data.isEmpty()) {
     QString parsed_data = raw_data.replace("##",
                                            APP_SKIN_PATH + '/' +
-                                           skin_folder);
+                                           skin.m_baseFolder);
     qApp->setStyleSheet(parsed_data);
   }
 
@@ -110,6 +96,7 @@ bool SkinFactory::loadSkinFromData(const Skin &skin) {
 
   return true;
 }
+
 
 void SkinFactory::setCurrentSkinName(const QString &skin_name) {
   qApp->settings()->setValue(APP_CFG_GUI, "skin", skin_name);
@@ -159,15 +146,14 @@ Skin SkinFactory::skinInfo(const QString &skin_name, bool *ok) {
 
   // Obtain other information.
   skin.m_baseName = QString(skin_name).replace(QDir::separator(), '/');
+  skin.m_baseFolder = skin.m_baseName.split('/', QString::SkipEmptyParts).at(0);
 
-  // Obtain simulator images.
-  // TODO: ....
-  QDomNode simulator_node = dokument.namedItem("simulator");
+  // Obtain simulator image.
+  QString simulator_image = skin_node.namedItem("simulator").
+                            namedItem("main").toElement().text();
 
-  /*skin.m_simulatorBackgroundMain =
-      APP_SKIN_PATH + QDir::separator() +
-      skin.m_baseName + QDir::separator() +
-      simulator_node.namedItem("main").toElement().text();*/
+  skin.m_simulatorBackgroundMain = APP_SKIN_PATH + '/' + skin.m_baseFolder + '/' + simulator_image;
+  skin.m_simulatorBackgroundMain = skin.m_simulatorBackgroundMain.replace('\\', '/');
 
   // Free resources.
   skin_file.close();

@@ -112,23 +112,6 @@ public:
 // QWidget *simulator(Resolution resolution), kde Resuolution
 // bude vycet Small, Medium, Large atd atd.
 
-// TODO: cmake uz mam nastavenej module path
-// do module path pridat dva soubory
-// podle http://www.cmake.org/Wiki/CMake:CPackNSISAdvancedTips
-// nejdriv nastavit cpack_generator na nsis a dat make package
-// v buildovacim adresari (viz odkaz)
-// to vygeneruje Project.nsi a ten dat do resources/cmake
-// adresare (prejmenovat na NSIS.template.in)
-// spolu s NSIS.InstallOptions.ini.in a nahradit
-// ---> LEPSI vzit soubor originalni z cmake, viz nize
-//
-// vsecko makrama a proměnnejma cmakeovskejma
-// dalsi zajimavy soubory
-//   c:\CMake\share\cmake-2.8\Modules\CPackNSIS.cmake
-//   c:\CMake\share\cmake-2.8\Modules\NSIS.InstallOptions.ini.in
-//   c:\CMake\share\cmake-2.8\Modules\NSIS.template.in
-
-
 
 /// \mainpage Welcome to documentation!!!
 /// The BuildmLearn Toolkit is an easy-to-use

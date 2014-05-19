@@ -7,4 +7,7 @@
   </author>
   <style/>
   <data></data>
+  <simulator>
+    <main>simulator/phone.png</main>
+  </simulator>
 </skin>
