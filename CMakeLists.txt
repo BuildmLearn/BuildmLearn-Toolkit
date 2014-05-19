@@ -344,6 +344,7 @@ set(APP_SOURCES
   src/gui/formabout.cpp
   src/gui/formsettings.cpp
   src/gui/formhelp.cpp
+  src/gui/lineeditwithstatus.cpp
 
   src/dynamic-shortcuts/shortcutcatcher.cpp
   src/dynamic-shortcuts/shortcutbutton.cpp
@@ -388,6 +389,7 @@ set(APP_HEADERS
   src/gui/formabout.h
   src/gui/formsettings.h
   src/gui/formhelp.h
+  src/gui/lineeditwithstatus.h
 
   src/dynamic-shortcuts/dynamicshortcutswidget.h
   src/dynamic-shortcuts/shortcutcatcher.h
@@ -636,6 +638,8 @@ elseif(UNIX)
           DESTINATION share/${APP_LOW_NAME})
   install(FILES ${CMAKE_CURRENT_BINARY_DIR}/resources/desktop/${APP_LOW_NAME}.desktop
           DESTINATION share/applications)
+  install(FILES ${APP_SIGNAPK}
+          DESTINATION share/${APP_LOW_NAME}/signapk)
   install(FILES resources/graphics/${APP_LOW_NAME}_128.png
           DESTINATION share/pixmaps
           RENAME ${APP_LOW_NAME}.png)
