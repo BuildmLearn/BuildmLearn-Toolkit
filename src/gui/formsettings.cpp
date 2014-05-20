@@ -117,6 +117,7 @@ FormSettings::FormSettings(QWidget *parent)
 
   // Load all settings.
   loadGeneral();
+  loadExternalUtilites();
   loadInterface();
   loadShortcuts();
   loadProxy();
@@ -237,6 +238,7 @@ void FormSettings::saveSettings() {
 
   // Save all settings.
   saveGeneral();
+  saveExternalUtilites();
   saveInterface();
   saveShortcuts();
   saveProxy();
@@ -259,6 +261,14 @@ void FormSettings::saveGeneral() {
   qApp->settings()->setValue(APP_CFG_GEN,
                              "check_for_updates_startup",
                              m_ui->m_checkCheckForUpdatesOnStartup->isChecked());
+}
+
+void FormSettings::loadExternalUtilites() {
+  // TODO: load
+}
+
+void FormSettings::saveExternalUtilites() {
+  // TODO: save
 }
 
 void FormSettings::onProxyTypeChanged(int index) {

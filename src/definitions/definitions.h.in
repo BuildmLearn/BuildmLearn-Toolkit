@@ -105,7 +105,6 @@
 
 // System-dependent constants.
 #if defined(Q_OS_LINUX)
-#define APP_7ZA_EXECUTABLE "7za"
 #define APP_LANG_PATH APP_PREFIX + QString("/share/@APP_LOW_NAME@/l10n")
 #define APP_SKIN_PATH APP_PREFIX + QString("/share/@APP_LOW_NAME@/skins")
 #define APP_INFO_PATH APP_PREFIX + QString("/share/@APP_LOW_NAME@/information")
@@ -113,9 +112,9 @@
 #define APP_MISC_PATH APP_PREFIX + QString("/share/@APP_LOW_NAME@/misc")
 #define APP_TEMPLATES_PATH APP_PREFIX + QString("/share/@APP_LOW_NAME@/templates")
 #define APP_ICON_PATH APP_PREFIX + QString("/share/pixmaps/@APP_LOW_NAME@.png")
-#define APP_SIGNAPK_PATH APP_PREFIX + QString("/share/signapk/signapk.jar")
+#define APP_SIGNAPK_PATH APP_PREFIX + QString("/share/binaries/signapk/signapk.jar")
+#define APP_ZIP_PATH "/usr/bin/zip"
 #elif defined(Q_OS_OSX)
-#define APP_7ZA_EXECUTABLE "7za"
 #define APP_LANG_PATH APP_PREFIX + QString("/l10n")
 #define APP_SKIN_PATH APP_PREFIX + QString("/skins")
 #define APP_INFO_PATH APP_PREFIX + QString("/information")
@@ -124,8 +123,8 @@
 #define APP_TEMPLATES_PATH APP_PREFIX + QString("/templates")
 #define APP_ICON_PATH APP_PREFIX + QString("/@APP_LOW_NAME@.png")
 #define APP_SIGNAPK_PATH APP_PREFIX + QString("/binaries/signapk/signapk.jar")
+#define APP_ZIP_PATH APP_PREFIX + QString("/binaries/zip/zip")
 #elif defined(Q_OS_WIN) || defined(Q_OS_OS2)
-#define APP_7ZA_EXECUTABLE "7za.exe"
 #define APP_LANG_PATH QApplication::applicationDirPath() + QString("/l10n")
 #define APP_SKIN_PATH QApplication::applicationDirPath() + QString("/skins")
 #define APP_INFO_PATH QApplication::applicationDirPath()
@@ -133,7 +132,8 @@
 #define APP_MISC_PATH QApplication::applicationDirPath() + QString("/misc")
 #define APP_TEMPLATES_PATH QApplication::applicationDirPath() + QString("/templates")
 #define APP_ICON_PATH QApplication::applicationDirPath() + QString("/@APP_LOW_NAME@.png")
-#define APP_SIGNAPK_PATH QApplication::applicationDirPath() + QString("/signapk/signapk.jar")
+#define APP_SIGNAPK_PATH QApplication::applicationDirPath() + QString("/binaries/signapk/signapk.jar")
+#define APP_ZIP_PATH QApplication::applicationDirPath() + QString("/binaries/zip/zip.exe")
 #endif
 
 #endif // DEFS_H

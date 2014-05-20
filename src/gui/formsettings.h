@@ -72,6 +72,9 @@ class FormSettings : public QDialog {
     void loadGeneral();
     void saveGeneral();
 
+    void loadExternalUtilites();
+    void saveExternalUtilites();
+
     void loadInterface();
     void saveInterface();
 

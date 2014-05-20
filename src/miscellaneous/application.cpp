@@ -30,7 +30,6 @@
 
 #include "miscellaneous/application.h"
 
-#include "definitions/definitions.h"
 #include "miscellaneous/systemfactory.h"
 #include "miscellaneous/skinfactory.h"
 #include "network-web/networkfactory.h"
@@ -77,6 +76,18 @@ SkinFactory *Application::skinFactory() {
   }
 
   return m_skinFactory;
+}
+
+void Application::setZupUtilityPath(const QString& zip_path) {
+  settings()->setValue(APP_CFG_GEN,
+                       "zip_path",
+                       zip_path);
+}
+
+void Application::setSignApkUtilityPath(const QString& signapk_path) {
+  settings()->value(APP_CFG_GEN,
+                    "signapk_path",
+                    signapk_path);
 }
 
 QHash<QString, QAction *> Application::availableActions() {

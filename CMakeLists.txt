@@ -556,16 +556,21 @@ if(WIN32 OR OS2)
 
   if(WIN32)
     # Install custom binary files for windows, dlls, exes.
-    install(FILES ${APP_7ZA}
-            DESTINATION ./7za)
+    #install(FILES ${APP_7ZA}
+    #        DESTINATION ./7za)
     install(FILES ${APP_DLLS_QT4_MSVS2010}
             DESTINATION ./)
+    install(DIRECTORY resources/binaries/windows/zip
+            DESTINATION ./binaries)
+  else(WIN32)
+    install(DIRECTORY resources/binaries/os2/zip
+            DESTINATION ./binaries)
   endif(WIN32)
 
   install(DIRECTORY resources/skins
           DESTINATION ./)
   install(FILES ${APP_SIGNAPK}
-          DESTINATION ./signapk)
+          DESTINATION ./binaries/signapk)
   install(FILES resources/graphics/${APP_LOW_NAME}_128.png
           DESTINATION ./
           RENAME ${APP_LOW_NAME}.png)
@@ -607,6 +612,8 @@ elseif(APPLE)
 
   install(DIRECTORY resources/skins
           DESTINATION ${APPLE_PREFIX})
+  #install(DIRECTORY resources/binaries/macosx/zip
+  #        DESTINATION ${APPLE_PREFIX}/binaries)
   install(FILES ${APP_SIGNAPK}
           DESTINATION ${APPLE_PREFIX}/binaries/signapk)
   install(FILES resources/graphics/${APP_LOW_NAME}_128.png
@@ -638,8 +645,9 @@ elseif(UNIX)
           DESTINATION share/${APP_LOW_NAME})
   install(FILES ${CMAKE_CURRENT_BINARY_DIR}/resources/desktop/${APP_LOW_NAME}.desktop
           DESTINATION share/applications)
+
   install(FILES ${APP_SIGNAPK}
-          DESTINATION share/${APP_LOW_NAME}/signapk)
+          DESTINATION share/${APP_LOW_NAME}/binaries/signapk)
   install(FILES resources/graphics/${APP_LOW_NAME}_128.png
           DESTINATION share/pixmaps
           RENAME ${APP_LOW_NAME}.png)

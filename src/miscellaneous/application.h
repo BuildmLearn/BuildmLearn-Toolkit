@@ -33,6 +33,7 @@
 
 #include <QApplication>
 
+#include "definitions/definitions.h"
 #include "miscellaneous/settings.h"
 #include "miscellaneous/systemfactory.h"
 
@@ -95,6 +96,22 @@ class Application : public QApplication {
     /// \brief Access to application-wide skin facilities.
     /// \return Returns pointer to skin facilities.
     SkinFactory *skinFactory();
+
+    inline QString zipUtilityPath() {
+      return settings()->value(APP_CFG_GEN,
+                               "zip_path",
+                               QString(APP_ZIP_PATH)).toString();
+    }
+
+    void setZupUtilityPath(const QString &zip_path);
+
+    inline QString signApkUtlityPath() {
+      return settings()->value(APP_CFG_GEN,
+                               "signapk_path",
+                               QString(APP_SIGNAPK_PATH)).toString();
+    }
+
+    void setSignApkUtilityPath(const QString &signapk_path);
 
     /// \brief Access to main application form.
     /// \return Returns pointer to main application form.

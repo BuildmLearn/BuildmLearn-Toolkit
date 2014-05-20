@@ -653,7 +653,7 @@ External web browser set on this page is used application-wide. For example, it 
           </widget>
          </item>
          <item>
-          <widget class="LabelWithStatus" name="m_lblFetchMetadata" native="true">
+          <widget class="LabelWithStatus" name="m_lblExternalSignapk" native="true">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
              <horstretch>0</horstretch>
@@ -663,7 +663,6 @@ External web browser set on this page is used application-wide. For example, it 
            <property name="layoutDirection">
             <enum>Qt::RightToLeft</enum>
            </property>
-           <zorder>m_btnSelectSignapk</zorder>
           </widget>
          </item>
         </layout>
@@ -685,7 +684,7 @@ External web browser set on this page is used application-wide. For example, it 
           </widget>
          </item>
          <item>
-          <widget class="LabelWithStatus" name="m_lblFetchMetadata_2" native="true">
+          <widget class="LabelWithStatus" name="m_lblExternalZip" native="true">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
              <horstretch>0</horstretch>
