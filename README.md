@@ -11,7 +11,7 @@ Packages
 You can use source code tarball available direct from here to build the software. Precompiled binary packages are available for some other platforms:
 
 * [OBS (Git version)](http://software.opensuse.org/download.html?project=home%3Askunkos%3Abuildmlearn&package=buildmlearn-toolkit-git)  ~Archlinux, openSUSE, Fedora, *Ubuntu, Debian,
-* TBA  ~Windows (XP or newer),
+* [testing NSIS installers](https://drive.google.com/folderview?id=0B8XNkQ-jUoBYYjMzd3laRHROMnM&usp=drive_web)  ~Windows (XP or newer),
 * TBA  ~OS/2 (eComStation).
 
 How to build
@@ -21,6 +21,7 @@ Information regarding build process can be found in CMakeLists.txt file.
 Links
 -----
 * [www.buildmlearn.org](http://buildmlearn.org/)  ~homepage,
+* [www.martin-rotter.8u.cz](http://www.martin-rotter.8u.cz/)  ~author's homepage,
 * [www.transifex.com/projects/p/buildmlearn-toolkit](https://www.transifex.com/projects/p/buildmlearn-toolkit/)  ~translations,
 * [www.build.opensuse.org/project/show/home:skunkos:buildmlearn] (https://build.opensuse.org/project/show/home:skunkos:buildmlearn)  ~OBS homepage,
 * [www.cmake.org](http://www.cmake.org/)  ~build system,
