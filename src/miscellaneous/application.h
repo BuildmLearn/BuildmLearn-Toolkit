@@ -97,21 +97,41 @@ class Application : public QApplication {
     /// \return Returns pointer to skin facilities.
     SkinFactory *skinFactory();
 
+    /// \brief Access to "zip" utility path.
+    /// \return Returns path to "zip" utlity.
     inline QString zipUtilityPath() {
       return settings()->value(APP_CFG_GEN,
                                "zip_path",
                                QString(APP_ZIP_PATH)).toString();
     }
 
+    /// \brief Sets new path to "zip".
+    /// \param zip_path Path to "zip".
     void setZupUtilityPath(const QString &zip_path);
 
+    /// \brief Access to path to "SIGNAPK" utility.
+    /// \return Return path to "SIGNAPK".
     inline QString signApkUtlityPath() {
       return settings()->value(APP_CFG_GEN,
                                "signapk_path",
                                QString(APP_SIGNAPK_PATH)).toString();
     }
 
+    /// \brief Sets new path to "SIGNAPK".
+    /// \param signapk_path New path to "SIGNAPK".
     void setSignApkUtilityPath(const QString &signapk_path);
+
+    inline QString javaInterpreterPath() {
+      return settings()->value(APP_CFG_GEN,
+                               "java_path",
+                               QString(APP_JAVA_PATH)).toString();
+    }
+
+    void setJavaInterpreterPath(const QString &java_path) {
+      settings()->setValue(APP_CFG_GEN,
+                           "java_path",
+                           java_path);
+    }
 
     /// \brief Access to main application form.
     /// \return Returns pointer to main application form.

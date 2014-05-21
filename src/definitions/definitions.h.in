@@ -112,8 +112,10 @@
 #define APP_MISC_PATH APP_PREFIX + QString("/share/@APP_LOW_NAME@/misc")
 #define APP_TEMPLATES_PATH APP_PREFIX + QString("/share/@APP_LOW_NAME@/templates")
 #define APP_ICON_PATH APP_PREFIX + QString("/share/pixmaps/@APP_LOW_NAME@.png")
-#define APP_SIGNAPK_PATH APP_PREFIX + QString("/share/binaries/signapk/signapk.jar")
+#define APP_SIGNAPK_PATH APP_PREFIX + QString("/share/@APP_LOW_NAME@/binaries/signapk/signapk.jar")
+#define APP_CERT_PATH APP_PREFIX + QString("/share/@APP_LOW_NAME@/certificates")
 #define APP_ZIP_PATH "/usr/bin/zip"
+#define APP_JAVA_PATH "/usr/bin/java"
 #elif defined(Q_OS_OSX)
 #define APP_LANG_PATH APP_PREFIX + QString("/l10n")
 #define APP_SKIN_PATH APP_PREFIX + QString("/skins")
@@ -123,7 +125,9 @@
 #define APP_TEMPLATES_PATH APP_PREFIX + QString("/templates")
 #define APP_ICON_PATH APP_PREFIX + QString("/@APP_LOW_NAME@.png")
 #define APP_SIGNAPK_PATH APP_PREFIX + QString("/binaries/signapk/signapk.jar")
-#define APP_ZIP_PATH APP_PREFIX + QString("/binaries/zip/zip")
+#define APP_CERT_PATH APP_PREFIX + QString("/certificates")
+#define APP_ZIP_PATH APP_PREFIX + QString("zip")
+#define APP_JAVA_PATH "java"
 #elif defined(Q_OS_WIN) || defined(Q_OS_OS2)
 #define APP_LANG_PATH QApplication::applicationDirPath() + QString("/l10n")
 #define APP_SKIN_PATH QApplication::applicationDirPath() + QString("/skins")
@@ -133,7 +137,9 @@
 #define APP_TEMPLATES_PATH QApplication::applicationDirPath() + QString("/templates")
 #define APP_ICON_PATH QApplication::applicationDirPath() + QString("/@APP_LOW_NAME@.png")
 #define APP_SIGNAPK_PATH QApplication::applicationDirPath() + QString("/binaries/signapk/signapk.jar")
+#define APP_CERT_PATH QApplication::applicationDirPath() + QString("/certificates")
 #define APP_ZIP_PATH QApplication::applicationDirPath() + QString("/binaries/zip/zip.exe")
+#define APP_JAVA_PATH "java.exe"
 #endif
 
 #endif // DEFS_H

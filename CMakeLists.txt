@@ -449,11 +449,6 @@ set(APP_SIGNAPK
 )
 
 if(WIN32)
-  set(APP_7ZA
-    resources/binaries/windows/7za/7za.exe
-    resources/binaries/windows/7za/7za_license.txt
-  )
-
   set(APP_DLLS_QT4_MSVS2010
     resources/binaries/windows/deployment/qt4-msvc2010/libeay32.dll
     resources/binaries/windows/deployment/qt4-msvc2010/msvcp100.dll
@@ -556,8 +551,6 @@ if(WIN32 OR OS2)
 
   if(WIN32)
     # Install custom binary files for windows, dlls, exes.
-    #install(FILES ${APP_7ZA}
-    #        DESTINATION ./7za)
     install(FILES ${APP_DLLS_QT4_MSVS2010}
             DESTINATION ./)
     install(DIRECTORY resources/binaries/windows/zip
@@ -612,8 +605,6 @@ elseif(APPLE)
 
   install(DIRECTORY resources/skins
           DESTINATION ${APPLE_PREFIX})
-  #install(DIRECTORY resources/binaries/macosx/zip
-  #        DESTINATION ${APPLE_PREFIX}/binaries)
   install(FILES ${APP_SIGNAPK}
           DESTINATION ${APPLE_PREFIX}/binaries/signapk)
   install(FILES resources/graphics/${APP_LOW_NAME}_128.png
