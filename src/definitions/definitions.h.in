@@ -52,6 +52,13 @@
 #define APP_REVISION        "@APP_REVISION@"
 #define APP_USERAGENT       QString("@APP_NAME@/@APP_VERSION@ (@APP_URL@) on @CMAKE_SYSTEM@")
 
+#define EXIT_STATUS_NOT_STARTED       -2
+#define EXIT_STATUS_CRASH             -1
+#define EXIT_STATUS_ZIP_NORMAL        0
+#define EXIT_STATUS_JAVA_NORMAL       0
+#define EXIT_STATUS_SIGNAPK_NORMAL    2
+#define EXIT_STATUS_SIGNAPK_NOT_FOUND 1
+
 #define RELEASES_LIST                   "https://raw.githubusercontent.com/BuildmLearn/BuildmLearn-Toolkit/portage/resources/text/UPDATES"
 #define DEFAULT_LOCALE                  "en_GB"
 #define URL_REGEXP                      "^(http|https|feed|ftp):\\/\\/[\\w\\-_]+(\\.[\\w\\-_]+)+([\\w\\-\\.,@?^=%&amp;:/~\\+#]*[\\w\\-\\@?^=%&amp;/~\\+#])?$"

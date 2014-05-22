@@ -75,6 +75,14 @@ class FormSettings : public QDialog {
     void loadExternalUtilites();
     void saveExternalUtilites();
 
+    void checkJava(const QString& new_path);
+    void checkZip(const QString& new_path);
+    void checkSignApk(const QString& new_path);
+
+    void selectJava();
+    void selectZip();
+    void selectSignApk();
+
     void loadInterface();
     void saveInterface();
 

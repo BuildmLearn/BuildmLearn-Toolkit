@@ -114,6 +114,12 @@ FormSettings::FormSettings(QWidget *parent)
           this, SLOT(changeDefaultBrowserArguments(int)));
   connect(m_ui->m_btnExternalBrowserExecutable, SIGNAL(clicked()),
           this, SLOT(selectBrowserExecutable()));
+  connect(m_ui->m_btnSelectZip, SIGNAL(clicked()),
+          this, SLOT(selectZip()));
+  connect(m_ui->m_btnSelectJava, SIGNAL(clicked()),
+          this, SLOT(selectJava()));
+  connect(m_ui->m_btnSelectSignapk, SIGNAL(clicked()),
+          this, SLOT(selectSignApk()));
 
   // Load all settings.
   loadGeneral();
@@ -264,11 +270,152 @@ void FormSettings::saveGeneral() {
 }
 
 void FormSettings::loadExternalUtilites() {
-  // TODO: load
+  checkZip(QDir::toNativeSeparators(qApp->zipUtilityPath()));
+  checkJava(QDir::toNativeSeparators(qApp->javaInterpreterPath()));
+  checkSignApk(QDir::toNativeSeparators(qApp->signApkUtlityPath()));
 }
 
 void FormSettings::saveExternalUtilites() {
   // TODO: save
+}
+
+void FormSettings::checkZip(const QString &new_path) {
+  QString zip_path = new_path;
+  int zip_output = QProcess::execute(zip_path,
+                                     QStringList() << "--version");
+
+  switch (zip_output) {
+    case EXIT_STATUS_NOT_STARTED:
+      m_ui->m_lblExternalZip->setStatus(WidgetWithStatus::Error,
+                                        zip_path,
+                                        tr("ZIP was not found at given location."));
+      break;
+
+    case EXIT_STATUS_CRASH:
+      m_ui->m_lblExternalZip->setStatus(WidgetWithStatus::Warning,
+                                        zip_path,
+                                        tr("ZIP found but is crashy."));
+      break;
+
+    case EXIT_STATUS_ZIP_NORMAL:
+      m_ui->m_lblExternalZip->setStatus(WidgetWithStatus::Ok,
+                                        zip_path,
+                                        tr("ZIP found and probably working."));
+      break;
+
+    default:
+      m_ui->m_lblExternalZip->setStatus(WidgetWithStatus::Warning,
+                                        zip_path,
+                                        tr("ZIP returned uknown code."));
+      break;
+  }
+}
+
+void FormSettings::checkJava(const QString &new_path) {
+  QString java_path = new_path;
+  int java_output = QProcess::execute(java_path,
+                                      QStringList() << "-version");
+
+  switch (java_output) {
+    case EXIT_STATUS_NOT_STARTED:
+      m_ui->m_lblExternalJava->setStatus(WidgetWithStatus::Error,
+                                         java_path,
+                                         tr("JAVA was not found at given location."));
+      break;
+
+    case EXIT_STATUS_CRASH:
+      m_ui->m_lblExternalJava->setStatus(WidgetWithStatus::Warning,
+                                         java_path,
+                                         tr("JAVA found but is crashy."));
+      break;
+
+    case EXIT_STATUS_JAVA_NORMAL:
+      m_ui->m_lblExternalJava->setStatus(WidgetWithStatus::Ok,
+                                         java_path,
+                                         tr("JAVA found and probably working."));
+      break;
+
+    default:
+      m_ui->m_lblExternalJava->setStatus(WidgetWithStatus::Warning,
+                                         java_path,
+                                         tr("ZIP returned uknown code."));
+      break;
+  }
+}
+
+void FormSettings::checkSignApk(const QString &new_path) {
+  QString signapk_path = new_path;
+  int signapk_output = QProcess::execute(m_ui->m_lblExternalJava->label()->text(),
+                                         QStringList() << "-jar" << signapk_path);
+
+  switch (signapk_output) {
+    case EXIT_STATUS_NOT_STARTED:
+      m_ui->m_lblExternalSignapk->setStatus(WidgetWithStatus::Error,
+                                            signapk_path,
+                                            tr("SIGNAPK was not found because JAVA was not found."));
+      break;
+
+    case EXIT_STATUS_CRASH:
+      m_ui->m_lblExternalSignapk->setStatus(WidgetWithStatus::Warning,
+                                            signapk_path,
+                                            tr("SIGNAPK found but is crashy."));
+      break;
+
+    case EXIT_STATUS_SIGNAPK_NOT_FOUND:
+      m_ui->m_lblExternalSignapk->setStatus(WidgetWithStatus::Error,
+                                            signapk_path,
+                                            tr("SIGNAPK not found."));
+      break;
+
+    case EXIT_STATUS_SIGNAPK_NORMAL:
+      m_ui->m_lblExternalSignapk->setStatus(WidgetWithStatus::Ok,
+                                            signapk_path,
+                                            tr("SIGNAPK found and probably working."));
+      break;
+
+    default:
+      m_ui->m_lblExternalSignapk->setStatus(WidgetWithStatus::Warning,
+                                            signapk_path,
+                                            tr("SIGNAPK returned uknown code."));
+      break;
+  }
+}
+
+void FormSettings::selectJava() {
+  QString executable_file = QFileDialog::getOpenFileName(this,
+                                                         tr("Select JAVA executable"),
+                                                         QDir::homePath(),
+                                                         //: File filter for external browser selection dialog.
+                                                         tr("Executables (java*)"));
+
+  if (!executable_file.isEmpty()) {
+    checkJava(QDir::toNativeSeparators(executable_file));
+    checkSignApk(m_ui->m_lblExternalSignapk->label()->text());
+  }
+}
+
+void FormSettings::selectZip() {
+  QString executable_file = QFileDialog::getOpenFileName(this,
+                                                         tr("Select ZIP executable"),
+                                                         QDir::homePath(),
+                                                         //: File filter for external browser selection dialog.
+                                                         tr("Executables (zip*)"));
+
+  if (!executable_file.isEmpty()) {
+    checkZip(QDir::toNativeSeparators(executable_file));
+  }
+}
+
+void FormSettings::selectSignApk() {
+  QString executable_file = QFileDialog::getOpenFileName(this,
+                                                         tr("Select SIGNAPK executable"),
+                                                         QDir::homePath(),
+                                                         //: File filter for external browser selection dialog.
+                                                         tr("Executables (signapk.jar)"));
+
+  if (!executable_file.isEmpty()) {
+    checkSignApk(QDir::toNativeSeparators(executable_file));
+  }
 }
 
 void FormSettings::onProxyTypeChanged(int index) {

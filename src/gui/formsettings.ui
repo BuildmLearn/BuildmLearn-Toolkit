@@ -718,7 +718,7 @@ External web browser set on this page is used application-wide. For example, it 
        <item row="2" column="1">
         <layout class="QHBoxLayout" name="horizontalLayout_11">
          <item>
-          <widget class="QPushButton" name="m_btnSelectZip_2">
+          <widget class="QPushButton" name="m_btnSelectJava">
            <property name="text">
             <string>&amp;Select file</string>
            </property>

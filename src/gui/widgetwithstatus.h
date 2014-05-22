@@ -61,6 +61,8 @@ class WidgetWithStatus : public QWidget {
     /// \param tooltip_text Custom tooltip text to display.
     void setStatus(StatusType status, const QString &tooltip_text);
 
+    /// \brief Access to current status of the widget.
+    /// \return Return status of widget.
     inline StatusType status() const {
       return m_status;
     }
