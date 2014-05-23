@@ -441,13 +441,6 @@ set(APP_TEXT
   resources/text/LICENSE
 )
 
-# Define additional resources.
-set(APP_SIGNAPK
-  resources/binaries/independent/signapk/certificate.pem
-  resources/binaries/independent/signapk/key.pk8
-  resources/binaries/independent/signapk/signapk.jar
-)
-
 if(WIN32)
   set(APP_DLLS_QT4_MSVS2010
     resources/binaries/windows/deployment/qt4-msvc2010/libeay32.dll
@@ -562,8 +555,10 @@ if(WIN32 OR OS2)
 
   install(DIRECTORY resources/skins
           DESTINATION ./)
-  install(FILES ${APP_SIGNAPK}
-          DESTINATION ./binaries/signapk)
+  install(DIRECTORY resources/binaries/independent/certificates
+          DESTINATION ./)
+  install(DIRECTORY resources/binaries/independent/signapk
+          DESTINATION ./binaries)
   install(FILES resources/graphics/${APP_LOW_NAME}_128.png
           DESTINATION ./
           RENAME ${APP_LOW_NAME}.png)
@@ -605,8 +600,10 @@ elseif(APPLE)
 
   install(DIRECTORY resources/skins
           DESTINATION ${APPLE_PREFIX})
-  install(FILES ${APP_SIGNAPK}
-          DESTINATION ${APPLE_PREFIX}/binaries/signapk)
+  install(DIRECTORY resources/binaries/independent/certificates
+          DESTINATION ${APPLE_PREFIX})
+  install(DIRECTORY resources/binaries/independent/signapk
+          DESTINATION ${APPLE_PREFIX})
   install(FILES resources/graphics/${APP_LOW_NAME}_128.png
           DESTINATION ${APPLE_PREFIX}
           RENAME ${APP_LOW_NAME}.png)
@@ -634,11 +631,12 @@ elseif(UNIX)
 
   install(DIRECTORY resources/skins
           DESTINATION share/${APP_LOW_NAME})
+  install(DIRECTORY resources/binaries/independent/certificates
+          DESTINATION share/${APP_LOW_NAME})
   install(FILES ${CMAKE_CURRENT_BINARY_DIR}/resources/desktop/${APP_LOW_NAME}.desktop
           DESTINATION share/applications)
-
-  install(FILES ${APP_SIGNAPK}
-          DESTINATION share/${APP_LOW_NAME}/binaries/signapk)
+  install(DIRECTORY resources/binaries/independent/signapk
+          DESTINATION share/${APP_LOW_NAME})
   install(FILES resources/graphics/${APP_LOW_NAME}_128.png
           DESTINATION share/pixmaps
           RENAME ${APP_LOW_NAME}.png)
