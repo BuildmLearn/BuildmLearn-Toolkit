@@ -621,6 +621,7 @@ elseif(APPLE)
     ${CMAKE_SOURCE_DIR}/resources/macosx/bundle.cmake.in
     ${CMAKE_CURRENT_BINARY_DIR}/bundle.cmake @ONLY
   )
+
   add_custom_target(bundle
     ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/bundle.cmake)
 elseif(UNIX)
