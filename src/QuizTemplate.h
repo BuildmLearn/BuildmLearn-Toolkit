@@ -50,18 +50,18 @@ class QScrollBar;
 class QuizTemplate : public QWidget
 {
     Q_OBJECT
-public:
+  public:
     explicit QuizTemplate(QWidget *parent = 0);
 
-public slots:
+  public slots:
     void on_addButton_cicked();
-//    void on_removedButton_cicked();
-//    void on_itemList_selected();
+    //    void on_removedButton_cicked();
+    //    void on_itemList_selected();
 
-//    void on_textEdit_textChanged();
+    //    void on_textEdit_textChanged();
 
-//    void on_itemList_phone_selected();
-//    void on_backButton_clicked();
+    //    void on_itemList_phone_selected();
+    //    void on_backButton_clicked();
     void on_generateButton_clicked();
 
     void execWindowsCommand(QString);
@@ -82,7 +82,7 @@ public slots:
     void on_save_clicked();
     void on_open_clicked(QStringList dataList);
 
-private:
+  private:
     QWidget* widget1;
     QWidget* widget2;
     QWidget* widget3;
@@ -153,7 +153,7 @@ private:
     QAction *aboutAct;
 
     // Other widgets
-//    NewProjectWidget *newProject;
+    //    NewProjectWidget *newProject;
 
     int noOfQues;
 
@@ -166,7 +166,7 @@ private:
     QStringList iOptionsList;
     QList<int> iAnsList;
     QList<QuestionItem*> iQuestionItemList;
-public:
+  public:
     QString quizName;
     QString authorName;
 };

@@ -553,6 +553,8 @@ if(WIN32 OR OS2)
             DESTINATION ./binaries)
   endif(WIN32)
 
+  install(DIRECTORY resources/templates
+          DESTINATION ./)
   install(DIRECTORY resources/skins
           DESTINATION ./)
   install(DIRECTORY resources/binaries/independent/certificates
@@ -598,6 +600,8 @@ elseif(APPLE)
             DESTINATION ${APPLE_PREFIX}/icons)
   endif(BUNDLE_ICON_THEMES)
 
+  install(DIRECTORY resources/templates
+          DESTINATION ${APPLE_PREFIX})
   install(DIRECTORY resources/skins
           DESTINATION ${APPLE_PREFIX})
   install(DIRECTORY resources/binaries/independent/certificates
@@ -629,6 +633,8 @@ elseif(UNIX)
             DESTINATION share/${APP_LOW_NAME}/icons)
   endif(BUNDLE_ICON_THEMES)
 
+  install(DIRECTORY resources/templates
+          DESTINATION share/${APP_LOW_NAME})
   install(DIRECTORY resources/skins
           DESTINATION share/${APP_LOW_NAME})
   install(DIRECTORY resources/binaries/independent/certificates

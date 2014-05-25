@@ -73,6 +73,11 @@
        <string>External applications</string>
       </property>
      </item>
+     <item>
+      <property name="text">
+       <string>Project .apk file generation</string>
+      </property>
+     </item>
     </widget>
    </item>
    <item row="1" column="0" colspan="2">
@@ -88,7 +93,7 @@
    <item row="0" column="1">
     <widget class="QStackedWidget" name="m_stackedSettings">
      <property name="currentIndex">
-      <number>5</number>
+      <number>6</number>
      </property>
      <widget class="QWidget" name="m_pageGeneral">
       <layout class="QFormLayout" name="formLayout_2">
@@ -165,8 +170,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>167</width>
-                <height>219</height>
+                <width>588</width>
+                <height>372</height>
                </rect>
               </property>
               <layout class="QFormLayout" name="formLayout">
@@ -299,8 +304,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>100</width>
-            <height>30</height>
+            <width>594</width>
+            <height>398</height>
            </rect>
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -472,6 +477,9 @@ External web browser set on this page is used application-wide. For example, it 
                 </property>
                 <property name="wordWrap">
                  <bool>true</bool>
+                </property>
+                <property name="margin">
+                 <number>10</number>
                 </property>
                </widget>
               </item>
@@ -738,6 +746,126 @@ External web browser set on this page is used application-wide. For example, it 
           </widget>
          </item>
         </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="m_pageApkGeneration">
+      <layout class="QFormLayout" name="formLayout_4">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_2">
+         <property name="toolTip">
+          <string>This is directory which is used for temporary files which are created during the application file generation process.</string>
+         </property>
+         <property name="text">
+          <string>TEMP directory</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <layout class="QHBoxLayout" name="horizontalLayout_12">
+         <item>
+          <widget class="QPushButton" name="pushButton">
+           <property name="text">
+            <string>&amp;Select directory</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="m_lblGenerationTemp">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_5">
+         <property name="toolTip">
+          <string>This is the directory, which will contain final generated application.</string>
+         </property>
+         <property name="text">
+          <string>Output directory</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <layout class="QHBoxLayout" name="horizontalLayout_13">
+         <item>
+          <widget class="QPushButton" name="pushButton_2">
+           <property name="text">
+            <string>Select &amp;directory</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="m_lblGenerationOutput">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Application filename pattern</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="m_txtGenerationOutputFilePattern"/>
+       </item>
+       <item row="3" column="0" colspan="2">
+        <widget class="QLabel" name="m_lblGenerationInfo">
+         <property name="text">
+          <string>You can use these placeholders:
+&lt;ul&gt;
+&lt;li&gt;&quot;%1&quot; - name of used template,&lt;/li&gt;
+&lt;li&gt;&quot;%2&quot; - name of the project,&lt;/li&gt;
+&lt;li&gt;&quot;%3&quot; - timestamp of current date and time.&lt;/li&gt;
+&lt;/ul&gt;
+
+For example, typical application filename pattern can look like this: &quot;application-%1-%2-%3.apk&quot;. This pattern is escaped during the generation process. For example, if you use &quot;flashcard&quot; template, then filename of result will look like this: &quot;application-flashcard-myflashcardproject-20140523T082205.apk&quot;.</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::RichText</enum>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+         <property name="margin">
+          <number>10</number>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>

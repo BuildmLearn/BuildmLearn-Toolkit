@@ -150,7 +150,7 @@ void FormSettings::selectBrowserExecutable() {
                                                          tr("Executables (*.*)"));
 
   if (!executable_file.isEmpty()) {
-    m_ui->m_txtExternalBrowserExecutable->setText(executable_file);
+    m_ui->m_txtExternalBrowserExecutable->setText(QDir::toNativeSeparators(executable_file));
   }
 }
 
@@ -439,8 +439,8 @@ void FormSettings::loadBrowser() {
 
   // Load settings of web browser GUI.
   m_ui->m_cmbExternalBrowserPreset->addItem(tr("Opera 12 or older"), "-nosession %1");
-  m_ui->m_txtExternalBrowserExecutable->setText(settings->value(APP_CFG_BROWSER,
-                                                                "external_browser_executable").toString());
+  m_ui->m_txtExternalBrowserExecutable->setText(QDir::toNativeSeparators(settings->value(APP_CFG_BROWSER,
+                                                                                         "external_browser_executable").toString()));
   m_ui->m_txtExternalBrowserArguments->setText(settings->value(APP_CFG_BROWSER,
                                                                "external_browser_arguments",
                                                                "%1").toString());
@@ -631,4 +631,15 @@ void FormSettings::saveShortcuts() {
 
   // Save new shortcuts to the settings.
   DynamicShortcuts::save(qApp->availableActions().values());
+}
+
+
+void FormSettings::loadGenerationStuff() {
+  // TODO: Finish this, when templates are designed
+  // and fetch data from TemplateFactory class.
+}
+
+void FormSettings::saveGenerationStuff() {
+  // TODO: Finish this, when templates are designed
+  // and save data to TemplateFactory class.
 }

@@ -83,6 +83,7 @@
 #define APP_CFG_PROXY       "proxy"
 #define APP_CFG_SHORTCUTS   "keyboard"
 #define APP_CFG_BROWSER     "browser"
+#define APP_CFG_APK_GEN     "apk_generation"
 
 #if defined(Q_OS_OSX)
 #define APP_PREFIX          "@CMAKE_INSTALL_PREFIX@/@EXE_NAME@.app/Contents/Resources"
