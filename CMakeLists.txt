@@ -458,7 +458,7 @@ endif(WIN32)
 
 # Add custom icon on Mac OS X.
 if(APPLE)
-  SET (APP_SOURCES ${APP_SOURCES} resources/graphics/${APP_LOW_NAME}.icns)
+  SET (APP_SOURCES ${APP_SOURCES} resources/macosx/${APP_LOW_NAME}.icns)
 endif(APPLE)
 
 # Wrap files, create moc files.

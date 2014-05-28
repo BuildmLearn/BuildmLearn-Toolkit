@@ -36,6 +36,7 @@
 #include <QLineEdit>
 
 
+/// \brief Custom line edit with status icon.
 class LineEditWithStatus : public WidgetWithStatus {
     Q_OBJECT
 
@@ -44,7 +45,8 @@ class LineEditWithStatus : public WidgetWithStatus {
     explicit LineEditWithStatus(QWidget *parent = 0);
     virtual ~LineEditWithStatus();
 
-    // Access to line edit.
+    /// \brief Access to line edit.
+    /// \return Returns pointer to associated line edit.
     inline QLineEdit *lineEdit() const {
       return static_cast<QLineEdit*>(m_wdgInput);
     }

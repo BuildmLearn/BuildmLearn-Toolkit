@@ -50,6 +50,7 @@ class PlainToolButton : public QToolButton {
     /// \return Returns padding.
     /// \see setPadding()
     int padding() const;
+
     void setPadding(int padding);
 
   protected:

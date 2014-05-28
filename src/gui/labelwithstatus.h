@@ -45,6 +45,10 @@ class LabelWithStatus : public WidgetWithStatus {
     explicit LabelWithStatus(QWidget *parent = 0);
     virtual ~LabelWithStatus();
 
+    /// \brief Sets new status.
+    /// \param status New status to set.
+    /// \param label_text Text to be visible in the label.
+    /// \param status_text Text to be visible in the tooltip of the icon.
     void setStatus(StatusType status,
                    const QString &label_text,
                    const QString &status_text);
