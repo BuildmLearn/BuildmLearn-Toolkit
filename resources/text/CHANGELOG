@@ -5,6 +5,7 @@ Main:
 <ul>
 <li>First GSoC-related toolkit release.</li>
 <li>Initial code reworking.</li>
+<li>Mac OS X source code compilation & bundle fixes by Petr Vaněk &lt;petr@yarpen.cz&gt;.</li>
 </ul>
 
 Fixed:

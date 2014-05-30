@@ -85,10 +85,10 @@
 #define APP_CFG_BROWSER     "browser"
 #define APP_CFG_APK_GEN     "apk_generation"
 
-#if defined(Q_OS_OSX)
-#define APP_PREFIX          "@CMAKE_INSTALL_PREFIX@/@EXE_NAME@.app/Contents/Resources"
+#if defined(Q_OS_OSX) || defined(Q_WS_MAC)
+#define APP_PREFIX  QApplication::applicationDirPath() + "/../Resources"
 #else
-#define APP_PREFIX          "@CMAKE_INSTALL_PREFIX@"
+#define APP_PREFIX  "@CMAKE_INSTALL_PREFIX@"
 #endif
 
 // Themes & signalling constants.
@@ -101,7 +101,7 @@
 
 #if defined(Q_OS_LINUX)
 #define OS_ID   "Linux"
-#elif defined(Q_OS_OSX)
+#elif defined(Q_OS_OSX) || defined(Q_WS_MAC)
 #define OS_ID   "Mac OS X"
 #elif defined(Q_OS_WIN)
 #define OS_ID   "Windows"
@@ -124,7 +124,7 @@
 #define APP_CERT_PATH APP_PREFIX + QString("/share/@APP_LOW_NAME@/certificates")
 #define APP_ZIP_PATH "/usr/bin/zip"
 #define APP_JAVA_PATH "/usr/bin/java"
-#elif defined(Q_OS_OSX)
+#elif defined(Q_OS_OSX) || defined(Q_WS_MAC)
 #define APP_LANG_PATH APP_PREFIX + QString("/l10n")
 #define APP_SKIN_PATH APP_PREFIX + QString("/skins")
 #define APP_INFO_PATH APP_PREFIX + QString("/information")

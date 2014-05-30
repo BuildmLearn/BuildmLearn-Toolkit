@@ -575,7 +575,8 @@ elseif(APPLE)
 
   set_target_properties(${EXE_NAME}
                         PROPERTIES
-                        MACOSX_BUNDLE_INFO_PLIST "${CMAKE_SOURCE_DIR}/resources/macosx/Info.plist.in")
+                        MACOSX_BUNDLE_INFO_PLIST
+                        "${CMAKE_SOURCE_DIR}/resources/macosx/Info.plist.in")
 
   set_source_files_properties(${CMAKE_SOURCE_DIR}/resources/macosx/${APP_LOW_NAME}.icns
                               PROPERTIES MACOSX_PACKAGE_LOCATION Resources)

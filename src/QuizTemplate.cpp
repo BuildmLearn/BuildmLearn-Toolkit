@@ -332,7 +332,12 @@ void QuizTemplate::on_generateButton_clicked()
     return;
   }
 
+#if QT_VERSION >= 0x050000
+  QString temp_directory = QStandardPaths::writableLocation(QStandardPaths::TempLocation);
+#else
   QString temp_directory = QDesktopServices::storageLocation(QDesktopServices::TempLocation);
+#endif
+
   QDir(temp_directory).mkdir("assets");
 
   QFile indexFile(temp_directory + "/assets/quiz_content.txt");
