@@ -40,6 +40,8 @@ namespace Ui {
   class FormHelp;
 }
 
+class QShowEvent;
+
 /// \brief Form for displaying application help.
 class FormHelp : public QDialog {
     Q_OBJECT
@@ -52,11 +54,15 @@ class FormHelp : public QDialog {
     explicit FormHelp(bool do_not_show_again_enabled, QWidget *parent = 0);
     virtual ~FormHelp();
 
+  protected:
+    void showEvent(QShowEvent *e);
+
   private slots:
     void onAccepted();
 
   private:
     Ui::FormHelp *m_ui;
+    bool m_displayNeverShowCheckbox;
 };
 
 #endif // FORMHELP_H

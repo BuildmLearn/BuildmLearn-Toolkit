@@ -32,11 +32,14 @@
 
 #include "miscellaneous/iconfactory.h"
 
+#include <QShowEvent>
+
 
 FormHelp::FormHelp(bool do_not_show_again_enabled, QWidget *parent)
-  : QDialog(parent), m_ui(new Ui::FormHelp) {
+  : QDialog(parent),
+    m_ui(new Ui::FormHelp),
+    m_displayNeverShowCheckbox(do_not_show_again_enabled) {
   m_ui->setupUi(this);
-  m_ui->m_cmbDoNotShowAgain->setVisible(do_not_show_again_enabled);
 
   setWindowFlags(Qt::MSWindowsFixedSizeDialogHint | Qt::Dialog | Qt::WindowSystemMenuHint | Qt::WindowTitleHint);
   setWindowIcon(IconFactory::instance()->fromTheme("application-help"));
@@ -50,6 +53,14 @@ FormHelp::FormHelp(bool do_not_show_again_enabled, QWidget *parent)
 
 FormHelp::~FormHelp() {
   delete m_ui;
+}
+
+void FormHelp::showEvent(QShowEvent *e) {
+  QDialog::showEvent(e);
+
+  if (!e->spontaneous()) {
+    m_ui->m_cmbDoNotShowAgain->setVisible(m_displayNeverShowCheckbox);
+  }
 }
 
 void FormHelp::onAccepted() {
