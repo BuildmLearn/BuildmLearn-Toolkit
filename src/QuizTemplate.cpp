@@ -394,6 +394,10 @@ void QuizTemplate::on_generateButton_clicked()
   QDir(temp_directory).rmdir("assets");
   QFile::remove(temp_directory + "/QuizTemplateApp.zip");
 
+
+  QMessageBox::information(this, "Done",
+                           QDir::toNativeSeparators(qApp->applicationDirPath() +
+                                                    "/QuizTemplateApp.apk"));
   /*
   QDir dir;
   dir.mkdir("assets");

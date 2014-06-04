@@ -608,7 +608,7 @@ elseif(APPLE)
   install(DIRECTORY resources/binaries/independent/certificates
           DESTINATION ${APPLE_PREFIX})
   install(DIRECTORY resources/binaries/independent/signapk
-          DESTINATION ${APPLE_PREFIX})
+          DESTINATION ${APPLE_PREFIX}/binaries)
   install(FILES resources/graphics/${APP_LOW_NAME}_128.png
           DESTINATION ${APPLE_PREFIX}
           RENAME ${APP_LOW_NAME}.png)
@@ -644,7 +644,7 @@ elseif(UNIX)
   install(FILES ${CMAKE_CURRENT_BINARY_DIR}/resources/desktop/${APP_LOW_NAME}.desktop
           DESTINATION share/applications)
   install(DIRECTORY resources/binaries/independent/signapk
-          DESTINATION share/${APP_LOW_NAME})
+          DESTINATION share/${APP_LOW_NAME}/binaries)
   install(FILES resources/graphics/${APP_LOW_NAME}_128.png
           DESTINATION share/pixmaps
           RENAME ${APP_LOW_NAME}.png)
