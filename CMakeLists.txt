@@ -345,6 +345,7 @@ set(APP_SOURCES
   src/gui/formsettings.cpp
   src/gui/formhelp.cpp
   src/gui/lineeditwithstatus.cpp
+  src/gui/formsimulator.cpp
 
   src/dynamic-shortcuts/shortcutcatcher.cpp
   src/dynamic-shortcuts/shortcutbutton.cpp
@@ -390,6 +391,7 @@ set(APP_HEADERS
   src/gui/formsettings.h
   src/gui/formhelp.h
   src/gui/lineeditwithstatus.h
+  src/gui/formsimulator.h
 
   src/dynamic-shortcuts/dynamicshortcutswidget.h
   src/dynamic-shortcuts/shortcutcatcher.h
@@ -419,6 +421,7 @@ set(APP_FORMS
   src/gui/formabout.ui
   src/gui/formsettings.ui
   src/gui/formhelp.ui
+  src/gui/formsimulator.ui
 )
 
 # APP translations.
