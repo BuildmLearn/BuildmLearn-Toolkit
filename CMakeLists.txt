@@ -35,13 +35,13 @@
 # Build process (navigate to root source folder first):
 #   a) Windows RELEASE build.
 #     mkdir build && cd build
-#     cmake ../ -DCMAKE_BUILD_TYPE=release -DCMAKE_INSTALL_PREFIX=/usr -DUSE_QT_5=ON
+#     cmake ../ -DCMAKE_BUILD_TYPE="release" -DCMAKE_INSTALL_PREFIX="C:\Program Files\BuildmLearn Toolkit" -DUSE_QT_5="ON"
 #     nmake (or mingw32-make if you use MinGW compiler)
 #     nmake install (or mingw32-make if you use MinGW compiler)
 #
 #   b) Linux RELEASE build.
 #     mkdir build && cd build
-#     cmake ../ -DCMAKE_BUILD_TYPE=release -DCMAKE_INSTALL_PREFIX=/usr -DUSE_QT_5=ON
+#     cmake ../ -DCMAKE_BUILD_TYPE="release" -DCMAKE_INSTALL_PREFIX=/usr -DUSE_QT_5="ON"
 #     make
 #     make install
 #
@@ -59,14 +59,14 @@
 #   cpack -G PACKAGE_TYPE (for example cpack -G NSIS or cpack -G ZIP)
 #
 # Arguments:
-#   "-DCMAKE_INSTALL_PREFIX=/usr"
+#   "-DCMAKE_INSTALL_PREFIX"
 #     Installation path, replace with something like "C:\buildmlearn-toolkit" on Windows.
 #
-#   "-DUSE_QT_5=OFF"
+#   "-DUSE_QT_5"
 #     Specifies which major Qt version to use. Qt 4 and Qt 5 are supported.
 #     If "OFF" is passed as an argument, then Qt 4 is used. Default is "OFF".
 #
-#   "-DBUNDLE_ICON_THEMES=ON"
+#   "-DBUNDLE_ICON_THEMES"
 #     If "ON", then custom icons theme(s) will be bundled with application
 #     installation. If "OFF", then no icon theme(s) will be available for
 #     the application and application will run in iconless mode.

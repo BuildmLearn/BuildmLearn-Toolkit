@@ -36,6 +36,7 @@
 #include "gui/formsettings.h"
 #include "gui/systemtrayicon.h"
 #include "gui/formhelp.h"
+#include "gui/formsimulator.h"
 #include "miscellaneous/iconfactory.h"
 
 #include <QStackedWidget>
@@ -49,7 +50,8 @@
 FormMain::FormMain(QWidget *parent) :
   QMainWindow(parent),
   m_firstTimeShow(true),
-  m_ui(new Ui::FormMain) {
+  m_ui(new Ui::FormMain),
+  m_simulatorWindow(NULL) {
   m_ui->setupUi(this);
 
   setupActionShortcuts();
@@ -58,6 +60,9 @@ FormMain::FormMain(QWidget *parent) :
   setupToolbar();
 
   createConnections();
+
+  // Make sure simulator window is displayed.
+  m_ui->m_actionViewSimulatorWindow->setChecked(true);
 
   iNewProjectWidget = new FormNewProject(this);
   iNewProjectWidget->setWindowModality(Qt::ApplicationModal);
@@ -120,6 +125,10 @@ void FormMain::createConnections() {
   connect(m_ui->m_actionHelp, SIGNAL(triggered()),
           this, SLOT(showHelp()));
 
+  // View connections.
+  connect(m_ui->m_actionViewSimulatorWindow, SIGNAL(toggled(bool)),
+          this, SLOT(switchSimulatorWindow(bool)));
+
   // Project connections.
   connect(m_ui->m_actionNewProject, SIGNAL(triggered()),
           this ,SLOT(newClicked()));
@@ -168,6 +177,10 @@ void FormMain::setupIcons() {
   m_ui->m_actionSaveProjectAs->setIcon(factory->fromTheme("project-save-as"));
   m_ui->m_actionLoadProject->setIcon(factory->fromTheme("project-load"));
   m_ui->m_actionGenerateApkFile->setIcon(factory->fromTheme("project-generate"));
+
+#if !defined(Q_OS_WIN32)
+  m_ui->m_actionViewSimulatorWindow->setIcon(factory->fromTheme("view-simulator"));
+#endif
 }
 
 void FormMain::setupToolbar() {
@@ -194,6 +207,36 @@ void FormMain::setupTrayMenu() {
     m_trayMenu->addAction(m_ui->m_actionQuit);
 
     qDebug("Creating tray icon menu.");
+  }
+}
+
+void FormMain::setupSimulatorWindow() {
+  if (m_simulatorWindow == NULL) {
+    m_simulatorWindow = new FormSimulator(this);
+
+    connect(m_simulatorWindow, SIGNAL(closed()),
+            this, SLOT(onSimulatorWindowClosed()));
+  }
+}
+
+void FormMain::onSimulatorWindowClosed() {
+  m_ui->m_actionViewSimulatorWindow->setChecked(false);
+}
+
+void FormMain::switchSimulatorWindow(bool show) {
+  setupSimulatorWindow();
+
+  if (show) {
+    // TODO: Show window.
+    m_simulatorWindow->show();
+
+    QTimer::singleShot(0, m_simulatorWindow, SLOT(attachToParent()));
+
+    //m_simulatorWindow->attachToParent();
+  }
+  else {
+    // TODO: Hide window.
+    m_simulatorWindow->close();
   }
 }
 
@@ -453,11 +496,19 @@ void FormMain::resetWidgets()
   iStackedWidget->addWidget(iFlashCardsWidget);
 }
 
-void FormMain::closeEvent(QCloseEvent *event) {
+void FormMain::closeEvent(QCloseEvent *e) {
   if (SystemTrayIcon::isSystemTrayActivated()) {
     qApp->trayIcon()->hide();
   }
 
-  event->accept();
+  e->accept();
   qApp->quit();
+}
+
+void FormMain::moveEvent(QMoveEvent *e) {
+  e->accept();
+
+  if (m_ui->m_actionViewSimulatorWindow->isChecked()) {
+    QTimer::singleShot(0, m_simulatorWindow, SLOT(attachToParent()));
+  }
 }

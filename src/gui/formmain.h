@@ -48,6 +48,8 @@ namespace Ui {
  class FormMain;
 }
 
+class FormSimulator;
+
 /// \brief Main application window.
 class FormMain : public QMainWindow {
     Q_OBJECT
@@ -74,8 +76,12 @@ class FormMain : public QMainWindow {
     void setupIcons();
     void setupToolbar();
     void setupTrayMenu();
+    void setupSimulatorWindow();
 
   private slots:
+    void onSimulatorWindowClosed();
+    void switchSimulatorWindow(bool show);
+
     void showSettings();
     void showAbout();
     void showUpdates();
@@ -105,13 +111,19 @@ class FormMain : public QMainWindow {
 
   protected:
     /// \brief Executed when main application window is closed.
-    /// \param event Event message.
-    void closeEvent(QCloseEvent *event);
+    /// \param e Event message.
+    void closeEvent(QCloseEvent *e);
+
+    /// \brief Executed when window is moved.
+    /// \param e Event message.
+    void moveEvent(QMoveEvent *e);
 
   private:
     bool m_firstTimeShow;
     Ui::FormMain *m_ui;
     QMenu *m_trayMenu;
+
+    FormSimulator *m_simulatorWindow;
 
     // Other widgets
     QStackedWidget* iStackedWidget;

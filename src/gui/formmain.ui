@@ -50,7 +50,14 @@
     </property>
     <addaction name="m_actionSettings"/>
    </widget>
+   <widget class="QMenu" name="menu_View">
+    <property name="title">
+     <string>&amp;View</string>
+    </property>
+    <addaction name="m_actionViewSimulatorWindow"/>
+   </widget>
    <addaction name="m_menuProject"/>
+   <addaction name="menu_View"/>
    <addaction name="m_menuTools"/>
    <addaction name="m_menuHelp"/>
   </widget>
@@ -174,6 +181,17 @@
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="m_actionViewSimulatorWindow">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Simulator window</string>
    </property>
   </action>
  </widget>
