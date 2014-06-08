@@ -54,10 +54,12 @@ FormMain::FormMain(QWidget *parent) :
   m_simulatorWindow(NULL) {
   m_ui->setupUi(this);
 
+  setupSimulatorWindow();
   setupActionShortcuts();
   setupIcons();
   setupTrayMenu();
   setupToolbar();
+  loadSizeAndPosition();
 
   createConnections();
 
@@ -112,8 +114,16 @@ QHash<QString, QAction *> FormMain::allActions() {
   return actions;
 }
 
+void FormMain::setupSimulatorWindow() {
+  m_simulatorWindow = new FormSimulator(this);
+
+  connect(m_simulatorWindow, SIGNAL(closed()),
+          this, SLOT(onSimulatorWindowClosed()));
+}
+
 void FormMain::createConnections() {
   // General connections.
+  connect(qApp, SIGNAL(aboutToQuit()), this, SLOT(onAboutToQuit()));
   connect(m_ui->m_actionQuit, SIGNAL(triggered()),
           qApp, SLOT(quit()));
   connect(m_ui->m_actionCheckForUpdates, SIGNAL(triggered()),
@@ -210,13 +220,24 @@ void FormMain::setupTrayMenu() {
   }
 }
 
-void FormMain::setupSimulatorWindow() {
-  if (m_simulatorWindow == NULL) {
-    m_simulatorWindow = new FormSimulator(this);
+void FormMain::loadSizeAndPosition() {
+  QRect screen = qApp->desktop()->screenGeometry();
+  QRect windows = rect();
+  Settings *settings = qApp->settings();
 
-    connect(m_simulatorWindow, SIGNAL(closed()),
-            this, SLOT(onSimulatorWindowClosed()));
-  }
+  windows.setWidth(windows.width() + m_simulatorWindow->width());
+
+  // Reload main window size & position.
+  move(settings->value(APP_CFG_GUI, "window_position",
+                       screen.center() - windows.center()).toPoint());
+}
+
+void FormMain::saveSizeAndPosition() {
+  qApp->settings()->setValue(APP_CFG_GUI, "window_position", pos());
+}
+
+void FormMain::onAboutToQuit() {
+  saveSizeAndPosition();
 }
 
 void FormMain::onSimulatorWindowClosed() {
@@ -224,8 +245,6 @@ void FormMain::onSimulatorWindowClosed() {
 }
 
 void FormMain::switchSimulatorWindow(bool show) {
-  setupSimulatorWindow();
-
   if (show) {
     // TODO: Show window.
     m_simulatorWindow->show();

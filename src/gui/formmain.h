@@ -66,19 +66,29 @@ class FormMain : public QMainWindow {
       return m_trayMenu;
     }
 
+    /// \brief Access to simulator window.
+    /// \see FormSimulator
+    inline FormSimulator *simulatorWindow() const {
+      return m_simulatorWindow;
+    }
+
     /// \brief Access to all actions provided by this window.
     /// \see DynamicShortcuts
     QHash<QString, QAction*> allActions();
 
   private:
     void createConnections();
+    void setupSimulatorWindow();
     void setupActionShortcuts();
     void setupIcons();
     void setupToolbar();
     void setupTrayMenu();
-    void setupSimulatorWindow();
+
+    void loadSizeAndPosition();
+    void saveSizeAndPosition();
 
   private slots:
+    void onAboutToQuit();
     void onSimulatorWindowClosed();
     void switchSimulatorWindow(bool show);
 
