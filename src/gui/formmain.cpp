@@ -246,7 +246,6 @@ void FormMain::onSimulatorWindowClosed() {
 
 void FormMain::switchSimulatorWindow(bool show) {
   if (show) {
-    // TODO: Show window.
     m_simulatorWindow->show();
 
     QTimer::singleShot(0, m_simulatorWindow, SLOT(attachToParent()));
@@ -254,7 +253,6 @@ void FormMain::switchSimulatorWindow(bool show) {
     //m_simulatorWindow->attachToParent();
   }
   else {
-    // TODO: Hide window.
     m_simulatorWindow->close();
   }
 }
