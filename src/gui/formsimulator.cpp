@@ -50,7 +50,7 @@ void FormSimulator::attachToParent() {
   QSize main_window_size = m_mainWindow->size();
 
   resize(size().width(), main_window_size.height());
-  move(main_window_position.x() + main_window_size.width() + 10,
+  move(main_window_position.x() + main_window_size.width() + 16,
        main_window_position.y());
 }
 
