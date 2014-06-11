@@ -128,6 +128,17 @@ class FormMain : public QMainWindow {
     /// \param e Event message.
     void moveEvent(QMoveEvent *e);
 
+    /// \brief Executed when window is resized.
+    /// \param e Event message.
+    void resizeEvent(QResizeEvent *e);
+
+  signals:
+    /// \brief Emitted when window is resized.
+    void resized();
+
+    /// \brief Emitted when window is moved.
+    void moved();
+
   private:
     bool m_firstTimeShow;
     Ui::FormMain *m_ui;

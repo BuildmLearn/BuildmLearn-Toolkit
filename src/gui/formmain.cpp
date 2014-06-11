@@ -45,6 +45,7 @@
 #include <QInputDialog>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
+#include <QDesktopWidget>
 
 
 FormMain::FormMain(QWidget *parent) :
@@ -65,6 +66,7 @@ FormMain::FormMain(QWidget *parent) :
 
   // Make sure simulator window is displayed.
   m_ui->m_actionViewSimulatorWindow->setChecked(true);
+  m_ui->m_actionStickSimulatorWindow->setChecked(m_simulatorWindow->isSticked());
 
   iNewProjectWidget = new FormNewProject(this);
   iNewProjectWidget->setWindowModality(Qt::ApplicationModal);
@@ -116,9 +118,6 @@ QHash<QString, QAction *> FormMain::allActions() {
 
 void FormMain::setupSimulatorWindow() {
   m_simulatorWindow = new FormSimulator(this);
-
-  connect(m_simulatorWindow, SIGNAL(closed()),
-          this, SLOT(onSimulatorWindowClosed()));
 }
 
 void FormMain::createConnections() {
@@ -138,6 +137,12 @@ void FormMain::createConnections() {
   // View connections.
   connect(m_ui->m_actionViewSimulatorWindow, SIGNAL(toggled(bool)),
           this, SLOT(switchSimulatorWindow(bool)));
+  connect(m_ui->m_actionStickSimulatorWindow, SIGNAL(toggled(bool)),
+          m_simulatorWindow, SLOT(setIsSticked(bool)));
+
+  // Extra simulator connections.
+  connect(m_simulatorWindow, SIGNAL(closed()),
+          this, SLOT(onSimulatorWindowClosed()));
 
   // Project connections.
   connect(m_ui->m_actionNewProject, SIGNAL(triggered()),
@@ -247,7 +252,7 @@ void FormMain::onSimulatorWindowClosed() {
 void FormMain::switchSimulatorWindow(bool show) {
   if (show) {
     m_simulatorWindow->show();
-    QTimer::singleShot(0, m_simulatorWindow, SLOT(attachToParent()));
+    //QTimer::singleShot(0, m_simulatorWindow, SLOT(attachToParent()));
   }
   else {
     m_simulatorWindow->close();
@@ -521,8 +526,10 @@ void FormMain::closeEvent(QCloseEvent *e) {
 
 void FormMain::moveEvent(QMoveEvent *e) {
   e->accept();
+  emit moved();
+}
 
-  if (m_ui->m_actionViewSimulatorWindow->isChecked()) {
-    QTimer::singleShot(0, m_simulatorWindow, SLOT(attachToParent()));
-  }
+void FormMain::resizeEvent(QResizeEvent *e) {
+  e->accept();
+  emit resized();
 }

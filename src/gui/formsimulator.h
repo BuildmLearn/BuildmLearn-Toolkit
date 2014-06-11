@@ -23,7 +23,6 @@ class FormSimulator : public QDialog {
     explicit FormSimulator(FormMain *parent = 0);
     virtual ~FormSimulator();
 
-    ///
     /// \brief Indicates whether simulator window is sticked to
     /// main window or not.
     /// \return Returns true if window is sticked
@@ -32,18 +31,23 @@ class FormSimulator : public QDialog {
       return m_isSticked;
     }
 
+  public slots:
+    /// \brief Conditionally sticks simulator window to its parent.
+    /// \remarks Depends on settings.
+    void conditionallyAttachToParent();
+
+    /// \brief Forces this window to align itself next to its parent window.
+    void attachToParent();
+
     /// \brief Sticks or unsticks window.
     /// \param is_sticked Do we want to stick window?
     void setIsSticked(bool is_sticked);
-
-  public slots:
-    /// \brief Forces this window to align itself next to its parent window.
-    void attachToParent();
 
   protected:
     void closeEvent(QCloseEvent *e);
 
   signals:
+    /// \brief Emitted when simulator window is closed.
     void closed();
 
   private:

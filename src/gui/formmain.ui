@@ -50,14 +50,21 @@
     </property>
     <addaction name="m_actionSettings"/>
    </widget>
-   <widget class="QMenu" name="menu_View">
+   <widget class="QMenu" name="m_menuView">
     <property name="title">
      <string>&amp;View</string>
     </property>
-    <addaction name="m_actionViewSimulatorWindow"/>
+    <widget class="QMenu" name="m_menuSimulatorWindow">
+     <property name="title">
+      <string>&amp;Simulator window</string>
+     </property>
+     <addaction name="m_actionViewSimulatorWindow"/>
+     <addaction name="m_actionStickSimulatorWindow"/>
+    </widget>
+    <addaction name="m_menuSimulatorWindow"/>
    </widget>
    <addaction name="m_menuProject"/>
-   <addaction name="menu_View"/>
+   <addaction name="m_menuView"/>
    <addaction name="m_menuTools"/>
    <addaction name="m_menuHelp"/>
   </widget>
@@ -187,11 +194,16 @@
    <property name="checkable">
     <bool>true</bool>
    </property>
-   <property name="checked">
-    <bool>false</bool>
+   <property name="text">
+    <string>Show &amp;window</string>
+   </property>
+  </action>
+  <action name="m_actionStickSimulatorWindow">
+   <property name="checkable">
+    <bool>true</bool>
    </property>
    <property name="text">
-    <string>&amp;Simulator window</string>
+    <string>&amp;Stick to main window</string>
    </property>
   </action>
  </widget>

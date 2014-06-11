@@ -12,10 +12,14 @@
 FormSimulator::FormSimulator(FormMain* parent)
   : QDialog(parent), m_ui(new Ui::FormSimulator), m_mainWindow(parent) {
   m_ui->setupUi(this);
+  m_isSticked = qApp->settings()->value(APP_CFG_SIMULATOR, "is_sticked", true).toBool();
 
   // Do necessary initializations.
   setupIcons();
   setupPhoneWidget();
+
+  connect(parent, SIGNAL(moved()), this, SLOT(conditionallyAttachToParent()));
+  connect(parent, SIGNAL(resized()), this, SLOT(conditionallyAttachToParent()));
 
   // This window mustn't be deleted when closed by user.
   setAttribute(Qt::WA_DeleteOnClose, false);
@@ -25,10 +29,20 @@ FormSimulator::~FormSimulator() {
   delete m_ui;
 }
 
+void FormSimulator::conditionallyAttachToParent() {
+  if (m_isSticked) {
+    attachToParent();
+  }
+}
+
 void FormSimulator::setIsSticked(bool is_sticked) {
+  if (is_sticked && !m_isSticked) {
+    attachToParent();
+  }
+
   m_isSticked = is_sticked;
 
-  // Stick or unstick the window to main application window.
+  qApp->settings()->setValue(APP_CFG_SIMULATOR, "is_sticked", is_sticked);
 }
 
 void FormSimulator::attachToParent() {
