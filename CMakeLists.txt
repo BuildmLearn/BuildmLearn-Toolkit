@@ -47,14 +47,17 @@
 #
 #   c) Mac OS X RELEASE build.
 #     mkdir build && cd build
-#     cmake ../ -DCMAKE_BUILD_TYPE="release" -DCMAKE_INSTALL_PREFIX=/usr -DUSE_QT_5="ON"
+#     cmake ../ -DCMAKE_BUILD_TYPE="release" -DCMAKE_INSTALL_PREFIX="./install -DCMAKE_INSTALL_PREFIX=/usr -DUSE_QT_5="ON"
+#     make
+#     make install
+#     cd install
+#     macdeployqt
 #
 # Refreshing translations:
 #   make lupdate
 #
 # Generating source tarballs:
 #   make dist or make package_source
-#
 #
 # Generating binary tarballs (or NSIS packages):
 #   make package (For more see -DUSE_NSIS argument description.)
@@ -92,6 +95,7 @@
 #
 # Authors and contributors:
 #   - BuildmLearn Contributors listed at http://buildmlearn.org/people/,
+#   - Petr Vaněk (for Mac OS X-related stuff).
 #
 ########################################################################################
 
@@ -628,13 +632,13 @@ elseif(APPLE)
           DESTINATION ${APPLE_PREFIX}/information)
 
   # Create a "transportable" bundle - all libs into the bundle.
-  configure_file(
-    ${CMAKE_SOURCE_DIR}/resources/macosx/bundle.cmake.in
-    ${CMAKE_CURRENT_BINARY_DIR}/bundle.cmake @ONLY
-  )
-
-  add_custom_target(bundle
-    ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/bundle.cmake)
+  #configure_file(
+  #  ${CMAKE_SOURCE_DIR}/resources/macosx/bundle.cmake.in
+  #  ${CMAKE_CURRENT_BINARY_DIR}/bundle.cmake @ONLY
+  #)
+  #
+  #add_custom_target(bundle
+  #  ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/bundle.cmake)
 elseif(UNIX)
   message(STATUS "[${APP_LOW_NAME}] You will probably install on Linux.")
   install(TARGETS ${EXE_NAME}
