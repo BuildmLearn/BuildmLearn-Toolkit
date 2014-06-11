@@ -192,10 +192,9 @@ void FormMain::setupIcons() {
   m_ui->m_actionSaveProjectAs->setIcon(factory->fromTheme("project-save-as"));
   m_ui->m_actionLoadProject->setIcon(factory->fromTheme("project-load"));
   m_ui->m_actionGenerateApkFile->setIcon(factory->fromTheme("project-generate"));
-
-#if !defined(Q_OS_WIN32)
+  m_ui->m_menuSimulatorWindow->setIcon(factory->fromTheme("view-simulator"));
+  m_ui->m_actionStickSimulatorWindow->setIcon(factory->fromTheme("simulation-stick"));
   m_ui->m_actionViewSimulatorWindow->setIcon(factory->fromTheme("view-simulator"));
-#endif
 }
 
 void FormMain::setupToolbar() {
@@ -252,7 +251,6 @@ void FormMain::onSimulatorWindowClosed() {
 void FormMain::switchSimulatorWindow(bool show) {
   if (show) {
     m_simulatorWindow->show();
-    //QTimer::singleShot(0, m_simulatorWindow, SLOT(attachToParent()));
   }
   else {
     m_simulatorWindow->close();

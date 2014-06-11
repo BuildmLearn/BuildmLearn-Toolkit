@@ -45,14 +45,16 @@
 #     make
 #     make install
 #
+#   c) Mac OS X RELEASE build.
+#     mkdir build && cd build
+#     cmake ../ -DCMAKE_BUILD_TYPE="release" -DCMAKE_INSTALL_PREFIX=/usr -DUSE_QT_5="ON"
+#
 # Refreshing translations:
 #   make lupdate
 #
 # Generating source tarballs:
-#   make dist
+#   make dist or make package_source
 #
-# Creating "bundle" on Mac OS X:
-#   make bundle
 #
 # Generating binary tarballs (or NSIS packages):
 #   make package (For more see -DUSE_NSIS argument description.)
@@ -85,6 +87,7 @@
 #   - supports Windows, Linux, OS/2 (eComStation),
 #   - Qt 4.7.3 and higher is required,
 #   - resource compiler (windres.exe) is needed on MinGW,
+#   - only Qt 5.x.x is supported on Mac OS X,
 #   - resource compiler (rc.exe) is needed on OS/2.
 #
 # Authors and contributors:
@@ -119,6 +122,10 @@ option(USE_QT_5 "Use Qt 5 for building" OFF)
 option(BUNDLE_ICON_THEMES "Equip installation with custom icon themes" ON)
 option(INSTALL_ALL_LANGUAGES "Install all available localizations" ON)
 option(USE_NSIS "Use NSIS generator to produce installer" OFF)
+
+if(APPLE AND NOT USE_QT_5)
+  message(FATAL_ERROR "[${APP_LOW_NAME}] Only Qt 5.x.x is supported on Mac OS X")
+endif(APPLE)
 
 if(POLICY CMP0012)
   cmake_policy(SET CMP0012 NEW)

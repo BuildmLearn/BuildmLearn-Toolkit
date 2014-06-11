@@ -99,24 +99,6 @@ RequestExecutionLevel admin
 !insertmacro MUI_RESERVEFILE_LANGDLL
 
 ;--------------------------------
-; Custom functions.
-
-; Executed when installer starts.
-Function .onInit
-  IntOp $0 ${SF_SELECTED} | ${SF_RO}
-  SectionSetFlags ${Core} $0
-FunctionEnd
-
-; Conditional saving to registry.
-Function ConditionalAddToRegisty
-  Pop $0
-  Pop $1
-  StrCmp "$0" "" ConditionalAddToRegisty_EmptyString
-    WriteRegStr SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APP_NAME}" "$1" "$0"
-  ConditionalAddToRegisty_EmptyString:
-FunctionEnd
-
-;--------------------------------
 ; Sections.
 
 ; Installer sections.
@@ -224,3 +206,21 @@ Section "Uninstall"
 
   DeleteRegKey /ifempty HKCU "Software\${APP_NAME}"
 SectionEnd
+
+;--------------------------------
+; Custom functions.
+
+; Executed when installer starts.
+Function .onInit
+  IntOp $0 ${SF_SELECTED} | ${SF_RO}
+  SectionSetFlags ${Core} $0
+FunctionEnd
+
+; Conditional saving to registry.
+Function ConditionalAddToRegisty
+  Pop $0
+  Pop $1
+  StrCmp "$0" "" ConditionalAddToRegisty_EmptyString
+    WriteRegStr SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APP_NAME}" "$1" "$0"
+  ConditionalAddToRegisty_EmptyString:
+FunctionEnd

@@ -23,6 +23,7 @@ FormSimulator::FormSimulator(FormMain* parent)
 
   // This window mustn't be deleted when closed by user.
   setAttribute(Qt::WA_DeleteOnClose, false);
+  setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
 }
 
 FormSimulator::~FormSimulator() {
@@ -43,6 +44,12 @@ void FormSimulator::setIsSticked(bool is_sticked) {
   m_isSticked = is_sticked;
 
   qApp->settings()->setValue(APP_CFG_SIMULATOR, "is_sticked", is_sticked);
+}
+
+void FormSimulator::show() {
+  QDialog::show();
+
+  // TODO: Maybe adjust height of the window.
 }
 
 void FormSimulator::attachToParent() {

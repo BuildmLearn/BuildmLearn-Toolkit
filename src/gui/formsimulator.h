@@ -43,6 +43,9 @@ class FormSimulator : public QDialog {
     /// \param is_sticked Do we want to stick window?
     void setIsSticked(bool is_sticked);
 
+    /// \brief Displays simulator window.
+    void show();
+
   protected:
     void closeEvent(QCloseEvent *e);
 
