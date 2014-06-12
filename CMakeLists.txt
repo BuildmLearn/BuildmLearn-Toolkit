@@ -51,7 +51,7 @@
 #     make
 #     make install
 #     cd install
-#     macdeployqt
+#     macdeployqt "buildmlearn-toolkit.app" -dmg
 #
 # Refreshing translations:
 #   make lupdate
