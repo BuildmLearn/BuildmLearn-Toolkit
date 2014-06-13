@@ -59,7 +59,7 @@ void FormHelp::showEvent(QShowEvent *e) {
   QDialog::showEvent(e);
 
   if (!e->spontaneous()) {
-    m_ui->m_cmbDoNotShowAgain->setVisible(m_displayNeverShowCheckbox);
+    m_ui->m_cmbDoNotShowAgain->setEnabled(m_displayNeverShowCheckbox);
   }
 }
 

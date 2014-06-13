@@ -129,7 +129,7 @@ option(USE_NSIS "Use NSIS generator to produce installer" OFF)
 
 if(APPLE AND NOT USE_QT_5)
   message(FATAL_ERROR "[${APP_LOW_NAME}] Only Qt 5.x.x is supported on Mac OS X")
-endif(APPLE)
+endif(APPLE AND NOT USE_QT_5)
 
 if(POLICY CMP0012)
   cmake_policy(SET CMP0012 NEW)
