@@ -290,6 +290,7 @@ void FormMain::switchVisibility(bool force_hide) {
   if (force_hide || isVisible()) {
     if (SystemTrayIcon::isSystemTrayActivated()) {
       hide();
+      m_simulatorWindow->hide();
     }
     else {
       // Window gets minimized in single-window mode.
@@ -298,6 +299,10 @@ void FormMain::switchVisibility(bool force_hide) {
   }
   else {
     display();
+
+    if (SystemTrayIcon::isSystemTrayActivated()) {
+      m_simulatorWindow->show();
+    }
   }
 }
 

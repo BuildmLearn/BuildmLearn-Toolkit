@@ -39,6 +39,9 @@ class FormSimulator : public QDialog {
     /// \brief Forces this window to align itself next to its parent window.
     void attachToParent();
 
+    /// \brief Allows window to be unattached and allows vertical resize policy.
+    void unAttachFromParent();
+
     /// \brief Sticks or unsticks window.
     /// \param is_sticked Do we want to stick window?
     void setIsSticked(bool is_sticked);
