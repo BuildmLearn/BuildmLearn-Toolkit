@@ -35,6 +35,7 @@
 #include "network-web/networkfactory.h"
 #include "gui/systemtrayicon.h"
 #include "gui/formmain.h"
+#include "core/templatefactory.h"
 
 #include <QMutex>
 #include <QFuture>
@@ -53,7 +54,8 @@ Application::Application(int &argc, char **argv)
     m_availableActions(QHash<QString, QAction*>()),
     m_settings(NULL),
     m_skinFactory(NULL),
-    m_trayIcon(NULL) {
+    m_trayIcon(NULL),
+    m_templateManager(NULL) {
   connect(this, SIGNAL(aboutToQuit()),
           this, SLOT(onAboutToQuit()));
   connect(this, SIGNAL(commitDataRequest(QSessionManager&)),
@@ -78,16 +80,12 @@ SkinFactory *Application::skinFactory() {
   return m_skinFactory;
 }
 
-void Application::setZupUtilityPath(const QString& zip_path) {
-  settings()->setValue(APP_CFG_GEN,
-                       "zip_path",
-                       zip_path);
+void Application::setZipUtilityPath(const QString& zip_path) {
+  settings()->setValue(APP_CFG_GEN, "zip_path", zip_path);
 }
 
 void Application::setSignApkUtilityPath(const QString& signapk_path) {
-  settings()->value(APP_CFG_GEN,
-                    "signapk_path",
-                    signapk_path);
+  settings()->value(APP_CFG_GEN, "signapk_path", signapk_path);
 }
 
 QHash<QString, QAction *> Application::availableActions() {
@@ -110,6 +108,14 @@ SystemTrayIcon *Application::trayIcon() {
   }
 
   return m_trayIcon;
+}
+
+TemplateFactory *Application::templateManager() {
+  if (m_templateManager == NULL) {
+    m_templateManager = new TemplateFactory(this);
+  }
+
+  return m_templateManager;
 }
 
 void Application::handleBackgroundUpdatesCheck() {

@@ -52,7 +52,7 @@
          <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
-           <height>163</height>
+           <height>20</height>
           </size>
          </property>
         </spacer>
@@ -64,14 +64,11 @@
          </property>
          <property name="sizeHint" stdset="0">
           <size>
-           <width>165</width>
+           <width>20</width>
            <height>20</height>
           </size>
          </property>
         </spacer>
-       </item>
-       <item row="1" column="1">
-        <widget class="QWidget" name="m_phoneWidget" native="true"/>
        </item>
        <item row="1" column="2">
         <spacer name="horizontalSpacer_3">
@@ -80,7 +77,7 @@
          </property>
          <property name="sizeHint" stdset="0">
           <size>
-           <width>164</width>
+           <width>20</width>
            <height>20</height>
           </size>
          </property>
@@ -94,10 +91,20 @@
          <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
-           <height>162</height>
+           <height>20</height>
           </size>
          </property>
         </spacer>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLabel" name="m_phoneWidget">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>

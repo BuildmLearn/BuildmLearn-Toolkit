@@ -51,6 +51,7 @@
 
 typedef QPair<UpdateInfo, QNetworkReply::NetworkError> UpdateCheck;
 
+class TemplateFactory;
 class FormMain;
 class SystemTrayIcon;
 class SkinFactory;
@@ -107,30 +108,30 @@ class Application : public QApplication {
 
     /// \brief Sets new path to "zip".
     /// \param zip_path Path to "zip".
-    void setZupUtilityPath(const QString &zip_path);
+    void setZipUtilityPath(const QString &zip_path);
 
-    /// \brief Access to path to "SIGNAPK" utility.
-    /// \return Return path to "SIGNAPK".
+    /// \brief Access to path to "signapk" utility.
+    /// \return Return path to "signapk".
     inline QString signApkUtlityPath() {
       return settings()->value(APP_CFG_GEN,
                                "signapk_path",
                                QString(APP_SIGNAPK_PATH)).toString();
     }
 
-    /// \brief Sets new path to "SIGNAPK".
-    /// \param signapk_path New path to "SIGNAPK".
+    /// \brief Sets new path to "signapk".
+    /// \param signapk_path New path to "signapk".
     void setSignApkUtilityPath(const QString &signapk_path);
 
+    /// \brief Access to path to "java" interpreter.
+    /// \return Returns path to "java" interpreter.
     inline QString javaInterpreterPath() {
-      return settings()->value(APP_CFG_GEN,
-                               "java_path",
-                               QString(APP_JAVA_PATH)).toString();
+      return settings()->value(APP_CFG_GEN, "java_path", QString(APP_JAVA_PATH)).toString();
     }
 
+    /// \brief Sets new "java" interpreter path.
+    /// \param java_path New path to "java".
     void setJavaInterpreterPath(const QString &java_path) {
-      settings()->setValue(APP_CFG_GEN,
-                           "java_path",
-                           java_path);
+      settings()->setValue(APP_CFG_GEN, "java_path", java_path);
     }
 
     /// \brief Access to main application form.
@@ -154,6 +155,10 @@ class Application : public QApplication {
     /// \warning Always use this in cooperation with
     /// SystemTrayIcon::isSystemTrayActivated().
     SystemTrayIcon *trayIcon();
+
+    /// \brief Access to template high level manager.
+    /// \see TemplateFactory
+    TemplateFactory *templateManager();
 
     /// \brief Main static getter of global Application instance.
     /// \return Returns singleton for Application.
@@ -183,6 +188,7 @@ class Application : public QApplication {
     SkinFactory *m_skinFactory;
     SystemTrayIcon *m_trayIcon;
     FormMain *m_mainForm;
+    TemplateFactory *m_templateManager;
 };
 
 #endif // APPLICATION_H

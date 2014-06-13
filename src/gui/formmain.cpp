@@ -38,6 +38,7 @@
 #include "gui/formhelp.h"
 #include "gui/formsimulator.h"
 #include "miscellaneous/iconfactory.h"
+#include "core/templatesimulator.h"
 
 #include <QStackedWidget>
 #include <QMessageBox>
@@ -92,6 +93,8 @@ FormMain::FormMain(QWidget *parent) :
 
   connect(iNewProjectWidget, SIGNAL(startProject(int)),
           this, SLOT(startProject(int)));
+
+  m_simulatorWindow->setActiveSimulation(new TemplateSimulator());
 }
 
 FormMain::~FormMain() {

@@ -11,6 +11,7 @@ namespace Ui {
 }
 
 class FormMain;
+class TemplateSimulator;
 class QCloseEvent;
 
 /// \brief Separate window which contains active simulator.
@@ -30,6 +31,14 @@ class FormSimulator : public QDialog {
     inline bool isSticked() const {
       return m_isSticked;
     }
+
+    /// \brief Sets new active simulation widget.
+    /// \param simulation New active simulation widget.
+    /// \remarks This instance of FormSimulator takes ownership
+    /// of added simulation editors. When this method is called
+    /// and there is already some editor set, then this editor
+    /// is deleted.
+    void setActiveSimulation(TemplateSimulator *simulation);
 
   public slots:
     /// \brief Conditionally sticks simulator window to its parent.
@@ -64,6 +73,7 @@ class FormSimulator : public QDialog {
     Ui::FormSimulator *m_ui;
     FormMain *m_mainWindow;
     bool m_isSticked;
+    TemplateSimulator *m_activeSimulation;
 };
 
 #endif // FORMSIMULATOR_H

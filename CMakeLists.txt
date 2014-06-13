@@ -378,6 +378,12 @@ set(APP_SOURCES
   src/network-web/downloader.cpp
   src/network-web/networkfactory.cpp
 
+  src/core/templatefactory.cpp
+  src/core/templateentrypoint.cpp
+  src/core/templatecore.cpp
+  src/core/templateeditor.cpp
+  src/core/templatesimulator.cpp
+
   src/FlashcardTemplate.cpp
   src/InfoTemplate.cpp
   src/QuestionItem.cpp
@@ -418,6 +424,12 @@ set(APP_HEADERS
   src/network-web/basenetworkaccessmanager.h
   src/network-web/silentnetworkaccessmanager.h
   src/network-web/downloader.h
+
+  src/core/templatefactory.h
+  src/core/templateentrypoint.h
+  src/core/templatecore.h
+  src/core/templateeditor.h
+  src/core/templatesimulator.h
 
   src/FlashcardTemplate.h
   src/InfoTemplate.h

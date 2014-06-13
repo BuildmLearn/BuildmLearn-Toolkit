@@ -52,12 +52,12 @@
 #define APP_REVISION        "@APP_REVISION@"
 #define APP_USERAGENT       QString("@APP_NAME@/@APP_VERSION@ (@APP_URL@) on @CMAKE_SYSTEM@")
 
-#define EXIT_STATUS_NOT_STARTED       -2
-#define EXIT_STATUS_CRASH             -1
-#define EXIT_STATUS_ZIP_NORMAL        0
-#define EXIT_STATUS_JAVA_NORMAL       0
-#define EXIT_STATUS_SIGNAPK_NORMAL    2
-#define EXIT_STATUS_SIGNAPK_NOT_FOUND 1
+#define EXIT_STATUS_NOT_STARTED         -2
+#define EXIT_STATUS_CRASH               -1
+#define EXIT_STATUS_ZIP_NORMAL          0
+#define EXIT_STATUS_JAVA_NORMAL         0
+#define EXIT_STATUS_SIGNAPK_NORMAL      2
+#define EXIT_STATUS_SIGNAPK_NOT_FOUND   1
 
 #define RELEASES_LIST                   "https://raw.githubusercontent.com/BuildmLearn/BuildmLearn-Toolkit/portage/resources/text/UPDATES"
 #define DEFAULT_LOCALE                  "en_GB"
@@ -82,6 +82,11 @@
 #define SIMULATOR_HEIGHT_DEFAULT  639
 #define SIMULATOR_WIDTH_OFFSET    50
 #define SIMULATOR_OFFSET          16
+
+#define SIMULATOR_CONTENTS_OFFSET_X   30
+#define SIMULATOR_CONTENTS_OFFSET_Y   95
+#define SIMULATOR_CONTENTS_WIDTH      270
+#define SIMULATOR_CONTENTS_HEIGHT     447
 
 // Config constants.
 #define APP_CFG_PATH        "config"

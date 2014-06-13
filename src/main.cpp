@@ -49,7 +49,6 @@
 // a zacit psat templatovej system a poresit checkbox
 // na help dialogu
 
-
 // TODO: Napad jak na rozhrani s templatama
 // kazdej template bude mit dve hlavni vstupni tridy
 //

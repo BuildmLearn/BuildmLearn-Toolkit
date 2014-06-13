@@ -5,12 +5,14 @@
 #include "miscellaneous/iconfactory.h"
 #include "miscellaneous/application.h"
 #include "miscellaneous/skinfactory.h"
+#include "core/templatesimulator.h"
 
+#include <QWidget>
 #include <QCloseEvent>
 
 
 FormSimulator::FormSimulator(FormMain* parent)
-  : QDialog(parent), m_ui(new Ui::FormSimulator), m_mainWindow(parent) {
+  : QDialog(parent), m_ui(new Ui::FormSimulator), m_mainWindow(parent), m_activeSimulation(NULL) {
   m_ui->setupUi(this);
   m_isSticked = qApp->settings()->value(APP_CFG_SIMULATOR, "is_sticked", true).toBool();
 
@@ -28,6 +30,21 @@ FormSimulator::FormSimulator(FormMain* parent)
 
 FormSimulator::~FormSimulator() {
   delete m_ui;
+}
+
+void FormSimulator::setActiveSimulation(TemplateSimulator *simulation) {
+  if (m_activeSimulation != NULL) {
+    m_activeSimulation->close();
+    m_activeSimulation->deleteLater();
+    m_activeSimulation = NULL;
+  }
+
+  m_activeSimulation = simulation;
+  m_activeSimulation->setParent(m_ui->m_phoneWidget);
+  m_activeSimulation->setGeometry(SIMULATOR_CONTENTS_OFFSET_X, SIMULATOR_CONTENTS_OFFSET_Y,
+                       SIMULATOR_CONTENTS_WIDTH, SIMULATOR_CONTENTS_HEIGHT);
+  m_activeSimulation->setStyleSheet("QWidget { border: 3px solid red; }");
+  m_activeSimulation->show();
 }
 
 void FormSimulator::conditionallyAttachToParent() {
@@ -77,7 +94,7 @@ void FormSimulator::unAttachFromParent() {
 
 void FormSimulator::setupPhoneWidget() {
   m_ui->m_phoneWidget->setFixedSize(SIMULATOR_WIDTH, SIMULATOR_HEIGHT_DEFAULT);
-  m_ui->m_phoneWidget->setStyleSheet(QString("background-image: url(%1)").arg(qApp->skinFactory()->currentSkin().m_simulatorBackgroundMain));
+  m_ui->m_phoneWidget->setPixmap(QPixmap(qApp->skinFactory()->currentSkin().m_simulatorBackgroundMain));
 
   setFixedWidth(SIMULATOR_WIDTH + SIMULATOR_WIDTH_OFFSET);
 }
