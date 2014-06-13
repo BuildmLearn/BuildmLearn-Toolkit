@@ -76,8 +76,12 @@
 #define DELIMITER_INLINE                "##IL##"
 
 // Simulator dimensions -> it supports single fixed size.
-#define SIMULATOR_WIDTH   327
-#define SIMULATOR_HEIGHT  639
+#define SIMULATOR_WIDTH           327
+#define SIMULATOR_HEIGHT_MAX      10000
+#define SIMULATOR_HEIGHT_MIN      150
+#define SIMULATOR_HEIGHT_DEFAULT  639
+#define SIMULATOR_WIDTH_OFFSET    50
+#define SIMULATOR_OFFSET          16
 
 // Config constants.
 #define APP_CFG_PATH        "config"

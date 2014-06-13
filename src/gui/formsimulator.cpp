@@ -40,6 +40,9 @@ void FormSimulator::setIsSticked(bool is_sticked) {
   if (is_sticked && !m_isSticked) {
     attachToParent();
   }
+  else if (!is_sticked && m_isSticked) {
+    unAttachFromParent();
+  }
 
   m_isSticked = is_sticked;
 
@@ -47,25 +50,36 @@ void FormSimulator::setIsSticked(bool is_sticked) {
 }
 
 void FormSimulator::show() {
+  conditionallyAttachToParent();
   QDialog::show();
-
-  // TODO: Maybe adjust height of the window.
 }
 
 void FormSimulator::attachToParent() {
   QPoint main_window_position = m_mainWindow->pos();
   QSize main_window_size = m_mainWindow->size();
 
+  setFixedHeight(main_window_size.height());
   resize(size().width(), main_window_size.height());
-  move(main_window_position.x() + main_window_size.width() + 16,
+  move(main_window_position.x() + main_window_size.width() + SIMULATOR_OFFSET,
+       main_window_position.y());
+}
+
+void FormSimulator::unAttachFromParent() {
+  QPoint main_window_position = m_mainWindow->pos();
+  QSize main_window_size = m_mainWindow->size();
+
+  setMinimumHeight(SIMULATOR_HEIGHT_MIN);
+  setMaximumHeight(SIMULATOR_HEIGHT_MAX);
+
+  move(main_window_position.x() + main_window_size.width() + SIMULATOR_WIDTH_OFFSET,
        main_window_position.y());
 }
 
 void FormSimulator::setupPhoneWidget() {
-  m_ui->m_phoneWidget->setFixedSize(SIMULATOR_WIDTH, SIMULATOR_HEIGHT);
+  m_ui->m_phoneWidget->setFixedSize(SIMULATOR_WIDTH, SIMULATOR_HEIGHT_DEFAULT);
   m_ui->m_phoneWidget->setStyleSheet(QString("background-image: url(%1)").arg(qApp->skinFactory()->currentSkin().m_simulatorBackgroundMain));
 
-  setFixedWidth(SIMULATOR_WIDTH + 50);
+  setFixedWidth(SIMULATOR_WIDTH + SIMULATOR_WIDTH_OFFSET);
 }
 
 void FormSimulator::closeEvent(QCloseEvent *e) {
