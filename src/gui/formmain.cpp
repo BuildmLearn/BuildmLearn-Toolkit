@@ -37,6 +37,7 @@
 #include "gui/systemtrayicon.h"
 #include "gui/formhelp.h"
 #include "gui/formsimulator.h"
+#include "gui/formnewproject.h"
 #include "miscellaneous/iconfactory.h"
 #include "core/templatesimulator.h"
 
@@ -69,6 +70,7 @@ FormMain::FormMain(QWidget *parent) :
   m_ui->m_actionViewSimulatorWindow->setChecked(m_simulatorWindow->isVisibleOnStartup());
   m_ui->m_actionStickSimulatorWindow->setChecked(m_simulatorWindow->isSticked());
 
+  /*
   iNewProjectWidget = new FormNewProject(this);
   iNewProjectWidget->setWindowModality(Qt::ApplicationModal);
 
@@ -78,9 +80,7 @@ FormMain::FormMain(QWidget *parent) :
   iQuizTemplateWidget = new QuizTemplate(this);
   iFlashCardsWidget = new FlashcardTemplate(this);
 
-
   iBlankWidget->setStyleSheet("background-image: url(:/images/banner.png)");
-
 
   iStackedWidget->addWidget(iBlankWidget);
   iStackedWidget->addWidget(iInfoTemplateWidget);
@@ -93,6 +93,7 @@ FormMain::FormMain(QWidget *parent) :
 
   connect(iNewProjectWidget, SIGNAL(startProject(int)),
           this, SLOT(startProject(int)));
+*/
 
   m_simulatorWindow->setActiveSimulation(new TemplateSimulator());
 }
@@ -149,7 +150,7 @@ void FormMain::createConnections() {
 
   // Project connections.
   connect(m_ui->m_actionNewProject, SIGNAL(triggered()),
-          this ,SLOT(newClicked()));
+          this ,SLOT(openNewProjectDialog()));
   connect(m_ui->m_actionSaveProject, SIGNAL(triggered()),
           this ,SLOT(saveClicked()));
   connect(m_ui->m_actionLoadProject, SIGNAL(triggered()),
@@ -412,23 +413,13 @@ void FormMain::loadOpenFile()
 
 }
 
-void FormMain::newClicked()
-{
-  if (iStackedWidget->currentIndex() !=0)
-  {
-    if (QMessageBox::Yes == QMessageBox::question(this, "Discard current project?", "Choosing a new project would discard your current project. Are you sure to continue?", QMessageBox::Yes|QMessageBox::No))
-    {
-      iStackedWidget->setCurrentIndex(0);
-      iNewProjectWidget->show();
+void FormMain::openNewProjectDialog() {
+  // TODO: Check if there is currently active some project
+  // and it is saved.
 
-      // reseting other widgets
-      resetWidgets();
-    }
-  }
-  else if (!iNewProjectWidget->isVisible())
-  {
-    iNewProjectWidget->show();
-  }
+  QPointer<FormNewProject> form_new_project = new FormNewProject(qApp->templateManager(), this);
+  form_new_project.data()->exec();
+  delete form_new_project.data();
 }
 
 void FormMain::generateClicked()

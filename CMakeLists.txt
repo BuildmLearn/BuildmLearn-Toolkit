@@ -393,6 +393,8 @@ set(APP_SOURCES
   src/core/templateeditor.cpp
   src/core/templatesimulator.cpp
 
+  src/templates/quiz/quizentrypoint.cpp
+
   src/FlashcardTemplate.cpp
   src/InfoTemplate.cpp
   src/QuestionItem.cpp
@@ -440,6 +442,8 @@ set(APP_HEADERS
   src/core/templateeditor.h
   src/core/templatesimulator.h
 
+  src/templates/quiz/quizentrypoint.h
+
   src/FlashcardTemplate.h
   src/InfoTemplate.h
   src/QuestionItem.h
@@ -454,6 +458,7 @@ set(APP_FORMS
   src/gui/formsettings.ui
   src/gui/formhelp.ui
   src/gui/formsimulator.ui
+  src/gui/formnewproject.ui
 )
 
 # APP translations.
@@ -518,6 +523,8 @@ endif(${USE_QT_5})
 # Include additional directory paths.
 include_directories (
   ${CMAKE_CURRENT_SOURCE_DIR}/src
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/core
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/templates/quiz
   ${CMAKE_CURRENT_SOURCE_DIR}/src/gui
   ${CMAKE_CURRENT_SOURCE_DIR}/src/miscellaneous
   ${CMAKE_CURRENT_SOURCE_DIR}/src/network-web

@@ -53,7 +53,13 @@ class TemplateFactory : public QObject {
       return m_availableTemplates;
     }
 
+  public slots:
+    void startNewProject(TemplateEntryPoint *entry_point);
+    void loadProject(const QString &bundle_file_name);
+
   private:
+    void setupTemplates();
+
     QList<TemplateEntryPoint*> m_availableTemplates;
 };
 

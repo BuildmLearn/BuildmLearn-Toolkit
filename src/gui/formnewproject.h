@@ -28,45 +28,37 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#ifndef NEWPROJECTWIDGET_H
-#define NEWPROJECTWIDGET_H
+#ifndef FORMNEWPROJECT_H
+#define FORMNEWPROJECT_H
 
-#include <QMainWindow>
+#include <QDialog>
+
+#include "ui_formnewproject.h"
 
 
-class QListWidget;
-class QLabel;
-class QPushButton;
+namespace Ui {
+  class FormNewProject;
+}
 
-class FormNewProject : public QMainWindow {
+class TemplateFactory;
+class TemplateEntryPoint;
+
+class FormNewProject : public QDialog {
     Q_OBJECT
 
   public:
-    explicit FormNewProject(QWidget *parent = 0);
+    // Constructors and destructors.
+    explicit FormNewProject(TemplateFactory *template_manager, QWidget *parent = 0);
+    virtual ~FormNewProject();
 
-  signals:
-    void startProject(int);
+  private slots:
+    void templateSelected(int index);
 
-  public slots:
-    void TemplateSelectionChanged(int index);
-    void iChooseButton_clicked();
-    void iOpenButton_clicked();
   private:
-    QWidget* iWidget;
-    QWidget* iLeftWidget;
+    // Loads templates into the dialog.
+    void loadTemplates(const QList<TemplateEntryPoint*> &entry_points);
 
-    QListWidget* iTemplateList;
-    QLabel* iChooseTemplateLabel;
-    QPushButton* iOpenButton;
-    QPushButton* iChooseButton;
-    QPushButton* iCancelButton;
-    QWidget* iRightWidget;
-
-    QLabel* iRightImageWidget;
-    QLabel* iRightInfoWidget;
-
-    QStringList iTemplateInfoList;
-    QStringList iTemplateImageList;
+    Ui::FormNewProject *m_ui;
 };
 
-#endif // NEWPROJECTWIDGET_H
+#endif // FORMNEWPROJECT_H

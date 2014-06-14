@@ -39,8 +39,12 @@ class TemplateSimulator : public QWidget {
     Q_OBJECT
 
   public:
+    // Constructors and destructors.
     explicit TemplateSimulator(QWidget *parent = 0);
+    virtual ~TemplateSimulator();
 
+    /// \brief Hint for default and fixed size for all
+    /// simulator contents.
     QSize sizeHint() const;
 
   signals:

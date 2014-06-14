@@ -33,12 +33,28 @@
 #include "core/templatecore.h"
 #include "core/templateentrypoint.h"
 
+#include "templates/quiz/quizentrypoint.h"
+
 
 TemplateFactory::TemplateFactory(QObject *parent) : QObject(parent), m_availableTemplates(QList<TemplateEntryPoint*>()) {
+  setupTemplates();
 }
 
 TemplateFactory::~TemplateFactory() {
   qDebug("Destroying TemplateFactory instance.");
+}
+
+void TemplateFactory::startNewProject(TemplateEntryPoint *entry_point) {
+  // TODO: Start new project with selected template entry point.
+}
+
+void TemplateFactory::loadProject(const QString &bundle_file_name) {
+  // TODO: Load project from XML bundle file.
+}
+
+void TemplateFactory::setupTemplates() {
+  // TODO: Fill in needed template entry points.
+  m_availableTemplates.append(new QuizEntryPoint(this));
 }
 
 

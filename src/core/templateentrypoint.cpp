@@ -30,6 +30,50 @@
 
 #include "core/templateentrypoint.h"
 
+#include "core/templatefactory.h"
 
-TemplateEntryPoint::TemplateEntryPoint(QObject *parent) : QObject(parent) {
+
+TemplateEntryPoint::TemplateEntryPoint(TemplateFactory *parent) : QObject(parent) {
 }
+
+TemplateEntryPoint::~TemplateEntryPoint() {
+  qDebug("Destroying TemplateEntryPoint instance.");
+}
+
+QString TemplateEntryPoint::name() const {
+  return m_name;
+}
+
+QString TemplateEntryPoint::humanName() const {
+  return m_humanName;
+}
+
+QString TemplateEntryPoint::author() const {
+  return m_author;
+}
+
+QString TemplateEntryPoint::version() const {
+  return m_version;
+}
+
+QString TemplateEntryPoint::copyright() const {
+  return m_copyright;
+}
+
+QString TemplateEntryPoint::baseFolder() const {
+  return m_baseFolder;
+}
+
+QString TemplateEntryPoint::description() const {
+  return m_description;
+}
+
+QString TemplateEntryPoint::thumbnailImage() const {
+  return m_thumbnailImage;
+}
+
+
+
+
+
+

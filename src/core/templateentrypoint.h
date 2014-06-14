@@ -35,15 +35,55 @@
 #include <QObject>
 
 
+class TemplateCore;
+class TemplateFactory;
+
 class TemplateEntryPoint : public QObject {
     Q_OBJECT
 
   public:
-    explicit TemplateEntryPoint(QObject *parent = 0);
+    // Constructors and destructors.
+    explicit TemplateEntryPoint(TemplateFactory *parent);
+    virtual ~TemplateEntryPoint();
 
-  signals:
+    virtual TemplateCore *createNewCore() = 0;
+    virtual TemplateCore *loadCoreFromRawData(const QString &raw_data) = 0;
 
-  public slots:
+    /// \brief Name of template.
+    virtual QString name() const;
+
+    /// \brief Human-readable name of template.
+    virtual QString humanName() const;
+
+    /// \brief Author of template.
+    virtual QString author() const;
+
+    /// \brief Version of template.
+    virtual QString version() const;
+
+    /// \brief Copyright of template.
+    virtual QString copyright() const;
+
+    /// \brief Base folder of template.
+    virtual QString baseFolder() const;
+
+    /// \brief Description of template.
+    virtual QString description() const;
+
+    /// \brief Relative path to thumbnail image.
+    /// \remarks This path is relative to APP_TEMPLATES_PATH macro combined
+    /// with base folder of template.
+    virtual QString thumbnailImage() const;
+
+  protected:
+    QString m_name;
+    QString m_humanName;
+    QString m_author;
+    QString m_version;
+    QString m_copyright;
+    QString m_baseFolder;
+    QString m_description;
+    QString m_thumbnailImage;
 
 };
 

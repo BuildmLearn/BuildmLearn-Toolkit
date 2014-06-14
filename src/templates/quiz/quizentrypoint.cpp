@@ -28,33 +28,29 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include "core/templatesimulator.h"
+#include "templates/quiz/quizentrypoint.h"
 
-#include "definitions/definitions.h"
-
-#include <QTextEdit>
-#include <QLabel>
-#include <QStackedWidget>
-#include <QPushButton>
-#include <QLayout>
+#include "core/templatefactory.h"
 
 
-TemplateSimulator::TemplateSimulator(QWidget *parent) : QWidget(parent, 0) {
-  QVBoxLayout *default_layout = new QVBoxLayout(this);
-  QLabel *default_label = new QLabel("Default simulator widget", this);
-
-  default_label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
-  default_layout->setSpacing(0);
-  default_layout->setMargin(0);
-  default_layout->addWidget(default_label);
-
-  setLayout(default_layout);
+QuizEntryPoint::QuizEntryPoint(TemplateFactory *parent) : TemplateEntryPoint(parent) {
+  m_author = "Martin Rotter";
+  m_baseFolder = "quiz";
+  m_copyright = "(C) Martin Rotter";
+  m_description = "This is simple template for generating Quiz-like applications.";
+  m_humanName = "Quiz";
+  m_name = "quiz";
+  m_thumbnailImage = "thumbnail.png";
+  m_version = "0.0.1";
 }
 
-TemplateSimulator::~TemplateSimulator() {
-  qDebug("Destroying TemplateSimulator instance.");
+QuizEntryPoint::~QuizEntryPoint() {
 }
 
-QSize TemplateSimulator::sizeHint() const {
-  return QSize(SIMULATOR_CONTENTS_WIDTH, SIMULATOR_CONTENTS_HEIGHT);
+TemplateCore *QuizEntryPoint::createNewCore() {
+  return NULL;
+}
+
+TemplateCore *QuizEntryPoint::loadCoreFromRawData(const QString &raw_data) {
+  return NULL;
 }

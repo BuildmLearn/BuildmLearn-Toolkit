@@ -45,7 +45,7 @@
 
 
 namespace Ui {
- class FormMain;
+  class FormMain;
 }
 
 class FormSimulator;
@@ -111,9 +111,12 @@ class FormMain : public QMainWindow {
     /// \see show()
     void display();
 
+    /// \brief Opens "New project" dialog.
+    /// \see FormNewProject
+    void openNewProjectDialog();
+
     void startProject(int);
     void generateClicked();
-    void newClicked();
     void saveClicked();
     void openClicked();
     void loadOpenFile();

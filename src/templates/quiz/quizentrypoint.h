@@ -28,33 +28,24 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include "core/templatesimulator.h"
+#ifndef QUIZENTRYPOINT_H
+#define QUIZENTRYPOINT_H
 
-#include "definitions/definitions.h"
-
-#include <QTextEdit>
-#include <QLabel>
-#include <QStackedWidget>
-#include <QPushButton>
-#include <QLayout>
+#include "core/templateentrypoint.h"
 
 
-TemplateSimulator::TemplateSimulator(QWidget *parent) : QWidget(parent, 0) {
-  QVBoxLayout *default_layout = new QVBoxLayout(this);
-  QLabel *default_label = new QLabel("Default simulator widget", this);
+class TemplateFactory;
 
-  default_label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
-  default_layout->setSpacing(0);
-  default_layout->setMargin(0);
-  default_layout->addWidget(default_label);
+class QuizEntryPoint : public TemplateEntryPoint {
+    Q_OBJECT
 
-  setLayout(default_layout);
-}
+  public:
+    // Constructors.
+    explicit QuizEntryPoint(TemplateFactory *parent);
+    virtual ~QuizEntryPoint();
 
-TemplateSimulator::~TemplateSimulator() {
-  qDebug("Destroying TemplateSimulator instance.");
-}
+    TemplateCore *createNewCore();
+    TemplateCore *loadCoreFromRawData(const QString &raw_data);
+};
 
-QSize TemplateSimulator::sizeHint() const {
-  return QSize(SIMULATOR_CONTENTS_WIDTH, SIMULATOR_CONTENTS_HEIGHT);
-}
+#endif // QUIZENTRYPOINT_H
