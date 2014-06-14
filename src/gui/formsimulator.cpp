@@ -12,8 +12,9 @@
 
 
 FormSimulator::FormSimulator(FormMain* parent)
-  : QDialog(parent), m_ui(new Ui::FormSimulator), m_mainWindow(parent), m_activeSimulation(NULL) {
+  : QDialog(parent), m_ui(new Ui::FormSimulator), m_mainWindow(parent), m_isActive(false), m_activeSimulation(NULL) {
   m_ui->setupUi(this);
+  m_isVisibleOnStartup = qApp->settings()->value(APP_CFG_SIMULATOR, "visible_on_startup", true).toBool();
   m_isSticked = qApp->settings()->value(APP_CFG_SIMULATOR, "is_sticked", true).toBool();
 
   // Do necessary initializations.
@@ -30,6 +31,22 @@ FormSimulator::FormSimulator(FormMain* parent)
 
 FormSimulator::~FormSimulator() {
   delete m_ui;
+}
+
+void FormSimulator::saveState() {
+  qApp->settings()->setValue(APP_CFG_SIMULATOR, "visible_on_startup", m_isActive);
+
+  if (!m_isSticked) {
+    qApp->settings()->setValue(APP_CFG_SIMULATOR, "position", pos());
+    qApp->settings()->setValue(APP_CFG_SIMULATOR, "height", height());
+  }
+}
+
+void FormSimulator::loadState() {
+  if (!m_isSticked) {
+    move(qApp->settings()->value(APP_CFG_SIMULATOR, "position", pos()).toPoint());
+    resize(width(), qApp->settings()->value(APP_CFG_SIMULATOR, "height", height()).toInt());
+  }
 }
 
 void FormSimulator::setActiveSimulation(TemplateSimulator *simulation) {
@@ -67,6 +84,8 @@ void FormSimulator::setIsSticked(bool is_sticked) {
 }
 
 void FormSimulator::show() {
+  m_isActive = true;
+
   conditionallyAttachToParent();
   QDialog::show();
 }
@@ -100,6 +119,8 @@ void FormSimulator::setupPhoneWidget() {
 }
 
 void FormSimulator::closeEvent(QCloseEvent *e) {
+  m_isActive = false;
+
   emit closed();
   e->accept();
 }

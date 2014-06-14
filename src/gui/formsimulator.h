@@ -24,12 +24,22 @@ class FormSimulator : public QDialog {
     explicit FormSimulator(FormMain *parent = 0);
     virtual ~FormSimulator();
 
+    void saveState();
+
+    void loadState();
+
     /// \brief Indicates whether simulator window is sticked to
     /// main window or not.
     /// \return Returns true if window is sticked
     /// or false when it is not.
     inline bool isSticked() const {
       return m_isSticked;
+    }
+
+    /// \brief Indicates whether simulator window should be shown
+    /// when application launches.
+    inline bool isVisibleOnStartup() const {
+      return m_isVisibleOnStartup;
     }
 
     /// \brief Sets new active simulation widget.
@@ -59,6 +69,8 @@ class FormSimulator : public QDialog {
     void show();
 
   protected:
+    /// \brief Executed when simulator window is closed.
+    /// \param e Event argument.
     void closeEvent(QCloseEvent *e);
 
   signals:
@@ -72,7 +84,9 @@ class FormSimulator : public QDialog {
   private:
     Ui::FormSimulator *m_ui;
     FormMain *m_mainWindow;
+    bool m_isVisibleOnStartup;
     bool m_isSticked;
+    bool m_isActive;
     TemplateSimulator *m_activeSimulation;
 };
 

@@ -66,7 +66,7 @@ FormMain::FormMain(QWidget *parent) :
   createConnections();
 
   // Make sure simulator window is displayed.
-  m_ui->m_actionViewSimulatorWindow->setChecked(true);
+  m_ui->m_actionViewSimulatorWindow->setChecked(m_simulatorWindow->isVisibleOnStartup());
   m_ui->m_actionStickSimulatorWindow->setChecked(m_simulatorWindow->isSticked());
 
   iNewProjectWidget = new FormNewProject(this);
@@ -237,6 +237,8 @@ void FormMain::loadSizeAndPosition() {
   // Reload main window size & position.
   move(settings->value(APP_CFG_GUI, "window_position",
                        screen.center() - windows.center()).toPoint());
+
+  m_simulatorWindow->loadState();
 }
 
 void FormMain::saveSizeAndPosition() {
@@ -245,6 +247,7 @@ void FormMain::saveSizeAndPosition() {
 
 void FormMain::onAboutToQuit() {
   saveSizeAndPosition();
+  m_simulatorWindow->saveState();
 }
 
 void FormMain::onSimulatorWindowClosed() {
