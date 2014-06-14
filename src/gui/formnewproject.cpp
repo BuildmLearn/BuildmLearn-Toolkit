@@ -40,7 +40,7 @@ FormNewProject::FormNewProject(TemplateFactory *template_manager, QWidget *paren
     m_ui(new Ui::FormNewProject){
   m_ui->setupUi(this);
 
-  m_ui->m_lblThumbnail->setFixedSize(140, 150);
+  m_ui->m_lblThumbnail->setFixedSize(200, 213);
   m_ui->m_listTemplates->setFixedWidth(200);
 
   QMargins description_margins = m_ui->m_lblDescription->contentsMargins();
