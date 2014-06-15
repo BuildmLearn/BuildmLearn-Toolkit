@@ -44,6 +44,7 @@
 #include "miscellaneous/skinfactory.h"
 #include "dynamic-shortcuts/dynamicshortcutswidget.h"
 #include "dynamic-shortcuts/dynamicshortcuts.h"
+#include "core/templatefactory.h"
 
 #include <QProcess>
 #include <QNetworkProxy>
@@ -104,22 +105,7 @@ FormSettings::FormSettings(QWidget *parent)
 #endif
 
   // Establish needed connections.
-  connect(m_ui->m_buttonBox, SIGNAL(accepted()),
-          this, SLOT(saveSettings()));
-  connect(m_ui->m_cmbProxyType, SIGNAL(currentIndexChanged(int)),
-          this, SLOT(onProxyTypeChanged(int)));
-  connect(m_ui->m_checkShowPassword, SIGNAL(stateChanged(int)),
-          this, SLOT(displayProxyPassword(int)));
-  connect(m_ui->m_cmbExternalBrowserPreset, SIGNAL(currentIndexChanged(int)),
-          this, SLOT(changeDefaultBrowserArguments(int)));
-  connect(m_ui->m_btnExternalBrowserExecutable, SIGNAL(clicked()),
-          this, SLOT(selectBrowserExecutable()));
-  connect(m_ui->m_btnSelectZip, SIGNAL(clicked()),
-          this, SLOT(selectZip()));
-  connect(m_ui->m_btnSelectJava, SIGNAL(clicked()),
-          this, SLOT(selectJava()));
-  connect(m_ui->m_btnSelectSignapk, SIGNAL(clicked()),
-          this, SLOT(selectSignApk()));
+  createConnections();
 
   // Load all settings.
   loadGeneral();
@@ -129,6 +115,7 @@ FormSettings::FormSettings(QWidget *parent)
   loadProxy();
   loadBrowser();
   loadLanguage();
+  loadGenerationStuff();
 }
 
 FormSettings::~FormSettings() {
@@ -140,6 +127,19 @@ void FormSettings::changeDefaultBrowserArguments(int index) {
   if (index != 0) {
     m_ui->m_txtExternalBrowserArguments->setText(m_ui->m_cmbExternalBrowserPreset->itemData(index).toString());
   }
+}
+
+void FormSettings::createConnections() {
+  connect(m_ui->m_buttonBox, SIGNAL(accepted()), this, SLOT(saveSettings()));
+  connect(m_ui->m_cmbProxyType, SIGNAL(currentIndexChanged(int)), this, SLOT(onProxyTypeChanged(int)));
+  connect(m_ui->m_checkShowPassword, SIGNAL(stateChanged(int)), this, SLOT(displayProxyPassword(int)));
+  connect(m_ui->m_cmbExternalBrowserPreset, SIGNAL(currentIndexChanged(int)), this, SLOT(changeDefaultBrowserArguments(int)));
+  connect(m_ui->m_btnExternalBrowserExecutable, SIGNAL(clicked()), this, SLOT(selectBrowserExecutable()));
+  connect(m_ui->m_btnSelectZip, SIGNAL(clicked()), this, SLOT(selectZip()));
+  connect(m_ui->m_btnSelectJava, SIGNAL(clicked()), this, SLOT(selectJava()));
+  connect(m_ui->m_btnSelectSignapk, SIGNAL(clicked()), this, SLOT(selectSignApk()));
+  connect(m_ui->m_btnGenerationOutputSelect, SIGNAL(clicked()), this, SLOT(selectOutputDirectory()));
+  connect(m_ui->m_btnGenerationTempSelect, SIGNAL(clicked()), this, SLOT(selectTempDirectory()));
 }
 
 void FormSettings::selectBrowserExecutable() {
@@ -250,6 +250,7 @@ void FormSettings::saveSettings() {
   saveProxy();
   saveBrowser();
   saveLanguage();
+  saveGenerationStuff();
 
   qApp->settings()->checkSettings();
   promptForRestart();
@@ -388,7 +389,9 @@ void FormSettings::selectJava() {
                                                          tr("Select JAVA executable"),
                                                          QDir::homePath(),
                                                          //: File filter for external browser selection dialog.
-                                                         tr("Executables (java*)"));
+                                                         tr("Executables (java*)"),
+                                                         0,
+                                                         QFileDialog::DontUseNativeDialog);
 
   if (!executable_file.isEmpty()) {
     checkJava(QDir::toNativeSeparators(executable_file));
@@ -401,7 +404,9 @@ void FormSettings::selectZip() {
                                                          tr("Select ZIP executable"),
                                                          QDir::homePath(),
                                                          //: File filter for external browser selection dialog.
-                                                         tr("Executables (zip*)"));
+                                                         tr("Executables (zip*)"),
+                                                         0,
+                                                         QFileDialog::DontUseNativeDialog);
 
   if (!executable_file.isEmpty()) {
     checkZip(QDir::toNativeSeparators(executable_file));
@@ -413,7 +418,9 @@ void FormSettings::selectSignApk() {
                                                          tr("Select SIGNAPK executable"),
                                                          QDir::homePath(),
                                                          //: File filter for external browser selection dialog.
-                                                         tr("Executables (signapk.jar)"));
+                                                         tr("Executables (signapk.jar)"),
+                                                         0,
+                                                         QFileDialog::DontUseNativeDialog);
 
   if (!executable_file.isEmpty()) {
     checkSignApk(QDir::toNativeSeparators(executable_file));
@@ -637,11 +644,35 @@ void FormSettings::saveShortcuts() {
 
 
 void FormSettings::loadGenerationStuff() {
-  // TODO: Finish this, when templates are designed
-  // and fetch data from TemplateFactory class.
+  m_ui->m_lblGenerationTemp->setText(QDir::toNativeSeparators(qApp->templateManager()->tempDirectory()));
+  m_ui->m_lblGenerationOutput->setText(QDir::toNativeSeparators(qApp->templateManager()->outputDirectory()));
+  m_ui->m_txtGenerationOutputFilePattern->setText(QDir::toNativeSeparators(qApp->templateManager()->applicationFileNamePattern()));
 }
 
 void FormSettings::saveGenerationStuff() {
-  // TODO: Finish this, when templates are designed
-  // and save data to TemplateFactory class.
+  qApp->templateManager()->setOutputDirectory(m_ui->m_lblGenerationOutput->text());
+  qApp->templateManager()->setTempDirectory(m_ui->m_lblGenerationTemp->text());
+  qApp->templateManager()->setApplicationFileNamePattern(m_ui->m_txtGenerationOutputFilePattern->text());
+}
+
+void FormSettings::selectTempDirectory() {
+  QString temp_directory = QFileDialog::getExistingDirectory(this,
+                                                              tr("Select temporary directory"),
+                                                              m_ui->m_lblGenerationTemp->text(),
+                                                              QFileDialog::DontUseNativeDialog);
+
+  if (!temp_directory.isEmpty()) {
+    m_ui->m_lblGenerationTemp->setText(QDir::toNativeSeparators(temp_directory));
+  }
+}
+
+void FormSettings::selectOutputDirectory() {
+  QString output_directory = QFileDialog::getExistingDirectory(this,
+                                                              tr("Select output directory"),
+                                                              m_ui->m_lblGenerationTemp->text(),
+                                                              QFileDialog::DontUseNativeDialog);
+
+  if (!output_directory.isEmpty()) {
+    m_ui->m_lblGenerationOutput->setText(QDir::toNativeSeparators(output_directory));
+  }
 }

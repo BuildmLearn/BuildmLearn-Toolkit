@@ -108,7 +108,7 @@ QHash<QString, QAction *> FormMain::allActions() {
   QHash<QString, QAction*> actions;
 
   actions.insert(m_ui->m_actionCheckForUpdates->objectName(), m_ui->m_actionCheckForUpdates);
-  actions.insert(m_ui->m_actionGenerateApkFile->objectName(), m_ui->m_actionGenerateApkFile);
+  actions.insert(m_ui->m_actionGenerateMobileApplication->objectName(), m_ui->m_actionGenerateMobileApplication);
   actions.insert(m_ui->m_actionLoadProject->objectName(), m_ui->m_actionLoadProject);
   actions.insert(m_ui->m_actionNewProject->objectName(), m_ui->m_actionNewProject);
   actions.insert(m_ui->m_actionSaveProject->objectName(), m_ui->m_actionSaveProject);
@@ -155,15 +155,15 @@ void FormMain::createConnections() {
           this ,SLOT(saveClicked()));
   connect(m_ui->m_actionLoadProject, SIGNAL(triggered()),
           this ,SLOT(openClicked()));
-  connect(m_ui->m_actionGenerateApkFile, SIGNAL(triggered()),
+  connect(m_ui->m_actionGenerateMobileApplication, SIGNAL(triggered()),
           this ,SLOT(generateClicked()));
 }
 
 void FormMain::setupActionShortcuts() {
-#if defined(Q_OS_OSX)
   // TODO: Finalize Mac OS X default shortcuts.
+#if defined(Q_OS_OSX)
   m_ui->m_actionCheckForUpdates->setShortcut(QKeySequence("", QKeySequence::PortableText));
-  m_ui->m_actionGenerateApkFile->setShortcut(QKeySequence("", QKeySequence::PortableText));
+  m_ui->m_actionGenerateMobileApplication->setShortcut(QKeySequence("", QKeySequence::PortableText));
   m_ui->m_actionLoadProject->setShortcut(QKeySequence("", QKeySequence::PortableText));
   m_ui->m_actionNewProject->setShortcut(QKeySequence("", QKeySequence::PortableText));
   m_ui->m_actionSaveProject->setShortcut(QKeySequence("", QKeySequence::PortableText));
@@ -172,7 +172,7 @@ void FormMain::setupActionShortcuts() {
   m_ui->m_actionSettings->setShortcut(QKeySequence("", QKeySequence::PortableText));
   m_ui->m_actionHelp->setShortcut(QKeySequence("", QKeySequence::PortableText));
 #else
-  m_ui->m_actionGenerateApkFile->setShortcut(QKeySequence("Ctrl+G", QKeySequence::PortableText));
+  m_ui->m_actionGenerateMobileApplication->setShortcut(QKeySequence("Ctrl+G", QKeySequence::PortableText));
   m_ui->m_actionLoadProject->setShortcut(QKeySequence("Ctrl+L", QKeySequence::PortableText));
   m_ui->m_actionNewProject->setShortcut(QKeySequence("Ctrl+N", QKeySequence::PortableText));
   m_ui->m_actionSaveProject->setShortcut(QKeySequence("Ctrl+S", QKeySequence::PortableText));
@@ -195,7 +195,7 @@ void FormMain::setupIcons() {
   m_ui->m_actionSaveProject->setIcon(factory->fromTheme("project-save"));
   m_ui->m_actionSaveProjectAs->setIcon(factory->fromTheme("project-save-as"));
   m_ui->m_actionLoadProject->setIcon(factory->fromTheme("project-load"));
-  m_ui->m_actionGenerateApkFile->setIcon(factory->fromTheme("project-generate"));
+  m_ui->m_actionGenerateMobileApplication->setIcon(factory->fromTheme("project-generate"));
   m_ui->m_menuSimulatorWindow->setIcon(factory->fromTheme("view-simulator"));
   m_ui->m_actionStickSimulatorWindow->setIcon(factory->fromTheme("simulation-stick"));
   m_ui->m_actionViewSimulatorWindow->setIcon(factory->fromTheme("view-simulator"));
@@ -207,7 +207,7 @@ void FormMain::setupToolbar() {
   m_ui->m_toolBar->addAction(m_ui->m_actionSaveProject);
   m_ui->m_toolBar->addAction(m_ui->m_actionSaveProjectAs);
   m_ui->m_toolBar->addSeparator();
-  m_ui->m_toolBar->addAction(m_ui->m_actionGenerateApkFile);
+  m_ui->m_toolBar->addAction(m_ui->m_actionGenerateMobileApplication);
   m_ui->m_toolBar->addAction(m_ui->m_actionHelp);
 }
 
@@ -424,8 +424,14 @@ void FormMain::openNewProjectDialog() {
   // and it is saved.
 
   QPointer<FormNewProject> form_new_project = new FormNewProject(qApp->templateManager(), this);
-  form_new_project.data()->exec();
+  TemplateEntryPoint *entry_point = form_new_project.data()->startNewTemplate();
+
   delete form_new_project.data();
+
+  if (entry_point != NULL) {
+    // User selected proper template to start with.
+    // Load the template.
+  }
 }
 
 void FormMain::generateClicked()

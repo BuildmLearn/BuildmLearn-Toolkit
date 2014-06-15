@@ -51,6 +51,12 @@ class FormNewProject : public QDialog {
     explicit FormNewProject(TemplateFactory *template_manager, QWidget *parent = 0);
     virtual ~FormNewProject();
 
+  public slots:
+    /// \brief Displays the dialog and returns entry point of desired
+    /// template which user wants to create new project from. If "Cancel"
+    /// is hit, then NULL is returned.
+    TemplateEntryPoint *startNewTemplate();
+
   private slots:
     void templateSelected(int index);
 

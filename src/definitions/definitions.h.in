@@ -98,6 +98,7 @@
 #define APP_CFG_BROWSER     "browser"
 #define APP_CFG_APK_GEN     "apk_generation"
 #define APP_CFG_SIMULATOR   "simulator"
+#define APP_CFG_TEMPLATES   "templates"
 
 #if defined(Q_OS_OSX) || defined(Q_WS_MAC)
 #define APP_PREFIX  QApplication::applicationDirPath() + "/../Resources"

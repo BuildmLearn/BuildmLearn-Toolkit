@@ -56,14 +56,14 @@ class Settings : public QSettings {
 
     // Getter/setter for settings values.
     inline QVariant value(const QString &section,
-                   const QString &key,
-                   const QVariant &default_value = QVariant()) {
+                          const QString &key,
+                          const QVariant &default_value = QVariant()) {
       return QSettings::value(QString("%1/%2").arg(section, key), default_value);
     }
 
     inline void setValue(const QString &section,
-                  const QString &key,
-                  const QVariant &value) {
+                         const QString &key,
+                         const QVariant &value) {
       QSettings::setValue(QString("%1/%2").arg(section, key), value);
     }
 

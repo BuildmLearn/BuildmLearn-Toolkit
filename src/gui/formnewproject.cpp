@@ -64,9 +64,18 @@ FormNewProject::~FormNewProject() {
   delete m_ui;
 }
 
+TemplateEntryPoint *FormNewProject::startNewTemplate() {
+  if (exec() == QDialog::Accepted && m_ui->m_listTemplates->currentRow() >= 0) {
+    return static_cast<TemplateEntryPoint*>(m_ui->m_listTemplates->currentItem()->data(Qt::UserRole).value<void*>());
+  }
+  else {
+    return NULL;
+  }
+}
+
 void FormNewProject::templateSelected(int index) {
   if (index >= 0) {
-    TemplateEntryPoint *entry_point = static_cast<TemplateEntryPoint*>(m_ui->m_listTemplates->item(index)->data(Qt::UserRole).value<void*>());
+    TemplateEntryPoint *entry_point = static_cast<TemplateEntryPoint*>(m_ui->m_listTemplates->currentItem()->data(Qt::UserRole).value<void*>());
 
     m_ui->m_lblAuthor->setText(entry_point->author());
     m_ui->m_lblCopyright->setText(entry_point->copyright());

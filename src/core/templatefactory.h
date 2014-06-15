@@ -53,6 +53,15 @@ class TemplateFactory : public QObject {
       return m_availableTemplates;
     }
 
+    QString tempDirectory() const;
+    void setTempDirectory(const QString &temp_directory);
+
+    QString outputDirectory() const;
+    void setOutputDirectory(const QString &output_directory);
+
+    QString applicationFileNamePattern() const;
+    void setApplicationFileNamePattern(const QString &file_name_pattern);
+
   public slots:
     void startNewProject(TemplateEntryPoint *entry_point);
     void loadProject(const QString &bundle_file_name);

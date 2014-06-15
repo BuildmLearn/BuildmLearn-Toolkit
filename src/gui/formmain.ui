@@ -43,7 +43,7 @@
     <addaction name="m_actionSaveProjectAs"/>
     <addaction name="m_actionLoadProject"/>
     <addaction name="separator"/>
-    <addaction name="m_actionGenerateApkFile"/>
+    <addaction name="m_actionGenerateMobileApplication"/>
     <addaction name="separator"/>
     <addaction name="m_actionQuit"/>
    </widget>
@@ -116,12 +116,9 @@
     <enum>Qt::ApplicationShortcut</enum>
    </property>
   </action>
-  <action name="m_actionGenerateApkFile">
+  <action name="m_actionGenerateMobileApplication">
    <property name="text">
-    <string>&amp;Generate .apk file</string>
-   </property>
-   <property name="shortcut">
-    <string notr="true"/>
+    <string>&amp;Generate mobile application</string>
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>

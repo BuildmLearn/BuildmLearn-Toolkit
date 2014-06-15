@@ -30,10 +30,18 @@
 
 #include "core/templatefactory.h"
 
+#include "definitions/definitions.h"
 #include "core/templatecore.h"
 #include "core/templateentrypoint.h"
-
+#include "miscellaneous/settings.h"
+#include "miscellaneous/application.h"
 #include "templates/quiz/quizentrypoint.h"
+
+#if QT_VERSION >= 0x050000
+#include <QStandardPaths>
+#else
+#include <QDesktopServices>
+#endif
 
 
 TemplateFactory::TemplateFactory(QObject *parent) : QObject(parent), m_availableTemplates(QList<TemplateEntryPoint*>()) {
@@ -44,17 +52,54 @@ TemplateFactory::~TemplateFactory() {
   qDebug("Destroying TemplateFactory instance.");
 }
 
+QString TemplateFactory::tempDirectory() const {
+#if QT_VERSION >= 0x050000
+  return qApp->settings()->value(APP_CFG_TEMPLATES, "temp_directory",
+                                 QStandardPaths::writableLocation(QStandardPaths::TempLocation));
+#else
+  return qApp->settings()->value(APP_CFG_TEMPLATES, "temp_directory",
+                                 QDesktopServices::storageLocation(QDesktopServices::TempLocation)).toString();
+#endif
+}
+
+void TemplateFactory::setTempDirectory(const QString &temp_directory) {
+  qApp->settings()->setValue(APP_CFG_TEMPLATES, "temp_directory", temp_directory);
+}
+
+QString TemplateFactory::outputDirectory() const {
+#if QT_VERSION >= 0x050000
+  return qApp->settings()->value(APP_CFG_TEMPLATES, "output_directory",
+                                 QStandardPaths::writableLocation(QStandardPaths::HomeLocation));
+#else
+  return qApp->settings()->value(APP_CFG_TEMPLATES, "output_directory",
+                                 QDesktopServices::storageLocation(QDesktopServices::HomeLocation)).toString();
+#endif
+}
+
+void TemplateFactory::setOutputDirectory(const QString &output_directory) {
+  qApp->settings()->setValue(APP_CFG_TEMPLATES, "output_directory", output_directory);
+}
+
+QString TemplateFactory::applicationFileNamePattern() const {
+  return qApp->settings()->value(APP_CFG_TEMPLATES, "application_file_name_pattern",
+                                 "application-%1-%2-%3.apk").toString();
+}
+
+void TemplateFactory::setApplicationFileNamePattern(const QString &file_name_pattern) {
+  qApp->settings()->setValue(APP_CFG_TEMPLATES, "application_file_name_pattern", file_name_pattern);
+}
+
 void TemplateFactory::startNewProject(TemplateEntryPoint *entry_point) {
   // TODO: Start new project with selected template entry point.
 }
 
 void TemplateFactory::loadProject(const QString &bundle_file_name) {
   // TODO: Load project from XML bundle file.
+  // Detect which template is it, then start new project with that template
+  // and fill data in.
 }
 
 void TemplateFactory::setupTemplates() {
   // TODO: Fill in needed template entry points.
   m_availableTemplates.append(new QuizEntryPoint(this));
 }
-
-

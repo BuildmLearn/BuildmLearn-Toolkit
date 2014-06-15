@@ -59,6 +59,8 @@ class FormSettings : public QDialog {
     virtual ~FormSettings();
 
   private:
+    void createConnections();
+
     // Does check of controls before dialog can be submitted.
     bool doSaveCheck();
 
@@ -74,6 +76,9 @@ class FormSettings : public QDialog {
 
     void loadGenerationStuff();
     void saveGenerationStuff();
+
+    void selectTempDirectory();
+    void selectOutputDirectory();
 
     void loadExternalUtilites();
     void saveExternalUtilites();
