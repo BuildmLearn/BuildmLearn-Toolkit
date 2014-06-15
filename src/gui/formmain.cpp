@@ -236,19 +236,25 @@ void FormMain::loadSizeAndPosition() {
   windows.setWidth(windows.width() + m_simulatorWindow->width());
 
   // Reload main window size & position.
-  move(settings->value(APP_CFG_GUI, "window_position",
-                       screen.center() - windows.center()).toPoint());
+  resize(settings->value(APP_CFG_GUI, "window_size", size()).toSize());
+  move(settings->value(APP_CFG_GUI, "window_position", screen.center() - windows.center()).toPoint());
 
+  // Load visual state of simulator window.
   m_simulatorWindow->loadState();
 }
 
 void FormMain::saveSizeAndPosition() {
-  qApp->settings()->setValue(APP_CFG_GUI, "window_position", pos());
+  Settings *settings = qApp->settings();
+
+  settings->setValue(APP_CFG_GUI, "window_position", pos());
+  settings->setValue(APP_CFG_GUI, "window_size", size());
+
+  // Save visual state of simulator window.
+  m_simulatorWindow->saveState();
 }
 
 void FormMain::onAboutToQuit() {
   saveSizeAndPosition();
-  m_simulatorWindow->saveState();
 }
 
 void FormMain::onSimulatorWindowClosed() {
