@@ -44,7 +44,9 @@
 #endif
 
 
-TemplateFactory::TemplateFactory(QObject *parent) : QObject(parent), m_availableTemplates(QList<TemplateEntryPoint*>()) {
+TemplateFactory::TemplateFactory(QObject *parent)
+  : QObject(parent), m_availableTemplates(QList<TemplateEntryPoint*>()),
+    m_activeEntryPoint(NULL), m_activeCore(NULL) {
   setupTemplates();
 }
 
@@ -89,8 +91,26 @@ void TemplateFactory::setApplicationFileNamePattern(const QString &file_name_pat
   qApp->settings()->setValue(APP_CFG_TEMPLATES, "application_file_name_pattern", file_name_pattern);
 }
 
+void TemplateFactory::clearEntryAndCore() {
+  if (m_activeEntryPoint != NULL) {
+    m_activeEntryPoint->deleteLater();
+    m_activeEntryPoint = NULL;
+  }
+
+  if (m_activeCore != NULL) {
+    m_activeCore->deleteLater();
+    m_activeCore = NULL;
+  }
+}
+
 void TemplateFactory::startNewProject(TemplateEntryPoint *entry_point) {
   // TODO: Start new project with selected template entry point.
+  clearEntryAndCore();
+
+  m_activeEntryPoint = entry_point;
+  m_activeCore = entry_point->createNewCore();
+
+  emit newTemplateCoreCreated(m_activeCore);
 }
 
 void TemplateFactory::loadProject(const QString &bundle_file_name) {

@@ -35,16 +35,22 @@
 #include <QWidget>
 
 
+class TemplateCore;
+
 class TemplateEditor : public QWidget {
     Q_OBJECT
 
   public:
-    explicit TemplateEditor(QWidget *parent = 0);
+    // Constructors and destructors.
+    explicit TemplateEditor(TemplateCore *core, QWidget *parent = 0);
+    virtual ~TemplateEditor();
 
   signals:
 
   public slots:
 
+  protected:
+    TemplateCore *m_core;
 };
 
 #endif // TEMPLATEEDITOR_H

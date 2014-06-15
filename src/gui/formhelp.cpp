@@ -64,7 +64,9 @@ void FormHelp::showEvent(QShowEvent *e) {
 }
 
 void FormHelp::onAccepted() {
-  qApp->settings()->setValue(APP_CFG_GUI,
-                             "show_help_startup",
-                             !m_ui->m_cmbDoNotShowAgain->isChecked());
+  if (m_ui->m_cmbDoNotShowAgain->isEnabled()) {
+    qApp->settings()->setValue(APP_CFG_GUI,
+                               "show_help_startup",
+                               !m_ui->m_cmbDoNotShowAgain->isChecked());
+  }
 }

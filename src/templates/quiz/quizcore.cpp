@@ -28,62 +28,35 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#ifndef TEMPLATEFACTORY_H
-#define TEMPLATEFACTORY_H
+#include "templates/quiz/quizcore.h"
 
-#include <QObject>
+#include "templates/quiz/quizeditor.h"
+#include "templates/quiz/quizsimulator.h"
 
 
-class TemplateEntryPoint;
-class TemplateCore;
+QuizCore::QuizCore(TemplateEntryPoint *entry_point, QObject *parent)
+  : TemplateCore(entry_point, parent) {
+  m_editor = new QuizEditor(this);
+  m_simulator = new QuizSimulator(this);
+}
 
-class TemplateFactory : public QObject {
-    Q_OBJECT
+QuizCore::~QuizCore() {
+  qDebug("Destroying QuizCore instance.");
+}
 
-  public:
-    // Constructors and destructors.
-    explicit TemplateFactory(QObject *parent = 0);
-    virtual ~TemplateFactory();
+QString QuizCore::generateRawData() {
+  // TODO: Finish when neeeded.
+  return QString();
+}
 
-    /// \brief Access to available templates.
-    /// \see TemplateEntryPoint
-    /// \return Method returns list of available templates. Templates
-    /// are not sorted in any particular order.
-    QList<TemplateEntryPoint*> availableTemplates() {
-      return m_availableTemplates;
-    }
+bool QuizCore::generateApkFile() {
+  return true;
+}
 
-    QString tempDirectory() const;
-    void setTempDirectory(const QString &temp_directory);
+bool QuizCore::startSimulation() {
+  return true;
+}
 
-    QString outputDirectory() const;
-    void setOutputDirectory(const QString &output_directory);
-
-    QString applicationFileNamePattern() const;
-    void setApplicationFileNamePattern(const QString &file_name_pattern);
-
-    TemplateEntryPoint *activeEntryPoint() const {
-      return m_activeEntryPoint;
-    }
-
-    TemplateCore *activeCore() const {
-      return m_activeCore;
-    }
-
-  public slots:
-    void startNewProject(TemplateEntryPoint *entry_point);
-    void loadProject(const QString &bundle_file_name);
-
-  signals:
-    void newTemplateCoreCreated(TemplateCore *core);
-
-  private:
-    void clearEntryAndCore();
-    void setupTemplates();
-
-    QList<TemplateEntryPoint*> m_availableTemplates;
-    TemplateEntryPoint *m_activeEntryPoint;
-    TemplateCore *m_activeCore;
-};
-
-#endif // TEMPLATEFACTORY_H
+bool QuizCore::stopSimulation() {
+  return true;
+}

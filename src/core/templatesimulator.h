@@ -35,22 +35,37 @@
 #include <QWidget>
 
 
+class TemplateCore;
+
 class TemplateSimulator : public QWidget {
     Q_OBJECT
 
   public:
+    enum State {
+      Stopped,
+      Running
+    };
+
     // Constructors and destructors.
-    explicit TemplateSimulator(QWidget *parent = 0);
+    explicit TemplateSimulator(TemplateCore *core, QWidget *parent = 0);
     virtual ~TemplateSimulator();
 
     /// \brief Hint for default and fixed size for all
     /// simulator contents.
     QSize sizeHint() const;
 
-  signals:
+    /// \brief State of simulator.
+    /// \return Returns state of simulator.
+    State state() const;
 
-  public slots:
+    virtual bool startSimulation() = 0;
+    virtual bool stopSimulation() = 0;
+    virtual bool canGoBack() = 0;
+    virtual bool goBack() = 0;
 
+  protected:
+    TemplateCore *m_core;
+    State m_state;
 };
 
 #endif // TEMPLATESIMULATOR_H

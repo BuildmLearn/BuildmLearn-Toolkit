@@ -39,8 +39,9 @@
 #include <QLayout>
 
 
-TemplateSimulator::TemplateSimulator(QWidget *parent) : QWidget(parent, 0) {
-  QVBoxLayout *default_layout = new QVBoxLayout(this);
+TemplateSimulator::TemplateSimulator(TemplateCore *core, QWidget *parent)
+  : QWidget(parent, 0), m_core(core), m_state(Stopped) {
+  /*QVBoxLayout *default_layout = new QVBoxLayout(this);
   QLabel *default_label = new QLabel("Default simulator widget", this);
 
   default_label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
@@ -48,7 +49,7 @@ TemplateSimulator::TemplateSimulator(QWidget *parent) : QWidget(parent, 0) {
   default_layout->setMargin(0);
   default_layout->addWidget(default_label);
 
-  setLayout(default_layout);
+  setLayout(default_layout);*/
 }
 
 TemplateSimulator::~TemplateSimulator() {
@@ -57,4 +58,8 @@ TemplateSimulator::~TemplateSimulator() {
 
 QSize TemplateSimulator::sizeHint() const {
   return QSize(SIMULATOR_CONTENTS_WIDTH, SIMULATOR_CONTENTS_HEIGHT);
+}
+
+TemplateSimulator::State TemplateSimulator::state() const {
+  return m_state;
 }

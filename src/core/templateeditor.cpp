@@ -30,6 +30,13 @@
 
 #include "core/templateeditor.h"
 
+#include "core/templatecore.h"
 
-TemplateEditor::TemplateEditor(QWidget *parent) : QWidget(parent) {
+
+TemplateEditor::TemplateEditor(TemplateCore *core, QWidget *parent)
+  : QWidget(parent), m_core(core) {
+}
+
+TemplateEditor::~TemplateEditor() {
+  qDebug("Destroying TemplateEditor instance.");
 }

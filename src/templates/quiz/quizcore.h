@@ -28,62 +28,25 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#ifndef TEMPLATEFACTORY_H
-#define TEMPLATEFACTORY_H
+#ifndef QUIZCORE_H
+#define QUIZCORE_H
 
-#include <QObject>
+#include "core/templatecore.h"
 
 
-class TemplateEntryPoint;
-class TemplateCore;
-
-class TemplateFactory : public QObject {
+class QuizCore : public TemplateCore {
     Q_OBJECT
 
   public:
     // Constructors and destructors.
-    explicit TemplateFactory(QObject *parent = 0);
-    virtual ~TemplateFactory();
+    explicit QuizCore(TemplateEntryPoint *entry_point, QObject *parent = 0);
+    virtual ~QuizCore();
 
-    /// \brief Access to available templates.
-    /// \see TemplateEntryPoint
-    /// \return Method returns list of available templates. Templates
-    /// are not sorted in any particular order.
-    QList<TemplateEntryPoint*> availableTemplates() {
-      return m_availableTemplates;
-    }
+    QString generateRawData();
+    bool generateApkFile();
+    bool startSimulation();
+    bool stopSimulation();
 
-    QString tempDirectory() const;
-    void setTempDirectory(const QString &temp_directory);
-
-    QString outputDirectory() const;
-    void setOutputDirectory(const QString &output_directory);
-
-    QString applicationFileNamePattern() const;
-    void setApplicationFileNamePattern(const QString &file_name_pattern);
-
-    TemplateEntryPoint *activeEntryPoint() const {
-      return m_activeEntryPoint;
-    }
-
-    TemplateCore *activeCore() const {
-      return m_activeCore;
-    }
-
-  public slots:
-    void startNewProject(TemplateEntryPoint *entry_point);
-    void loadProject(const QString &bundle_file_name);
-
-  signals:
-    void newTemplateCoreCreated(TemplateCore *core);
-
-  private:
-    void clearEntryAndCore();
-    void setupTemplates();
-
-    QList<TemplateEntryPoint*> m_availableTemplates;
-    TemplateEntryPoint *m_activeEntryPoint;
-    TemplateCore *m_activeCore;
 };
 
-#endif // TEMPLATEFACTORY_H
+#endif // QUIZCORE_H

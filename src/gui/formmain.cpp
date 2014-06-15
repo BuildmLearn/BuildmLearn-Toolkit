@@ -40,6 +40,11 @@
 #include "gui/formnewproject.h"
 #include "miscellaneous/iconfactory.h"
 #include "core/templatesimulator.h"
+#include "core/templatefactory.h"
+#include "core/templateentrypoint.h"
+#include "core/templatecore.h"
+#include "core/templateeditor.h"
+#include "templates/quiz/quizentrypoint.h"
 
 #include <QStackedWidget>
 #include <QMessageBox>
@@ -48,15 +53,21 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QDesktopWidget>
+#include <QLayoutItem>
 
 
 FormMain::FormMain(QWidget *parent) :
   QMainWindow(parent),
+  m_centralArea(new QScrollArea(this)),
+  m_centralLayout(new QVBoxLayout(m_centralArea)),
   m_firstTimeShow(true),
   m_ui(new Ui::FormMain),
   m_simulatorWindow(NULL) {
   m_ui->setupUi(this);
 
+  m_centralArea->setFrameStyle(QFrame::NoFrame);
+
+  setCentralWidget(m_centralArea);
   setupSimulatorWindow();
   setupActionShortcuts();
   setupIcons();
@@ -95,7 +106,7 @@ FormMain::FormMain(QWidget *parent) :
           this, SLOT(startProject(int)));
 */
 
-  m_simulatorWindow->setActiveSimulation(new TemplateSimulator());
+  //m_simulatorWindow->setActiveSimulation(new TemplateSimulator());
 }
 
 FormMain::~FormMain() {
@@ -156,7 +167,11 @@ void FormMain::createConnections() {
   connect(m_ui->m_actionLoadProject, SIGNAL(triggered()),
           this ,SLOT(openClicked()));
   connect(m_ui->m_actionGenerateMobileApplication, SIGNAL(triggered()),
-          this ,SLOT(generateClicked()));
+          this ,SLOT(generateMobileApplication()));
+
+  // Template system connections.
+  connect(qApp->templateManager(), SIGNAL(newTemplateCoreCreated(TemplateCore*)),
+          this, SLOT(setTemplateCore(TemplateCore*)));
 }
 
 void FormMain::setupActionShortcuts() {
@@ -251,6 +266,19 @@ void FormMain::saveSizeAndPosition() {
 
   // Save visual state of simulator window.
   m_simulatorWindow->saveState();
+}
+
+void FormMain::setTemplateCore(TemplateCore *core) {
+  // set a new editor.
+  // Also tell simulator to setup new contents.
+
+  // TODO: Ziskat editor z coru a nastavit ho jako centralni prvek.
+  TemplateEditor *editor = core->editor();
+  TemplateSimulator *simulator = core->simulator();
+
+  m_centralLayout->layout()->addWidget(editor);
+  editor->setParent(m_centralArea);
+  m_simulatorWindow->setActiveSimulation(simulator);
 }
 
 void FormMain::onAboutToQuit() {
@@ -421,7 +449,18 @@ void FormMain::loadOpenFile()
 
 void FormMain::openNewProjectDialog() {
   // TODO: Check if there is currently active some project
-  // and it is saved.
+  // and it is saved, if not then save it (offer dialog), then
+  // remove previous editor.
+
+  // Clear all items from central layout.
+  while (m_centralLayout->count() > 0) {
+    QLayoutItem *item = m_centralLayout->itemAt(0);
+
+    item->widget()->deleteLater();
+    m_centralLayout->removeItem(item);
+
+    delete item;
+  }
 
   QPointer<FormNewProject> form_new_project = new FormNewProject(qApp->templateManager(), this);
   TemplateEntryPoint *entry_point = form_new_project.data()->startNewTemplate();
@@ -431,26 +470,23 @@ void FormMain::openNewProjectDialog() {
   if (entry_point != NULL) {
     // User selected proper template to start with.
     // Load the template.
+    qApp->templateManager()->startNewProject(entry_point);
   }
 }
 
-void FormMain::generateClicked()
-{
-  if (iStackedWidget->currentIndex()==0)
-  {
-    QMessageBox::information(this,"Generate application" , "Please create a project first!");
+void FormMain::generateMobileApplication() {
+  if (qApp->templateManager()->activeCore() != NULL) {
+    if (qApp->templateManager()->activeCore()->generateApkFile()) {
+      // Application was generated.
+    }
+    else {
+      // Application was not generated.
+    }
   }
-  else if (iStackedWidget->currentIndex()==1)
-  {
-    ((InfoTemplate*)iStackedWidget->currentWidget())->on_generateButton_clicked();
-  }
-  else if (iStackedWidget->currentIndex()==2)
-  {
-    ((QuizTemplate*)iStackedWidget->currentWidget())->on_generateButton_clicked();
-  }
-  else if (iStackedWidget->currentIndex()==3)
-  {
-    ((FlashcardTemplate*)iStackedWidget->currentWidget())->on_generateButton_clicked();
+  else {
+    QMessageBox::warning(this,
+                         tr("Cannot generate application"),
+                         tr("No project is opened, thus, cannot generate application."));
   }
 }
 

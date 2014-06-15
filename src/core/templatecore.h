@@ -34,16 +34,50 @@
 
 #include <QObject>
 
+
+class TemplateEditor;
+class TemplateSimulator;
+class TemplateEntryPoint;
+
 class TemplateCore : public QObject {
     Q_OBJECT
 
   public:
-    explicit TemplateCore(QObject *parent = 0);
+    // Constructors and destructors.
+    explicit TemplateCore(TemplateEntryPoint *entry_point, QObject *parent = 0);
+    virtual ~TemplateCore();
 
-  signals:
+    /// \brief Generates RAW data which represent data of this template.
+    /// \remarks Generated data are stored in XML bundle file.
+    /// \warning Generated data of this method must be compatible
+    /// with custom implementation of TemplateEntryPoint::loadCoreFromRawData(const QString &raw_data)
+    /// method!!!
+    /// \return Returns string with generated data.
+    virtual QString generateRawData() = 0;
 
-  public slots:
+    /// \brief Generates APK file from current project with active settings
+    /// \return Returns true on success, otherwise returns false.
+    virtual bool generateApkFile() = 0;
 
+    virtual bool startSimulation() = 0;
+    virtual bool stopSimulation() = 0;
+
+    virtual TemplateEntryPoint *entryPoint() const {
+      return m_entryPoint;
+    }
+
+    virtual TemplateEditor *editor() const {
+      return m_editor;
+    }
+
+    virtual TemplateSimulator *simulator() const {
+      return m_simulator;
+    }
+
+  protected:
+    TemplateEntryPoint *m_entryPoint;
+    TemplateEditor *m_editor;
+    TemplateSimulator *m_simulator;
 };
 
 #endif // TEMPLATECORE_H

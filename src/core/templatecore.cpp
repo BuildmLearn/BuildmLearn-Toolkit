@@ -31,5 +31,10 @@
 #include "core/templatecore.h"
 
 
-TemplateCore::TemplateCore(QObject *parent) : QObject(parent) {
+TemplateCore::TemplateCore(TemplateEntryPoint *entry_point, QObject *parent)
+  : QObject(parent), m_entryPoint(entry_point), m_editor(NULL), m_simulator(NULL) {
+}
+
+TemplateCore::~TemplateCore() {
+  qDebug("Destroying TemplateCore instance.");
 }

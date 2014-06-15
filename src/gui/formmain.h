@@ -49,6 +49,7 @@ namespace Ui {
 }
 
 class FormSimulator;
+class TemplateCore;
 
 /// \brief Main application window.
 class FormMain : public QMainWindow {
@@ -88,6 +89,10 @@ class FormMain : public QMainWindow {
     void saveSizeAndPosition();
 
   private slots:
+    // Called when user opens new project or loads existing project.
+    // This should read "editor" from core and set it as central widget.
+    void setTemplateCore(TemplateCore *core);
+
     void onAboutToQuit();
     void onSimulatorWindowClosed();
     void switchSimulatorWindow(bool show);
@@ -115,8 +120,11 @@ class FormMain : public QMainWindow {
     /// \see FormNewProject
     void openNewProjectDialog();
 
+    /// \brief Generates mobile APK application from currently active
+    /// project.
+    void generateMobileApplication();
+
     void startProject(int);
-    void generateClicked();
     void saveClicked();
     void openClicked();
     void loadOpenFile();
@@ -143,6 +151,8 @@ class FormMain : public QMainWindow {
     void moved();
 
   private:
+    QScrollArea *m_centralArea;
+    QVBoxLayout *m_centralLayout;
     bool m_firstTimeShow;
     Ui::FormMain *m_ui;
     QMenu *m_trayMenu;

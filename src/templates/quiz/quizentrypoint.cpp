@@ -31,6 +31,9 @@
 #include "templates/quiz/quizentrypoint.h"
 
 #include "core/templatefactory.h"
+#include "templates/quiz/quizcore.h"
+#include "templates/quiz/quizeditor.h"
+#include "templates/quiz/quizsimulator.h"
 
 
 QuizEntryPoint::QuizEntryPoint(TemplateFactory *parent) : TemplateEntryPoint(parent) {
@@ -48,7 +51,7 @@ QuizEntryPoint::~QuizEntryPoint() {
 }
 
 TemplateCore *QuizEntryPoint::createNewCore() {
-  return NULL;
+  return new QuizCore(this, this);
 }
 
 TemplateCore *QuizEntryPoint::loadCoreFromRawData(const QString &raw_data) {
