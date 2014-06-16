@@ -48,18 +48,6 @@ QString TemplateEntryPoint::humanName() const {
   return m_humanName;
 }
 
-QString TemplateEntryPoint::author() const {
-  return m_author;
-}
-
-QString TemplateEntryPoint::version() const {
-  return m_version;
-}
-
-QString TemplateEntryPoint::copyright() const {
-  return m_copyright;
-}
-
 QString TemplateEntryPoint::baseFolder() const {
   return m_baseFolder;
 }

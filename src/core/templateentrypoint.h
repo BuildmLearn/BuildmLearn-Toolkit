@@ -70,15 +70,6 @@ class TemplateEntryPoint : public QObject {
     /// \brief Human-readable name of template.
     virtual QString humanName() const;
 
-    /// \brief Author of template.
-    virtual QString author() const;
-
-    /// \brief Version of template.
-    virtual QString version() const;
-
-    /// \brief Copyright of template.
-    virtual QString copyright() const;
-
     /// \brief Base folder of template.
     virtual QString baseFolder() const;
 
@@ -93,9 +84,6 @@ class TemplateEntryPoint : public QObject {
   protected:
     QString m_name;
     QString m_humanName;
-    QString m_author;
-    QString m_version;
-    QString m_copyright;
     QString m_baseFolder;
     QString m_description;
     QString m_thumbnailImage;

@@ -37,14 +37,11 @@
 
 
 QuizEntryPoint::QuizEntryPoint(TemplateFactory *parent) : TemplateEntryPoint(parent) {
-  m_author = "Martin Rotter";
   m_baseFolder = "quiz";
-  m_copyright = "(C) Martin Rotter";
   m_description = "This is simple template for generating Quiz-like applications.";
   m_humanName = "Quiz";
   m_name = "quiz";
   m_thumbnailImage = "thumbnail.png";
-  m_version = "0.0.1";
 }
 
 QuizEntryPoint::~QuizEntryPoint() {

@@ -77,10 +77,7 @@ void FormNewProject::templateSelected(int index) {
   if (index >= 0) {
     TemplateEntryPoint *entry_point = static_cast<TemplateEntryPoint*>(m_ui->m_listTemplates->currentItem()->data(Qt::UserRole).value<void*>());
 
-    m_ui->m_lblAuthor->setText(entry_point->author());
-    m_ui->m_lblCopyright->setText(entry_point->copyright());
     m_ui->m_lblDescription->setText(entry_point->description());
-    m_ui->m_lblVersion->setText(entry_point->version());
     m_ui->m_lblThumbnail->setPixmap(QPixmap(APP_TEMPLATES_PATH + QDir::separator() +
                                             entry_point->baseFolder() + QDir::separator() +
                                             entry_point->thumbnailImage()));

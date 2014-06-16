@@ -153,7 +153,6 @@ class FormMain : public QMainWindow {
     bool m_firstTimeShow;
     Ui::FormMain *m_ui;
     QMenu *m_trayMenu;
-
     FormSimulator *m_simulatorWindow;
 };
 
