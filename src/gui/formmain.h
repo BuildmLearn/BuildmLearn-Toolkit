@@ -120,15 +120,12 @@ class FormMain : public QMainWindow {
     /// \see FormNewProject
     void openNewProjectDialog();
 
+    void openSaveProjectDialog();
+    void openLoadProjectDialog();
+
     /// \brief Generates mobile APK application from currently active
     /// project.
     void generateMobileApplication();
-
-    void startProject(int);
-    void saveClicked();
-    void openClicked();
-    void loadOpenFile();
-    void resetWidgets();
 
   protected:
     /// \brief Executed when main application window is closed.
@@ -158,21 +155,6 @@ class FormMain : public QMainWindow {
     QMenu *m_trayMenu;
 
     FormSimulator *m_simulatorWindow;
-
-    // Other widgets
-    QStackedWidget* iStackedWidget;
-
-    // Create NewProject Widget
-    FormNewProject *iNewProjectWidget;
-
-    //  Blank widget
-    QWidget* iBlankWidget;
-    // Create InfoTemplate Widget
-    InfoTemplate* iInfoTemplateWidget;
-    // Create QuizTemplate Widget
-    QuizTemplate* iQuizTemplateWidget;
-    // Create Flashcards Widget
-    FlashcardTemplate* iFlashCardsWidget;
 };
 
 #endif // FORMMAIN_H

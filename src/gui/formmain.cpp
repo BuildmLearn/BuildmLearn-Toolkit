@@ -163,9 +163,9 @@ void FormMain::createConnections() {
   connect(m_ui->m_actionNewProject, SIGNAL(triggered()),
           this ,SLOT(openNewProjectDialog()));
   connect(m_ui->m_actionSaveProject, SIGNAL(triggered()),
-          this ,SLOT(saveClicked()));
+          this ,SLOT(openSaveProjectDialog()));
   connect(m_ui->m_actionLoadProject, SIGNAL(triggered()),
-          this ,SLOT(openClicked()));
+          this ,SLOT(openLoadProjectDialog()));
   connect(m_ui->m_actionGenerateMobileApplication, SIGNAL(triggered()),
           this ,SLOT(generateMobileApplication()));
 
@@ -269,15 +269,19 @@ void FormMain::saveSizeAndPosition() {
 }
 
 void FormMain::setTemplateCore(TemplateCore *core) {
-  // set a new editor.
-  // Also tell simulator to setup new contents.
-
-  // TODO: Ziskat editor z coru a nastavit ho jako centralni prvek.
+  // Set editor widget as central widget of main window
+  // and setup simulator stuff.
   TemplateEditor *editor = core->editor();
   TemplateSimulator *simulator = core->simulator();
 
+  // Set editor part.
   m_centralLayout->layout()->addWidget(editor);
   editor->setParent(m_centralArea);
+
+  connect(simulator, SIGNAL(canGoBackChanged(bool)), m_ui->m_actionSimulatorGoBack, SLOT(setEnabled(bool)));
+  connect(simulator, SIGNAL(canStartSimulationChanged(bool)), m_ui->m_actionSimulatorRun, SLOT(setEnabled(bool)));
+
+  // Set simulator part.
   m_simulatorWindow->setActiveSimulation(simulator);
 }
 
@@ -372,79 +376,13 @@ void FormMain::display() {
   Application::alert(this);
 }
 
-void FormMain::saveClicked()
-{
-  if (iStackedWidget->currentIndex()==0)
-  {
-    QMessageBox::information(this,"Generate application" , "Please create an application first!");
-  }
-  else if (iStackedWidget->currentIndex()==1)
-  {
-    ((InfoTemplate*)iStackedWidget->currentWidget())->on_save_clicked();
-  }
-  else if (iStackedWidget->currentIndex()==2)
-  {
-    ((QuizTemplate*)iStackedWidget->currentWidget())->on_save_clicked();
-  }
-  else if (iStackedWidget->currentIndex()==3)
-  {
-    ((FlashcardTemplate*)iStackedWidget->currentWidget())->on_save_clicked();
-  }
+void FormMain::openSaveProjectDialog() {
+  // TODO: Display dialog to save currently active project if there is any.
 }
 
-void FormMain::openClicked()
-{
-  if (iStackedWidget->currentIndex() !=0)
-  {
-    if (QMessageBox::Yes == QMessageBox::question(this, "Discard current project?", "Choosing a new project would discard your current project. Are you sure to continue?", QMessageBox::Yes|QMessageBox::No))
-    {
-      // reseting other widgets
-      resetWidgets();
-      loadOpenFile();
-    }
-  }
-  else{
-    resetWidgets();
-    loadOpenFile();
-  }
-  iNewProjectWidget->hide();
-
-
-}
-
-void FormMain::loadOpenFile()
-{
-  QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"),
-                                                  "",tr("*.buildmlearn"));
-  QFile indexFile(fileName);
-  indexFile.open(QIODevice::ReadOnly);
-
-  QString data = indexFile.readAll();
-  indexFile.close();
-  QStringList dataList = data.split(DELIMITER_LINE);
-  qDebug()<<dataList;
-
-  QString selectedTemplate = dataList.first();
-  dataList.removeFirst();
-
-  qDebug()<<selectedTemplate.compare("QuizTemplate");
-
-  if (selectedTemplate.compare("InfoTemplate")==0)
-  {
-    iInfoTemplateWidget->on_open_clicked(dataList);
-    iStackedWidget->setCurrentIndex(1);
-  }
-  else if (selectedTemplate.compare("QuizTemplate")==0)
-  {
-    iQuizTemplateWidget->on_open_clicked(dataList);
-    iStackedWidget->setCurrentIndex(2);
-  }
-  else if (selectedTemplate.compare("FlashCardsTemplate")==0)
-  {
-    iFlashCardsWidget->on_open_clicked(dataList);
-    iStackedWidget->setCurrentIndex(3);
-  }
-
+void FormMain::openLoadProjectDialog() {
+  // TODO: Check if there is currently active "dirty" template core and ask to save it.
+  // TODO: Open already saved project.
 }
 
 void FormMain::openNewProjectDialog() {
@@ -488,79 +426,6 @@ void FormMain::generateMobileApplication() {
                          tr("Cannot generate application"),
                          tr("No project is opened, thus, cannot generate application."));
   }
-}
-
-void FormMain::startProject(int index)
-{
-  if (index == -1)
-  {
-    // if Open clicked from the New project dialog
-    openClicked();
-    return;
-  }
-
-  //qDebug()<<"Project number selected: " + index;
-  iStackedWidget->setCurrentIndex(index+1);
-  if (index==1)
-  {
-    // if Quiz template is selected
-    bool ok;
-    iQuizTemplateWidget->quizName = QInputDialog::getText(this, "Enter quiz name",
-                                                          "Quiz Name:", QLineEdit::Normal,
-                                                          "", &ok);
-    if (!ok || iQuizTemplateWidget->quizName.isEmpty())
-    {
-      return;
-    }
-
-    ok = false;
-    iQuizTemplateWidget->authorName = QInputDialog::getText(this, "Enter author name",
-                                                            "Quiz author:", QLineEdit::Normal,
-                                                            "", &ok);
-    if (!ok || iQuizTemplateWidget->authorName.isEmpty())
-    {
-      return;
-    }
-
-    iQuizTemplateWidget->updateStartPage_phone();
-  }
-  else if (index==2)
-  {
-    // if Flashcards template is selected
-    bool ok;
-    iFlashCardsWidget->quizName = QInputDialog::getText(this, "Enter the name of the Flashcards collection",
-                                                        "Colllection's' Name:", QLineEdit::Normal,
-                                                        "", &ok);
-    if (!ok || iFlashCardsWidget->quizName.isEmpty())
-    {
-      return;
-    }
-
-    ok = false;
-    iFlashCardsWidget->authorName = QInputDialog::getText(this, "Enter author name",
-                                                          "Flashcards author:", QLineEdit::Normal,
-                                                          "", &ok);
-    if (!ok || iFlashCardsWidget->authorName.isEmpty())
-    {
-      return;
-    }
-
-    iFlashCardsWidget->updateStartPage_phone();
-  }
-}
-void FormMain::resetWidgets()
-{
-  iStackedWidget->removeWidget(iFlashCardsWidget);
-  iStackedWidget->removeWidget(iQuizTemplateWidget);
-  iStackedWidget->removeWidget(iInfoTemplateWidget);
-
-  iInfoTemplateWidget = new InfoTemplate(this);
-  iQuizTemplateWidget = new QuizTemplate(this);
-  iFlashCardsWidget = new FlashcardTemplate(this);
-
-  iStackedWidget->addWidget(iInfoTemplateWidget);
-  iStackedWidget->addWidget(iQuizTemplateWidget);
-  iStackedWidget->addWidget(iFlashCardsWidget);
 }
 
 void FormMain::closeEvent(QCloseEvent *e) {

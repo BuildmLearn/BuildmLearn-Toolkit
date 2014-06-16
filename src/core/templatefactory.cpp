@@ -104,7 +104,7 @@ void TemplateFactory::clearEntryAndCore() {
 }
 
 void TemplateFactory::startNewProject(TemplateEntryPoint *entry_point) {
-  // TODO: Start new project with selected template entry point.
+  // Start new project with selected template entry point.
   clearEntryAndCore();
 
   m_activeEntryPoint = entry_point;
