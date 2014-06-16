@@ -68,10 +68,18 @@
     </widget>
     <addaction name="m_menuSimulatorWindow"/>
    </widget>
+   <widget class="QMenu" name="menu_Simulator">
+    <property name="title">
+     <string>&amp;Simulator</string>
+    </property>
+    <addaction name="m_actionSimulatorRun"/>
+    <addaction name="m_actionSimulatorGoBack"/>
+   </widget>
    <addaction name="m_menuProject"/>
    <addaction name="m_menuView"/>
    <addaction name="m_menuTools"/>
    <addaction name="m_menuHelp"/>
+   <addaction name="menu_Simulator"/>
   </widget>
   <widget class="QToolBar" name="m_toolBar">
    <property name="movable">
@@ -206,6 +214,16 @@
    </property>
    <property name="text">
     <string>&amp;Stick to main window</string>
+   </property>
+  </action>
+  <action name="m_actionSimulatorRun">
+   <property name="text">
+    <string>Run &amp;simulation</string>
+   </property>
+  </action>
+  <action name="m_actionSimulatorGoBack">
+   <property name="text">
+    <string>Go &amp;back</string>
    </property>
   </action>
  </widget>

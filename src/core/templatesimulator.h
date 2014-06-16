@@ -37,15 +37,11 @@
 
 class TemplateCore;
 
+/// \brief Base widget which represents simulator of the template.
 class TemplateSimulator : public QWidget {
     Q_OBJECT
 
   public:
-    enum State {
-      Stopped,
-      Running
-    };
-
     // Constructors and destructors.
     explicit TemplateSimulator(TemplateCore *core, QWidget *parent = 0);
     virtual ~TemplateSimulator();
@@ -54,18 +50,32 @@ class TemplateSimulator : public QWidget {
     /// simulator contents.
     QSize sizeHint() const;
 
-    /// \brief State of simulator.
-    /// \return Returns state of simulator.
-    State state() const;
+    /// \brief Access to associated template core.
+    /// \return Returns associated template core.
+    /// \see TemplateCore
+    TemplateCore *core() const;
 
+  public slots:
+    /// \brief (Re)starts the simulation.
+    /// \return Returns true if simulation was (re)started, false otherwise.
     virtual bool startSimulation() = 0;
     virtual bool stopSimulation() = 0;
-    virtual bool canGoBack() = 0;
+
+    /// \brief Gets simulation one step back.
+    /// \return Returns true if simulation was rolled one step back, false otherwise.
     virtual bool goBack() = 0;
+
+  signals:
+    /// \brief Emitted if "can go back" status of simulator changes.
+    /// \param can_go_back True if simulation can be rolled back one step, false otherwise.
+    void canGoBackChanged(bool can_go_back);
+
+    /// \brief Emitted if "can start simulation" status of simulator changes.
+    /// \param can_start_simulation True if simulation can be started, false otherwise.
+    void canStartSimulationChanged(bool can_start_simulation);
 
   protected:
     TemplateCore *m_core;
-    State m_state;
 };
 
 #endif // TEMPLATESIMULATOR_H

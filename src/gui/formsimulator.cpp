@@ -51,6 +51,9 @@ void FormSimulator::loadState() {
 
 void FormSimulator::setActiveSimulation(TemplateSimulator *simulation) {
   if (m_activeSimulation != NULL) {
+    disconnect(m_activeSimulation, SIGNAL(canGoBackChanged(bool)), 0, 0);
+    disconnect(m_activeSimulation, SIGNAL(canStartSimulationChanged(bool)), 0, 0);
+
     m_activeSimulation->close();
     m_activeSimulation->deleteLater();
     m_activeSimulation = NULL;
@@ -62,6 +65,21 @@ void FormSimulator::setActiveSimulation(TemplateSimulator *simulation) {
                        SIMULATOR_CONTENTS_WIDTH, SIMULATOR_CONTENTS_HEIGHT);
   m_activeSimulation->setStyleSheet("QWidget { border: 3px solid red; }");
   m_activeSimulation->show();
+
+  connect(m_activeSimulation, SIGNAL(canGoBackChanged(bool)), m_ui->m_btnGoBack, SLOT(setEnabled(bool)));
+  connect(m_activeSimulation, SIGNAL(canStartSimulationChanged(bool)), m_ui->m_btnRunSimulation, SLOT(setEnabled(bool)));
+}
+
+void FormSimulator::goBack() {
+  if (m_activeSimulation != NULL) {
+    m_activeSimulation->goBack();
+  }
+}
+
+void FormSimulator::startSimulation() {
+  if (m_activeSimulation != NULL) {
+    m_activeSimulation->startSimulation();
+  }
 }
 
 void FormSimulator::conditionallyAttachToParent() {

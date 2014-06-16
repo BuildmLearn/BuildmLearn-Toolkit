@@ -38,6 +38,12 @@
 class TemplateCore;
 class TemplateFactory;
 
+/// \brief The entry point for a template.
+///
+/// Entry points acts as a thin and light wrapper for template core.
+/// It is primarily used to represent the template in "new project" dialog
+/// and in some other places throughout the toolkit.
+/// \see FormNewProject, TemplateCore
 class TemplateEntryPoint : public QObject {
     Q_OBJECT
 
@@ -46,7 +52,16 @@ class TemplateEntryPoint : public QObject {
     explicit TemplateEntryPoint(TemplateFactory *parent);
     virtual ~TemplateEntryPoint();
 
+    /// \brief Creates new instance of template core.
+    /// \return Returns pointer to new instance or NULL if no
+    /// such instance could be created.
     virtual TemplateCore *createNewCore() = 0;
+
+    /// \brief Creates new instance and fills it template-specific
+    /// data ("load project" functionality).
+    /// \param raw_data Template-specific data.
+    /// \return Returns pointer to new instance or NULL if no
+    /// such instance could be created.
     virtual TemplateCore *loadCoreFromRawData(const QString &raw_data) = 0;
 
     /// \brief Name of template.
@@ -84,7 +99,6 @@ class TemplateEntryPoint : public QObject {
     QString m_baseFolder;
     QString m_description;
     QString m_thumbnailImage;
-
 };
 
 #endif // TEMPLATEENTRYPOINT_H

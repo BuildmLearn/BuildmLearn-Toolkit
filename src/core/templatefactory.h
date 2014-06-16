@@ -37,6 +37,12 @@
 class TemplateEntryPoint;
 class TemplateCore;
 
+/// \brief The top-level manager of templates.
+///
+/// This class is used in a singleton-like fashion from main Application
+/// object via Application::templateManager(). It contains all available
+/// template entry points.
+/// \see TemplateEntryPoint, TemplateCore, Application
 class TemplateFactory : public QObject {
     Q_OBJECT
 

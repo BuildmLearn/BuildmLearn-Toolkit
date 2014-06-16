@@ -25,7 +25,6 @@ class FormSimulator : public QDialog {
     virtual ~FormSimulator();
 
     void saveState();
-
     void loadState();
 
     /// \brief Indicates whether simulator window is sticked to
@@ -51,6 +50,9 @@ class FormSimulator : public QDialog {
     void setActiveSimulation(TemplateSimulator *simulation);
 
   public slots:
+    void goBack();
+    void startSimulation();
+
     /// \brief Conditionally sticks simulator window to its parent.
     /// \remarks Depends on settings.
     void conditionallyAttachToParent();

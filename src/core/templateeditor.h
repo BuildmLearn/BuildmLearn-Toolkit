@@ -37,6 +37,10 @@
 
 class TemplateCore;
 
+/// \brief Represents the editor of the template.
+///
+/// Editor is the place where user can edit contents of the template,
+/// for example questions for Quiz template.
 class TemplateEditor : public QWidget {
     Q_OBJECT
 
@@ -45,12 +49,38 @@ class TemplateEditor : public QWidget {
     explicit TemplateEditor(TemplateCore *core, QWidget *parent = 0);
     virtual ~TemplateEditor();
 
-  signals:
+    /// \brief Specifies if template can generate applications
+    /// or not.
+    /// \return Returns true if editor contains enough data
+    /// for generating of applications.
+    /// \warning This is used in cooperation with canGenerateStatusChanged(bool can_generate).
+    bool canGenerateApplications() const;
 
-  public slots:
+    /// \brief Access to associated template core.
+    /// \return Returns associated template core.
+    /// \see TemplateCore
+    TemplateCore *core() const;
+
+  signals:
+    /// \brief Emitted everytime any child widget of editor
+    /// changes its contents.
+    /// \remarks This signal is used to check if contents of
+    /// editor are saved or not. If editor notifies that its contents
+    /// are changed, then it is marked by toolkit as "unsaved".
+    void changed();
+
+    /// \brief Emitted if status, which specifies if mobile application
+    /// can be generated from the template, changes.
+    /// \param can_generate True if editor contains enough
+    /// data so that mobile application can be generated, false
+    /// otherwise.
+    /// \remarks This is for example emitted if user ads first
+    /// question item to Quiz template editor.
+    void canGenerateChanged(bool can_generate);
 
   protected:
     TemplateCore *m_core;
+    bool m_canGenerateApplications;
 };
 
 #endif // TEMPLATEEDITOR_H

@@ -39,6 +39,7 @@ class TemplateEditor;
 class TemplateSimulator;
 class TemplateEntryPoint;
 
+/// \brief The core class container for single template.
 class TemplateCore : public QObject {
     Q_OBJECT
 
@@ -57,19 +58,28 @@ class TemplateCore : public QObject {
 
     /// \brief Generates APK file from current project with active settings
     /// \return Returns true on success, otherwise returns false.
+    /// \warning This is used only if template can actually
+    /// generate mobile application, so that editor of the template
+    /// must contain sufficient data for doing so.
     virtual bool generateApkFile() = 0;
 
     virtual bool startSimulation() = 0;
     virtual bool stopSimulation() = 0;
 
+    /// \brief Access to entry point of the template.
+    /// \return Returns entry point pointer.
     virtual TemplateEntryPoint *entryPoint() const {
       return m_entryPoint;
     }
 
+    /// \brief Access to editor widget of the template.
+    /// \return Returns editor widget pointer.
     virtual TemplateEditor *editor() const {
       return m_editor;
     }
 
+    /// \brief Access to simulator widget of the template.
+    /// \return Returns simulator widget pointer.
     virtual TemplateSimulator *simulator() const {
       return m_simulator;
     }
