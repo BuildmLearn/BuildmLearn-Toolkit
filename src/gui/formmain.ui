@@ -77,9 +77,9 @@
    </widget>
    <addaction name="m_menuProject"/>
    <addaction name="m_menuView"/>
+   <addaction name="menu_Simulator"/>
    <addaction name="m_menuTools"/>
    <addaction name="m_menuHelp"/>
-   <addaction name="menu_Simulator"/>
   </widget>
   <widget class="QToolBar" name="m_toolBar">
    <property name="movable">

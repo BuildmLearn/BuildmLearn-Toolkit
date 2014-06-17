@@ -80,33 +80,6 @@ FormMain::FormMain(QWidget *parent) :
   // Make sure simulator window is displayed.
   m_ui->m_actionViewSimulatorWindow->setChecked(m_simulatorWindow->isVisibleOnStartup());
   m_ui->m_actionStickSimulatorWindow->setChecked(m_simulatorWindow->isSticked());
-
-  /*
-  iNewProjectWidget = new FormNewProject(this);
-  iNewProjectWidget->setWindowModality(Qt::ApplicationModal);
-
-  iStackedWidget = new QStackedWidget(this);
-  iBlankWidget = new QWidget(this);
-  iInfoTemplateWidget = new InfoTemplate(this);
-  iQuizTemplateWidget = new QuizTemplate(this);
-  iFlashCardsWidget = new FlashcardTemplate(this);
-
-  iBlankWidget->setStyleSheet("background-image: url(:/images/banner.png)");
-
-  iStackedWidget->addWidget(iBlankWidget);
-  iStackedWidget->addWidget(iInfoTemplateWidget);
-  iStackedWidget->addWidget(iQuizTemplateWidget);
-  iStackedWidget->addWidget(iFlashCardsWidget);
-
-  iStackedWidget->setCurrentIndex(0);
-
-  setCentralWidget(iStackedWidget);
-
-  connect(iNewProjectWidget, SIGNAL(startProject(int)),
-          this, SLOT(startProject(int)));
-*/
-
-  //m_simulatorWindow->setActiveSimulation(new TemplateSimulator());
 }
 
 FormMain::~FormMain() {

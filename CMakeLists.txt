@@ -397,6 +397,7 @@ set(APP_SOURCES
   src/templates/quiz/quizcore.cpp
   src/templates/quiz/quizeditor.cpp
   src/templates/quiz/quizsimulator.cpp
+  src/templates/quiz/quizquestion.cpp
 
   src/FlashcardTemplate.cpp
   src/InfoTemplate.cpp
@@ -449,6 +450,7 @@ set(APP_HEADERS
   src/templates/quiz/quizcore.h
   src/templates/quiz/quizeditor.h
   src/templates/quiz/quizsimulator.h
+  src/templates/quiz/quizquestion.h
 
   src/FlashcardTemplate.h
   src/InfoTemplate.h

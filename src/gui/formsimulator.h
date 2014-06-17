@@ -89,9 +89,6 @@ class FormSimulator : public QDialog {
     bool m_isVisibleOnStartup;
     bool m_isSticked;
     bool m_isActive;
-    // TODO: Tady možná dát TemplateCore a z něj ten simulator tahat
-    // skrz volani startSimulation(...), nebo dat do TemplateSimulator
-    // pointer na TemplateCore.
     TemplateSimulator *m_activeSimulation;
 };
 

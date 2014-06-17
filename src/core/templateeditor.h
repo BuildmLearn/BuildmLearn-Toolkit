@@ -76,7 +76,7 @@ class TemplateEditor : public QWidget {
     /// otherwise.
     /// \remarks This is for example emitted if user ads first
     /// question item to Quiz template editor.
-    void canGenerateChanged(bool can_generate);
+    void canGenerateChanged(bool can_generate, const QString &message = QString());
 
   protected:
     TemplateCore *m_core;
