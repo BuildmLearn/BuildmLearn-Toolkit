@@ -10,12 +10,17 @@ QuizEditor::QuizEditor(TemplateCore *core, QWidget *parent)
 
   IconFactory *factory = IconFactory::instance();
 
+  m_ui->m_btnAnswerOne->setProperty("id", 1);
+  m_ui->m_btnAnswerTwo->setProperty("id", 2);
+  m_ui->m_btnAnswerThree->setProperty("id", 3);
+  m_ui->m_btnAnswerFour->setProperty("id", 4);
+
   m_ui->m_btnQuestionAdd->setIcon(factory->fromTheme("item-add"));
   m_ui->m_btnQuestionRemove->setIcon(factory->fromTheme("item-remove"));
   m_ui->m_btnQuestionUp->setIcon(factory->fromTheme("move-up"));
   m_ui->m_btnQuestionDown->setIcon(factory->fromTheme("move-down"));
-  m_ui->m_btnAnswerOne->setIcon(factory->fromTheme("dialog-no"));
-  m_ui->m_btnAnswerTwo->setIcon(factory->fromTheme("dialog-no"));
+  m_iconNo = factory->fromTheme("dialog-no");
+  m_iconYes = factory->fromTheme("dialog-yes");
 
   connect(m_ui->m_btnQuestionAdd, SIGNAL(clicked()), this, SLOT(addQuestion()));
   connect(m_ui->m_btnQuestionRemove, SIGNAL(clicked()), this, SLOT(removeQuestion()));
@@ -47,6 +52,12 @@ void QuizEditor::addQuestion() {
   QListWidgetItem *new_item = new QListWidgetItem();
 
   new_question.setQuestion(tr("How many cats do you have?"));
+  new_question.setCorrectAnswer(3);
+  new_question.setAnswerOne(tr("I hate cats!"));
+  new_question.setAnswerTwo(tr("I have two nice kittens."));
+  new_question.setAnswerThree(tr("I have seven beasts."));
+  new_question.setAnswerFour(tr("Cats? Well, we own eleven dogs."));
+
   new_item->setText(new_question.question());
   new_item->setData(Qt::UserRole, QVariant::fromValue(new_question));
 
@@ -66,7 +77,52 @@ void QuizEditor::addQuestion() {
 }
 
 void QuizEditor::loadQuestion(int index) {
+  m_ui->m_txtQuestion->blockSignals(true);
+  m_ui->m_txtAnswerOne->blockSignals(true);
+  m_ui->m_txtAnswerTwo->blockSignals(true);
+  m_ui->m_txtAnswerThree->blockSignals(true);
+  m_ui->m_txtAnswerFour->blockSignals(true);
+  m_ui->m_btnAnswerOne->blockSignals(true);
+  m_ui->m_btnAnswerTwo->blockSignals(true);
+  m_ui->m_btnAnswerThree->blockSignals(true);
+  m_ui->m_btnAnswerFour->blockSignals(true);
 
+  if (index >= 0) {
+    QuizQuestion question = m_ui->m_listQuestions->item(index)->data(Qt::UserRole).value<QuizQuestion>();
+
+    m_ui->m_txtQuestion->setText(question.question());
+    m_ui->m_txtAnswerOne->setText(question.answerOne());
+    m_ui->m_txtAnswerTwo->setText(question.answerTwo());
+    m_ui->m_txtAnswerThree->setText(question.answerThree());
+    m_ui->m_txtAnswerFour->setText(question.answerFour());
+    m_ui->m_btnAnswerOne->setIcon(question.correctAnswer() == 1 ? m_iconYes : m_iconNo);
+    m_ui->m_btnAnswerTwo->setIcon(question.correctAnswer() == 2 ? m_iconYes : m_iconNo);
+    m_ui->m_btnAnswerThree->setIcon(question.correctAnswer() == 3 ? m_iconYes : m_iconNo);
+    m_ui->m_btnAnswerFour->setIcon(question.correctAnswer() == 4 ? m_iconYes : m_iconNo);
+
+    m_activeQuestion = question;
+  }
+  else {
+    m_ui->m_txtQuestion->setText(QString());
+    m_ui->m_txtAnswerOne->setText(QString());
+    m_ui->m_txtAnswerTwo->setText(QString());
+    m_ui->m_txtAnswerThree->setText(QString());
+    m_ui->m_txtAnswerFour->setText(QString());
+    m_ui->m_btnAnswerOne->setIcon(m_iconNo);
+    m_ui->m_btnAnswerTwo->setIcon(m_iconNo);
+    m_ui->m_btnAnswerThree->setIcon(m_iconNo);
+    m_ui->m_btnAnswerFour->setIcon(m_iconNo);
+  }
+
+  m_ui->m_txtQuestion->blockSignals(false);
+  m_ui->m_txtAnswerOne->blockSignals(false);
+  m_ui->m_txtAnswerTwo->blockSignals(false);
+  m_ui->m_txtAnswerThree->blockSignals(false);
+  m_ui->m_txtAnswerFour->blockSignals(false);
+  m_ui->m_btnAnswerOne->blockSignals(false);
+  m_ui->m_btnAnswerTwo->blockSignals(false);
+  m_ui->m_btnAnswerThree->blockSignals(false);
+  m_ui->m_btnAnswerFour->blockSignals(false);
 }
 
 void QuizEditor::removeQuestion() {
@@ -85,7 +141,21 @@ void QuizEditor::removeQuestion() {
 }
 
 void QuizEditor::saveQuestion() {
+  PlainToolButton *button_sender = dynamic_cast<PlainToolButton*>(sender());
 
+  if (button_sender != NULL) {
+    // User clicked some of the "answer" buttons.
+    m_activeQuestion.setCorrectAnswer(button_sender->property("id").toInt());
+  }
+
+  m_activeQuestion.setQuestion(m_ui->m_txtQuestion->toPlainText());
+  m_activeQuestion.setAnswerOne(m_ui->m_txtAnswerOne->text());
+  m_activeQuestion.setAnswerTwo(m_ui->m_txtAnswerTwo->text());
+  m_activeQuestion.setAnswerThree(m_ui->m_txtAnswerThree->text());
+  m_activeQuestion.setAnswerFour(m_ui->m_txtAnswerFour->text());
+
+  m_ui->m_listQuestions->currentItem()->setData(Qt::UserRole, QVariant::fromValue(m_activeQuestion));
+  m_ui->m_listQuestions->currentItem()->setText(m_activeQuestion.question());
 }
 
 void QuizEditor::setEditorsEnabled(bool enabled) {

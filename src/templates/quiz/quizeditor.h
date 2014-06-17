@@ -4,6 +4,9 @@
 #include "core/templateeditor.h"
 
 #include "ui_quizeditor.h"
+#include "templates/quiz/quizquestion.h"
+
+#include <QIcon>
 
 
 namespace Ui {
@@ -27,7 +30,10 @@ class QuizEditor : public TemplateEditor {
     void setEditorsEnabled(bool enabled);
 
   private:
+    QuizQuestion m_activeQuestion;
     Ui::QuizEditor *m_ui;
+    QIcon m_iconYes;
+    QIcon m_iconNo;
 };
 
 #endif // QUIZEDITOR_H

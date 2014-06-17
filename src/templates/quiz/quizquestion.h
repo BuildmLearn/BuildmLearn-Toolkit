@@ -1,8 +1,6 @@
 #ifndef QUIZQUESTION_H
 #define QUIZQUESTION_H
 
-#include <QObject>
-
 #include <QMetaType>
 
 
