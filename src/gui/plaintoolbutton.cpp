@@ -53,7 +53,10 @@ void PlainToolButton::paintEvent(QPaintEvent *e) {
   rect.adjust(m_padding, m_padding, -m_padding, -m_padding);
 
   // Paint the icon.
-  if (underMouse()) {
+  if (!isEnabled()) {
+    p.setOpacity(0.4);
+  }
+  else if (underMouse()) {
     p.setOpacity(0.7);
   }
 

@@ -19,8 +19,14 @@ QuizEditor::QuizEditor(TemplateCore *core, QWidget *parent)
   m_ui->m_btnQuestionRemove->setIcon(factory->fromTheme("item-remove"));
   m_ui->m_btnQuestionUp->setIcon(factory->fromTheme("move-up"));
   m_ui->m_btnQuestionDown->setIcon(factory->fromTheme("move-down"));
+
   m_iconNo = factory->fromTheme("dialog-no");
   m_iconYes = factory->fromTheme("dialog-yes");
+
+  m_ui->m_btnAnswerOne->setIcon(m_iconNo);
+  m_ui->m_btnAnswerTwo->setIcon(m_iconNo);
+  m_ui->m_btnAnswerThree->setIcon(m_iconNo);
+  m_ui->m_btnAnswerFour->setIcon(m_iconNo);
 
   connect(m_ui->m_btnQuestionAdd, SIGNAL(clicked()), this, SLOT(addQuestion()));
   connect(m_ui->m_btnQuestionRemove, SIGNAL(clicked()), this, SLOT(removeQuestion()));
@@ -37,6 +43,9 @@ QuizEditor::QuizEditor(TemplateCore *core, QWidget *parent)
   connect(m_ui->m_txtAnswerFour, SIGNAL(textEdited(QString)), this, SLOT(saveQuestion()));
   connect(m_ui->m_txtQuestion, SIGNAL(textChanged()), this, SLOT(saveQuestion()));
 
+  connect(m_ui->m_btnQuestionUp, SIGNAL(clicked()), this, SLOT(moveQuestionUp()));
+  connect(m_ui->m_btnQuestionDown, SIGNAL(clicked()), this, SLOT(moveQuestionDown()));
+
   setEditorsEnabled(false);
 
   qRegisterMetaType<QuizQuestion>("QuizQuestion");
@@ -44,6 +53,16 @@ QuizEditor::QuizEditor(TemplateCore *core, QWidget *parent)
 
 QuizEditor::~QuizEditor() {
   delete m_ui;
+}
+
+QList<QuizQuestion> QuizEditor::activeQuestions() const {
+  QList<QuizQuestion> questions;
+
+  for (int i = 0; i < m_ui->m_listQuestions->count(); i++) {
+    questions.append(m_ui->m_listQuestions->item(i)->data(Qt::UserRole).value<QuizQuestion>());
+  }
+
+  return questions;
 }
 
 void QuizEditor::addQuestion() {
@@ -130,7 +149,7 @@ void QuizEditor::removeQuestion() {
 
   if (current_row >= 0) {
     if (m_ui->m_listQuestions->count() == 1) {
-      // We are removing last question.
+      // We are removing last visible question.
       setEditorsEnabled(false);
 
       m_ui->m_btnQuestionRemove->setEnabled(false);
@@ -146,6 +165,44 @@ void QuizEditor::saveQuestion() {
   if (button_sender != NULL) {
     // User clicked some of the "answer" buttons.
     m_activeQuestion.setCorrectAnswer(button_sender->property("id").toInt());
+
+    // Change icons.
+    switch (m_activeQuestion.correctAnswer()) {
+      case 1:
+        m_ui->m_btnAnswerOne->setIcon(m_iconYes);
+        m_ui->m_btnAnswerTwo->setIcon(m_iconNo);
+        m_ui->m_btnAnswerThree->setIcon(m_iconNo);
+        m_ui->m_btnAnswerFour->setIcon(m_iconNo);
+        break;
+
+      case 2:
+        m_ui->m_btnAnswerOne->setIcon(m_iconNo);
+        m_ui->m_btnAnswerTwo->setIcon(m_iconYes);
+        m_ui->m_btnAnswerThree->setIcon(m_iconNo);
+        m_ui->m_btnAnswerFour->setIcon(m_iconNo);
+        break;
+
+      case 3:
+        m_ui->m_btnAnswerOne->setIcon(m_iconNo);
+        m_ui->m_btnAnswerTwo->setIcon(m_iconNo);
+        m_ui->m_btnAnswerThree->setIcon(m_iconYes);
+        m_ui->m_btnAnswerFour->setIcon(m_iconNo);
+        break;
+
+      case 4:
+        m_ui->m_btnAnswerOne->setIcon(m_iconNo);
+        m_ui->m_btnAnswerTwo->setIcon(m_iconNo);
+        m_ui->m_btnAnswerThree->setIcon(m_iconNo);
+        m_ui->m_btnAnswerFour->setIcon(m_iconYes);
+        break;
+
+      default:
+        m_ui->m_btnAnswerOne->setIcon(m_iconNo);
+        m_ui->m_btnAnswerTwo->setIcon(m_iconNo);
+        m_ui->m_btnAnswerThree->setIcon(m_iconNo);
+        m_ui->m_btnAnswerFour->setIcon(m_iconNo);
+        break;
+    }
   }
 
   m_activeQuestion.setQuestion(m_ui->m_txtQuestion->toPlainText());
@@ -156,6 +213,20 @@ void QuizEditor::saveQuestion() {
 
   m_ui->m_listQuestions->currentItem()->setData(Qt::UserRole, QVariant::fromValue(m_activeQuestion));
   m_ui->m_listQuestions->currentItem()->setText(m_activeQuestion.question());
+}
+
+void QuizEditor::moveQuestionUp() {
+  int index = m_ui->m_listQuestions->currentRow();
+
+  m_ui->m_listQuestions->insertItem(index - 1, m_ui->m_listQuestions->takeItem(index));
+  m_ui->m_listQuestions->setCurrentRow(index - 1);
+}
+
+void QuizEditor::moveQuestionDown() {
+  int index = m_ui->m_listQuestions->currentRow();
+
+  m_ui->m_listQuestions->insertItem(index + 1, m_ui->m_listQuestions->takeItem(index));
+  m_ui->m_listQuestions->setCurrentRow(index + 1);
 }
 
 void QuizEditor::setEditorsEnabled(bool enabled) {
