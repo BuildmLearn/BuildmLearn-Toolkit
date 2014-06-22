@@ -59,19 +59,30 @@ class TemplateFactory : public QObject {
       return m_availableTemplates;
     }
 
+    /// \brief Access to temporary directory used throughout APK generation process.
+    /// \return Returns temporary directory used throughout APK generation process.
     QString tempDirectory() const;
     void setTempDirectory(const QString &temp_directory);
 
+    /// \brief Access to directory used throughout APK generation process.
+    /// \return Returns output directory used throughout APK generation process.
     QString outputDirectory() const;
     void setOutputDirectory(const QString &output_directory);
 
+    /// \brief Access to pattern used for name of output APK file.
+    /// \return Returns pattern used for name of output APK file.
     QString applicationFileNamePattern() const;
     void setApplicationFileNamePattern(const QString &file_name_pattern);
 
+    /// \brief Access to active entry point.
+    /// \return Returns pointer to active entry point or NULL if no entry
+    /// point is active.
     TemplateEntryPoint *activeEntryPoint() const {
       return m_activeEntryPoint;
     }
 
+    /// \brief Access to active core.
+    /// \return Returns pointer to active core or NULL if not core is active.
     TemplateCore *activeCore() const {
       return m_activeCore;
     }

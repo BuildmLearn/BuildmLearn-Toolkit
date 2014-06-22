@@ -127,6 +127,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="m_btnGoBack">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>Go &amp;back</string>
        </property>
@@ -134,6 +137,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="m_btnRunSimulation">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>&amp;Run new simulation</string>
        </property>

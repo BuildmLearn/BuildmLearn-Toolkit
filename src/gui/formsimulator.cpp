@@ -6,6 +6,8 @@
 #include "miscellaneous/application.h"
 #include "miscellaneous/skinfactory.h"
 #include "core/templatesimulator.h"
+#include "core/templatecore.h"
+#include "core/templateeditor.h"
 
 #include <QWidget>
 #include <QCloseEvent>
@@ -23,6 +25,8 @@ FormSimulator::FormSimulator(FormMain* parent)
 
   connect(parent, SIGNAL(moved()), this, SLOT(conditionallyAttachToParent()));
   connect(parent, SIGNAL(resized()), this, SLOT(conditionallyAttachToParent()));
+  connect(m_ui->m_btnRunSimulation, SIGNAL(clicked()), this, SLOT(startSimulation()));
+  connect(m_ui->m_btnGoBack, SIGNAL(clicked()), this, SLOT(goBack()));
 
   // This window mustn't be deleted when closed by user.
   setAttribute(Qt::WA_DeleteOnClose, false);
@@ -51,23 +55,22 @@ void FormSimulator::loadState() {
 
 void FormSimulator::setActiveSimulation(TemplateSimulator *simulation) {
   if (m_activeSimulation != NULL) {
-    disconnect(m_activeSimulation, SIGNAL(canGoBackChanged(bool)), 0, 0);
-    disconnect(m_activeSimulation, SIGNAL(canStartSimulationChanged(bool)), 0, 0);
-
+    // There is existing simulator widget, remove it.
     m_activeSimulation->close();
     m_activeSimulation->deleteLater();
     m_activeSimulation = NULL;
   }
 
+  // Assign new simulation and display its initial state.
   m_activeSimulation = simulation;
   m_activeSimulation->setParent(m_ui->m_phoneWidget);
   m_activeSimulation->setGeometry(SIMULATOR_CONTENTS_OFFSET_X, SIMULATOR_CONTENTS_OFFSET_Y,
                        SIMULATOR_CONTENTS_WIDTH, SIMULATOR_CONTENTS_HEIGHT);
-  m_activeSimulation->setStyleSheet("QWidget { border: 3px solid red; }");
   m_activeSimulation->show();
 
+  // Make necessary connections which are meant for simulator window.
   connect(m_activeSimulation, SIGNAL(canGoBackChanged(bool)), m_ui->m_btnGoBack, SLOT(setEnabled(bool)));
-  connect(m_activeSimulation, SIGNAL(canStartSimulationChanged(bool)), m_ui->m_btnRunSimulation, SLOT(setEnabled(bool)));
+  connect(m_activeSimulation->core()->editor(), SIGNAL(canGenerateChanged(bool)), m_ui->m_btnRunSimulation, SLOT(setEnabled(bool)));
 }
 
 void FormSimulator::goBack() {

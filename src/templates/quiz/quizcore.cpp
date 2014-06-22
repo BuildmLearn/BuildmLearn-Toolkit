@@ -60,3 +60,16 @@ bool QuizCore::startSimulation() {
 bool QuizCore::stopSimulation() {
   return true;
 }
+
+void QuizCore::launch() {
+  quizEditor()->launch();
+  quizSimulator()->launch();
+}
+
+QuizEditor *QuizCore::quizEditor() {
+  return static_cast<QuizEditor*>(m_editor);
+}
+
+QuizSimulator *QuizCore::quizSimulator() {
+  return static_cast<QuizSimulator*>(m_simulator);
+}

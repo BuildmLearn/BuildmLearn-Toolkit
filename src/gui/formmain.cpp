@@ -129,8 +129,9 @@ void FormMain::createConnections() {
           m_simulatorWindow, SLOT(setIsSticked(bool)));
 
   // Extra simulator connections.
-  connect(m_simulatorWindow, SIGNAL(closed()),
-          this, SLOT(onSimulatorWindowClosed()));
+  connect(m_simulatorWindow, SIGNAL(closed()), this, SLOT(onSimulatorWindowClosed()));
+  connect(m_ui->m_actionSimulatorRun, SIGNAL(triggered()), m_simulatorWindow, SLOT(startSimulation()));
+  connect(m_ui->m_actionSimulatorGoBack, SIGNAL(triggered()), m_simulatorWindow, SLOT(goBack()));
 
   // Project connections.
   connect(m_ui->m_actionNewProject, SIGNAL(triggered()),
@@ -151,15 +152,16 @@ void FormMain::setupActionShortcuts() {
   // TODO: Finalize Mac OS X default shortcuts.
 #if defined(Q_OS_OSX)
   m_ui->m_actionCheckForUpdates->setShortcut(QKeySequence("", QKeySequence::PortableText));
-  m_ui->m_actionGenerateMobileApplication->setShortcut(QKeySequence("", QKeySequence::PortableText));
-  m_ui->m_actionLoadProject->setShortcut(QKeySequence("", QKeySequence::PortableText));
-  m_ui->m_actionNewProject->setShortcut(QKeySequence("", QKeySequence::PortableText));
-  m_ui->m_actionSaveProject->setShortcut(QKeySequence("", QKeySequence::PortableText));
-  m_ui->m_actionSaveProjectAs->setShortcut(QKeySequence("", QKeySequence::PortableText));
-  m_ui->m_actionQuit->setShortcut(QKeySequence("", QKeySequence::PortableText));
-  m_ui->m_actionSettings->setShortcut(QKeySequence("", QKeySequence::PortableText));
-  m_ui->m_actionHelp->setShortcut(QKeySequence("", QKeySequence::PortableText));
+  m_ui->m_actionGenerateMobileApplication->setShortcut(QKeySequence("Ctrl+G", QKeySequence::PortableText));
+  m_ui->m_actionLoadProject->setShortcut(QKeySequence("Ctrl+L", QKeySequence::PortableText));
+  m_ui->m_actionNewProject->setShortcut(QKeySequence("Ctrl+N", QKeySequence::PortableText));
+  m_ui->m_actionSaveProject->setShortcut(QKeySequence("Ctrl+S", QKeySequence::PortableText));
+  m_ui->m_actionSaveProjectAs->setShortcut(QKeySequence("Ctrl+Shift+S", QKeySequence::PortableText));
+  m_ui->m_actionQuit->setShortcut(QKeySequence("Ctrl+Q", QKeySequence::PortableText));
+  m_ui->m_actionSettings->setShortcut(QKeySequence("Ctrl+T", QKeySequence::PortableText));
+  m_ui->m_actionHelp->setShortcut(QKeySequence("F1", QKeySequence::PortableText));
 #else
+  m_ui->m_actionCheckForUpdates->setShortcut(QKeySequence("", QKeySequence::PortableText));
   m_ui->m_actionGenerateMobileApplication->setShortcut(QKeySequence("Ctrl+G", QKeySequence::PortableText));
   m_ui->m_actionLoadProject->setShortcut(QKeySequence("Ctrl+L", QKeySequence::PortableText));
   m_ui->m_actionNewProject->setShortcut(QKeySequence("Ctrl+N", QKeySequence::PortableText));
@@ -241,6 +243,13 @@ void FormMain::saveSizeAndPosition() {
   m_simulatorWindow->saveState();
 }
 
+void FormMain::onCanGenerateChanged(bool can_generate, const QString &informative_text) {
+  m_ui->m_actionGenerateMobileApplication->setEnabled(can_generate);
+  m_ui->m_actionGenerateMobileApplication->setToolTip(informative_text);
+  m_ui->m_actionSimulatorRun->setEnabled(can_generate);
+  m_ui->m_actionSimulatorRun->setToolTip(informative_text);
+}
+
 void FormMain::setTemplateCore(TemplateCore *core) {
   // Set editor widget as central widget of main window
   // and setup simulator stuff.
@@ -251,11 +260,14 @@ void FormMain::setTemplateCore(TemplateCore *core) {
   m_centralLayout->layout()->addWidget(editor);
   editor->setParent(m_centralArea);
 
+  connect(editor, SIGNAL(canGenerateChanged(bool,QString)), this, SLOT(onCanGenerateChanged(bool,QString)));
   connect(simulator, SIGNAL(canGoBackChanged(bool)), m_ui->m_actionSimulatorGoBack, SLOT(setEnabled(bool)));
-  connect(simulator, SIGNAL(canStartSimulationChanged(bool)), m_ui->m_actionSimulatorRun, SLOT(setEnabled(bool)));
 
   // Set simulator part.
   m_simulatorWindow->setActiveSimulation(simulator);
+
+  // Now, new template editor is set and simulator is set. Launch the template.
+  core->launch();
 }
 
 void FormMain::onAboutToQuit() {

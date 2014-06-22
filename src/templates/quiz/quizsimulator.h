@@ -11,6 +11,9 @@ namespace Ui {
 }
 
 class TemplateCore;
+class QLabel;
+class QPushButton;
+class QRadioButton;
 
 class QuizSimulator : public TemplateSimulator {
     Q_OBJECT
@@ -22,6 +25,11 @@ class QuizSimulator : public TemplateSimulator {
 
     bool startSimulation();
     bool stopSimulation();
+    void launch();
+
+    /// \brief Indicates whether user can go back in simulation.
+    /// \warning This template does not support going back.
+    /// \return Returns always false.
     bool canGoBack();
     bool goBack();
 

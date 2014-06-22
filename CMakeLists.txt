@@ -398,6 +398,7 @@ set(APP_SOURCES
   src/templates/quiz/quizeditor.cpp
   src/templates/quiz/quizsimulator.cpp
   src/templates/quiz/quizquestion.cpp
+  src/templates/quiz/quizitem.cpp
 
   src/FlashcardTemplate.cpp
   src/InfoTemplate.cpp
@@ -451,6 +452,7 @@ set(APP_HEADERS
   src/templates/quiz/quizeditor.h
   src/templates/quiz/quizsimulator.h
   src/templates/quiz/quizquestion.h
+  src/templates/quiz/quizitem.h
 
   src/FlashcardTemplate.h
   src/InfoTemplate.h
@@ -469,6 +471,7 @@ set(APP_FORMS
   src/gui/formnewproject.ui
   src/templates/quiz/quizeditor.ui
   src/templates/quiz/quizsimulator.ui
+  src/templates/quiz/quizitem.ui
 )
 
 # APP translations.

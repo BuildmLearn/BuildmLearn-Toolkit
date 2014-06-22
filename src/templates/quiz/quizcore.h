@@ -34,6 +34,9 @@
 #include "core/templatecore.h"
 
 
+class QuizEditor;
+class QuizSimulator;
+
 class QuizCore : public TemplateCore {
     Q_OBJECT
 
@@ -46,7 +49,11 @@ class QuizCore : public TemplateCore {
     bool generateApkFile();
     bool startSimulation();
     bool stopSimulation();
+    void launch();
 
+  private:
+    QuizEditor *quizEditor();
+    QuizSimulator *quizSimulator();
 };
 
 #endif // QUIZCORE_H

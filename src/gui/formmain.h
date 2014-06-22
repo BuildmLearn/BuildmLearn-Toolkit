@@ -89,6 +89,9 @@ class FormMain : public QMainWindow {
     void saveSizeAndPosition();
 
   private slots:
+    // Called when generation status of current template is changed.
+    void onCanGenerateChanged(bool can_generate, const QString &informative_text);
+
     // Called when user opens new project or loads existing project.
     // This should read "editor" from core and set it as central widget.
     void setTemplateCore(TemplateCore *core);

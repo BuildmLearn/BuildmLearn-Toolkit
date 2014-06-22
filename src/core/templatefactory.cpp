@@ -93,7 +93,6 @@ void TemplateFactory::setApplicationFileNamePattern(const QString &file_name_pat
 
 void TemplateFactory::clearEntryAndCore() {
   if (m_activeEntryPoint != NULL) {
-    m_activeEntryPoint->deleteLater();
     m_activeEntryPoint = NULL;
   }
 

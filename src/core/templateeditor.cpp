@@ -41,10 +41,6 @@ TemplateEditor::~TemplateEditor() {
   qDebug("Destroying TemplateEditor instance.");
 }
 
-bool TemplateEditor::canGenerateApplications() const {
-  return m_canGenerateApplications;
-}
-
 TemplateCore *TemplateEditor::core() const {
     return m_core;
 }

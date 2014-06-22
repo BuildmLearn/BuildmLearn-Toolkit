@@ -79,6 +79,8 @@ class FormSimulator : public QDialog {
     /// \brief Emitted when simulator window is closed.
     void closed();
 
+    void runEnabledChanged(bool enabled);
+
   private:
     void setupPhoneWidget();
     void setupIcons();

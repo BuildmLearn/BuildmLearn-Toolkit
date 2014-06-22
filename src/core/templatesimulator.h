@@ -59,6 +59,10 @@ class TemplateSimulator : public QWidget {
     /// \brief (Re)starts the simulation.
     /// \return Returns true if simulation was (re)started, false otherwise.
     virtual bool startSimulation() = 0;
+
+    /// \brief Stops simulation and resets its to initial state, all user
+    /// data from simulation are cleared.
+    /// \return Returns true if simulation was stopped, false otherwise.
     virtual bool stopSimulation() = 0;
 
     /// \brief Gets simulation one step back.
@@ -69,10 +73,6 @@ class TemplateSimulator : public QWidget {
     /// \brief Emitted if "can go back" status of simulator changes.
     /// \param can_go_back True if simulation can be rolled back one step, false otherwise.
     void canGoBackChanged(bool can_go_back);
-
-    /// \brief Emitted if "can start simulation" status of simulator changes.
-    /// \param can_start_simulation True if simulation can be started, false otherwise.
-    void canStartSimulationChanged(bool can_start_simulation);
 
   protected:
     TemplateCore *m_core;

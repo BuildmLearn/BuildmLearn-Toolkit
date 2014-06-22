@@ -21,6 +21,9 @@ class QuizEditor : public TemplateEditor {
     explicit QuizEditor(TemplateCore *core, QWidget *parent = 0);
     virtual ~QuizEditor();
 
+    bool canGenerateApplications();
+    void launch();
+
     /// \brief Access to list of added questions.
     /// \return Returns list of added questions.
     QList<QuizQuestion> activeQuestions() const;
@@ -33,7 +36,11 @@ class QuizEditor : public TemplateEditor {
     void moveQuestionUp();
     void moveQuestionDown();
 
+    void configureUpDown();
     void setEditorsEnabled(bool enabled);
+
+    void updateNameStatus();
+    void updateAuthorStatus();
 
   private:
     QuizQuestion m_activeQuestion;

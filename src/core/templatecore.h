@@ -56,6 +56,11 @@ class TemplateCore : public QObject {
     /// \return Returns string with generated data.
     virtual QString generateRawData() = 0;
 
+    /// \brief Called after this template is fully loaded in toolkit.
+    /// \note Template is fully loaded only and only if its editor is set as
+    /// active and its simulator is set as active.
+    virtual void launch() = 0;
+
     /// \brief Generates APK file from current project with active settings
     /// \return Returns true on success, otherwise returns false.
     /// \warning This is used only if template can actually

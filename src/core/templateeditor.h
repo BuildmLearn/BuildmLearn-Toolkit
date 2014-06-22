@@ -54,7 +54,7 @@ class TemplateEditor : public QWidget {
     /// \return Returns true if editor contains enough data
     /// for generating of applications.
     /// \warning This is used in cooperation with canGenerateStatusChanged(bool can_generate).
-    bool canGenerateApplications() const;
+    virtual bool canGenerateApplications() = 0;
 
     /// \brief Access to associated template core.
     /// \return Returns associated template core.
@@ -80,7 +80,6 @@ class TemplateEditor : public QWidget {
 
   protected:
     TemplateCore *m_core;
-    bool m_canGenerateApplications;
 };
 
 #endif // TEMPLATEEDITOR_H

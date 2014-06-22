@@ -3,12 +3,18 @@
 #include "miscellaneous/iconfactory.h"
 #include "templates/quiz/quizquestion.h"
 
+#include <QTimer>
+
 
 QuizEditor::QuizEditor(TemplateCore *core, QWidget *parent)
   : TemplateEditor(core, parent), m_ui(new Ui::QuizEditor) {
   m_ui->setupUi(this);
 
   IconFactory *factory = IconFactory::instance();
+
+  m_ui->m_txtAuthor->lineEdit()->setPlaceholderText(tr("Author of this quiz"));
+  m_ui->m_txtName->lineEdit()->setPlaceholderText(tr("Name of this quiz"));
+
 
   m_ui->m_btnAnswerOne->setProperty("id", 1);
   m_ui->m_btnAnswerTwo->setProperty("id", 2);
@@ -27,6 +33,9 @@ QuizEditor::QuizEditor(TemplateCore *core, QWidget *parent)
   m_ui->m_btnAnswerTwo->setIcon(m_iconNo);
   m_ui->m_btnAnswerThree->setIcon(m_iconNo);
   m_ui->m_btnAnswerFour->setIcon(m_iconNo);
+
+  connect(m_ui->m_txtAuthor->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(updateAuthorStatus()));
+  connect(m_ui->m_txtName->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(updateNameStatus()));
 
   connect(m_ui->m_btnQuestionAdd, SIGNAL(clicked()), this, SLOT(addQuestion()));
   connect(m_ui->m_btnQuestionRemove, SIGNAL(clicked()), this, SLOT(removeQuestion()));
@@ -47,6 +56,8 @@ QuizEditor::QuizEditor(TemplateCore *core, QWidget *parent)
   connect(m_ui->m_btnQuestionDown, SIGNAL(clicked()), this, SLOT(moveQuestionDown()));
 
   setEditorsEnabled(false);
+  updateAuthorStatus();
+  updateNameStatus();
 
   qRegisterMetaType<QuizQuestion>("QuizQuestion");
 }
@@ -93,6 +104,8 @@ void QuizEditor::addQuestion() {
     m_ui->m_listQuestions->insertItem(marked_question + 1, new_item);
     m_ui->m_listQuestions->setCurrentRow(marked_question + 1);
   }
+
+  launch();
 }
 
 void QuizEditor::loadQuestion(int index) {
@@ -142,6 +155,8 @@ void QuizEditor::loadQuestion(int index) {
   m_ui->m_btnAnswerTwo->blockSignals(false);
   m_ui->m_btnAnswerThree->blockSignals(false);
   m_ui->m_btnAnswerFour->blockSignals(false);
+
+  QTimer::singleShot(0, this, SLOT(configureUpDown()));
 }
 
 void QuizEditor::removeQuestion() {
@@ -157,6 +172,8 @@ void QuizEditor::removeQuestion() {
 
     delete m_ui->m_listQuestions->takeItem(current_row);
   }
+
+  launch();
 }
 
 void QuizEditor::saveQuestion() {
@@ -229,6 +246,29 @@ void QuizEditor::moveQuestionDown() {
   m_ui->m_listQuestions->setCurrentRow(index + 1);
 }
 
+void QuizEditor::configureUpDown() {
+  if (m_ui->m_listQuestions->count() > 1) {
+    int index = m_ui->m_listQuestions->currentRow();
+
+    if (index == 0) {
+      m_ui->m_btnQuestionUp->setEnabled(false);
+      m_ui->m_btnQuestionDown->setEnabled(true);
+    }
+    else if (index == m_ui->m_listQuestions->count() - 1) {
+      m_ui->m_btnQuestionUp->setEnabled(true);
+      m_ui->m_btnQuestionDown->setEnabled(false);
+    }
+    else {
+      m_ui->m_btnQuestionUp->setEnabled(true);
+      m_ui->m_btnQuestionDown->setEnabled(true);
+    }
+  }
+  else {
+    m_ui->m_btnQuestionUp->setEnabled(false);
+    m_ui->m_btnQuestionDown->setEnabled(false);
+  }
+}
+
 void QuizEditor::setEditorsEnabled(bool enabled) {
   m_ui->m_txtAnswerOne->setEnabled(enabled);
   m_ui->m_txtAnswerTwo->setEnabled(enabled);
@@ -240,4 +280,43 @@ void QuizEditor::setEditorsEnabled(bool enabled) {
   m_ui->m_btnAnswerTwo->setEnabled(enabled);
   m_ui->m_btnAnswerThree->setEnabled(enabled);
   m_ui->m_btnAnswerFour->setEnabled(enabled);
+}
+
+void QuizEditor::updateNameStatus() {
+  if (m_ui->m_txtName->lineEdit()->text().simplified().isEmpty()) {
+    m_ui->m_txtName->setStatus(WidgetWithStatus::Error, tr("Enter the name of the quiz."));
+  }
+  else {
+    m_ui->m_txtName->setStatus(WidgetWithStatus::Ok, tr("Name is okay."));
+  }
+
+  launch();
+}
+
+void QuizEditor::updateAuthorStatus() {
+  if (m_ui->m_txtAuthor->lineEdit()->text().simplified().isEmpty()) {
+    m_ui->m_txtAuthor->setStatus(WidgetWithStatus::Error, tr("Enter the name of the author of the quiz."));
+  }
+  else {
+    m_ui->m_txtAuthor->setStatus(WidgetWithStatus::Ok, tr("Enter the name of the author of the quiz."));
+  }
+
+  launch();
+}
+
+bool QuizEditor::canGenerateApplications() {
+  return
+      !m_ui->m_txtName->lineEdit()->text().simplified().isEmpty() &&
+      !m_ui->m_txtAuthor->lineEdit()->text().simplified().isEmpty() &&
+      !activeQuestions().isEmpty();
+}
+
+void QuizEditor::launch() {
+  if (canGenerateApplications()) {
+    emit canGenerateChanged(true);
+  }
+  else {
+    emit canGenerateChanged(false, tr("Quiz simulation or mobile application generation cannot be started \n"
+                                      "because there is no question added or quiz does not have name."));
+  }
 }
