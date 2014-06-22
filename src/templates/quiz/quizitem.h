@@ -20,7 +20,7 @@ class QuizItem : public QWidget {
     explicit QuizItem(QWidget *parent = 0);
     virtual ~QuizItem();
 
-    void setQuestion(const QuizQuestion &question);
+    void setQuestion(const QuizQuestion &question, int question_number);
 
   private:
     Ui::QuizItem *m_ui;
