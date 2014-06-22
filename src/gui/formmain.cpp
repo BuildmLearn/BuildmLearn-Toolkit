@@ -130,8 +130,8 @@ void FormMain::createConnections() {
 
   // Extra simulator connections.
   connect(m_simulatorWindow, SIGNAL(closed()), this, SLOT(onSimulatorWindowClosed()));
-  connect(m_ui->m_actionSimulatorRun, SIGNAL(triggered()), m_simulatorWindow, SLOT(startSimulation()));
-  connect(m_ui->m_actionSimulatorGoBack, SIGNAL(triggered()), m_simulatorWindow, SLOT(goBack()));
+  connect(m_ui->m_actionSimulatorRun, SIGNAL(triggered()), this, SLOT(startSimulation()));
+  connect(m_ui->m_actionSimulatorGoBack, SIGNAL(triggered()), this, SLOT(takeSimulationOneStepBack()));
 
   // Project connections.
   connect(m_ui->m_actionNewProject, SIGNAL(triggered()),
@@ -241,6 +241,22 @@ void FormMain::saveSizeAndPosition() {
 
   // Save visual state of simulator window.
   m_simulatorWindow->saveState();
+}
+
+void FormMain::startSimulation() {
+  if (!m_ui->m_actionViewSimulatorWindow->isChecked()) {
+    m_ui->m_actionViewSimulatorWindow->setChecked(true);
+  }
+
+  QTimer::singleShot(0, m_simulatorWindow, SLOT(startSimulation()));
+}
+
+void FormMain::takeSimulationOneStepBack() {
+  if (!m_ui->m_actionViewSimulatorWindow->isChecked()) {
+    m_ui->m_actionViewSimulatorWindow->setChecked(true);
+  }
+
+  QTimer::singleShot(0, m_simulatorWindow, SLOT(goBack()));
 }
 
 void FormMain::onCanGenerateChanged(bool can_generate, const QString &informative_text) {

@@ -89,6 +89,9 @@ class FormMain : public QMainWindow {
     void saveSizeAndPosition();
 
   private slots:
+    void startSimulation();
+    void takeSimulationOneStepBack();
+
     // Called when generation status of current template is changed.
     void onCanGenerateChanged(bool can_generate, const QString &informative_text);
 

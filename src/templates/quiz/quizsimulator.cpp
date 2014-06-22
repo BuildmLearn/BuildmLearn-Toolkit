@@ -32,7 +32,8 @@ bool QuizSimulator::startSimulation() {
   }
 
   // TODO: Load the questions, setup the quiz and start it.
-
+  m_ui->m_lblAuthor->setText(editor->m_ui->m_txtAuthor->lineEdit()->text());
+  m_ui->m_lblHeading->setText(editor->m_ui->m_txtName->lineEdit()->text());
 
 
   return true;

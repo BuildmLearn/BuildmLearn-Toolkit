@@ -13,8 +13,12 @@ namespace Ui {
   class QuizEditor;
 }
 
+class QuizSimulator;
+
 class QuizEditor : public TemplateEditor {
     Q_OBJECT
+
+    friend class QuizSimulator;
 
   public:
     // Constructors and destructors.
