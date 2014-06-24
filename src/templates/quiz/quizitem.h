@@ -31,10 +31,11 @@ class QuizItem : public QWidget {
     /// \param question_number Number of the question.
     void setQuestion(const QuizQuestion &question, int question_number);
 
-    ///
     /// \brief Access to state of quiz question widget.
     /// \return Returns the state of quiz question widget.
     State state() const;
+
+    void reset();
 
   signals:
     /// \brief Emitted if users clicks "Next" or "Submit"

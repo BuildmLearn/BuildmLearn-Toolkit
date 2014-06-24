@@ -33,6 +33,12 @@ class QuizSimulator : public TemplateSimulator {
     bool canGoBack();
     bool goBack();
 
+  private slots:
+    void start();
+    void prepareSummary();
+    void questionSubmitted();
+    void restart();
+
   private:
     Ui::QuizSimulator *m_ui;
 };

@@ -56,6 +56,18 @@ QuizItem::State QuizItem::state() const {
   return m_state;
 }
 
+void QuizItem::reset() {
+  clearStylesheets();
+
+  foreach (QRadioButton *answer_button, m_answerButtons) {
+    answer_button->setEnabled(true);
+    answer_button->setChecked(false);
+  }
+
+  m_ui->m_lblWarning->setVisible(false);
+  m_ui->m_btnConfirm->setEnabled(true);
+}
+
 void QuizItem::onNextClicked() {
   // Just signal that user is done with this question.
   emit questionSubmitted();
@@ -80,14 +92,22 @@ void QuizItem::onSubmitClicked() {
     }
 
     if (selected_answer == m_question.correctAnswer()) {
+      m_ui->m_lblWarning->setText("That is correct answer.");
       m_answerButtons.at(selected_answer - 1)->setStyleSheet("background-color: green;");
+      m_state = AnsweredCorrectly;
     }
     else {
+      m_ui->m_lblWarning->setText("That is wrong answer.");
       m_answerButtons.at(selected_answer - 1)->setStyleSheet("background-color: red;");
       m_answerButtons.at(m_question.correctAnswer() - 1)->setStyleSheet("background-color: green;");
+      m_state = AnsweredWrongly;
     }
 
-    // Move to next question.
-    onNextClicked();
+    foreach (QRadioButton *button, m_answerButtons) {
+      button->setEnabled(false);
+    }
+
+    m_ui->m_btnConfirm->setEnabled(false);
+    m_ui->m_lblWarning->setVisible(true);
   }
 }
