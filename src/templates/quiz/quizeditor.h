@@ -14,6 +14,7 @@ namespace Ui {
 }
 
 class QuizSimulator;
+class QShowEvent;
 
 class QuizEditor : public TemplateEditor {
     Q_OBJECT
@@ -32,7 +33,11 @@ class QuizEditor : public TemplateEditor {
     /// \return Returns list of added questions.
     QList<QuizQuestion> activeQuestions() const;
 
+  protected:
+    void showEvent(QShowEvent *e);
+
   private slots:
+    void updateQuestionCount();
     void addQuestion();
     void loadQuestion(int index);
     void removeQuestion();
@@ -47,6 +52,7 @@ class QuizEditor : public TemplateEditor {
     void updateAuthorStatus();
 
   private:
+    bool m_firstShow;
     QuizQuestion m_activeQuestion;
     Ui::QuizEditor *m_ui;
     QIcon m_iconYes;

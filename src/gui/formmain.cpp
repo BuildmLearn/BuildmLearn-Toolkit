@@ -189,14 +189,19 @@ void FormMain::setupIcons() {
   m_ui->m_menuSimulatorWindow->setIcon(factory->fromTheme("view-simulator"));
   m_ui->m_actionStickSimulatorWindow->setIcon(factory->fromTheme("simulation-stick"));
   m_ui->m_actionViewSimulatorWindow->setIcon(factory->fromTheme("view-simulator"));
+  m_ui->m_actionSimulatorRun->setIcon(factory->fromTheme("simulation-run"));
+  m_ui->m_actionSimulatorGoBack->setIcon(factory->fromTheme("simulation-back"));
 }
 
 void FormMain::setupToolbar() {
+  m_ui->m_toolBar->setWindowTitle(tr("Main toolbar"));
+
   m_ui->m_toolBar->addAction(m_ui->m_actionNewProject);
   m_ui->m_toolBar->addAction(m_ui->m_actionLoadProject);
   m_ui->m_toolBar->addAction(m_ui->m_actionSaveProject);
   m_ui->m_toolBar->addAction(m_ui->m_actionSaveProjectAs);
   m_ui->m_toolBar->addSeparator();
+  m_ui->m_toolBar->addAction(m_ui->m_actionSimulatorRun);
   m_ui->m_toolBar->addAction(m_ui->m_actionGenerateMobileApplication);
   m_ui->m_toolBar->addAction(m_ui->m_actionHelp);
 }

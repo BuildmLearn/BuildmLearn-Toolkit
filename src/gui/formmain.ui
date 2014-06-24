@@ -217,11 +217,17 @@
    </property>
   </action>
   <action name="m_actionSimulatorRun">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Run &amp;simulation</string>
    </property>
   </action>
   <action name="m_actionSimulatorGoBack">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Go &amp;back</string>
    </property>

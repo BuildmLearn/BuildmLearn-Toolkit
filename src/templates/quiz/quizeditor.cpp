@@ -3,18 +3,21 @@
 #include "miscellaneous/iconfactory.h"
 #include "templates/quiz/quizquestion.h"
 
+#include <QToolTip>
 #include <QTimer>
+#include <QShowEvent>
 
 
 QuizEditor::QuizEditor(TemplateCore *core, QWidget *parent)
-  : TemplateEditor(core, parent), m_ui(new Ui::QuizEditor) {
+  : TemplateEditor(core, parent), m_firstShow(true), m_ui(new Ui::QuizEditor) {
   m_ui->setupUi(this);
+
+  m_ui->m_txtNumberOfQuestions->lineEdit()->setEnabled(false);
 
   IconFactory *factory = IconFactory::instance();
 
   m_ui->m_txtAuthor->lineEdit()->setPlaceholderText(tr("Author of this quiz"));
   m_ui->m_txtName->lineEdit()->setPlaceholderText(tr("Name of this quiz"));
-
 
   m_ui->m_btnAnswerOne->setProperty("id", 1);
   m_ui->m_btnAnswerTwo->setProperty("id", 2);
@@ -58,6 +61,7 @@ QuizEditor::QuizEditor(TemplateCore *core, QWidget *parent)
   setEditorsEnabled(false);
   updateAuthorStatus();
   updateNameStatus();
+  updateQuestionCount();
 
   qRegisterMetaType<QuizQuestion>("QuizQuestion");
 }
@@ -74,6 +78,29 @@ QList<QuizQuestion> QuizEditor::activeQuestions() const {
   }
 
   return questions;
+}
+
+void QuizEditor::showEvent(QShowEvent *e) {
+  e->accept();
+
+  if (m_firstShow) {
+    m_firstShow = false;
+
+    QToolTip::showText(m_ui->m_btnQuestionAdd->mapToGlobal(QPoint(5, 0)),
+                       tr("Add new question by clicking here."),
+                       m_ui->m_btnQuestionAdd);
+  }
+}
+
+void QuizEditor::updateQuestionCount() {
+  m_ui->m_txtNumberOfQuestions->lineEdit()->setText(QString::number(m_ui->m_listQuestions->count()));
+
+  if (m_ui->m_listQuestions->count() > 0) {
+    m_ui->m_txtNumberOfQuestions->setStatus(WidgetWithStatus::Ok, tr("Quiz contains at least one question."));
+  }
+  else {
+    m_ui->m_txtNumberOfQuestions->setStatus(WidgetWithStatus::Error, tr("Quiz does not contain any questions."));
+  }
 }
 
 void QuizEditor::addQuestion() {
@@ -105,6 +132,7 @@ void QuizEditor::addQuestion() {
     m_ui->m_listQuestions->setCurrentRow(marked_question + 1);
   }
 
+  updateQuestionCount();
   launch();
 }
 
@@ -173,6 +201,7 @@ void QuizEditor::removeQuestion() {
     delete m_ui->m_listQuestions->takeItem(current_row);
   }
 
+  updateQuestionCount();
   launch();
 }
 
@@ -311,7 +340,7 @@ bool QuizEditor::canGenerateApplications() {
       !activeQuestions().isEmpty();
 }
 
-void QuizEditor::launch() {
+void QuizEditor::launch() {  
   if (canGenerateApplications()) {
     emit canGenerateChanged(true);
   }
