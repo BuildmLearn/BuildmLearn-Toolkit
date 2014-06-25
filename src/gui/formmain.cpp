@@ -57,14 +57,16 @@
 
 
 FormMain::FormMain(QWidget *parent)
-  : QMainWindow(parent, Qt::Window | Qt::CustomizeWindowHint |
-                Qt::WindowTitleHint | Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint),
+  : QMainWindow(parent),
   m_centralArea(new QScrollArea(this)),
   m_centralLayout(new QVBoxLayout(m_centralArea)),
   m_firstTimeShow(true),
   m_ui(new Ui::FormMain),
   m_simulatorWindow(NULL) {
   m_ui->setupUi(this);
+
+  // Disable "maximize" button.
+  setWindowFlags(windowFlags() & ~Qt::WindowMaximizeButtonHint);
 
   m_centralArea->setFrameStyle(QFrame::NoFrame);
 
