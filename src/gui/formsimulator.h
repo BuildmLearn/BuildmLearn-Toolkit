@@ -19,6 +19,8 @@ class QCloseEvent;
 class FormSimulator : public QDialog {
     Q_OBJECT
 
+    friend class FormMain;
+
   public:
     // Constructors and destructors.
     explicit FormSimulator(FormMain *parent = 0);
@@ -52,6 +54,7 @@ class FormSimulator : public QDialog {
   public slots:
     void goBack();
     void startSimulation();
+    void stopSimulation();
 
     /// \brief Conditionally sticks simulator window to its parent.
     /// \remarks Depends on settings.
@@ -78,8 +81,7 @@ class FormSimulator : public QDialog {
   signals:
     /// \brief Emitted when simulator window is closed.
     void closed();
-
-    void runEnabledChanged(bool enabled);
+    void stopEnableChanged(bool enabled);
 
   private:
     void setupPhoneWidget();

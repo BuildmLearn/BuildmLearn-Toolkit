@@ -1,3 +1,33 @@
+/*
+  Copyright (c) 2012, BuildmLearn Contributors listed at http://buildmlearn.org/people/
+  All rights reserved.
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions are met:
+
+  * Redistributions of source code must retain the above copyright notice, this
+    list of conditions and the following disclaimer.
+
+  * Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
+
+  * Neither the name of the BuildmLearn nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+  FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+  SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+  OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+
 #include "templates/quiz/quizsimulator.h"
 
 #include "core/templatecore.h"
@@ -19,6 +49,8 @@ QuizSimulator::QuizSimulator(TemplateCore *core, QWidget *parent)
   m_ui->m_phoneWidget->setFixedSize(270, 447);
 
   connect(m_ui->m_btnStart, SIGNAL(clicked()), this, SLOT(start()));
+  connect(m_ui->m_btnRestart, SIGNAL(clicked()), this, SLOT(restart()));
+  connect(m_ui->m_btnExit, SIGNAL(clicked()), this, SLOT(exit()));
 }
 
 QuizSimulator::~QuizSimulator() {
@@ -35,8 +67,8 @@ bool QuizSimulator::startSimulation() {
   }
 
   // Remove existing questions.
-  while (m_ui->m_phoneWidget->count() > 2) {
-    QWidget *question_widget = m_ui->m_phoneWidget->widget(1);
+  while (m_ui->m_phoneWidget->count() > 3) {
+    QWidget *question_widget = m_ui->m_phoneWidget->widget(2);
 
     m_ui->m_phoneWidget->removeWidget(question_widget);
     question_widget->deleteLater();
@@ -58,12 +90,12 @@ bool QuizSimulator::startSimulation() {
     m_ui->m_phoneWidget->insertWidget(m_ui->m_phoneWidget->count() - 1, item);
   }
 
-  m_ui->m_phoneWidget->setCurrentIndex(0);
-
+  m_ui->m_phoneWidget->setCurrentIndex(1);
   return true;
 }
 
 bool QuizSimulator::stopSimulation() {
+  m_ui->m_phoneWidget->setCurrentIndex(0);
   return true;
 }
 
@@ -76,7 +108,7 @@ bool QuizSimulator::goBack() {
 }
 
 void QuizSimulator::start() {
-  m_ui->m_phoneWidget->setCurrentIndex(1);
+  m_ui->m_phoneWidget->setCurrentIndex(2);
 }
 
 void QuizSimulator::prepareSummary() {
@@ -84,7 +116,7 @@ void QuizSimulator::prepareSummary() {
   int answered_wrongly = 0;
   int unanswered = 0;
 
-  for (int i = 1; i < m_ui->m_phoneWidget->count() - 1; i++) {
+  for (int i = 2; i < m_ui->m_phoneWidget->count() - 1; i++) {
     QuizItem *widget = static_cast<QuizItem*>(m_ui->m_phoneWidget->widget(i));
 
     switch (widget->state()) {
@@ -120,7 +152,17 @@ void QuizSimulator::questionSubmitted() {
 }
 
 void QuizSimulator::restart() {
+  // Reset all the questions.
+  for (int i = 2; i < m_ui->m_phoneWidget->count() - 1; i++) {
+    static_cast<QuizItem*>(m_ui->m_phoneWidget->widget(i))->reset();
+  }
 
+  m_ui->m_phoneWidget->setCurrentIndex(1);
+}
+
+void QuizSimulator::exit() {
+  stopSimulation();
+  emit simulationStopRequested();
 }
 
 void QuizSimulator::launch() {

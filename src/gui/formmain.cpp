@@ -133,6 +133,8 @@ void FormMain::createConnections() {
 
   // Extra simulator connections.
   connect(m_simulatorWindow, SIGNAL(closed()), this, SLOT(onSimulatorWindowClosed()));
+  connect(m_simulatorWindow, SIGNAL(stopEnableChanged(bool)), m_ui->m_actionSimulatorStop, SLOT(setEnabled(bool)));
+  connect(m_ui->m_actionSimulatorStop, SIGNAL(triggered()), m_simulatorWindow->m_ui->m_btnStopSimulation, SLOT(click()));
   connect(m_ui->m_actionSimulatorRun, SIGNAL(triggered()), this, SLOT(startSimulation()));
   connect(m_ui->m_actionSimulatorGoBack, SIGNAL(triggered()), this, SLOT(takeSimulationOneStepBack()));
 
@@ -193,6 +195,7 @@ void FormMain::setupIcons() {
   m_ui->m_actionStickSimulatorWindow->setIcon(factory->fromTheme("simulation-stick"));
   m_ui->m_actionViewSimulatorWindow->setIcon(factory->fromTheme("view-simulator"));
   m_ui->m_actionSimulatorRun->setIcon(factory->fromTheme("simulation-run"));
+  m_ui->m_actionSimulatorStop->setIcon(factory->fromTheme("simulation-stop"));
   m_ui->m_actionSimulatorGoBack->setIcon(factory->fromTheme("simulation-back"));
 }
 

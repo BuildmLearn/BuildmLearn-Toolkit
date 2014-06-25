@@ -74,6 +74,9 @@ class TemplateSimulator : public QWidget {
     /// \param can_go_back True if simulation can be rolled back one step, false otherwise.
     void canGoBackChanged(bool can_go_back);
 
+    /// \brief Emitted if simulation is stopped from template itself.
+    void simulationStopRequested();
+
   protected:
     TemplateCore *m_core;
 };

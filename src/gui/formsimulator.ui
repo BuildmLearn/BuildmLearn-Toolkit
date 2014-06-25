@@ -136,6 +136,16 @@
       </widget>
      </item>
      <item>
+      <widget class="QPushButton" name="m_btnStopSimulation">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Stop &amp;running simulation</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="m_btnRunSimulation">
        <property name="enabled">
         <bool>false</bool>

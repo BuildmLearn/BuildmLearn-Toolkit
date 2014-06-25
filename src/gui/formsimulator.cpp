@@ -26,7 +26,9 @@ FormSimulator::FormSimulator(FormMain* parent)
   connect(parent, SIGNAL(moved()), this, SLOT(conditionallyAttachToParent()));
   connect(parent, SIGNAL(resized()), this, SLOT(conditionallyAttachToParent()));
   connect(m_ui->m_btnRunSimulation, SIGNAL(clicked()), this, SLOT(startSimulation()));
+  connect(m_ui->m_btnStopSimulation, SIGNAL(clicked()), this, SLOT(stopSimulation()));
   connect(m_ui->m_btnGoBack, SIGNAL(clicked()), this, SLOT(goBack()));
+  connect(this, SIGNAL(stopEnableChanged(bool)), m_ui->m_btnStopSimulation, SLOT(setEnabled(bool)));
 
   // This window mustn't be deleted when closed by user.
   setAttribute(Qt::WA_DeleteOnClose, false);
@@ -65,12 +67,15 @@ void FormSimulator::setActiveSimulation(TemplateSimulator *simulation) {
   m_activeSimulation = simulation;
   m_activeSimulation->setParent(m_ui->m_phoneWidget);
   m_activeSimulation->setGeometry(SIMULATOR_CONTENTS_OFFSET_X, SIMULATOR_CONTENTS_OFFSET_Y,
-                       SIMULATOR_CONTENTS_WIDTH, SIMULATOR_CONTENTS_HEIGHT);
+                                  SIMULATOR_CONTENTS_WIDTH, SIMULATOR_CONTENTS_HEIGHT);
   m_activeSimulation->show();
 
   // Make necessary connections which are meant for simulator window.
   connect(m_activeSimulation, SIGNAL(canGoBackChanged(bool)), m_ui->m_btnGoBack, SLOT(setEnabled(bool)));
+  connect(m_activeSimulation, SIGNAL(simulationStopRequested()), m_ui->m_btnStopSimulation, SLOT(click()));
   connect(m_activeSimulation->core()->editor(), SIGNAL(canGenerateChanged(bool)), m_ui->m_btnRunSimulation, SLOT(setEnabled(bool)));
+
+  emit stopEnableChanged(false);
 }
 
 void FormSimulator::goBack() {
@@ -81,7 +86,17 @@ void FormSimulator::goBack() {
 
 void FormSimulator::startSimulation() {
   if (m_activeSimulation != NULL) {
-    m_activeSimulation->startSimulation();
+    if (m_activeSimulation->startSimulation()) {
+      emit stopEnableChanged(true);
+    }
+  }
+}
+
+void FormSimulator::stopSimulation() {
+  if (m_activeSimulation != NULL) {
+    if (m_activeSimulation->stopSimulation()) {
+      emit stopEnableChanged(false);
+    }
   }
 }
 
@@ -150,6 +165,7 @@ void FormSimulator::setupIcons() {
   IconFactory *factory = IconFactory::instance();
 
   setWindowIcon(factory->fromTheme("view-simulator"));
+  m_ui->m_btnStopSimulation->setIcon(factory->fromTheme("simulation-stop"));
   m_ui->m_btnGoBack->setIcon(factory->fromTheme("simulation-back"));
   m_ui->m_btnRunSimulation->setIcon(factory->fromTheme("simulation-run"));
 }

@@ -73,6 +73,7 @@
      <string>&amp;Simulator</string>
     </property>
     <addaction name="m_actionSimulatorRun"/>
+    <addaction name="m_actionSimulatorStop"/>
     <addaction name="m_actionSimulatorGoBack"/>
    </widget>
    <addaction name="m_menuProject"/>
@@ -221,7 +222,7 @@
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>Run &amp;simulation</string>
+    <string>Run new &amp;simulation</string>
    </property>
   </action>
   <action name="m_actionSimulatorGoBack">
@@ -230,6 +231,14 @@
    </property>
    <property name="text">
     <string>Go &amp;back</string>
+   </property>
+  </action>
+  <action name="m_actionSimulatorStop">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Stop &amp;running simulation</string>
    </property>
   </action>
  </widget>

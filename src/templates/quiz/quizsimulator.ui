@@ -34,6 +34,20 @@
      <property name="currentIndex">
       <number>0</number>
      </property>
+     <widget class="QWidget" name="m_pageStopped">
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <widget class="QLabel" name="m_lblHeading_2">
+         <property name="text">
+          <string notr="true">&lt;span style=&quot; font-size:18pt;&quot;&gt;Quiz&lt;/span&gt;</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
      <widget class="QWidget" name="m_pageWelcome">
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
@@ -52,7 +66,7 @@
        <item>
         <widget class="QLabel" name="m_lblHeading">
          <property name="text">
-          <string>Heading</string>
+          <string notr="true">Heading</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -69,7 +83,7 @@
        <item>
         <widget class="QLabel" name="m_lblAuthor">
          <property name="text">
-          <string>Author</string>
+          <string notr="true">Author</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
