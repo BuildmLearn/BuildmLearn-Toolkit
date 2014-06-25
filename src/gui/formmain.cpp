@@ -56,8 +56,9 @@
 #include <QLayoutItem>
 
 
-FormMain::FormMain(QWidget *parent) :
-  QMainWindow(parent),
+FormMain::FormMain(QWidget *parent)
+  : QMainWindow(parent, Qt::Window | Qt::CustomizeWindowHint |
+                Qt::WindowTitleHint | Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint),
   m_centralArea(new QScrollArea(this)),
   m_centralLayout(new QVBoxLayout(m_centralArea)),
   m_firstTimeShow(true),
