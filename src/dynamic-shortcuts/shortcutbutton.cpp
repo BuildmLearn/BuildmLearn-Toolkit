@@ -69,7 +69,7 @@ void ShortcutButton::keyPressEvent(QKeyEvent *event) {
     case Qt::Key_Alt:
     case Qt::Key_Meta:
     case Qt::Key_Menu:
-      m_catcher->controlModifierlessTimout();
+      m_catcher->controlModifierlessTimeout();
       m_catcher->updateDisplayShortcut();
       break;
     default: {
@@ -95,7 +95,7 @@ void ShortcutButton::keyPressEvent(QKeyEvent *event) {
           return;
         }
 
-        m_catcher->controlModifierlessTimout();
+        m_catcher->controlModifierlessTimeout();
         m_catcher->updateDisplayShortcut();
       }
   }
@@ -117,7 +117,7 @@ void ShortcutButton::keyReleaseEvent(QKeyEvent *event) {
 
   if (((uint) new_modifiers & m_catcher->m_modifierKeys) < m_catcher->m_modifierKeys) {
     m_catcher->m_modifierKeys = new_modifiers;
-    m_catcher->controlModifierlessTimout();
+    m_catcher->controlModifierlessTimeout();
     m_catcher->updateDisplayShortcut();
   }
 }

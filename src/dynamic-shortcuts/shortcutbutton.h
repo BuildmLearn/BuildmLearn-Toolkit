@@ -39,11 +39,9 @@ class ShortcutButton : public QPushButton {
     Q_OBJECT
 
   public:
-    ///
     /// \brief Constructor.
     /// \param catcher Pointer to catcher widget which contains the button.
     /// \param parent Pointer to parent widget.
-    ///
     explicit ShortcutButton(ShortcutCatcher *catcher, QWidget *parent = 0);
     virtual ~ShortcutButton();
 

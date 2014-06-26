@@ -47,8 +47,6 @@ class QuizCore : public TemplateCore {
 
     QString generateRawData();
     bool generateApkFile();
-    bool startSimulation();
-    bool stopSimulation();
     void launch();
 
   private:

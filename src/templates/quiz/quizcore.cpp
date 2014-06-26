@@ -53,14 +53,6 @@ bool QuizCore::generateApkFile() {
   return true;
 }
 
-bool QuizCore::startSimulation() {
-  return true;
-}
-
-bool QuizCore::stopSimulation() {
-  return true;
-}
-
 void QuizCore::launch() {
   quizEditor()->launch();
   quizSimulator()->launch();

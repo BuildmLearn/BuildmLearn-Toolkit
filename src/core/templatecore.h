@@ -67,9 +67,6 @@ class TemplateCore : public QObject {
     /// must contain sufficient data for doing so.
     virtual bool generateApkFile() = 0;
 
-    virtual bool startSimulation() = 0;
-    virtual bool stopSimulation() = 0;
-
     /// \brief Access to entry point of the template.
     /// \return Returns entry point pointer.
     virtual TemplateEntryPoint *entryPoint() const {

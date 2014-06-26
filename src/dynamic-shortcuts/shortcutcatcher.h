@@ -49,9 +49,15 @@ class ShortcutCatcher : public QWidget {
     explicit ShortcutCatcher(QWidget *parent = 0);
     virtual ~ShortcutCatcher();
 
-    void controlModifierlessTimout();
+    /// \brief Performs time-dependent check of current shortcut check and stops
+    /// the recording if time is up.
+    void controlModifierlessTimeout();
+
+    /// \brief Updates text displayed in catcher according to active shortcut.
     void updateDisplayShortcut();
 
+    /// \brief Access to active shortcut.
+    /// \return Returns active shortcut.
     inline QKeySequence shortcut() const {
       return m_currentSequence;
     }

@@ -101,7 +101,7 @@ void ShortcutCatcher::doneRecording() {
   emit shortcutChanged(m_currentSequence);
 }
 
-void ShortcutCatcher::controlModifierlessTimout() {
+void ShortcutCatcher::controlModifierlessTimeout() {
   if (m_numKey && !m_modifierKeys) {
     doneRecording();
   }
