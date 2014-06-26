@@ -88,6 +88,44 @@ void Application::setSignApkUtilityPath(const QString& signapk_path) {
   settings()->value(APP_CFG_GEN, "signapk_path", signapk_path);
 }
 
+int Application::checkJava(const QString &new_path) {
+  QString java_path = new_path.isEmpty() ? javaInterpreterPath() : new_path;
+
+  if (java_path.isEmpty()) {
+    return EXIT_STATUS_NOT_STARTED;
+  }
+  else {
+    return QProcess::execute(java_path,
+                             QStringList() << "-version");
+  }
+}
+
+int Application::checkSignApk(const QString &new_path, const QString &java_path) {
+  QString real_java_path = java_path.isEmpty() ? javaInterpreterPath() : java_path;
+  QString signapk_path = new_path.isEmpty() ? signApkUtlityPath() : new_path;
+
+  if (signapk_path.isEmpty()) {
+    return EXIT_STATUS_NOT_STARTED;
+  }
+  else {
+    return QProcess::execute(QDir::toNativeSeparators(real_java_path),
+                             QStringList() << "-jar" << QDir::toNativeSeparators(signapk_path));
+  }
+}
+
+int Application::checkZip(const QString &new_path) {
+  QString zip_path = new_path.isEmpty() ? zipUtilityPath() : new_path;
+
+  if (zip_path.isEmpty()) {
+    return EXIT_STATUS_NOT_STARTED;
+  }
+  else {
+    return QProcess::execute(zip_path,
+                             QStringList() << "--version");
+  }
+}
+
+
 QHash<QString, QAction *> Application::availableActions() {
   if (m_mainForm == NULL) {
     return QHash<QString, QAction*>();

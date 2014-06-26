@@ -208,6 +208,7 @@ void FormMain::setupToolbar() {
   m_ui->m_toolBar->addAction(m_ui->m_actionSaveProjectAs);
   m_ui->m_toolBar->addSeparator();
   m_ui->m_toolBar->addAction(m_ui->m_actionSimulatorRun);
+  m_ui->m_toolBar->addAction(m_ui->m_actionSimulatorStop);
   m_ui->m_toolBar->addAction(m_ui->m_actionGenerateMobileApplication);
   m_ui->m_toolBar->addAction(m_ui->m_actionHelp);
 }
@@ -271,10 +272,16 @@ void FormMain::takeSimulationOneStepBack() {
 }
 
 void FormMain::onCanGenerateChanged(bool can_generate, const QString &informative_text) {
-  m_ui->m_actionGenerateMobileApplication->setEnabled(can_generate);
-  m_ui->m_actionGenerateMobileApplication->setToolTip(informative_text);
-  m_ui->m_actionSimulatorRun->setEnabled(can_generate);
-  m_ui->m_actionSimulatorRun->setToolTip(informative_text);
+  if (can_generate) {
+    // Application can be generated, but check if external generators (SIGNAPK & JAVA) are set!
+
+  }
+  else {
+    m_ui->m_actionGenerateMobileApplication->setEnabled(can_generate);
+    m_ui->m_actionGenerateMobileApplication->setToolTip(informative_text);
+    m_ui->m_actionSimulatorRun->setEnabled(can_generate);
+    m_ui->m_actionSimulatorRun->setToolTip(informative_text);
+  }
 }
 
 void FormMain::setTemplateCore(TemplateCore *core) {

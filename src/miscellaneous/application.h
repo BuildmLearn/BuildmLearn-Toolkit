@@ -134,6 +134,22 @@ class Application : public QApplication {
       settings()->setValue(APP_CFG_GEN, "java_path", java_path);
     }
 
+    /// \brief Tests if binary in new_path is correct JAVA executable.
+    /// \param new_path Path to JAVA executable.
+    /// \return Returns specific return code of JAVA executable.
+    int checkJava(const QString &new_path = QString());
+
+    /// \brief Tests if binary in new_path is correct SIGNAPK executable.
+    /// \param new_path Path to SIGNAPK executable.
+    /// \param java_path Path to JAVA executable.
+    /// \return Returns specific return code of SIGNAPK executable.
+    int checkSignApk(const QString &new_path = QString(), const QString &java_path = QString());
+
+    /// \brief Tests if binary in new_path is correct ZIP executable.
+    /// \param new_path Path to ZIP executable.
+    /// \return Returns specific return code of ZIP executable.
+    int checkZip(const QString &new_path = QString());
+
     /// \brief Access to main application form.
     /// \return Returns pointer to main application form.
     inline FormMain *mainForm() {
