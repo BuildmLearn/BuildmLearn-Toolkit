@@ -45,6 +45,8 @@ class QLabel;
 class QPushButton;
 class QRadioButton;
 
+/// \brief Simulator for Quiz template.
+/// \ingroup template-quiz
 class QuizSimulator : public TemplateSimulator {
     Q_OBJECT
 

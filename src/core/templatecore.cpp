@@ -38,3 +38,12 @@ TemplateCore::TemplateCore(TemplateEntryPoint *entry_point, QObject *parent)
 TemplateCore::~TemplateCore() {
   qDebug("Destroying TemplateCore instance.");
 }
+
+QString TemplateCore::assignedFile() const {
+    return m_assignedFile;
+}
+
+void TemplateCore::setAssignedFile(const QString &assigned_file) {
+    m_assignedFile = assigned_file;
+}
+

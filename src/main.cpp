@@ -122,6 +122,17 @@ public:
 /// their custom content. Targeted at teachers, this program
 /// helps them make learning fun and engaging through mobile apps.
 
+/// \defgroup template-interfaces Template interfaces
+/// \brief Base template interface classes.
+///
+/// Template interfaces module contains all base classes which are
+/// inherited by concrete templates.
+///
+/// \defgroup template-quiz Quiz template
+/// \brief Quiz template classes.
+///
+/// This module contains all classes related to Quiz template.
+
 /// \brief main Main entry point to the application.
 ///
 /// Main function is the "main" entry point to toolkit.

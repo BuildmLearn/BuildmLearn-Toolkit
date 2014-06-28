@@ -39,6 +39,7 @@ class TemplateSimulator;
 class TemplateEntryPoint;
 
 /// \brief The core class container for single template.
+/// \ingroup template-interfaces
 class TemplateCore : public QObject {
     Q_OBJECT
 
@@ -85,10 +86,25 @@ class TemplateCore : public QObject {
       return m_simulator;
     }
 
+    /// \brief Access to assigned XML "bundle" file.
+    /// \return Returns full path to assigned XML "bundle" file.
+    ///
+    /// Template core gets assigned path to XML "bundle" file,
+    /// when it is loaded from that XML bundle file or when it is saved
+    /// into some XML bundle file.
+    ///
+    /// \note This is used when using "Save" functionality, it asks
+    /// if currently active core has assigned some file and if it does,
+    /// then "Save" feature saves unsaved work into that file, otherwise
+    /// it transfers the flow to "Save as" feature.
+    QString assignedFile() const;
+    void setAssignedFile(const QString &assigned_file);
+
   protected:
     TemplateEntryPoint *m_entryPoint;
     TemplateEditor *m_editor;
     TemplateSimulator *m_simulator;
+    QString m_assignedFile;
 };
 
 #endif // TEMPLATECORE_H

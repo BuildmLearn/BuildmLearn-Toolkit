@@ -44,3 +44,11 @@ TemplateEditor::~TemplateEditor() {
 TemplateCore *TemplateEditor::core() const {
     return m_core;
 }
+
+bool TemplateEditor::isDirty() const {
+  return m_isDirty;
+}
+
+void TemplateEditor::setIsDirty(bool is_dirty) {
+  m_isDirty = is_dirty;
+}

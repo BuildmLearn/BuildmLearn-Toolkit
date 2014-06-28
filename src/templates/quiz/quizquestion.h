@@ -34,6 +34,8 @@
 #include <QMetaType>
 
 
+/// \brief Container for one question.
+/// \ingroup template-quiz
 class QuizQuestion {
   public:
     explicit QuizQuestion();

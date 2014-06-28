@@ -103,6 +103,7 @@ class FormMain : public QMainWindow {
     void onSimulatorWindowClosed();
     void switchSimulatorWindow(bool show);
 
+    void showSimulator();
     void showSettings();
     void showAbout();
     void showUpdates();

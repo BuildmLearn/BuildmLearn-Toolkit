@@ -42,6 +42,8 @@ namespace Ui {
   class QuizItem;
 }
 
+/// \brief Widget which represents single question in Quiz.
+/// \ingroup template-quiz
 class QuizItem : public QWidget {
     Q_OBJECT
 

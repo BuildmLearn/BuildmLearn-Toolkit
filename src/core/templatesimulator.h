@@ -37,6 +37,7 @@
 class TemplateCore;
 
 /// \brief Base widget which represents simulator of the template.
+/// \ingroup template-interfaces
 class TemplateSimulator : public QWidget {
     Q_OBJECT
 

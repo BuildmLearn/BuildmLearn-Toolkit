@@ -36,6 +36,8 @@
 
 class TemplateFactory;
 
+/// \brief Entry point.
+/// \ingroup template-quiz
 class QuizEntryPoint : public TemplateEntryPoint {
     Q_OBJECT
 

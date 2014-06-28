@@ -46,6 +46,8 @@ namespace Ui {
 class QuizSimulator;
 class QShowEvent;
 
+/// \brief Editor for Quiz.
+/// \ingroup template-quiz
 class QuizEditor : public TemplateEditor {
     Q_OBJECT
 

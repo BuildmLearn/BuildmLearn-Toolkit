@@ -256,18 +256,12 @@ void FormMain::saveSizeAndPosition() {
 }
 
 void FormMain::startSimulation() {
-  if (!m_ui->m_actionViewSimulatorWindow->isChecked()) {
-    m_ui->m_actionViewSimulatorWindow->setChecked(true);
-  }
-
+  showSimulator();
   QTimer::singleShot(0, m_simulatorWindow, SLOT(startSimulation()));
 }
 
 void FormMain::takeSimulationOneStepBack() {
-  if (!m_ui->m_actionViewSimulatorWindow->isChecked()) {
-    m_ui->m_actionViewSimulatorWindow->setChecked(true);
-  }
-
+  showSimulator();
   QTimer::singleShot(0, m_simulatorWindow, SLOT(goBack()));
 }
 
@@ -318,6 +312,12 @@ void FormMain::switchSimulatorWindow(bool show) {
   }
   else {
     m_simulatorWindow->close();
+  }
+}
+
+void FormMain::showSimulator() {
+  if (!m_ui->m_actionViewSimulatorWindow->isChecked()) {
+    m_ui->m_actionViewSimulatorWindow->setChecked(true);
   }
 }
 

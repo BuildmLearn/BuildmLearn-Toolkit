@@ -43,6 +43,7 @@ class TemplateFactory;
 /// It is primarily used to represent the template in "new project" dialog
 /// and in some other places throughout the toolkit.
 /// \see FormNewProject, TemplateCore
+/// \ingroup template-interfaces
 class TemplateEntryPoint : public QObject {
     Q_OBJECT
 

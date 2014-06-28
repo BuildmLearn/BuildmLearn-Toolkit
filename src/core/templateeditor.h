@@ -40,6 +40,7 @@ class TemplateCore;
 ///
 /// Editor is the place where user can edit contents of the template,
 /// for example questions for Quiz template.
+/// \ingroup template-interfaces
 class TemplateEditor : public QWidget {
     Q_OBJECT
 
@@ -60,6 +61,11 @@ class TemplateEditor : public QWidget {
     /// \see TemplateCore
     TemplateCore *core() const;
 
+    /// \brief Check if editor contains unsaved contents.
+    /// \return Returns true, if editor contains unsaved contents.
+    bool isDirty() const;
+    void setIsDirty(bool is_dirty);
+
   signals:
     /// \brief Emitted everytime any child widget of editor
     /// changes its contents.
@@ -78,6 +84,7 @@ class TemplateEditor : public QWidget {
     void canGenerateChanged(bool can_generate, const QString &message = QString());
 
   protected:
+    bool m_isDirty;
     TemplateCore *m_core;
 };
 

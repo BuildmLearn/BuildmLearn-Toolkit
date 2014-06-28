@@ -37,6 +37,8 @@
 class QuizEditor;
 class QuizSimulator;
 
+/// \brief Main core of Quiz template.
+/// \ingroup template-quiz
 class QuizCore : public TemplateCore {
     Q_OBJECT
 

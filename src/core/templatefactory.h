@@ -43,6 +43,7 @@ class TemplateCore;
 /// object via Application::templateManager(). It contains all available
 /// template entry points.
 /// \see TemplateEntryPoint, TemplateCore, Application
+/// \ingroup template-interfaces
 class TemplateFactory : public QObject {
     Q_OBJECT
 
