@@ -490,7 +490,12 @@ void FormMain::generateMobileApplication() {
 }
 
 void FormMain::saveUnsavedProject() {
-
+  if (qApp->templateManager()->activeCore() != NULL) {
+    if (qApp->templateManager()->activeCore()->editor()->isDirty()) {
+      // TODO: There is unsaved work.
+      // Save it NOW.
+    }
+  }
 }
 
 void FormMain::closeEvent(QCloseEvent *e) {
