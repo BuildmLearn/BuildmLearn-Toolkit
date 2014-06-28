@@ -150,6 +150,12 @@ class Application : public QApplication {
     /// \return Returns specific return code of ZIP executable.
     int checkZip(const QString &new_path = QString());
 
+    void recheckExternalApplications();
+
+    QString interpretJava(int return_code);
+    QString interpretZip(int return_code);
+    QString interpretSignApk(int return_code);
+
     /// \brief Access to main application form.
     /// \return Returns pointer to main application form.
     inline FormMain *mainForm() {
@@ -182,6 +188,10 @@ class Application : public QApplication {
       return static_cast<Application*>(QCoreApplication::instance());
     }
 
+    bool externalApplicationsReady() const;
+    QString externalApplicationsStatus() const;
+    bool externalApplicationChecked() const;
+
   public slots:
     /// \brief Schedules check for updates.
     ///
@@ -197,7 +207,13 @@ class Application : public QApplication {
 
     void handleBackgroundUpdatesCheck();
 
+  signals:
+    void externalApplicationsRechecked();
+
   private:
+    bool m_externalApplicationChecked;
+    bool m_externalApplicationsReady;
+    QString m_externalApplicationsStatus;
     QMutex *m_closeLock;
     QHash<QString, QAction*> m_availableActions;
     Settings *m_settings;

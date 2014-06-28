@@ -58,11 +58,11 @@
 
 FormMain::FormMain(QWidget *parent)
   : QMainWindow(parent),
-  m_centralArea(new QScrollArea(this)),
-  m_centralLayout(new QVBoxLayout(m_centralArea)),
-  m_firstTimeShow(true),
-  m_ui(new Ui::FormMain),
-  m_simulatorWindow(NULL) {
+    m_centralArea(new QScrollArea(this)),
+    m_centralLayout(new QVBoxLayout(m_centralArea)),
+    m_firstTimeShow(true),
+    m_ui(new Ui::FormMain),
+    m_simulatorWindow(NULL) {
   m_ui->setupUi(this);
 
   // Disable "maximize" button.
@@ -267,14 +267,47 @@ void FormMain::takeSimulationOneStepBack() {
 
 void FormMain::onCanGenerateChanged(bool can_generate, const QString &informative_text) {
   if (can_generate) {
-    // Application can be generated, but check if external generators (SIGNAPK & JAVA) are set!
+    // Recheck availability of external applications
+    // if no check in this application life was done so far.
+    if (!qApp->externalApplicationChecked()) {
+      qApp->recheckExternalApplications();
+    }
 
+    if (!qApp->externalApplicationsReady()) {
+      m_ui->m_actionGenerateMobileApplication->setEnabled(false);
+      m_ui->m_actionGenerateMobileApplication->setToolTip(qApp->externalApplicationsStatus());
+    }
+    else {
+      // All external generators are set, template is ready, we can generate.
+      m_ui->m_actionGenerateMobileApplication->setEnabled(true);
+      m_ui->m_actionGenerateMobileApplication->setToolTip(tr("Generate mobile application"));
+    }
+
+    m_ui->m_actionSimulatorRun->setEnabled(true);
+    m_ui->m_actionSimulatorRun->setToolTip(tr("Start new simulation"));
   }
   else {
     m_ui->m_actionGenerateMobileApplication->setEnabled(can_generate);
     m_ui->m_actionGenerateMobileApplication->setToolTip(informative_text);
     m_ui->m_actionSimulatorRun->setEnabled(can_generate);
     m_ui->m_actionSimulatorRun->setToolTip(informative_text);
+  }
+}
+
+void FormMain::onEditorChanged() {
+  TemplateCore *current_core = static_cast<TemplateEditor*>(sender())->core();
+
+  if (current_core->assignedFile().isEmpty()) {
+    // Template which was already saved or is loaded
+    // from XML bundle file has changed its state
+    // and is now unsaved.
+    m_ui->m_actionSaveProjectAs->setEnabled(true);
+    m_ui->m_actionSaveProject->setEnabled(true);
+  }
+  else {
+    // Template from new project has changed.
+    m_ui->m_actionSaveProjectAs->setEnabled(true);
+    m_ui->m_actionSaveProject->setEnabled(true);
   }
 }
 
@@ -288,6 +321,7 @@ void FormMain::setTemplateCore(TemplateCore *core) {
   m_centralLayout->layout()->addWidget(editor);
   editor->setParent(m_centralArea);
 
+  connect(editor, SIGNAL(changed()), this, SLOT(onEditorChanged()));
   connect(editor, SIGNAL(canGenerateChanged(bool,QString)), this, SLOT(onCanGenerateChanged(bool,QString)));
   connect(simulator, SIGNAL(canGoBackChanged(bool)), m_ui->m_actionSimulatorGoBack, SLOT(setEnabled(bool)));
 
@@ -396,18 +430,26 @@ void FormMain::display() {
 }
 
 void FormMain::openSaveProjectDialog() {
+  if (qApp->templateManager()->activeCore()->assignedFile().isEmpty()) {
+    openSaveProjectAsDialog();
+  }
+  else {
+    // TODO: Save currently active project if there is any.
+  }
+}
+
+void FormMain::openSaveProjectAsDialog() {
   // TODO: Display dialog to save currently active project if there is any.
 }
 
 void FormMain::openLoadProjectDialog() {
-  // TODO: Check if there is currently active "dirty" template core and ask to save it.
+  saveUnsavedProject();
+
   // TODO: Open already saved project.
 }
 
 void FormMain::openNewProjectDialog() {
-  // TODO: Check if there is currently active some project
-  // and it is saved, if not then save it (offer dialog), then
-  // remove previous editor.
+  saveUnsavedProject();
 
   // Clear all items from central layout.
   while (m_centralLayout->count() > 0) {
@@ -447,7 +489,13 @@ void FormMain::generateMobileApplication() {
   }
 }
 
+void FormMain::saveUnsavedProject() {
+
+}
+
 void FormMain::closeEvent(QCloseEvent *e) {
+  saveUnsavedProject();
+
   if (SystemTrayIcon::isSystemTrayActivated()) {
     qApp->trayIcon()->hide();
   }

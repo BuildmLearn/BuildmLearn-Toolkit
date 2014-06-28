@@ -50,6 +50,7 @@
 
 Application::Application(int &argc, char **argv)
   : QApplication(argc, argv),
+    m_externalApplicationChecked(false),
     m_closeLock(new QMutex()),
     m_availableActions(QHash<QString, QAction*>()),
     m_settings(NULL),
@@ -125,6 +126,90 @@ int Application::checkZip(const QString &new_path) {
   }
 }
 
+void Application::recheckExternalApplications() {
+  int java_ready = checkJava();
+  int zip_ready = checkZip();
+  int signapk_ready = checkSignApk();
+
+  if (signapk_ready != EXIT_STATUS_SIGNAPK_NORMAL ||
+      java_ready != EXIT_STATUS_JAVA_NORMAL ||
+      zip_ready != EXIT_STATUS_ZIP_NORMAL) {
+    m_externalApplicationsStatus = QString();
+
+    if (signapk_ready != EXIT_STATUS_SIGNAPK_NORMAL) {
+      m_externalApplicationsStatus += qApp->interpretSignApk(signapk_ready) + '\n';
+    }
+
+    if (java_ready != EXIT_STATUS_JAVA_NORMAL) {
+      m_externalApplicationsStatus += qApp->interpretJava(java_ready) + '\n';
+    }
+
+    if (zip_ready != EXIT_STATUS_ZIP_NORMAL) {
+      m_externalApplicationsStatus += qApp->interpretZip(zip_ready) + '\n';
+    }
+
+    m_externalApplicationsStatus.chop(1);
+    m_externalApplicationsReady = false;
+  }
+  else {
+    m_externalApplicationsReady = true;
+  }
+
+  m_externalApplicationChecked = true;
+
+  emit externalApplicationsRechecked();
+}
+
+QString Application::interpretJava(int return_code) {
+  switch (return_code) {
+    case EXIT_STATUS_NOT_STARTED:
+      return tr("JAVA was not found at given location.");
+
+    case EXIT_STATUS_CRASH:
+      return tr("JAVA found but is crashy.");
+
+    case EXIT_STATUS_JAVA_NORMAL:
+      return tr("JAVA found and probably working.");
+
+    default:
+      return tr("JAVA returned uknown code.");
+  }
+}
+
+QString Application::interpretZip(int return_code) {
+  switch (return_code) {
+    case EXIT_STATUS_NOT_STARTED:
+      return tr("ZIP was not found at given location.");
+
+    case EXIT_STATUS_CRASH:
+      return tr("ZIP found but is crashy.");
+
+    case EXIT_STATUS_ZIP_NORMAL:
+      return tr("ZIP found and probably working.");
+
+    default:
+      return tr("ZIP returned uknown code.");
+  }
+}
+
+QString Application::interpretSignApk(int return_code) {
+  switch (return_code) {
+    case EXIT_STATUS_NOT_STARTED:
+      return tr("SIGNAPK was not found because JAVA was not found.");
+
+    case EXIT_STATUS_CRASH:
+      return tr("SIGNAPK found but is crashy.");
+
+    case EXIT_STATUS_SIGNAPK_NOT_FOUND:
+      return tr("SIGNAPK not found.");
+
+    case EXIT_STATUS_SIGNAPK_NORMAL:
+      return tr("SIGNAPK found and probably working.");
+
+    default:
+      return tr("SIGNAPK returned uknown code.");
+  }
+}
 
 QHash<QString, QAction *> Application::availableActions() {
   if (m_mainForm == NULL) {
@@ -191,6 +276,18 @@ void Application::handleBackgroundUpdatesCheck() {
 
       break;
   }
+}
+
+bool Application::externalApplicationChecked() const {
+  return m_externalApplicationChecked;
+}
+
+QString Application::externalApplicationsStatus() const {
+  return m_externalApplicationsStatus;
+}
+
+bool Application::externalApplicationsReady() const {
+  return m_externalApplicationsReady;
 }
 
 void Application::checkForUpdatesOnBackground() {

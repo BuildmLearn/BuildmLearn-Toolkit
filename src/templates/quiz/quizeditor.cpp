@@ -164,6 +164,7 @@ void QuizEditor::addQuestion() {
 
   updateQuestionCount();
   launch();
+  emit changed();
 }
 
 void QuizEditor::loadQuestion(int index) {
@@ -233,6 +234,7 @@ void QuizEditor::removeQuestion() {
 
   updateQuestionCount();
   launch();
+  emit changed();
 }
 
 void QuizEditor::saveQuestion() {
@@ -289,6 +291,8 @@ void QuizEditor::saveQuestion() {
 
   m_ui->m_listQuestions->currentItem()->setData(Qt::UserRole, QVariant::fromValue(m_activeQuestion));
   m_ui->m_listQuestions->currentItem()->setText(m_activeQuestion.question());
+
+  emit changed();
 }
 
 void QuizEditor::moveQuestionUp() {
@@ -296,6 +300,8 @@ void QuizEditor::moveQuestionUp() {
 
   m_ui->m_listQuestions->insertItem(index - 1, m_ui->m_listQuestions->takeItem(index));
   m_ui->m_listQuestions->setCurrentRow(index - 1);
+
+  emit changed();
 }
 
 void QuizEditor::moveQuestionDown() {
@@ -303,6 +309,8 @@ void QuizEditor::moveQuestionDown() {
 
   m_ui->m_listQuestions->insertItem(index + 1, m_ui->m_listQuestions->takeItem(index));
   m_ui->m_listQuestions->setCurrentRow(index + 1);
+
+  emit changed();
 }
 
 void QuizEditor::configureUpDown() {
@@ -350,6 +358,7 @@ void QuizEditor::updateNameStatus() {
   }
 
   launch();
+  emit changed();
 }
 
 void QuizEditor::updateAuthorStatus() {
@@ -361,6 +370,7 @@ void QuizEditor::updateAuthorStatus() {
   }
 
   launch();
+  emit changed();
 }
 
 bool QuizEditor::canGenerateApplications() {

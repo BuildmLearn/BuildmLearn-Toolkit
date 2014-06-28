@@ -28,7 +28,7 @@
         <x>0</x>
         <y>0</y>
         <width>370</width>
-        <height>366</height>
+        <height>369</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout">
@@ -126,32 +126,32 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="m_btnGoBack">
-       <property name="enabled">
-        <bool>false</bool>
+      <widget class="PlainToolButton" name="m_btnGoBack">
+       <property name="toolTip">
+        <string>Goes one step backwards in running simulation.</string>
        </property>
        <property name="text">
-        <string>Go &amp;back</string>
+        <string>...</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="m_btnStopSimulation">
-       <property name="enabled">
-        <bool>false</bool>
+      <widget class="PlainToolButton" name="m_btnStopSimulation">
+       <property name="toolTip">
+        <string>Stops running simulation.</string>
        </property>
        <property name="text">
-        <string>Stop &amp;running simulation</string>
+        <string>...</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="m_btnRunSimulation">
-       <property name="enabled">
-        <bool>false</bool>
+      <widget class="PlainToolButton" name="m_btnRunSimulation">
+       <property name="toolTip">
+        <string>Starts new simulation.</string>
        </property>
        <property name="text">
-        <string>&amp;Run new simulation</string>
+        <string>...</string>
        </property>
       </widget>
      </item>
@@ -159,6 +159,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>PlainToolButton</class>
+   <extends>QToolButton</extends>
+   <header>plaintoolbutton.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

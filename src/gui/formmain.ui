@@ -150,6 +150,9 @@
    </property>
   </action>
   <action name="m_actionSaveProject">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>&amp;Save project</string>
    </property>
@@ -161,6 +164,9 @@
    </property>
   </action>
   <action name="m_actionSaveProjectAs">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Save project &amp;as...</string>
    </property>

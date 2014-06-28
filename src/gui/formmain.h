@@ -95,6 +95,8 @@ class FormMain : public QMainWindow {
     // Called when generation status of current template is changed.
     void onCanGenerateChanged(bool can_generate, const QString &informative_text);
 
+    void onEditorChanged();
+
     // Called when user opens new project or loads existing project.
     // This should read "editor" from core and set it as central widget.
     void setTemplateCore(TemplateCore *core);
@@ -128,11 +130,14 @@ class FormMain : public QMainWindow {
     void openNewProjectDialog();
 
     void openSaveProjectDialog();
+    void openSaveProjectAsDialog();
     void openLoadProjectDialog();
 
     /// \brief Generates mobile APK application from currently active
     /// project.
     void generateMobileApplication();
+
+    void saveUnsavedProject();
 
   protected:
     /// \brief Executed when main application window is closed.

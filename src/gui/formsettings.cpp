@@ -280,100 +280,84 @@ void FormSettings::saveExternalUtilites() {
   qApp->setZipUtilityPath(m_ui->m_lblExternalZip->label()->text());
   qApp->setJavaInterpreterPath(m_ui->m_lblExternalJava->label()->text());
   qApp->setSignApkUtilityPath(m_ui->m_lblExternalSignapk->label()->text());
+  qApp->recheckExternalApplications();
 }
 
 void FormSettings::checkZip(const QString &new_path) {
   int zip_output = qApp->checkZip(new_path);
+  QString textual_info = qApp->interpretZip(zip_output);
 
   switch (zip_output) {
     case EXIT_STATUS_NOT_STARTED:
       m_ui->m_lblExternalZip->setStatus(WidgetWithStatus::Error,
                                         new_path,
-                                        tr("ZIP was not found at given location."));
-      break;
-
-    case EXIT_STATUS_CRASH:
-      m_ui->m_lblExternalZip->setStatus(WidgetWithStatus::Warning,
-                                        new_path,
-                                        tr("ZIP found but is crashy."));
+                                        textual_info);
       break;
 
     case EXIT_STATUS_ZIP_NORMAL:
       m_ui->m_lblExternalZip->setStatus(WidgetWithStatus::Ok,
                                         new_path,
-                                        tr("ZIP found and probably working."));
+                                        textual_info);
       break;
 
+    case EXIT_STATUS_CRASH:
     default:
       m_ui->m_lblExternalZip->setStatus(WidgetWithStatus::Warning,
                                         new_path,
-                                        tr("ZIP returned uknown code."));
+                                        textual_info);
       break;
   }
 }
 
 void FormSettings::checkJava(const QString &new_path) {
   int java_output = qApp->checkJava(new_path);
+  QString textual_info = qApp->interpretJava(java_output);
 
   switch (java_output) {
     case EXIT_STATUS_NOT_STARTED:
       m_ui->m_lblExternalJava->setStatus(WidgetWithStatus::Error,
                                          new_path,
-                                         tr("JAVA was not found at given location."));
-      break;
-
-    case EXIT_STATUS_CRASH:
-      m_ui->m_lblExternalJava->setStatus(WidgetWithStatus::Warning,
-                                         new_path,
-                                         tr("JAVA found but is crashy."));
+                                         textual_info);
       break;
 
     case EXIT_STATUS_JAVA_NORMAL:
       m_ui->m_lblExternalJava->setStatus(WidgetWithStatus::Ok,
                                          new_path,
-                                         tr("JAVA found and probably working."));
+                                         textual_info);
       break;
 
+    case EXIT_STATUS_CRASH:
     default:
       m_ui->m_lblExternalJava->setStatus(WidgetWithStatus::Warning,
                                          new_path,
-                                         tr("JAVA returned uknown code."));
+                                         textual_info);
       break;
   }
 }
 
 void FormSettings::checkSignApk(const QString &new_path) {
   int signapk_output = qApp->checkSignApk(new_path, m_ui->m_lblExternalJava->label()->text());
+  QString textual_info = qApp->interpretSignApk(signapk_output);
 
   switch (signapk_output) {
+    case EXIT_STATUS_SIGNAPK_NOT_FOUND:
     case EXIT_STATUS_NOT_STARTED:
       m_ui->m_lblExternalSignapk->setStatus(WidgetWithStatus::Error,
                                             new_path,
-                                            tr("SIGNAPK was not found because JAVA was not found."));
-      break;
-
-    case EXIT_STATUS_CRASH:
-      m_ui->m_lblExternalSignapk->setStatus(WidgetWithStatus::Warning,
-                                            new_path,
-                                            tr("SIGNAPK found but is crashy."));
-      break;
-
-    case EXIT_STATUS_SIGNAPK_NOT_FOUND:
-      m_ui->m_lblExternalSignapk->setStatus(WidgetWithStatus::Error,
-                                            new_path,
-                                            tr("SIGNAPK not found."));
+                                            textual_info);
       break;
 
     case EXIT_STATUS_SIGNAPK_NORMAL:
       m_ui->m_lblExternalSignapk->setStatus(WidgetWithStatus::Ok,
                                             new_path,
-                                            tr("SIGNAPK found and probably working."));
+                                            textual_info);
       break;
 
+    case EXIT_STATUS_CRASH:
     default:
       m_ui->m_lblExternalSignapk->setStatus(WidgetWithStatus::Warning,
                                             new_path,
-                                            tr("SIGNAPK returned uknown code."));
+                                            textual_info);
       break;
   }
 }
@@ -651,9 +635,9 @@ void FormSettings::saveGenerationStuff() {
 
 void FormSettings::selectTempDirectory() {
   QString temp_directory = QFileDialog::getExistingDirectory(this,
-                                                              tr("Select temporary directory"),
-                                                              m_ui->m_lblGenerationTemp->text(),
-                                                              QFileDialog::DontUseNativeDialog);
+                                                             tr("Select temporary directory"),
+                                                             m_ui->m_lblGenerationTemp->text(),
+                                                             QFileDialog::DontUseNativeDialog);
 
   if (!temp_directory.isEmpty()) {
     m_ui->m_lblGenerationTemp->setText(QDir::toNativeSeparators(temp_directory));
@@ -662,9 +646,9 @@ void FormSettings::selectTempDirectory() {
 
 void FormSettings::selectOutputDirectory() {
   QString output_directory = QFileDialog::getExistingDirectory(this,
-                                                              tr("Select output directory"),
-                                                              m_ui->m_lblGenerationTemp->text(),
-                                                              QFileDialog::DontUseNativeDialog);
+                                                               tr("Select output directory"),
+                                                               m_ui->m_lblGenerationTemp->text(),
+                                                               QFileDialog::DontUseNativeDialog);
 
   if (!output_directory.isEmpty()) {
     m_ui->m_lblGenerationOutput->setText(QDir::toNativeSeparators(output_directory));
