@@ -400,10 +400,11 @@ set(APP_SOURCES
   src/templates/quiz/quizquestion.cpp
   src/templates/quiz/quizitem.cpp
 
+  src/templates/flashcard/flashcardentrypoint.cpp
+
   src/FlashcardTemplate.cpp
   src/InfoTemplate.cpp
   src/QuestionItem.cpp
-  src/QuizTemplate.cpp
 
   src/main.cpp
 )
@@ -454,10 +455,11 @@ set(APP_HEADERS
   src/templates/quiz/quizquestion.h
   src/templates/quiz/quizitem.h
 
+  src/templates/flashcard/flashcardentrypoint.h
+
   src/FlashcardTemplate.h
   src/InfoTemplate.h
   src/QuestionItem.h
-  src/QuizTemplate.h
 )
 
 # APP form files.
