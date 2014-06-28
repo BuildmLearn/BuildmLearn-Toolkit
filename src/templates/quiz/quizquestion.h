@@ -66,6 +66,6 @@ class QuizQuestion {
     int m_correctAnswer;
 };
 
-Q_DECLARE_METATYPE(QuizQuestion);
+Q_DECLARE_METATYPE(QuizQuestion)
 
 #endif // QUIZQUESTION_H

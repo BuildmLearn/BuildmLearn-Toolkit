@@ -31,7 +31,7 @@
 #include "templates/quiz/quizitem.h"
 
 
-QuizItem::QuizItem(QWidget *parent) : QWidget(parent), m_ui(new Ui::QuizItem), m_state(Unanswered) {
+QuizItem::QuizItem(QWidget *parent) : QWidget(parent), m_state(Unanswered), m_ui(new Ui::QuizItem) {
   m_ui->setupUi(this);
 
   setupButtons();
