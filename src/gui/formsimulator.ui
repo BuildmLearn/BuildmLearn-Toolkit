@@ -127,6 +127,9 @@
      </item>
      <item>
       <widget class="PlainToolButton" name="m_btnGoBack">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="toolTip">
         <string>Goes one step backwards in running simulation.</string>
        </property>
@@ -137,6 +140,9 @@
      </item>
      <item>
       <widget class="PlainToolButton" name="m_btnStopSimulation">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="toolTip">
         <string>Stops running simulation.</string>
        </property>
@@ -147,6 +153,9 @@
      </item>
      <item>
       <widget class="PlainToolButton" name="m_btnRunSimulation">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="toolTip">
         <string>Starts new simulation.</string>
        </property>
