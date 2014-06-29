@@ -401,6 +401,10 @@ set(APP_SOURCES
   src/templates/quiz/quizitem.cpp
 
   src/templates/flashcard/flashcardentrypoint.cpp
+  src/templates/flashcard/flashcardcore.cpp
+  src/templates/flashcard/flashcardeditor.cpp
+  src/templates/flashcard/flashcardsimulator.cpp
+  src/templates/flashcard/flashcardquestion.cpp
 
   src/FlashcardTemplate.cpp
   src/InfoTemplate.cpp
@@ -456,6 +460,9 @@ set(APP_HEADERS
   src/templates/quiz/quizitem.h
 
   src/templates/flashcard/flashcardentrypoint.h
+  src/templates/flashcard/flashcardcore.h
+  src/templates/flashcard/flashcardeditor.h
+  src/templates/flashcard/flashcardsimulator.h
 
   src/FlashcardTemplate.h
   src/InfoTemplate.h
@@ -471,9 +478,13 @@ set(APP_FORMS
   src/gui/formhelp.ui
   src/gui/formsimulator.ui
   src/gui/formnewproject.ui
+
   src/templates/quiz/quizeditor.ui
   src/templates/quiz/quizsimulator.ui
   src/templates/quiz/quizitem.ui
+
+  src/templates/flashcard/flashcardeditor.ui
+  src/templates/flashcard/flashcardsimulator.ui
 )
 
 # APP translations.

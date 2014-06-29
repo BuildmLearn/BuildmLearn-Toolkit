@@ -89,11 +89,14 @@ class FormMain : public QMainWindow {
 
   private slots:
     void startSimulation();
+
     void takeSimulationOneStepBack();
 
     // Called when generation status of current template is changed.
     void onCanGenerateChanged(bool can_generate, const QString &informative_text);
 
+    // Called when contents of active editor is changed,
+    // thus there are new unsaved changes.
     void onEditorChanged();
 
     // Called when user opens new project or loads existing project.
@@ -165,6 +168,9 @@ class FormMain : public QMainWindow {
     Ui::FormMain *m_ui;
     QMenu *m_trayMenu;
     FormSimulator *m_simulatorWindow;
+
+    QString m_normalTitle;
+    QString m_unsavedTitle;
 };
 
 #endif // FORMMAIN_H

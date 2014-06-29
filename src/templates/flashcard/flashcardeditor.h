@@ -1,4 +1,4 @@
-/*
+﻿/*
   Copyright (c) 2012, BuildmLearn Contributors listed at http://buildmlearn.org/people/
   All rights reserved.
 
@@ -28,28 +28,36 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include "templates/flashcard/flashcardentrypoint.h"
+#ifndef FLASHCARDEDITOR_H
+#define FLASHCARDEDITOR_H
 
-#include "templates/flashcard/flashcardcore.h"
+#include "core/templateeditor.h"
+
+#include "ui_flashcardeditor.h"
 
 
-FlashCardEntryPoint::FlashCardEntryPoint(TemplateFactory *parent)
-  : TemplateEntryPoint(parent) {
-  m_baseFolder = "flashcard";
-  m_description = "This is simple template for generating flash card applications.";
-  m_humanName = "Flash cards";
-  m_name = "flashcard";
-  m_thumbnailImage = "thumbnail.png";
+namespace Ui {
+  class FlashCardEditor;
 }
 
-FlashCardEntryPoint::~FlashCardEntryPoint() {
+class FlashCardEditor : public TemplateEditor {
+    Q_OBJECT
 
-}
+    friend class FlashCardSimulator;
 
-TemplateCore *FlashCardEntryPoint::createNewCore() {
-  return new FlashCardCore(this, this);
-}
+  public:
+    explicit FlashCardEditor(TemplateCore *core, QWidget *parent = 0);
+    virtual ~FlashCardEditor();
 
-TemplateCore *FlashCardEntryPoint::loadCoreFromRawData(const QString& raw_data) {
-  return NULL;
-}
+    bool canGenerateApplications();
+
+  private slots:
+    void onAuthorChanged(const QString &new_author);
+    void onNameChanged(const QString &new_name);
+    void selectPicture();
+
+  private:
+    Ui::FlashCardEditor *m_ui;
+};
+
+#endif // FLASHCARDEDITOR_H

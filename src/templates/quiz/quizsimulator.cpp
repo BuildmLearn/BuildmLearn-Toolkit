@@ -54,6 +54,8 @@ QuizSimulator::QuizSimulator(TemplateCore *core, QWidget *parent)
 }
 
 QuizSimulator::~QuizSimulator() {
+  qDebug("Destroying QuizSimulator instance.");
+
   delete m_ui;
 }
 

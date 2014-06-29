@@ -28,28 +28,12 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include "templates/flashcard/flashcardentrypoint.h"
-
-#include "templates/flashcard/flashcardcore.h"
+#include "flashcardquestion.h"
 
 
-FlashCardEntryPoint::FlashCardEntryPoint(TemplateFactory *parent)
-  : TemplateEntryPoint(parent) {
-  m_baseFolder = "flashcard";
-  m_description = "This is simple template for generating flash card applications.";
-  m_humanName = "Flash cards";
-  m_name = "flashcard";
-  m_thumbnailImage = "thumbnail.png";
+FlashCardQuestion::FlashCardQuestion() {
 }
 
-FlashCardEntryPoint::~FlashCardEntryPoint() {
+FlashCardQuestion::~FlashCardQuestion() {
 
-}
-
-TemplateCore *FlashCardEntryPoint::createNewCore() {
-  return new FlashCardCore(this, this);
-}
-
-TemplateCore *FlashCardEntryPoint::loadCoreFromRawData(const QString& raw_data) {
-  return NULL;
 }

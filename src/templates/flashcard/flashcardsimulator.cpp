@@ -28,28 +28,29 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include "templates/flashcard/flashcardentrypoint.h"
-
-#include "templates/flashcard/flashcardcore.h"
+#include "templates/flashcard/flashcardsimulator.h"
 
 
-FlashCardEntryPoint::FlashCardEntryPoint(TemplateFactory *parent)
-  : TemplateEntryPoint(parent) {
-  m_baseFolder = "flashcard";
-  m_description = "This is simple template for generating flash card applications.";
-  m_humanName = "Flash cards";
-  m_name = "flashcard";
-  m_thumbnailImage = "thumbnail.png";
+FlashCardSimulator::FlashCardSimulator(TemplateCore *core, QWidget *parent)
+  : TemplateSimulator(core, parent),
+    m_ui(new Ui::FlashCardSimulator) {
+  m_ui->setupUi(this);
 }
 
-FlashCardEntryPoint::~FlashCardEntryPoint() {
+FlashCardSimulator::~FlashCardSimulator() {
+  qDebug("Destroying FlashCardSimulator instance.");
 
+  delete m_ui;
 }
 
-TemplateCore *FlashCardEntryPoint::createNewCore() {
-  return new FlashCardCore(this, this);
+bool FlashCardSimulator::startSimulation() {
+  return false;
 }
 
-TemplateCore *FlashCardEntryPoint::loadCoreFromRawData(const QString& raw_data) {
-  return NULL;
+bool FlashCardSimulator::stopSimulation() {
+  return false;
+}
+
+bool FlashCardSimulator::goBack() {
+  return false;
 }

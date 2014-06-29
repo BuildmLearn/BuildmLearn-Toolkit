@@ -93,10 +93,15 @@ QuizEditor::QuizEditor(TemplateCore *core, QWidget *parent)
   updateNameStatus();
   updateQuestionCount();
 
+  m_ui->m_txtAuthor->lineEdit()->setText(tr("John Doe"));
+  m_ui->m_txtName->lineEdit()->setText(tr("Greatest quiz"));
+
   qRegisterMetaType<QuizQuestion>("QuizQuestion");
 }
 
 QuizEditor::~QuizEditor() {
+  qDebug("Destroying QuizEditor instance.");
+
   delete m_ui;
 }
 

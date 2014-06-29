@@ -38,7 +38,9 @@ class FlashCardEntryPoint : public TemplateEntryPoint {
     Q_OBJECT
 
   public:
+    // Constructors and destructors.
     explicit FlashCardEntryPoint(TemplateFactory *parent);
+    virtual ~FlashCardEntryPoint();
 
     TemplateCore *createNewCore();
     TemplateCore *loadCoreFromRawData(const QString& raw_data);

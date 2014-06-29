@@ -28,28 +28,39 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include "templates/flashcard/flashcardentrypoint.h"
-
 #include "templates/flashcard/flashcardcore.h"
 
+#include "templates/flashcard/flashcardeditor.h"
+#include "templates/flashcard/flashcardsimulator.h"
 
-FlashCardEntryPoint::FlashCardEntryPoint(TemplateFactory *parent)
-  : TemplateEntryPoint(parent) {
-  m_baseFolder = "flashcard";
-  m_description = "This is simple template for generating flash card applications.";
-  m_humanName = "Flash cards";
-  m_name = "flashcard";
-  m_thumbnailImage = "thumbnail.png";
+
+FlashCardCore::FlashCardCore(TemplateEntryPoint* entry_point, QObject* parent)
+  :TemplateCore(entry_point, parent) {
+  m_editor = new FlashCardEditor(this);
+  m_simulator = new FlashCardSimulator(this);
 }
 
-FlashCardEntryPoint::~FlashCardEntryPoint() {
+FlashCardCore::~FlashCardCore() {
+  qDebug("Destroying FlashCardCore instance.");
+}
+
+QString FlashCardCore::generateRawData() {
+  return QString();
+}
+
+void FlashCardCore::launch() {
 
 }
 
-TemplateCore *FlashCardEntryPoint::createNewCore() {
-  return new FlashCardCore(this, this);
+bool FlashCardCore::generateApkFile() {
+  return false;
 }
 
-TemplateCore *FlashCardEntryPoint::loadCoreFromRawData(const QString& raw_data) {
-  return NULL;
+FlashCardEditor *FlashCardCore::flashCardEditor() {
+  return static_cast<FlashCardEditor*>(m_editor);
 }
+
+FlashCardSimulator *FlashCardCore::flashCardSimulator() {
+  return static_cast<FlashCardSimulator*>(m_simulator);
+}
+

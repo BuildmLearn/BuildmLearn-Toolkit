@@ -65,6 +65,11 @@ FormMain::FormMain(QWidget *parent)
     m_simulatorWindow(NULL) {
   m_ui->setupUi(this);
 
+  m_normalTitle = APP_LONG_NAME;
+  m_unsavedTitle = m_normalTitle + " *";
+
+  setWindowTitle(m_normalTitle);
+
   // Disable "maximize" button.
   setWindowFlags(windowFlags() & ~Qt::WindowMaximizeButtonHint);
 
@@ -91,7 +96,7 @@ FormMain::~FormMain() {
   qDebug("Destroying FormMain instance.");
 }
 
-QHash<QString, QAction *> FormMain::allActions() {
+QHash<QString, QAction*> FormMain::allActions() {
   QHash<QString, QAction*> actions;
 
   actions.insert(m_ui->m_actionCheckForUpdates->objectName(), m_ui->m_actionCheckForUpdates);
@@ -100,6 +105,9 @@ QHash<QString, QAction *> FormMain::allActions() {
   actions.insert(m_ui->m_actionNewProject->objectName(), m_ui->m_actionNewProject);
   actions.insert(m_ui->m_actionSaveProject->objectName(), m_ui->m_actionSaveProject);
   actions.insert(m_ui->m_actionSaveProjectAs->objectName(), m_ui->m_actionSaveProjectAs);
+  actions.insert(m_ui->m_actionSimulatorRun->objectName(), m_ui->m_actionSimulatorRun);
+  actions.insert(m_ui->m_actionSimulatorStop->objectName(), m_ui->m_actionSimulatorStop);
+  actions.insert(m_ui->m_actionSimulatorGoBack->objectName(), m_ui->m_actionSimulatorGoBack);
   actions.insert(m_ui->m_actionQuit->objectName(), m_ui->m_actionQuit);
   actions.insert(m_ui->m_actionSettings->objectName(), m_ui->m_actionSettings);
   actions.insert(m_ui->m_actionHelp->objectName(), m_ui->m_actionHelp);
@@ -295,6 +303,8 @@ void FormMain::onCanGenerateChanged(bool can_generate, const QString &informativ
 }
 
 void FormMain::onEditorChanged() {
+  setWindowTitle(m_unsavedTitle);
+
   TemplateCore *current_core = static_cast<TemplateEditor*>(sender())->core();
 
   if (current_core->assignedFile().isEmpty()) {
@@ -312,10 +322,22 @@ void FormMain::onEditorChanged() {
 }
 
 void FormMain::setTemplateCore(TemplateCore *core) {
+  setWindowTitle(m_normalTitle);
+
   // Set editor widget as central widget of main window
   // and setup simulator stuff.
   TemplateEditor *editor = core->editor();
   TemplateSimulator *simulator = core->simulator();
+
+  // Clear previous editor if any.
+  while (m_centralLayout->count() > 0) {
+    QLayoutItem *item = m_centralLayout->itemAt(0);
+
+    item->widget()->deleteLater();
+    m_centralLayout->removeItem(item);
+
+    delete item;
+  }
 
   // Set editor part.
   m_centralLayout->layout()->addWidget(editor);
@@ -434,12 +456,17 @@ void FormMain::openSaveProjectDialog() {
     openSaveProjectAsDialog();
   }
   else {
-    // TODO: Save currently active project if there is any.
+    // TODO: Save currently active project.
+
+    setWindowTitle(m_normalTitle);
   }
 }
 
 void FormMain::openSaveProjectAsDialog() {
   // TODO: Display dialog to save currently active project if there is any.
+  // TODO: Save currently active project.
+
+  setWindowTitle(m_normalTitle);
 }
 
 void FormMain::openLoadProjectDialog() {
@@ -449,24 +476,14 @@ void FormMain::openLoadProjectDialog() {
 }
 
 void FormMain::openNewProjectDialog() {
-  saveUnsavedProject();
-
-  // Clear all items from central layout.
-  while (m_centralLayout->count() > 0) {
-    QLayoutItem *item = m_centralLayout->itemAt(0);
-
-    item->widget()->deleteLater();
-    m_centralLayout->removeItem(item);
-
-    delete item;
-  }
-
   QPointer<FormNewProject> form_new_project = new FormNewProject(qApp->templateManager(), this);
   TemplateEntryPoint *entry_point = form_new_project.data()->startNewTemplate();
 
   delete form_new_project.data();
 
   if (entry_point != NULL) {
+    saveUnsavedProject();
+
     // User selected proper template to start with.
     // Load the template.
     qApp->templateManager()->startNewProject(entry_point);

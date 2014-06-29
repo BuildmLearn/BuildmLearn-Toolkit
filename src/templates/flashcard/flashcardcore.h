@@ -28,28 +28,30 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include "templates/flashcard/flashcardentrypoint.h"
+#ifndef FLASHCARDCORE_H
+#define FLASHCARDCORE_H
 
-#include "templates/flashcard/flashcardcore.h"
+#include "core/templatecore.h"
 
 
-FlashCardEntryPoint::FlashCardEntryPoint(TemplateFactory *parent)
-  : TemplateEntryPoint(parent) {
-  m_baseFolder = "flashcard";
-  m_description = "This is simple template for generating flash card applications.";
-  m_humanName = "Flash cards";
-  m_name = "flashcard";
-  m_thumbnailImage = "thumbnail.png";
-}
+class FlashCardEditor;
+class FlashCardSimulator;
 
-FlashCardEntryPoint::~FlashCardEntryPoint() {
+class FlashCardCore : public TemplateCore {
+    Q_OBJECT
 
-}
+  public:
+    // Constructors and destructors.
+    explicit FlashCardCore(TemplateEntryPoint *entry_point, QObject *parent = 0);
+    virtual ~FlashCardCore();
 
-TemplateCore *FlashCardEntryPoint::createNewCore() {
-  return new FlashCardCore(this, this);
-}
+    QString generateRawData();
+    void launch();
+    bool generateApkFile();
 
-TemplateCore *FlashCardEntryPoint::loadCoreFromRawData(const QString& raw_data) {
-  return NULL;
-}
+  private:
+    FlashCardEditor *flashCardEditor();
+    FlashCardSimulator *flashCardSimulator();
+};
+
+#endif // FLASHCARDCORE_H

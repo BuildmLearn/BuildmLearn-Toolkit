@@ -28,28 +28,18 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include "templates/flashcard/flashcardentrypoint.h"
+#ifndef FLASHCARDQUESTION_H
+#define FLASHCARDQUESTION_H
 
-#include "templates/flashcard/flashcardcore.h"
+#include <QMetaType>
 
 
-FlashCardEntryPoint::FlashCardEntryPoint(TemplateFactory *parent)
-  : TemplateEntryPoint(parent) {
-  m_baseFolder = "flashcard";
-  m_description = "This is simple template for generating flash card applications.";
-  m_humanName = "Flash cards";
-  m_name = "flashcard";
-  m_thumbnailImage = "thumbnail.png";
-}
+class FlashCardQuestion {
+  public:
+    explicit FlashCardQuestion();
+    virtual ~FlashCardQuestion();
+};
 
-FlashCardEntryPoint::~FlashCardEntryPoint() {
+Q_DECLARE_METATYPE(FlashCardQuestion)
 
-}
-
-TemplateCore *FlashCardEntryPoint::createNewCore() {
-  return new FlashCardCore(this, this);
-}
-
-TemplateCore *FlashCardEntryPoint::loadCoreFromRawData(const QString& raw_data) {
-  return NULL;
-}
+#endif // FLASHCARDQUESTION_H
