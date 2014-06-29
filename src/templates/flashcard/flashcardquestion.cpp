@@ -35,5 +35,38 @@ FlashCardQuestion::FlashCardQuestion() {
 }
 
 FlashCardQuestion::~FlashCardQuestion() {
-
 }
+
+QString FlashCardQuestion::question() const {
+    return m_question;
+}
+
+void FlashCardQuestion::setQuestion(const QString& question) {
+    m_question = question;
+}
+
+QString FlashCardQuestion::hint() const {
+    return m_hint;
+}
+
+void FlashCardQuestion::setHint(const QString& hint) {
+    m_hint = hint;
+}
+
+QString FlashCardQuestion::picturePath() const {
+    return m_picturePath;
+}
+
+void FlashCardQuestion::setPicturePath(const QString& picture_path) {
+    m_picturePath = picture_path;
+}
+QString FlashCardQuestion::answer() const
+{
+  return m_answer;
+}
+
+void FlashCardQuestion::setAnswer(const QString& answer)
+{
+  m_answer = answer;
+}
+

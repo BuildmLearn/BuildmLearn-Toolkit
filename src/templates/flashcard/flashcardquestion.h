@@ -38,6 +38,24 @@ class FlashCardQuestion {
   public:
     explicit FlashCardQuestion();
     virtual ~FlashCardQuestion();
+
+    QString question() const;
+    void setQuestion(const QString& question);
+
+    QString hint() const;
+    void setHint(const QString& hint);
+
+    QString picturePath() const;
+    void setPicturePath(const QString& picture_path);
+
+    QString answer() const;
+    void setAnswer(const QString& answer);
+
+  private:
+    QString m_question;
+    QString m_answer;
+    QString m_hint;
+    QString m_picturePath;
 };
 
 Q_DECLARE_METATYPE(FlashCardQuestion)

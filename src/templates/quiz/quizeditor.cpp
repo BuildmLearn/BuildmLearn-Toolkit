@@ -89,8 +89,6 @@ QuizEditor::QuizEditor(TemplateCore *core, QWidget *parent)
   connect(m_ui->m_btnQuestionDown, SIGNAL(clicked()), this, SLOT(moveQuestionDown()));
 
   setEditorsEnabled(false);
-  updateAuthorStatus();
-  updateNameStatus();
   updateQuestionCount();
 
   m_ui->m_txtAuthor->lineEdit()->setText(tr("John Doe"));
@@ -342,16 +340,7 @@ void QuizEditor::configureUpDown() {
 }
 
 void QuizEditor::setEditorsEnabled(bool enabled) {
-  m_ui->m_txtAnswerOne->setEnabled(enabled);
-  m_ui->m_txtAnswerTwo->setEnabled(enabled);
-  m_ui->m_txtAnswerThree->setEnabled(enabled);
-  m_ui->m_txtAnswerFour->setEnabled(enabled);
-  m_ui->m_txtQuestion->setEnabled(enabled);
-
-  m_ui->m_btnAnswerOne->setEnabled(enabled);
-  m_ui->m_btnAnswerTwo->setEnabled(enabled);
-  m_ui->m_btnAnswerThree->setEnabled(enabled);
-  m_ui->m_btnAnswerFour->setEnabled(enabled);
+  m_ui->m_groupQuestionEditor->setEnabled(enabled);
 }
 
 void QuizEditor::updateNameStatus() {

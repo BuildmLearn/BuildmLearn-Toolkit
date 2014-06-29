@@ -34,6 +34,7 @@
 #include "core/templateeditor.h"
 
 #include "ui_flashcardeditor.h"
+#include "templates/flashcard/flashcardquestion.h"
 
 
 namespace Ui {
@@ -50,8 +51,19 @@ class FlashCardEditor : public TemplateEditor {
     virtual ~FlashCardEditor();
 
     bool canGenerateApplications();
+    void launch();
+
+    QList<FlashCardQuestion> activeQuestions() const;
 
   private slots:
+    void loadPicture(const QString &picture_path);
+    void setEditorsEnabled(bool enabled);
+    void updateQuestionCount();
+    void addQuestion();
+    void loadQuestion(int index);
+    void removeQuestion();
+    void onAnswerChanged(const QString &new_answer);
+    void onHintChanged(const QString &new_hint);
     void onAuthorChanged(const QString &new_author);
     void onNameChanged(const QString &new_name);
     void selectPicture();
