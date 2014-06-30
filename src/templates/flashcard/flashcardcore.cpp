@@ -49,7 +49,7 @@ QString FlashCardCore::generateRawData() {
 }
 
 void FlashCardCore::launch() {
-
+  flashCardEditor()->launch();
 }
 
 bool FlashCardCore::generateApkFile() {

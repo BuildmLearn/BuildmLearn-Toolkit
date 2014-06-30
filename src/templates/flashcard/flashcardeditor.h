@@ -1,4 +1,4 @@
-﻿/*
+/*
   Copyright (c) 2012, BuildmLearn Contributors listed at http://buildmlearn.org/people/
   All rights reserved.
 
@@ -55,12 +55,19 @@ class FlashCardEditor : public TemplateEditor {
 
     QList<FlashCardQuestion> activeQuestions() const;
 
+  private:
+    void checkAuthor();
+    void checkHint();
+    void checkAnswer();
+    void checkName();
+
   private slots:
     void loadPicture(const QString &picture_path);
     void setEditorsEnabled(bool enabled);
     void updateQuestionCount();
     void addQuestion();
     void loadQuestion(int index);
+    void saveQuestion();
     void removeQuestion();
     void onAnswerChanged(const QString &new_answer);
     void onHintChanged(const QString &new_hint);

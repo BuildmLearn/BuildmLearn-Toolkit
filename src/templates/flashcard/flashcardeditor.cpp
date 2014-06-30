@@ -61,10 +61,10 @@ FlashCardEditor::FlashCardEditor(TemplateCore *core, QWidget *parent)
   m_ui->m_btnQuestionDown->setIcon(factory->fromTheme("move-down"));
 
   connect(m_ui->m_btnPictureSelect, SIGNAL(clicked()), this, SLOT(selectPicture()));
-  connect(m_ui->m_txtAuthor->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(onAuthorChanged(QString)));
-  connect(m_ui->m_txtName->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(onNameChanged(QString)));
-  connect(m_ui->m_txtAnswer->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(onAnswerChanged(QString)));
-  connect(m_ui->m_txtHint->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(onHintChanged(QString)));
+  connect(m_ui->m_txtAuthor->lineEdit(), SIGNAL(textEdited(QString)), this, SLOT(onAuthorChanged(QString)));
+  connect(m_ui->m_txtName->lineEdit(), SIGNAL(textEdited(QString)), this, SLOT(onNameChanged(QString)));
+  connect(m_ui->m_txtAnswer->lineEdit(), SIGNAL(textEdited(QString)), this, SLOT(onAnswerChanged(QString)));
+  connect(m_ui->m_txtHint->lineEdit(), SIGNAL(textEdited(QString)), this, SLOT(onHintChanged(QString)));
   connect(m_ui->m_btnQuestionAdd, SIGNAL(clicked()), this, SLOT(addQuestion()));
   connect(m_ui->m_btnQuestionRemove, SIGNAL(clicked()), this, SLOT(removeQuestion()));
   connect(m_ui->m_listQuestions, SIGNAL(currentRowChanged(int)), this, SLOT(loadQuestion(int)));
@@ -103,6 +103,9 @@ bool FlashCardEditor::canGenerateApplications() {
 }
 
 void FlashCardEditor::launch() {
+  checkAuthor();
+  checkName();
+
   if (canGenerateApplications()) {
     emit canGenerateChanged(true);
   }
@@ -120,6 +123,50 @@ QList<FlashCardQuestion> FlashCardEditor::activeQuestions() const {
   }
 
   return questions;
+}
+
+void FlashCardEditor::checkAuthor() {
+  if (m_ui->m_txtAuthor->lineEdit()->text().isEmpty()) {
+    m_ui->m_txtAuthor->setStatus(WidgetWithStatus::Error,
+                                 tr("No author is specified."));
+  }
+  else {
+    m_ui->m_txtAuthor->setStatus(WidgetWithStatus::Ok,
+                                 tr("Author is specified."));
+  }
+}
+
+void FlashCardEditor::checkHint() {
+  if (m_ui->m_txtHint->lineEdit()->text().isEmpty()) {
+    m_ui->m_txtHint->setStatus(WidgetWithStatus::Warning,
+                               tr("Hint is not specified."));
+  }
+  else {
+    m_ui->m_txtHint->setStatus(WidgetWithStatus::Ok,
+                               tr("Hint is specified."));
+  }
+}
+
+void FlashCardEditor::checkAnswer() {
+  if (m_ui->m_txtAnswer->lineEdit()->text().isEmpty()) {
+    m_ui->m_txtAnswer->setStatus(WidgetWithStatus::Error,
+                                 tr("Answer is not specified."));
+  }
+  else {
+    m_ui->m_txtAnswer->setStatus(WidgetWithStatus::Ok,
+                                 tr("Answer is specified."));
+  }
+}
+
+void FlashCardEditor::checkName() {
+  if (m_ui->m_txtName->lineEdit()->text().isEmpty()) {
+    m_ui->m_txtName->setStatus(WidgetWithStatus::Error,
+                               tr("No collection name is specified."));
+  }
+  else {
+    m_ui->m_txtName->setStatus(WidgetWithStatus::Ok,
+                               tr("Collection name is specified."));
+  }
 }
 
 void FlashCardEditor::loadPicture(const QString& picture_path) {
@@ -178,8 +225,6 @@ void FlashCardEditor::setEditorsEnabled(bool enabled) {
 
 void FlashCardEditor::loadQuestion(int index) {
   m_ui->m_txtQuestion->blockSignals(true);
-  m_ui->m_txtAnswer->lineEdit()->blockSignals(true);
-  m_ui->m_txtHint->lineEdit()->blockSignals(true);
   m_ui->m_lblPictureFile->label()->blockSignals(true);
 
   if (index >= 0) {
@@ -198,57 +243,43 @@ void FlashCardEditor::loadQuestion(int index) {
   }
 
   m_ui->m_txtQuestion->blockSignals(false);
-  m_ui->m_txtAnswer->lineEdit()->blockSignals(false);
-  m_ui->m_txtHint->lineEdit()->blockSignals(false);
   m_ui->m_lblPictureFile->label()->blockSignals(false);
+
+  checkAnswer();
+  checkAuthor();
+  checkName();
+  checkHint();
+}
+
+void FlashCardEditor::saveQuestion() {
+
+
+  emit changed();
 }
 
 void FlashCardEditor::removeQuestion() {
 
+  emit changed();
 }
 
 void FlashCardEditor::onAnswerChanged(const QString& new_answer) {
-  if (new_answer.isEmpty()) {
-    m_ui->m_txtAnswer->setStatus(WidgetWithStatus::Error,
-                                 tr("Answer is not specified."));
-  }
-  else {
-    m_ui->m_txtAnswer->setStatus(WidgetWithStatus::Ok,
-                                 tr("Answer is specified."));
-  }
+  checkAnswer();
+  emit changed();
 }
 
 void FlashCardEditor::onHintChanged(const QString& new_hint) {
-  if (new_hint.isEmpty()) {
-    m_ui->m_txtHint->setStatus(WidgetWithStatus::Warning,
-                               tr("Hint is not specified."));
-  }
-  else {
-    m_ui->m_txtHint->setStatus(WidgetWithStatus::Ok,
-                               tr("Hint is specified."));
-  }
+  checkHint();
+  emit changed();
 }
 
 void FlashCardEditor::onAuthorChanged(const QString& new_author) {
-  if (new_author.isEmpty()) {
-    m_ui->m_txtAuthor->setStatus(WidgetWithStatus::Error,
-                                 tr("No author is specified."));
-  }
-  else {
-    m_ui->m_txtAuthor->setStatus(WidgetWithStatus::Ok,
-                                 tr("Author is specified."));
-  }
+  checkAuthor();
+  emit changed();
 }
 
 void FlashCardEditor::onNameChanged(const QString& new_name) {
-  if (new_name.isEmpty()) {
-    m_ui->m_txtName->setStatus(WidgetWithStatus::Error,
-                               tr("No collection name is specified."));
-  }
-  else {
-    m_ui->m_txtName->setStatus(WidgetWithStatus::Ok,
-                               tr("Collection name is specified."));
-  }
+  checkName();
+  emit changed();
 }
 
 void FlashCardEditor::selectPicture() {
@@ -259,4 +290,5 @@ void FlashCardEditor::selectPicture() {
                                                           QFileDialog::DontUseNativeDialog);
 
   loadPicture(selected_picture);
+  emit changed();
 }
