@@ -54,3 +54,7 @@ bool FlashCardSimulator::stopSimulation() {
 bool FlashCardSimulator::goBack() {
   return false;
 }
+
+void FlashCardSimulator::launch() {
+  emit canGoBackChanged(false);
+}

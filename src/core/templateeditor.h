@@ -76,6 +76,7 @@ class TemplateEditor : public QWidget {
 
     /// \brief Emitted if status, which specifies if mobile application
     /// can be generated from the template, changes.
+    /// \warning This signal also specifies if new simulation can be started.
     /// \param can_generate True if editor contains enough
     /// data so that mobile application can be generated, false
     /// otherwise.

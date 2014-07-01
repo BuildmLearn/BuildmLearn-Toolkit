@@ -74,9 +74,13 @@ class FlashCardEditor : public TemplateEditor {
     void onAuthorChanged(const QString &new_author);
     void onNameChanged(const QString &new_name);
     void selectPicture();
+    void configureUpDown();
+    void moveQuestionUp();
+    void moveQuestionDown();
 
   private:
     Ui::FlashCardEditor *m_ui;
+    FlashCardQuestion m_activeQuestion;
 };
 
 #endif // FLASHCARDEDITOR_H

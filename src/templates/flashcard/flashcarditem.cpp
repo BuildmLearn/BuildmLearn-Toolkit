@@ -28,40 +28,14 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include "templates/flashcard/flashcardcore.h"
-
-#include "templates/flashcard/flashcardeditor.h"
-#include "templates/flashcard/flashcardsimulator.h"
+#include "templates/flashcard/flashcarditem.h"
 
 
-FlashCardCore::FlashCardCore(TemplateEntryPoint* entry_point, QObject* parent)
-  :TemplateCore(entry_point, parent) {
-  m_editor = new FlashCardEditor(this);
-  m_simulator = new FlashCardSimulator(this);
+FlashCardItem::FlashCardItem(QWidget *parent) : QWidget(parent), m_ui(new Ui::FlashCardItem) {
+  m_ui->setupUi(this);
 }
 
-FlashCardCore::~FlashCardCore() {
-  qDebug("Destroying FlashCardCore instance.");
+FlashCardItem::~FlashCardItem()
+{
+  delete m_ui;
 }
-
-QString FlashCardCore::generateRawData() {
-  return QString();
-}
-
-void FlashCardCore::launch() {
-  flashCardEditor()->launch();
-  flashCardSimulator()->launch();
-}
-
-bool FlashCardCore::generateApkFile() {
-  return false;
-}
-
-FlashCardEditor *FlashCardCore::flashCardEditor() {
-  return static_cast<FlashCardEditor*>(m_editor);
-}
-
-FlashCardSimulator *FlashCardCore::flashCardSimulator() {
-  return static_cast<FlashCardSimulator*>(m_simulator);
-}
-

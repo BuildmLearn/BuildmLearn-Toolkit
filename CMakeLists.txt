@@ -405,6 +405,7 @@ set(APP_SOURCES
   src/templates/flashcard/flashcardeditor.cpp
   src/templates/flashcard/flashcardsimulator.cpp
   src/templates/flashcard/flashcardquestion.cpp
+  src/templates/flashcard/flashcarditem.cpp
 
   src/FlashcardTemplate.cpp
   src/InfoTemplate.cpp
@@ -463,6 +464,7 @@ set(APP_HEADERS
   src/templates/flashcard/flashcardcore.h
   src/templates/flashcard/flashcardeditor.h
   src/templates/flashcard/flashcardsimulator.h
+  src/templates/flashcard/flashcarditem.h
 
   src/FlashcardTemplate.h
   src/InfoTemplate.h
@@ -485,6 +487,7 @@ set(APP_FORMS
 
   src/templates/flashcard/flashcardeditor.ui
   src/templates/flashcard/flashcardsimulator.ui
+  src/templates/flashcard/flashcarditem.ui
 )
 
 # APP translations.

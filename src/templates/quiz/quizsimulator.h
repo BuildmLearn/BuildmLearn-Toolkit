@@ -55,14 +55,11 @@ class QuizSimulator : public TemplateSimulator {
     explicit QuizSimulator(TemplateCore *core, QWidget *parent = 0);
     virtual ~QuizSimulator();
 
-    bool startSimulation();
-    bool stopSimulation();
     void launch();
 
-    /// \brief Indicates whether user can go back in simulation.
-    /// \warning This template does not support going back.
-    /// \return Returns always false.
-    bool canGoBack();
+  public slots:
+    bool startSimulation();
+    bool stopSimulation();
     bool goBack();
 
   private slots:

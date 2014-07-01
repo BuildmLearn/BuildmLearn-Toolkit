@@ -35,7 +35,7 @@
 #include "templates/flashcard/flashcardentrypoint.h"
 #include "miscellaneous/iconfactory.h"
 
-
+#include <QTimer>
 #include <QFileDialog>
 
 
@@ -62,12 +62,15 @@ FlashCardEditor::FlashCardEditor(TemplateCore *core, QWidget *parent)
 
   connect(m_ui->m_btnPictureSelect, SIGNAL(clicked()), this, SLOT(selectPicture()));
   connect(m_ui->m_txtAuthor->lineEdit(), SIGNAL(textEdited(QString)), this, SLOT(onAuthorChanged(QString)));
+  connect(m_ui->m_txtQuestion, SIGNAL(textEdited(QString)), this, SLOT(saveQuestion()));
   connect(m_ui->m_txtName->lineEdit(), SIGNAL(textEdited(QString)), this, SLOT(onNameChanged(QString)));
   connect(m_ui->m_txtAnswer->lineEdit(), SIGNAL(textEdited(QString)), this, SLOT(onAnswerChanged(QString)));
   connect(m_ui->m_txtHint->lineEdit(), SIGNAL(textEdited(QString)), this, SLOT(onHintChanged(QString)));
   connect(m_ui->m_btnQuestionAdd, SIGNAL(clicked()), this, SLOT(addQuestion()));
   connect(m_ui->m_btnQuestionRemove, SIGNAL(clicked()), this, SLOT(removeQuestion()));
   connect(m_ui->m_listQuestions, SIGNAL(currentRowChanged(int)), this, SLOT(loadQuestion(int)));
+  connect(m_ui->m_btnQuestionUp, SIGNAL(clicked()), this, SLOT(moveQuestionUp()));
+  connect(m_ui->m_btnQuestionDown, SIGNAL(clicked()), this, SLOT(moveQuestionDown()));
 
   setEditorsEnabled(false);
   updateQuestionCount();
@@ -76,6 +79,10 @@ FlashCardEditor::FlashCardEditor(TemplateCore *core, QWidget *parent)
   m_ui->m_txtName->lineEdit()->setText(tr("Greatest collection"));
 
   qRegisterMetaType<FlashCardQuestion>("FlashCardQuestion");
+
+  checkAuthor();
+  checkName();
+  loadQuestion(-1);
 }
 
 FlashCardEditor::~FlashCardEditor() {
@@ -103,9 +110,6 @@ bool FlashCardEditor::canGenerateApplications() {
 }
 
 void FlashCardEditor::launch() {
-  checkAuthor();
-  checkName();
-
   if (canGenerateApplications()) {
     emit canGenerateChanged(true);
   }
@@ -169,20 +173,63 @@ void FlashCardEditor::checkName() {
   }
 }
 
+void FlashCardEditor::configureUpDown() {
+  if (m_ui->m_listQuestions->count() > 1) {
+    int index = m_ui->m_listQuestions->currentRow();
+
+    if (index == 0) {
+      m_ui->m_btnQuestionUp->setEnabled(false);
+      m_ui->m_btnQuestionDown->setEnabled(true);
+    }
+    else if (index == m_ui->m_listQuestions->count() - 1) {
+      m_ui->m_btnQuestionUp->setEnabled(true);
+      m_ui->m_btnQuestionDown->setEnabled(false);
+    }
+    else {
+      m_ui->m_btnQuestionUp->setEnabled(true);
+      m_ui->m_btnQuestionDown->setEnabled(true);
+    }
+  }
+  else {
+    m_ui->m_btnQuestionUp->setEnabled(false);
+    m_ui->m_btnQuestionDown->setEnabled(false);
+  }
+}
+
+void FlashCardEditor::moveQuestionUp() {
+  int index = m_ui->m_listQuestions->currentRow();
+
+  m_ui->m_listQuestions->insertItem(index - 1, m_ui->m_listQuestions->takeItem(index));
+  m_ui->m_listQuestions->setCurrentRow(index - 1);
+
+  emit changed();
+}
+
+void FlashCardEditor::moveQuestionDown() {
+  int index = m_ui->m_listQuestions->currentRow();
+
+  m_ui->m_listQuestions->insertItem(index + 1, m_ui->m_listQuestions->takeItem(index));
+  m_ui->m_listQuestions->setCurrentRow(index + 1);
+
+  emit changed();
+}
+
 void FlashCardEditor::loadPicture(const QString& picture_path) {
   if (!picture_path.isEmpty()) {
     m_ui->m_lblPictureView->setPixmap(QPixmap(picture_path).scaled(m_ui->m_lblPictureView->size(),
                                                                    Qt::KeepAspectRatio));
     m_ui->m_lblPictureFile->setStatus(WidgetWithStatus::Ok,
-                                      QDir::toNativeSeparators(picture_path),
+                                      tr("Picture is selected."),
                                       tr("Picture is selected."));
   }
   else {
     m_ui->m_lblPictureView->setPixmap(QPixmap());
     m_ui->m_lblPictureFile->setStatus(WidgetWithStatus::Error,
-                                      QString(),
+                                      tr("Picture is not selected."),
                                       tr("No picture is selected."));
   }
+
+  m_ui->m_lblPictureFile->label()->setToolTip(QDir::toNativeSeparators(picture_path));
 }
 
 void FlashCardEditor::addQuestion() {
@@ -234,6 +281,8 @@ void FlashCardEditor::loadQuestion(int index) {
     m_ui->m_txtAnswer->lineEdit()->setText(question.answer());
     m_ui->m_txtHint->lineEdit()->setText(question.hint());
     loadPicture(question.picturePath());
+
+    m_activeQuestion = question;
   }
   else {
     m_ui->m_txtQuestion->setText(QString());
@@ -249,46 +298,74 @@ void FlashCardEditor::loadQuestion(int index) {
   checkAuthor();
   checkName();
   checkHint();
+
+  QTimer::singleShot(0, this, SLOT(configureUpDown()));
 }
 
 void FlashCardEditor::saveQuestion() {
+  m_activeQuestion.setQuestion(m_ui->m_txtQuestion->text());
+  m_activeQuestion.setAnswer(m_ui->m_txtAnswer->lineEdit()->text());
+  m_activeQuestion.setHint(m_ui->m_txtHint->lineEdit()->text());
+  m_activeQuestion.setPicturePath(m_ui->m_lblPictureFile->label()->toolTip());
 
+  m_ui->m_listQuestions->currentItem()->setData(Qt::UserRole, QVariant::fromValue(m_activeQuestion));
+  m_ui->m_listQuestions->currentItem()->setText(m_activeQuestion.question());
 
   emit changed();
 }
 
 void FlashCardEditor::removeQuestion() {
+  int current_row = m_ui->m_listQuestions->currentRow();
 
+  if (current_row >= 0) {
+    if (m_ui->m_listQuestions->count() == 1) {
+      // We are removing last visible question.
+      setEditorsEnabled(false);
+
+      m_ui->m_btnQuestionRemove->setEnabled(false);
+    }
+
+    delete m_ui->m_listQuestions->takeItem(current_row);
+  }
+
+  updateQuestionCount();
+  launch();
   emit changed();
 }
 
 void FlashCardEditor::onAnswerChanged(const QString& new_answer) {
   checkAnswer();
-  emit changed();
+  saveQuestion();
 }
 
 void FlashCardEditor::onHintChanged(const QString& new_hint) {
   checkHint();
-  emit changed();
+  saveQuestion();
 }
 
 void FlashCardEditor::onAuthorChanged(const QString& new_author) {
   checkAuthor();
+
+  launch();
   emit changed();
 }
 
 void FlashCardEditor::onNameChanged(const QString& new_name) {
   checkName();
+
+  launch();
   emit changed();
 }
 
 void FlashCardEditor::selectPicture() {
   QString selected_picture = QFileDialog::getOpenFileName(this, tr("Select picture for question"),
-                                                          m_ui->m_lblPictureFile->label()->text(),
+                                                          m_ui->m_lblPictureFile->label()->toolTip(),
                                                           tr("Images (*.gif *.jpg *.png)"),
                                                           0,
                                                           QFileDialog::DontUseNativeDialog);
 
-  loadPicture(selected_picture);
-  emit changed();
+  if (!selected_picture.isEmpty()) {
+    loadPicture(selected_picture);
+    saveQuestion();
+  }
 }

@@ -101,10 +101,6 @@ bool QuizSimulator::stopSimulation() {
   return true;
 }
 
-bool QuizSimulator::canGoBack() {
-  return false;
-}
-
 bool QuizSimulator::goBack() {
   return false;
 }
