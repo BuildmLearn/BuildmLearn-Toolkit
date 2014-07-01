@@ -35,6 +35,8 @@
 
 #include "ui_flashcarditem.h"
 
+#include "templates/flashcard/flashcardquestion.h"
+
 
 namespace Ui {
   class FlashCardItem;
@@ -46,6 +48,11 @@ class FlashCardItem : public QWidget {
   public:
     explicit FlashCardItem(QWidget *parent = 0);
     virtual ~FlashCardItem();
+
+    /// \brief Sets new question for this widget.
+    /// \param question Question object.
+    /// \param question_number Number of the question.
+    void setQuestion(const FlashCardQuestion &question, int question_number);
 
   private:
     Ui::FlashCardItem *m_ui;

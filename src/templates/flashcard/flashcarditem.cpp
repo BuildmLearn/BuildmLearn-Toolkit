@@ -30,12 +30,21 @@
 
 #include "templates/flashcard/flashcarditem.h"
 
+#include "definitions/definitions.h"
+
 
 FlashCardItem::FlashCardItem(QWidget *parent) : QWidget(parent), m_ui(new Ui::FlashCardItem) {
   m_ui->setupUi(this);
+  m_ui->m_lblPicture->setFixedHeight((int) (SIMULATOR_CONTENTS_HEIGHT * 0.4));
 }
 
-FlashCardItem::~FlashCardItem()
-{
+FlashCardItem::~FlashCardItem() {
   delete m_ui;
+}
+
+void FlashCardItem::setQuestion(const FlashCardQuestion &question, int question_number) {
+  m_ui->m_btnPrevious->setEnabled(question_number != 1);
+  m_ui->m_lblQuestionNumber->setText(tr("Question number %1").arg(question_number));
+  m_ui->m_lblQuestionText->setText(question.question());
+  m_ui->m_lblPicture->setPixmap(QPixmap(question.picturePath()).scaled(m_ui->m_lblPicture->size(), Qt::KeepAspectRatio));
 }
