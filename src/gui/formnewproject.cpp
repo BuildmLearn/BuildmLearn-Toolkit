@@ -49,8 +49,8 @@ FormNewProject::FormNewProject(TemplateFactory *template_manager, QWidget *paren
 
   m_ui->m_lblDescription->setContentsMargins(description_margins);
 
-  connect(m_ui->m_listTemplates, SIGNAL(currentRowChanged(int)),
-          this, SLOT(templateSelected(int)));
+  connect(m_ui->m_listTemplates, SIGNAL(currentRowChanged(int)), this, SLOT(templateSelected(int)));
+  connect(m_ui->m_listTemplates, SIGNAL(itemDoubleClicked(QListWidgetItem*)), this, SLOT(accept()));
 
   // This window mustn't be deleted when closed by user.
   setAttribute(Qt::WA_DeleteOnClose, false);
