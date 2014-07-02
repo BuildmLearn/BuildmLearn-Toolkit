@@ -407,6 +407,8 @@ set(APP_SOURCES
   src/templates/flashcard/flashcardquestion.cpp
   src/templates/flashcard/flashcarditem.cpp
 
+  src/templates/info/infoentrypoint.cpp
+
   src/FlashcardTemplate.cpp
   src/InfoTemplate.cpp
   src/QuestionItem.cpp
@@ -465,6 +467,8 @@ set(APP_HEADERS
   src/templates/flashcard/flashcardeditor.h
   src/templates/flashcard/flashcardsimulator.h
   src/templates/flashcard/flashcarditem.h
+
+  src/templates/info/infoentrypoint.h
 
   src/FlashcardTemplate.h
   src/InfoTemplate.h

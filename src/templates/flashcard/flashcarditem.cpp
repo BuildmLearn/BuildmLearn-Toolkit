@@ -54,6 +54,8 @@ void FlashCardItem::setQuestion(const FlashCardQuestion &question, int question_
   m_ui->m_btnPrevious->setEnabled(question_number != 1);
   m_ui->m_lblQuestionNumber->setText(tr("Question number %1").arg(question_number));
   m_ui->m_lblQuestionText->setText(question.question());
+  m_ui->m_lblHint->setText(question.hint());
+  m_ui->m_lblAnswer->setText(QString("<span style=\" font-size:18pt;\">%1</span>").arg(question.answer()));
   m_ui->m_lblPicture->setPixmap(QPixmap(question.picturePath()).scaled(m_ui->m_lblPicture->size(), Qt::KeepAspectRatio));
 }
 

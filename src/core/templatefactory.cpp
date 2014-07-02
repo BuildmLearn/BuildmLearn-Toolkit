@@ -37,6 +37,7 @@
 #include "miscellaneous/application.h"
 #include "templates/quiz/quizentrypoint.h"
 #include "templates/flashcard/flashcardentrypoint.h"
+#include "templates/info/infoentrypoint.h"
 
 #if QT_VERSION >= 0x050000
 #include <QStandardPaths>
@@ -123,4 +124,5 @@ void TemplateFactory::setupTemplates() {
   // TODO: Fill in needed template entry points.
   m_availableTemplates.append(new QuizEntryPoint(this));
   m_availableTemplates.append(new FlashCardEntryPoint(this));
+  m_availableTemplates.append(new InfoEntryPoint(this));
 }

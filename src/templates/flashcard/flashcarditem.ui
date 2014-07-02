@@ -38,7 +38,7 @@
    <item>
     <widget class="QStackedWidget" name="m_flipper">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="m_pagePicture">
       <layout class="QVBoxLayout" name="verticalLayout_2">

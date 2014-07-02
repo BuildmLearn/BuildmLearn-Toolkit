@@ -40,6 +40,8 @@ FlashCardSimulator::FlashCardSimulator(TemplateCore *core, QWidget *parent)
     m_ui(new Ui::FlashCardSimulator) {
   m_ui->setupUi(this);
 
+  m_ui->m_phoneWidget->setStyleSheet("background: #255593; color: white;");
+
   connect(m_ui->m_btnStart, SIGNAL(clicked()), this, SLOT(start()));
   connect(m_ui->m_btnRestart, SIGNAL(clicked()), this, SLOT(restart()));
 }
@@ -99,19 +101,33 @@ bool FlashCardSimulator::goBack() {
 }
 
 void FlashCardSimulator::start() {
-  m_ui->m_phoneWidget->setCurrentIndex(1);
+  moveToNextCard();
 }
 
 void FlashCardSimulator::restart() {
-  start();
+  m_ui->m_phoneWidget->setCurrentIndex(1);
 }
 
 void FlashCardSimulator::moveToNextCard() {
+  int current_index = m_ui->m_phoneWidget->currentIndex();
 
+  if (current_index < m_ui->m_phoneWidget->count() - 2) {
+    // We are not on the last flash card.
+    static_cast<FlashCardItem*>(m_ui->m_phoneWidget->widget(current_index + 1))->reset();
+  }
+
+  m_ui->m_phoneWidget->setCurrentIndex(current_index + 1);
 }
 
 void FlashCardSimulator::moveToPreviousCard() {
+  int current_index = m_ui->m_phoneWidget->currentIndex();
 
+  if (current_index > 1) {
+    // We are not on the first flash card.
+    static_cast<FlashCardItem*>(m_ui->m_phoneWidget->widget(current_index - 1))->reset();
+  }
+
+  m_ui->m_phoneWidget->setCurrentIndex(current_index - 1);
 }
 
 void FlashCardSimulator::launch() {
