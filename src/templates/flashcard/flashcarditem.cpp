@@ -36,10 +36,18 @@
 FlashCardItem::FlashCardItem(QWidget *parent) : QWidget(parent), m_ui(new Ui::FlashCardItem) {
   m_ui->setupUi(this);
   m_ui->m_lblPicture->setFixedHeight((int) (SIMULATOR_CONTENTS_HEIGHT * 0.4));
+
+  connect(m_ui->m_btnNext, SIGNAL(clicked()), this, SIGNAL(nextCardRequested()));
+  connect(m_ui->m_btnPrevious, SIGNAL(clicked()), this, SIGNAL(previousCardRequested()));
+  connect(m_ui->m_btnFlip, SIGNAL(clicked()), this, SLOT(flip()));
 }
 
 FlashCardItem::~FlashCardItem() {
   delete m_ui;
+}
+
+void FlashCardItem::reset() {
+  m_ui->m_flipper->setCurrentIndex(0);
 }
 
 void FlashCardItem::setQuestion(const FlashCardQuestion &question, int question_number) {
@@ -47,4 +55,8 @@ void FlashCardItem::setQuestion(const FlashCardQuestion &question, int question_
   m_ui->m_lblQuestionNumber->setText(tr("Question number %1").arg(question_number));
   m_ui->m_lblQuestionText->setText(question.question());
   m_ui->m_lblPicture->setPixmap(QPixmap(question.picturePath()).scaled(m_ui->m_lblPicture->size(), Qt::KeepAspectRatio));
+}
+
+void FlashCardItem::flip() {
+  m_ui->m_flipper->setCurrentIndex(m_ui->m_flipper->currentIndex() == 0 ? 1 : 0);
 }

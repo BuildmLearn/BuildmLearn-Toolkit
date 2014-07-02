@@ -55,6 +55,12 @@ class FlashCardSimulator : public TemplateSimulator {
     bool stopSimulation();
     bool goBack();
 
+  private slots:
+    void start();
+    void restart();
+    void moveToNextCard();
+    void moveToPreviousCard();
+
   private:
     Ui::FlashCardSimulator *m_ui;
 };

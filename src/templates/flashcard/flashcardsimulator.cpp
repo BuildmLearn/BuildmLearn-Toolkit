@@ -30,11 +30,18 @@
 
 #include "templates/flashcard/flashcardsimulator.h"
 
+#include "core/templatecore.h"
+#include "templates/flashcard/flashcardeditor.h"
+#include "templates/flashcard/flashcarditem.h"
+
 
 FlashCardSimulator::FlashCardSimulator(TemplateCore *core, QWidget *parent)
   : TemplateSimulator(core, parent),
     m_ui(new Ui::FlashCardSimulator) {
   m_ui->setupUi(this);
+
+  connect(m_ui->m_btnStart, SIGNAL(clicked()), this, SLOT(start()));
+  connect(m_ui->m_btnRestart, SIGNAL(clicked()), this, SLOT(restart()));
 }
 
 FlashCardSimulator::~FlashCardSimulator() {
@@ -44,15 +51,67 @@ FlashCardSimulator::~FlashCardSimulator() {
 }
 
 bool FlashCardSimulator::startSimulation() {
-  return false;
+  FlashCardEditor *editor = static_cast<FlashCardEditor*>(core()->editor());
+
+  if (!editor->canGenerateApplications()) {
+    // There are no active questions or quiz does not
+    // containt its name or author name.
+    return false;
+  }
+
+  // Remove existing flash cards.
+  while (m_ui->m_phoneWidget->count() > 3) {
+    QWidget *question_widget = m_ui->m_phoneWidget->widget(2);
+
+    m_ui->m_phoneWidget->removeWidget(question_widget);
+    question_widget->deleteLater();
+  }
+
+  // Load the questions, setup the quiz and start it.
+  m_ui->m_btnStart->setEnabled(true);
+  m_ui->m_lblAuthor->setText(editor->m_ui->m_txtAuthor->lineEdit()->text());
+  m_ui->m_lblHeading->setText(editor->m_ui->m_txtName->lineEdit()->text());
+
+  int question_number = 1;
+
+  foreach (const FlashCardQuestion &question, editor->activeQuestions()) {
+    FlashCardItem *item = new FlashCardItem(m_ui->m_phoneWidget);
+
+    connect(item, SIGNAL(nextCardRequested()), this, SLOT(moveToNextCard()));
+    connect(item, SIGNAL(previousCardRequested()), this, SLOT(moveToPreviousCard()));
+
+    item->setQuestion(question, question_number++);
+    m_ui->m_phoneWidget->insertWidget(m_ui->m_phoneWidget->count() - 1, item);
+  }
+
+  // Go to "start" page and begin.
+  m_ui->m_phoneWidget->setCurrentIndex(1);
+  return true;
 }
 
 bool FlashCardSimulator::stopSimulation() {
-  return false;
+  m_ui->m_phoneWidget->setCurrentIndex(0);
+  return true;
 }
 
 bool FlashCardSimulator::goBack() {
   return false;
+}
+
+void FlashCardSimulator::start() {
+  m_ui->m_phoneWidget->setCurrentIndex(1);
+}
+
+void FlashCardSimulator::restart() {
+  start();
+}
+
+void FlashCardSimulator::moveToNextCard() {
+
+}
+
+void FlashCardSimulator::moveToPreviousCard() {
+
 }
 
 void FlashCardSimulator::launch() {

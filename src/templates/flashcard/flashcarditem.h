@@ -46,13 +46,23 @@ class FlashCardItem : public QWidget {
     Q_OBJECT
 
   public:
+    // Constructors and destructors.
     explicit FlashCardItem(QWidget *parent = 0);
     virtual ~FlashCardItem();
+
+    void reset();
 
     /// \brief Sets new question for this widget.
     /// \param question Question object.
     /// \param question_number Number of the question.
     void setQuestion(const FlashCardQuestion &question, int question_number);
+
+  private slots:
+    void flip();
+
+  signals:
+    void nextCardRequested();
+    void previousCardRequested();
 
   private:
     Ui::FlashCardItem *m_ui;
