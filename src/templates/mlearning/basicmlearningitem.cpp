@@ -28,30 +28,31 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include "templates/mlearning/basicmlearningeditor.h"
-
-#include "miscellaneous/iconfactory.h"
+#include "templates/mlearning/basicmlearningitem.h"
 
 
-BasicmLearningEditor::BasicmLearningEditor(TemplateCore *core, QWidget *parent)
-  : TemplateEditor(core, parent), m_ui(new Ui::BasicmLearningEditor) {
-  m_ui->setupUi(this);
-
-  m_ui->m_txtTitle->lineEdit()->setPlaceholderText(tr("Title of the item"));
-  m_ui->m_txtDescription->lineEdit()->setPlaceholderText(tr("Description of the item"));
-
-  IconFactory *factory = IconFactory::instance();
-
-  m_ui->m_btnItemAdd->setIcon(factory->fromTheme("item-add"));
-  m_ui->m_btnItemRemove->setIcon(factory->fromTheme("item-remove"));
-  m_ui->m_btnItemUp->setIcon(factory->fromTheme("move-up"));
-  m_ui->m_btnItemDown->setIcon(factory->fromTheme("move-down"));
+BasicmLearningItem::BasicmLearningItem(const QString &title, const QString &description) {
+  setTitle(title);
+  setDescription(description);
 }
 
-BasicmLearningEditor::~BasicmLearningEditor() {
-  delete m_ui;
+BasicmLearningItem::~BasicmLearningItem() {
 }
 
-bool BasicmLearningEditor::canGenerateApplications() {
-  return false;
+QString BasicmLearningItem::title() const {
+  return m_title;
 }
+
+void BasicmLearningItem::setTitle(const QString &title) {
+  m_title = title;
+}
+
+QString BasicmLearningItem::description() const {
+  return m_description;
+}
+
+void BasicmLearningItem::setDescription(const QString &description) {
+  m_description = description;
+}
+
+

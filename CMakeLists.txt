@@ -411,6 +411,7 @@ set(APP_SOURCES
   src/templates/mlearning/basicmlearningcore.cpp
   src/templates/mlearning/basicmlearningeditor.cpp
   src/templates/mlearning/basicmlearningsimulator.cpp
+  src/templates/mlearning/basicmlearningitem.cpp
 
   src/FlashcardTemplate.cpp
   src/InfoTemplate.cpp

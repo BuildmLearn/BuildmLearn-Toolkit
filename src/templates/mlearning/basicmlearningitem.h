@@ -28,30 +28,26 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include "templates/mlearning/basicmlearningeditor.h"
+#ifndef BASICMLEARNQUESTION_H
+#define BASICMLEARNQUESTION_H
 
-#include "miscellaneous/iconfactory.h"
+#include <QString>
 
 
-BasicmLearningEditor::BasicmLearningEditor(TemplateCore *core, QWidget *parent)
-  : TemplateEditor(core, parent), m_ui(new Ui::BasicmLearningEditor) {
-  m_ui->setupUi(this);
+class BasicmLearningItem {
+  public:
+    explicit BasicmLearningItem(const QString &title, const QString &description);
+    virtual ~BasicmLearningItem();
 
-  m_ui->m_txtTitle->lineEdit()->setPlaceholderText(tr("Title of the item"));
-  m_ui->m_txtDescription->lineEdit()->setPlaceholderText(tr("Description of the item"));
+    QString title() const;
+    void setTitle(const QString &title);
 
-  IconFactory *factory = IconFactory::instance();
+    QString description() const;
+    void setDescription(const QString &description);
 
-  m_ui->m_btnItemAdd->setIcon(factory->fromTheme("item-add"));
-  m_ui->m_btnItemRemove->setIcon(factory->fromTheme("item-remove"));
-  m_ui->m_btnItemUp->setIcon(factory->fromTheme("move-up"));
-  m_ui->m_btnItemDown->setIcon(factory->fromTheme("move-down"));
-}
+  private:
+    QString m_title;
+    QString m_description;
+};
 
-BasicmLearningEditor::~BasicmLearningEditor() {
-  delete m_ui;
-}
-
-bool BasicmLearningEditor::canGenerateApplications() {
-  return false;
-}
+#endif // BASICMLEARNQUESTION_H
