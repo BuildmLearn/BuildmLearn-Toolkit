@@ -64,7 +64,7 @@
       <item row="1" column="0">
        <widget class="PlainToolButton" name="m_btnItemAdd">
         <property name="toolTip">
-         <string>Add new question.</string>
+         <string>Add new item.</string>
         </property>
         <property name="text">
          <string>...</string>
@@ -79,8 +79,11 @@
       </item>
       <item row="1" column="3">
        <widget class="PlainToolButton" name="m_btnItemDown">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="toolTip">
-         <string>Move question down.</string>
+         <string>Move item down.</string>
         </property>
         <property name="text">
          <string>...</string>
@@ -99,7 +102,7 @@
          <bool>false</bool>
         </property>
         <property name="toolTip">
-         <string>Remove selected question.</string>
+         <string>Remove selected item.</string>
         </property>
         <property name="text">
          <string>...</string>
@@ -114,8 +117,11 @@
       </item>
       <item row="1" column="2">
        <widget class="PlainToolButton" name="m_btnItemUp">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="toolTip">
-         <string>Move question up.</string>
+         <string>Move item up.</string>
         </property>
         <property name="text">
          <string>...</string>
