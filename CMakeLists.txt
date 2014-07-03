@@ -476,6 +476,7 @@ set(APP_HEADERS
   src/templates/mlearning/basicmlearningcore.h
   src/templates/mlearning/basicmlearningeditor.h
   src/templates/mlearning/basicmlearningsimulator.h
+  src/templates/mlearning/basicmlearningitem.h
 
   src/FlashcardTemplate.h
   src/InfoTemplate.h

@@ -35,6 +35,10 @@
 
 #include "ui_basicmlearningeditor.h"
 
+#include "templates/mlearning/basicmlearningitem.h"
+
+#include <QList>
+
 
 namespace Ui {
   class BasicmLearningEditor;
@@ -47,10 +51,28 @@ class BasicmLearningEditor : public TemplateEditor {
     explicit BasicmLearningEditor(TemplateCore *core, QWidget *parent = 0);
     virtual ~BasicmLearningEditor();
 
+    QList<BasicmLearningItem> activeItems() const;
+
     bool canGenerateApplications();
+    void launch();
+
+  private slots:
+    void addNewItem();
+    void removeSelectedItem();
+    void saveItem();
+    void displayItem(int index);
+    void checkTitle(const QString &title);
+    void checkDescription(const QString &description);
+    void moveItemUp();
+    void moveItemDown();
+    void configureUpDown();
+
+  private:
+    void setEditorsEnabled(bool enabled);
 
   private:
     Ui::BasicmLearningEditor *m_ui;
+    BasicmLearningItem m_activeItem;
 };
 
 #endif // BASICMLEARNINGEDITOR_H

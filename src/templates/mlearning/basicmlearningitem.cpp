@@ -31,9 +31,7 @@
 #include "templates/mlearning/basicmlearningitem.h"
 
 
-BasicmLearningItem::BasicmLearningItem(const QString &title, const QString &description) {
-  setTitle(title);
-  setDescription(description);
+BasicmLearningItem::BasicmLearningItem() {
 }
 
 BasicmLearningItem::~BasicmLearningItem() {

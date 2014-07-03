@@ -27,7 +27,7 @@
     <number>0</number>
    </property>
    <item row="0" column="0">
-    <widget class="QGroupBox" name="m_groupQuestionEditor">
+    <widget class="QGroupBox" name="m_groupItemEditor">
      <property name="title">
       <string>Item editor</string>
      </property>

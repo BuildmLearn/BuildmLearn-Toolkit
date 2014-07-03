@@ -32,11 +32,12 @@
 #define BASICMLEARNQUESTION_H
 
 #include <QString>
+#include <QMetaType>
 
 
 class BasicmLearningItem {
   public:
-    explicit BasicmLearningItem(const QString &title, const QString &description);
+    explicit BasicmLearningItem();
     virtual ~BasicmLearningItem();
 
     QString title() const;
@@ -49,5 +50,7 @@ class BasicmLearningItem {
     QString m_title;
     QString m_description;
 };
+
+Q_DECLARE_METATYPE(BasicmLearningItem)
 
 #endif // BASICMLEARNQUESTION_H
