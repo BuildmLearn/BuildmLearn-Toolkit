@@ -28,28 +28,26 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include "templates/mlearning/basicmlearningentrypoint.h"
-
-#include "core/templatefactory.h"
-#include "templates/mlearning/basicmlearningcore.h"
+#include "basicmlearningsimulator.h"
 
 
-BasicmLearningEntryPoint::BasicmLearningEntryPoint(TemplateFactory *parent) : TemplateEntryPoint(parent) {
-  m_baseFolder = "mlearning";
-  m_description = "This is simple template for displaying clickable lists of textual information.";
-  m_humanName = "Basic mLearning";
-  m_name = "mlearning";
-  m_thumbnailImage = "thumbnail.png";
-  m_typeIndentifier = "InfoTemplate";
+BasicmLearningSimulator::BasicmLearningSimulator(TemplateCore *core, QWidget *parent) :
+  TemplateSimulator(core, parent), m_ui(new Ui::BasicmLearningSimulator) {
+  m_ui->setupUi(this);
 }
 
-BasicmLearningEntryPoint::~BasicmLearningEntryPoint() {
+BasicmLearningSimulator::~BasicmLearningSimulator() {
+  delete m_ui;
 }
 
-TemplateCore *BasicmLearningEntryPoint::createNewCore() {
-  return new BasicmLearningCore(this, this);
+bool BasicmLearningSimulator::startSimulation() {
+  return false;
 }
 
-TemplateCore *BasicmLearningEntryPoint::loadCoreFromRawData(const QString &raw_data) {
-  return NULL;
+bool BasicmLearningSimulator::stopSimulation() {
+  return false;
+}
+
+bool BasicmLearningSimulator::goBack() {
+  return false;
 }

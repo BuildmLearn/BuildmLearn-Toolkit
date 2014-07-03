@@ -28,28 +28,29 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include "templates/mlearning/basicmlearningentrypoint.h"
+#ifndef BASICMLEARNINGEDITOR_H
+#define BASICMLEARNINGEDITOR_H
 
-#include "core/templatefactory.h"
-#include "templates/mlearning/basicmlearningcore.h"
+#include "core/templateeditor.h"
+
+#include "ui_basicmlearningeditor.h"
 
 
-BasicmLearningEntryPoint::BasicmLearningEntryPoint(TemplateFactory *parent) : TemplateEntryPoint(parent) {
-  m_baseFolder = "mlearning";
-  m_description = "This is simple template for displaying clickable lists of textual information.";
-  m_humanName = "Basic mLearning";
-  m_name = "mlearning";
-  m_thumbnailImage = "thumbnail.png";
-  m_typeIndentifier = "InfoTemplate";
+namespace Ui {
+  class BasicmLearningEditor;
 }
 
-BasicmLearningEntryPoint::~BasicmLearningEntryPoint() {
-}
+class BasicmLearningEditor : public TemplateEditor {
+    Q_OBJECT
 
-TemplateCore *BasicmLearningEntryPoint::createNewCore() {
-  return new BasicmLearningCore(this, this);
-}
+  public:
+    explicit BasicmLearningEditor(TemplateCore *core, QWidget *parent = 0);
+    virtual ~BasicmLearningEditor();
 
-TemplateCore *BasicmLearningEntryPoint::loadCoreFromRawData(const QString &raw_data) {
-  return NULL;
-}
+    bool canGenerateApplications();
+
+  private:
+    Ui::BasicmLearningEditor *m_ui;
+};
+
+#endif // BASICMLEARNINGEDITOR_H

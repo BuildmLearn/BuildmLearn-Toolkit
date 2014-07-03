@@ -28,28 +28,37 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include "templates/mlearning/basicmlearningentrypoint.h"
-
-#include "core/templatefactory.h"
 #include "templates/mlearning/basicmlearningcore.h"
 
+#include "templates/mlearning/basicmlearningeditor.h"
+#include "templates/mlearning/basicmlearningsimulator.h"
 
-BasicmLearningEntryPoint::BasicmLearningEntryPoint(TemplateFactory *parent) : TemplateEntryPoint(parent) {
-  m_baseFolder = "mlearning";
-  m_description = "This is simple template for displaying clickable lists of textual information.";
-  m_humanName = "Basic mLearning";
-  m_name = "mlearning";
-  m_thumbnailImage = "thumbnail.png";
-  m_typeIndentifier = "InfoTemplate";
+
+BasicmLearningCore::BasicmLearningCore(TemplateEntryPoint *entry_point, QObject *parent)
+  : TemplateCore(entry_point, parent) {
+  m_editor = new BasicmLearningEditor(this);
+  m_simulator = new BasicmLearningSimulator(this);
 }
 
-BasicmLearningEntryPoint::~BasicmLearningEntryPoint() {
+BasicmLearningCore::~BasicmLearningCore() {
 }
 
-TemplateCore *BasicmLearningEntryPoint::createNewCore() {
-  return new BasicmLearningCore(this, this);
+QString BasicmLearningCore::generateRawData() {
+  return QString();
 }
 
-TemplateCore *BasicmLearningEntryPoint::loadCoreFromRawData(const QString &raw_data) {
-  return NULL;
+bool BasicmLearningCore::generateApkFile() {
+  return false;
+}
+
+void BasicmLearningCore::launch() {
+
+}
+
+BasicmLearningEditor *BasicmLearningCore::learningEditor() {
+  return static_cast<BasicmLearningEditor*>(editor());
+}
+
+BasicmLearningSimulator *BasicmLearningCore::learningSimulator() {
+  return static_cast<BasicmLearningSimulator*>(simulator());
 }

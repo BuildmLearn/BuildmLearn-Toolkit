@@ -408,6 +408,9 @@ set(APP_SOURCES
   src/templates/flashcard/flashcarditem.cpp
 
   src/templates/mlearning/basicmlearningentrypoint.cpp
+  src/templates/mlearning/basicmlearningcore.cpp
+  src/templates/mlearning/basicmlearningeditor.cpp
+  src/templates/mlearning/basicmlearningsimulator.cpp
 
   src/FlashcardTemplate.cpp
   src/InfoTemplate.cpp
@@ -469,6 +472,9 @@ set(APP_HEADERS
   src/templates/flashcard/flashcarditem.h
 
   src/templates/mlearning/basicmlearningentrypoint.h
+  src/templates/mlearning/basicmlearningcore.h
+  src/templates/mlearning/basicmlearningeditor.h
+  src/templates/mlearning/basicmlearningsimulator.h
 
   src/FlashcardTemplate.h
   src/InfoTemplate.h
@@ -492,6 +498,9 @@ set(APP_FORMS
   src/templates/flashcard/flashcardeditor.ui
   src/templates/flashcard/flashcardsimulator.ui
   src/templates/flashcard/flashcarditem.ui
+
+  src/templates/mlearning/basicmlearningsimulator.ui
+  src/templates/mlearning/basicmlearningeditor.ui
 )
 
 # APP translations.
