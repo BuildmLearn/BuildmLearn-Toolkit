@@ -42,6 +42,7 @@ QuizEntryPoint::QuizEntryPoint(TemplateFactory *parent) : TemplateEntryPoint(par
   m_humanName = "Quiz";
   m_name = "quiz";
   m_thumbnailImage = "thumbnail.png";
+  m_typeIndentifier = "QuizTemplate";
 }
 
 QuizEntryPoint::~QuizEntryPoint() {

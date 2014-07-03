@@ -37,7 +37,7 @@
 #include "miscellaneous/application.h"
 #include "templates/quiz/quizentrypoint.h"
 #include "templates/flashcard/flashcardentrypoint.h"
-#include "templates/info/infoentrypoint.h"
+#include "templates/mlearning/basicmlearningentrypoint.h"
 
 #if QT_VERSION >= 0x050000
 #include <QStandardPaths>
@@ -47,13 +47,17 @@
 
 
 TemplateFactory::TemplateFactory(QObject *parent)
-  : QObject(parent), m_availableTemplates(QList<TemplateEntryPoint*>()),
+  : QObject(parent), m_availableTemplates(QHash<QString, TemplateEntryPoint*>()),
     m_activeEntryPoint(NULL), m_activeCore(NULL) {
   setupTemplates();
 }
 
 TemplateFactory::~TemplateFactory() {
   qDebug("Destroying TemplateFactory instance.");
+}
+
+QList<TemplateEntryPoint*> TemplateFactory::availableTemplates() {
+  return m_availableTemplates.values();
 }
 
 QString TemplateFactory::tempDirectory() const {
@@ -122,7 +126,12 @@ void TemplateFactory::loadProject(const QString &bundle_file_name) {
 
 void TemplateFactory::setupTemplates() {
   // TODO: Fill in needed template entry points.
-  m_availableTemplates.append(new QuizEntryPoint(this));
-  m_availableTemplates.append(new FlashCardEntryPoint(this));
-  m_availableTemplates.append(new InfoEntryPoint(this));
+  TemplateEntryPoint *flashcard_entry = new FlashCardEntryPoint(this);
+  m_availableTemplates.insert(flashcard_entry->typeIndentifier(), flashcard_entry);
+
+  TemplateEntryPoint *info_entry = new BasicmLearningEntryPoint(this);
+  m_availableTemplates.insert(info_entry->typeIndentifier(), info_entry);
+
+  TemplateEntryPoint *quiz_entry = new QuizEntryPoint(this);
+  m_availableTemplates.insert(quiz_entry->typeIndentifier(), quiz_entry);
 }

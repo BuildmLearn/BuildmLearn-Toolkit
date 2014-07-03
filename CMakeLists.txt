@@ -407,7 +407,7 @@ set(APP_SOURCES
   src/templates/flashcard/flashcardquestion.cpp
   src/templates/flashcard/flashcarditem.cpp
 
-  src/templates/info/infoentrypoint.cpp
+  src/templates/mlearning/basicmlearningentrypoint.cpp
 
   src/FlashcardTemplate.cpp
   src/InfoTemplate.cpp
@@ -468,7 +468,7 @@ set(APP_HEADERS
   src/templates/flashcard/flashcardsimulator.h
   src/templates/flashcard/flashcarditem.h
 
-  src/templates/info/infoentrypoint.h
+  src/templates/mlearning/basicmlearningentrypoint.h
 
   src/FlashcardTemplate.h
   src/InfoTemplate.h
@@ -557,7 +557,6 @@ endif(${USE_QT_5})
 include_directories (
   ${CMAKE_CURRENT_SOURCE_DIR}/src
   ${CMAKE_CURRENT_SOURCE_DIR}/src/core
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/templates/quiz
   ${CMAKE_CURRENT_SOURCE_DIR}/src/gui
   ${CMAKE_CURRENT_SOURCE_DIR}/src/miscellaneous
   ${CMAKE_CURRENT_SOURCE_DIR}/src/network-web

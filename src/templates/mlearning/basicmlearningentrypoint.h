@@ -6,12 +6,12 @@
 
 class TemplateFactory;
 
-class InfoEntryPoint : public TemplateEntryPoint {
+class BasicmLearningEntryPoint : public TemplateEntryPoint {
     Q_OBJECT
 
   public:
-    explicit InfoEntryPoint(TemplateFactory *parent);
-    virtual ~InfoEntryPoint();
+    explicit BasicmLearningEntryPoint(TemplateFactory *parent);
+    virtual ~BasicmLearningEntryPoint();
 
     TemplateCore *createNewCore();
     TemplateCore *loadCoreFromRawData(const QString &raw_data);

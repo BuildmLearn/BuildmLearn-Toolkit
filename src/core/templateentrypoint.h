@@ -81,12 +81,19 @@ class TemplateEntryPoint : public QObject {
     /// with base folder of template.
     virtual QString thumbnailImage() const;
 
+    /// \brief Identifier of the template.
+    ///
+    /// Identifier is used to determine which template belongs XML bundle file to.
+    /// \return Returns identifier of the template.
+    QString typeIndentifier() const;
+
   protected:
     QString m_name;
     QString m_humanName;
     QString m_baseFolder;
     QString m_description;
     QString m_thumbnailImage;
+    QString m_typeIndentifier;
 };
 
 #endif // TEMPLATEENTRYPOINT_H

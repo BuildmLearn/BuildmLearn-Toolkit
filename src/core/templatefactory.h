@@ -33,6 +33,8 @@
 
 #include <QObject>
 
+#include <QHash>
+
 
 class TemplateEntryPoint;
 class TemplateCore;
@@ -56,9 +58,7 @@ class TemplateFactory : public QObject {
     /// \see TemplateEntryPoint
     /// \return Method returns list of available templates. Templates
     /// are not sorted in any particular order.
-    QList<TemplateEntryPoint*> availableTemplates() {
-      return m_availableTemplates;
-    }
+    QList<TemplateEntryPoint*> availableTemplates();
 
     /// \brief Access to temporary directory used throughout APK generation process.
     /// \return Returns temporary directory used throughout APK generation process.
@@ -106,7 +106,7 @@ class TemplateFactory : public QObject {
     void clearEntryAndCore();
     void setupTemplates();
 
-    QList<TemplateEntryPoint*> m_availableTemplates;
+    QHash<QString, TemplateEntryPoint*> m_availableTemplates;
     TemplateEntryPoint *m_activeEntryPoint;
     TemplateCore *m_activeCore;
 };

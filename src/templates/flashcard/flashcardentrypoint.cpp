@@ -40,6 +40,7 @@ FlashCardEntryPoint::FlashCardEntryPoint(TemplateFactory *parent)
   m_humanName = "Flash cards";
   m_name = "flashcard";
   m_thumbnailImage = "thumbnail.png";
+  m_typeIndentifier = "FlashCardsTemplate";
 }
 
 FlashCardEntryPoint::~FlashCardEntryPoint() {

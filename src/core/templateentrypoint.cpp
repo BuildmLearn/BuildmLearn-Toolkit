@@ -60,8 +60,6 @@ QString TemplateEntryPoint::thumbnailImage() const {
   return m_thumbnailImage;
 }
 
-
-
-
-
-
+QString TemplateEntryPoint::typeIndentifier() const {
+    return m_typeIndentifier;
+}
