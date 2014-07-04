@@ -72,6 +72,8 @@ class TemplateSimulator : public QWidget {
   signals:
     /// \brief Emitted if "can go back" status of simulator changes.
     /// \param can_go_back True if simulation can be rolled back one step, false otherwise.
+    /// \warning This signal MUST be emitted explicitly by simulator when its stopSimulator() slot
+    /// is called.
     void canGoBackChanged(bool can_go_back);
 
     /// \brief Emitted if simulation is stopped from template itself.

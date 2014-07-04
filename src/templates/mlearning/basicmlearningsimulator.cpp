@@ -28,12 +28,20 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include "basicmlearningsimulator.h"
+#include "templates/mlearning/basicmlearningsimulator.h"
+
+#include "templates/mlearning/basicmlearningeditor.h"
+#include "core/templatecore.h"
 
 
 BasicmLearningSimulator::BasicmLearningSimulator(TemplateCore *core, QWidget *parent) :
   TemplateSimulator(core, parent), m_ui(new Ui::BasicmLearningSimulator) {
   m_ui->setupUi(this);
+
+  m_ui->m_phoneWidget->setStyleSheet("background: #255593; color: white;");
+
+  connect(m_ui->m_listItems, SIGNAL(itemClicked(QListWidgetItem*)),
+          this, SLOT(displayDescription(QListWidgetItem*)));
 }
 
 BasicmLearningSimulator::~BasicmLearningSimulator() {
@@ -41,13 +49,56 @@ BasicmLearningSimulator::~BasicmLearningSimulator() {
 }
 
 bool BasicmLearningSimulator::startSimulation() {
-  return false;
+  BasicmLearningEditor *editor = static_cast<BasicmLearningEditor*>(core()->editor());
+
+  if (!editor->canGenerateApplications()) {
+    // There are no active questions or quiz does not
+    // containt its name or author name.
+    return false;
+  }
+
+  // Remove existing items.
+  m_ui->m_listItems->clear();
+
+  // Add new items.
+  foreach (const BasicmLearningItem &item, editor->activeItems()) {
+    QListWidgetItem *list_item = new QListWidgetItem(item.title(), m_ui->m_listItems);
+    list_item->setData(Qt::UserRole, QVariant::fromValue(item));
+  }
+
+  m_ui->m_phoneWidget->setCurrentIndex(1);
+
+  return true;
 }
 
 bool BasicmLearningSimulator::stopSimulation() {
-  return false;
+  m_ui->m_phoneWidget->setCurrentIndex(0);
+
+  emit canGoBackChanged(false);
+
+  return true;
 }
 
 bool BasicmLearningSimulator::goBack() {
-  return false;
+  if (m_ui->m_phoneWidget->currentIndex() == 2) {
+    m_ui->m_phoneWidget->setCurrentIndex(1);
+
+    emit canGoBackChanged(false);
+
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+
+void BasicmLearningSimulator::launch() {
+  emit canGoBackChanged(false);
+}
+
+void BasicmLearningSimulator::displayDescription(QListWidgetItem *list_item) {
+  m_ui->m_lblDetails->setText(list_item->data(Qt::UserRole).value<BasicmLearningItem>().description());
+  m_ui->m_phoneWidget->setCurrentIndex(2);
+
+  emit canGoBackChanged(true);
 }

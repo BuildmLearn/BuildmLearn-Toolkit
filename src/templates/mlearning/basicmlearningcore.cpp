@@ -52,7 +52,8 @@ bool BasicmLearningCore::generateApkFile() {
 }
 
 void BasicmLearningCore::launch() {
-
+  learningEditor()->launch();
+  learningSimulator()->launch();
 }
 
 BasicmLearningEditor *BasicmLearningCore::learningEditor() {

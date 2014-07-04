@@ -93,6 +93,9 @@ bool FlashCardSimulator::startSimulation() {
 
 bool FlashCardSimulator::stopSimulation() {
   m_ui->m_phoneWidget->setCurrentIndex(0);
+
+  emit canGoBackChanged(false);
+
   return true;
 }
 

@@ -50,6 +50,10 @@ class BasicmLearningSimulator : public TemplateSimulator {
     bool startSimulation();
     bool stopSimulation();
     bool goBack();
+    void launch();
+
+  private slots:
+    void displayDescription(QListWidgetItem *list_item);
 
   private:
     Ui::BasicmLearningSimulator *m_ui;

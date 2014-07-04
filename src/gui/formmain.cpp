@@ -218,6 +218,7 @@ void FormMain::setupToolbar() {
   m_ui->m_toolBar->addSeparator();
   m_ui->m_toolBar->addAction(m_ui->m_actionSimulatorRun);
   m_ui->m_toolBar->addAction(m_ui->m_actionSimulatorStop);
+  m_ui->m_toolBar->addAction(m_ui->m_actionSimulatorGoBack);
   m_ui->m_toolBar->addAction(m_ui->m_actionGenerateMobileApplication);
   m_ui->m_toolBar->addAction(m_ui->m_actionHelp);
 }

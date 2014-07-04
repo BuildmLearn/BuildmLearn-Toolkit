@@ -98,6 +98,9 @@ bool QuizSimulator::startSimulation() {
 
 bool QuizSimulator::stopSimulation() {
   m_ui->m_phoneWidget->setCurrentIndex(0);
+
+  emit canGoBackChanged(false);
+
   return true;
 }
 
