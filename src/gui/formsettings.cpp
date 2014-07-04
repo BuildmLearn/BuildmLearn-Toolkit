@@ -280,7 +280,7 @@ void FormSettings::saveExternalUtilites() {
   qApp->setZipUtilityPath(m_ui->m_lblExternalZip->label()->text());
   qApp->setJavaInterpreterPath(m_ui->m_lblExternalJava->label()->text());
   qApp->setSignApkUtilityPath(m_ui->m_lblExternalSignapk->label()->text());
-  qApp->recheckExternalApplications();
+  qApp->recheckExternalApplications(true);
 }
 
 void FormSettings::checkZip(const QString &new_path) {

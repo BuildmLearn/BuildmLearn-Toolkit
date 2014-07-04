@@ -111,11 +111,12 @@ bool FlashCardEditor::canGenerateApplications() {
 
 void FlashCardEditor::launch() {
   if (canGenerateApplications()) {
-    emit canGenerateChanged(true);
+    issueNewGenereationStatus(true);
   }
   else {
-    emit canGenerateChanged(false, tr("Simulation or mobile application generation of flash card template cannot be started \n"
-                                      "because there is no question added or quiz does not have name."));
+    issueNewGenereationStatus(false,
+                              tr("Simulation or mobile application generation of flash card template cannot be started \n"
+                                 "because there is no question added or quiz does not have name."));
   }
 }
 

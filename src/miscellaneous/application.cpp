@@ -126,7 +126,7 @@ int Application::checkZip(const QString &new_path) {
   }
 }
 
-void Application::recheckExternalApplications() {
+void Application::recheckExternalApplications(bool emit_signals) {
   int java_ready = checkJava();
   int zip_ready = checkZip();
   int signapk_ready = checkSignApk();
@@ -157,7 +157,9 @@ void Application::recheckExternalApplications() {
 
   m_externalApplicationChecked = true;
 
-  emit externalApplicationsRechecked();
+  if (emit_signals) {
+    emit externalApplicationsRechecked();
+  }
 }
 
 QString Application::interpretJava(int return_code) {

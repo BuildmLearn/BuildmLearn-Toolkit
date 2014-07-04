@@ -34,7 +34,7 @@
 
 
 TemplateEditor::TemplateEditor(TemplateCore *core, QWidget *parent)
-  : QWidget(parent), m_core(core) {
+  : QWidget(parent), m_canGenerate(false), m_generateMessage(QString()), m_core(core) {
 }
 
 TemplateEditor::~TemplateEditor() {
@@ -42,7 +42,7 @@ TemplateEditor::~TemplateEditor() {
 }
 
 TemplateCore *TemplateEditor::core() const {
-    return m_core;
+  return m_core;
 }
 
 bool TemplateEditor::isDirty() const {
@@ -51,4 +51,11 @@ bool TemplateEditor::isDirty() const {
 
 void TemplateEditor::setIsDirty(bool is_dirty) {
   m_isDirty = is_dirty;
+}
+
+void TemplateEditor::issueNewGenereationStatus(bool can_generate, const QString &message) {
+  m_canGenerate = can_generate;
+  m_generateMessage = message;
+
+  emit canGenerateChanged(can_generate, message);
 }

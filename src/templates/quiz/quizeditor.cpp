@@ -376,10 +376,11 @@ bool QuizEditor::canGenerateApplications() {
 
 void QuizEditor::launch() {  
   if (canGenerateApplications()) {
-    emit canGenerateChanged(true);
+    issueNewGenereationStatus(true);
   }
   else {
-    emit canGenerateChanged(false, tr("Quiz simulation or mobile application generation cannot be started \n"
-                                      "because there is no question added or quiz does not have name."));
+    issueNewGenereationStatus(false,
+                              tr("Quiz simulation or mobile application generation cannot be started \n"
+                                                                    "because there is no question added or quiz does not have name."));
   }
 }

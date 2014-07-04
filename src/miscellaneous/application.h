@@ -150,7 +150,7 @@ class Application : public QApplication {
     /// \return Returns specific return code of ZIP executable.
     int checkZip(const QString &new_path = QString());
 
-    void recheckExternalApplications();
+    void recheckExternalApplications(bool emit_signals);
 
     QString interpretJava(int return_code);
     QString interpretZip(int return_code);
@@ -204,7 +204,6 @@ class Application : public QApplication {
     void onAboutToQuit();
     void onCommitData(QSessionManager &manager);
     void onSaveState(QSessionManager &manager);
-
     void handleBackgroundUpdatesCheck();
 
   signals:

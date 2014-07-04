@@ -159,6 +159,7 @@ void FormMain::createConnections() {
   // Template system connections.
   connect(qApp->templateManager(), SIGNAL(newTemplateCoreCreated(TemplateCore*)),
           this, SLOT(setTemplateCore(TemplateCore*)));
+  connect(qApp, SIGNAL(externalApplicationsRechecked()), this, SLOT(onExternalApplicationsChanged()));
 }
 
 void FormMain::setupActionShortcuts() {
@@ -275,10 +276,9 @@ void FormMain::takeSimulationOneStepBack() {
 
 void FormMain::onCanGenerateChanged(bool can_generate, const QString &informative_text) {
   if (can_generate) {
-    // Recheck availability of external applications
-    // if no check in this application life was done so far.
+    // Editor of active template can generate applications.
     if (!qApp->externalApplicationChecked()) {
-      qApp->recheckExternalApplications();
+      qApp->recheckExternalApplications(false);
     }
 
     if (!qApp->externalApplicationsReady()) {
@@ -295,10 +295,25 @@ void FormMain::onCanGenerateChanged(bool can_generate, const QString &informativ
     m_ui->m_actionSimulatorRun->setToolTip(tr("Start new simulation"));
   }
   else {
+    // Editor of active template cannot generate applications.
     m_ui->m_actionGenerateMobileApplication->setEnabled(can_generate);
-    m_ui->m_actionGenerateMobileApplication->setToolTip(informative_text);
+    m_ui->m_actionGenerateMobileApplication->setToolTip(qApp->externalApplicationsStatus());
     m_ui->m_actionSimulatorRun->setEnabled(can_generate);
     m_ui->m_actionSimulatorRun->setToolTip(informative_text);
+  }
+}
+
+void FormMain::onExternalApplicationsChanged() {
+  if (qApp->templateManager()->activeCore() != NULL) {
+    TemplateEditor *active_editor = qApp->templateManager()->activeCore()->editor();
+
+    onCanGenerateChanged(active_editor->canGenerateApplications(),
+                         active_editor->generationStatusDescription());
+  }
+  else {
+    // There is no active template, thus no simulations can be started
+    // but still update generator buttons.
+    onCanGenerateChanged(false, QString());
   }
 }
 

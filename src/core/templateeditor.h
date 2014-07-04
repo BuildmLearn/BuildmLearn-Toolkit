@@ -54,7 +54,13 @@ class TemplateEditor : public QWidget {
     /// \return Returns true if editor contains enough data
     /// for generating of applications.
     /// \warning This is used in cooperation with canGenerateStatusChanged(bool can_generate).
-    virtual bool canGenerateApplications() = 0;
+    virtual bool canGenerateApplications() {
+      return m_canGenerate;
+    }
+
+    virtual QString generationStatusDescription() {
+      return m_generateMessage;
+    }
 
     /// \brief Access to associated template core.
     /// \return Returns associated template core.
@@ -65,6 +71,9 @@ class TemplateEditor : public QWidget {
     /// \return Returns true, if editor contains unsaved contents.
     bool isDirty() const;
     void setIsDirty(bool is_dirty);
+
+  protected:
+    void issueNewGenereationStatus(bool can_generate, const QString &message = QString());
 
   signals:
     /// \brief Emitted everytime any child widget of editor
@@ -85,6 +94,8 @@ class TemplateEditor : public QWidget {
     void canGenerateChanged(bool can_generate, const QString &message = QString());
 
   protected:
+    bool m_canGenerate;
+    QString m_generateMessage;
     bool m_isDirty;
     TemplateCore *m_core;
 };

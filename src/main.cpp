@@ -140,5 +140,8 @@ int main(int argc, char *argv[]) {
                        SLOT(checkForUpdatesOnBackground()));
   }
 
+  // Check for availability of external generators.
+  application.recheckExternalApplications(true);
+
   return Application::exec();
 }

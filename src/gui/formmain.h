@@ -92,8 +92,11 @@ class FormMain : public QMainWindow {
 
     void takeSimulationOneStepBack();
 
-    // Called when generation status of current template is changed.
+    // Called when generation status of current template is changed by its editor part.
     void onCanGenerateChanged(bool can_generate, const QString &informative_text);
+
+    // Called when user/application changes some external applications.
+    void onExternalApplicationsChanged();
 
     // Called when contents of active editor is changed,
     // thus there are new unsaved changes.
