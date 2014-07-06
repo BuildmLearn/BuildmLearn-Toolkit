@@ -35,9 +35,6 @@
 
 #include "gui/formnewproject.h"
 
-#include "InfoTemplate.h"
-#include "FlashcardTemplate.h"
-
 #include <QMainWindow>
 #include <QHash>
 #include <QtGui>

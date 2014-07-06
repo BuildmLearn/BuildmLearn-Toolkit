@@ -171,7 +171,7 @@ void FormSettings::displayProxyPassword(int state) {
     m_ui->m_txtProxyPassword->setEchoMode(QLineEdit::Normal);
   }
   else {
-    m_ui->m_txtProxyPassword->setEchoMode(QLineEdit::PasswordEchoOnEdit);
+    m_ui->m_txtProxyPassword->setEchoMode(QLineEdit::Password);
   }
 }
 

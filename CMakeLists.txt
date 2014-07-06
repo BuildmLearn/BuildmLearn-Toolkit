@@ -413,10 +413,6 @@ set(APP_SOURCES
   src/templates/mlearning/basicmlearningsimulator.cpp
   src/templates/mlearning/basicmlearningitem.cpp
 
-  src/FlashcardTemplate.cpp
-  src/InfoTemplate.cpp
-  src/QuestionItem.cpp
-
   src/main.cpp
 )
 
@@ -477,10 +473,6 @@ set(APP_HEADERS
   src/templates/mlearning/basicmlearningeditor.h
   src/templates/mlearning/basicmlearningsimulator.h
   src/templates/mlearning/basicmlearningitem.h
-
-  src/FlashcardTemplate.h
-  src/InfoTemplate.h
-  src/QuestionItem.h
 )
 
 # APP form files.
