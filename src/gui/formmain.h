@@ -74,7 +74,7 @@ class FormMain : public QMainWindow {
 
     /// \brief Access to all actions provided by this window.
     /// \see DynamicShortcuts
-    QHash<QString, QAction*> allActions();
+    QList<QAction*> allActions();
 
   private:
     void createConnections();

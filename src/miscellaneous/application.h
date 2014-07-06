@@ -170,7 +170,7 @@ class Application : public QApplication {
 
     /// \brief Access to all application-wide useable actions.
     /// \return Return list of user actions.
-    QHash<QString, QAction*> availableActions();
+    QList<QAction*> availableActions();
 
     /// \brief Access to application tray icon.
     /// \return Returns pointer to application tray icon.
@@ -214,7 +214,7 @@ class Application : public QApplication {
     bool m_externalApplicationsReady;
     QString m_externalApplicationsStatus;
     QMutex *m_closeLock;
-    QHash<QString, QAction*> m_availableActions;
+    QList<QAction*> m_availableActions;
     Settings *m_settings;
     SkinFactory *m_skinFactory;
     SystemTrayIcon *m_trayIcon;

@@ -126,7 +126,7 @@ int main(int argc, char *argv[]) {
   application.setMainForm(&main_form);
 
   // Load keyboard shortcuts.
-  DynamicShortcuts::load(application.availableActions().values());
+  DynamicShortcuts::load(application.availableActions());
 
   main_form.show();
 

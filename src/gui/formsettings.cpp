@@ -621,7 +621,7 @@ void FormSettings::saveInterface() {
 }
 
 void FormSettings::loadShortcuts() {
-  m_ui->m_shortcutsEditor->populate(qApp->availableActions().values());
+  m_ui->m_shortcutsEditor->populate(qApp->availableActions());
 }
 
 void FormSettings::saveShortcuts() {
@@ -629,9 +629,8 @@ void FormSettings::saveShortcuts() {
   m_ui->m_shortcutsEditor->updateShortcuts();
 
   // Save new shortcuts to the settings.
-  DynamicShortcuts::save(qApp->availableActions().values());
+  DynamicShortcuts::save(qApp->availableActions());
 }
-
 
 void FormSettings::loadGenerationStuff() {
   m_ui->m_lblGenerationTemp->setText(QDir::toNativeSeparators(qApp->templateManager()->tempDirectory()));

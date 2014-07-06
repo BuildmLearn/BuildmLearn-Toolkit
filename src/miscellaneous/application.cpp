@@ -52,17 +52,14 @@ Application::Application(int &argc, char **argv)
   : QApplication(argc, argv),
     m_externalApplicationChecked(false),
     m_closeLock(new QMutex()),
-    m_availableActions(QHash<QString, QAction*>()),
+    m_availableActions(QList<QAction*>()),
     m_settings(NULL),
     m_skinFactory(NULL),
     m_trayIcon(NULL),
     m_templateManager(NULL) {
-  connect(this, SIGNAL(aboutToQuit()),
-          this, SLOT(onAboutToQuit()));
-  connect(this, SIGNAL(commitDataRequest(QSessionManager&)),
-          this, SLOT(onCommitData(QSessionManager&)));
-  connect(this, SIGNAL(saveStateRequest(QSessionManager&)),
-          this, SLOT(onSaveState(QSessionManager&)));
+  connect(this, SIGNAL(aboutToQuit()), this, SLOT(onAboutToQuit()));
+  connect(this, SIGNAL(commitDataRequest(QSessionManager&)), this, SLOT(onCommitData(QSessionManager&)));
+  connect(this, SIGNAL(saveStateRequest(QSessionManager&)), this, SLOT(onSaveState(QSessionManager&)));
 }
 
 Application::~Application() {
@@ -213,9 +210,9 @@ QString Application::interpretSignApk(int return_code) {
   }
 }
 
-QHash<QString, QAction *> Application::availableActions() {
+QList<QAction*> Application::availableActions() {
   if (m_mainForm == NULL) {
-    return QHash<QString, QAction*>();
+    return QList<QAction*>();
   }
   else {
     if (m_availableActions.isEmpty()) {

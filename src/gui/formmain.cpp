@@ -96,21 +96,21 @@ FormMain::~FormMain() {
   qDebug("Destroying FormMain instance.");
 }
 
-QHash<QString, QAction*> FormMain::allActions() {
-  QHash<QString, QAction*> actions;
+QList<QAction*> FormMain::allActions() {
+  QList<QAction*> actions;
 
-  actions.insert(m_ui->m_actionCheckForUpdates->objectName(), m_ui->m_actionCheckForUpdates);
-  actions.insert(m_ui->m_actionGenerateMobileApplication->objectName(), m_ui->m_actionGenerateMobileApplication);
-  actions.insert(m_ui->m_actionLoadProject->objectName(), m_ui->m_actionLoadProject);
-  actions.insert(m_ui->m_actionNewProject->objectName(), m_ui->m_actionNewProject);
-  actions.insert(m_ui->m_actionSaveProject->objectName(), m_ui->m_actionSaveProject);
-  actions.insert(m_ui->m_actionSaveProjectAs->objectName(), m_ui->m_actionSaveProjectAs);
-  actions.insert(m_ui->m_actionSimulatorRun->objectName(), m_ui->m_actionSimulatorRun);
-  actions.insert(m_ui->m_actionSimulatorStop->objectName(), m_ui->m_actionSimulatorStop);
-  actions.insert(m_ui->m_actionSimulatorGoBack->objectName(), m_ui->m_actionSimulatorGoBack);
-  actions.insert(m_ui->m_actionQuit->objectName(), m_ui->m_actionQuit);
-  actions.insert(m_ui->m_actionSettings->objectName(), m_ui->m_actionSettings);
-  actions.insert(m_ui->m_actionHelp->objectName(), m_ui->m_actionHelp);
+  actions.append(m_ui->m_actionCheckForUpdates);
+  actions.append(m_ui->m_actionGenerateMobileApplication);
+  actions.append(m_ui->m_actionLoadProject);
+  actions.append(m_ui->m_actionNewProject);
+  actions.append(m_ui->m_actionSaveProject);
+  actions.append(m_ui->m_actionSaveProjectAs);
+  actions.append(m_ui->m_actionSimulatorRun);
+  actions.append(m_ui->m_actionSimulatorStop);
+  actions.append(m_ui->m_actionSimulatorGoBack);
+  actions.append(m_ui->m_actionQuit);
+  actions.append( m_ui->m_actionSettings);
+  actions.append(m_ui->m_actionHelp);
 
   return actions;
 }
@@ -373,16 +373,6 @@ void FormMain::setTemplateCore(TemplateCore *core) {
 void FormMain::onAboutToQuit() { 
   // Save all necessary things before application exits.
   saveSizeAndPosition();
-
-  // Make sure that we obtain close lock
-  // BEFORE even trying to quit the application.
-  if (qApp->closeLock()->tryLock(CLOSE_LOCK_TIMEOUT)) {
-    qApp->closeLock()->unlock();
-    qDebug("Application close lock obtained, unlocking it.");
-  }
-  else {
-    qDebug("Application close lick WAS NOT obtained, quitting anyway.");
-  }
 }
 
 void FormMain::onSimulatorWindowClosed() {
