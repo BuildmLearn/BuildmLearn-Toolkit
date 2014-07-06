@@ -53,7 +53,7 @@ class TemplateCore : public QObject {
     /// \warning This is used only if template can actually
     /// generate mobile application, so that editor of the template
     /// must contain sufficient data for doing so.
-    virtual bool generateApkFile() = 0;
+    virtual bool generateMobileApplication() = 0;
 
     /// \brief Called after this template is fully loaded in toolkit.
     /// \note Template is fully loaded only and only if its editor is set as
@@ -91,6 +91,9 @@ class TemplateCore : public QObject {
     /// it transfers the flow to "Save as" feature.
     QString assignedFile() const;
     void setAssignedFile(const QString &assigned_file);
+
+  signals:
+    void generationProgress(int percent_completed, const QString &progress_info);
 
   protected:
     TemplateEntryPoint *m_entryPoint;

@@ -84,7 +84,7 @@ class FormMain : public QMainWindow {
     void loadSizeAndPosition();
     void saveSizeAndPosition();
 
-  private slots:
+  private slots:   
     void startSimulation();
 
     void takeSimulationOneStepBack();
@@ -98,6 +98,10 @@ class FormMain : public QMainWindow {
     // Called when contents of active editor is changed,
     // thus there are new unsaved changes.
     void onEditorChanged();
+
+    void onGenerationProgress(int percentage_completed, const QString &message);
+    void onGenerationStarted();
+    void onGenerationDone(int result_code, const QString &output_file);
 
     // Called when user opens new project or loads existing project.
     // This should read "editor" from core and set it as central widget.

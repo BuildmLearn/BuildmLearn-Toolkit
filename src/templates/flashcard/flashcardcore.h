@@ -46,7 +46,7 @@ class FlashCardCore : public TemplateCore {
     virtual ~FlashCardCore();
 
     void launch();
-    bool generateApkFile();
+    bool generateMobileApplication();
 
   private:
     FlashCardEditor *flashCardEditor();

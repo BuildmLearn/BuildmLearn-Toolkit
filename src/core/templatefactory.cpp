@@ -33,6 +33,7 @@
 #include "definitions/definitions.h"
 #include "core/templatecore.h"
 #include "core/templateentrypoint.h"
+#include "core/templategenerator.h"
 #include "miscellaneous/settings.h"
 #include "miscellaneous/application.h"
 #include "templates/quiz/quizentrypoint.h"
@@ -45,10 +46,13 @@
 #include <QDesktopServices>
 #endif
 
+#include <QThread>
+
 
 TemplateFactory::TemplateFactory(QObject *parent)
   : QObject(parent), m_availableTemplates(QHash<QString, TemplateEntryPoint*>()),
-    m_activeEntryPoint(NULL), m_activeCore(NULL) {
+    m_activeEntryPoint(NULL), m_activeCore(NULL),
+    m_generator(new TemplateGenerator(this)) {
   setupTemplates();
 }
 
@@ -141,6 +145,9 @@ bool TemplateFactory::entryPointIsLessThan(TemplateEntryPoint *s1, TemplateEntry
   return s1->humanName() < s2.humanName();
 }
 
+void TemplateFactory::quit() {
+}
+
 void TemplateFactory::clearEntryAndCore() {
   if (m_activeEntryPoint != NULL) {
     m_activeEntryPoint = NULL;
@@ -178,4 +185,8 @@ void TemplateFactory::setupTemplates() {
 
   TemplateEntryPoint *quiz_entry = new QuizEntryPoint(this);
   m_availableTemplates.insert(quiz_entry->typeIndentifier(), quiz_entry);
+}
+
+TemplateGenerator *TemplateFactory::generator() const {
+  return m_generator;
 }

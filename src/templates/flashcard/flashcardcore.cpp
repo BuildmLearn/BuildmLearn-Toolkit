@@ -49,7 +49,7 @@ void FlashCardCore::launch() {
   flashCardSimulator()->launch();
 }
 
-bool FlashCardCore::generateApkFile() {
+bool FlashCardCore::generateMobileApplication() {
   return false;
 }
 

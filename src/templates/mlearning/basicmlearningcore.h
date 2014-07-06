@@ -43,7 +43,7 @@ class BasicmLearningCore : public TemplateCore {
     explicit BasicmLearningCore(TemplateEntryPoint *entry_point, QObject *parent = 0);
     virtual ~BasicmLearningCore();
 
-    bool generateApkFile();
+    bool generateMobileApplication();
     void launch();
 
   private:

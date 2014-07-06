@@ -44,7 +44,8 @@ QuizCore::~QuizCore() {
   qDebug("Destroying QuizCore instance.");
 }
 
-bool QuizCore::generateApkFile() {
+bool QuizCore::generateMobileApplication() {
+  emit generationProgress(20, "aaa");
   return true;
 }
 

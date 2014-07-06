@@ -392,6 +392,7 @@ set(APP_SOURCES
   src/core/templatecore.cpp
   src/core/templateeditor.cpp
   src/core/templatesimulator.cpp
+  src/core/templategenerator.cpp
 
   src/templates/quiz/quizentrypoint.cpp
   src/templates/quiz/quizcore.cpp
@@ -454,6 +455,7 @@ set(APP_HEADERS
   src/core/templatecore.h
   src/core/templateeditor.h
   src/core/templatesimulator.h
+  src/core/templategenerator.h
 
   src/templates/quiz/quizentrypoint.h
   src/templates/quiz/quizcore.h

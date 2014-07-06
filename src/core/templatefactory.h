@@ -39,6 +39,7 @@
 
 class TemplateEntryPoint;
 class TemplateCore;
+class TemplateGenerator;
 
 /// \brief The top-level manager of templates.
 ///
@@ -93,9 +94,13 @@ class TemplateFactory : public QObject {
     /// \return Returns XML bundle structure.
     QDomDocument generateBundleHeader();
 
+    TemplateGenerator *generator() const;
+
     static bool entryPointIsLessThan(TemplateEntryPoint *s1, TemplateEntryPoint &s2);
 
   public slots:
+    void quit();
+
     /// \brief Starts new project core from given entry point.
     /// \param entry_point Entry point to be started.
     void startNewProject(TemplateEntryPoint *entry_point);
@@ -116,6 +121,8 @@ class TemplateFactory : public QObject {
     QHash<QString, TemplateEntryPoint*> m_availableTemplates;
     TemplateEntryPoint *m_activeEntryPoint;
     TemplateCore *m_activeCore;
+
+    TemplateGenerator *m_generator;
 };
 
 #endif // TEMPLATEFACTORY_H

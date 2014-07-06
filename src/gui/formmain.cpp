@@ -44,6 +44,7 @@
 #include "core/templateentrypoint.h"
 #include "core/templatecore.h"
 #include "core/templateeditor.h"
+#include "core/templategenerator.h"
 #include "templates/quiz/quizentrypoint.h"
 
 #include <QStackedWidget>
@@ -132,22 +133,15 @@ void FormMain::setupSimulatorWindow() {
 void FormMain::createConnections() {
   // General connections.
   connect(qApp, SIGNAL(aboutToQuit()), this, SLOT(onAboutToQuit()));
-  connect(m_ui->m_actionQuit, SIGNAL(triggered()),
-          qApp, SLOT(quit()));
-  connect(m_ui->m_actionCheckForUpdates, SIGNAL(triggered()),
-          this, SLOT(showUpdates()));
-  connect(m_ui->m_actionAboutToolkit, SIGNAL(triggered()),
-          this, SLOT(showAbout()));
-  connect(m_ui->m_actionSettings, SIGNAL(triggered()),
-          this, SLOT(showSettings()));
-  connect(m_ui->m_actionHelp, SIGNAL(triggered()),
-          this, SLOT(showHelp()));
+  connect(m_ui->m_actionQuit, SIGNAL(triggered()), qApp, SLOT(quit()));
+  connect(m_ui->m_actionCheckForUpdates, SIGNAL(triggered()), this, SLOT(showUpdates()));
+  connect(m_ui->m_actionAboutToolkit, SIGNAL(triggered()), this, SLOT(showAbout()));
+  connect(m_ui->m_actionSettings, SIGNAL(triggered()), this, SLOT(showSettings()));
+  connect(m_ui->m_actionHelp, SIGNAL(triggered()), this, SLOT(showHelp()));
 
   // View connections.
-  connect(m_ui->m_actionViewSimulatorWindow, SIGNAL(toggled(bool)),
-          this, SLOT(switchSimulatorWindow(bool)));
-  connect(m_ui->m_actionStickSimulatorWindow, SIGNAL(toggled(bool)),
-          m_simulatorWindow, SLOT(setIsSticked(bool)));
+  connect(m_ui->m_actionViewSimulatorWindow, SIGNAL(toggled(bool)), this, SLOT(switchSimulatorWindow(bool)));
+  connect(m_ui->m_actionStickSimulatorWindow, SIGNAL(toggled(bool)), m_simulatorWindow, SLOT(setIsSticked(bool)));
 
   // Extra simulator connections.
   connect(m_simulatorWindow, SIGNAL(closed()), this, SLOT(onSimulatorWindowClosed()));
@@ -157,19 +151,18 @@ void FormMain::createConnections() {
   connect(m_ui->m_actionSimulatorGoBack, SIGNAL(triggered()), this, SLOT(takeSimulationOneStepBack()));
 
   // Project connections.
-  connect(m_ui->m_actionNewProject, SIGNAL(triggered()),
-          this ,SLOT(openNewProjectDialog()));
-  connect(m_ui->m_actionSaveProject, SIGNAL(triggered()),
-          this ,SLOT(openSaveProjectDialog()));
-  connect(m_ui->m_actionLoadProject, SIGNAL(triggered()),
-          this ,SLOT(openLoadProjectDialog()));
-  connect(m_ui->m_actionGenerateMobileApplication, SIGNAL(triggered()),
-          this ,SLOT(generateMobileApplication()));
+  connect(m_ui->m_actionNewProject, SIGNAL(triggered()), this ,SLOT(openNewProjectDialog()));
+  connect(m_ui->m_actionSaveProject, SIGNAL(triggered()), this ,SLOT(openSaveProjectDialog()));
+  connect(m_ui->m_actionLoadProject, SIGNAL(triggered()), this ,SLOT(openLoadProjectDialog()));
+  connect(m_ui->m_actionGenerateMobileApplication, SIGNAL(triggered()), this ,SLOT(generateMobileApplication()));
 
   // Template system connections.
-  connect(qApp->templateManager(), SIGNAL(newTemplateCoreCreated(TemplateCore*)),
-          this, SLOT(setTemplateCore(TemplateCore*)));
+  connect(qApp->templateManager(), SIGNAL(newTemplateCoreCreated(TemplateCore*)), this, SLOT(setTemplateCore(TemplateCore*)));
   connect(qApp, SIGNAL(externalApplicationsRechecked()), this, SLOT(onExternalApplicationsChanged()));
+  connect(m_ui->m_actionGenerateMobileApplication, SIGNAL(triggered()), this, SLOT(generateMobileApplication()));
+  connect(qApp->templateManager()->generator(), SIGNAL(generationStarted()), this, SLOT(onGenerationStarted()));
+  connect(qApp->templateManager()->generator(), SIGNAL(generationFinished(int,QString)), this, SLOT(onGenerationDone(int,QString)));
+  connect(qApp->templateManager()->generator(), SIGNAL(generationProgress(int,QString)), this, SLOT(onGenerationProgress(int,QString)));
 }
 
 void FormMain::setupActionShortcuts() {
@@ -347,6 +340,28 @@ void FormMain::onEditorChanged() {
   }
 }
 
+void FormMain::onGenerationProgress(int percentage_completed, const QString &message) {
+  m_statusLabel->setText(message);
+  m_statusProgress->setValue(percentage_completed);
+  m_statusLabel->setVisible(true);
+  m_statusProgress->setValue(true);
+}
+
+void FormMain::onGenerationStarted() {
+  m_ui->m_actionGenerateMobileApplication->setEnabled(false);
+}
+
+void FormMain::onGenerationDone(int result_code, const QString &output_file) {
+  if (qApp->templateManager()->activeCore() != NULL) {
+    m_ui->m_actionGenerateMobileApplication->setEnabled(qApp->templateManager()->activeCore()->editor()->canGenerateApplications());
+  }
+  else {
+    m_ui->m_actionGenerateMobileApplication->setEnabled(false);
+  }
+
+  // TODO: Print information about result.
+}
+
 void FormMain::setTemplateCore(TemplateCore *core) {
   setWindowTitle(m_normalTitle);
 
@@ -519,12 +534,7 @@ void FormMain::openNewProjectDialog() {
 
 void FormMain::generateMobileApplication() {
   if (qApp->templateManager()->activeCore() != NULL) {
-    if (qApp->templateManager()->activeCore()->generateApkFile()) {
-      // Application was generated.
-    }
-    else {
-      // Application was not generated.
-    }
+    qApp->templateManager()->generator()->generateMobileApplication(qApp->templateManager()->activeCore());
   }
   else {
     QMessageBox::warning(this,
