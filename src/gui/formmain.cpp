@@ -58,6 +58,8 @@
 
 FormMain::FormMain(QWidget *parent)
   : QMainWindow(parent),
+    m_statusProgress(new QProgressBar(this)),
+    m_statusLabel(new QLabel(this)),
     m_centralArea(new QScrollArea(this)),
     m_centralLayout(new QVBoxLayout(m_centralArea)),
     m_firstTimeShow(true),
@@ -67,6 +69,9 @@ FormMain::FormMain(QWidget *parent)
 
   m_normalTitle = APP_LONG_NAME;
   m_unsavedTitle = m_normalTitle + " *";
+
+  m_ui->m_statusBar->addWidget(m_statusProgress);
+  m_ui->m_statusBar->addWidget(m_statusLabel, 1);
 
   setWindowTitle(m_normalTitle);
 

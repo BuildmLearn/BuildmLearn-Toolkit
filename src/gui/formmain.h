@@ -162,6 +162,9 @@ class FormMain : public QMainWindow {
     void moved();
 
   private:
+    QProgressBar *m_statusProgress;
+    QLabel *m_statusLabel;
+
     QScrollArea *m_centralArea;
     QVBoxLayout *m_centralLayout;
     bool m_firstTimeShow;

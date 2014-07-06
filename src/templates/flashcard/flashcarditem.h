@@ -58,7 +58,7 @@ class FlashCardItem : public QWidget {
     void setQuestion(const FlashCardQuestion &question, int question_number);
 
   private slots:
-    void flip();
+    void flip(int target_side = -1);
 
   signals:
     void nextCardRequested();

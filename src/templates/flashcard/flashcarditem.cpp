@@ -47,7 +47,7 @@ FlashCardItem::~FlashCardItem() {
 }
 
 void FlashCardItem::reset() {
-  m_ui->m_flipper->setCurrentIndex(0);
+  flip(0);
 }
 
 void FlashCardItem::setQuestion(const FlashCardQuestion &question, int question_number) {
@@ -59,6 +59,10 @@ void FlashCardItem::setQuestion(const FlashCardQuestion &question, int question_
   m_ui->m_lblPicture->setPixmap(QPixmap(question.picturePath()).scaled(m_ui->m_lblPicture->size(), Qt::KeepAspectRatio));
 }
 
-void FlashCardItem::flip() {
-  m_ui->m_flipper->setCurrentIndex(m_ui->m_flipper->currentIndex() == 0 ? 1 : 0);
+void FlashCardItem::flip(int target_side) {
+  target_side = target_side < 0 ? (m_ui->m_flipper->currentIndex() == 0 ? 1 : 0) : target_side;
+
+  m_ui->m_lblHint->setVisible(target_side == 0);
+  m_ui->m_lblQuestionText->setVisible(target_side == 0);
+  m_ui->m_flipper->setCurrentIndex(target_side);
 }
