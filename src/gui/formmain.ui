@@ -215,7 +215,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Show &amp;window</string>
+    <string>Show simulator &amp;window</string>
    </property>
   </action>
   <action name="m_actionStickSimulatorWindow">
@@ -223,7 +223,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>&amp;Stick to main window</string>
+    <string>&amp;Stick simulator window to main window</string>
    </property>
   </action>
   <action name="m_actionSimulatorRun">

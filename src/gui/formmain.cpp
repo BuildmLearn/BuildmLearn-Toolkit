@@ -108,6 +108,8 @@ QList<QAction*> FormMain::allActions() {
   actions.append(m_ui->m_actionSimulatorRun);
   actions.append(m_ui->m_actionSimulatorStop);
   actions.append(m_ui->m_actionSimulatorGoBack);
+  actions.append(m_ui->m_actionViewSimulatorWindow);
+  actions.append(m_ui->m_actionStickSimulatorWindow);
   actions.append(m_ui->m_actionQuit);
   actions.append( m_ui->m_actionSettings);
   actions.append(m_ui->m_actionHelp);
