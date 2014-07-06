@@ -70,8 +70,11 @@ FormMain::FormMain(QWidget *parent)
   m_normalTitle = APP_LONG_NAME;
   m_unsavedTitle = m_normalTitle + " *";
 
+  // Addd necessary widgets to status.
   m_ui->m_statusBar->addWidget(m_statusProgress);
   m_ui->m_statusBar->addWidget(m_statusLabel, 1);
+  m_statusLabel->setVisible(false);
+  m_statusProgress->setVisible(false);
 
   setWindowTitle(m_normalTitle);
 

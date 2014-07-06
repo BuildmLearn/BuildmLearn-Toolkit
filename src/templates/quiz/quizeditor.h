@@ -58,6 +58,7 @@ class QuizEditor : public TemplateEditor {
     explicit QuizEditor(TemplateCore *core, QWidget *parent = 0);
     virtual ~QuizEditor();
 
+    QString generateBundleData();
     bool canGenerateApplications();
     void launch();
 

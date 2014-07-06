@@ -116,6 +116,10 @@ void BasicmLearningEditor::launch() {
   }
 }
 
+QString BasicmLearningEditor::generateBundleData() {
+  return QString();
+}
+
 void BasicmLearningEditor::addNewItem() {
   int marked_item = m_ui->m_listItems->currentRow();
   BasicmLearningItem new_item;

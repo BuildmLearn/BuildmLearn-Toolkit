@@ -384,3 +384,7 @@ void QuizEditor::launch() {
                                                                     "because there is no question added or quiz does not have name."));
   }
 }
+
+QString QuizEditor::generateBundleData() {
+  return QString();
+}

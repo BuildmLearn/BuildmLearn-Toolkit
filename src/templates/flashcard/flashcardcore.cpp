@@ -44,10 +44,6 @@ FlashCardCore::~FlashCardCore() {
   qDebug("Destroying FlashCardCore instance.");
 }
 
-QString FlashCardCore::generateBundleData() {
-  return QString();
-}
-
 void FlashCardCore::launch() {
   flashCardEditor()->launch();
   flashCardSimulator()->launch();

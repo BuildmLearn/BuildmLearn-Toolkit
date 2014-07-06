@@ -120,6 +120,10 @@ void FlashCardEditor::launch() {
   }
 }
 
+QString FlashCardEditor::generateBundleData() {
+  return QString();
+}
+
 QList<FlashCardQuestion> FlashCardEditor::activeQuestions() const {
   QList<FlashCardQuestion> questions;
 

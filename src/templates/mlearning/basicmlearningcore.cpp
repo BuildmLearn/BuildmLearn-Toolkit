@@ -43,10 +43,6 @@ BasicmLearningCore::BasicmLearningCore(TemplateEntryPoint *entry_point, QObject 
 BasicmLearningCore::~BasicmLearningCore() {
 }
 
-QString BasicmLearningCore::generateBundleData() {
-  return QString();
-}
-
 bool BasicmLearningCore::generateApkFile() {
   return false;
 }

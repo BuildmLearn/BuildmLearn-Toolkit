@@ -52,6 +52,7 @@ class FlashCardEditor : public TemplateEditor {
 
     bool canGenerateApplications();
     void launch();
+    QString generateBundleData();
 
     QList<FlashCardQuestion> activeQuestions() const;
 

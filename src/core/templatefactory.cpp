@@ -112,6 +112,31 @@ void TemplateFactory::setApplicationFileNamePattern(const QString &file_name_pat
   qApp->settings()->setValue(APP_CFG_TEMPLATES, "application_file_name_pattern", file_name_pattern);
 }
 
+QDomDocument TemplateFactory::generateBundleHeader() {
+  QDomDocument xml_bundle;
+  QDomElement root_element = xml_bundle.createElement("buildmlearn_application");
+  QDomElement author_element = xml_bundle.createElement("author");
+  QDomElement name_element = xml_bundle.createElement("name");
+  QDomElement email_element = xml_bundle.createElement("email");
+  QDomElement title_element = xml_bundle.createElement("title");
+  QDomElement description_element = xml_bundle.createElement("description");
+  QDomElement version_element = xml_bundle.createElement("version");
+  QDomElement data_element = xml_bundle.createElement("data");
+
+  author_element.appendChild(name_element);
+  author_element.appendChild(email_element);
+
+  root_element.appendChild(author_element);
+  root_element.appendChild(title_element);
+  root_element.appendChild(description_element);
+  root_element.appendChild(version_element);
+  root_element.appendChild(data_element);
+
+  xml_bundle.appendChild(root_element);
+
+  return xml_bundle;
+}
+
 bool TemplateFactory::entryPointIsLessThan(TemplateEntryPoint *s1, TemplateEntryPoint &s2) {
   return s1->humanName() < s2.humanName();
 }

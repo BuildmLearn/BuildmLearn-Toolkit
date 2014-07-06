@@ -48,14 +48,6 @@ class TemplateCore : public QObject {
     explicit TemplateCore(TemplateEntryPoint *entry_point, QObject *parent = 0);
     virtual ~TemplateCore();
 
-    /// \brief Generates RAW data which represent data of this template.
-    /// \remarks Generated data are stored in XML bundle file.
-    /// \warning Generated data of this method must be compatible
-    /// with custom implementation of TemplateEntryPoint::loadCoreFromBundleData(const QString &raw_data)
-    /// method!!!
-    /// \return Returns string with generated data.
-    virtual QString generateBundleData() = 0;
-
     /// \brief Generates APK file from current project with active settings
     /// \return Returns true on success, otherwise returns false.
     /// \warning This is used only if template can actually

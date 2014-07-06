@@ -44,11 +44,6 @@ QuizCore::~QuizCore() {
   qDebug("Destroying QuizCore instance.");
 }
 
-QString QuizCore::generateBundleData() {
-  // TODO: Finish when neeeded.
-  return QString();
-}
-
 bool QuizCore::generateApkFile() {
   return true;
 }

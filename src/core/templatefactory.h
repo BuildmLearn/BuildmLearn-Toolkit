@@ -34,6 +34,7 @@
 #include <QObject>
 
 #include <QHash>
+#include <QDomDocument>
 
 
 class TemplateEntryPoint;
@@ -87,6 +88,10 @@ class TemplateFactory : public QObject {
     TemplateCore *activeCore() const {
       return m_activeCore;
     }
+
+    /// \brief Generates common XML bundle.
+    /// \return Returns XML bundle structure.
+    QDomDocument generateBundleHeader();
 
     static bool entryPointIsLessThan(TemplateEntryPoint *s1, TemplateEntryPoint &s2);
 

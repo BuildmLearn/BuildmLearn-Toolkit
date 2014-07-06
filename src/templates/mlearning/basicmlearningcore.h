@@ -43,7 +43,6 @@ class BasicmLearningCore : public TemplateCore {
     explicit BasicmLearningCore(TemplateEntryPoint *entry_point, QObject *parent = 0);
     virtual ~BasicmLearningCore();
 
-    QString generateBundleData();
     bool generateApkFile();
     void launch();
 

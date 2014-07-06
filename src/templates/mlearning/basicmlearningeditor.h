@@ -55,6 +55,7 @@ class BasicmLearningEditor : public TemplateEditor {
 
     bool canGenerateApplications();
     void launch();
+    QString generateBundleData();
 
   private slots:
     void addNewItem();

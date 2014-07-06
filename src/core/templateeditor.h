@@ -62,6 +62,14 @@ class TemplateEditor : public QWidget {
       return m_generateMessage;
     }
 
+    /// \brief Generates RAW data which represent data of this template.
+    /// \remarks Generated data are stored in XML bundle file.
+    /// \warning Generated data of this method must be compatible
+    /// with custom implementation of TemplateEntryPoint::loadCoreFromBundleData(const QString &raw_data)
+    /// method!!!
+    /// \return Returns string with generated data.
+    virtual QString generateBundleData() = 0;
+
     /// \brief Access to associated template core.
     /// \return Returns associated template core.
     /// \see TemplateCore
