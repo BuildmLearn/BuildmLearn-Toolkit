@@ -51,6 +51,6 @@ TemplateCore *FlashCardEntryPoint::createNewCore() {
   return new FlashCardCore(this, this);
 }
 
-TemplateCore *FlashCardEntryPoint::loadCoreFromRawData(const QString& raw_data) {
+TemplateCore *FlashCardEntryPoint::loadCoreFromBundleData(const QString& raw_data) {
   return NULL;
 }

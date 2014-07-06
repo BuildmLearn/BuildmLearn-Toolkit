@@ -44,7 +44,7 @@ QuizCore::~QuizCore() {
   qDebug("Destroying QuizCore instance.");
 }
 
-QString QuizCore::generateRawData() {
+QString QuizCore::generateBundleData() {
   // TODO: Finish when neeeded.
   return QString();
 }

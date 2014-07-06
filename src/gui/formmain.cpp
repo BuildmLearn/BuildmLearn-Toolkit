@@ -370,8 +370,19 @@ void FormMain::setTemplateCore(TemplateCore *core) {
   core->launch();
 }
 
-void FormMain::onAboutToQuit() {
+void FormMain::onAboutToQuit() { 
+  // Save all necessary things before application exits.
   saveSizeAndPosition();
+
+  // Make sure that we obtain close lock
+  // BEFORE even trying to quit the application.
+  if (qApp->closeLock()->tryLock(CLOSE_LOCK_TIMEOUT)) {
+    qApp->closeLock()->unlock();
+    qDebug("Application close lock obtained, unlocking it.");
+  }
+  else {
+    qDebug("Application close lick WAS NOT obtained, quitting anyway.");
+  }
 }
 
 void FormMain::onSimulatorWindowClosed() {

@@ -51,15 +51,10 @@ class TemplateCore : public QObject {
     /// \brief Generates RAW data which represent data of this template.
     /// \remarks Generated data are stored in XML bundle file.
     /// \warning Generated data of this method must be compatible
-    /// with custom implementation of TemplateEntryPoint::loadCoreFromRawData(const QString &raw_data)
+    /// with custom implementation of TemplateEntryPoint::loadCoreFromBundleData(const QString &raw_data)
     /// method!!!
     /// \return Returns string with generated data.
-    virtual QString generateRawData() = 0;
-
-    /// \brief Called after this template is fully loaded in toolkit.
-    /// \note Template is fully loaded only and only if its editor is set as
-    /// active and its simulator is set as active.
-    virtual void launch() = 0;
+    virtual QString generateBundleData() = 0;
 
     /// \brief Generates APK file from current project with active settings
     /// \return Returns true on success, otherwise returns false.
@@ -67,6 +62,11 @@ class TemplateCore : public QObject {
     /// generate mobile application, so that editor of the template
     /// must contain sufficient data for doing so.
     virtual bool generateApkFile() = 0;
+
+    /// \brief Called after this template is fully loaded in toolkit.
+    /// \note Template is fully loaded only and only if its editor is set as
+    /// active and its simulator is set as active.
+    virtual void launch() = 0;
 
     /// \brief Access to entry point of the template.
     /// \return Returns entry point pointer.

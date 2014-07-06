@@ -43,7 +43,7 @@ class FlashCardEntryPoint : public TemplateEntryPoint {
     virtual ~FlashCardEntryPoint();
 
     TemplateCore *createNewCore();
-    TemplateCore *loadCoreFromRawData(const QString& raw_data);
+    TemplateCore *loadCoreFromBundleData(const QString& raw_data);
 
   signals:
 

@@ -43,7 +43,7 @@ BasicmLearningCore::BasicmLearningCore(TemplateEntryPoint *entry_point, QObject 
 BasicmLearningCore::~BasicmLearningCore() {
 }
 
-QString BasicmLearningCore::generateRawData() {
+QString BasicmLearningCore::generateBundleData() {
   return QString();
 }
 

@@ -44,7 +44,7 @@ class BasicmLearningEntryPoint : public TemplateEntryPoint {
     virtual ~BasicmLearningEntryPoint();
 
     TemplateCore *createNewCore();
-    TemplateCore *loadCoreFromRawData(const QString &raw_data);
+    TemplateCore *loadCoreFromBundleData(const QString &raw_data);
 };
 
 #endif // INFOENTRYPOINT_H

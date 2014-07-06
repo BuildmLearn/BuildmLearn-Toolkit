@@ -93,6 +93,7 @@ class FormSettings : public QDialog {
 
     void loadInterface();
     void saveInterface();
+    void onSkinSelected(QTreeWidgetItem *current, QTreeWidgetItem *previous);
 
     void loadShortcuts();
     void saveShortcuts();
@@ -109,7 +110,7 @@ class FormSettings : public QDialog {
     void saveProxy();
     void displayProxyPassword(int state);
     void onProxyTypeChanged(int index);
-    
+
   private:
     Ui::FormSettings *m_ui;
     TemporarySettings m_initialSettings;

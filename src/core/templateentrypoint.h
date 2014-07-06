@@ -62,7 +62,7 @@ class TemplateEntryPoint : public QObject {
     /// \param raw_data Template-specific data.
     /// \return Returns pointer to new instance or NULL if no
     /// such instance could be created.
-    virtual TemplateCore *loadCoreFromRawData(const QString &raw_data) = 0;
+    virtual TemplateCore *loadCoreFromBundleData(const QString &raw_data) = 0;
 
     /// \brief Name of template.
     virtual QString name() const;

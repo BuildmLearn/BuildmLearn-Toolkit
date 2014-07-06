@@ -47,7 +47,7 @@ class QuizEntryPoint : public TemplateEntryPoint {
     virtual ~QuizEntryPoint();
 
     TemplateCore *createNewCore();
-    TemplateCore *loadCoreFromRawData(const QString &raw_data);
+    TemplateCore *loadCoreFromBundleData(const QString &raw_data);
 };
 
 #endif // QUIZENTRYPOINT_H

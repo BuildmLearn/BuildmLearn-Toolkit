@@ -50,6 +50,6 @@ TemplateCore *BasicmLearningEntryPoint::createNewCore() {
   return new BasicmLearningCore(this, this);
 }
 
-TemplateCore *BasicmLearningEntryPoint::loadCoreFromRawData(const QString &raw_data) {
+TemplateCore *BasicmLearningEntryPoint::loadCoreFromBundleData(const QString &raw_data) {
   return NULL;
 }

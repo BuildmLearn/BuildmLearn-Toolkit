@@ -140,6 +140,18 @@ void FormSettings::createConnections() {
   connect(m_ui->m_btnSelectSignapk, SIGNAL(clicked()), this, SLOT(selectSignApk()));
   connect(m_ui->m_btnGenerationOutputSelect, SIGNAL(clicked()), this, SLOT(selectOutputDirectory()));
   connect(m_ui->m_btnGenerationTempSelect, SIGNAL(clicked()), this, SLOT(selectTempDirectory()));
+  connect(m_ui->m_treeSkins, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)),
+          this, SLOT(onSkinSelected(QTreeWidgetItem*,QTreeWidgetItem*)));
+}
+
+void FormSettings::onSkinSelected(QTreeWidgetItem *current,
+                                  QTreeWidgetItem *previous) {
+  Q_UNUSED(previous)
+
+  if (current != NULL) {
+    Skin skin = current->data(0, Qt::UserRole).value<Skin>();
+    m_ui->m_lblSelectedContents->setText(skin.m_visibleName);
+  }
 }
 
 void FormSettings::selectBrowserExecutable() {

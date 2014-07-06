@@ -57,7 +57,22 @@ TemplateFactory::~TemplateFactory() {
 }
 
 QList<TemplateEntryPoint*> TemplateFactory::availableTemplates() {
-  return m_availableTemplates.values();
+  QList<TemplateEntryPoint*> entries;
+
+  foreach (TemplateEntryPoint *entry, m_availableTemplates.values()) {
+    for (int i = 0; i <= entries.size(); i++) {
+      if (i == entries.size()) {
+        entries.append(entry);
+        break;
+      }
+      else if (entry->humanName() < entries.at(i)->humanName()) {
+        entries.insert(i, entry);
+        break;
+      }
+    }
+  }
+
+  return entries;
 }
 
 QString TemplateFactory::tempDirectory() const {
@@ -95,6 +110,10 @@ QString TemplateFactory::applicationFileNamePattern() const {
 
 void TemplateFactory::setApplicationFileNamePattern(const QString &file_name_pattern) {
   qApp->settings()->setValue(APP_CFG_TEMPLATES, "application_file_name_pattern", file_name_pattern);
+}
+
+bool TemplateFactory::entryPointIsLessThan(TemplateEntryPoint *s1, TemplateEntryPoint &s2) {
+  return s1->humanName() < s2.humanName();
 }
 
 void TemplateFactory::clearEntryAndCore() {

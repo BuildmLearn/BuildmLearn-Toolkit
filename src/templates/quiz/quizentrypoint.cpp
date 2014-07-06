@@ -52,6 +52,6 @@ TemplateCore *QuizEntryPoint::createNewCore() {
   return new QuizCore(this, this);
 }
 
-TemplateCore *QuizEntryPoint::loadCoreFromRawData(const QString &raw_data) {
+TemplateCore *QuizEntryPoint::loadCoreFromBundleData(const QString &raw_data) {
   return NULL;
 }

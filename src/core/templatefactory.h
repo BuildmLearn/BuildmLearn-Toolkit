@@ -88,6 +88,8 @@ class TemplateFactory : public QObject {
       return m_activeCore;
     }
 
+    static bool entryPointIsLessThan(TemplateEntryPoint *s1, TemplateEntryPoint &s2);
+
   public slots:
     /// \brief Starts new project core from given entry point.
     /// \param entry_point Entry point to be started.

@@ -45,7 +45,7 @@ class FlashCardCore : public TemplateCore {
     explicit FlashCardCore(TemplateEntryPoint *entry_point, QObject *parent = 0);
     virtual ~FlashCardCore();
 
-    QString generateRawData();
+    QString generateBundleData();
     void launch();
     bool generateApkFile();
 
