@@ -58,6 +58,7 @@
 #define EXIT_STATUS_JAVA_NORMAL         0
 #define EXIT_STATUS_SIGNAPK_NORMAL      2
 #define EXIT_STATUS_SIGNAPK_NOT_FOUND   1
+#define EXIT_STATUS_SIGNAPK_WORKING     0
 
 #define RELEASES_LIST                   "https://raw.githubusercontent.com/BuildmLearn/BuildmLearn-Toolkit/portage/resources/text/UPDATES"
 #define DEFAULT_LOCALE                  "en_GB"
@@ -70,6 +71,8 @@
 #define ELLIPSIS_LENGTH                 3
 #define STARTUP_UPDATE_DELAY            40000
 #define TRAY_ICON_DELAY                 1000
+#define CERTIFICATE_PATH                "certificate.pem"
+#define KEY_PATH                        "key.pk8"
 
 // Line delimiters.
 #define DELIMITER_LINE                  "##L##"

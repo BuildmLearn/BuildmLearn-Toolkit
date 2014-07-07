@@ -49,7 +49,7 @@ void FlashCardCore::launch() {
   flashCardSimulator()->launch();
 }
 
-TemplateCore::GenerationResult FlashCardCore::generateMobileApplication() {
+TemplateCore::GenerationResult FlashCardCore::generateMobileApplication(QString &output_file) {
   return Success;
 }
 

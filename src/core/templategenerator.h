@@ -14,7 +14,7 @@ class TemplateGenerator : public QObject {
     virtual ~TemplateGenerator();
 
   public slots:
-    bool generateMobileApplication(TemplateCore *core);
+    void generateMobileApplication(TemplateCore *core);
 
   signals:
     void generationStarted();

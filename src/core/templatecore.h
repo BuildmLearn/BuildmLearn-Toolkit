@@ -50,6 +50,7 @@ class TemplateCore : public QObject {
       SignApkProblem,
       JavaProblem,
       BundleProblem,
+      CopyProblem,
       OtherProblem
     };
 
@@ -62,7 +63,7 @@ class TemplateCore : public QObject {
     /// \warning This is used only if template can actually
     /// generate mobile application, so that editor of the template
     /// must contain sufficient data for doing so.
-    virtual GenerationResult generateMobileApplication() = 0;
+    virtual GenerationResult generateMobileApplication(QString &output_file) = 0;
 
     /// \brief Called after this template is fully loaded in toolkit.
     /// \note Template is fully loaded only and only if its editor is set as

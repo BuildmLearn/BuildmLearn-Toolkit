@@ -47,8 +47,11 @@ class QuizCore : public TemplateCore {
     explicit QuizCore(TemplateEntryPoint *entry_point, QObject *parent = 0);
     virtual ~QuizCore();
 
-    GenerationResult generateMobileApplication();
+    GenerationResult generateMobileApplication(QString &output_file);
     void launch();
+
+  private:
+    void cleanupGeneration();
 
   private:
     QuizEditor *quizEditor();

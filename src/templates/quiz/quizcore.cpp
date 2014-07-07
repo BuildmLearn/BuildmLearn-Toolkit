@@ -33,8 +33,10 @@
 #include "templates/quiz/quizeditor.h"
 #include "templates/quiz/quizsimulator.h"
 #include "miscellaneous/application.h"
+#include "miscellaneous/iofactory.h"
 #include "core/templatefactory.h"
 #include "core/templateentrypoint.h"
+#include "definitions/definitions.h"
 
 #include <QDir>
 #include <QTextStream>
@@ -53,7 +55,7 @@ QuizCore::~QuizCore() {
   qDebug("Destroying QuizCore instance.");
 }
 
-TemplateCore::GenerationResult QuizCore::generateMobileApplication() {
+TemplateCore::GenerationResult QuizCore::generateMobileApplication(QString &output_file) {
   emit generationProgress(10, tr("Extracting raw data from editor..."));
 
   // We need data which will be imported into apk/zip file.
@@ -66,13 +68,16 @@ TemplateCore::GenerationResult QuizCore::generateMobileApplication() {
 
   QString temp_folder = qApp->templateManager()->tempDirectory();
   QDir temp_directory(temp_folder);
+  QString base_folder = temp_folder + "/" + APP_LOW_NAME;
+  QDir base_directory(base_folder);
 
   // Preparation of target bundle file
   emit generationProgress(20, tr("Creating base temporary folder..."));
 
-  temp_directory.mkdir("assets");
+  temp_directory.mkdir(APP_LOW_NAME);
+  base_directory.mkdir("assets");
 
-  QFile index_file(temp_folder + "/assets/quiz_content.xml");
+  QFile index_file(base_folder + "/assets/quiz_content.xml");
   index_file.open(QIODevice::WriteOnly | QIODevice::Text);
 
   emit generationProgress(30, tr("Writting quiz data into file..."));
@@ -83,33 +88,60 @@ TemplateCore::GenerationResult QuizCore::generateMobileApplication() {
   out.flush();
   index_file.close();
 
-  QString new_apk_name = qApp->templateManager()->applicationFileNamePattern().arg(entryPoint()->name(),
-                                                                                   quizEditor()->m_ui->m_txtName->lineEdit()->text(),
-                                                                                   QDateTime::currentDateTime().toString(""));
-
   // Copying of target apk file.
-  QFile::copy(entryPoint()->mobileApplicationApkFile(),
-              temp_folder + "/" + new_apk_name);
+  QString new_apk_name = qApp->templateManager()->applicationFileName(quizEditor()->m_ui->m_txtName->lineEdit()->text());
+  QFile::copy(APP_TEMPLATES_PATH + "/" + entryPoint()->baseFolder() + "/" + entryPoint()->mobileApplicationApkFile(),
+              base_folder + "/" + new_apk_name);
 
   // Inserting bundle file into apk file.
   QProcess zip;
 
-  zip.setWorkingDirectory(temp_folder);
+  zip.setWorkingDirectory(base_folder);
   zip.start(qApp->zipUtilityPath(), QStringList() << "-m" << "-r" << new_apk_name << "assets");
   zip.waitForFinished();
 
-  int zip_out = zip.exitCode();
+  if (zip.exitCode() != EXIT_STATUS_ZIP_NORMAL) {
+    // Error during inserting quiz data via zip.
+    cleanupGeneration();
+    return ZipProblem;
+  }
 
   // Signing and renaming target file.
+  QString pem_certificate = QDir::toNativeSeparators(APP_CERT_PATH + "/" + CERTIFICATE_PATH);
+  QString pk_certificate = QDir::toNativeSeparators(APP_CERT_PATH + "/" + KEY_PATH);
+  QProcess signapk;
 
-  // Removing temporary files.
+  signapk.setWorkingDirectory(base_folder);
+  signapk.start(qApp->javaInterpreterPath(), QStringList() << "-jar" << qApp->signApkUtlityPath() <<
+                pem_certificate << pk_certificate << new_apk_name <<
+                QDir::toNativeSeparators(new_apk_name + ".new"));
+  signapk.waitForFinished();
 
+  if (signapk.exitCode() != EXIT_STATUS_SIGNAPK_WORKING) {
+    cleanupGeneration();
+    return SignApkProblem;
+  }
+
+  // Now, our file is created. We need to move it to target directory.
+  if (!QFile::copy(base_folder + "/" + new_apk_name + ".new", qApp->templateManager()->outputDirectory() + "/" + new_apk_name)) {
+    cleanupGeneration();
+    return CopyProblem;
+  }
+
+  output_file = qApp->templateManager()->outputDirectory() + "/" + new_apk_name;
+
+  // Removing temporary files and exit.
+  cleanupGeneration();
   return Success;
 }
 
 void QuizCore::launch() {
   quizEditor()->launch();
   quizSimulator()->launch();
+}
+
+void QuizCore::cleanupGeneration() {
+  IOFactory::removeDirectory(qApp->templateManager()->tempDirectory() + "/" + APP_LOW_NAME);
 }
 
 QuizEditor *QuizCore::quizEditor() {

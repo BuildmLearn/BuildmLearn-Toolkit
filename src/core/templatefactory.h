@@ -77,6 +77,8 @@ class TemplateFactory : public QObject {
     QString applicationFileNamePattern() const;
     void setApplicationFileNamePattern(const QString &file_name_pattern);
 
+    QString applicationFileName(const QString &project_name);
+
     /// \brief Access to active entry point.
     /// \return Returns pointer to active entry point or NULL if no entry
     /// point is active.

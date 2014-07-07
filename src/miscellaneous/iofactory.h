@@ -28,27 +28,23 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#ifndef BASICMLEARNINGCORE_H
-#define BASICMLEARNINGCORE_H
+#ifndef IOFACTORY_H
+#define IOFACTORY_H
 
-#include "core/templatecore.h"
+#include <QString>
+#include <QStringList>
 
 
-class BasicmLearningEditor;
-class BasicmLearningSimulator;
-
-class BasicmLearningCore : public TemplateCore {
+class IOFactory {
+  private:
+    explicit IOFactory();
 
   public:
-    explicit BasicmLearningCore(TemplateEntryPoint *entry_point, QObject *parent = 0);
-    virtual ~BasicmLearningCore();
-
-    GenerationResult generateMobileApplication(QString &output_file);
-    void launch();
-
-  private:
-    BasicmLearningEditor *learningEditor();
-    BasicmLearningSimulator *learningSimulator();
+    // File/directory manipulators.
+    static bool copyDirectory(QString source, QString destination);
+    static bool removeDirectory(const QString & directory_name,
+                                const QStringList &exception_file_list = QStringList(),
+                                const QStringList &exception_folder_list = QStringList());
 };
 
-#endif // BASICMLEARNINGCORE_H
+#endif // IOFACTORY_H

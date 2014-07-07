@@ -46,7 +46,7 @@
 #include <QDesktopServices>
 #endif
 
-#include <QThread>
+#include <QDateTime>
 
 
 TemplateFactory::TemplateFactory(QObject *parent)
@@ -114,6 +114,17 @@ QString TemplateFactory::applicationFileNamePattern() const {
 
 void TemplateFactory::setApplicationFileNamePattern(const QString &file_name_pattern) {
   qApp->settings()->setValue(APP_CFG_TEMPLATES, "application_file_name_pattern", file_name_pattern);
+}
+
+QString TemplateFactory::applicationFileName(const QString &project_name) {
+  if (activeEntryPoint() != NULL) {
+    return applicationFileNamePattern().arg(activeEntryPoint()->name(),
+                                            project_name,
+                                            QDateTime::currentDateTime().toString(""));
+  }
+  else {
+    return QString();
+  }
 }
 
 QDomDocument TemplateFactory::generateBundleHeader() {
