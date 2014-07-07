@@ -49,8 +49,8 @@ void FlashCardCore::launch() {
   flashCardSimulator()->launch();
 }
 
-bool FlashCardCore::generateMobileApplication() {
-  return false;
+TemplateCore::GenerationResult FlashCardCore::generateMobileApplication() {
+  return Success;
 }
 
 FlashCardEditor *FlashCardCore::flashCardEditor() {

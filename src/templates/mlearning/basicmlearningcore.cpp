@@ -43,8 +43,8 @@ BasicmLearningCore::BasicmLearningCore(TemplateEntryPoint *entry_point, QObject 
 BasicmLearningCore::~BasicmLearningCore() {
 }
 
-bool BasicmLearningCore::generateMobileApplication() {
-  return false;
+TemplateCore::GenerationResult BasicmLearningCore::generateMobileApplication() {
+  return Success;
 }
 
 void BasicmLearningCore::launch() {

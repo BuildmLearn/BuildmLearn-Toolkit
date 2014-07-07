@@ -55,6 +55,8 @@
 #include <QVBoxLayout>
 #include <QDesktopWidget>
 #include <QLayoutItem>
+#include <QProgressBar>
+#include <QScrollArea>
 
 
 FormMain::FormMain(QWidget *parent)
@@ -70,6 +72,8 @@ FormMain::FormMain(QWidget *parent)
 
   m_normalTitle = APP_LONG_NAME;
   m_unsavedTitle = m_normalTitle + " *";
+
+  m_statusProgress->setFixedHeight(m_ui->m_statusBar->sizeHint().height());
 
   // Addd necessary widgets to status.
   m_ui->m_statusBar->addWidget(m_statusProgress);
@@ -341,17 +345,23 @@ void FormMain::onEditorChanged() {
 }
 
 void FormMain::onGenerationProgress(int percentage_completed, const QString &message) {
+  qApp->processEvents();
+
   m_statusLabel->setText(message);
-  m_statusProgress->setValue(percentage_completed);
   m_statusLabel->setVisible(true);
-  m_statusProgress->setValue(true);
+  m_statusProgress->setValue(percentage_completed);
+  m_statusProgress->setVisible(true);
 }
 
 void FormMain::onGenerationStarted() {
+  qApp->processEvents();
+
   m_ui->m_actionGenerateMobileApplication->setEnabled(false);
 }
 
 void FormMain::onGenerationDone(int result_code, const QString &output_file) {
+  qApp->processEvents();
+
   if (qApp->templateManager()->activeCore() != NULL) {
     m_ui->m_actionGenerateMobileApplication->setEnabled(qApp->templateManager()->activeCore()->editor()->canGenerateApplications());
   }

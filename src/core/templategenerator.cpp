@@ -16,10 +16,16 @@ bool TemplateGenerator::generateMobileApplication(TemplateCore *core) {
   if (qApp->closeLock()->tryLock()) {
     connect(core, SIGNAL(generationProgress(int,QString)), this, SIGNAL(generationProgress(int,QString)));
     emit generationStarted();
-    bool result = core->generateMobileApplication();
+      TemplateCore::GenerationResult result = core->generateMobileApplication();
 
     disconnect(core, SIGNAL(generationProgress(int,QString)), this, SLOT(generateMobileApplication(TemplateCore*)));
-    emit generationFinished(0, tr("success"));
+
+    if (result == TemplateCore::Success) {
+      emit generationFinished(0, tr("success"));
+    }
+    else {
+      emit generationFinished(1, tr("success"));
+    }
 
     qApp->closeLock()->unlock();
 

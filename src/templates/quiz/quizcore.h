@@ -47,7 +47,7 @@ class QuizCore : public TemplateCore {
     explicit QuizCore(TemplateEntryPoint *entry_point, QObject *parent = 0);
     virtual ~QuizCore();
 
-    bool generateMobileApplication();
+    GenerationResult generateMobileApplication();
     void launch();
 
   private:

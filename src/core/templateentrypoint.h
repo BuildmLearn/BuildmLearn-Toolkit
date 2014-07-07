@@ -87,6 +87,10 @@ class TemplateEntryPoint : public QObject {
     /// \return Returns identifier of the template.
     QString typeIndentifier() const;
 
+    /// \brief Access to name of template APK file.
+    /// \return Returns name of APK template.
+    QString mobileApplicationApkFile() const;
+
   protected:
     QString m_name;
     QString m_humanName;
@@ -94,6 +98,7 @@ class TemplateEntryPoint : public QObject {
     QString m_description;
     QString m_thumbnailImage;
     QString m_typeIndentifier;
+    QString m_mobileApplicationApkFile;
 };
 
 #endif // TEMPLATEENTRYPOINT_H

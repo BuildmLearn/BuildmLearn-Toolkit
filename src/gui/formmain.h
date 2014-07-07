@@ -46,6 +46,8 @@ namespace Ui {
 
 class FormSimulator;
 class TemplateCore;
+class QProgressBar;
+class QScrollArea;
 
 /// \brief Main application window.
 class FormMain : public QMainWindow {

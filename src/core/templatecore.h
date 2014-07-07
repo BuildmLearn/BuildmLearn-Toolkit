@@ -44,6 +44,15 @@ class TemplateCore : public QObject {
     Q_OBJECT
 
   public:
+    enum GenerationResult {
+      Success,
+      ZipProblem,
+      SignApkProblem,
+      JavaProblem,
+      BundleProblem,
+      OtherProblem
+    };
+
     // Constructors and destructors.
     explicit TemplateCore(TemplateEntryPoint *entry_point, QObject *parent = 0);
     virtual ~TemplateCore();
@@ -53,7 +62,7 @@ class TemplateCore : public QObject {
     /// \warning This is used only if template can actually
     /// generate mobile application, so that editor of the template
     /// must contain sufficient data for doing so.
-    virtual bool generateMobileApplication() = 0;
+    virtual GenerationResult generateMobileApplication() = 0;
 
     /// \brief Called after this template is fully loaded in toolkit.
     /// \note Template is fully loaded only and only if its editor is set as

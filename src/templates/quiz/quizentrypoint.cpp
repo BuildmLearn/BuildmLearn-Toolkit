@@ -43,6 +43,7 @@ QuizEntryPoint::QuizEntryPoint(TemplateFactory *parent) : TemplateEntryPoint(par
   m_name = "quiz";
   m_thumbnailImage = "thumbnail.png";
   m_typeIndentifier = "QuizTemplate";
+  m_mobileApplicationApkFile = "QuizTemplateApp.apk";
 }
 
 QuizEntryPoint::~QuizEntryPoint() {

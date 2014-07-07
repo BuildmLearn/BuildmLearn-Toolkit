@@ -52,6 +52,7 @@ class QuizEditor : public TemplateEditor {
     Q_OBJECT
 
     friend class QuizSimulator;
+    friend class QuizCore;
 
   public:
     // Constructors and destructors.

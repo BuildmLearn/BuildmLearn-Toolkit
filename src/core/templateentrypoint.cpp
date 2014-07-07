@@ -63,3 +63,7 @@ QString TemplateEntryPoint::thumbnailImage() const {
 QString TemplateEntryPoint::typeIndentifier() const {
     return m_typeIndentifier;
 }
+
+QString TemplateEntryPoint::mobileApplicationApkFile() const {
+    return m_mobileApplicationApkFile;
+}
