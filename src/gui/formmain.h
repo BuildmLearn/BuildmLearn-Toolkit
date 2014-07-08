@@ -86,7 +86,7 @@ class FormMain : public QMainWindow {
     void loadSizeAndPosition();
     void saveSizeAndPosition();
 
-  private slots:   
+  private slots:
     void startSimulation();
 
     void takeSimulationOneStepBack();
@@ -104,6 +104,8 @@ class FormMain : public QMainWindow {
     void onGenerationProgress(int percentage_completed, const QString &message);
     void onGenerationStarted();
     void onGenerationDone(TemplateCore::GenerationResult result_code, const QString &output_file);
+    void openOutputApplication();
+    void openOutputDirectory();
 
     // Called when user opens new project or loads existing project.
     // This should read "editor" from core and set it as central widget.
@@ -180,6 +182,8 @@ class FormMain : public QMainWindow {
 
     QString m_normalTitle;
     QString m_unsavedTitle;
+
+    QString m_generatedApplicationPath;
 };
 
 #endif // FORMMAIN_H

@@ -157,6 +157,7 @@ void FormMain::createConnections() {
   connect(m_ui->m_actionNewProject, SIGNAL(triggered()), this ,SLOT(openNewProjectDialog()));
   connect(m_ui->m_actionSaveProject, SIGNAL(triggered()), this ,SLOT(openSaveProjectDialog()));
   connect(m_ui->m_actionLoadProject, SIGNAL(triggered()), this ,SLOT(openLoadProjectDialog()));
+  connect(m_ui->m_actionOpenOutputDirectory, SIGNAL(triggered()), this, SLOT(openOutputDirectory()));
 
   // Template system connections.
   connect(qApp->templateManager(), SIGNAL(newTemplateCoreCreated(TemplateCore*)), this, SLOT(setTemplateCore(TemplateCore*)));
@@ -361,6 +362,8 @@ void FormMain::onGenerationStarted() {
 void FormMain::onGenerationDone(TemplateCore::GenerationResult result_code, const QString &output_file) {
   qApp->processEvents();
 
+  m_generatedApplicationPath = output_file;
+
   if (qApp->templateManager()->activeCore() != NULL) {
     m_ui->m_actionGenerateMobileApplication->setEnabled(qApp->templateManager()->activeCore()->editor()->canGenerateApplications());
   }
@@ -377,8 +380,15 @@ void FormMain::onGenerationDone(TemplateCore::GenerationResult result_code, cons
   switch (result_code) {
     case TemplateCore::Success:
       qApp->trayIcon()->showMessage(tr("Mobile application generated"),
-                                    tr("Application was generated successfully."),
-                                    QSystemTrayIcon::Information);
+                              #if defined(Q_OS_WIN32)
+                                    tr("Click here to open its location."),
+                              #else
+                                    tr("Click here to copy output path to clipboard."),
+                              #endif
+                                    QSystemTrayIcon::Information,
+                                    20000,
+                                    this,
+                                    SLOT(openOutputApplication()));
       break;
 
     default:
@@ -387,6 +397,30 @@ void FormMain::onGenerationDone(TemplateCore::GenerationResult result_code, cons
                                     QSystemTrayIcon::Critical);
       break;
   }
+}
+
+void FormMain::openOutputApplication() {
+#if defined(Q_OS_WIN32)
+  // Open explorer window with target path.
+  QProcess::startDetached("explorer", QStringList() << "/select,"  << QDir::toNativeSeparators(m_generatedApplicationPath));
+#else
+  // Copy target path to clipboard.
+  QClipboard::setText(m_generatedApplicationPath);
+#endif
+
+  m_generatedApplicationPath = QString();
+}
+
+void FormMain::openOutputDirectory() {
+#if defined(Q_OS_WIN32)
+  // Open explorer window with target path.
+  QProcess::startDetached("explorer", QStringList() << "/root,"  << QDir::toNativeSeparators(qApp->templateManager()->outputDirectory()));
+#else
+  // Copy target path to clipboard.
+  // TODO: Better handling here and add action icon.
+  QMessageBox::information(this, tr("Cannot open directory"), tr("Directory was copied into your clipboard."));
+  QClipboard::setText(qApp->templateManager()->outputDirectory());
+#endif
 }
 
 void FormMain::setTemplateCore(TemplateCore *core) {
