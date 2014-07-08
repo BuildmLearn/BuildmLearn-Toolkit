@@ -93,8 +93,13 @@ int Application::checkJava(const QString &new_path) {
     return EXIT_STATUS_NOT_STARTED;
   }
   else {
-    return QProcess::execute(java_path,
-                             QStringList() << "-version");
+    QProcess process;
+
+    process.setReadChannelMode(QProcess::MergedChannels);
+    process.start(QDir::toNativeSeparators(java_path), QStringList() << "-version");
+    process.waitForFinished(-1);
+
+    return process.exitCode();
   }
 }
 
@@ -106,8 +111,14 @@ int Application::checkSignApk(const QString &new_path, const QString &java_path)
     return EXIT_STATUS_NOT_STARTED;
   }
   else {
-    return QProcess::execute(QDir::toNativeSeparators(real_java_path),
-                             QStringList() << "-jar" << QDir::toNativeSeparators(signapk_path));
+    QProcess process;
+
+    process.setReadChannelMode(QProcess::MergedChannels);
+    process.start(QDir::toNativeSeparators(real_java_path),
+                  QStringList() << "-jar" << QDir::toNativeSeparators(signapk_path));
+    process.waitForFinished(-1);
+
+    return process.exitCode();
   }
 }
 
@@ -118,8 +129,13 @@ int Application::checkZip(const QString &new_path) {
     return EXIT_STATUS_NOT_STARTED;
   }
   else {
-    return QProcess::execute(zip_path,
-                             QStringList() << "--version");
+    QProcess process;
+
+    process.setReadChannelMode(QProcess::MergedChannels);
+    process.start(QDir::toNativeSeparators(zip_path), QStringList() << "--version");
+    process.waitForFinished(-1);
+
+    return process.exitCode();
   }
 }
 

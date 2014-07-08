@@ -82,14 +82,14 @@ bool IOFactory::copyDirectory(QString source, QString destination) {
 
     if (!QFile::exists(destination_file) || QFile::remove(destination_file)) {
       if (QFile::copy(original_file, destination_file)) {
-        qDebug("Copied file '%1'.", QDir::toNativeSeparators(original_file));
+        qDebug("Copied file \'%s\'.", qPrintable(QDir::toNativeSeparators(original_file)));
       }
       else {
-        qDebug("Failed to copy file '%1'.", QDir::toNativeSeparators(original_file));
+        qDebug("Failed to copy file \'%s\'.", qPrintable(QDir::toNativeSeparators(original_file)));
       }
     }
     else {
-      qDebug("Failed to remove file '%1'.", QDir::toNativeSeparators(original_file));
+      qDebug("Failed to remove file \'%s\'.", qPrintable(QDir::toNativeSeparators(original_file)));
     }
   }
 

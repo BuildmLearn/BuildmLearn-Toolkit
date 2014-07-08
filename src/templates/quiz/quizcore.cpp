@@ -123,6 +123,9 @@ TemplateCore::GenerationResult QuizCore::generateMobileApplication(QString &outp
   }
 
   // Now, our file is created. We need to move it to target directory.
+  QString aa = base_folder + "/" + new_apk_name + ".new";
+  QString bb = qApp->templateManager()->outputDirectory() + "/" + new_apk_name;
+
   if (!QFile::copy(base_folder + "/" + new_apk_name + ".new", qApp->templateManager()->outputDirectory() + "/" + new_apk_name)) {
     cleanupGeneration();
     return CopyProblem;
