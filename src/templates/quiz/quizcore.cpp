@@ -56,6 +56,10 @@ QuizCore::~QuizCore() {
 }
 
 TemplateCore::GenerationResult QuizCore::generateMobileApplication(QString &output_file) {
+  emit generationProgress(5, tr("Preparing workspace..."));
+
+  cleanupGeneration();
+
   emit generationProgress(10, tr("Extracting raw data from editor..."));
 
   // We need data which will be imported into apk/zip file.
@@ -88,10 +92,14 @@ TemplateCore::GenerationResult QuizCore::generateMobileApplication(QString &outp
   out.flush();
   index_file.close();
 
+  emit generationProgress(40, tr("Copying template apk file..."));
+
   // Copying of target apk file.
   QString new_apk_name = qApp->templateManager()->applicationFileName(quizEditor()->m_ui->m_txtName->lineEdit()->text());
   QFile::copy(APP_TEMPLATES_PATH + "/" + entryPoint()->baseFolder() + "/" + entryPoint()->mobileApplicationApkFile(),
               base_folder + "/" + new_apk_name);
+
+  emit generationProgress(60, tr("Inserting data into apk file..."));
 
   // Inserting bundle file into apk file.
   QProcess zip;
@@ -105,6 +113,8 @@ TemplateCore::GenerationResult QuizCore::generateMobileApplication(QString &outp
     cleanupGeneration();
     return ZipProblem;
   }
+
+  emit generationProgress(70, tr("Signing apk file..."));
 
   // Signing and renaming target file.
   QString pem_certificate = QDir::toNativeSeparators(APP_CERT_PATH + "/" + CERTIFICATE_PATH);
@@ -122,11 +132,11 @@ TemplateCore::GenerationResult QuizCore::generateMobileApplication(QString &outp
     return SignApkProblem;
   }
 
-  // Now, our file is created. We need to move it to target directory.
-  QString aa = base_folder + "/" + new_apk_name + ".new";
-  QString bb = qApp->templateManager()->outputDirectory() + "/" + new_apk_name;
+  emit generationProgress(90, tr("Copying final apk file to output directory..."));
 
-  if (!QFile::copy(base_folder + "/" + new_apk_name + ".new", qApp->templateManager()->outputDirectory() + "/" + new_apk_name)) {
+  // Now, our file is created. We need to move it to target directory.
+  if (!IOFactory::copyFile(base_folder + "/" + new_apk_name + ".new",
+                           qApp->templateManager()->outputDirectory() + "/" + new_apk_name)) {
     cleanupGeneration();
     return CopyProblem;
   }

@@ -658,7 +658,7 @@ void FormSettings::selectTempDirectory() {
 void FormSettings::selectOutputDirectory() {
   QString output_directory = QFileDialog::getExistingDirectory(this,
                                                                tr("Select output directory"),
-                                                               m_ui->m_lblGenerationTemp->text(),
+                                                               m_ui->m_lblGenerationOutput->text(),
                                                                QFileDialog::DontUseNativeDialog);
 
   if (!output_directory.isEmpty()) {

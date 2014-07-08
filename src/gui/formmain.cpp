@@ -158,7 +158,6 @@ void FormMain::createConnections() {
   connect(m_ui->m_actionNewProject, SIGNAL(triggered()), this ,SLOT(openNewProjectDialog()));
   connect(m_ui->m_actionSaveProject, SIGNAL(triggered()), this ,SLOT(openSaveProjectDialog()));
   connect(m_ui->m_actionLoadProject, SIGNAL(triggered()), this ,SLOT(openLoadProjectDialog()));
-  connect(m_ui->m_actionGenerateMobileApplication, SIGNAL(triggered()), this ,SLOT(generateMobileApplication()));
 
   // Template system connections.
   connect(qApp->templateManager(), SIGNAL(newTemplateCoreCreated(TemplateCore*)), this, SLOT(setTemplateCore(TemplateCore*)));
@@ -370,6 +369,10 @@ void FormMain::onGenerationDone(int result_code, const QString &output_file) {
   }
 
   // TODO: Print information about result.
+  m_statusLabel->clear();
+  m_statusLabel->setVisible(false);
+  m_statusProgress->setValue(0);
+  m_statusProgress->setVisible(false);
 }
 
 void FormMain::setTemplateCore(TemplateCore *core) {

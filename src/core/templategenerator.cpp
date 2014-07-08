@@ -21,7 +21,7 @@ void TemplateGenerator::generateMobileApplication(TemplateCore *core) {
     QString output_file;
     TemplateCore::GenerationResult result = core->generateMobileApplication(output_file);
 
-    disconnect(core, SIGNAL(generationProgress(int,QString)), this, SLOT(generateMobileApplication(TemplateCore*)));
+    disconnect(core, SIGNAL(generationProgress(int,QString)), this, SIGNAL(generationProgress(int,QString)));
 
     if (result == TemplateCore::Success) {
       emit generationFinished(result, output_file);

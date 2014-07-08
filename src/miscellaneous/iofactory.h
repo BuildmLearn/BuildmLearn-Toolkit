@@ -41,6 +41,7 @@ class IOFactory {
 
   public:
     // File/directory manipulators.
+    static bool copyFile(const QString &source, const QString &destination);
     static bool copyDirectory(QString source, QString destination);
     static bool removeDirectory(const QString & directory_name,
                                 const QStringList &exception_file_list = QStringList(),
