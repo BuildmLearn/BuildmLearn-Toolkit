@@ -34,6 +34,7 @@
 #include "ui_formmain.h"
 
 #include "gui/formnewproject.h"
+#include "core/templatecore.h"
 
 #include <QMainWindow>
 #include <QHash>
@@ -45,7 +46,6 @@ namespace Ui {
 }
 
 class FormSimulator;
-class TemplateCore;
 class QProgressBar;
 class QScrollArea;
 
@@ -103,7 +103,7 @@ class FormMain : public QMainWindow {
 
     void onGenerationProgress(int percentage_completed, const QString &message);
     void onGenerationStarted();
-    void onGenerationDone(int result_code, const QString &output_file);
+    void onGenerationDone(TemplateCore::GenerationResult result_code, const QString &output_file);
 
     // Called when user opens new project or loads existing project.
     // This should read "editor" from core and set it as central widget.

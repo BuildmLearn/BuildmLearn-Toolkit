@@ -67,7 +67,7 @@ TemplateCore::GenerationResult QuizCore::generateMobileApplication(QString &outp
 
   if (quiz_data.isEmpty()) {
     // No date received, this is big problem.
-    //return BundleProblem;
+    return BundleProblem;
   }
 
   QString temp_folder = qApp->templateManager()->tempDirectory();
@@ -96,8 +96,11 @@ TemplateCore::GenerationResult QuizCore::generateMobileApplication(QString &outp
 
   // Copying of target apk file.
   QString new_apk_name = qApp->templateManager()->applicationFileName(quizEditor()->m_ui->m_txtName->lineEdit()->text());
-  QFile::copy(APP_TEMPLATES_PATH + "/" + entryPoint()->baseFolder() + "/" + entryPoint()->mobileApplicationApkFile(),
-              base_folder + "/" + new_apk_name);
+  if (!QFile::copy(APP_TEMPLATES_PATH + "/" + entryPoint()->baseFolder() + "/" + entryPoint()->mobileApplicationApkFile(),
+              base_folder + "/" + new_apk_name)) {
+    cleanupGeneration();
+    return CopyProblem;
+  }
 
   emit generationProgress(60, tr("Inserting data into apk file..."));
 

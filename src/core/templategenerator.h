@@ -3,8 +3,8 @@
 
 #include <QObject>
 
+#include "core/templatecore.h"
 
-class TemplateCore;
 
 class TemplateGenerator : public QObject {
     Q_OBJECT
@@ -18,8 +18,8 @@ class TemplateGenerator : public QObject {
 
   signals:
     void generationStarted();
-    void generationFinished(int result_code, const QString &output_file = QString());
-    void generationProgress(int result_code, const QString &message);
+    void generationFinished(TemplateCore::GenerationResult result_code, const QString &output_file = QString());
+    void generationProgress(int progress, const QString &message);
 };
 
 #endif // TEMPLATEGENERATOR_H

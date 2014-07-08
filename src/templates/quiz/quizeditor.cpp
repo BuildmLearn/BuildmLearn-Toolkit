@@ -32,10 +32,14 @@
 
 #include "miscellaneous/iconfactory.h"
 #include "templates/quiz/quizquestion.h"
+#include "core/templatefactory.h"
 
 #include <QToolTip>
 #include <QTimer>
 #include <QShowEvent>
+#include <QDomDocument>
+#include <QDomElement>
+#include <QDomAttr>
 
 
 QuizEditor::QuizEditor(TemplateCore *core, QWidget *parent)
@@ -381,10 +385,45 @@ void QuizEditor::launch() {
   else {
     issueNewGenereationStatus(false,
                               tr("Quiz simulation or mobile application generation cannot be started \n"
-                                                                    "because there is no question added or quiz does not have name."));
+                                 "because there is no question added or quiz does not have name."));
   }
 }
 
 QString QuizEditor::generateBundleData() {
-  return QString();
+  if (!canGenerateApplications()) {
+    return QString();
+  }
+
+  QDomDocument source_document = qApp->templateManager()->generateBundleHeader();
+  QDomElement data_element = source_document.documentElement().namedItem("data").toElement();
+
+  foreach (const QuizQuestion &question, activeQuestions()) {
+    QDomElement item_element = source_document.createElement("item");
+
+    // Fill in details about question.
+    QDomElement question_element = source_document.createElement("question");
+    QDomElement answer_one_element = source_document.createElement("option");
+    QDomElement answer_two_element = source_document.createElement("option");
+    QDomElement answer_three_element = source_document.createElement("option");
+    QDomElement answer_four_element = source_document.createElement("option");
+    QDomElement answer_number_element = source_document.createElement("answer");
+
+    question_element.appendChild(source_document.createTextNode(question.question()));
+    answer_one_element.appendChild(source_document.createTextNode(question.answerOne()));
+    answer_two_element.appendChild(source_document.createTextNode(question.answerTwo()));
+    answer_three_element.appendChild(source_document.createTextNode(question.answerThree()));
+    answer_four_element.appendChild(source_document.createTextNode(question.answerFour()));
+    answer_number_element.appendChild(source_document.createTextNode(QString::number(question.correctAnswer())));
+
+    item_element.appendChild(question_element);
+    item_element.appendChild(answer_one_element);
+    item_element.appendChild(answer_two_element);
+    item_element.appendChild(answer_three_element);
+    item_element.appendChild(answer_four_element);
+    item_element.appendChild(answer_number_element);
+
+    data_element.appendChild(item_element);
+  }
+
+  return source_document.toString(2);
 }

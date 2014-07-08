@@ -42,7 +42,6 @@
 #include "core/templatesimulator.h"
 #include "core/templatefactory.h"
 #include "core/templateentrypoint.h"
-#include "core/templatecore.h"
 #include "core/templateeditor.h"
 #include "core/templategenerator.h"
 #include "templates/quiz/quizentrypoint.h"
@@ -164,7 +163,8 @@ void FormMain::createConnections() {
   connect(qApp, SIGNAL(externalApplicationsRechecked()), this, SLOT(onExternalApplicationsChanged()));
   connect(m_ui->m_actionGenerateMobileApplication, SIGNAL(triggered()), this, SLOT(generateMobileApplication()));
   connect(qApp->templateManager()->generator(), SIGNAL(generationStarted()), this, SLOT(onGenerationStarted()));
-  connect(qApp->templateManager()->generator(), SIGNAL(generationFinished(int,QString)), this, SLOT(onGenerationDone(int,QString)));
+  connect(qApp->templateManager()->generator(), SIGNAL(generationFinished(TemplateCore::GenerationResult,QString)),
+          this, SLOT(onGenerationDone(TemplateCore::GenerationResult,QString)));
   connect(qApp->templateManager()->generator(), SIGNAL(generationProgress(int,QString)), this, SLOT(onGenerationProgress(int,QString)));
 }
 
@@ -358,7 +358,7 @@ void FormMain::onGenerationStarted() {
   m_ui->m_actionGenerateMobileApplication->setEnabled(false);
 }
 
-void FormMain::onGenerationDone(int result_code, const QString &output_file) {
+void FormMain::onGenerationDone(TemplateCore::GenerationResult result_code, const QString &output_file) {
   qApp->processEvents();
 
   if (qApp->templateManager()->activeCore() != NULL) {
@@ -368,11 +368,25 @@ void FormMain::onGenerationDone(int result_code, const QString &output_file) {
     m_ui->m_actionGenerateMobileApplication->setEnabled(false);
   }
 
-  // TODO: Print information about result.
   m_statusLabel->clear();
   m_statusLabel->setVisible(false);
   m_statusProgress->setValue(0);
   m_statusProgress->setVisible(false);
+
+  // TODO: Print information about result.
+  switch (result_code) {
+    case TemplateCore::Success:
+      qApp->trayIcon()->showMessage(tr("Mobile application generated"),
+                                    tr("Application was generated successfully."),
+                                    QSystemTrayIcon::Information);
+      break;
+
+    default:
+      qApp->trayIcon()->showMessage(tr("Mobile application not generated"),
+                                    tr("Application was NOT generated successfully."),
+                                    QSystemTrayIcon::Critical);
+      break;
+  }
 }
 
 void FormMain::setTemplateCore(TemplateCore *core) {

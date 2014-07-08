@@ -39,11 +39,15 @@ IOFactory::IOFactory() {
 
 bool IOFactory::copyFile(const QString &source, const QString &destination) {
   if (!QFile::exists(source)) {
+    qDebug("Source file \'%s\' does not exist.", qPrintable(QDir::toNativeSeparators(source)));
     return false;
   }
 
   if (QFile::exists(destination)) {
-    QFile::remove(destination);
+    if (!QFile::remove(destination)) {
+      qDebug("Destination file \'%s\' could not be removed.", qPrintable(QDir::toNativeSeparators(destination)));
+      return false;
+    }
   }
 
   return QFile::copy(source, destination);
@@ -93,10 +97,7 @@ bool IOFactory::copyDirectory(QString source, QString destination) {
     QString destination_file = destination + QDir::separator() + f;
 
     if (!QFile::exists(destination_file) || QFile::remove(destination_file)) {
-      if (QFile::copy(original_file, destination_file)) {
-        qDebug("Copied file \'%s\'.", qPrintable(QDir::toNativeSeparators(original_file)));
-      }
-      else {
+      if (!QFile::copy(original_file, destination_file)) {
         qDebug("Failed to copy file \'%s\'.", qPrintable(QDir::toNativeSeparators(original_file)));
       }
     }
