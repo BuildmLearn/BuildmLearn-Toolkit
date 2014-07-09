@@ -392,7 +392,7 @@ void FormMain::openOutputApplication() {
   QProcess::startDetached("explorer", QStringList() << "/select,"  << QDir::toNativeSeparators(m_generatedApplicationPath));
 #else
   // Copy target path to clipboard.
-  QClipboard::setText(m_generatedApplicationPath);
+  QApplication::clipboard()->setText(m_generatedApplicationPath);
 #endif
 
   m_generatedApplicationPath = QString();
@@ -406,7 +406,7 @@ void FormMain::openOutputDirectory() {
   // Copy target path to clipboard.
   // TODO: Better handling here and add action icon.
   QMessageBox::information(this, tr("Cannot open directory"), tr("Directory was copied into your clipboard."));
-  QClipboard::setText(qApp->templateManager()->outputDirectory());
+  QApplication::clipboard()->setText(qApp->templateManager()->outputDirectory());
 #endif
 }
 
