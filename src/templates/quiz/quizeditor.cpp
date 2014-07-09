@@ -33,6 +33,8 @@
 #include "miscellaneous/iconfactory.h"
 #include "templates/quiz/quizquestion.h"
 #include "core/templatefactory.h"
+#include "core/templatecore.h"
+#include "core/templateentrypoint.h"
 
 #include <QToolTip>
 #include <QTimer>
@@ -397,6 +399,14 @@ QString QuizEditor::generateBundleData() {
   QDomDocument source_document = qApp->templateManager()->generateBundleHeader();
   QDomElement data_element = source_document.documentElement().namedItem("data").toElement();
 
+  source_document.documentElement().setAttribute("type", core()->entryPoint()->typeIndentifier());
+  source_document.documentElement().namedItem("author").namedItem("name").appendChild(
+        source_document.createTextNode("aaaa"));
+  source_document.documentElement().namedItem("author").namedItem("email").appendChild(
+        source_document.createTextNode("bbbb"));
+  source_document.documentElement().namedItem("title").appendChild(
+        source_document.createTextNode("ccc"));
+
   foreach (const QuizQuestion &question, activeQuestions()) {
     QDomElement item_element = source_document.createElement("item");
 
@@ -413,7 +423,7 @@ QString QuizEditor::generateBundleData() {
     answer_two_element.appendChild(source_document.createTextNode(question.answerTwo()));
     answer_three_element.appendChild(source_document.createTextNode(question.answerThree()));
     answer_four_element.appendChild(source_document.createTextNode(question.answerFour()));
-    answer_number_element.appendChild(source_document.createTextNode(QString::number(question.correctAnswer())));
+    answer_number_element.appendChild(source_document.createTextNode(QString::number(question.correctAnswer() - 1)));
 
     item_element.appendChild(question_element);
     item_element.appendChild(answer_one_element);

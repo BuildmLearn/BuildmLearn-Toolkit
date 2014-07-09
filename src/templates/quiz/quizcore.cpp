@@ -144,7 +144,7 @@ TemplateCore::GenerationResult QuizCore::generateMobileApplication(QString &outp
     return CopyProblem;
   }
 
-  output_file = qApp->templateManager()->outputDirectory() + "/" + new_apk_name;
+  output_file = QDir(qApp->templateManager()->outputDirectory()).filePath(new_apk_name);
 
   // Removing temporary files and exit.
   cleanupGeneration();

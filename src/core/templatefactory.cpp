@@ -141,6 +141,8 @@ QDomDocument TemplateFactory::generateBundleHeader() {
   author_element.appendChild(name_element);
   author_element.appendChild(email_element);
 
+  version_element.appendChild(xml_bundle.createTextNode("1"));
+
   root_element.appendChild(author_element);
   root_element.appendChild(title_element);
   root_element.appendChild(description_element);

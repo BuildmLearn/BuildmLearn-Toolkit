@@ -41,6 +41,10 @@ class QuizQuestion {
     explicit QuizQuestion();
     virtual ~QuizQuestion();
 
+    /// \brief Access to inde of correct answer.
+    /// \return Returns index of correct answer.
+    /// \warning Index is NOT numbered from 0. It is numbered from 1. So if first
+    /// answer is correct, then index of correct answer is ONE.
     int correctAnswer() const;
     void setCorrectAnswer(int correctAnswer);
 
