@@ -170,9 +170,6 @@ void FormMain::createConnections() {
 }
 
 void FormMain::setupActionShortcuts() {
-  // TODO: Finalize Mac OS X default shortcuts.
-#if defined(Q_OS_OSX)
-  m_ui->m_actionCheckForUpdates->setShortcut(QKeySequence("", QKeySequence::PortableText));
   m_ui->m_actionGenerateMobileApplication->setShortcut(QKeySequence("Ctrl+G", QKeySequence::PortableText));
   m_ui->m_actionLoadProject->setShortcut(QKeySequence("Ctrl+L", QKeySequence::PortableText));
   m_ui->m_actionNewProject->setShortcut(QKeySequence("Ctrl+N", QKeySequence::PortableText));
@@ -181,17 +178,7 @@ void FormMain::setupActionShortcuts() {
   m_ui->m_actionQuit->setShortcut(QKeySequence("Ctrl+Q", QKeySequence::PortableText));
   m_ui->m_actionSettings->setShortcut(QKeySequence("Ctrl+T", QKeySequence::PortableText));
   m_ui->m_actionHelp->setShortcut(QKeySequence("F1", QKeySequence::PortableText));
-#else
-  m_ui->m_actionCheckForUpdates->setShortcut(QKeySequence("", QKeySequence::PortableText));
-  m_ui->m_actionGenerateMobileApplication->setShortcut(QKeySequence("Ctrl+G", QKeySequence::PortableText));
-  m_ui->m_actionLoadProject->setShortcut(QKeySequence("Ctrl+L", QKeySequence::PortableText));
-  m_ui->m_actionNewProject->setShortcut(QKeySequence("Ctrl+N", QKeySequence::PortableText));
-  m_ui->m_actionSaveProject->setShortcut(QKeySequence("Ctrl+S", QKeySequence::PortableText));
-  m_ui->m_actionSaveProjectAs->setShortcut(QKeySequence("Ctrl+Shift+S", QKeySequence::PortableText));
-  m_ui->m_actionQuit->setShortcut(QKeySequence("Ctrl+Q", QKeySequence::PortableText));
-  m_ui->m_actionSettings->setShortcut(QKeySequence("Ctrl+T", QKeySequence::PortableText));
-  m_ui->m_actionHelp->setShortcut(QKeySequence("F1", QKeySequence::PortableText));
-#endif
+  m_ui->m_actionOpenOutputDirectory->setShortcut(QKeySequence("Ctrl+D", QKeySequence::PortableText));
 }
 
 void FormMain::setupIcons() {
