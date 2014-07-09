@@ -33,6 +33,8 @@
 
 #include <QWidget>
 
+#include <QDomDocument>
+
 
 class TemplateCore;
 

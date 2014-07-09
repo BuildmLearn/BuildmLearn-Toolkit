@@ -74,6 +74,8 @@
 #define CERTIFICATE_PATH                "certificate.pem"
 #define KEY_PATH                        "key.pk8"
 
+#define XML_BUNDLE_ROOT_DATA_ELEMENT    "data"
+
 // Line delimiters.
 #define DELIMITER_LINE                  "##L##"
 #define DELIMITER_INLINE                "##IL##"

@@ -396,16 +396,13 @@ QString QuizEditor::generateBundleData() {
     return QString();
   }
 
-  QDomDocument source_document = qApp->templateManager()->generateBundleHeader();
-  QDomElement data_element = source_document.documentElement().namedItem("data").toElement();
-
-  source_document.documentElement().setAttribute("type", core()->entryPoint()->typeIndentifier());
-  source_document.documentElement().namedItem("author").namedItem("name").appendChild(
-        source_document.createTextNode("aaaa"));
-  source_document.documentElement().namedItem("author").namedItem("email").appendChild(
-        source_document.createTextNode("bbbb"));
-  source_document.documentElement().namedItem("title").appendChild(
-        source_document.createTextNode("ccc"));
+  QDomDocument source_document = qApp->templateManager()->generateBundleHeader(core()->entryPoint()->typeIndentifier(),
+                                                                               m_ui->m_txtAuthor->lineEdit()->text(),
+                                                                               QString(),
+                                                                               m_ui->m_txtName->lineEdit()->text(),
+                                                                               QString(),
+                                                                               "1");
+  FIND_DATA_ELEMENT(data_element, source_document)
 
   foreach (const QuizQuestion &question, activeQuestions()) {
     QDomElement item_element = source_document.createElement("item");

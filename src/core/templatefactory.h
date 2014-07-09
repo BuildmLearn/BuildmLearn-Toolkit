@@ -36,6 +36,24 @@
 #include <QHash>
 #include <QDomDocument>
 
+/// \brief Finds root data element in basic XML bundle header
+/// and exports it as target_name argument.
+#define FIND_DATA_ELEMENT(target_name, source_document)                               \
+  QStringList way_to_data_element = QString(XML_BUNDLE_ROOT_DATA_ELEMENT).split('/'); \
+  QDomElement target_name = source_document.documentElement();                        \
+                                                                                      \
+  while (!way_to_data_element.isEmpty()) {                                            \
+    QDomNode child_item = data_element.namedItem(way_to_data_element.at(0));          \
+                                                                                      \
+    if (!child_item.isNull() && child_item.isElement()) {                             \
+      target_name = child_item.toElement();                                           \
+      way_to_data_element.removeFirst();                                              \
+    }                                                                                 \
+    else {                                                                            \
+      return QString();                                                               \
+    }                                                                                 \
+  }                                                                                   \
+
 
 class TemplateEntryPoint;
 class TemplateCore;
@@ -94,7 +112,12 @@ class TemplateFactory : public QObject {
 
     /// \brief Generates common XML bundle.
     /// \return Returns XML bundle structure.
-    QDomDocument generateBundleHeader();
+    QDomDocument generateBundleHeader(const QString &template_type,
+                                      const QString &author_name,
+                                      const QString &author_email,
+                                      const QString &project_title,
+                                      const QString &project_description,
+                                      const QString &template_version);
 
     TemplateGenerator *generator() const;
 

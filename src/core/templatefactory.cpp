@@ -127,7 +127,7 @@ QString TemplateFactory::applicationFileName(const QString &project_name) {
   }
 }
 
-QDomDocument TemplateFactory::generateBundleHeader() {
+QDomDocument TemplateFactory::generateBundleHeader(const QString &template_type, const QString &author_name, const QString &author_email, const QString &project_title, const QString &project_description, const QString &template_version) {
   QDomDocument xml_bundle;
   QDomElement root_element = xml_bundle.createElement("buildmlearn_application");
   QDomElement author_element = xml_bundle.createElement("author");
@@ -138,10 +138,16 @@ QDomDocument TemplateFactory::generateBundleHeader() {
   QDomElement version_element = xml_bundle.createElement("version");
   QDomElement data_element = xml_bundle.createElement("data");
 
+
+  root_element.setAttribute("type", template_type);
+  name_element.appendChild(xml_bundle.createTextNode(author_name));
+  email_element.appendChild(xml_bundle.createTextNode(author_email));
+  title_element.appendChild(xml_bundle.createTextNode(project_title));
+  description_element.appendChild(xml_bundle.createTextNode(project_description));
+  version_element.appendChild(xml_bundle.createTextNode(template_version));
+
   author_element.appendChild(name_element);
   author_element.appendChild(email_element);
-
-  version_element.appendChild(xml_bundle.createTextNode("1"));
 
   root_element.appendChild(author_element);
   root_element.appendChild(title_element);
