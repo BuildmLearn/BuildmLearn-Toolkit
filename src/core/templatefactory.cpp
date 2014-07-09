@@ -120,7 +120,7 @@ QString TemplateFactory::applicationFileName(const QString &project_name) {
   if (activeEntryPoint() != NULL) {
     return applicationFileNamePattern().arg(activeEntryPoint()->name(),
                                             project_name,
-                                            QDateTime::currentDateTime().toString(""));
+                                            QDateTime::currentDateTime().toString("yyyyMMddThhmmss"));
   }
   else {
     return QString();

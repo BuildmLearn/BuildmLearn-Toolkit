@@ -46,6 +46,8 @@ class IOFactory {
     static bool removeDirectory(const QString & directory_name,
                                 const QStringList &exception_file_list = QStringList(),
                                 const QStringList &exception_folder_list = QStringList());
+
+    static QByteArray fileToBase64(const QString &file_name);
 };
 
 #endif // IOFACTORY_H

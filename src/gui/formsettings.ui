@@ -170,8 +170,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>570</width>
-                <height>354</height>
+                <width>167</width>
+                <height>219</height>
                </rect>
               </property>
               <layout class="QFormLayout" name="formLayout">
@@ -304,8 +304,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>576</width>
-            <height>380</height>
+            <width>100</width>
+            <height>30</height>
            </rect>
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -844,16 +844,7 @@ External web browser set on this page is used application-wide. For example, it 
        <item row="3" column="0" colspan="2">
         <widget class="QLabel" name="m_lblGenerationInfo">
          <property name="text">
-          <string>You can use these placeholders:
-&lt;ul&gt;
-&lt;li&gt;&quot;%1&quot; - name of used template,&lt;/li&gt;
-&lt;li&gt;&quot;%2&quot; - name of the project,&lt;/li&gt;
-&lt;li&gt;&quot;%3&quot; - timestamp of current date and time.&lt;/li&gt;
-&lt;/ul&gt;
-
-For example, typical application filename pattern can look like this: &quot;application-%1-%2-%3.apk&quot;. This pattern is escaped during the generation process. For example, if you use &quot;flashcard&quot; template, then filename of result will look like this: &quot;application-flashcard-myflashcardproject-20140523T082205.apk&quot;.
-
-Note that not all templates support &quot;name of the project part&quot;, for example Basic mLearning template ignores %2 placeholder.</string>
+          <string>;</string>
          </property>
          <property name="textFormat">
           <enum>Qt::RichText</enum>

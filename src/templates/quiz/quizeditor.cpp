@@ -402,7 +402,7 @@ QString QuizEditor::generateBundleData() {
                                                                                m_ui->m_txtName->lineEdit()->text(),
                                                                                QString(),
                                                                                "1");
-  FIND_DATA_ELEMENT(data_element, source_document)
+  FIND_DATA_ELEMENT(data_element, source_document);
 
   foreach (const QuizQuestion &question, activeQuestions()) {
     QDomElement item_element = source_document.createElement("item");

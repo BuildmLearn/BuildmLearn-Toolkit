@@ -41,6 +41,7 @@ FlashCardEntryPoint::FlashCardEntryPoint(TemplateFactory *parent)
   m_name = "flashcard";
   m_thumbnailImage = "thumbnail.png";
   m_typeIndentifier = "FlashCardsTemplate";
+  m_mobileApplicationApkFile = "FlashCardTemplateApp.apk";
 }
 
 FlashCardEntryPoint::~FlashCardEntryPoint() {

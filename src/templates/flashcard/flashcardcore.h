@@ -51,6 +51,8 @@ class FlashCardCore : public TemplateCore {
   private:
     FlashCardEditor *flashCardEditor();
     FlashCardSimulator *flashCardSimulator();
+
+    void cleanupGeneration();
 };
 
 #endif // FLASHCARDCORE_H

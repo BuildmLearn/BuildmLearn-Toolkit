@@ -34,6 +34,8 @@
 #include "templates/flashcard/flashcardcore.h"
 #include "templates/flashcard/flashcardentrypoint.h"
 #include "miscellaneous/iconfactory.h"
+#include "miscellaneous/iofactory.h"
+#include "core/templatefactory.h"
 
 #include <QTimer>
 #include <QFileDialog>
@@ -121,7 +123,48 @@ void FlashCardEditor::launch() {
 }
 
 QString FlashCardEditor::generateBundleData() {
-  return QString();
+  if (!canGenerateApplications()) {
+    return QString();
+  }
+
+  QDomDocument source_document = qApp->templateManager()->generateBundleHeader(core()->entryPoint()->typeIndentifier(),
+                                                                               m_ui->m_txtAuthor->lineEdit()->text(),
+                                                                               QString(),
+                                                                               m_ui->m_txtName->lineEdit()->text(),
+                                                                               QString(),
+                                                                               "1");
+  FIND_DATA_ELEMENT(data_element, source_document);
+
+  foreach (const FlashCardQuestion &question, activeQuestions()) {
+    QDomElement item_element = source_document.createElement("item");
+
+    // Fill in details about question.
+    QDomElement question_element = source_document.createElement("question");
+    QDomElement answer_element = source_document.createElement("answer");
+    QDomElement hint_element = source_document.createElement("hint");
+    QDomElement image_element = source_document.createElement("image");
+
+    question_element.appendChild(source_document.createTextNode(question.question()));
+    answer_element.appendChild(source_document.createTextNode(question.answer()));
+    hint_element.appendChild(source_document.createTextNode(question.hint()));
+
+    // Read file with image, convert it to base64 and insert into XML bundle.
+    QByteArray picture_encoded = IOFactory::fileToBase64(question.picturePath());
+
+    if (picture_encoded.isEmpty() || picture_encoded.isNull()) {
+      return QString();
+    }
+
+    image_element.appendChild(source_document.createTextNode(QString(picture_encoded)));
+    item_element.appendChild(question_element);
+    item_element.appendChild(answer_element);
+    item_element.appendChild(hint_element);
+    item_element.appendChild(image_element);
+
+    data_element.appendChild(item_element);
+  }
+
+  return source_document.toString(2);
 }
 
 QList<FlashCardQuestion> FlashCardEditor::activeQuestions() const {

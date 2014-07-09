@@ -79,6 +79,19 @@ bool IOFactory::removeDirectory(const QString& directory_name,
   return result;
 }
 
+QByteArray IOFactory::fileToBase64(const QString &file_name) {
+  QFile file(file_name);
+
+  if (!file.open(QIODevice::ReadOnly | QIODevice::Unbuffered)) {
+    return QByteArray();
+  }
+  else {
+    QByteArray file_contents = file.readAll();
+    file.close();
+    return file_contents.toBase64();
+  }
+}
+
 bool IOFactory::copyDirectory(QString source, QString destination) {
   QDir dir(source);
 
