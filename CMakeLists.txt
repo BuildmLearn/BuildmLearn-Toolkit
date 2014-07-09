@@ -470,7 +470,6 @@ set(APP_HEADERS
   src/templates/quiz/quizcore.h
   src/templates/quiz/quizeditor.h
   src/templates/quiz/quizsimulator.h
-  src/templates/quiz/quizquestion.h
   src/templates/quiz/quizitem.h
 
   src/templates/flashcard/flashcardentrypoint.h
@@ -483,7 +482,6 @@ set(APP_HEADERS
   src/templates/mlearning/basicmlearningcore.h
   src/templates/mlearning/basicmlearningeditor.h
   src/templates/mlearning/basicmlearningsimulator.h
-  src/templates/mlearning/basicmlearningitem.h
 )
 
 # APP form files.

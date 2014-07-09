@@ -38,6 +38,7 @@ class BasicmLearningEditor;
 class BasicmLearningSimulator;
 
 class BasicmLearningCore : public TemplateCore {
+    Q_OBJECT
 
   public:
     explicit BasicmLearningCore(TemplateEntryPoint *entry_point, QObject *parent = 0);
