@@ -41,6 +41,7 @@ BasicmLearningEntryPoint::BasicmLearningEntryPoint(TemplateFactory *parent) : Te
   m_name = "mlearning";
   m_thumbnailImage = "thumbnail.png";
   m_typeIndentifier = "InfoTemplate";
+  m_mobileApplicationApkFile = "BasicmLearningApp.apk";
 }
 
 BasicmLearningEntryPoint::~BasicmLearningEntryPoint() {

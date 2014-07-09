@@ -67,6 +67,11 @@ class BasicmLearningEditor : public TemplateEditor {
     void moveItemUp();
     void moveItemDown();
     void configureUpDown();
+    void updateItemCount();
+    void checkAuthor();
+    void checkName();
+    void onAuthorChanged(const QString &new_author);
+    void onNameChanged(const QString &new_name);
 
   private:
     void setEditorsEnabled(bool enabled);

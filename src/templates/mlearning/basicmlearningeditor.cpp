@@ -30,7 +30,11 @@
 
 #include "templates/mlearning/basicmlearningeditor.h"
 
+#include "miscellaneous/application.h"
 #include "miscellaneous/iconfactory.h"
+#include "core/templatefactory.h"
+#include "core/templatecore.h"
+#include "core/templateentrypoint.h"
 
 #include <QTimer>
 
@@ -41,6 +45,9 @@ BasicmLearningEditor::BasicmLearningEditor(TemplateCore *core, QWidget *parent)
 
   m_ui->m_txtTitle->lineEdit()->setPlaceholderText(tr("Title of the item"));
   m_ui->m_txtDescription->lineEdit()->setPlaceholderText(tr("Description of the item"));
+  m_ui->m_txtNumberOfItems->lineEdit()->setReadOnly(true);
+  m_ui->m_txtAuthor->lineEdit()->setPlaceholderText(tr("Author of this collection"));
+  m_ui->m_txtName->lineEdit()->setPlaceholderText(tr("Name of this collection"));
 
   IconFactory *factory = IconFactory::instance();
 
@@ -58,14 +65,58 @@ BasicmLearningEditor::BasicmLearningEditor(TemplateCore *core, QWidget *parent)
   connect(m_ui->m_listItems, SIGNAL(currentRowChanged(int)), this, SLOT(displayItem(int)));
   connect(m_ui->m_btnItemUp, SIGNAL(clicked()), this, SLOT(moveItemUp()));
   connect(m_ui->m_btnItemDown, SIGNAL(clicked()), this, SLOT(moveItemDown()));
+  connect(m_ui->m_txtAuthor->lineEdit(), SIGNAL(textEdited(QString)), this, SLOT(onAuthorChanged(QString)));
+  connect(m_ui->m_txtName->lineEdit(), SIGNAL(textEdited(QString)), this, SLOT(onNameChanged(QString)));
+
+  m_ui->m_txtAuthor->lineEdit()->setText(tr("John Doe"));
+  m_ui->m_txtName->lineEdit()->setText(tr("Greatest collection"));
 
   checkDescription(m_ui->m_txtDescription->lineEdit()->text());
   checkTitle(m_ui->m_txtTitle->lineEdit()->text());
+  checkAuthor();
+  checkName();
   setEditorsEnabled(false);
+  updateItemCount();
 }
 
 BasicmLearningEditor::~BasicmLearningEditor() {
   delete m_ui;
+}
+
+void BasicmLearningEditor::checkAuthor() {
+  if (m_ui->m_txtAuthor->lineEdit()->text().isEmpty()) {
+    m_ui->m_txtAuthor->setStatus(WidgetWithStatus::Error,
+                                 tr("No author is specified."));
+  }
+  else {
+    m_ui->m_txtAuthor->setStatus(WidgetWithStatus::Ok,
+                                 tr("Author is specified."));
+  }
+}
+
+void BasicmLearningEditor::checkName() {
+  if (m_ui->m_txtName->lineEdit()->text().isEmpty()) {
+    m_ui->m_txtName->setStatus(WidgetWithStatus::Error,
+                               tr("No collection title is specified."));
+  }
+  else {
+    m_ui->m_txtName->setStatus(WidgetWithStatus::Ok,
+                               tr("Collection title is specified."));
+  }
+}
+
+void BasicmLearningEditor::onAuthorChanged(const QString& new_author) {
+  checkAuthor();
+
+  launch();
+  emit changed();
+}
+
+void BasicmLearningEditor::onNameChanged(const QString& new_name) {
+  checkName();
+
+  launch();
+  emit changed();
 }
 
 void BasicmLearningEditor::configureUpDown() {
@@ -112,12 +163,51 @@ void BasicmLearningEditor::launch() {
   else {
     issueNewGenereationStatus(false,
                               tr("Simulation or mobile application generation cannot be started \n"
-                                                                    "because there is no question added or quiz does not have name."));
+                                 "because there is no question added or quiz does not have name."));
   }
 }
 
 QString BasicmLearningEditor::generateBundleData() {
-  return QString();
+  if (!canGenerateApplications()) {
+    return QString();
+  }
+
+  QDomDocument source_document = qApp->templateManager()->generateBundleHeader(core()->entryPoint()->typeIndentifier(),
+                                                                               m_ui->m_txtAuthor->lineEdit()->text(),
+                                                                               QString(),
+                                                                               m_ui->m_txtName->lineEdit()->text(),
+                                                                               QString(),
+                                                                               "1");
+  FIND_DATA_ELEMENT(data_element, source_document);
+
+  foreach (const BasicmLearningItem &item, activeItems()) {
+    QDomElement item_element = source_document.createElement("item");
+
+    // Fill in details about question.
+    QDomElement title_element = source_document.createElement("item_title");
+    QDomElement description_element = source_document.createElement("item_description");
+
+    title_element.appendChild(source_document.createTextNode(item.title()));
+    description_element.appendChild(source_document.createTextNode(item.description()));
+
+    item_element.appendChild(title_element);
+    item_element.appendChild(description_element);
+
+    data_element.appendChild(item_element);
+  }
+
+  return source_document.toString(2);
+}
+
+void BasicmLearningEditor::updateItemCount() {
+  m_ui->m_txtNumberOfItems->lineEdit()->setText(QString::number(m_ui->m_listItems->count()));
+
+  if (m_ui->m_listItems->count() > 0) {
+    m_ui->m_txtNumberOfItems->setStatus(WidgetWithStatus::Ok, tr("Collection contains at least one item."));
+  }
+  else {
+    m_ui->m_txtNumberOfItems->setStatus(WidgetWithStatus::Error, tr("Collection does not contain any items."));
+  }
 }
 
 void BasicmLearningEditor::addNewItem() {
@@ -145,6 +235,7 @@ void BasicmLearningEditor::addNewItem() {
     m_ui->m_listItems->setCurrentRow(marked_item + 1);
   }
 
+  updateItemCount();
   launch();
   emit changed();
 }
@@ -163,6 +254,7 @@ void BasicmLearningEditor::removeSelectedItem() {
     delete m_ui->m_listItems->takeItem(current_row);
   }
 
+  updateItemCount();
   launch();
   emit changed();
 }

@@ -45,7 +45,7 @@ FlashCardEditor::FlashCardEditor(TemplateCore *core, QWidget *parent)
   : TemplateEditor(core, parent), m_ui(new Ui::FlashCardEditor) {
   m_ui->setupUi(this);
 
-  m_ui->m_txtNumberOfQuestions->lineEdit()->setEnabled(false);
+  m_ui->m_txtNumberOfQuestions->lineEdit()->setReadOnly(true);
 
   m_ui->m_lblPictureFile->label()->setWordWrap(true);
   m_ui->m_txtAnswer->lineEdit()->setPlaceholderText(tr("Answer for the answer"));
@@ -343,8 +343,6 @@ void FlashCardEditor::loadQuestion(int index) {
   m_ui->m_lblPictureFile->label()->blockSignals(false);
 
   checkAnswer();
-  checkAuthor();
-  checkName();
   checkHint();
 
   QTimer::singleShot(0, this, SLOT(configureUpDown()));

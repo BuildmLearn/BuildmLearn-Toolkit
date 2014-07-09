@@ -81,7 +81,7 @@ TemplateCore::GenerationResult BasicmLearningCore::generateMobileApplication(QSt
   temp_directory.mkdir(APP_LOW_NAME);
   base_directory.mkdir("assets");
 
-  QFile index_file(base_folder + "/assets/basicmlearning_content.xml");
+  QFile index_file(base_folder + "/assets/info_content.xml");
   index_file.open(QIODevice::WriteOnly | QIODevice::Text);
 
   emit generationProgress(30, tr("Writting info data into file..."));

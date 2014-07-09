@@ -103,9 +103,6 @@ TemplateCore::GenerationResult FlashCardCore::generateMobileApplication(QString 
   // Copying of target apk file.
   QString new_apk_name = qApp->templateManager()->applicationFileName("info");
 
-  QString aaa = APP_TEMPLATES_PATH + "/" + entryPoint()->baseFolder() + "/" + entryPoint()->mobileApplicationApkFile();
-  QString bbb = base_folder + "/" + new_apk_name;
-
   if (!QFile::copy(APP_TEMPLATES_PATH + "/" + entryPoint()->baseFolder() + "/" + entryPoint()->mobileApplicationApkFile(),
               base_folder + "/" + new_apk_name)) {
     cleanupGeneration();
