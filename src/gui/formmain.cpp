@@ -201,6 +201,7 @@ void FormMain::setupIcons() {
   m_ui->m_actionSimulatorRun->setIcon(factory->fromTheme("simulation-run"));
   m_ui->m_actionSimulatorStop->setIcon(factory->fromTheme("simulation-stop"));
   m_ui->m_actionSimulatorGoBack->setIcon(factory->fromTheme("simulation-back"));
+  m_ui->m_actionOpenOutputDirectory->setIcon(factory->fromTheme("view-output"));
 }
 
 void FormMain::setupToolbar() {
