@@ -192,6 +192,8 @@ class Application : public QApplication {
     QString externalApplicationsStatus() const;
     bool externalApplicationChecked() const;
 
+    bool isClosing() const;
+
   public slots:
     /// \brief Schedules check for updates.
     ///
@@ -220,6 +222,7 @@ class Application : public QApplication {
     SystemTrayIcon *m_trayIcon;
     FormMain *m_mainForm;
     TemplateFactory *m_templateManager;
+    bool m_closing;
 };
 
 #endif // APPLICATION_H

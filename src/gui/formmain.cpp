@@ -168,8 +168,6 @@ void FormMain::createConnections() {
   connect(qApp->templateManager()->generator(), SIGNAL(generationFinished(TemplateCore::GenerationResult,QString)),
           this, SLOT(onGenerationDone(TemplateCore::GenerationResult,QString)));
   connect(qApp->templateManager()->generator(), SIGNAL(generationProgress(int,QString)), this, SLOT(onGenerationProgress(int,QString)));
-
-
 }
 
 void FormMain::setupActionShortcuts() {
@@ -621,12 +619,15 @@ void FormMain::saveUnsavedProject() {
     if (qApp->templateManager()->activeCore()->editor()->isDirty()) {
       // TODO: There is unsaved work.
       // Save it NOW.
+      QMessageBox::information(this, "aaa", "bbb");
     }
   }
 }
 
 void FormMain::closeEvent(QCloseEvent *e) {
-  saveUnsavedProject();
+  if (!qApp->isClosing()) {
+    saveUnsavedProject();
+  }
 
   if (SystemTrayIcon::isSystemTrayActivated()) {
     qApp->trayIcon()->hide();

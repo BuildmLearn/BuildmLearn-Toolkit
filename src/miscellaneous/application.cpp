@@ -56,7 +56,8 @@ Application::Application(int &argc, char **argv)
     m_settings(NULL),
     m_skinFactory(NULL),
     m_trayIcon(NULL),
-    m_templateManager(NULL) {
+    m_templateManager(NULL),
+    m_closing(false) {
   connect(this, SIGNAL(aboutToQuit()), this, SLOT(onAboutToQuit()));
   connect(this, SIGNAL(commitDataRequest(QSessionManager&)), this, SLOT(onCommitData(QSessionManager&)));
   connect(this, SIGNAL(saveStateRequest(QSessionManager&)), this, SLOT(onSaveState(QSessionManager&)));
@@ -294,6 +295,10 @@ void Application::handleBackgroundUpdatesCheck() {
   }
 }
 
+bool Application::isClosing() const {
+  return m_closing;
+}
+
 bool Application::externalApplicationChecked() const {
   return m_externalApplicationChecked;
 }
@@ -345,6 +350,8 @@ void Application::onAboutToQuit() {
 
 void Application::onCommitData(QSessionManager &manager) {
   qDebug("OS asked application to commit its data.");
+
+  m_closing = true;
 
   manager.setRestartHint(QSessionManager::RestartNever);
   manager.release();
