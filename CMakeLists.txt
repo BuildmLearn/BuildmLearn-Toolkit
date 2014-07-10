@@ -373,6 +373,7 @@ set(APP_SOURCES
   src/gui/formhelp.cpp
   src/gui/lineeditwithstatus.cpp
   src/gui/formsimulator.cpp
+  src/gui/messagebox.cpp
 
   src/dynamic-shortcuts/shortcutcatcher.cpp
   src/dynamic-shortcuts/shortcutbutton.cpp
@@ -442,6 +443,7 @@ set(APP_HEADERS
   src/gui/formhelp.h
   src/gui/lineeditwithstatus.h
   src/gui/formsimulator.h
+  src/gui/messagebox.h
 
   src/dynamic-shortcuts/dynamicshortcutswidget.h
   src/dynamic-shortcuts/shortcutcatcher.h

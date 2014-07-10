@@ -147,7 +147,10 @@ class FormMain : public QMainWindow {
     /// project.
     void generateMobileApplication();
 
-    void saveUnsavedProject();
+    /// \brief Performs necessary steps to save active project if there is unsaved work.
+    /// \return Returns true if there is no opened project or current project is already saved,
+    /// otherwise returns false.
+    bool saveUnsavedProject();
 
   protected:
     /// \brief Executed when main application window is closed.

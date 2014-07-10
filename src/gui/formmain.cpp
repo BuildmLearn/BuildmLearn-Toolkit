@@ -38,6 +38,7 @@
 #include "gui/formhelp.h"
 #include "gui/formsimulator.h"
 #include "gui/formnewproject.h"
+#include "gui/messagebox.h"
 #include "miscellaneous/iconfactory.h"
 #include "core/templatesimulator.h"
 #include "core/templatefactory.h"
@@ -615,14 +616,30 @@ void FormMain::generateMobileApplication() {
   }
 }
 
-void FormMain::saveUnsavedProject() {
+bool FormMain::saveUnsavedProject() {
   if (qApp->templateManager()->activeCore() != NULL) {
     if (qApp->templateManager()->activeCore()->editor()->isDirty()) {
-      // TODO: There is unsaved work.
-      // Save it NOW.
-      QMessageBox::information(this, "aaa", "bbb");
+      MessageBox::StandardButton decision = MessageBox::show(this, QMessageBox::Warning, tr("Unsaved work"), tr("There is unsaved project."),
+                                                             tr("Do you want to save your unsaved project first?"), QString(),
+                                                             QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel,
+                                                             QMessageBox::Yes);
+
+      switch (decision) {
+        case QMessageBox::Yes:
+          openSaveProjectDialog();
+          return true;
+
+        case QMessageBox::No:
+          return true;
+
+        case QMessageBox::Cancel:
+        default:
+          return false;
+      }
     }
   }
+
+  return true;
 }
 
 void FormMain::closeEvent(QCloseEvent *e) {
