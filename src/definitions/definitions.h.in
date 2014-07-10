@@ -75,6 +75,7 @@
 #define KEY_PATH                        "key.pk8"
 
 #define XML_BUNDLE_ROOT_DATA_ELEMENT    "data"
+#define XML_BUNDLE_INDENTATION          2
 
 // Line delimiters.
 #define DELIMITER_LINE                  "##L##"

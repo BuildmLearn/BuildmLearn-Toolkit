@@ -196,7 +196,7 @@ QString BasicmLearningEditor::generateBundleData() {
     data_element.appendChild(item_element);
   }
 
-  return source_document.toString(2);
+  return source_document.toString(XML_BUNDLE_INDENTATION);
 }
 
 void BasicmLearningEditor::updateItemCount() {

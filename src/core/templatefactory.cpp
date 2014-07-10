@@ -32,6 +32,7 @@
 
 #include "definitions/definitions.h"
 #include "core/templatecore.h"
+#include "core/templateeditor.h"
 #include "core/templateentrypoint.h"
 #include "core/templategenerator.h"
 #include "miscellaneous/settings.h"
@@ -47,6 +48,8 @@
 #endif
 
 #include <QDateTime>
+#include <QFile>
+#include <QTextStream>
 
 
 TemplateFactory::TemplateFactory(QObject *parent)
@@ -178,7 +181,7 @@ void TemplateFactory::clearEntryAndCore() {
   }
 }
 
-void TemplateFactory::startNewProject(TemplateEntryPoint *entry_point) {
+bool TemplateFactory::startNewProject(TemplateEntryPoint *entry_point) {
   // Start new project with selected template entry point.
   clearEntryAndCore();
 
@@ -186,12 +189,53 @@ void TemplateFactory::startNewProject(TemplateEntryPoint *entry_point) {
   m_activeCore = entry_point->createNewCore();
 
   emit newTemplateCoreCreated(m_activeCore);
+
+  return true;
 }
 
-void TemplateFactory::loadProject(const QString &bundle_file_name) {
+bool TemplateFactory::loadProject(const QString &bundle_file_name) {
   // TODO: Load project from XML bundle file.
   // Detect which template is it, then start new project with that template
   // and fill data in.
+  return false;
+}
+
+bool TemplateFactory::saveCurrentProjectAs(const QString &bundle_file_name) {
+  // TODO: Save current project to given file.
+
+  QString xml_bundle_contents = activeCore()->editor()->generateBundleData();
+
+  if (xml_bundle_contents.isEmpty()) {
+    // There is nothing to save.
+    return false;
+  }
+
+  QFile target_xml_file(bundle_file_name);
+
+  if (target_xml_file.open(QIODevice::Truncate | QIODevice::WriteOnly |
+                           QIODevice::Unbuffered | QIODevice::Text)) {
+    QTextStream stream(&target_xml_file);
+
+    stream << xml_bundle_contents;
+    stream.flush();
+
+    target_xml_file.flush();
+    target_xml_file.close();
+
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+
+bool TemplateFactory::saveCurrentProject() {
+  if (activeCore() == NULL || activeCore()->assignedFile().isEmpty()) {
+    return false;
+  }
+  else {
+    return saveCurrentProjectAs(activeCore()->assignedFile());
+  }
 }
 
 void TemplateFactory::setupTemplates() {

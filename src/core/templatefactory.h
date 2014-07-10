@@ -128,11 +128,15 @@ class TemplateFactory : public QObject {
 
     /// \brief Starts new project core from given entry point.
     /// \param entry_point Entry point to be started.
-    void startNewProject(TemplateEntryPoint *entry_point);
+    bool startNewProject(TemplateEntryPoint *entry_point);
 
     /// \brief Loads stored project and initializes new core according to it.
     /// \param bundle_file_name XML bundle file name of saved project.
-    void loadProject(const QString &bundle_file_name);
+    bool loadProject(const QString &bundle_file_name);
+
+    bool saveCurrentProjectAs(const QString &bundle_file_name);
+
+    bool saveCurrentProject();
 
   signals:
     /// \brief Emitted if new project using some template core is started.

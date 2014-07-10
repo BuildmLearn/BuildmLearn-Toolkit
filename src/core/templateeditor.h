@@ -82,6 +82,11 @@ class TemplateEditor : public QWidget {
     bool isDirty() const;
     void setIsDirty(bool is_dirty);
 
+  public slots:
+    void dirtify() {
+      setIsDirty(true);
+    }
+
   protected:
     void issueNewGenereationStatus(bool can_generate, const QString &message = QString());
 

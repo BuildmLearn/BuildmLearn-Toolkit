@@ -156,6 +156,7 @@ void FormMain::createConnections() {
   // Project connections.
   connect(m_ui->m_actionNewProject, SIGNAL(triggered()), this ,SLOT(openNewProjectDialog()));
   connect(m_ui->m_actionSaveProject, SIGNAL(triggered()), this ,SLOT(openSaveProjectDialog()));
+  connect(m_ui->m_actionSaveProjectAs, SIGNAL(triggered()), this, SLOT(openSaveProjectAsDialog()));
   connect(m_ui->m_actionLoadProject, SIGNAL(triggered()), this ,SLOT(openLoadProjectDialog()));
   connect(m_ui->m_actionOpenOutputDirectory, SIGNAL(triggered()), this, SLOT(openOutputDirectory()));
 
@@ -167,6 +168,8 @@ void FormMain::createConnections() {
   connect(qApp->templateManager()->generator(), SIGNAL(generationFinished(TemplateCore::GenerationResult,QString)),
           this, SLOT(onGenerationDone(TemplateCore::GenerationResult,QString)));
   connect(qApp->templateManager()->generator(), SIGNAL(generationProgress(int,QString)), this, SLOT(onGenerationProgress(int,QString)));
+
+
 }
 
 void FormMain::setupActionShortcuts() {
@@ -543,26 +546,49 @@ void FormMain::display() {
 
 void FormMain::openSaveProjectDialog() {
   if (qApp->templateManager()->activeCore()->assignedFile().isEmpty()) {
+    // This project was not saved/loaded before, se we need to use "Save as..."
+    // feature.
     openSaveProjectAsDialog();
   }
   else {
-    // TODO: Save currently active project.
-
-    setWindowTitle(m_normalTitle);
+    if (qApp->templateManager()->saveCurrentProject()) {
+      // Everything saved OK.
+      m_ui->m_actionSaveProject->setEnabled(false);
+      setWindowTitle(m_normalTitle);
+    }
+    else {
+      // TODO:
+    }
   }
 }
 
 void FormMain::openSaveProjectAsDialog() {
-  // TODO: Display dialog to save currently active project if there is any.
-  // TODO: Save currently active project.
+  QString selected_file = QFileDialog::getSaveFileName(this,
+                                                       tr("Select destination file for the project"),
+                                                       QDir::homePath(),
+                                                       tr("XML bundle files (*.xml)"),
+                                                       0,
+                                                       QFileDialog::DontUseNativeDialog);
 
-  setWindowTitle(m_normalTitle);
+  if (!selected_file.isEmpty()) {
+    if (qApp->templateManager()->saveCurrentProjectAs(selected_file)) {
+      // Everything saved OK.
+      m_ui->m_actionSaveProject->setEnabled(false);
+      setWindowTitle(m_normalTitle);
+    }
+    else {
+      // TODO:
+    }
+  }
 }
 
 void FormMain::openLoadProjectDialog() {
   saveUnsavedProject();
 
   // TODO: Open already saved project.
+
+  m_ui->m_actionSaveProjectAs->setEnabled(true);
+  m_ui->m_actionSaveProject->setEnabled(true);
 }
 
 void FormMain::openNewProjectDialog() {
