@@ -380,8 +380,7 @@ void FormSettings::selectJava() {
                                                          m_ui->m_lblExternalJava->label()->text(),
                                                          //: File filter for external browser selection dialog.
                                                          tr("Executables (java*)"),
-                                                         0,
-                                                         QFileDialog::DontUseNativeDialog);
+                                                         0);
 
   if (!executable_file.isEmpty()) {
     checkJava(QDir::toNativeSeparators(executable_file));
@@ -395,8 +394,7 @@ void FormSettings::selectZip() {
                                                          m_ui->m_lblExternalZip->label()->text(),
                                                          //: File filter for external browser selection dialog.
                                                          tr("Executables (zip*)"),
-                                                         0,
-                                                         QFileDialog::DontUseNativeDialog);
+                                                         0);
 
   if (!executable_file.isEmpty()) {
     checkZip(QDir::toNativeSeparators(executable_file));
@@ -409,8 +407,7 @@ void FormSettings::selectSignApk() {
                                                          m_ui->m_lblExternalSignapk->label()->text(),
                                                          //: File filter for external browser selection dialog.
                                                          tr("Executables (signapk.jar)"),
-                                                         0,
-                                                         QFileDialog::DontUseNativeDialog);
+                                                         0);
 
   if (!executable_file.isEmpty()) {
     checkSignApk(QDir::toNativeSeparators(executable_file));
@@ -647,8 +644,7 @@ void FormSettings::saveGenerationStuff() {
 void FormSettings::selectTempDirectory() {
   QString temp_directory = QFileDialog::getExistingDirectory(this,
                                                              tr("Select temporary directory"),
-                                                             m_ui->m_lblGenerationTemp->text(),
-                                                             QFileDialog::DontUseNativeDialog);
+                                                             m_ui->m_lblGenerationTemp->text());
 
   if (!temp_directory.isEmpty()) {
     m_ui->m_lblGenerationTemp->setText(QDir::toNativeSeparators(temp_directory));
@@ -658,8 +654,7 @@ void FormSettings::selectTempDirectory() {
 void FormSettings::selectOutputDirectory() {
   QString output_directory = QFileDialog::getExistingDirectory(this,
                                                                tr("Select output directory"),
-                                                               m_ui->m_lblGenerationOutput->text(),
-                                                               QFileDialog::DontUseNativeDialog);
+                                                               m_ui->m_lblGenerationOutput->text());
 
   if (!output_directory.isEmpty()) {
     m_ui->m_lblGenerationOutput->setText(QDir::toNativeSeparators(output_directory));

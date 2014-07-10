@@ -222,6 +222,9 @@ bool TemplateFactory::saveCurrentProjectAs(const QString &bundle_file_name) {
     target_xml_file.flush();
     target_xml_file.close();
 
+    activeCore()->setAssignedFile(bundle_file_name);
+    activeCore()->editor()->setIsDirty(false);
+
     return true;
   }
   else {

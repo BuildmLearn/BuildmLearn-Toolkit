@@ -407,8 +407,7 @@ void FlashCardEditor::selectPicture() {
   QString selected_picture = QFileDialog::getOpenFileName(this, tr("Select picture for question"),
                                                           m_ui->m_lblPictureFile->label()->toolTip(),
                                                           tr("Images (*.gif *.jpg *.png)"),
-                                                          0,
-                                                          QFileDialog::DontUseNativeDialog);
+                                                          0);
 
   if (!selected_picture.isEmpty()) {
     loadPicture(selected_picture);

@@ -567,8 +567,7 @@ void FormMain::openSaveProjectAsDialog() {
                                                        tr("Select destination file for the project"),
                                                        QDir::homePath(),
                                                        tr("XML bundle files (*.xml)"),
-                                                       0,
-                                                       QFileDialog::DontUseNativeDialog);
+                                                       0);
 
   if (!selected_file.isEmpty()) {
     if (qApp->templateManager()->saveCurrentProjectAs(selected_file)) {
