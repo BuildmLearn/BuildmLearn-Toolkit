@@ -582,7 +582,9 @@ void FormMain::openSaveProjectAsDialog() {
 }
 
 void FormMain::openLoadProjectDialog() {
-  saveUnsavedProject();
+  if (!saveUnsavedProject()) {
+    return;
+  }
 
   // TODO: Open already saved project.
 
@@ -597,7 +599,9 @@ void FormMain::openNewProjectDialog() {
   delete form_new_project.data();
 
   if (entry_point != NULL) {
-    saveUnsavedProject();
+    if (!saveUnsavedProject()) {
+      return;
+    }
 
     // User selected proper template to start with.
     // Load the template.
@@ -619,8 +623,11 @@ void FormMain::generateMobileApplication() {
 bool FormMain::saveUnsavedProject() {
   if (qApp->templateManager()->activeCore() != NULL) {
     if (qApp->templateManager()->activeCore()->editor()->isDirty()) {
-      MessageBox::StandardButton decision = MessageBox::show(this, QMessageBox::Warning, tr("Unsaved work"), tr("There is unsaved project."),
-                                                             tr("Do you want to save your unsaved project first?"), QString(),
+      MessageBox::StandardButton decision = MessageBox::show(this,
+                                                             QMessageBox::Warning,
+                                                             tr("Unsaved work"),
+                                                             tr("There is unsaved project. You might want to save your current project, unless you do not mind losing your unsaved work."),
+                                                             tr("Do you want to save your unsaved project before proceeding?"), QString(),
                                                              QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel,
                                                              QMessageBox::Yes);
 
@@ -644,7 +651,10 @@ bool FormMain::saveUnsavedProject() {
 
 void FormMain::closeEvent(QCloseEvent *e) {
   if (!qApp->isClosing()) {
-    saveUnsavedProject();
+    if (!saveUnsavedProject()) {
+      e->ignore();
+      return;
+    }
   }
 
   if (SystemTrayIcon::isSystemTrayActivated()) {
