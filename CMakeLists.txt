@@ -53,6 +53,15 @@
 #     cd install
 #     macdeployqt "buildmlearn-toolkit.app" -dmg
 #
+#   d) Windows DEBUG build.
+#     mkdir build && cd build
+#     cmake ../ -DCMAKE_BUILD_TYPE="debug" -DCMAKE_INSTALL_PREFIX="./install" -DUSE_QT_5="ON"
+#     nmake (or mingw32-make if you use MinGW compiler)
+#     nmake install (or mingw32-make if you use MinGW compiler)
+#     
+#     Now it is done. You now need to copy all files contained in "build\install" subfolder and copy it into "build" folder.
+#   
+#
 # Refreshing translations:
 #   make lupdate
 #
@@ -85,6 +94,9 @@
 #     If "ON", then NSIS generator is used instead of ZIP generator.
 #     If "OFF", then default ZIP generator is used.
 #
+# Tip for developers: When you COMPILE BuildmLearn Toolkit, you also need to run "make install" ("mingw32-make install" if you use MinGW) to "install
+# the software to some folder. Then you need to take installed files (without root folder) and copy it to your build directory. Detailed steps are these:
+#   a) Compile the program and use this CMake call 
 #
 # Other information:
 #   - supports Windows, Linux, OS/2 (eComStation),

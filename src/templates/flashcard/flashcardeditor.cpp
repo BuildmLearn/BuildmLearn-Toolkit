@@ -190,7 +190,7 @@ bool FlashCardEditor::loadBundleData(const QString &bundle_data) {
       else {
         // TODO: POKRACOVAT TADY, prevadeni z base64 do souboru blbne.
         // https://www.google.cz/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=qt%20base64%20to%20file
-        IOFactory::base64ToFile(image_data, "M:\\aaa.fff");
+        IOFactory::base64ToFile(image_data, "D:\\aaa.fff");
         // TODO: add new item
       }
     }

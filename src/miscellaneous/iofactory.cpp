@@ -100,7 +100,7 @@ bool IOFactory::base64ToFile(const QString &source_data, const QString &target_f
   }
 
 
-  QByteArray converted = QByteArray::fromBase64(source_data.toUtf8());
+  QByteArray converted = QByteArray::fromBase64(source_data.toAscii());
   QDataStream data(&target);
 
   data << converted;
