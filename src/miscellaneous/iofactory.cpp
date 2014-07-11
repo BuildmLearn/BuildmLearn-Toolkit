@@ -92,6 +92,23 @@ QByteArray IOFactory::fileToBase64(const QString &file_name) {
   }
 }
 
+bool IOFactory::base64ToFile(const QString &source_data, const QString &target_file) {
+  QFile target(target_file);
+
+  if (!target.open(QIODevice::Unbuffered | QIODevice::WriteOnly | QIODevice::Truncate)) {
+    return false;
+  }
+
+
+  QByteArray converted = QByteArray::fromBase64(source_data.toUtf8());
+  QDataStream data(&target);
+
+  data << converted;
+
+  target.close();
+  return true;
+}
+
 bool IOFactory::copyDirectory(QString source, QString destination) {
   QDir dir(source);
 

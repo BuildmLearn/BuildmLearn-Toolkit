@@ -62,10 +62,14 @@ FlashCardEditor::FlashCardEditor(TemplateCore *core, QWidget *parent)
   m_ui->m_btnQuestionUp->setIcon(factory->fromTheme("move-up"));
   m_ui->m_btnQuestionDown->setIcon(factory->fromTheme("move-down"));
 
+
+  m_ui->m_txtAuthor->lineEdit()->setText(tr("John Doe"));
+  m_ui->m_txtName->lineEdit()->setText(tr("Greatest collection"));
+
   connect(m_ui->m_btnPictureSelect, SIGNAL(clicked()), this, SLOT(selectPicture()));
-  connect(m_ui->m_txtAuthor->lineEdit(), SIGNAL(textEdited(QString)), this, SLOT(onAuthorChanged(QString)));
+  connect(m_ui->m_txtAuthor->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(onAuthorChanged(QString)));
   connect(m_ui->m_txtQuestion, SIGNAL(textEdited(QString)), this, SLOT(saveQuestion()));
-  connect(m_ui->m_txtName->lineEdit(), SIGNAL(textEdited(QString)), this, SLOT(onNameChanged(QString)));
+  connect(m_ui->m_txtName->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(onNameChanged(QString)));
   connect(m_ui->m_txtAnswer->lineEdit(), SIGNAL(textEdited(QString)), this, SLOT(onAnswerChanged(QString)));
   connect(m_ui->m_txtHint->lineEdit(), SIGNAL(textEdited(QString)), this, SLOT(onHintChanged(QString)));
   connect(m_ui->m_btnQuestionAdd, SIGNAL(clicked()), this, SLOT(addQuestion()));
@@ -76,9 +80,6 @@ FlashCardEditor::FlashCardEditor(TemplateCore *core, QWidget *parent)
 
   setEditorsEnabled(false);
   updateQuestionCount();
-
-  m_ui->m_txtAuthor->lineEdit()->setText(tr("John Doe"));
-  m_ui->m_txtName->lineEdit()->setText(tr("Greatest collection"));
 
   qRegisterMetaType<FlashCardQuestion>("FlashCardQuestion");
 
@@ -168,7 +169,41 @@ QString FlashCardEditor::generateBundleData() {
 }
 
 bool FlashCardEditor::loadBundleData(const QString &bundle_data) {
-  return false;
+  QDomDocument bundle_document;
+  bundle_document.setContent(bundle_data);
+
+  QDomNodeList items = bundle_document.documentElement().elementsByTagName("item");
+
+  for (int i = 0; i < items.size(); i++) {
+    QDomNode item = items.at(i);
+
+    if (item.isElement()) {
+      QString question = item.namedItem("question").toElement().text();
+      QString answer = item.namedItem("answer").toElement().text();
+      QString hint = item.namedItem("hint").toElement().text();
+      QString image_data = item.namedItem("image").toElement().text();
+
+      if (question.isEmpty() || answer.isEmpty() || image_data.isEmpty()) {
+        // TODO: error
+        continue;
+      }
+      else {
+        // TODO: POKRACOVAT TADY, prevadeni z base64 do souboru blbne.
+        // https://www.google.cz/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=qt%20base64%20to%20file
+        IOFactory::base64ToFile(image_data, "M:\\aaa.fff");
+        // TODO: add new item
+      }
+    }
+    else {
+      continue;
+    }
+  }
+
+  // Load author & name.
+  m_ui->m_txtAuthor->lineEdit()->setText(bundle_document.documentElement().namedItem("author").namedItem("name").toElement().text());
+  m_ui->m_txtName->lineEdit()->setText(bundle_document.documentElement().namedItem("title").toElement().text());
+
+  return true;
 }
 
 QList<FlashCardQuestion> FlashCardEditor::activeQuestions() const {

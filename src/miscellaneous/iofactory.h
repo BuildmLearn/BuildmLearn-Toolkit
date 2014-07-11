@@ -48,6 +48,7 @@ class IOFactory {
                                 const QStringList &exception_folder_list = QStringList());
 
     static QByteArray fileToBase64(const QString &file_name);
+    static bool base64ToFile(const QString &source_data, const QString &target_file);
 };
 
 #endif // IOFACTORY_H

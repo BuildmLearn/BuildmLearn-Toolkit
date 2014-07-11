@@ -31,6 +31,8 @@
 #include "templates/flashcard/flashcardentrypoint.h"
 
 #include "templates/flashcard/flashcardcore.h"
+#include "core/templateeditor.h"
+#include "core/templatesimulator.h"
 
 
 FlashCardEntryPoint::FlashCardEntryPoint(TemplateFactory *parent)
@@ -53,5 +55,14 @@ TemplateCore *FlashCardEntryPoint::createNewCore() {
 }
 
 TemplateCore *FlashCardEntryPoint::loadCoreFromBundleData(const QString& raw_data) {
-  return NULL;
+  FlashCardCore *core = new FlashCardCore(this, this);
+  if (core->editor()->loadBundleData(raw_data)) {
+    return core;
+  }
+  else {
+    core->simulator()->deleteLater();
+    core->editor()->deleteLater();
+    core->deleteLater();
+    return NULL;
+  }
 }
