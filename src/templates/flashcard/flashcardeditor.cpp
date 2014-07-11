@@ -156,7 +156,9 @@ QString FlashCardEditor::generateBundleData() {
       return QString();
     }
 
-    image_element.appendChild(source_document.createTextNode(QString(picture_encoded)));
+    QString aaa = QString::fromUtf8(picture_encoded);
+
+    image_element.appendChild(source_document.createTextNode(QString::fromUtf8(picture_encoded)));
     item_element.appendChild(question_element);
     item_element.appendChild(answer_element);
     item_element.appendChild(hint_element);

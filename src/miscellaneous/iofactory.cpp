@@ -32,6 +32,7 @@
 
 #include <QDir>
 #include <QFile>
+#include <QTextStream>
 
 
 IOFactory::IOFactory() {
@@ -87,6 +88,7 @@ QByteArray IOFactory::fileToBase64(const QString &file_name) {
   }
   else {
     QByteArray file_contents = file.readAll();
+    file.flush();
     file.close();
     return file_contents.toBase64();
   }
@@ -99,12 +101,7 @@ bool IOFactory::base64ToFile(const QString &source_data, const QString &target_f
     return false;
   }
 
-
-  QByteArray converted = QByteArray::fromBase64(source_data.toAscii());
-  QDataStream data(&target);
-
-  data << converted;
-
+  target.write(QByteArray::fromBase64(source_data.toUtf8()));
   target.close();
   return true;
 }
