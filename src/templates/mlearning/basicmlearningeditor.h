@@ -48,16 +48,19 @@ class BasicmLearningEditor : public TemplateEditor {
     Q_OBJECT
 
   public:
-    explicit BasicmLearningEditor(TemplateCore *core, QWidget *parent = 0);
+    explicit BasicmLearningEditor(TemplateCore *core, const QString &bundle_data = QString(), QWidget *parent = 0);
     virtual ~BasicmLearningEditor();
 
     QList<BasicmLearningItem> activeItems() const;
 
     bool canGenerateApplications();
     void launch();
+
     QString generateBundleData();
+    void loadBundleData(const QString &bundle_data);
 
   private slots:
+    void addNewItem(const QString &title, const QString &description);
     void addNewItem();
     void removeSelectedItem();
     void saveItem();

@@ -119,6 +119,8 @@ class TemplateFactory : public QObject {
                                       const QString &project_description,
                                       const QString &template_version);
 
+    /// \brief Access to component which supervises generating of APK files.
+    /// \return Returns pointer to generator.
     TemplateGenerator *generator() const;
 
     static bool entryPointIsLessThan(TemplateEntryPoint *s1, TemplateEntryPoint &s2);
@@ -135,7 +137,6 @@ class TemplateFactory : public QObject {
     bool loadProject(const QString &bundle_file_name);
 
     bool saveCurrentProjectAs(const QString &bundle_file_name);
-
     bool saveCurrentProject();
 
   signals:
@@ -144,6 +145,8 @@ class TemplateFactory : public QObject {
     void newTemplateCoreCreated(TemplateCore *core);
 
   private:
+    TemplateEntryPoint *entryPointForBundle(const QString &bundle_data);
+
     void clearEntryAndCore();
     void setupTemplates();
 

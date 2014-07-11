@@ -220,8 +220,10 @@ QString Application::interpretSignApk(int return_code) {
       return tr("SIGNAPK not found.");
 
     case EXIT_STATUS_SIGNAPK_NORMAL:
-    case EXIT_STATUS_SIGNAPK_WORKING:
       return tr("SIGNAPK found and probably working.");
+
+    case EXIT_STATUS_SIGNAPK_WORKING:
+      return tr("SIGNAPK found and but there is high risk it is invalid.");
 
     default:
       return tr("SIGNAPK returned uknown code.");

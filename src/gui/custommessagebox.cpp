@@ -28,36 +28,35 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-
 #include "gui/custommessagebox.h"
 
 #include "miscellaneous/iconfactory.h"
 #include "miscellaneous/application.h"
-#include "miscellaneous/settings.h"
 
 #include <QtGlobal>
-#include <QDialog>
 #include <QDialogButtonBox>
 #include <QPushButton>
+#include <QDialogButtonBox>
 #include <QStyle>
 
 
 CustomMessageBox::CustomMessageBox(QWidget *parent) : QMessageBox(parent) {
-
 }
 
 CustomMessageBox::~CustomMessageBox() {
-
 }
 
 void CustomMessageBox::setIcon(QMessageBox::Icon icon) {
   // Determine correct status icon size.
-  int icon_size = qApp->style()->pixelMetric(QStyle::PM_MessageBoxIconSize,
-                                             0,
-                                             this);
+  int icon_size = qApp->style()->pixelMetric(QStyle::PM_MessageBoxIconSize, 0, this);
   // Setup status icon.
-  setIconPixmap(iconForStatus(icon).pixmap(icon_size,
-                                           icon_size));
+  setIconPixmap(iconForStatus(icon).pixmap(icon_size, icon_size));
+}
+
+void CustomMessageBox::iconify(QDialogButtonBox *button_box) {
+  foreach (QAbstractButton *button, button_box->buttons()) {
+    button->setIcon(iconForRole(button_box->standardButton(button)));
+  }
 }
 
 QIcon CustomMessageBox::iconForRole(QDialogButtonBox::StandardButton button) {
@@ -124,6 +123,12 @@ QMessageBox::StandardButton CustomMessageBox::show(QWidget *parent,
   msg_box.setIcon(icon);
   msg_box.setStandardButtons(buttons);
   msg_box.setDefaultButton(default_button);
+
+  // Setup button box icons.
+#if defined(Q_OS_OS2)
+  QDialogButtonBox *button_box = msg_box.findChild<QDialogButtonBox*>();
+  iconify(button_box);
+#endif
 
   // Display it.
   if (msg_box.exec() == -1) {

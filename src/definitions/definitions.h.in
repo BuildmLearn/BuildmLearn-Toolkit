@@ -65,7 +65,7 @@
 #define URL_REGEXP                      "^(http|https|feed|ftp):\\/\\/[\\w\\-_]+(\\.[\\w\\-_]+)+([\\w\\-\\.,@?^=%&amp;:/~\\+#]*[\\w\\-\\@?^=%&amp;/~\\+#])?$"
 #define USER_AGENT_HTTP_HEADER          "User-Agent"
 #define ICON_SIZE_SETTINGS              16
-#define TRAY_ICON_BUBBLE_TIMEOUT        20000
+#define TRAY_ICON_BUBBLE_TIMEOUT        30000
 #define CLOSE_LOCK_TIMEOUT              3000
 #define DOWNLOAD_TIMEOUT                5000
 #define ELLIPSIS_LENGTH                 3

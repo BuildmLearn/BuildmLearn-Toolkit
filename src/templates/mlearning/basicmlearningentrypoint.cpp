@@ -48,9 +48,9 @@ BasicmLearningEntryPoint::~BasicmLearningEntryPoint() {
 }
 
 TemplateCore *BasicmLearningEntryPoint::createNewCore() {
-  return new BasicmLearningCore(this, this);
+  return new BasicmLearningCore(this, QString(), this);
 }
 
 TemplateCore *BasicmLearningEntryPoint::loadCoreFromBundleData(const QString &raw_data) {
-  return NULL;
+  return new BasicmLearningCore(this, raw_data, this);
 }

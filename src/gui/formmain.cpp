@@ -38,7 +38,7 @@
 #include "gui/formhelp.h"
 #include "gui/formsimulator.h"
 #include "gui/formnewproject.h"
-#include "gui/messagebox.h"
+#include "gui/custommessagebox.h"
 #include "miscellaneous/iconfactory.h"
 #include "core/templatesimulator.h"
 #include "core/templatefactory.h"
@@ -565,7 +565,7 @@ void FormMain::openSaveProjectDialog() {
 void FormMain::openSaveProjectAsDialog() {
   QString selected_file = QFileDialog::getSaveFileName(this,
                                                        tr("Select destination file for the project"),
-                                                       QDir::homePath(),
+                                                       qApp->templateManager()->activeCore()->assignedFile(),
                                                        tr("XML bundle files (*.xml)"),
                                                        0);
 
@@ -586,6 +586,20 @@ void FormMain::openLoadProjectDialog() {
     return;
   }
 
+  QString selected_file = QFileDialog::getOpenFileName(this,
+                                                       tr("Select destination file for the project"),
+                                                       QDir::homePath(),
+                                                       tr("XML bundle files (*.xml)"),
+                                                       0);
+
+  if (selected_file.isEmpty()) {
+    return;
+  }
+
+  if (!qApp->templateManager()->loadProject(selected_file)) {
+    // TODO: error
+  }
+
   // TODO: Open already saved project.
 
   m_ui->m_actionSaveProjectAs->setEnabled(true);
@@ -593,16 +607,16 @@ void FormMain::openLoadProjectDialog() {
 }
 
 void FormMain::openNewProjectDialog() {
+  if (!saveUnsavedProject()) {
+    return;
+  }
+
   QPointer<FormNewProject> form_new_project = new FormNewProject(qApp->templateManager(), this);
   TemplateEntryPoint *entry_point = form_new_project.data()->startNewTemplate();
 
   delete form_new_project.data();
 
   if (entry_point != NULL) {
-    if (!saveUnsavedProject()) {
-      return;
-    }
-
     // User selected proper template to start with.
     // Load the template.
     qApp->templateManager()->startNewProject(entry_point);
@@ -623,13 +637,13 @@ void FormMain::generateMobileApplication() {
 bool FormMain::saveUnsavedProject() {
   if (qApp->templateManager()->activeCore() != NULL) {
     if (qApp->templateManager()->activeCore()->editor()->isDirty()) {
-      MessageBox::StandardButton decision = MessageBox::show(this,
-                                                             QMessageBox::Warning,
-                                                             tr("Unsaved work"),
-                                                             tr("There is unsaved project. You might want to save your current project, unless you do not mind losing your unsaved work."),
-                                                             tr("Do you want to save your unsaved project before proceeding?"), QString(),
-                                                             QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel,
-                                                             QMessageBox::Yes);
+      QMessageBox::StandardButton decision = CustomMessageBox::show(this,
+                                                                    QMessageBox::Warning,
+                                                                    tr("Unsaved work"),
+                                                                    tr("There is unsaved project. You might want to save your current project, unless you do not mind losing your unsaved work."),
+                                                                    tr("Do you want to save your unsaved project before proceeding?"), QString(),
+                                                                    QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel,
+                                                                    QMessageBox::Yes);
 
       switch (decision) {
         case QMessageBox::Yes:

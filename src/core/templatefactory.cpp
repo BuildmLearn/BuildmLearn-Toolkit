@@ -197,7 +197,63 @@ bool TemplateFactory::loadProject(const QString &bundle_file_name) {
   // TODO: Load project from XML bundle file.
   // Detect which template is it, then start new project with that template
   // and fill data in.
-  return false;
+
+
+  QFile bundle_file(bundle_file_name);
+
+  if (!bundle_file.open(QIODevice::Text | QIODevice::ReadOnly | QIODevice::Unbuffered)) {
+    qApp->trayIcon()->showMessage(tr("Cannot load XML bundle"),
+                                  tr("Bundle cannot be loaded because XML file cannot be opened for reading."),
+                                  QSystemTrayIcon::Critical);
+
+    return false;
+  }
+
+  // Bundle file is opened, read its contents and determine which template entry point
+  // it belongs to.
+  QString bundle_data(bundle_file.readAll());
+  bundle_file.close();
+
+  TemplateEntryPoint *target_entry_point = entryPointForBundle(bundle_data);
+
+  if (target_entry_point == NULL) {
+    qApp->trayIcon()->showMessage(tr("Cannot load XML bundle"),
+                                  tr("Bundle cannot be loaded because XML file is corrupted."),
+                                  QSystemTrayIcon::Critical);
+
+    return false;
+  }
+
+  TemplateCore *loaded_core = target_entry_point->loadCoreFromBundleData(bundle_data);
+
+  if (loaded_core == NULL) {
+    qApp->trayIcon()->showMessage(tr("Cannot load XML bundle"),
+                                  tr("Target template was not able to load XML bundle data."),
+                                  QSystemTrayIcon::Critical);
+
+    return false;
+  }
+
+  // Clear previous data and start loaded core.
+  clearEntryAndCore();
+
+  m_activeEntryPoint = target_entry_point;
+  m_activeCore = loaded_core;
+
+  emit newTemplateCoreCreated(m_activeCore);
+
+  return true;
+}
+
+TemplateEntryPoint *TemplateFactory::entryPointForBundle(const QString &bundle_data) {
+  if (bundle_data.isEmpty()) {
+    return NULL;
+  }
+
+  QDomDocument xml_document;
+  xml_document.setContent(bundle_data);
+
+  return m_availableTemplates.value(xml_document.documentElement().attribute("type"), NULL);
 }
 
 bool TemplateFactory::saveCurrentProjectAs(const QString &bundle_file_name) {

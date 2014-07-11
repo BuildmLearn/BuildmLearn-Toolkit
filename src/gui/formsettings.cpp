@@ -366,6 +366,7 @@ void FormSettings::checkSignApk(const QString &new_path) {
       break;
 
     case EXIT_STATUS_CRASH:
+    case EXIT_STATUS_SIGNAPK_WORKING:
     default:
       m_ui->m_lblExternalSignapk->setStatus(WidgetWithStatus::Warning,
                                             new_path,

@@ -39,7 +39,7 @@
 #include <QTimer>
 
 
-BasicmLearningEditor::BasicmLearningEditor(TemplateCore *core, QWidget *parent)
+BasicmLearningEditor::BasicmLearningEditor(TemplateCore *core, const QString &bundle_data, QWidget *parent)
   : TemplateEditor(core, parent), m_ui(new Ui::BasicmLearningEditor) {
   m_ui->setupUi(this);
 
@@ -55,6 +55,12 @@ BasicmLearningEditor::BasicmLearningEditor(TemplateCore *core, QWidget *parent)
   m_ui->m_btnItemRemove->setIcon(factory->fromTheme("item-remove"));
   m_ui->m_btnItemUp->setIcon(factory->fromTheme("move-up"));
   m_ui->m_btnItemDown->setIcon(factory->fromTheme("move-down"));
+
+  if (!bundle_data.isEmpty()) {
+    // This editor was created with core which was loaded from XML bundle file.
+    // Thus, we need to fill it with data.
+    loadBundleData(bundle_data);
+  }
 
   connect(m_ui->m_txtDescription->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(checkDescription(QString)));
   connect(m_ui->m_txtTitle->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(checkTitle(QString)));
@@ -81,6 +87,67 @@ BasicmLearningEditor::BasicmLearningEditor(TemplateCore *core, QWidget *parent)
 
 BasicmLearningEditor::~BasicmLearningEditor() {
   delete m_ui;
+}
+
+void BasicmLearningEditor::loadBundleData(const QString &bundle_data) {
+  QDomDocument bundle_document;
+  bundle_document.setContent(bundle_data);
+
+  QDomNodeList items = bundle_document.documentElement().elementsByTagName("item");
+
+  for (int i = 0; i < items.size(); i++) {
+    QDomNode item = items.at(i);
+
+    if (items.at(i).isElement()) {
+      QString title = item.namedItem("item_title").toElement().text();
+      QString description = item.namedItem("item_description").toElement().text();
+
+      if (title.isEmpty() || description.isEmpty()) {
+        // TODO: error
+      }
+      else {
+        addNewItem(title, description);
+      }
+    }
+    else {
+      // TODO: error
+    }
+  }
+
+}
+
+void BasicmLearningEditor::addNewItem(const QString &title, const QString &description) {
+  int marked_item = m_ui->m_listItems->currentRow();
+  BasicmLearningItem new_item;
+  QListWidgetItem *new_item_view = new QListWidgetItem();
+
+  new_item.setTitle(title);
+  new_item.setDescription(description);
+
+  new_item_view->setText(new_item.title());
+  new_item_view->setData(Qt::UserRole, QVariant::fromValue(new_item));
+
+  if (m_ui->m_listItems->count() == 0) {
+    // We are adding first item.
+    setEditorsEnabled(true);
+
+    m_ui->m_btnItemRemove->setEnabled(true);
+
+    m_ui->m_listItems->insertItem(0, new_item_view);
+    m_ui->m_listItems->setCurrentRow(0);
+  }
+  else {
+    m_ui->m_listItems->insertItem(marked_item + 1, new_item_view);
+    m_ui->m_listItems->setCurrentRow(marked_item + 1);
+  }
+
+  updateItemCount();
+}
+
+void BasicmLearningEditor::addNewItem() {
+  addNewItem(tr("Prague"), tr("Prague is the city which lies in the heart of Europe."));
+  launch();
+  emit changed();
 }
 
 void BasicmLearningEditor::checkAuthor() {
@@ -208,36 +275,6 @@ void BasicmLearningEditor::updateItemCount() {
   else {
     m_ui->m_txtNumberOfItems->setStatus(WidgetWithStatus::Error, tr("Collection does not contain any items."));
   }
-}
-
-void BasicmLearningEditor::addNewItem() {
-  int marked_item = m_ui->m_listItems->currentRow();
-  BasicmLearningItem new_item;
-  QListWidgetItem *new_item_view = new QListWidgetItem();
-
-  new_item.setTitle(tr("Prague"));
-  new_item.setDescription(tr("Prague is the city which lies in the heart of Europe."));
-
-  new_item_view->setText(new_item.title());
-  new_item_view->setData(Qt::UserRole, QVariant::fromValue(new_item));
-
-  if (m_ui->m_listItems->count() == 0) {
-    // We are adding first item.
-    setEditorsEnabled(true);
-
-    m_ui->m_btnItemRemove->setEnabled(true);
-
-    m_ui->m_listItems->insertItem(0, new_item_view);
-    m_ui->m_listItems->setCurrentRow(0);
-  }
-  else {
-    m_ui->m_listItems->insertItem(marked_item + 1, new_item_view);
-    m_ui->m_listItems->setCurrentRow(marked_item + 1);
-  }
-
-  updateItemCount();
-  launch();
-  emit changed();
 }
 
 void BasicmLearningEditor::removeSelectedItem() {

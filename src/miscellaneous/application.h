@@ -36,6 +36,7 @@
 #include "definitions/definitions.h"
 #include "miscellaneous/settings.h"
 #include "miscellaneous/systemfactory.h"
+#include "gui/systemtrayicon.h"
 
 #include <QNetworkReply>
 #include <QSessionManager>
@@ -48,12 +49,10 @@
 // Define new qApp macro. Yeaaaaah.
 #define qApp (Application::instance())
 
-
 typedef QPair<UpdateInfo, QNetworkReply::NetworkError> UpdateCheck;
 
 class TemplateFactory;
 class FormMain;
-class SystemTrayIcon;
 class SkinFactory;
 class QAction;
 class QMutex;

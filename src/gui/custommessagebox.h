@@ -28,12 +28,10 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-
 #ifndef MESSAGEBOX_H
 #define MESSAGEBOX_H
 
 #include <QMessageBox>
-
 #include <QDialogButtonBox>
 
 
@@ -48,7 +46,10 @@ class CustomMessageBox : public QMessageBox {
 
     /// \brief Custom icon setting.
     /// \param icon Icon to set.
-    void setIcon(QMessageBox::Icon icon);
+    void setIcon(Icon icon);
+
+    // Performs icon replacements for given button box.
+    static void iconify(QDialogButtonBox *button_box);
 
     /// \brief Displays custom message box.
     /// \param parent Parent object.
