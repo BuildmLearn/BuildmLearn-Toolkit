@@ -391,6 +391,10 @@ void QuizEditor::launch() {
   }
 }
 
+bool QuizEditor::loadBundleData(const QString &bundle_data) {
+  return false;
+}
+
 QString QuizEditor::generateBundleData() {
   if (!canGenerateApplications()) {
     return QString();

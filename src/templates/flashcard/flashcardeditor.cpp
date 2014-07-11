@@ -167,6 +167,10 @@ QString FlashCardEditor::generateBundleData() {
   return source_document.toString(XML_BUNDLE_INDENTATION);
 }
 
+bool FlashCardEditor::loadBundleData(const QString &bundle_data) {
+  return false;
+}
+
 QList<FlashCardQuestion> FlashCardEditor::activeQuestions() const {
   QList<FlashCardQuestion> questions;
 

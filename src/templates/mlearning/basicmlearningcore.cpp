@@ -43,10 +43,9 @@
 
 
 BasicmLearningCore::BasicmLearningCore(TemplateEntryPoint *entry_point,
-                                       const QString &bundle_data,
                                        QObject *parent)
   : TemplateCore(entry_point, parent) {
-  m_editor = new BasicmLearningEditor(this, bundle_data);
+  m_editor = new BasicmLearningEditor(this);
   m_simulator = new BasicmLearningSimulator(this);
 }
 

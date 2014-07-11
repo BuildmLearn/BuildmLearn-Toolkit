@@ -41,7 +41,7 @@ class BasicmLearningCore : public TemplateCore {
     Q_OBJECT
 
   public:
-    explicit BasicmLearningCore(TemplateEntryPoint *entry_point, const QString &bundle_data = QString(), QObject *parent = 0);
+    explicit BasicmLearningCore(TemplateEntryPoint *entry_point, QObject *parent = 0);
     virtual ~BasicmLearningCore();
 
     GenerationResult generateMobileApplication(QString &output_file);

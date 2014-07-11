@@ -39,7 +39,7 @@
 #include <QTimer>
 
 
-BasicmLearningEditor::BasicmLearningEditor(TemplateCore *core, const QString &bundle_data, QWidget *parent)
+BasicmLearningEditor::BasicmLearningEditor(TemplateCore *core, QWidget *parent)
   : TemplateEditor(core, parent), m_ui(new Ui::BasicmLearningEditor) {
   m_ui->setupUi(this);
 
@@ -56,12 +56,6 @@ BasicmLearningEditor::BasicmLearningEditor(TemplateCore *core, const QString &bu
   m_ui->m_btnItemUp->setIcon(factory->fromTheme("move-up"));
   m_ui->m_btnItemDown->setIcon(factory->fromTheme("move-down"));
 
-  if (!bundle_data.isEmpty()) {
-    // This editor was created with core which was loaded from XML bundle file.
-    // Thus, we need to fill it with data.
-    loadBundleData(bundle_data);
-  }
-
   connect(m_ui->m_txtDescription->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(checkDescription(QString)));
   connect(m_ui->m_txtTitle->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(checkTitle(QString)));
   connect(m_ui->m_btnItemAdd, SIGNAL(clicked()), this, SLOT(addNewItem()));
@@ -71,8 +65,8 @@ BasicmLearningEditor::BasicmLearningEditor(TemplateCore *core, const QString &bu
   connect(m_ui->m_listItems, SIGNAL(currentRowChanged(int)), this, SLOT(displayItem(int)));
   connect(m_ui->m_btnItemUp, SIGNAL(clicked()), this, SLOT(moveItemUp()));
   connect(m_ui->m_btnItemDown, SIGNAL(clicked()), this, SLOT(moveItemDown()));
-  connect(m_ui->m_txtAuthor->lineEdit(), SIGNAL(textEdited(QString)), this, SLOT(onAuthorChanged(QString)));
-  connect(m_ui->m_txtName->lineEdit(), SIGNAL(textEdited(QString)), this, SLOT(onNameChanged(QString)));
+  connect(m_ui->m_txtAuthor->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(onAuthorChanged(QString)));
+  connect(m_ui->m_txtName->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(onNameChanged(QString)));
 
   m_ui->m_txtAuthor->lineEdit()->setText(tr("John Doe"));
   m_ui->m_txtName->lineEdit()->setText(tr("Greatest collection"));
@@ -89,7 +83,7 @@ BasicmLearningEditor::~BasicmLearningEditor() {
   delete m_ui;
 }
 
-void BasicmLearningEditor::loadBundleData(const QString &bundle_data) {
+bool BasicmLearningEditor::loadBundleData(const QString &bundle_data) {
   QDomDocument bundle_document;
   bundle_document.setContent(bundle_data);
 
@@ -114,6 +108,11 @@ void BasicmLearningEditor::loadBundleData(const QString &bundle_data) {
     }
   }
 
+  // Load author & name.
+  m_ui->m_txtAuthor->lineEdit()->setText(bundle_document.documentElement().namedItem("author").namedItem("name").toElement().text());
+  m_ui->m_txtName->lineEdit()->setText(bundle_document.documentElement().namedItem("title").toElement().text());
+
+  return true;
 }
 
 void BasicmLearningEditor::addNewItem(const QString &title, const QString &description) {

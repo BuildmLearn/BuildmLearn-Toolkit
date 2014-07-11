@@ -31,6 +31,7 @@
 #include "templates/mlearning/basicmlearningentrypoint.h"
 
 #include "core/templatefactory.h"
+#include "core/templateeditor.h"
 #include "templates/mlearning/basicmlearningcore.h"
 
 
@@ -48,9 +49,12 @@ BasicmLearningEntryPoint::~BasicmLearningEntryPoint() {
 }
 
 TemplateCore *BasicmLearningEntryPoint::createNewCore() {
-  return new BasicmLearningCore(this, QString(), this);
+  return new BasicmLearningCore(this, this);
 }
 
 TemplateCore *BasicmLearningEntryPoint::loadCoreFromBundleData(const QString &raw_data) {
-  return new BasicmLearningCore(this, raw_data, this);
+  BasicmLearningCore *core = new BasicmLearningCore(this, this);
+  core->editor()->loadBundleData(raw_data);
+
+  return core;
 }

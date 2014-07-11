@@ -72,6 +72,8 @@ class TemplateEditor : public QWidget {
     /// \return Returns string with generated data.
     virtual QString generateBundleData() = 0;
 
+    virtual bool loadBundleData(const QString &bundle_data) = 0;
+
     /// \brief Access to associated template core.
     /// \return Returns associated template core.
     /// \see TemplateCore
