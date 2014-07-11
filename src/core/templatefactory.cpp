@@ -198,7 +198,6 @@ bool TemplateFactory::loadProject(const QString &bundle_file_name) {
   // Detect which template is it, then start new project with that template
   // and fill data in.
 
-
   QFile bundle_file(bundle_file_name);
 
   if (!bundle_file.open(QIODevice::Text | QIODevice::ReadOnly | QIODevice::Unbuffered)) {
@@ -236,6 +235,8 @@ bool TemplateFactory::loadProject(const QString &bundle_file_name) {
 
   // Clear previous data and start loaded core.
   clearEntryAndCore();
+
+  loaded_core->editor()->setIsDirty(false);
 
   m_activeEntryPoint = target_entry_point;
   m_activeCore = loaded_core;

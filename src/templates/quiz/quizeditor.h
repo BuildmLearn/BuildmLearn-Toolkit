@@ -68,11 +68,9 @@ class QuizEditor : public TemplateEditor {
     /// \return Returns list of added questions.
     QList<QuizQuestion> activeQuestions() const;
 
-  protected:
-    void showEvent(QShowEvent *e);
-
   private slots:
     void updateQuestionCount();
+    void addQuestion(const QString &question, const QStringList &answers, int correct_answer);
     void addQuestion();
     void loadQuestion(int index);
     void removeQuestion();
@@ -83,11 +81,13 @@ class QuizEditor : public TemplateEditor {
     void configureUpDown();
     void setEditorsEnabled(bool enabled);
 
+    void checkName();
+    void checkAuthor();
+
     void updateNameStatus();
     void updateAuthorStatus();
 
   private:
-    bool m_firstShow;
     QuizQuestion m_activeQuestion;
     Ui::QuizEditor *m_ui;
     QIcon m_iconYes;

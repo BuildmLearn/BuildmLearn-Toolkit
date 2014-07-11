@@ -54,5 +54,14 @@ TemplateCore *QuizEntryPoint::createNewCore() {
 }
 
 TemplateCore *QuizEntryPoint::loadCoreFromBundleData(const QString &raw_data) {
-  return NULL;
+  QuizCore *core = new QuizCore(this, this);
+  if (core->editor()->loadBundleData(raw_data)) {
+    return core;
+  }
+  else {
+    core->simulator()->deleteLater();
+    core->editor()->deleteLater();
+    core->deleteLater();
+    return NULL;
+  }
 }

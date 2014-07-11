@@ -160,6 +160,8 @@ QNetworkReply::NetworkError NetworkFactory::downloadFile(const QString &url,
   request.setUrl(url);
 
   // Create necessary connections.
+  // TODO: Edited, maybe remove this line.
+  QObject::connect(qApp, SIGNAL(aboutToQuit()), &loop, SLOT(quit()));
   QObject::connect(&timer, SIGNAL(timeout()), &loop, SLOT(quit()));
   QObject::connect(&manager, SIGNAL(finished(QNetworkReply*)), &loop, SLOT(quit()));
 

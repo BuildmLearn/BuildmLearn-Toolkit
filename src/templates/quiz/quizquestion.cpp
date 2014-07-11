@@ -30,8 +30,12 @@
 
 #include "templates/quiz/quizquestion.h"
 
+#include <QStringList>
+
 
 QuizQuestion::QuizQuestion() {
+  m_answers = QStringList();
+  m_answers << QString() << QString() << QString() << QString();
 }
 
 QuizQuestion::~QuizQuestion() {
@@ -45,36 +49,26 @@ void QuizQuestion::setCorrectAnswer(int correctAnswer) {
   m_correctAnswer = correctAnswer;
 }
 
-QString QuizQuestion::answerOne() const {
-  return m_answerOne;
+void QuizQuestion::setAnswer(int index, const QString &answer) {
+  if (index >= 0 && index < 4) {
+    m_answers.replace(index, answer);
+  }
 }
 
-void QuizQuestion::setAnswerOne(const QString &answerOne) {
-  m_answerOne = answerOne;
+QString QuizQuestion::answerOne() const {
+  return m_answers.at(0);
 }
 
 QString QuizQuestion::answerTwo() const {
-  return m_answerTwo;
-}
-
-void QuizQuestion::setAnswerTwo(const QString &answerTwo) {
-  m_answerTwo = answerTwo;
+  return m_answers.at(1);
 }
 
 QString QuizQuestion::answerThree() const {
-  return m_answerThree;
-}
-
-void QuizQuestion::setAnswerThree(const QString &answerThree) {
-  m_answerThree = answerThree;
+  return m_answers.at(2);
 }
 
 QString QuizQuestion::answerFour() const {
-  return m_answerFour;
-}
-
-void QuizQuestion::setAnswerFour(const QString &answerFour) {
-  m_answerFour = answerFour;
+  return m_answers.at(3);
 }
 
 QString QuizQuestion::question() const {
@@ -84,4 +78,3 @@ QString QuizQuestion::question() const {
 void QuizQuestion::setQuestion(const QString &question) {
   m_question = question;
 }
-

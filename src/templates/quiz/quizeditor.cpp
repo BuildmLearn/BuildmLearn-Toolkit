@@ -45,7 +45,7 @@
 
 
 QuizEditor::QuizEditor(TemplateCore *core, QWidget *parent)
-  : TemplateEditor(core, parent), m_firstShow(true), m_ui(new Ui::QuizEditor) {
+  : TemplateEditor(core, parent), m_ui(new Ui::QuizEditor) {
   m_ui->setupUi(this);
 
   m_ui->m_txtNumberOfQuestions->lineEdit()->setReadOnly(false);
@@ -55,10 +55,10 @@ QuizEditor::QuizEditor(TemplateCore *core, QWidget *parent)
   m_ui->m_txtAuthor->lineEdit()->setPlaceholderText(tr("Author of this quiz"));
   m_ui->m_txtName->lineEdit()->setPlaceholderText(tr("Name of this quiz"));
 
-  m_ui->m_btnAnswerOne->setProperty("id", 1);
-  m_ui->m_btnAnswerTwo->setProperty("id", 2);
-  m_ui->m_btnAnswerThree->setProperty("id", 3);
-  m_ui->m_btnAnswerFour->setProperty("id", 4);
+  m_ui->m_btnAnswerOne->setProperty("id", 0);
+  m_ui->m_btnAnswerTwo->setProperty("id", 1);
+  m_ui->m_btnAnswerThree->setProperty("id", 2);
+  m_ui->m_btnAnswerFour->setProperty("id", 3);
 
   m_ui->m_btnQuestionAdd->setIcon(factory->fromTheme("item-add"));
   m_ui->m_btnQuestionRemove->setIcon(factory->fromTheme("item-remove"));
@@ -72,6 +72,9 @@ QuizEditor::QuizEditor(TemplateCore *core, QWidget *parent)
   m_ui->m_btnAnswerTwo->setIcon(m_iconNo);
   m_ui->m_btnAnswerThree->setIcon(m_iconNo);
   m_ui->m_btnAnswerFour->setIcon(m_iconNo);
+
+  m_ui->m_txtAuthor->lineEdit()->setText(tr("John Doe"));
+  m_ui->m_txtName->lineEdit()->setText(tr("Greatest quiz"));
 
   connect(m_ui->m_txtAuthor->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(updateAuthorStatus()));
   connect(m_ui->m_txtName->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(updateNameStatus()));
@@ -96,10 +99,8 @@ QuizEditor::QuizEditor(TemplateCore *core, QWidget *parent)
 
   setEditorsEnabled(false);
   updateQuestionCount();
-
-  m_ui->m_txtAuthor->lineEdit()->setText(tr("John Doe"));
-  m_ui->m_txtName->lineEdit()->setText(tr("Greatest quiz"));
-
+  checkName();
+  checkAuthor();
   qRegisterMetaType<QuizQuestion>("QuizQuestion");
 }
 
@@ -119,18 +120,6 @@ QList<QuizQuestion> QuizEditor::activeQuestions() const {
   return questions;
 }
 
-void QuizEditor::showEvent(QShowEvent *e) {
-  e->accept();
-
-  if (m_firstShow) {
-    m_firstShow = false;
-
-    QToolTip::showText(m_ui->m_btnQuestionAdd->mapToGlobal(QPoint(5, 0)),
-                       tr("Add new question by clicking here."),
-                       m_ui->m_btnQuestionAdd);
-  }
-}
-
 void QuizEditor::updateQuestionCount() {
   m_ui->m_txtNumberOfQuestions->lineEdit()->setText(QString::number(m_ui->m_listQuestions->count()));
 
@@ -142,18 +131,19 @@ void QuizEditor::updateQuestionCount() {
   }
 }
 
-void QuizEditor::addQuestion() {
-  int marked_question = m_ui->m_listQuestions->currentRow();
+void QuizEditor::addQuestion(const QString &question, const QStringList &answers, int correct_answer) {
   QuizQuestion new_question;
+
+  new_question.setQuestion(question);
+  new_question.setCorrectAnswer(correct_answer);
+
+  int answer_index = 0;
+  foreach (const QString &answer, answers) {
+    new_question.setAnswer(answer_index++, answer);
+  }
+
+  int marked_question = m_ui->m_listQuestions->currentRow();
   QListWidgetItem *new_item = new QListWidgetItem();
-
-  new_question.setQuestion(tr("How many cats do you have?"));
-  new_question.setCorrectAnswer(3);
-  new_question.setAnswerOne(tr("I hate cats!"));
-  new_question.setAnswerTwo(tr("I have two nice kittens."));
-  new_question.setAnswerThree(tr("I have seven beasts."));
-  new_question.setAnswerFour(tr("Cats? Well, we own eleven dogs."));
-
   new_item->setText(new_question.question());
   new_item->setData(Qt::UserRole, QVariant::fromValue(new_question));
 
@@ -172,6 +162,14 @@ void QuizEditor::addQuestion() {
   }
 
   updateQuestionCount();
+}
+
+void QuizEditor::addQuestion() {
+  addQuestion(tr("How many cats do you have?"),
+              QStringList() << tr("I hate cats!") << tr("I have two nice kittens.") <<
+              tr("I have seven beasts.") << tr("Cats? Well, we own eleven dogs."),
+              2);
+
   launch();
   emit changed();
 }
@@ -195,10 +193,10 @@ void QuizEditor::loadQuestion(int index) {
     m_ui->m_txtAnswerTwo->setText(question.answerTwo());
     m_ui->m_txtAnswerThree->setText(question.answerThree());
     m_ui->m_txtAnswerFour->setText(question.answerFour());
-    m_ui->m_btnAnswerOne->setIcon(question.correctAnswer() == 1 ? m_iconYes : m_iconNo);
-    m_ui->m_btnAnswerTwo->setIcon(question.correctAnswer() == 2 ? m_iconYes : m_iconNo);
-    m_ui->m_btnAnswerThree->setIcon(question.correctAnswer() == 3 ? m_iconYes : m_iconNo);
-    m_ui->m_btnAnswerFour->setIcon(question.correctAnswer() == 4 ? m_iconYes : m_iconNo);
+    m_ui->m_btnAnswerOne->setIcon(question.correctAnswer() == 0 ? m_iconYes : m_iconNo);
+    m_ui->m_btnAnswerTwo->setIcon(question.correctAnswer() == 1 ? m_iconYes : m_iconNo);
+    m_ui->m_btnAnswerThree->setIcon(question.correctAnswer() == 2 ? m_iconYes : m_iconNo);
+    m_ui->m_btnAnswerFour->setIcon(question.correctAnswer() == 3 ? m_iconYes : m_iconNo);
 
     m_activeQuestion = question;
   }
@@ -255,28 +253,28 @@ void QuizEditor::saveQuestion() {
 
     // Change icons.
     switch (m_activeQuestion.correctAnswer()) {
-      case 1:
+      case 0:
         m_ui->m_btnAnswerOne->setIcon(m_iconYes);
         m_ui->m_btnAnswerTwo->setIcon(m_iconNo);
         m_ui->m_btnAnswerThree->setIcon(m_iconNo);
         m_ui->m_btnAnswerFour->setIcon(m_iconNo);
         break;
 
-      case 2:
+      case 1:
         m_ui->m_btnAnswerOne->setIcon(m_iconNo);
         m_ui->m_btnAnswerTwo->setIcon(m_iconYes);
         m_ui->m_btnAnswerThree->setIcon(m_iconNo);
         m_ui->m_btnAnswerFour->setIcon(m_iconNo);
         break;
 
-      case 3:
+      case 2:
         m_ui->m_btnAnswerOne->setIcon(m_iconNo);
         m_ui->m_btnAnswerTwo->setIcon(m_iconNo);
         m_ui->m_btnAnswerThree->setIcon(m_iconYes);
         m_ui->m_btnAnswerFour->setIcon(m_iconNo);
         break;
 
-      case 4:
+      case 3:
         m_ui->m_btnAnswerOne->setIcon(m_iconNo);
         m_ui->m_btnAnswerTwo->setIcon(m_iconNo);
         m_ui->m_btnAnswerThree->setIcon(m_iconNo);
@@ -293,10 +291,10 @@ void QuizEditor::saveQuestion() {
   }
 
   m_activeQuestion.setQuestion(m_ui->m_txtQuestion->toPlainText());
-  m_activeQuestion.setAnswerOne(m_ui->m_txtAnswerOne->text());
-  m_activeQuestion.setAnswerTwo(m_ui->m_txtAnswerTwo->text());
-  m_activeQuestion.setAnswerThree(m_ui->m_txtAnswerThree->text());
-  m_activeQuestion.setAnswerFour(m_ui->m_txtAnswerFour->text());
+  m_activeQuestion.setAnswer(0, m_ui->m_txtAnswerOne->text());
+  m_activeQuestion.setAnswer(1, m_ui->m_txtAnswerTwo->text());
+  m_activeQuestion.setAnswer(2, m_ui->m_txtAnswerThree->text());
+  m_activeQuestion.setAnswer(3, m_ui->m_txtAnswerFour->text());
 
   m_ui->m_listQuestions->currentItem()->setData(Qt::UserRole, QVariant::fromValue(m_activeQuestion));
   m_ui->m_listQuestions->currentItem()->setText(m_activeQuestion.question());
@@ -349,26 +347,32 @@ void QuizEditor::setEditorsEnabled(bool enabled) {
   m_ui->m_groupQuestionEditor->setEnabled(enabled);
 }
 
-void QuizEditor::updateNameStatus() {
+void QuizEditor::checkName() {
   if (m_ui->m_txtName->lineEdit()->text().simplified().isEmpty()) {
     m_ui->m_txtName->setStatus(WidgetWithStatus::Error, tr("Enter the name of the quiz."));
   }
   else {
     m_ui->m_txtName->setStatus(WidgetWithStatus::Ok, tr("Name is okay."));
   }
-
-  launch();
-  emit changed();
 }
 
-void QuizEditor::updateAuthorStatus() {
+void QuizEditor::checkAuthor() {
   if (m_ui->m_txtAuthor->lineEdit()->text().simplified().isEmpty()) {
     m_ui->m_txtAuthor->setStatus(WidgetWithStatus::Error, tr("Enter the name of the author of the quiz."));
   }
   else {
     m_ui->m_txtAuthor->setStatus(WidgetWithStatus::Ok, tr("Enter the name of the author of the quiz."));
   }
+}
 
+void QuizEditor::updateNameStatus() {
+  checkName();
+  launch();
+  emit changed();
+}
+
+void QuizEditor::updateAuthorStatus() {
+  checkAuthor();
   launch();
   emit changed();
 }
@@ -392,7 +396,42 @@ void QuizEditor::launch() {
 }
 
 bool QuizEditor::loadBundleData(const QString &bundle_data) {
-  return false;
+  QDomDocument bundle_document;
+  bundle_document.setContent(bundle_data);
+
+  QDomNodeList items = bundle_document.documentElement().elementsByTagName("item");
+
+  for (int i = 0; i < items.size(); i++) {
+    QDomNode item = items.at(i);
+
+    if (item.isElement()) {
+      QString question = item.namedItem("question").toElement().text();
+      int correct_answer = item.namedItem("answer").toElement().text().toInt();
+      QDomNodeList answer_items = item.toElement().elementsByTagName("option");
+      QList<QString> answers;
+
+      for (int j = 0; j < answer_items.size(); j++) {
+        answers.append(answer_items.at(j).toElement().text());
+      }
+
+      if (question.isEmpty() || answers.size() < 2 || answers.size() > 4) {
+        // TODO: error
+        continue;
+      }
+      else {
+        addQuestion(question, answers, correct_answer);
+      }
+    }
+    else {
+      continue;
+    }
+  }
+
+  // Load author & name.
+  m_ui->m_txtAuthor->lineEdit()->setText(bundle_document.documentElement().namedItem("author").namedItem("name").toElement().text());
+  m_ui->m_txtName->lineEdit()->setText(bundle_document.documentElement().namedItem("title").toElement().text());
+
+  return true;
 }
 
 QString QuizEditor::generateBundleData() {
@@ -424,7 +463,7 @@ QString QuizEditor::generateBundleData() {
     answer_two_element.appendChild(source_document.createTextNode(question.answerTwo()));
     answer_three_element.appendChild(source_document.createTextNode(question.answerThree()));
     answer_four_element.appendChild(source_document.createTextNode(question.answerFour()));
-    answer_number_element.appendChild(source_document.createTextNode(QString::number(question.correctAnswer() - 1)));
+    answer_number_element.appendChild(source_document.createTextNode(QString::number(question.correctAnswer())));
 
     item_element.appendChild(question_element);
     item_element.appendChild(answer_one_element);

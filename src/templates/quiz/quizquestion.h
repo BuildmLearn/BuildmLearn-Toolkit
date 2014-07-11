@@ -33,6 +33,8 @@
 
 #include <QMetaType>
 
+#include <QStringList>
+
 
 /// \brief Container for one question.
 /// \ingroup template-quiz
@@ -48,27 +50,18 @@ class QuizQuestion {
     int correctAnswer() const;
     void setCorrectAnswer(int correctAnswer);
 
+    void setAnswer(int index, const QString &answer);
     QString answerOne() const;
-    void setAnswerOne(const QString &answerOne);
-
     QString answerTwo() const;
-    void setAnswerTwo(const QString &answerTwo);
-
     QString answerThree() const;
-    void setAnswerThree(const QString &answerThree);
-
     QString answerFour() const;
-    void setAnswerFour(const QString &answerFour);
 
     QString question() const;
     void setQuestion(const QString &question);
 
   private:
     QString m_question;
-    QString m_answerOne;
-    QString m_answerTwo;
-    QString m_answerThree;
-    QString m_answerFour;
+    QStringList m_answers;
     int m_correctAnswer;
 };
 

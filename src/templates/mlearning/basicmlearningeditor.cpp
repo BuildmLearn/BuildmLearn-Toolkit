@@ -56,6 +56,9 @@ BasicmLearningEditor::BasicmLearningEditor(TemplateCore *core, QWidget *parent)
   m_ui->m_btnItemUp->setIcon(factory->fromTheme("move-up"));
   m_ui->m_btnItemDown->setIcon(factory->fromTheme("move-down"));
 
+  m_ui->m_txtAuthor->lineEdit()->setText(tr("John Doe"));
+  m_ui->m_txtName->lineEdit()->setText(tr("Greatest collection"));
+
   connect(m_ui->m_txtDescription->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(checkDescription(QString)));
   connect(m_ui->m_txtTitle->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(checkTitle(QString)));
   connect(m_ui->m_btnItemAdd, SIGNAL(clicked()), this, SLOT(addNewItem()));
@@ -67,9 +70,6 @@ BasicmLearningEditor::BasicmLearningEditor(TemplateCore *core, QWidget *parent)
   connect(m_ui->m_btnItemDown, SIGNAL(clicked()), this, SLOT(moveItemDown()));
   connect(m_ui->m_txtAuthor->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(onAuthorChanged(QString)));
   connect(m_ui->m_txtName->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(onNameChanged(QString)));
-
-  m_ui->m_txtAuthor->lineEdit()->setText(tr("John Doe"));
-  m_ui->m_txtName->lineEdit()->setText(tr("Greatest collection"));
 
   checkDescription(m_ui->m_txtDescription->lineEdit()->text());
   checkTitle(m_ui->m_txtTitle->lineEdit()->text());
@@ -92,19 +92,20 @@ bool BasicmLearningEditor::loadBundleData(const QString &bundle_data) {
   for (int i = 0; i < items.size(); i++) {
     QDomNode item = items.at(i);
 
-    if (items.at(i).isElement()) {
+    if (item.isElement()) {
       QString title = item.namedItem("item_title").toElement().text();
       QString description = item.namedItem("item_description").toElement().text();
 
       if (title.isEmpty() || description.isEmpty()) {
         // TODO: error
+        continue;
       }
       else {
         addNewItem(title, description);
       }
     }
     else {
-      // TODO: error
+      continue;
     }
   }
 

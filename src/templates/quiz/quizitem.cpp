@@ -73,10 +73,10 @@ void QuizItem::setQuestion(const QuizQuestion &question, int question_number) {
   m_ui->m_rbAnswerThree->setText(question.answerThree());
   m_ui->m_rbAnswerFour->setText(question.answerFour());
 
-  m_ui->m_rbAnswerOne->setVisible(question.correctAnswer() == 1 || !question.answerOne().simplified().isEmpty());
-  m_ui->m_rbAnswerTwo->setVisible(question.correctAnswer() == 2 || !question.answerTwo().simplified().isEmpty());
-  m_ui->m_rbAnswerThree->setVisible(question.correctAnswer() == 3 || !question.answerThree().simplified().isEmpty());
-  m_ui->m_rbAnswerFour->setVisible(question.correctAnswer() == 4 || !question.answerFour().simplified().isEmpty());
+  m_ui->m_rbAnswerOne->setVisible(question.correctAnswer() == 0 || !question.answerOne().simplified().isEmpty());
+  m_ui->m_rbAnswerTwo->setVisible(question.correctAnswer() == 1 || !question.answerTwo().simplified().isEmpty());
+  m_ui->m_rbAnswerThree->setVisible(question.correctAnswer() == 2 || !question.answerThree().simplified().isEmpty());
+  m_ui->m_rbAnswerFour->setVisible(question.correctAnswer() == 3 || !question.answerFour().simplified().isEmpty());
 
   m_ui->m_lblQuestionNumber->setText(tr("Question number %1").arg(question_number));
   m_ui->m_lblQuestionText->setText(question.question());
