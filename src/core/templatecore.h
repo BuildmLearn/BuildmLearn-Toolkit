@@ -44,6 +44,7 @@ class TemplateCore : public QObject {
     Q_OBJECT
 
   public:
+    /// \brief Possible results of generation of bundle data.
     enum GenerationResult {
       Success,
       ZipProblem,
@@ -100,9 +101,18 @@ class TemplateCore : public QObject {
     /// then "Save" feature saves unsaved work into that file, otherwise
     /// it transfers the flow to "Save as" feature.
     QString assignedFile() const;
+
+    /// \brief Sets new assigned file.
+    /// \param assigned_file New assigned file.
     void setAssignedFile(const QString &assigned_file);
 
   signals:
+    /// \brief Emitted when there is something new concerning generating of
+    /// mobile APK application.
+    /// \param percent_completed Percent of mobile application generating
+    /// completed.
+    /// \param progress_info Description text of status of current
+    /// generating process.
     void generationProgress(int percent_completed, const QString &progress_info);
 
   protected:

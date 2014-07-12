@@ -60,6 +60,8 @@ class TemplateEditor : public QWidget {
       return m_canGenerate;
     }
 
+    /// \brief Access to description of current state.
+    /// \return Returns active description of generating state.
     virtual QString generationStatusDescription() {
       return m_generateMessage;
     }
@@ -72,6 +74,10 @@ class TemplateEditor : public QWidget {
     /// \return Returns string with generated data.
     virtual QString generateBundleData() = 0;
 
+    /// \brief Loads editor state from XML bundle.
+    /// \param bundle_data Raw XML bundle data.
+    /// \return Returns true if editor loaded bundle data, otherwise
+    /// returns false.
     virtual bool loadBundleData(const QString &bundle_data) = 0;
 
     /// \brief Access to associated template core.
@@ -82,6 +88,7 @@ class TemplateEditor : public QWidget {
     /// \brief Check if editor contains unsaved contents.
     /// \return Returns true, if editor contains unsaved contents.
     bool isDirty() const;
+
     void setIsDirty(bool is_dirty);
 
   public slots:
@@ -90,6 +97,12 @@ class TemplateEditor : public QWidget {
     }
 
   protected:
+    /// \brief Emits new signal notifying other components about state
+    /// of creating of APK application.
+    /// \param can_generate True if editor contains enough data
+    /// to generate APK application or not.
+    /// \param message New message to be delivered to application
+    /// about current status of creating of APK application.
     void issueNewGenereationStatus(bool can_generate, const QString &message = QString());
 
   signals:

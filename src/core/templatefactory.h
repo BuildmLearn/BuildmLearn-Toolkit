@@ -41,17 +41,17 @@
 #define FIND_DATA_ELEMENT(target_name, source_document)                               \
   QStringList way_to_data_element = QString(XML_BUNDLE_ROOT_DATA_ELEMENT).split('/'); \
   QDomElement target_name = source_document.documentElement();                        \
-                                                                                      \
+  \
   while (!way_to_data_element.isEmpty()) {                                            \
-    QDomNode child_item = data_element.namedItem(way_to_data_element.at(0));          \
-                                                                                      \
-    if (!child_item.isNull() && child_item.isElement()) {                             \
-      target_name = child_item.toElement();                                           \
-      way_to_data_element.removeFirst();                                              \
-    }                                                                                 \
-    else {                                                                            \
-      return QString();                                                               \
-    }                                                                                 \
+  QDomNode child_item = data_element.namedItem(way_to_data_element.at(0));          \
+  \
+  if (!child_item.isNull() && child_item.isElement()) {                             \
+  target_name = child_item.toElement();                                           \
+  way_to_data_element.removeFirst();                                              \
+  }                                                                                 \
+  else {                                                                            \
+  return QString();                                                               \
+  }                                                                                 \
   }                                                                                   \
 
 
@@ -83,18 +83,24 @@ class TemplateFactory : public QObject {
     /// \brief Access to temporary directory used throughout APK generation process.
     /// \return Returns temporary directory used throughout APK generation process.
     QString tempDirectory() const;
+
     void setTempDirectory(const QString &temp_directory);
 
     /// \brief Access to directory used throughout APK generation process.
     /// \return Returns output directory used throughout APK generation process.
     QString outputDirectory() const;
+
     void setOutputDirectory(const QString &output_directory);
 
     /// \brief Access to pattern used for name of output APK file.
     /// \return Returns pattern used for name of output APK file.
     QString applicationFileNamePattern() const;
+
     void setApplicationFileNamePattern(const QString &file_name_pattern);
 
+    /// \brief Generates file name for output APK file.
+    /// \param project_name Name of source project.
+    /// \return Access to output APK application file name pattern.
     QString applicationFileName(const QString &project_name);
 
     /// \brief Access to active entry point.
@@ -123,9 +129,22 @@ class TemplateFactory : public QObject {
     /// \return Returns pointer to generator.
     TemplateGenerator *generator() const;
 
+    /// \brief Decides which entry point raw XML bundle data belong to.
+    /// \param bundle_data Raw XML bundle data.
+    /// \return Returns pointer to appropriate entry point or NULL
+    /// if no correct entry point exists.
+    TemplateEntryPoint *entryPointForBundle(const QString &bundle_data);
+
+    /// \brief Performs lexicographical comparison of two entry points.
+    /// \note This is used for sorting entry points in FormNewProject class.
+    /// \param s1 First entry point.
+    /// \param s2 Second entry point.
+    /// \return Returns true if s1 is less than s2, otherwise
+    /// returns false.
     static bool entryPointIsLessThan(TemplateEntryPoint *s1, TemplateEntryPoint &s2);
 
   public slots:
+    /// \brief Quits running actions of template manager.
     void quit();
 
     /// \brief Starts new project core from given entry point.
@@ -136,7 +155,13 @@ class TemplateFactory : public QObject {
     /// \param bundle_file_name XML bundle file name of saved project.
     bool loadProject(const QString &bundle_file_name);
 
+    /// \brief Saves current project to given file.
+    /// \param bundle_file_name File to save project XML bundle to.
+    /// \return Returns true if project was saved, otherwise returns false.
     bool saveCurrentProjectAs(const QString &bundle_file_name);
+
+    /// \brief Saves current project to assigned file if there is any.
+    /// \return Returns true if project was saved, otherwise returns false.
     bool saveCurrentProject();
 
   signals:
@@ -145,15 +170,12 @@ class TemplateFactory : public QObject {
     void newTemplateCoreCreated(TemplateCore *core);
 
   private:
-    TemplateEntryPoint *entryPointForBundle(const QString &bundle_data);
-
     void clearEntryAndCore();
     void setupTemplates();
 
     QHash<QString, TemplateEntryPoint*> m_availableTemplates;
     TemplateEntryPoint *m_activeEntryPoint;
     TemplateCore *m_activeCore;
-
     TemplateGenerator *m_generator;
 };
 
