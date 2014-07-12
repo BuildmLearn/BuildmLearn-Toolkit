@@ -78,7 +78,8 @@ class FlashCardEditor : public TemplateEditor {
     void selectPicture();
     void configureUpDown();
     void moveQuestionUp();
-    void moveQuestionDown();
+    void moveQuestionDown();  
+    void addQuestion(const QString& question, const QString& answer, const QString& hint, const QString& picture_path);
 
   private:
     Ui::FlashCardEditor *m_ui;

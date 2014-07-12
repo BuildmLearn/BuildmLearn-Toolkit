@@ -156,8 +156,6 @@ QString FlashCardEditor::generateBundleData() {
       return QString();
     }
 
-    QString aaa = QString::fromUtf8(picture_encoded);
-
     image_element.appendChild(source_document.createTextNode(QString::fromUtf8(picture_encoded)));
     item_element.appendChild(question_element);
     item_element.appendChild(answer_element);
@@ -192,8 +190,17 @@ bool FlashCardEditor::loadBundleData(const QString &bundle_data) {
       else {
         // TODO: POKRACOVAT TADY, prevadeni z base64 do souboru blbne.
         // https://www.google.cz/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=qt%20base64%20to%20file
-        IOFactory::base64ToFile(image_data, "D:\\aaa.fff");
-        // TODO: add new item
+        QString output_directory = qApp->templateManager()->tempDirectory();
+        QString target_image_file = output_directory +
+                                    QString("/image_%1.png").arg(i);
+
+        if (IOFactory::base64ToFile(image_data, target_image_file)) {
+          // Picture from the item was saved to disk.
+          addQuestion(question, answer, hint, target_image_file);
+        }
+        else {
+          // TODO: errro
+        }
       }
     }
     else {
@@ -321,17 +328,18 @@ void FlashCardEditor::loadPicture(const QString& picture_path) {
   m_ui->m_lblPictureFile->label()->setToolTip(QDir::toNativeSeparators(picture_path));
 }
 
-void FlashCardEditor::addQuestion() {
+void FlashCardEditor::addQuestion(const QString &question,
+                                  const QString &answer,
+                                  const QString &hint,
+                                  const QString &picture_path) {
   int marked_question = m_ui->m_listQuestions->currentRow();
   FlashCardQuestion new_question;
   QListWidgetItem *new_item = new QListWidgetItem();
 
-  new_question.setQuestion(tr("What animal do you see on the picture?"));
-  new_question.setHint(tr("This animal is hated by dog."));
-  new_question.setAnswer("cat");
-  new_question.setPicturePath(APP_TEMPLATES_PATH + QDir::separator() +
-                              core()->entryPoint()->baseFolder() + QDir::separator() +
-                              "cat.png");
+  new_question.setQuestion(question);
+  new_question.setHint(answer);
+  new_question.setAnswer(hint);
+  new_question.setPicturePath(picture_path);
 
   new_item->setText(new_question.question());
   new_item->setData(Qt::UserRole, QVariant::fromValue(new_question));
@@ -351,6 +359,15 @@ void FlashCardEditor::addQuestion() {
   }
 
   updateQuestionCount();
+}
+
+void FlashCardEditor::addQuestion() {
+  addQuestion(tr("What animal do you see on the picture?"),
+              tr("cat"),
+              tr("This animal is hated by dog."),
+              APP_TEMPLATES_PATH + QDir::separator() +
+              core()->entryPoint()->baseFolder() + QDir::separator() +
+              "cat.png");
   launch();
   emit changed();
 }

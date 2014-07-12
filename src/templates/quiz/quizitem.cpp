@@ -122,19 +122,19 @@ void QuizItem::onSubmitClicked() {
     // User selected some answer, highlight correct and incorrect answer.
     for (int i = 0; i < m_answerButtons.size(); i++) {
       if (m_answerButtons.at(i)->isChecked()) {
-        selected_answer = i + 1;
+        selected_answer = i;
       }
     }
 
     if (selected_answer == m_question.correctAnswer()) {
       m_ui->m_lblWarning->setText("That is correct answer.");
-      m_answerButtons.at(selected_answer - 1)->setStyleSheet("background-color: green;");
+      m_answerButtons.at(selected_answer)->setStyleSheet("background-color: green;");
       m_state = AnsweredCorrectly;
     }
     else {
       m_ui->m_lblWarning->setText("That is wrong answer.");
-      m_answerButtons.at(selected_answer - 1)->setStyleSheet("background-color: red;");
-      m_answerButtons.at(m_question.correctAnswer() - 1)->setStyleSheet("background-color: green;");
+      m_answerButtons.at(selected_answer)->setStyleSheet("background-color: red;");
+      m_answerButtons.at(m_question.correctAnswer())->setStyleSheet("background-color: green;");
       m_state = AnsweredWrongly;
     }
 

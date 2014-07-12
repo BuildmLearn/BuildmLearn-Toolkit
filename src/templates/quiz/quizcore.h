@@ -33,6 +33,11 @@
 
 #include "core/templatecore.h"
 
+#define ANSWER_FIRST    0
+#define ANSWER_SECOND   1
+#define ANSWER_THIRD    2
+#define ANSWER_FOURTH   3
+
 
 class QuizEditor;
 class QuizSimulator;
