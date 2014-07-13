@@ -4,13 +4,14 @@
 Main:
 <ul>
 <li>First GSoC-related toolkit release.</li>
-<li>Initial code reworking.</li>
-<li>Mac OS X source code compilation & bundle fixes by Petr Vaněk &lt;petr@yarpen.cz&gt;.</li>
+<li>THIS IS PRE-ALPHA RELEASE WHICH IS MEANT TO BE USED ONLY FOR TESTING!!!</li>
+<li>Initial ana massive code reworking.</li>
+<li>Mac OS X source code compilation & bundle fixes by Petr Vaněk &lt;petr@yarpen.cz&gt;. This is not well-tested so far.</li>
 </ul>
 
 Fixed:
 <ul>
-<li>Fixed bugs #20, #23, #16, #15, #7, #5, #6, #3.</li>
+<li>Fixed bugs #20, #23, #16, #15, #7, #5, #6, #3 and many others previously reported errors and problems.</li>
 </ul>
 
 Added:
@@ -28,6 +29,7 @@ Added:
 <li>Added application-wide icon handling mechanism.</li>
 <li>Added support for application localization, both backend and frontend GUI.</li>
 <li>Added basic support for proxy server settings + API for downloading files.</li>
+<li>Replaced old templates with new ones which include much better logic.</li>
 </ul>
 
 <hr/>
