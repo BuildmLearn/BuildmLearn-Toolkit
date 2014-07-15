@@ -16,6 +16,8 @@
 FormSimulator::FormSimulator(FormMain* parent)
   : QDialog(parent), m_ui(new Ui::FormSimulator), m_mainWindow(parent), m_isActive(false), m_activeSimulation(NULL) {
   m_ui->setupUi(this);
+
+  // Load some needed settings.
   m_isVisibleOnStartup = qApp->settings()->value(APP_CFG_SIMULATOR, "visible_on_startup", false).toBool();
   m_isSticked = qApp->settings()->value(APP_CFG_SIMULATOR, "is_sticked", false).toBool();
 

@@ -50,13 +50,10 @@ class IconFactory : public QObject {
     // Destructor.
     virtual ~IconFactory();
 
-    // Used to store/retrieve QIcons from/to database via Base64-encoded
-    // byte array.
-    QIcon fromByteArray(QByteArray array);
-    QByteArray toByteArray(const QIcon &icon);
-
-    // Returns icon from active theme or invalid icon if
-    // "no icon theme" is set.
+    /// \brief Returns icon from active theme.
+    /// \param name Name of the icon.
+    /// \return Returns icon from active theme or invalid icon if
+    /// "no icon theme" is set.
     inline QIcon fromTheme(const QString &name) {
       if (m_currentIconTheme == APP_NO_THEME) {
         return QIcon();
@@ -72,26 +69,32 @@ class IconFactory : public QObject {
       return m_cachedIcons.value(name);
     }
 
-    // Adds custom application path to be search for icons.
+    /// \brief Adds custom application path to be search for icons.
     void setupSearchPaths();
 
-    // Returns list of installed themes, including "default" theme.
+    /// \brief Access to list of icon themes.
+    /// \return Returns list of installed themes, including "default" theme.
     QStringList installedIconThemes() const;
 
-    // Loads name of selected icon theme (from settings) for the application and
-    // activates it. If that particular theme is not installed, then
-    // "default" theme is loaded.
+    /// \brief Loads name of selected icon theme (from settings) for the application and
+    /// activates it.
+    /// \note If that particular theme is not installed, then "default" theme is loaded.
     void loadCurrentIconTheme();
 
-    // Returns name of currently activated theme for the application.
+    /// \brief Gets name of current theme.
+    /// \return Returns name of currently activated theme for the application.
     inline QString currentIconTheme() const {
       return m_currentIconTheme;
     }
 
-    // Sets icon theme with given name as the active one and loads it.
+    ///
+    /// \brief Sets icon theme with given name as the active one and loads it.
+    /// \param theme_name New theme name.
     void setCurrentIconTheme(const QString &theme_name);
 
-    // Singleton getter.
+    ///
+    /// \brief Singleton getter.
+    /// \return Returns pointer to singleton.
     static IconFactory *instance();
 
   private:

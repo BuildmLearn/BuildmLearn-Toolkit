@@ -48,7 +48,7 @@ QuizEditor::QuizEditor(TemplateCore *core, QWidget *parent)
   : TemplateEditor(core, parent), m_ui(new Ui::QuizEditor) {
   m_ui->setupUi(this);
 
-  m_ui->m_txtNumberOfQuestions->lineEdit()->setReadOnly(false);
+  m_ui->m_txtNumberOfQuestions->lineEdit()->setReadOnly(true);
 
   IconFactory *factory = IconFactory::instance();
 

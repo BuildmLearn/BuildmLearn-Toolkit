@@ -592,18 +592,14 @@ void FormMain::openLoadProjectDialog() {
                                                        tr("XML bundle files (*.xml)"),
                                                        0);
 
-  if (selected_file.isEmpty()) {
+  if (selected_file.isEmpty()) {   
     return;
   }
 
-  if (!qApp->templateManager()->loadProject(selected_file)) {
-    // TODO: error
+  if (qApp->templateManager()->loadProject(selected_file)) {
+    m_ui->m_actionSaveProjectAs->setEnabled(true);
+    m_ui->m_actionSaveProject->setEnabled(false);
   }
-
-  // TODO: Open already saved project.
-
-  m_ui->m_actionSaveProjectAs->setEnabled(true);
-  m_ui->m_actionSaveProject->setEnabled(true);
 }
 
 void FormMain::openNewProjectDialog() {

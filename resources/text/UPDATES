@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <releases>
   <release version="2.0.1" type="maintenance">
-    <url platform="x86" os="Windows">https://github.com/BuildmLearn/BuildmLearn-Toolkit/archive/master.zip</url>
-    <url platform="x86" os="OS2">https://github.com/BuildmLearn/BuildmLearn-Toolkit/archive/master.zip</url>
+    <url platform="x86" os="Windows">https://github.com/BuildmLearn/BuildmLearn-Toolkit/archive/2.0.1.zip</url>
+    <url platform="x86" os="OS2">https://github.com/BuildmLearn/BuildmLearn-Toolkit/archive/2.0.1.zip</url>
     <changes>
 <![CDATA[
 <body>

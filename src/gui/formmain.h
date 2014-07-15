@@ -87,8 +87,10 @@ class FormMain : public QMainWindow {
     void saveSizeAndPosition();
 
   private slots:
+    // Starts new simulation.
     void startSimulation();
 
+    // Goes one step back on active simulation.
     void takeSimulationOneStepBack();
 
     // Called when generation status of current template is changed by its editor part.
@@ -104,6 +106,8 @@ class FormMain : public QMainWindow {
     void onGenerationProgress(int percentage_completed, const QString &message);
     void onGenerationStarted();
     void onGenerationDone(TemplateCore::GenerationResult result_code, const QString &output_file);
+
+    // Opens output application/directory.
     void openOutputApplication();
     void openOutputDirectory();
 

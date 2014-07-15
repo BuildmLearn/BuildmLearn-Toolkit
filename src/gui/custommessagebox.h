@@ -48,7 +48,8 @@ class CustomMessageBox : public QMessageBox {
     /// \param icon Icon to set.
     void setIcon(Icon icon);
 
-    // Performs icon replacements for given button box.
+    /// \brief Performs icon replacements for given button box.
+    /// \param button_box Button box to work with.
     static void iconify(QDialogButtonBox *button_box);
 
     /// \brief Displays custom message box.

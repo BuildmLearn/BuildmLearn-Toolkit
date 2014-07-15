@@ -47,7 +47,6 @@ class FormHelp : public QDialog {
     Q_OBJECT
 
   public:
-    ///
     /// \brief Constructor.
     /// \param do_not_show_again_enabled If true, then "do not show again" checkbox is hidden.
     /// \param parent Parent widget.

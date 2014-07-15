@@ -34,7 +34,7 @@
 
 
 TemplateEditor::TemplateEditor(TemplateCore *core, QWidget *parent)
-  : QWidget(parent), m_canGenerate(false), m_generateMessage(QString()), m_core(core), m_isDirty(false) {
+  : QWidget(parent), m_canGenerate(false), m_generateMessage(QString()), m_isDirty(false), m_core(core) {
   connect(this, SIGNAL(changed()), this, SLOT(dirtify()));
 }
 

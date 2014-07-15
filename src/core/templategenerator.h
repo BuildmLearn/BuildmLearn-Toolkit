@@ -11,6 +11,7 @@ class TemplateGenerator : public QObject {
     Q_OBJECT
 
   public:
+    // Constructors and destructors.
     explicit TemplateGenerator(QObject *parent = 0);
     virtual ~TemplateGenerator();
 

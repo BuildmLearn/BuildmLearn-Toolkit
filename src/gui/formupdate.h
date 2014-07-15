@@ -56,17 +56,21 @@ class FormUpdate : public QDialog {
     explicit FormUpdate(QWidget *parent = 0);
     virtual ~FormUpdate();
 
-    // Returns true if current update provides
-    // installation file for current platform.
+    /// \brief Indication of update/platform suitability.
+    /// \return Returns true if current update provides
+    /// installation file for current platform.
     bool isUpdateForThisSystem() const;
 
-    // Returns true if application can self-update
-    // on current platform.
+    /// \brief Indication of presence of self-update feature.
+    /// \return Returns true if application can self-update
+    /// on current platform.
+    /// \note This returns false for all platforms.
     bool isSelfUpdateSupported() const;
 
   protected slots:
-    // Check for updates and interprets the results.
+    /// \brief Check for updates and interprets the results.
     void checkForUpdates();
+
     void startUpdate();
 
     void updateProgress(qint64 bytes_received, qint64 bytes_total);

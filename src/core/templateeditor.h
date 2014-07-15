@@ -86,12 +86,16 @@ class TemplateEditor : public QWidget {
     TemplateCore *core() const;
 
     /// \brief Check if editor contains unsaved contents.
-    /// \return Returns true, if editor contains unsaved contents.
+    /// \return Returns true, if editor contains unsaved contents, otherwise
+    /// returns false.
     bool isDirty() const;
 
+    /// \brief Sets new dirtiness status.
+    /// \param is_dirty New dirtiness status.
     void setIsDirty(bool is_dirty);
 
   public slots:
+    /// \brief Dirtifies (sets m_isDirty to true) the editor.
     void dirtify() {
       setIsDirty(true);
     }

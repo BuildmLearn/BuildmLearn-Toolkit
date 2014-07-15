@@ -38,6 +38,7 @@ class QAction;
 
 /// \brief Access for methods for loading/saving keyboard shortcuts to/from settings.
 /// \see DynamicShortcutsWidget, ShortcutButton, ShortcutCatcher
+/// \ingroup keyboard-shortcuts
 class DynamicShortcuts {
   public:
     /// \brief Checks the application settings and then initializes shortcut of

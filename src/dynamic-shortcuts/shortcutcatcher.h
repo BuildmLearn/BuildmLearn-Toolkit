@@ -37,6 +37,7 @@ class QToolButton;
 class ShortcutButton;
 
 /// \brief Represents extra widget for changing single keyboard shortcut.
+/// \ingroup keyboard-shortcuts
 class ShortcutCatcher : public QWidget {
     Q_OBJECT
 

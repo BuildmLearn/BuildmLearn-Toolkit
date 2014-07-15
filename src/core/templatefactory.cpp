@@ -235,7 +235,7 @@ bool TemplateFactory::loadProject(const QString &bundle_file_name) {
 
   // Clear previous data and start loaded core.
   clearEntryAndCore();
-
+  loaded_core->setAssignedFile(bundle_file_name);
   loaded_core->editor()->setIsDirty(false);
 
   m_activeEntryPoint = target_entry_point;

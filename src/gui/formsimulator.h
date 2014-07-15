@@ -26,7 +26,10 @@ class FormSimulator : public QDialog {
     explicit FormSimulator(FormMain *parent = 0);
     virtual ~FormSimulator();
 
+    /// \brief Saves size & position for the window into settings.
     void saveState();
+
+    /// \brief Loads size & position for the window from settings.
     void loadState();
 
     /// \brief Indicates whether simulator window is sticked to
@@ -52,8 +55,19 @@ class FormSimulator : public QDialog {
     void setActiveSimulation(TemplateSimulator *simulation);
 
   public slots:
+    /// \brief Takes active simulation one step back.
+    ///
+    /// This simply calls TemplateSimulator::goBack().
     void goBack();
+
+    /// \brief Starts active simulation.
+    ///
+    /// This simply calls TemplateSimulator::startSimulation().
     void startSimulation();
+
+    /// \brief Stops active simulation.
+    ///
+    /// This simply calls TemplateSimulator::stopSimulation().
     void stopSimulation();
 
     /// \brief Conditionally sticks simulator window to its parent.
@@ -81,6 +95,9 @@ class FormSimulator : public QDialog {
   signals:
     /// \brief Emitted when simulator window is closed.
     void closed();
+
+    /// \brief Emitted if "stop" feature for active simulation is changed, in other
+    /// words, if simulation is started/stopped.
     void stopEnableChanged(bool enabled);
 
   private:

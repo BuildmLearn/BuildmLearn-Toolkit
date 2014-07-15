@@ -61,10 +61,26 @@
 /// Template interfaces module contains all base classes which are
 /// inherited by concrete templates.
 ///
+/// \defgroup keyboard-shortcuts Dynamic keyboard shortcuts
+/// \brief Dynamic keyboard shortcuts classes.
+///
+/// Dynamic keyboard shortcuts module contains classes related to
+/// application-wide dynamic keyboard shortcuts facilities.
+///
 /// \defgroup template-quiz Quiz template
 /// \brief Quiz template classes.
 ///
 /// This module contains all classes related to Quiz template.
+///
+/// \defgroup template-flashcards Flashcards template
+/// \brief Flashcards template classes.
+///
+/// This module contains all classes related to Flashcards template.
+///
+/// \defgroup template-basicmlearn Basic m-learning template
+/// \brief Basic m-learning template classes.
+///
+/// This module contains all classes related to Basic m-learning template.
 
 /// \brief main Main entry point to the application.
 ///

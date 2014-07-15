@@ -40,6 +40,7 @@ class ShortcutCatcher;
 typedef QPair<QAction*, ShortcutCatcher*> ActionBinding;
 
 /// \brief Widget for displaying and editing shortcuts.
+/// \ingroup keyboard-shortcuts
 class DynamicShortcutsWidget : public QWidget {
     Q_OBJECT
     

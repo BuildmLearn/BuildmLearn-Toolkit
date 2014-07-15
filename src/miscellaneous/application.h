@@ -191,6 +191,8 @@ class Application : public QApplication {
     QString externalApplicationsStatus() const;
     bool externalApplicationChecked() const;
 
+    /// \brief Application closing indication.
+    /// \return Returns true, if application is closing, otherwise returns false.
     bool isClosing() const;
 
   public slots:
@@ -208,6 +210,8 @@ class Application : public QApplication {
     void handleBackgroundUpdatesCheck();
 
   signals:
+    /// \brief Emitted if external applications are rechecked which happens
+    /// usually if path to some of external application changes.
     void externalApplicationsRechecked();
 
   private:
