@@ -36,11 +36,12 @@
 #include <QPointer>
 
 
+/// \brief Application-wide settings mechanism.
 class Settings : public QSettings {
     Q_OBJECT
 
   public:
-    // Describes possible types of loaded settings.
+    /// \brief Describes possible types of loaded settings.
     enum Type {
       Portable,
       NonPortable
@@ -49,28 +50,40 @@ class Settings : public QSettings {
     // Destructor.
     virtual ~Settings();
 
-    // Type of used settings.
+    /// \brief Type of used settings.
+    /// \return Returns type of used settings.
     inline Type type() const {
       return m_initializationStatus;
     }
 
-    // Getter/setter for settings values.
+    /// \brief Getter/setter for settings values.
+    /// \param section Section in the settings.
+    /// \param key Key of setting.
+    /// \param default_value Default value to be used if no value exists for given key.
+    /// \return Returns found value, default value or empty variant value.
     inline QVariant value(const QString &section,
                           const QString &key,
                           const QVariant &default_value = QVariant()) {
       return QSettings::value(QString("%1/%2").arg(section, key), default_value);
     }
 
+    /// \brief Sets new value into settings.
+    /// \param section Section in the settings.
+    /// \param key Key.
+    /// \param value New value.
     inline void setValue(const QString &section,
                          const QString &key,
                          const QVariant &value) {
       QSettings::setValue(QString("%1/%2").arg(section, key), value);
     }
 
-    // Synchronizes settings.
+    /// \brief Synchronizes settings.
+    /// \return Returns state of settings.
     QSettings::Status checkSettings();
 
-    // Creates settings file in correct location.
+    /// \brief Creates settings file in correct location.
+    /// \param parent Parent object.
+    /// \return Returns pointer to new settings.
     static Settings *setupSettings(QObject *parent);
 
   private:

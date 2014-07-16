@@ -43,20 +43,29 @@ class TextFactory {
     explicit TextFactory();
 
   public:
+    /// \brief Does case-insensitive comparison of two strings.
+    /// \param lhs First string.
+    /// \param rhs Second string.
+    /// \return Returns true if lhs is "smaller" than rhs.
     static inline bool isCaseInsensitiveLessThan(const QString &lhs, const QString &rhs) {
       return lhs.toLower() < rhs.toLower();
     }
 
-    // Tries to parse input textual date/time representation.
-    // Returns invalid date/time if processing fails.
-    // NOTE: This method tries to always return time in UTC+00:00.
+    /// \brief Tries to parse input textual date/time representation.
+    /// \param date_time String of date/time to parse.
+    /// \return Returns invalid date/time if processing fails.
+    /// \note This method tries to always return time in UTC+00:00.
     static QDateTime parseDateTime(const QString &date_time);
 
-    // Converts 1970-epoch miliseconds to date/time.
-    // NOTE: This apparently returns date/time in localtime.
+    /// \brief Converts 1970-epoch miliseconds to date/time.
+    /// \param milis_from_epoch Number of miliseconds.
+    /// \return This apparently returns date/time in localtime.
     static QDateTime parseDateTime(qint64 milis_from_epoch);
 
-    // Shortens input string according to given length limit.
+    /// \brief Shortens input string according to given length limit.
+    /// \param input Input string.
+    /// \param text_length_limit Limit length.
+    /// \return Returns shortened string.
     static QString shorten(const QString &input, int text_length_limit);
 };
 

@@ -34,6 +34,7 @@
 #include <QtGlobal>
 
 
+/// \brief Debugging facilities.
 class Debugging {
   public:
     // Specifies format of output console messages.

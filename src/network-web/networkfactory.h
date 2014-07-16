@@ -44,17 +44,19 @@ class NetworkFactory {
     explicit NetworkFactory();
 
   public:
-    // Returns human readable text for given network error.
+    /// \brief Gets human readable text for given network error.
+    /// \param error_code
+    /// \return Returns human readable text for given network error.
     static QString networkErrorText(QNetworkReply::NetworkError error_code);
 
-    // Performs SYNCHRONOUS download if favicon for the site,
-    // given URL belongs to.
-    static QNetworkReply::NetworkError downloadIcon(const QString &url,
-                                                    int timeout,
-                                                    QIcon &output);
-
-    // Performs SYNCHRONOUS download of file with given URL
-    // and given timeout.
+    /// \brief Performs SYNCHRONOUS download of file with given URL and given timeout.
+    /// \param url Url.
+    /// \param timeout Download timeout.
+    /// \param output Output to store data to.
+    /// \param protected_contents Is destination URL protected?
+    /// \param username Username.
+    /// \param password Password.
+    /// \return Returns indication of network status after the donwload finished.
     static QNetworkReply::NetworkError downloadFile(const QString &url,
                                                         int timeout,
                                                         QByteArray &output,

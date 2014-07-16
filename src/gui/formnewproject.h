@@ -43,6 +43,7 @@ namespace Ui {
 class TemplateFactory;
 class TemplateEntryPoint;
 
+/// \brief Dialog for creating new projects.
 class FormNewProject : public QDialog {
     Q_OBJECT
 

@@ -43,6 +43,7 @@ struct Language {
     QString m_email;
 };
 
+/// \brief Localization facilities.
 class Localization : public QObject {
     Q_OBJECT
 
@@ -54,22 +55,27 @@ class Localization : public QObject {
     // Destructor.
     virtual ~Localization();
 
-    // Singleton getter.
+    /// \brief Singleton getter.
+    /// \return Returns singleton.
     static Localization *instance();
 
-    // Returns code of language that should
-    // be loaded according to settings.
+    /// \brief Access to code of language that should
+    /// be loaded according to settings.
+    /// \return Returns code of language that should
+    /// be loaded according to settings.
     QString desiredLanguage();
 
-    // Loads currently active language.
+    /// \brief Loads currently active language.
     void load();
 
-    // Returns list of installed application localizations.
-    // This list is used ie. in settings dialog.
+    /// \brief Gets list of installed languages.
+    /// \return Returns list of installed application localizations.
+    /// This list is used ie. in settings dialog.
     QList<Language> installedLanguages();
 
-    // Returns empty string or loaded language
-    // name if it is really loaded.
+    /// \brief Access to code of loaded language.
+    /// \return Returns empty string or loaded language
+    /// name if it is really loaded.
     inline QString loadedLanguage() const {
       return m_loadedLanguage;
     }

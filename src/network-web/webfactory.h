@@ -50,7 +50,9 @@ class WebFactory : public QObject {
     static WebFactory *instance();
 
   public slots:
-    // Opens given string URL in external browser.
+    /// \brief Opens given string URL in external browser.
+    /// \param url URL to open.
+    /// \return Returns true if URL was opened in external web browser.
     bool openUrlInExternalBrowser(const QString &url);
 
   private:

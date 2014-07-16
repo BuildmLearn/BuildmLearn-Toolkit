@@ -37,7 +37,7 @@
 #include <QPointer>
 
 
-// Network manager used for more communication for feeds.
+/// \brief Network access manager with supressed authentication dialogs.
 class SilentNetworkAccessManager : public BaseNetworkAccessManager {
     Q_OBJECT
 

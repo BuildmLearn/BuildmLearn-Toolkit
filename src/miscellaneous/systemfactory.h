@@ -37,6 +37,7 @@
 #include <QNetworkReply>
 
 
+/// \brief Information about update metadata.
 class UpdateUrl {
   public:
     QString m_fileUrl;
@@ -44,8 +45,10 @@ class UpdateUrl {
     QString m_os;
 };
 
+/// \brief Information about available update.
 class UpdateInfo {
   public:
+    /// \brief Gives possible update types.
     enum UpdateType {
       // Corresponding enum to "maintenace" from UPDATES file.
       Maintenance,
@@ -65,14 +68,18 @@ class UpdateInfo {
 
 Q_DECLARE_METATYPE(UpdateInfo)
 
+/// \brief Some miscellaneous methods.
 class SystemFactory {
   public:
     virtual ~SystemFactory();
 
-    // Performs parsing of downloaded file with list of updates.
+    /// \brief Performs parsing of downloaded file with list of updates.
+    /// \param updates_file File to parse.
+    /// \return Returns parsed update information.
     static UpdateInfo parseUpdatesFile(const QByteArray &updates_file);
 
-    // Tries to download list with new updates.
+    /// \brief Tries to synchronously download list with new updates.
+    /// \return Returns information about new updates + network download status.
     static QPair<UpdateInfo, QNetworkReply::NetworkError> checkForUpdates();
 
   private:
