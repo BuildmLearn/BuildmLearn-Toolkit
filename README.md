@@ -11,8 +11,10 @@ Packages
 You can use source code tarball available direct from here to build the software. Precompiled binary packages are available for some other platforms:
 
 * [OBS (Git version)](http://software.opensuse.org/download.html?project=home%3Askunkos%3Abuildmlearn&package=buildmlearn-toolkit-git)  ~Archlinux, openSUSE, Fedora, *Ubuntu, Debian,
+* [OBS (Stable version)](http://software.opensuse.org/download.html?project=home%3Askunkos%3Abuildmlearn&package=buildmlearn-toolkit)  ~Archlinux, openSUSE, Fedora, *Ubuntu, Debian,
 * [testing NSIS installers](https://drive.google.com/folderview?id=0B8XNkQ-jUoBYYjMzd3laRHROMnM&usp=drive_web)  ~Windows (XP or newer),
-* TBA  ~OS/2 (eComStation).
+* TBA  ~OS/2 (eComStation),
+* TBA  ~OSX (Mac OS X).
 
 How to build
 ------------
