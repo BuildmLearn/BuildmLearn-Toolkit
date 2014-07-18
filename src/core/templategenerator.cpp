@@ -1,7 +1,10 @@
 #include "core/templategenerator.h"
 
+#include "definitions/definitions.h"
 #include "core/templatecore.h"
+#include "core/templatefactory.h"
 #include "miscellaneous/application.h"
+#include "miscellaneous/iofactory.h"
 
 #include <QMutex>
 
@@ -32,4 +35,8 @@ void TemplateGenerator::generateMobileApplication(TemplateCore *core) {
 
     qApp->closeLock()->unlock();
   }
+}
+
+void TemplateGenerator::cleanWorkspace() {
+  IOFactory::removeDirectory(qApp->templateManager()->tempDirectory() + "/" + APP_LOW_NAME);
 }

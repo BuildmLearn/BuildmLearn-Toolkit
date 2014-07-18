@@ -40,6 +40,7 @@
 #include "templates/quiz/quizentrypoint.h"
 #include "templates/flashcard/flashcardentrypoint.h"
 #include "templates/mlearning/basicmlearningentrypoint.h"
+#include "templates/learnspellings/learnspellingsentrypoint.h"
 
 #if QT_VERSION >= 0x050000
 #include <QStandardPaths>
@@ -308,6 +309,9 @@ void TemplateFactory::setupTemplates() {
 
   TemplateEntryPoint *quiz_entry = new QuizEntryPoint(this);
   m_availableTemplates.insert(quiz_entry->typeIndentifier(), quiz_entry);
+
+  TemplateEntryPoint *learnspellings_entry = new LearnSpellingsEntryPoint(this);
+  m_availableTemplates.insert(learnspellings_entry->typeIndentifier(), learnspellings_entry);
 }
 
 TemplateGenerator *TemplateFactory::generator() const {

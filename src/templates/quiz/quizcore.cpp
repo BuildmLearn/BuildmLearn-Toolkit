@@ -36,6 +36,7 @@
 #include "miscellaneous/iofactory.h"
 #include "core/templatefactory.h"
 #include "core/templateentrypoint.h"
+#include "core/templategenerator.h"
 #include "definitions/definitions.h"
 
 #include <QDir>
@@ -58,7 +59,7 @@ QuizCore::~QuizCore() {
 TemplateCore::GenerationResult QuizCore::generateMobileApplication(QString &output_file) {
   emit generationProgress(5, tr("Preparing workspace..."));
 
-  cleanupGeneration();
+  qApp->templateManager()->generator()->cleanWorkspace();
 
   emit generationProgress(10, tr("Extracting raw data from editor..."));
 
@@ -97,8 +98,8 @@ TemplateCore::GenerationResult QuizCore::generateMobileApplication(QString &outp
   // Copying of target apk file.
   QString new_apk_name = qApp->templateManager()->applicationFileName(quizEditor()->m_ui->m_txtName->lineEdit()->text());
   if (!QFile::copy(APP_TEMPLATES_PATH + "/" + entryPoint()->baseFolder() + "/" + entryPoint()->mobileApplicationApkFile(),
-              base_folder + "/" + new_apk_name)) {
-    cleanupGeneration();
+                   base_folder + "/" + new_apk_name)) {
+    qApp->templateManager()->generator()->cleanWorkspace();
     return CopyProblem;
   }
 
@@ -113,7 +114,7 @@ TemplateCore::GenerationResult QuizCore::generateMobileApplication(QString &outp
 
   if (zip.exitCode() != EXIT_STATUS_ZIP_NORMAL) {
     // Error during inserting quiz data via zip.
-    cleanupGeneration();
+    qApp->templateManager()->generator()->cleanWorkspace();
     return ZipProblem;
   }
 
@@ -131,7 +132,7 @@ TemplateCore::GenerationResult QuizCore::generateMobileApplication(QString &outp
   signapk.waitForFinished();
 
   if (signapk.exitCode() != EXIT_STATUS_SIGNAPK_WORKING) {
-    cleanupGeneration();
+    qApp->templateManager()->generator()->cleanWorkspace();
     return SignApkProblem;
   }
 
@@ -140,24 +141,20 @@ TemplateCore::GenerationResult QuizCore::generateMobileApplication(QString &outp
   // Now, our file is created. We need to move it to target directory.
   if (!IOFactory::copyFile(base_folder + "/" + new_apk_name + ".new",
                            qApp->templateManager()->outputDirectory() + "/" + new_apk_name)) {
-    cleanupGeneration();
+    qApp->templateManager()->generator()->cleanWorkspace();
     return CopyProblem;
   }
 
   output_file = QDir(qApp->templateManager()->outputDirectory()).filePath(new_apk_name);
 
   // Removing temporary files and exit.
-  cleanupGeneration();
+  qApp->templateManager()->generator()->cleanWorkspace();
   return Success;
 }
 
 void QuizCore::launch() {
   quizEditor()->launch();
   quizSimulator()->launch();
-}
-
-void QuizCore::cleanupGeneration() {
-  IOFactory::removeDirectory(qApp->templateManager()->tempDirectory() + "/" + APP_LOW_NAME);
 }
 
 QuizEditor *QuizCore::quizEditor() {

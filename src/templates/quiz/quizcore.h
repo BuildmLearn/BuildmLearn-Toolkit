@@ -56,9 +56,6 @@ class QuizCore : public TemplateCore {
     void launch();
 
   private:
-    void cleanupGeneration();
-
-  private:
     QuizEditor *quizEditor();
     QuizSimulator *quizSimulator();
 };

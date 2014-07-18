@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>BasicmLearningEditor</class>
- <widget class="QWidget" name="BasicmLearningEditor">
+ <class>LearnSpellingsEditor</class>
+ <widget class="QWidget" name="LearnSpellingsEditor">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>463</width>
-    <height>399</height>
+    <width>446</width>
+    <height>384</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -29,7 +29,7 @@
    <item row="0" column="0">
     <widget class="QGroupBox" name="m_groupItemEditor">
      <property name="title">
-      <string>Item editor</string>
+      <string>Word editor</string>
      </property>
      <layout class="QFormLayout" name="formLayout">
       <item row="0" column="1">
@@ -38,14 +38,14 @@
       <item row="0" column="0">
        <widget class="QLabel" name="label">
         <property name="text">
-         <string>Title</string>
+         <string>Word</string>
         </property>
        </widget>
       </item>
       <item row="1" column="0">
        <widget class="QLabel" name="label_2">
         <property name="text">
-         <string>Description</string>
+         <string>Meaning</string>
         </property>
        </widget>
       </item>
@@ -195,7 +195,7 @@
       <item row="2" column="0">
        <widget class="QLabel" name="label_6">
         <property name="text">
-         <string>Number of items</string>
+         <string>Number of words</string>
         </property>
        </widget>
       </item>
@@ -213,7 +213,7 @@
      <property name="sizeHint" stdset="0">
       <size>
        <width>20</width>
-       <height>40</height>
+       <height>220</height>
       </size>
      </property>
     </spacer>

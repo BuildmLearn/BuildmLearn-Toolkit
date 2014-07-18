@@ -81,6 +81,13 @@
 /// \brief Basic m-learning template classes.
 ///
 /// This module contains all classes related to Basic m-learning template.
+///
+/// \defgroup template-learnspellings Learn Spellings template
+/// \brief Learn Spellings template classes.
+///
+/// This module contains all classes related to Learn Spellings template.
+/// Learn Spellings template helps its users to learn to pronunciate particular
+/// words or phrases.
 
 /// \brief main Main entry point to the application.
 ///

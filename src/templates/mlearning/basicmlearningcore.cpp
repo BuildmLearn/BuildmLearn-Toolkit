@@ -36,6 +36,7 @@
 #include "miscellaneous/iofactory.h"
 #include "core/templatefactory.h"
 #include "core/templateentrypoint.h"
+#include "core/templategenerator.h"
 
 #include <QDir>
 #include <QTextStream>
@@ -52,14 +53,10 @@ BasicmLearningCore::BasicmLearningCore(TemplateEntryPoint *entry_point,
 BasicmLearningCore::~BasicmLearningCore() {
 }
 
-void BasicmLearningCore::cleanupGeneration() {
-  IOFactory::removeDirectory(qApp->templateManager()->tempDirectory() + "/" + APP_LOW_NAME);
-}
-
 TemplateCore::GenerationResult BasicmLearningCore::generateMobileApplication(QString &output_file) {
   emit generationProgress(5, tr("Preparing workspace..."));
 
-  cleanupGeneration();
+  qApp->templateManager()->generator()->cleanWorkspace();
 
   emit generationProgress(10, tr("Extracting raw data from editor..."));
 
@@ -99,7 +96,7 @@ TemplateCore::GenerationResult BasicmLearningCore::generateMobileApplication(QSt
   QString new_apk_name = qApp->templateManager()->applicationFileName("info");
   if (!QFile::copy(APP_TEMPLATES_PATH + "/" + entryPoint()->baseFolder() + "/" + entryPoint()->mobileApplicationApkFile(),
               base_folder + "/" + new_apk_name)) {
-    cleanupGeneration();
+    qApp->templateManager()->generator()->cleanWorkspace();
     return CopyProblem;
   }
 
@@ -114,7 +111,7 @@ TemplateCore::GenerationResult BasicmLearningCore::generateMobileApplication(QSt
 
   if (zip.exitCode() != EXIT_STATUS_ZIP_NORMAL) {
     // Error during inserting quiz data via zip.
-    cleanupGeneration();
+    qApp->templateManager()->generator()->cleanWorkspace();
     return ZipProblem;
   }
 
@@ -132,7 +129,7 @@ TemplateCore::GenerationResult BasicmLearningCore::generateMobileApplication(QSt
   signapk.waitForFinished();
 
   if (signapk.exitCode() != EXIT_STATUS_SIGNAPK_WORKING) {
-    cleanupGeneration();
+    qApp->templateManager()->generator()->cleanWorkspace();
     return SignApkProblem;
   }
 
@@ -141,14 +138,14 @@ TemplateCore::GenerationResult BasicmLearningCore::generateMobileApplication(QSt
   // Now, our file is created. We need to move it to target directory.
   if (!IOFactory::copyFile(base_folder + "/" + new_apk_name + ".new",
                            qApp->templateManager()->outputDirectory() + "/" + new_apk_name)) {
-    cleanupGeneration();
+    qApp->templateManager()->generator()->cleanWorkspace();
     return CopyProblem;
   }
 
   output_file = QDir(qApp->templateManager()->outputDirectory()).filePath(new_apk_name);
 
   // Removing temporary files and exit.
-  cleanupGeneration();
+  qApp->templateManager()->generator()->cleanWorkspace();
   return Success;
 }
 

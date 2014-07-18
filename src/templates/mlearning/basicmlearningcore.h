@@ -50,8 +50,6 @@ class BasicmLearningCore : public TemplateCore {
   private:
     BasicmLearningEditor *learningEditor();
     BasicmLearningSimulator *learningSimulator();
-
-    void cleanupGeneration();
 };
 
 #endif // BASICMLEARNINGCORE_H

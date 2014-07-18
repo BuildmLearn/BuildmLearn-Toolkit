@@ -22,6 +22,9 @@ class TemplateGenerator : public QObject {
     /// is reported via signalling. No return values are used.
     void generateMobileApplication(TemplateCore *core);
 
+    /// \brief Cleans workspace used for generating applications.
+    void cleanWorkspace();
+
   signals:
     /// \brief Emitted if generating process is started.
     void generationStarted();

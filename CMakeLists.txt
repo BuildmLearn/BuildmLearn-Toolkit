@@ -434,6 +434,12 @@ set(APP_SOURCES
   src/templates/mlearning/basicmlearningsimulator.cpp
   src/templates/mlearning/basicmlearningitem.cpp
 
+  src/templates/learnspellings/learnspellingsentrypoint.cpp
+  src/templates/learnspellings/learnspellingscore.cpp
+  src/templates/learnspellings/learnspellingseditor.cpp
+  src/templates/learnspellings/learnspellingssimulator.cpp
+  src/templates/learnspellings/learnspellingsitem.cpp
+
   src/main.cpp
 )
 
@@ -494,6 +500,11 @@ set(APP_HEADERS
   src/templates/mlearning/basicmlearningcore.h
   src/templates/mlearning/basicmlearningeditor.h
   src/templates/mlearning/basicmlearningsimulator.h
+
+  src/templates/learnspellings/learnspellingsentrypoint.h
+  src/templates/learnspellings/learnspellingscore.h
+  src/templates/learnspellings/learnspellingseditor.h
+  src/templates/learnspellings/learnspellingssimulator.h
 )
 
 # APP form files.
@@ -516,6 +527,9 @@ set(APP_FORMS
 
   src/templates/mlearning/basicmlearningsimulator.ui
   src/templates/mlearning/basicmlearningeditor.ui
+
+  src/templates/learnspellings/learnspellingseditor.ui
+  src/templates/learnspellings/learnspellingssimulator.ui
 )
 
 # APP translations.
