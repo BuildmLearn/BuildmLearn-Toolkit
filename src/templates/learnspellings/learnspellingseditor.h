@@ -14,6 +14,8 @@ namespace Ui {
 class LearnSpellingsEditor : public TemplateEditor {
     Q_OBJECT
 
+    friend class LearnSpellingsSimulator;
+
   public:
     explicit LearnSpellingsEditor(TemplateCore *core, QWidget *parent = 0);
     virtual ~LearnSpellingsEditor();

@@ -21,6 +21,14 @@ class LearnSpellingsSimulator : public TemplateSimulator {
     bool startSimulation();
     bool stopSimulation();
     bool goBack();
+    void launch();
+
+  private slots:
+    void start();
+    void restart();
+    void exit();
+    void playWord();
+    void nextWord();
 
   private:
     Ui::LearnSpellingsSimulator *m_ui;

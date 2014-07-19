@@ -19,7 +19,7 @@ TemplateCore::GenerationResult LearnSpellingsCore::generateMobileApplication(QSt
 
 void LearnSpellingsCore::launch() {
   learnSpellingsEditor()->launch();
-  //learnSpellingsSimulator()->launch();
+  learnSpellingsSimulator()->launch();
 }
 
 LearnSpellingsEditor *LearnSpellingsCore::learnSpellingsEditor() {

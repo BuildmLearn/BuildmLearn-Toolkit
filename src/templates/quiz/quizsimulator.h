@@ -34,6 +34,7 @@
 #include "core/templatesimulator.h"
 
 #include "ui_quizsimulator.h"
+#include "templates/learnspellings/learnspellingsitem.h"
 
 
 namespace Ui {
@@ -72,6 +73,7 @@ class QuizSimulator : public TemplateSimulator {
 
   private:
     Ui::QuizSimulator *m_ui;
+    QList<LearnSpellingsItem> m_words;
 };
 
 #endif // QUIZSIMULATOR_H

@@ -42,11 +42,9 @@
 
 
 QuizSimulator::QuizSimulator(TemplateCore *core, QWidget *parent)
-  : TemplateSimulator(core, parent), m_ui(new Ui::QuizSimulator) {
+  : TemplateSimulator(core, parent), m_ui(new Ui::QuizSimulator), m_words(QList<LearnSpellingsItem>()) {
   m_ui->setupUi(this);
-
   m_ui->m_phoneWidget->setStyleSheet("background: #255593; color: white;");
-  //m_ui->m_phoneWidget->setFixedSize(270, 447);
 
   connect(m_ui->m_btnStart, SIGNAL(clicked()), this, SLOT(start()));
   connect(m_ui->m_btnRestart, SIGNAL(clicked()), this, SLOT(restart()));
