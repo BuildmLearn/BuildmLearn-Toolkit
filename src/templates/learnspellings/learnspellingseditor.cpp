@@ -97,7 +97,7 @@ void LearnSpellingsEditor::addNewItem(const QString &title, const QString &descr
 }
 
 void LearnSpellingsEditor::addNewItem() {
-  addNewItem(tr("cat"), tr("Animal which is hated by dogs."));
+  addNewItem(tr("cat"), tr("Cats are animals which are hated by dogs."));
   launch();
   emit changed();
 }
@@ -161,7 +161,7 @@ void LearnSpellingsEditor::configureUpDown() {
   }
 }
 
-QList<LearnSpellingsItem> LearnSpellingsEditor::activeItems() const {
+QList<LearnSpellingsItem> LearnSpellingsEditor::activeWords() const {
   QList<LearnSpellingsItem> questions;
 
   for (int i = 0; i < m_ui->m_listItems->count(); i++) {
@@ -172,7 +172,7 @@ QList<LearnSpellingsItem> LearnSpellingsEditor::activeItems() const {
 }
 
 bool LearnSpellingsEditor::canGenerateApplications() {
-  return !activeItems().isEmpty();
+  return !activeWords().isEmpty();
 }
 
 void LearnSpellingsEditor::updateItemCount() {

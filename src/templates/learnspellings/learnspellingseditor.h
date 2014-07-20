@@ -20,7 +20,7 @@ class LearnSpellingsEditor : public TemplateEditor {
     explicit LearnSpellingsEditor(TemplateCore *core, QWidget *parent = 0);
     virtual ~LearnSpellingsEditor();
 
-    QList<LearnSpellingsItem> activeItems() const;
+    QList<LearnSpellingsItem> activeWords() const;
 
     QString generateBundleData();
     bool loadBundleData(const QString &bundle_data);
