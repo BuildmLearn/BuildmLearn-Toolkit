@@ -2,9 +2,15 @@
 
 #include "core/templatecore.h"
 #include "gui/custommessagebox.h"
+#include "network-web/networkfactory.h"
 #include "templates/learnspellings/learnspellingseditor.h"
 
 #include <QInputDialog>
+#include <QFile>
+#include <QTextStream>
+#include <QDataStream>
+#include <MediaObject>
+#include <AudioOutput>
 
 
 LearnSpellingsSimulator::LearnSpellingsSimulator(TemplateCore *core, QWidget *parent)
@@ -83,6 +89,31 @@ void LearnSpellingsSimulator::exit() {
 
 void LearnSpellingsSimulator::playWord() {
   // TODO: Play sound.
+  QByteArray output;
+
+  QString word = m_words.at(m_activeWord).word().replace(' ', '+');
+  QString url = QString("http://mary.dfki.de:59125/process?INPUT_TEXT=%1&INPUT_TYPE=TEXT&OUTPUT_TYPE=AUDIO&AUDIO=WAVE_FILE&LOCALE=en_US").arg(word);
+
+  QNetworkReply::NetworkError err =NetworkFactory::downloadFile(
+                                     url,
+                                     10000, output);
+
+  QFile ff("D:\\aaa.wav");
+  ff.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Unbuffered);
+  ff.write(output);
+  ff.close();
+
+  Phonon::AudioOutput *out = new Phonon::AudioOutput(Phonon::MusicCategory, this);
+  out->setVolume(100.0f);
+  out->setMuted(false);
+
+  Phonon::MediaObject *music = Phonon::createPlayer(Phonon::MusicCategory, Phonon::MediaSource("D:\\aaa.wav"));
+
+  Phonon::createPath(music, out);
+  music->play();
+
+  QString aa = out->outputDevice().name();
+  QString bb = music->errorString();
 
   m_ui->m_btnSkip->setEnabled(true);
   m_ui->m_btnSpellIt->setEnabled(true);

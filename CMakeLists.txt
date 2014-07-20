@@ -304,7 +304,8 @@ if(${USE_QT_5})
   find_package(Qt5 REQUIRED Sql Widgets Xml XmlPatterns Network LinguistTools)
 else(${USE_QT_5})
   set(QT_MIN_VERSION ${MINIMUM_QT_VERSION})
-  find_package(Qt4 REQUIRED QtCore QtGui QtSql QtNetwork QtXml QtXmlPatterns)
+  set(QT_USE_PHONON TRUE)
+  find_package(Qt4 REQUIRED QtCore QtGui QtSql QtNetwork QtXml QtXmlPatterns Phonon)
   include(${QT_USE_FILE})
 endif(${USE_QT_5})
 
@@ -640,6 +641,7 @@ else(${USE_QT_5})
     ${QT_QTSQL_LIBRARY}
     ${QT_QTXML_LIBRARY}
     ${QT_QTMAIN_LIBRARY}
+    ${QT_PHONON_LIBRARY}
   )
 endif(${USE_QT_5})
 
