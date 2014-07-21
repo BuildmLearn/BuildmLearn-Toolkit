@@ -30,6 +30,9 @@
 
 #include "core/templatecore.h"
 
+#include "core/templateeditor.h"
+#include "core/templatesimulator.h"
+
 
 TemplateCore::TemplateCore(TemplateEntryPoint *entry_point, QObject *parent)
   : QObject(parent), m_entryPoint(entry_point), m_editor(NULL), m_simulator(NULL) {
@@ -37,6 +40,11 @@ TemplateCore::TemplateCore(TemplateEntryPoint *entry_point, QObject *parent)
 
 TemplateCore::~TemplateCore() {
   qDebug("Destroying TemplateCore instance.");
+}
+
+void TemplateCore::launch() {
+  m_editor->launch();
+  m_simulator->launch();
 }
 
 QString TemplateCore::assignedFile() const {

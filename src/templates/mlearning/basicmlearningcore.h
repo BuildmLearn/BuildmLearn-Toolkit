@@ -45,7 +45,6 @@ class BasicmLearningCore : public TemplateCore {
     virtual ~BasicmLearningCore();
 
     GenerationResult generateMobileApplication(QString &output_file);
-    void launch();
 
   private:
     BasicmLearningEditor *learningEditor();

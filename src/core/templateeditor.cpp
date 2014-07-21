@@ -42,6 +42,17 @@ TemplateEditor::~TemplateEditor() {
   qDebug("Destroying TemplateEditor instance.");
 }
 
+void TemplateEditor::launch() {
+  if (canGenerateApplications()) {
+    issueNewGenereationStatus(true);
+  }
+  else {
+    issueNewGenereationStatus(false,
+                              tr("Simulation or mobile application generation cannot be started \n"
+                                 "because editor does not contain enough data."));
+  }
+}
+
 TemplateCore *TemplateEditor::core() const {
   return m_core;
 }

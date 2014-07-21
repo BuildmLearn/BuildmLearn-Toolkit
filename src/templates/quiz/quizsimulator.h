@@ -55,8 +55,6 @@ class QuizSimulator : public TemplateSimulator {
     explicit QuizSimulator(TemplateCore *core, QWidget *parent = 0);
     virtual ~QuizSimulator();
 
-    void launch();
-
   public slots:
     bool startSimulation();
     bool stopSimulation();

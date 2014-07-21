@@ -41,15 +41,6 @@
 
 TemplateSimulator::TemplateSimulator(TemplateCore *core, QWidget *parent)
   : QWidget(parent, 0), m_core(core) {
-  /*QVBoxLayout *default_layout = new QVBoxLayout(this);
-  QLabel *default_label = new QLabel("Default simulator widget", this);
-
-  default_label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
-  default_layout->setSpacing(0);
-  default_layout->setMargin(0);
-  default_layout->addWidget(default_label);
-
-  setLayout(default_layout);*/
 }
 
 TemplateSimulator::~TemplateSimulator() {
@@ -60,6 +51,10 @@ QSize TemplateSimulator::sizeHint() const {
   return QSize(SIMULATOR_CONTENTS_WIDTH, SIMULATOR_CONTENTS_HEIGHT);
 }
 
+void TemplateSimulator::launch() {
+  emit canGoBackChanged(false);
+}
+
 TemplateCore *TemplateSimulator::core() const {
-    return m_core;
+  return m_core;
 }

@@ -41,6 +41,10 @@ class IOFactory {
     explicit IOFactory();
 
   public:
+    /// \brief Plays selected file with default audio output.
+    /// \param file_path Path to file to play, it should be WAVE file.
+    static void playWaveFile(const QString &file_path);
+
     /// \brief Copies source file into destination path.
     /// \param source Path to source file.
     /// \param destination Path to destination path.

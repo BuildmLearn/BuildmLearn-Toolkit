@@ -132,7 +132,3 @@ void FlashCardSimulator::moveToPreviousCard() {
 
   m_ui->m_phoneWidget->setCurrentIndex(current_index - 1);
 }
-
-void FlashCardSimulator::launch() {
-  emit canGoBackChanged(false);
-}

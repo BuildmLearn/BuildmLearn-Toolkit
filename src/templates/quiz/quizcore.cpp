@@ -152,11 +152,6 @@ TemplateCore::GenerationResult QuizCore::generateMobileApplication(QString &outp
   return Success;
 }
 
-void QuizCore::launch() {
-  quizEditor()->launch();
-  quizSimulator()->launch();
-}
-
 QuizEditor *QuizCore::quizEditor() {
   return static_cast<QuizEditor*>(m_editor);
 }

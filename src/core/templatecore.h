@@ -68,8 +68,9 @@ class TemplateCore : public QObject {
 
     /// \brief Called after this template is fully loaded in toolkit.
     /// \note Template is fully loaded only and only if its editor is set as
-    /// active and its simulator is set as active.
-    virtual void launch() = 0;
+    /// active and its simulator is set as active. During "launching" usually
+    /// some common signals are emitted and input data of editor are checked.
+    virtual void launch();
 
     /// \brief Access to entry point of the template.
     /// \return Returns entry point pointer.

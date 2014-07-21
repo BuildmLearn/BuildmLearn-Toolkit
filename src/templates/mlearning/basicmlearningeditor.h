@@ -47,6 +47,8 @@ namespace Ui {
 class BasicmLearningEditor : public TemplateEditor {
     Q_OBJECT
 
+    friend class BasicmLearningCore;
+
   public:
     explicit BasicmLearningEditor(TemplateCore *core, QWidget *parent = 0);
     virtual ~BasicmLearningEditor();
@@ -54,7 +56,6 @@ class BasicmLearningEditor : public TemplateEditor {
     QList<BasicmLearningItem> activeItems() const;
 
     bool canGenerateApplications();
-    void launch();
     QString generateBundleData();
     bool loadBundleData(const QString &bundle_data);
 

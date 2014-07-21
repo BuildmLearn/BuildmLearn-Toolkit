@@ -80,6 +80,12 @@ class TemplateEditor : public QWidget {
     /// returns false.
     virtual bool loadBundleData(const QString &bundle_data) = 0;
 
+    /// \brief Executed when given template with this editor is launched.
+    /// \note Editor is "launched" when its core is newly created or loaded
+    /// from XML bundle file. Durin "launch" usually only check if data contained
+    /// in editor is done.
+    virtual void launch();
+
     /// \brief Access to associated template core.
     /// \return Returns associated template core.
     /// \see TemplateCore

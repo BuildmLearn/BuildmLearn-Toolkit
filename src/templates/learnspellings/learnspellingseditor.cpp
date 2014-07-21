@@ -1,6 +1,40 @@
+/*
+  Copyright (c) 2012, BuildmLearn Contributors listed at http://buildmlearn.org/people/
+  All rights reserved.
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions are met:
+
+  * Redistributions of source code must retain the above copyright notice, this
+    list of conditions and the following disclaimer.
+
+  * Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
+
+  * Neither the name of the BuildmLearn nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+  FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+  SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+  OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+
 #include "templates/learnspellings/learnspellingseditor.h"
 
 #include "miscellaneous/iconfactory.h"
+#include "miscellaneous/application.h"
+#include "core/templatefactory.h"
+#include "core/templatecore.h"
+#include "core/templateentrypoint.h"
 
 #include <QTimer>
 
@@ -27,13 +61,13 @@ LearnSpellingsEditor::LearnSpellingsEditor(TemplateCore *core, QWidget *parent)
 
   connect(m_ui->m_txtDescription->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(checkDescription(QString)));
   connect(m_ui->m_txtTitle->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(checkTitle(QString)));
-  connect(m_ui->m_btnItemAdd, SIGNAL(clicked()), this, SLOT(addNewItem()));
-  connect(m_ui->m_btnItemRemove, SIGNAL(clicked()), this, SLOT(removeSelectedItem()));
-  connect(m_ui->m_txtDescription->lineEdit(), SIGNAL(textEdited(QString)), this, SLOT(saveItem()));
-  connect(m_ui->m_txtTitle->lineEdit(), SIGNAL(textEdited(QString)), this, SLOT(saveItem()));
-  connect(m_ui->m_listItems, SIGNAL(currentRowChanged(int)), this, SLOT(displayItem(int)));
-  connect(m_ui->m_btnItemUp, SIGNAL(clicked()), this, SLOT(moveItemUp()));
-  connect(m_ui->m_btnItemDown, SIGNAL(clicked()), this, SLOT(moveItemDown()));
+  connect(m_ui->m_btnItemAdd, SIGNAL(clicked()), this, SLOT(addSampleWord()));
+  connect(m_ui->m_btnItemRemove, SIGNAL(clicked()), this, SLOT(removeSelectedWord()));
+  connect(m_ui->m_txtDescription->lineEdit(), SIGNAL(textEdited(QString)), this, SLOT(saveWord()));
+  connect(m_ui->m_txtTitle->lineEdit(), SIGNAL(textEdited(QString)), this, SLOT(saveWord()));
+  connect(m_ui->m_listItems, SIGNAL(currentRowChanged(int)), this, SLOT(displayWord(int)));
+  connect(m_ui->m_btnItemUp, SIGNAL(clicked()), this, SLOT(moveWordUp()));
+  connect(m_ui->m_btnItemDown, SIGNAL(clicked()), this, SLOT(moveWordDown()));
   connect(m_ui->m_txtAuthor->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(onAuthorChanged(QString)));
   connect(m_ui->m_txtName->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(onNameChanged(QString)));
 
@@ -50,25 +84,71 @@ LearnSpellingsEditor::~LearnSpellingsEditor() {
 }
 
 QString LearnSpellingsEditor::generateBundleData() {
-  return QString();
+  if (!canGenerateApplications()) {
+    return QString();
+  }
+
+  QDomDocument source_document = qApp->templateManager()->generateBundleHeader(core()->entryPoint()->typeIndentifier(),
+                                                                               m_ui->m_txtAuthor->lineEdit()->text(),
+                                                                               QString(),
+                                                                               m_ui->m_txtName->lineEdit()->text(),
+                                                                               QString(),
+                                                                               "1");
+  FIND_DATA_ELEMENT(data_element, source_document);
+
+  foreach (const LearnSpellingsItem &item, activeWords()) {
+    QDomElement item_element = source_document.createElement("item");
+
+    // Fill in details about question.
+    QDomElement word_element = source_document.createElement("word");
+    QDomElement meaning_element = source_document.createElement("meaning");
+
+    word_element.appendChild(source_document.createTextNode(item.word()));
+    meaning_element.appendChild(source_document.createTextNode(item.meaning()));
+
+    item_element.appendChild(word_element);
+    item_element.appendChild(meaning_element);
+
+    data_element.appendChild(item_element);
+  }
+
+  return source_document.toString(XML_BUNDLE_INDENTATION);
 }
 
 bool LearnSpellingsEditor::loadBundleData(const QString &bundle_data) {
-  return false;
+  QDomDocument bundle_document;
+  bundle_document.setContent(bundle_data);
+
+  QDomNodeList items = bundle_document.documentElement().elementsByTagName("item");
+
+  for (int i = 0; i < items.size(); i++) {
+    QDomNode item = items.at(i);
+
+    if (item.isElement()) {
+      QString word = item.namedItem("word").toElement().text();
+      QString meaning = item.namedItem("meaning").toElement().text();
+
+      if (word.isEmpty()) {
+        // TODO: error
+        continue;
+      }
+      else {
+        addSampleWord(word, meaning);
+      }
+    }
+    else {
+      continue;
+    }
+  }
+
+  // Load author & name.
+  m_ui->m_txtAuthor->lineEdit()->setText(bundle_document.documentElement().namedItem("author").namedItem("name").toElement().text());
+  m_ui->m_txtName->lineEdit()->setText(bundle_document.documentElement().namedItem("title").toElement().text());
+
+  return true;
 }
 
-void LearnSpellingsEditor::launch() {
-  if (canGenerateApplications()) {
-    issueNewGenereationStatus(true);
-  }
-  else {
-    issueNewGenereationStatus(false,
-                              tr("Simulation or mobile application generation cannot be started \n"
-                                 "because there is no word added or collection does not have name."));
-  }
-}
-
-void LearnSpellingsEditor::addNewItem(const QString &title, const QString &description) {
+void LearnSpellingsEditor::addSampleWord(const QString &title, const QString &description) {
   int marked_item = m_ui->m_listItems->currentRow();
   LearnSpellingsItem new_item;
   QListWidgetItem *new_item_view = new QListWidgetItem();
@@ -96,8 +176,8 @@ void LearnSpellingsEditor::addNewItem(const QString &title, const QString &descr
   updateItemCount();
 }
 
-void LearnSpellingsEditor::addNewItem() {
-  addNewItem(tr("cat"), tr("Cats are animals which are hated by dogs."));
+void LearnSpellingsEditor::addSampleWord() {
+  addSampleWord(tr("cat"), tr("Cats are animals which are hated by dogs."));
   launch();
   emit changed();
 }
@@ -125,6 +205,8 @@ void LearnSpellingsEditor::checkName() {
 }
 
 void LearnSpellingsEditor::onAuthorChanged(const QString& new_author) {
+  Q_UNUSED(new_author)
+
   checkAuthor();
 
   launch();
@@ -132,6 +214,8 @@ void LearnSpellingsEditor::onAuthorChanged(const QString& new_author) {
 }
 
 void LearnSpellingsEditor::onNameChanged(const QString& new_name) {
+  Q_UNUSED(new_name)
+
   checkName();
 
   launch();
@@ -172,7 +256,10 @@ QList<LearnSpellingsItem> LearnSpellingsEditor::activeWords() const {
 }
 
 bool LearnSpellingsEditor::canGenerateApplications() {
-  return !activeWords().isEmpty();
+  return
+      !activeWords().isEmpty() &&
+      !m_ui->m_txtAuthor->lineEdit()->text().simplified().isEmpty() &&
+      !m_ui->m_txtName->lineEdit()->text().simplified().isEmpty();
 }
 
 void LearnSpellingsEditor::updateItemCount() {
@@ -186,7 +273,7 @@ void LearnSpellingsEditor::updateItemCount() {
   }
 }
 
-void LearnSpellingsEditor::removeSelectedItem() {
+void LearnSpellingsEditor::removeSelectedWord() {
   int current_row = m_ui->m_listItems->currentRow();
 
   if (current_row >= 0) {
@@ -205,7 +292,7 @@ void LearnSpellingsEditor::removeSelectedItem() {
   emit changed();
 }
 
-void LearnSpellingsEditor::saveItem() {
+void LearnSpellingsEditor::saveWord() {
   m_activeItem.setWord(m_ui->m_txtTitle->lineEdit()->text());
   m_activeItem.setMeaning(m_ui->m_txtDescription->lineEdit()->text());
 
@@ -215,7 +302,7 @@ void LearnSpellingsEditor::saveItem() {
   emit changed();
 }
 
-void LearnSpellingsEditor::displayItem(int index) {
+void LearnSpellingsEditor::displayWord(int index) {
   if (index >= 0) {
     LearnSpellingsItem item = m_ui->m_listItems->item(index)->data(Qt::UserRole).value<LearnSpellingsItem>();
 
@@ -240,7 +327,7 @@ void LearnSpellingsEditor::checkTitle(const QString &title) {
   }
 }
 
-void LearnSpellingsEditor::moveItemUp() {
+void LearnSpellingsEditor::moveWordUp() {
   int index = m_ui->m_listItems->currentRow();
 
   m_ui->m_listItems->insertItem(index - 1, m_ui->m_listItems->takeItem(index));
@@ -249,7 +336,7 @@ void LearnSpellingsEditor::moveItemUp() {
   emit changed();
 }
 
-void LearnSpellingsEditor::moveItemDown() {
+void LearnSpellingsEditor::moveWordDown() {
   int index = m_ui->m_listItems->currentRow();
 
   m_ui->m_listItems->insertItem(index + 1, m_ui->m_listItems->takeItem(index));

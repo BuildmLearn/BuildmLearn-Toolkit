@@ -34,8 +34,32 @@
 #include <QFile>
 #include <QTextStream>
 
+#if QT_VERSION >= 0x050000
+#include <QSound>
+#else
+#include <MediaObject>
+#include <AudioOutput>
+#endif
+
 
 IOFactory::IOFactory() {
+}
+
+void IOFactory::playWaveFile(const QString &file_path) {
+#if QT_VERSION >= 0x050000
+  QSound::play(file_path);
+#else
+  Phonon::AudioOutput *out = new Phonon::AudioOutput(Phonon::MusicCategory, this);
+  out->setVolume(100.0f);
+  out->setMuted(false);
+
+  Phonon::MediaObject *music = Phonon::createPlayer(Phonon::MusicCategory, Phonon::MediaSource(file_path));
+
+  Phonon::createPath(music, out);
+  music->play();
+
+  // TODO: navazat na music::finished() smazani pres deleteLater() obou veci
+#endif
 }
 
 bool IOFactory::copyFile(const QString &source, const QString &destination) {

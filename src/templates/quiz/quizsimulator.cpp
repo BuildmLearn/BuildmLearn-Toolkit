@@ -163,7 +163,3 @@ void QuizSimulator::exit() {
   stopSimulation();
   emit simulationStopRequested();
 }
-
-void QuizSimulator::launch() {
-  emit canGoBackChanged(false);
-}

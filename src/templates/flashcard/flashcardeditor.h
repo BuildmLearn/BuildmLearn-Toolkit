@@ -45,13 +45,13 @@ class FlashCardEditor : public TemplateEditor {
     Q_OBJECT
 
     friend class FlashCardSimulator;
+    friend class FlashCardCore;
 
   public:
     explicit FlashCardEditor(TemplateCore *core, QWidget *parent = 0);
     virtual ~FlashCardEditor();
 
     bool canGenerateApplications();
-    void launch();
     QString generateBundleData();
     bool loadBundleData(const QString &bundle_data);
 

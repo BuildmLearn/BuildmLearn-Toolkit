@@ -53,7 +53,6 @@ class QuizCore : public TemplateCore {
     virtual ~QuizCore();
 
     GenerationResult generateMobileApplication(QString &output_file);
-    void launch();
 
   private:
     QuizEditor *quizEditor();

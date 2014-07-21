@@ -47,10 +47,10 @@ class BasicmLearningSimulator : public TemplateSimulator {
     explicit BasicmLearningSimulator(TemplateCore *core, QWidget *parent = 0);
     virtual ~BasicmLearningSimulator();
 
+  public slots:
     bool startSimulation();
     bool stopSimulation();
     bool goBack();
-    void launch();
 
   private slots:
     void displayDescription(QListWidgetItem *list_item);

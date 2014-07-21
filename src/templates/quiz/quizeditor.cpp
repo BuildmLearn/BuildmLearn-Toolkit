@@ -384,17 +384,6 @@ bool QuizEditor::canGenerateApplications() {
       !activeQuestions().isEmpty();
 }
 
-void QuizEditor::launch() {  
-  if (canGenerateApplications()) {
-    issueNewGenereationStatus(true);
-  }
-  else {
-    issueNewGenereationStatus(false,
-                              tr("Quiz simulation or mobile application generation cannot be started \n"
-                                 "because there is no question added or quiz does not have name."));
-  }
-}
-
 bool QuizEditor::loadBundleData(const QString &bundle_data) {
   QDomDocument bundle_document;
   bundle_document.setContent(bundle_data);

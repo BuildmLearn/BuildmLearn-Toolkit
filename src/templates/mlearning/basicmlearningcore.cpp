@@ -82,7 +82,7 @@ TemplateCore::GenerationResult BasicmLearningCore::generateMobileApplication(QSt
   QFile index_file(base_folder + "/assets/info_content.xml");
   index_file.open(QIODevice::WriteOnly | QIODevice::Text);
 
-  emit generationProgress(30, tr("Writting info data into file..."));
+  emit generationProgress(30, tr("Writting item data into file..."));
 
   QTextStream out(&index_file);
   out << quiz_data;
@@ -93,7 +93,7 @@ TemplateCore::GenerationResult BasicmLearningCore::generateMobileApplication(QSt
   emit generationProgress(40, tr("Copying template apk file..."));
 
   // Copying of target apk file.
-  QString new_apk_name = qApp->templateManager()->applicationFileName("info");
+  QString new_apk_name = qApp->templateManager()->applicationFileName(learningEditor()->m_ui->m_txtName->lineEdit()->text());
   if (!QFile::copy(APP_TEMPLATES_PATH + "/" + entryPoint()->baseFolder() + "/" + entryPoint()->mobileApplicationApkFile(),
               base_folder + "/" + new_apk_name)) {
     qApp->templateManager()->generator()->cleanWorkspace();
@@ -147,11 +147,6 @@ TemplateCore::GenerationResult BasicmLearningCore::generateMobileApplication(QSt
   // Removing temporary files and exit.
   qApp->templateManager()->generator()->cleanWorkspace();
   return Success;
-}
-
-void BasicmLearningCore::launch() {
-  learningEditor()->launch();
-  learningSimulator()->launch();
 }
 
 BasicmLearningEditor *BasicmLearningCore::learningEditor() {

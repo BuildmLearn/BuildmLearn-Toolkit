@@ -53,11 +53,6 @@ FlashCardCore::~FlashCardCore() {
   qDebug("Destroying FlashCardCore instance.");
 }
 
-void FlashCardCore::launch() {
-  flashCardEditor()->launch();
-  flashCardSimulator()->launch();
-}
-
 TemplateCore::GenerationResult FlashCardCore::generateMobileApplication(QString &output_file) {
   emit generationProgress(5, tr("Preparing workspace..."));
 
@@ -98,7 +93,7 @@ TemplateCore::GenerationResult FlashCardCore::generateMobileApplication(QString 
   emit generationProgress(40, tr("Copying template apk file..."));
 
   // Copying of target apk file.
-  QString new_apk_name = qApp->templateManager()->applicationFileName("info");
+  QString new_apk_name = qApp->templateManager()->applicationFileName(flashCardEditor()->m_ui->m_txtName->lineEdit()->text());
 
   if (!QFile::copy(APP_TEMPLATES_PATH + "/" + entryPoint()->baseFolder() + "/" + entryPoint()->mobileApplicationApkFile(),
                    base_folder + "/" + new_apk_name)) {

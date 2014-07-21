@@ -48,8 +48,6 @@ class FlashCardSimulator : public TemplateSimulator {
     explicit FlashCardSimulator(TemplateCore *core, QWidget *parent = 0);
     virtual ~FlashCardSimulator();
 
-    void launch();
-
   public slots:
     bool startSimulation();
     bool stopSimulation();

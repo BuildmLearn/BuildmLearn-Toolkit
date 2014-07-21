@@ -92,10 +92,6 @@ bool BasicmLearningSimulator::goBack() {
   }
 }
 
-void BasicmLearningSimulator::launch() {
-  emit canGoBackChanged(false);
-}
-
 void BasicmLearningSimulator::displayDescription(QListWidgetItem *list_item) {
   m_ui->m_lblDetails->setText(list_item->data(Qt::UserRole).value<BasicmLearningItem>().description());
   m_ui->m_phoneWidget->setCurrentIndex(2);

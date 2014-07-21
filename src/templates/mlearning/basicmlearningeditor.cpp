@@ -173,6 +173,8 @@ void BasicmLearningEditor::checkName() {
 }
 
 void BasicmLearningEditor::onAuthorChanged(const QString& new_author) {
+  Q_UNUSED(new_author)
+
   checkAuthor();
 
   launch();
@@ -180,6 +182,8 @@ void BasicmLearningEditor::onAuthorChanged(const QString& new_author) {
 }
 
 void BasicmLearningEditor::onNameChanged(const QString& new_name) {
+  Q_UNUSED(new_name)
+
   checkName();
 
   launch();
@@ -221,17 +225,6 @@ QList<BasicmLearningItem> BasicmLearningEditor::activeItems() const {
 
 bool BasicmLearningEditor::canGenerateApplications() {
   return !activeItems().isEmpty();
-}
-
-void BasicmLearningEditor::launch() {
-  if (canGenerateApplications()) {
-    issueNewGenereationStatus(true);
-  }
-  else {
-    issueNewGenereationStatus(false,
-                              tr("Simulation or mobile application generation cannot be started \n"
-                                 "because there is no question added or quiz does not have name."));
-  }
 }
 
 QString BasicmLearningEditor::generateBundleData() {

@@ -1,16 +1,45 @@
+/*
+  Copyright (c) 2012, BuildmLearn Contributors listed at http://buildmlearn.org/people/
+  All rights reserved.
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions are met:
+
+  * Redistributions of source code must retain the above copyright notice, this
+    list of conditions and the following disclaimer.
+
+  * Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
+
+  * Neither the name of the BuildmLearn nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+  FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+  SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+  OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+
 #include "templates/learnspellings/learnspellingssimulator.h"
 
 #include "core/templatecore.h"
 #include "gui/custommessagebox.h"
 #include "network-web/networkfactory.h"
+#include "miscellaneous/iofactory.h"
 #include "templates/learnspellings/learnspellingseditor.h"
 
 #include <QInputDialog>
 #include <QFile>
 #include <QTextStream>
 #include <QDataStream>
-#include <MediaObject>
-#include <AudioOutput>
 
 
 LearnSpellingsSimulator::LearnSpellingsSimulator(TemplateCore *core, QWidget *parent)
@@ -68,10 +97,6 @@ bool LearnSpellingsSimulator::goBack() {
   return false;
 }
 
-void LearnSpellingsSimulator::launch() {
-  emit canGoBackChanged(false);
-}
-
 void LearnSpellingsSimulator::start() {
   m_activeWord = -1;
   m_resultCorrect = m_resultIncorrect = m_resultSkipped = 0;
@@ -94,26 +119,15 @@ void LearnSpellingsSimulator::playWord() {
   QString word = m_words.at(m_activeWord).word().replace(' ', '+');
   QString url = QString("http://mary.dfki.de:59125/process?INPUT_TEXT=%1&INPUT_TYPE=TEXT&OUTPUT_TYPE=AUDIO&AUDIO=WAVE_FILE&LOCALE=en_US").arg(word);
 
-  QNetworkReply::NetworkError err =NetworkFactory::downloadFile(
-                                     url,
-                                     10000, output);
+  QNetworkReply::NetworkError err = NetworkFactory::downloadFile(url, 10000, output);
 
-  QFile ff("D:\\aaa.wav");
+  // TODO: Pokračovat.
+  QFile ff("M:\\aaa.wav");
   ff.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Unbuffered);
   ff.write(output);
   ff.close();
 
-  Phonon::AudioOutput *out = new Phonon::AudioOutput(Phonon::MusicCategory, this);
-  out->setVolume(100.0f);
-  out->setMuted(false);
-
-  Phonon::MediaObject *music = Phonon::createPlayer(Phonon::MusicCategory, Phonon::MediaSource("D:\\aaa.wav"));
-
-  Phonon::createPath(music, out);
-  music->play();
-
-  QString aa = out->outputDevice().name();
-  QString bb = music->errorString();
+  IOFactory::playWaveFile("M:\\aaa.wav");
 
   m_ui->m_btnSkip->setEnabled(true);
   m_ui->m_btnSpellIt->setEnabled(true);

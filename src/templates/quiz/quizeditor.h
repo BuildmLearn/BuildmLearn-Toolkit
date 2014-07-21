@@ -61,7 +61,6 @@ class QuizEditor : public TemplateEditor {
 
     QString generateBundleData();
     bool canGenerateApplications();
-    void launch();
     bool loadBundleData(const QString &bundle_data);
 
     /// \brief Access to list of added questions.

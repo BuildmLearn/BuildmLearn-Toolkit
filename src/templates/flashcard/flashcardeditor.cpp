@@ -112,17 +112,6 @@ bool FlashCardEditor::canGenerateApplications() {
       !activeQuestions().isEmpty();
 }
 
-void FlashCardEditor::launch() {
-  if (canGenerateApplications()) {
-    issueNewGenereationStatus(true);
-  }
-  else {
-    issueNewGenereationStatus(false,
-                              tr("Simulation or mobile application generation of flash card template cannot be started \n"
-                                 "because there is no question added or quiz does not have name."));
-  }
-}
-
 QString FlashCardEditor::generateBundleData() {
   if (!canGenerateApplications()) {
     return QString();
@@ -438,16 +427,22 @@ void FlashCardEditor::removeQuestion() {
 }
 
 void FlashCardEditor::onAnswerChanged(const QString& new_answer) {
+  Q_UNUSED(new_answer)
+
   checkAnswer();
   saveQuestion();
 }
 
 void FlashCardEditor::onHintChanged(const QString& new_hint) {
+  Q_UNUSED(new_hint)
+
   checkHint();
   saveQuestion();
 }
 
 void FlashCardEditor::onAuthorChanged(const QString& new_author) {
+  Q_UNUSED(new_author)
+
   checkAuthor();
 
   launch();
@@ -455,6 +450,8 @@ void FlashCardEditor::onAuthorChanged(const QString& new_author) {
 }
 
 void FlashCardEditor::onNameChanged(const QString& new_name) {
+  Q_UNUSED(new_name)
+
   checkName();
 
   launch();

@@ -50,6 +50,10 @@ class TemplateSimulator : public QWidget {
     /// simulator contents.
     QSize sizeHint() const;
 
+    /// \brief Called when core with this simulator widget is fully loaded from XML
+    /// bundle or newly created.
+    virtual void launch();
+
     /// \brief Access to associated template core.
     /// \return Returns associated template core.
     /// \see TemplateCore
