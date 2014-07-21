@@ -351,18 +351,6 @@ if(MINGW AND WIN32)
   set(APP_SOURCES
       ${APP_SOURCES}
       ${CMAKE_CURRENT_BINARY_DIR}/resources/executable_properties/${APP_LOW_NAME}_win.rc)
-elseif(OS2)
-  enable_language(RC)
-  set(CMAKE_RC_COMPILER_INIT rc)
-  message(STATUS "[${APP_LOW_NAME}] Icon file binary will be builded for OS2.")
-  message(STATUS "[${APP_LOW_NAME}] Used tool is: ${CMAKE_RC_COMPILER}")
-  set(CMAKE_RC_COMPILE_OBJECT
-      "<CMAKE_RC_COMPILER> -n -r <SOURCE> <OBJECT>")
-  set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Zstack 0x2000 -Zlinker \"DISABLE 1121\" -s -Zlinker /PM:PM -Zno-fork -Zhigh-mem -Zmap")
-
-  set(APP_SOURCES
-      ${APP_SOURCES}
-      ${CMAKE_CURRENT_BINARY_DIR}/resources/executable_properties/${APP_LOW_NAME}_os2.rc)
 elseif(WIN32 AND MSVC)
   # MSVC takes care of this automatically - no need to use windres.exe
   # for MSVC compilers.

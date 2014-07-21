@@ -49,7 +49,7 @@ void IOFactory::playWaveFile(const QString &file_path) {
 #if QT_VERSION >= 0x050000
   QSound::play(file_path);
 #else
-  Phonon::AudioOutput *out = new Phonon::AudioOutput(Phonon::MusicCategory, this);
+  Phonon::AudioOutput *out = new Phonon::AudioOutput(Phonon::MusicCategory, 0);
   out->setVolume(100.0f);
   out->setMuted(false);
 
