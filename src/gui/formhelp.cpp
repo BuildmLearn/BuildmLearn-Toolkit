@@ -49,6 +49,46 @@ FormHelp::FormHelp(bool do_not_show_again_enabled, QWidget *parent)
 
   // Establish connections.
   connect(this, SIGNAL(accepted()), this, SLOT(onAccepted()));
+
+  //: Help HTML contents, translate including HTML markup!!!
+  QString help_contents = tr("");
+
+  /*
+<body>
+<h2 style="text-align: center">Welcome to help</h2>
+
+<p style="text-align: center">
+<a href="#introduction">Introduction</a> |
+<a href="#simulator">Simulator</a> |
+<a href="#xml-bundles">XML bundles</a>
+</p>
+
+
+<a name="introduction"></a><h3 style="text-align: center">Introduction</h3>
+<p>
+BuildmLearn Toolkit is an application which helps you to create interactive mobile applications in a WYSIWYG way. You do not need to know anything about programming, no extra skills are required. You simply put in the content you would like to have in your application and that's all.
+</p>
+
+<p>
+You can start new mobile application project by going into main menu and using item "Project -> New project". Toolkit contains several templates to start with, including template for quiz-like applications or template for learning of word spelling. After creating new project, you will see that main window of BuildmLearn Toolkit contains user interface which expects your input, this is the "editor" of your project. When you save your project using "Project -> Save project as..." menu item, then all data from "editor" are saved, so that you can continue in your work later.
+</p>
+
+<p>
+
+</p>
+
+<a name="simulator"></a><h3 style="text-align: center">Simulator</h3>
+<p>
+
+</p>
+
+<a name="xml-bundles"></a><h3 style="text-align: center">XML bundles</h3>
+<p>
+csacas
+</p>
+
+</body>
+*/
 }
 
 FormHelp::~FormHelp() {

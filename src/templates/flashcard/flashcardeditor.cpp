@@ -45,7 +45,7 @@ FlashCardEditor::FlashCardEditor(TemplateCore *core, QWidget *parent)
   : TemplateEditor(core, parent), m_ui(new Ui::FlashCardEditor) {
   m_ui->setupUi(this);
 
-  m_ui->m_txtNumberOfQuestions->lineEdit()->setReadOnly(true);
+  m_ui->m_txtNumberOfQuestions->lineEdit()->setEnabled(false);
 
   m_ui->m_lblPictureFile->label()->setWordWrap(true);
   m_ui->m_txtAnswer->lineEdit()->setPlaceholderText(tr("Answer for the answer"));
@@ -326,8 +326,8 @@ void FlashCardEditor::addQuestion(const QString &question,
   QListWidgetItem *new_item = new QListWidgetItem();
 
   new_question.setQuestion(question);
-  new_question.setHint(answer);
-  new_question.setAnswer(hint);
+  new_question.setHint(hint);
+  new_question.setAnswer(answer);
   new_question.setPicturePath(picture_path);
 
   new_item->setText(new_question.question());

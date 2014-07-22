@@ -566,7 +566,7 @@ void FormMain::openSaveProjectAsDialog() {
   QString selected_file = QFileDialog::getSaveFileName(this,
                                                        tr("Select destination file for the project"),
                                                        qApp->templateManager()->activeCore()->assignedFile(),
-                                                       tr("XML bundle files (*.xml)"),
+                                                       tr("BuildmLearn Toolkit projects (*.buildmlearn)"),
                                                        0);
 
   if (!selected_file.isEmpty()) {
@@ -589,7 +589,7 @@ void FormMain::openLoadProjectDialog() {
   QString selected_file = QFileDialog::getOpenFileName(this,
                                                        tr("Select destination file for the project"),
                                                        QDir::homePath(),
-                                                       tr("XML bundle files (*.xml)"),
+                                                       tr("BuildmLearn Toolkit projects (*.buildmlearn)"),
                                                        0);
 
   if (selected_file.isEmpty()) {   

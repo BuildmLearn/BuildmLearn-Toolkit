@@ -39,7 +39,7 @@
    <item row="0" column="1" rowspan="2">
     <widget class="QGroupBox" name="groupBox">
      <property name="title">
-      <string>Details</string>
+      <string>Description of selected template</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>

@@ -38,7 +38,7 @@
 FlashCardEntryPoint::FlashCardEntryPoint(TemplateFactory *parent)
   : TemplateEntryPoint(parent) {
   m_baseFolder = "flashcard";
-  m_description = "This is simple template for generating flash card applications.";
+  m_description = "Choose this template to create flash card applications.";
   m_humanName = "Flash cards";
   m_name = "flashcard";
   m_thumbnailImage = "thumbnail.png";

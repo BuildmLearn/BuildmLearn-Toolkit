@@ -38,7 +38,7 @@
 
 QuizEntryPoint::QuizEntryPoint(TemplateFactory *parent) : TemplateEntryPoint(parent) {
   m_baseFolder = "quiz";
-  m_description = "This is simple template for generating Quiz-like applications.";
+  m_description = "Choose this template to create Quiz-like applications.";
   m_humanName = "Quiz";
   m_name = "quiz";
   m_thumbnailImage = "thumbnail.png";

@@ -100,10 +100,10 @@ void TemplateFactory::setTempDirectory(const QString &temp_directory) {
 QString TemplateFactory::outputDirectory() const {
 #if QT_VERSION >= 0x050000
   return qApp->settings()->value(APP_CFG_TEMPLATES, "output_directory",
-                                 QStandardPaths::writableLocation(QStandardPaths::HomeLocation)).toString();
+                                 QStandardPaths::writableLocation(QStandardPaths::DesktopLocation)).toString();
 #else
   return qApp->settings()->value(APP_CFG_TEMPLATES, "output_directory",
-                                 QDesktopServices::storageLocation(QDesktopServices::HomeLocation)).toString();
+                                 QDesktopServices::storageLocation(QDesktopServices::DesktopLocation)).toString();
 #endif
 }
 

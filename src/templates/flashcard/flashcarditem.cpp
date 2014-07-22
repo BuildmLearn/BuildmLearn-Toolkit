@@ -37,6 +37,10 @@ FlashCardItem::FlashCardItem(QWidget *parent) : QWidget(parent), m_ui(new Ui::Fl
   m_ui->setupUi(this);
   m_ui->m_lblPicture->setFixedHeight((int) (SIMULATOR_CONTENTS_HEIGHT * 0.4));
 
+  QFont caption_font = m_ui->m_lblQuestionNumber->font();
+  caption_font.setPointSize(caption_font.pointSize() + SIMULATOR_HEADER_SIZE_INCREASE);
+  m_ui->m_lblQuestionNumber->setFont(caption_font);
+
   connect(m_ui->m_btnNext, SIGNAL(clicked()), this, SIGNAL(nextCardRequested()));
   connect(m_ui->m_btnPrevious, SIGNAL(clicked()), this, SIGNAL(previousCardRequested()));
   connect(m_ui->m_btnFlip, SIGNAL(clicked()), this, SLOT(flip()));
@@ -55,7 +59,7 @@ void FlashCardItem::setQuestion(const FlashCardQuestion &question, int question_
   m_ui->m_lblQuestionNumber->setText(tr("Question number %1").arg(question_number));
   m_ui->m_lblQuestionText->setText(question.question());
   m_ui->m_lblHint->setText(question.hint());
-  m_ui->m_lblAnswer->setText(QString("<span style=\" font-size:18pt;\">%1</span>").arg(question.answer()));
+  m_ui->m_lblAnswer->setText(QString("<span style=\" font-size:14pt;\">%1</span>").arg(question.answer()));
   m_ui->m_lblPicture->setPixmap(QPixmap(question.picturePath()).scaled(m_ui->m_lblPicture->size(), Qt::KeepAspectRatio));
 }
 

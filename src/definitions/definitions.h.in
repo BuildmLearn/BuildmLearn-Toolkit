@@ -95,6 +95,9 @@
 #define SIMULATOR_CONTENTS_WIDTH      270
 #define SIMULATOR_CONTENTS_HEIGHT     447
 
+#define SIMULATOR_HEADER_SIZE_INCREASE    2
+#define SIMULATOR_HEADING_SIZE_INCREASE   2
+
 // Config constants.
 #define APP_CFG_PATH        "config"
 #define APP_CFG_FILE        "config.ini"

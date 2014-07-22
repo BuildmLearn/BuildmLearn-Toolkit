@@ -33,12 +33,17 @@
 #include "core/templatecore.h"
 #include "templates/flashcard/flashcardeditor.h"
 #include "templates/flashcard/flashcarditem.h"
+#include "definitions/definitions.h"
 
 
 FlashCardSimulator::FlashCardSimulator(TemplateCore *core, QWidget *parent)
   : TemplateSimulator(core, parent),
     m_ui(new Ui::FlashCardSimulator) {
   m_ui->setupUi(this);
+
+  QFont caption_font = m_ui->m_lblHeading->font();
+  caption_font.setPointSize(caption_font.pointSize() + SIMULATOR_HEADING_SIZE_INCREASE);
+  m_ui->m_lblHeading->setFont(caption_font);
 
   m_ui->m_phoneWidget->setStyleSheet("background: #255593; color: white;");
 

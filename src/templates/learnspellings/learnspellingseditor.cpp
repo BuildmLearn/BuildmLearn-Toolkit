@@ -45,7 +45,7 @@ LearnSpellingsEditor::LearnSpellingsEditor(TemplateCore *core, QWidget *parent)
 
   m_ui->m_txtTitle->lineEdit()->setPlaceholderText(tr("Word to spell"));
   m_ui->m_txtDescription->lineEdit()->setPlaceholderText(tr("Meaning of the word"));
-  m_ui->m_txtNumberOfItems->lineEdit()->setReadOnly(true);
+  m_ui->m_txtNumberOfItems->lineEdit()->setEnabled(false);
   m_ui->m_txtAuthor->lineEdit()->setPlaceholderText(tr("Author of this collection"));
   m_ui->m_txtName->lineEdit()->setPlaceholderText(tr("Name of this collection"));
 

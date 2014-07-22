@@ -37,7 +37,7 @@
 
 LearnSpellingsEntryPoint::LearnSpellingsEntryPoint(TemplateFactory *parent) : TemplateEntryPoint(parent) {
   m_baseFolder = "learnspellings";
-  m_description = "This is simple template for learning spelling of words.";
+  m_description = "Choose this template to create application for learning to spell words.";
   m_humanName = "Learn Spellings";
   m_name = "learnspellings";
   m_thumbnailImage = "thumbnail.png";

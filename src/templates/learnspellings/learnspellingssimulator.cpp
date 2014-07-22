@@ -49,6 +49,14 @@ LearnSpellingsSimulator::LearnSpellingsSimulator(TemplateCore *core, QWidget *pa
   m_ui->setupUi(this);
   m_ui->m_phoneWidget->setStyleSheet("background: #255593; color: white;");
 
+  QFont caption_font = m_ui->m_lblQuestionNumber->font();
+  caption_font.setPointSize(caption_font.pointSize() + SIMULATOR_HEADER_SIZE_INCREASE);
+  m_ui->m_lblQuestionNumber->setFont(caption_font);
+
+  caption_font = m_ui->m_lblHeading->font();
+  caption_font.setPointSize(caption_font.pointSize() + SIMULATOR_HEADING_SIZE_INCREASE);
+  m_ui->m_lblHeading->setFont(caption_font);
+
   connect(m_ui->m_btnPlayWord, SIGNAL(clicked()), this, SLOT(playWord()));
   connect(m_ui->m_btnStart, SIGNAL(clicked()), this, SLOT(start()));
   connect(m_ui->m_btnRestart, SIGNAL(clicked()), this, SLOT(restart()));

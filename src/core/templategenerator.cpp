@@ -36,6 +36,11 @@ void TemplateGenerator::generateMobileApplication(TemplateCore *core) {
 
     qApp->closeLock()->unlock();
   }
+  else {
+    qApp->trayIcon()->showMessage(tr("Cannot generate application"),
+                                  tr("Master generation lock is locked, try to\ngenerate application later."),
+                                  QSystemTrayIcon::Warning);
+  }
 }
 
 void TemplateGenerator::cleanWorkspace() {

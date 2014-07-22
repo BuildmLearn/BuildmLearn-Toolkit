@@ -30,9 +30,15 @@
 
 #include "templates/quiz/quizitem.h"
 
+#include "definitions/definitions.h"
+
 
 QuizItem::QuizItem(QWidget *parent) : QWidget(parent), m_state(Unanswered), m_ui(new Ui::QuizItem) {
   m_ui->setupUi(this);
+
+  QFont caption_font = m_ui->m_lblQuestionNumber->font();
+  caption_font.setPointSize(caption_font.pointSize() + SIMULATOR_HEADER_SIZE_INCREASE);
+  m_ui->m_lblQuestionNumber->setFont(caption_font);
 
   setupButtons();
   createConnections();

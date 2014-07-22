@@ -38,7 +38,7 @@
 
 BasicmLearningEntryPoint::BasicmLearningEntryPoint(TemplateFactory *parent) : TemplateEntryPoint(parent) {
   m_baseFolder = "mlearning";
-  m_description = "This is simple template for displaying clickable lists of textual information.";
+  m_description = "Choose this template to create applications displaying clickable lists of textual information.";
   m_humanName = "Basic mLearning";
   m_name = "mlearning";
   m_thumbnailImage = "thumbnail.png";
