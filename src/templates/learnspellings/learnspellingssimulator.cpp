@@ -30,6 +30,7 @@
 
 #include "templates/learnspellings/learnspellingssimulator.h"
 
+#include "definitions/definitions.h"
 #include "core/templatecore.h"
 #include "gui/custommessagebox.h"
 #include "network-web/networkfactory.h"
@@ -116,16 +117,26 @@ void LearnSpellingsSimulator::playWord() {
   // TODO: Play sound.
   QByteArray output;
 
-  QString word = m_words.at(m_activeWord).word().replace(' ', '+');
-  QString url = QString("http://mary.dfki.de:59125/process?INPUT_TEXT=%1&INPUT_TYPE=TEXT&OUTPUT_TYPE=AUDIO&AUDIO=WAVE_FILE&LOCALE=en_US").arg(word);
+  LearnSpellingsItem current_item = m_words.at(m_activeWord);
 
-  QNetworkReply::NetworkError err = NetworkFactory::downloadFile(url, 10000, output);
+  if (current_item.audioFilePath().isEmpty() || QFile::exists(current_item.audioFilePath())) {
+    // Current word does not contain downloaded audio file.
 
-  // TODO: Pokračovat.
-  QFile ff("M:\\aaa.wav");
-  ff.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Unbuffered);
-  ff.write(output);
-  ff.close();
+    QString word = m_words.at(m_activeWord).word().replace(' ', '+');
+    QString url = QString(TTS_SERVICE_URL).arg(word);
+    QNetworkReply::NetworkError result_of_download = NetworkFactory::downloadFile(url, 10000, output);
+
+    if (result_of_download != QNetworkReply::NoError) {
+      // There was apparently some error.
+    }
+
+    // TODO: Pokračovat.
+    QFile ff("M:\\aaa.wav");
+    ff.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Unbuffered);
+    ff.write(output);
+    ff.close();
+
+  }
 
   IOFactory::playWaveFile("M:\\aaa.wav");
 

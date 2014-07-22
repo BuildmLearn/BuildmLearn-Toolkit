@@ -424,9 +424,9 @@ bool QuizEditor::loadBundleData(const QString &bundle_data) {
 }
 
 QString QuizEditor::generateBundleData() {
-  if (!canGenerateApplications()) {
+  /*if (!canGenerateApplications()) {
     return QString();
-  }
+  }*/
 
   QDomDocument source_document = qApp->templateManager()->generateBundleHeader(core()->entryPoint()->typeIndentifier(),
                                                                                m_ui->m_txtAuthor->lineEdit()->text(),

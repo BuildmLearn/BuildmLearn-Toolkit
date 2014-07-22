@@ -73,6 +73,7 @@
 #define TRAY_ICON_DELAY                 1000
 #define CERTIFICATE_PATH                "certificate.pem"
 #define KEY_PATH                        "key.pk8"
+#define TTS_SERVICE_URL                 "http://mary.dfki.de:59125/process?INPUT_TEXT=%1&INPUT_TYPE=TEXT&OUTPUT_TYPE=AUDIO&AUDIO=WAVE_FILE&LOCALE=en_US"
 
 #define XML_BUNDLE_ROOT_DATA_ELEMENT    "data"
 #define XML_BUNDLE_INDENTATION          2

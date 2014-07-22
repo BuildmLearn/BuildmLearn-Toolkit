@@ -264,7 +264,8 @@ bool TemplateFactory::saveCurrentProjectAs(const QString &bundle_file_name) {
   QString xml_bundle_contents = activeCore()->editor()->generateBundleData();
 
   if (xml_bundle_contents.isEmpty()) {
-    // There is nothing to save.
+    // There is nothing to save. This is quite problem.
+    qWarning("There is nothing to save for template \"%s\".", qPrintable(activeCore()->entryPoint()->humanName()));
     return false;
   }
 

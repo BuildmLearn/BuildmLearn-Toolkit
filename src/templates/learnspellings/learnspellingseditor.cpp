@@ -84,9 +84,9 @@ LearnSpellingsEditor::~LearnSpellingsEditor() {
 }
 
 QString LearnSpellingsEditor::generateBundleData() {
-  if (!canGenerateApplications()) {
+  /*if (!canGenerateApplications()) {
     return QString();
-  }
+  }*/
 
   QDomDocument source_document = qApp->templateManager()->generateBundleHeader(core()->entryPoint()->typeIndentifier(),
                                                                                m_ui->m_txtAuthor->lineEdit()->text(),

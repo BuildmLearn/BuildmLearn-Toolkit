@@ -3,6 +3,7 @@
 #include "definitions/definitions.h"
 #include "core/templatecore.h"
 #include "core/templatefactory.h"
+#include "core/templateeditor.h"
 #include "miscellaneous/application.h"
 #include "miscellaneous/iofactory.h"
 
@@ -15,13 +16,13 @@ TemplateGenerator::TemplateGenerator(QObject *parent) : QObject(parent) {
 TemplateGenerator::~TemplateGenerator() {
 }
 
-void TemplateGenerator::generateMobileApplication(TemplateCore *core) {
+void TemplateGenerator::generateMobileApplication(TemplateCore *core) { 
   if (qApp->closeLock()->tryLock()) {
     connect(core, SIGNAL(generationProgress(int,QString)), this, SIGNAL(generationProgress(int,QString)));
 
     emit generationStarted();
 
-    QString output_file;
+    QString output_file;    
     TemplateCore::GenerationResult result = core->generateMobileApplication(output_file);
 
     disconnect(core, SIGNAL(generationProgress(int,QString)), this, SIGNAL(generationProgress(int,QString)));
