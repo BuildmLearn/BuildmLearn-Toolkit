@@ -35,6 +35,7 @@
 #include "gui/custommessagebox.h"
 #include "network-web/networkfactory.h"
 #include "miscellaneous/iofactory.h"
+#include "miscellaneous/application.h"
 #include "templates/learnspellings/learnspellingseditor.h"
 
 #include <QInputDialog>
@@ -122,6 +123,10 @@ void LearnSpellingsSimulator::exit() {
 }
 
 void LearnSpellingsSimulator::playWord() {
+#if defined(Q_OS_OS2)
+  qApp->trayIcon()->showMessage(tr("Cannot play sound"), tr("Sound cannot play on this platform."),
+                                QSystemTrayIcon::Warning);
+#else
   // TODO: Play sound.
   QByteArray output;
 
@@ -147,6 +152,7 @@ void LearnSpellingsSimulator::playWord() {
   }
 
   IOFactory::playWaveFile("M:\\aaa.wav");
+#endif
 
   m_ui->m_btnSkip->setEnabled(true);
   m_ui->m_btnSpellIt->setEnabled(true);

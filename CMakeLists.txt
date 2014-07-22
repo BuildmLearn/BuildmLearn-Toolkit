@@ -305,7 +305,11 @@ if(${USE_QT_5})
 else(${USE_QT_5})
   set(QT_MIN_VERSION ${MINIMUM_QT_VERSION})
   set(QT_USE_PHONON TRUE)
-  find_package(Qt4 REQUIRED QtCore QtGui QtSql QtNetwork QtXml QtXmlPatterns Phonon)
+  if(OS2)
+    find_package(Qt4 REQUIRED QtCore QtGui QtSql QtNetwork QtXml QtXmlPatterns)
+  else(OS2)
+    find_package(Qt4 REQUIRED QtCore QtGui QtSql QtNetwork QtXml QtXmlPatterns Phonon)
+  endif(OS2)
   include(${QT_USE_FILE})
 endif(${USE_QT_5})
 
@@ -622,16 +626,28 @@ else(${USE_QT_5})
     ${APP_QM}
   )
 
-  # Link modules from Qt.
-  target_link_libraries(${EXE_NAME}
-    ${QT_QTCORE_LIBRARY}
-    ${QT_QTGUI_LIBRARY}
-    ${QT_QTNETWORK_LIBRARY}
-    ${QT_QTSQL_LIBRARY}
-    ${QT_QTXML_LIBRARY}
-    ${QT_QTMAIN_LIBRARY}
-    ${QT_PHONON_LIBRARY}
-  )
+  if(OS2)
+    # Link modules from Qt.
+    target_link_libraries(${EXE_NAME}
+      ${QT_QTCORE_LIBRARY}
+      ${QT_QTGUI_LIBRARY}
+      ${QT_QTNETWORK_LIBRARY}
+      ${QT_QTSQL_LIBRARY}
+      ${QT_QTXML_LIBRARY}
+      ${QT_QTMAIN_LIBRARY}
+    )
+  else(OS2)
+    # Link modules from Qt.
+    target_link_libraries(${EXE_NAME}
+      ${QT_QTCORE_LIBRARY}
+      ${QT_QTGUI_LIBRARY}
+      ${QT_QTNETWORK_LIBRARY}
+      ${QT_QTSQL_LIBRARY}
+      ${QT_QTXML_LIBRARY}
+      ${QT_QTMAIN_LIBRARY}
+      ${QT_PHONON_LIBRARY}
+    )
+  endif(OS2)
 endif(${USE_QT_5})
 
 # Installation stage.
