@@ -144,14 +144,14 @@ void LearnSpellingsSimulator::playWord() {
     }
 
     // TODO: Pokračovat.
-    QFile ff("M:\\aaa.wav");
+    QFile ff("D:\\aaa.wav");
     ff.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Unbuffered);
     ff.write(output);
     ff.close();
 
   }
 
-  IOFactory::playWaveFile("M:\\aaa.wav");
+  IOFactory::playWaveFile("D:\\aaa.wav");
 #endif
 
   m_ui->m_btnSkip->setEnabled(true);

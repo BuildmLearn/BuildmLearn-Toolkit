@@ -546,7 +546,7 @@ set(APP_TEXT
 )
 
 if(WIN32)
-  set(APP_DLLS_QT4_MSVS2010
+  set(APP_DLLS_QT4_MSVC2010
     resources/binaries/windows/deployment/qt4-msvc2010/libeay32.dll
     resources/binaries/windows/deployment/qt4-msvc2010/msvcp100.dll
     resources/binaries/windows/deployment/qt4-msvc2010/msvcr100.dll
@@ -557,6 +557,11 @@ if(WIN32)
     resources/binaries/windows/deployment/qt4-msvc2010/QtWebKit4.dll
     resources/binaries/windows/deployment/qt4-msvc2010/QtXml4.dll
     resources/binaries/windows/deployment/qt4-msvc2010/ssleay32.dll
+    resources/binaries/windows/deployment/qt4-msvc2010/phonon4.dll
+  )
+
+  set(APP_DLLS_QT4_MSVC2010_PHONON
+    resources/binaries/windows/deployment/qt4-msvc2010/phonon_backend/phonon_ds94.dll
   )
 endif(WIN32)
 
@@ -663,8 +668,10 @@ if(WIN32 OR OS2)
 
   if(WIN32)
     # Install custom binary files for windows, dlls, exes.
-    install(FILES ${APP_DLLS_QT4_MSVS2010}
+    install(FILES ${APP_DLLS_QT4_MSVC2010}
             DESTINATION ./)
+    install(FILES ${APP_DLLS_QT4_MSVC2010_PHONON}
+            DESTINATION ./phonon_backend)
     install(DIRECTORY resources/binaries/windows/zip
             DESTINATION ./binaries)
   else(WIN32)

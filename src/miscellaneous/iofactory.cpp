@@ -30,6 +30,8 @@
 
 #include "miscellaneous/iofactory.h"
 
+#include "miscellaneous/application.h"
+
 #include <QDir>
 #include <QFile>
 #include <QTextStream>
@@ -49,7 +51,7 @@ void IOFactory::playWaveFile(const QString &file_path) {
 #if QT_VERSION >= 0x050000
   QSound::play(file_path);
 #elif !defined(Q_OS_OS2)
-  Phonon::AudioOutput *out = new Phonon::AudioOutput(Phonon::MusicCategory, 0);
+  Phonon::AudioOutput *out = new Phonon::AudioOutput(Phonon::MusicCategory, qApp);
   out->setVolume(100.0f);
   out->setMuted(false);
 
@@ -57,6 +59,8 @@ void IOFactory::playWaveFile(const QString &file_path) {
 
   Phonon::createPath(music, out);
   music->play();
+  QObject::connect(music, SIGNAL(finished()), music, SLOT(deleteLater()));
+  QObject::connect(music, SIGNAL(finished()), out, SLOT(deleteLater()));
 
   // TODO: navazat na music::finished() smazani pres deleteLater() obou veci
 #endif
