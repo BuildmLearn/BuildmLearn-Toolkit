@@ -5,17 +5,24 @@ Main:
 <ul>
 <li>Second GSoC-related toolkit release.</li>
 <li>This is maintenance release which is considered to be pre-alpha quality.</li>
+<li>Added 4th template and code cleanups.</li>
 </ul>
 
 Fixed:
 <ul>
 <li>"Save project" action is now disabled when project is loaded from XML bundle file.</li>
 <li>Text box in Quiz editor with number of added questions is now read only.</li>
+<li>Some memory leaks, UX bugs and other tweaking was made.</li>
+<li>Removed EXE resources for OS/2.</li>
+<li>Fixed XML bundle saving failures under some conditions.</li>
 </ul>
 
 Added:
 <ul>
 <li>Added more documentation.</li>
+<li>Added some contents to application help dialog.</li>
+<li>Added experimental version of Learn Spellings template.</li>
+<li>Added phonon4 sound support.</li>
 </ul>
 
 <hr/>
