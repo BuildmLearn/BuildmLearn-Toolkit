@@ -86,7 +86,7 @@ FormHelp::FormHelp(bool do_not_show_again_enabled, QWidget *parent)
                              ""
                              "<a name=\"other-facts\"></a><h3 style=\"text-align: center\">Other facts</h3>"
                              "<p>"
-                             "BuildmLearn Toolkit is portable application which does not story anything to system registry. The only system folders it uses are user-specific folders."
+                             "BuildmLearn Toolkit is portable application which does not store anything to system registry. The only system folders it uses are user-specific folders."
                              "</p>"
                              "</body>");
 
