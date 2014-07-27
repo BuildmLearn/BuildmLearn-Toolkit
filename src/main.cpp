@@ -153,7 +153,7 @@ int main(int argc, char *argv[]) {
 
   main_form.show();
 
-  if (SystemTrayIcon::isSystemTrayActivated()) {
+  if (SystemTrayIcon::isSystemTrayAvailable()) {
     QObject::connect(application.trayIcon(), SIGNAL(leftMouseClicked()),
                      &main_form, SLOT(switchVisibility()));
     application.trayIcon()->setContextMenu(main_form.trayMenu());

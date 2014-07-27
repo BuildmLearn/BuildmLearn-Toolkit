@@ -221,7 +221,7 @@ void FormMain::setupToolbar() {
 }
 
 void FormMain::setupTrayMenu() {
-  if (SystemTrayIcon::isSystemTrayActivated()) {
+  if (SystemTrayIcon::isSystemTrayAvailable()) {
 #if defined(Q_OS_WIN)
     m_trayMenu = new TrayIconMenu(APP_NAME, this);
 #else
@@ -501,7 +501,7 @@ void FormMain::showUpdatesAfterBubbleClick() {
 
 void FormMain::switchVisibility(bool force_hide) {
   if (force_hide || isVisible()) {
-    if (SystemTrayIcon::isSystemTrayActivated()) {
+    if (SystemTrayIcon::isSystemTrayAvailable()) {
       hide();
       m_simulatorWindow->hide();
     }
@@ -513,7 +513,7 @@ void FormMain::switchVisibility(bool force_hide) {
   else {
     display();
 
-    if (SystemTrayIcon::isSystemTrayActivated()) {
+    if (SystemTrayIcon::isSystemTrayAvailable()) {
       m_simulatorWindow->show();
     }
   }
@@ -667,7 +667,7 @@ void FormMain::closeEvent(QCloseEvent *e) {
     }
   }
 
-  if (SystemTrayIcon::isSystemTrayActivated()) {
+  if (SystemTrayIcon::isSystemTrayAvailable()) {
     qApp->trayIcon()->hide();
   }
 

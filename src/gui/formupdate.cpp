@@ -207,7 +207,7 @@ void FormUpdate::startUpdate() {
   }
 
   if (!WebFactory::instance()->openUrlInExternalBrowser(url_file)) {
-    if (SystemTrayIcon::isSystemTrayActivated()) {
+    if (SystemTrayIcon::isSystemTrayAvailable()) {
       qApp->trayIcon()->showMessage(tr("Cannot update application"),
                                     tr("Cannot navigate to installation file. Check new installation downloads "
                                        "manually on project website."),

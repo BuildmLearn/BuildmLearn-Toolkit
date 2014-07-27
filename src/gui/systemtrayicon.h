@@ -92,12 +92,6 @@ class SystemTrayIcon : public QSystemTrayIcon {
     /// \return Returns true if tray icon is supported.
     /// \see isSystemTrayActivated()
     static bool isSystemTrayAvailable();
-
-    /// \brief Indicates whether tray icon is supported AND enabled.
-    /// \return Returns true if tray icon CAN be costructed and IS enabled in
-    /// application settings.
-    /// \see isSystemTrayAvailable().
-    static bool isSystemTrayActivated();
     
   public slots:
     /// \brief Displays tray icon.

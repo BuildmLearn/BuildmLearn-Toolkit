@@ -103,10 +103,6 @@ bool SystemTrayIcon::isSystemTrayAvailable() {
   return QSystemTrayIcon::isSystemTrayAvailable() && QSystemTrayIcon::supportsMessages();
 }
 
-bool SystemTrayIcon::isSystemTrayActivated() {
-  return SystemTrayIcon::isSystemTrayAvailable();
-}
-
 void SystemTrayIcon::showPrivate() {
   // Display the tray icon.
   QSystemTrayIcon::show();

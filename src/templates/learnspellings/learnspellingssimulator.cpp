@@ -32,6 +32,7 @@
 
 #include "definitions/definitions.h"
 #include "core/templatecore.h"
+#include "core/templatefactory.h"
 #include "gui/custommessagebox.h"
 #include "network-web/networkfactory.h"
 #include "miscellaneous/iofactory.h"
@@ -42,6 +43,7 @@
 #include <QFile>
 #include <QTextStream>
 #include <QDataStream>
+#include <QDir>
 
 
 LearnSpellingsSimulator::LearnSpellingsSimulator(TemplateCore *core, QWidget *parent)
@@ -124,15 +126,20 @@ void LearnSpellingsSimulator::exit() {
 
 void LearnSpellingsSimulator::playWord() {
 #if defined(Q_OS_OS2)
-  qApp->trayIcon()->showMessage(tr("Cannot play sound"), tr("Sound cannot play on this platform."),
-                                QSystemTrayIcon::Warning);
+  if (SystemTrayIcon::isSystemTrayAvailable()) {
+    qApp->trayIcon()->showMessage(tr("Cannot play sound"), tr("Sound cannot play on this platform."),
+                                  QSystemTrayIcon::Warning);
+  }
+  else {
+    CustomMessageBox::show(this, QMessageBox::Warning, tr("Cannot play sound"), tr("Sound cannot play on this platform."));
+  }
 #else
-  // TODO: Play sound.
+  // Play sound.
   QByteArray output;
 
   LearnSpellingsItem current_item = m_words.at(m_activeWord);
 
-  if (current_item.audioFilePath().isEmpty() || QFile::exists(current_item.audioFilePath())) {
+  if (current_item.audioFilePath().isEmpty() || !QFile::exists(current_item.audioFilePath())) {
     // Current word does not contain downloaded audio file.
 
     QString word = m_words.at(m_activeWord).word().replace(' ', '+');
@@ -141,17 +148,32 @@ void LearnSpellingsSimulator::playWord() {
 
     if (result_of_download != QNetworkReply::NoError) {
       // There was apparently some error.
+      if (SystemTrayIcon::isSystemTrayAvailable()) {
+        qApp->trayIcon()->showMessage(tr("Cannot play sound"), tr("Sound cannot play on this platform because sound file was not downloaded."),
+                                      QSystemTrayIcon::Warning);
+      }
+      else {
+        CustomMessageBox::show(this, QMessageBox::Warning, tr("Cannot play sound"), tr("Sound cannot play on this platform because sound file was not downloaded."));
+      }
+
+      return;
     }
 
-    // TODO: Pokračovat.
-    QFile ff("D:\\aaa.wav");
-    ff.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Unbuffered);
-    ff.write(output);
-    ff.close();
+    // Store downloaded sound file.
+    QString sound_file_name = qApp->templateManager()->tempDirectory() + QDir::separator() +
+                              "sound_" + QDateTime::currentDateTime().toString("yyyy-MM-dd-hhmmss") + ".wav";
+    QFile sound_file(sound_file_name);
+    sound_file.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Unbuffered);
+    sound_file.write(output);
+    sound_file.close();
 
+    // We obtained new sound file for this particular word.
+    // So, store the path.
+    // NOTE: Note that this is forgotten when new simulation is started.
+    m_words[m_activeWord].setAudioFilePath(sound_file_name);
   }
 
-  IOFactory::playWaveFile("D:\\aaa.wav");
+  IOFactory::playWaveFile(m_words.at(m_activeWord).audioFilePath());
 #endif
 
   m_ui->m_btnSkip->setEnabled(true);

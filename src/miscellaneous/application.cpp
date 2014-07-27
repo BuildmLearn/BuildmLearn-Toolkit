@@ -267,7 +267,7 @@ void Application::handleBackgroundUpdatesCheck() {
   switch (updates.second) {
     case QNetworkReply::NoError:
       if (updates.first.m_availableVersion > APP_VERSION) {
-        if (SystemTrayIcon::isSystemTrayActivated()) {
+        if (SystemTrayIcon::isSystemTrayAvailable()) {
           trayIcon()->showMessage(tr("Update available"),
                                   tr("New application update is available."),
                                   QSystemTrayIcon::Information,
@@ -277,7 +277,7 @@ void Application::handleBackgroundUpdatesCheck() {
         }
       }
       else {
-        if (SystemTrayIcon::isSystemTrayActivated()) {
+        if (SystemTrayIcon::isSystemTrayAvailable()) {
           trayIcon()->showMessage(tr("No updates available"),
                                   tr("No new updates are available."),
                                   QSystemTrayIcon::Information);
@@ -287,7 +287,7 @@ void Application::handleBackgroundUpdatesCheck() {
       break;
 
     default:
-      if (SystemTrayIcon::isSystemTrayActivated()) {
+      if (SystemTrayIcon::isSystemTrayAvailable()) {
         trayIcon()->showMessage(tr("Update check error"),
                                 tr("Could not check for updates: %1.").arg(NetworkFactory::networkErrorText(updates.second)),
                                 QSystemTrayIcon::Warning);

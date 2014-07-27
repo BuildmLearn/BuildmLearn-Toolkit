@@ -227,7 +227,7 @@ void FormSettings::promptForRestart() {
 
     if (question_result == QMessageBox::Yes) {
       if (!QProcess::startDetached(qApp->applicationFilePath())) {
-        if (SystemTrayIcon::isSystemTrayActivated()) {
+        if (SystemTrayIcon::isSystemTrayAvailable()) {
           qApp->trayIcon()->showMessage(tr("Problem with application restart"),
                                         tr("Application couldn't be restarted. "
                                            "Please, restart it manually for changes to take effect."),
