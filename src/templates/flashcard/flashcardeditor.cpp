@@ -214,6 +214,10 @@ QList<FlashCardQuestion> FlashCardEditor::activeQuestions() const {
   return questions;
 }
 
+QString FlashCardEditor::projectName() {
+  return m_ui->m_txtName->lineEdit()->text();
+}
+
 void FlashCardEditor::checkAuthor() {
   if (m_ui->m_txtAuthor->lineEdit()->text().isEmpty()) {
     m_ui->m_txtAuthor->setStatus(WidgetWithStatus::Error,

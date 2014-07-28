@@ -52,6 +52,7 @@ class TemplateCore : public QObject {
       JavaProblem,
       BundleProblem,
       CopyProblem,
+      Aborted,
       OtherProblem
     };
 

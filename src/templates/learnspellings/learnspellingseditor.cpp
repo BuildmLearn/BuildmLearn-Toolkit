@@ -262,6 +262,10 @@ bool LearnSpellingsEditor::canGenerateApplications() {
       !m_ui->m_txtName->lineEdit()->text().simplified().isEmpty();
 }
 
+QString LearnSpellingsEditor::projectName() {
+  return m_ui->m_txtName->lineEdit()->text();
+}
+
 void LearnSpellingsEditor::updateItemCount() {
   m_ui->m_txtNumberOfItems->lineEdit()->setText(QString::number(m_ui->m_listItems->count()));
 

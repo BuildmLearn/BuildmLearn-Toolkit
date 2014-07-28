@@ -381,6 +381,10 @@ void FormMain::onGenerationDone(TemplateCore::GenerationResult result_code, cons
                                     SLOT(openOutputApplication()));
       break;
 
+    case TemplateCore::Aborted:
+      // Supress abortion state because this is not critical state.
+      break;
+
     default:
       qApp->trayIcon()->showMessage(tr("Mobile application not generated"),
                                     tr("Application was NOT generated successfully."),

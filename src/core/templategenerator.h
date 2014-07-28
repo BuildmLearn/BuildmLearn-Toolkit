@@ -25,6 +25,9 @@ class TemplateGenerator : public QObject {
     /// \brief Cleans workspace used for generating applications.
     void cleanWorkspace();
 
+    /// \brief Cleans and recreates base workspace path.
+    void refreshWorkspace();
+
   signals:
     /// \brief Emitted if generating process is started.
     void generationStarted();

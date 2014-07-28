@@ -67,6 +67,8 @@ class QuizEditor : public TemplateEditor {
     /// \return Returns list of added questions.
     QList<QuizQuestion> activeQuestions() const;
 
+    QString projectName();
+
   private slots:
     void updateQuestionCount();
     void addQuestion(const QString &question, const QStringList &answers, int correct_answer);

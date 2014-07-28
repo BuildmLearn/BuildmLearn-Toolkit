@@ -162,6 +162,10 @@ int main(int argc, char *argv[]) {
     QTimer::singleShot(STARTUP_UPDATE_DELAY, &application,
                        SLOT(checkForUpdatesOnBackground()));
   }
+  else {
+    qDebug("System tray icon is not available, quitting.");
+    return EXIT_FAILURE;
+  }
 
   // Check for availability of external generators.
   application.recheckExternalApplications(true);

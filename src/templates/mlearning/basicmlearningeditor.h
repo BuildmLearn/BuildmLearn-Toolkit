@@ -59,6 +59,8 @@ class BasicmLearningEditor : public TemplateEditor {
     QString generateBundleData();
     bool loadBundleData(const QString &bundle_data);
 
+    QString projectName();
+
   private slots:
     void addNewItem(const QString &title, const QString &description);
     void addNewItem();

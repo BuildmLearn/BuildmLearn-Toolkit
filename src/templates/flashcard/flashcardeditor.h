@@ -57,6 +57,8 @@ class FlashCardEditor : public TemplateEditor {
 
     QList<FlashCardQuestion> activeQuestions() const;
 
+    QString projectName();
+
   private:
     void checkAuthor();
     void checkHint();

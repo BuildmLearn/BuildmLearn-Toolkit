@@ -44,11 +44,11 @@
 #include <QTextStream>
 #include <QDataStream>
 #include <QDir>
+#include <QDateTime>
 
 
 LearnSpellingsSimulator::LearnSpellingsSimulator(TemplateCore *core, QWidget *parent)
-  : TemplateSimulator(core, parent), m_ui(new Ui::LearnSpellingsSimulator), m_words(QList<LearnSpellingsItem>()),
-    m_activeWord(-1) {
+  : TemplateSimulator(core, parent), m_ui(new Ui::LearnSpellingsSimulator), m_words(QList<LearnSpellingsItem>()), m_activeWord(-1) {
   m_ui->setupUi(this);
   m_ui->m_phoneWidget->setStyleSheet("background: #255593; color: white;");
 

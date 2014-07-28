@@ -120,6 +120,10 @@ QList<QuizQuestion> QuizEditor::activeQuestions() const {
   return questions;
 }
 
+QString QuizEditor::projectName() {
+  return m_ui->m_txtName->lineEdit()->text();
+}
+
 void QuizEditor::updateQuestionCount() {
   m_ui->m_txtNumberOfQuestions->lineEdit()->setText(QString::number(m_ui->m_listQuestions->count()));
 

@@ -116,6 +116,10 @@ bool BasicmLearningEditor::loadBundleData(const QString &bundle_data) {
   return true;
 }
 
+QString BasicmLearningEditor::projectName() {
+  return m_ui->m_txtName->lineEdit()->text();
+}
+
 void BasicmLearningEditor::addNewItem(const QString &title, const QString &description) {
   int marked_item = m_ui->m_listItems->currentRow();
   BasicmLearningItem new_item;

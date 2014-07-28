@@ -59,6 +59,8 @@ class LearnSpellingsEditor : public TemplateEditor {
     bool loadBundleData(const QString &bundle_data);
     bool canGenerateApplications();
 
+    QString projectName();
+
   private slots:
     void addSampleWord(const QString &title, const QString &description);
     void addSampleWord();
