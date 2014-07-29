@@ -34,6 +34,7 @@
 #include "network-web/silentnetworkaccessmanager.h"
 
 #include <QTimer>
+#include <QHttpMultiPart>
 
 
 Downloader::Downloader(QObject *parent)
@@ -67,7 +68,49 @@ void Downloader::downloadFile(const QString &url, bool protected_contents,
   // Set url for this reques.
   request.setUrl(url);
 
-  runRequest(request);
+  runGetRequest(request);
+}
+
+void Downloader::uploadBundleFile(QString url, const QString &bundle_data,
+                                  const QString &key, const QString &author_name,
+                                  const QString &author_email, const QString &application_name) {
+  QHttpMultiPart *multi_part = new QHttpMultiPart(QHttpMultiPart::FormDataType);
+
+  QHttpPart key_part;
+  key_part.setHeader(QNetworkRequest::ContentDispositionHeader, QVariant("form-data; name=\"key\""));
+  key_part.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("text/plain"));
+  key_part.setBody(key.toUtf8());
+
+  QHttpPart author_name_part;
+  author_name_part.setHeader(QNetworkRequest::ContentDispositionHeader, QVariant("form-data; name=\"author_name\""));
+  author_name_part.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("text/plain"));
+  author_name_part.setBody(author_name.toUtf8());
+
+  QHttpPart author_email_part;
+  author_email_part.setHeader(QNetworkRequest::ContentDispositionHeader, QVariant("form-data; name=\"author_email\""));
+  author_email_part.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("text/plain"));
+  author_email_part.setBody(author_email.toUtf8());
+
+  QHttpPart application_name_part;
+  application_name_part.setHeader(QNetworkRequest::ContentDispositionHeader, QVariant("form-data; name=\"application_name\""));
+  application_name_part.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("text/plain"));
+  application_name_part.setBody(application_name.toUtf8());
+
+  QHttpPart file_part;
+  file_part.setHeader(QNetworkRequest::ContentDispositionHeader, QVariant("form-data; name=\"file\""));
+  file_part.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("text/xml"));
+  file_part.setBody(bundle_data.toUtf8());
+
+  multi_part->append(key_part);
+  multi_part->append(author_name_part);
+  multi_part->append(author_email_part);
+  multi_part->append(application_name_part);
+  multi_part->append(file_part);
+
+  QNetworkRequest request;
+
+  request.setUrl(url);
+  runPostRequest(request, multi_part);
 }
 
 void Downloader::finished(QNetworkReply *reply) {
@@ -85,7 +128,7 @@ void Downloader::finished(QNetworkReply *reply) {
     m_activeReply->deleteLater();
     m_activeReply = NULL;
 
-    runRequest(request);
+    runGetRequest(request);
   }
   else {
     // No redirection is indicated. Final file is obtained
@@ -116,10 +159,21 @@ void Downloader::timeout() {
   }
 }
 
-void Downloader::runRequest(const QNetworkRequest &request) {
+void Downloader::runGetRequest(const QNetworkRequest &request) {
   m_timer->start();
   m_activeReply = m_downloadManager->get(request);
 
   connect(m_activeReply, SIGNAL(downloadProgress(qint64,qint64)),
           this, SLOT(progressInternal(qint64,qint64)));
 }
+
+void Downloader::runPostRequest(const QNetworkRequest &request, QHttpMultiPart *multi_part) {
+  m_timer->start();
+  m_activeReply = m_downloadManager->post(request, multi_part);
+  multi_part->setParent(m_activeReply);
+
+  connect(m_activeReply, SIGNAL(uploadProgress(qint64,qint64)),
+          this, SLOT(progressInternal(qint64,qint64)));
+}
+
+

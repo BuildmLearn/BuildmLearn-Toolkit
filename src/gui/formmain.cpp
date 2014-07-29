@@ -39,6 +39,7 @@
 #include "gui/formsimulator.h"
 #include "gui/formnewproject.h"
 #include "gui/custommessagebox.h"
+#include "gui/formuploadbundle.h"
 #include "miscellaneous/iconfactory.h"
 #include "core/templatesimulator.h"
 #include "core/templatefactory.h"
@@ -114,6 +115,7 @@ QList<QAction*> FormMain::allActions() {
 
   actions.append(m_ui->m_actionCheckForUpdates);
   actions.append(m_ui->m_actionGenerateMobileApplication);
+  actions.append(m_ui->m_actionUploadApplicationToStore);
   actions.append(m_ui->m_actionLoadProject);
   actions.append(m_ui->m_actionNewProject);
   actions.append(m_ui->m_actionSaveProject);
@@ -165,6 +167,7 @@ void FormMain::createConnections() {
   connect(qApp->templateManager(), SIGNAL(newTemplateCoreCreated(TemplateCore*)), this, SLOT(setTemplateCore(TemplateCore*)));
   connect(qApp, SIGNAL(externalApplicationsRechecked()), this, SLOT(onExternalApplicationsChanged()));
   connect(m_ui->m_actionGenerateMobileApplication, SIGNAL(triggered()), this, SLOT(generateMobileApplication()));
+  connect(m_ui->m_actionUploadApplicationToStore, SIGNAL(triggered()), this, SLOT(uploadMobileApplicationToStore()));
   connect(qApp->templateManager()->generator(), SIGNAL(generationStarted()), this, SLOT(onGenerationStarted()));
   connect(qApp->templateManager()->generator(), SIGNAL(generationFinished(TemplateCore::GenerationResult,QString)),
           this, SLOT(onGenerationDone(TemplateCore::GenerationResult,QString)));
@@ -217,6 +220,7 @@ void FormMain::setupToolbar() {
   m_ui->m_toolBar->addAction(m_ui->m_actionSimulatorStop);
   m_ui->m_toolBar->addAction(m_ui->m_actionSimulatorGoBack);
   m_ui->m_toolBar->addAction(m_ui->m_actionGenerateMobileApplication);
+  m_ui->m_toolBar->addAction(m_ui->m_actionUploadApplicationToStore);
   m_ui->m_toolBar->addAction(m_ui->m_actionHelp);
 }
 
@@ -289,11 +293,15 @@ void FormMain::onCanGenerateChanged(bool can_generate, const QString &informativ
       m_ui->m_actionGenerateMobileApplication->setToolTip(tr("Generate mobile application"));
     }
 
+    m_ui->m_actionUploadApplicationToStore->setEnabled(true);
+    m_ui->m_actionUploadApplicationToStore->setToolTip(tr("Upload mobile application to store"));
     m_ui->m_actionSimulatorRun->setEnabled(true);
     m_ui->m_actionSimulatorRun->setToolTip(tr("Start new simulation"));
   }
   else {
     // Editor of active template cannot generate applications.
+    m_ui->m_actionUploadApplicationToStore->setEnabled(false);
+    m_ui->m_actionUploadApplicationToStore->setToolTip(informative_text);
     m_ui->m_actionGenerateMobileApplication->setEnabled(can_generate);
     m_ui->m_actionGenerateMobileApplication->setToolTip(qApp->externalApplicationsStatus());
     m_ui->m_actionSimulatorRun->setEnabled(can_generate);
@@ -596,7 +604,7 @@ void FormMain::openLoadProjectDialog() {
                                                        tr("BuildmLearn Toolkit projects (*.buildmlearn)"),
                                                        0);
 
-  if (selected_file.isEmpty()) {   
+  if (selected_file.isEmpty()) {
     return;
   }
 
@@ -632,6 +640,12 @@ void FormMain::generateMobileApplication() {
                          tr("Cannot generate application"),
                          tr("No project is opened, thus, cannot generate application."));
   }
+}
+
+void FormMain::uploadMobileApplicationToStore() {
+  QPointer<FormUploadBundle> form_pointer = new FormUploadBundle(this);
+  form_pointer.data()->exec();
+  delete form_pointer.data();
 }
 
 bool FormMain::saveUnsavedProject() {

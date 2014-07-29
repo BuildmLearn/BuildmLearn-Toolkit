@@ -46,6 +46,7 @@
     <addaction name="m_actionLoadProject"/>
     <addaction name="separator"/>
     <addaction name="m_actionGenerateMobileApplication"/>
+    <addaction name="m_actionUploadApplicationToStore"/>
     <addaction name="separator"/>
     <addaction name="m_actionQuit"/>
    </widget>
@@ -255,6 +256,14 @@
   <action name="m_actionOpenOutputDirectory">
    <property name="text">
     <string>Open mobile applications &amp;output directory</string>
+   </property>
+  </action>
+  <action name="m_actionUploadApplicationToStore">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Upload mobile application to store.</string>
    </property>
   </action>
  </widget>

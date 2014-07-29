@@ -378,6 +378,7 @@ set(APP_SOURCES
   src/gui/formhelp.cpp
   src/gui/lineeditwithstatus.cpp
   src/gui/formsimulator.cpp
+  src/gui/formuploadbundle.cpp
 
   src/dynamic-shortcuts/shortcutcatcher.cpp
   src/dynamic-shortcuts/shortcutbutton.cpp
@@ -453,6 +454,7 @@ set(APP_HEADERS
   src/gui/formhelp.h
   src/gui/lineeditwithstatus.h
   src/gui/formsimulator.h
+  src/gui/formuploadbundle.h
 
   src/dynamic-shortcuts/dynamicshortcutswidget.h
   src/dynamic-shortcuts/shortcutcatcher.h
@@ -509,6 +511,7 @@ set(APP_FORMS
   src/gui/formhelp.ui
   src/gui/formsimulator.ui
   src/gui/formnewproject.ui
+  src/gui/formuploadbundle.ui
 
   src/templates/quiz/quizeditor.ui
   src/templates/quiz/quizsimulator.ui

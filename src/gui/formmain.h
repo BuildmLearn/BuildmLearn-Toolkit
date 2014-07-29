@@ -151,6 +151,9 @@ class FormMain : public QMainWindow {
     /// project.
     void generateMobileApplication();
 
+    /// \brief Displays dialog for uploading applications to store.
+    void uploadMobileApplicationToStore();
+
     /// \brief Performs necessary steps to save active project if there is unsaved work.
     /// \return Returns true if there is no opened project or current project is already saved,
     /// otherwise returns false.

@@ -64,15 +64,22 @@ class Downloader : public QObject {
                       const QString &username = QString(),
                       const QString &password = QString());
 
+    /// \brief Uploads given bundle_data to store server via HTTP POST.
+    /// \param url URL to store server
+    /// \param bundle_data
+    void uploadBundleFile(QString url, const QString &bundle_data,
+                          const QString &key, const QString &author_name,
+                          const QString &author_email, const QString &application_name);
+
   signals:
     /// \brief Emitted when new progress is known.
     /// \param bytes_received Number of bytes received.
     /// \param bytes_total Number of bytes total.
     void progress(qint64 bytes_received, qint64 bytes_total);
 
-    /// \brief Emitted if file download completes (un)successfully.
-    /// \param status Status of file download.
-    /// \param contents QByteArray containging downloaded file (if any).
+    /// \brief Emitted if file download or upload completes (un)successfully.
+    /// \param status Status of file download/upload.
+    /// \param contents QByteArray containing downloaded file (if any) or post reply.
     void completed(QNetworkReply::NetworkError status, QByteArray contents = QByteArray());
 
   private slots:
@@ -87,7 +94,9 @@ class Downloader : public QObject {
 
   private:
     // Issues new network request.
-    void runRequest(const QNetworkRequest &request);
+    void runGetRequest(const QNetworkRequest &request);
+
+    void runPostRequest(const QNetworkRequest &request, QHttpMultiPart *multi_part);
 
   private:
     QNetworkReply *m_activeReply;

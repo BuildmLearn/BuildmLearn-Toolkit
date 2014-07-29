@@ -141,8 +141,8 @@ void LearnSpellingsSimulator::playWord() {
 
   if (current_item.audioFilePath().isEmpty() || !QFile::exists(current_item.audioFilePath())) {
     // Current word does not contain downloaded audio file.
-
     QString word = m_words.at(m_activeWord).word().replace(' ', '+');
+    //QString word = QUrl::toPercentEncoding(m_words.at(m_activeWord).word());
     QString url = QString(TTS_SERVICE_URL).arg(word);
     QNetworkReply::NetworkError result_of_download = NetworkFactory::downloadFile(url, 10000, output);
 
