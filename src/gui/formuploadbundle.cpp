@@ -52,19 +52,29 @@ FormUploadBundle::FormUploadBundle(QWidget *parent)
   m_btnUpload = m_ui->m_buttonBox->addButton(tr("&Upload application"),
                                              QDialogButtonBox::ActionRole);
 
-  m_ui->m_txtApiKey->lineEdit()->setPlaceholderText(tr("Your store API key"));
   m_ui->m_txtApplicationName->lineEdit()->setPlaceholderText(tr("Name of your application"));
   m_ui->m_txtAuthorEmail->lineEdit()->setPlaceholderText(tr("Your e-mail"));
   m_ui->m_txtAuthorName->lineEdit()->setPlaceholderText(tr("Your name"));
 
-  connect(m_ui->m_txtApiKey->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(checkApiKey(QString)));
+  // Add categories.
+  m_ui->m_cmbCategory->addItems(QStringList() <<
+                                "Science" <<
+                                "Maths" <<
+                                "Physics" <<
+                                "Literature" <<
+                                "English" <<
+                                "Geography" <<
+                                "Social Studies" <<
+                                "Language" <<
+                                "History" <<
+                                "Chemistry");
+
   connect(m_ui->m_txtApplicationName->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(checkApplicationName(QString)));
   connect(m_ui->m_txtAuthorEmail->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(checkAuthorEmail(QString)));
   connect(m_ui->m_txtAuthorName->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(checkAuthorName(QString)));
   connect(this, SIGNAL(metadataChanged()), this, SLOT(checkMetadata()));
   connect(m_btnUpload, SIGNAL(clicked()), this, SLOT(startUpload()));
 
-  checkApiKey(m_ui->m_txtApiKey->lineEdit()->text());
   checkApplicationName(m_ui->m_txtApplicationName->lineEdit()->text());
   checkAuthorEmail(m_ui->m_txtAuthorEmail->lineEdit()->text());
   checkAuthorName(m_ui->m_txtAuthorName->lineEdit()->text());
@@ -86,14 +96,14 @@ void FormUploadBundle::checkAuthorName(const QString &author_name) {
   emit metadataChanged();
 }
 
-void FormUploadBundle::checkAuthorEmail(const QString &author_email) {
-  bool input_ok = !author_email.simplified().isEmpty();
+void FormUploadBundle::checkAuthorEmail(const QString &author_email) {  
+  bool input_ok = QRegExp("^\\S+@\\S+\\.\\S{3}$").exactMatch(author_email);
   m_ui->m_txtAuthorEmail->setStatus(input_ok ?
                                       WidgetWithStatus::Ok :
                                       WidgetWithStatus::Error,
                                     input_ok ?
                                       tr("Your e-mail is okay.") :
-                                      tr("Enter valid e-mail."));
+                                      tr("Enter valid e-mail in the form \"john@doe.com\"."));
 
   emit metadataChanged();
 }
@@ -110,21 +120,8 @@ void FormUploadBundle::checkApplicationName(const QString &application_name) {
   emit metadataChanged();
 }
 
-void FormUploadBundle::checkApiKey(const QString &api_key) {
-  bool input_ok = !api_key.simplified().isEmpty();
-  m_ui->m_txtApiKey->setStatus(input_ok ?
-                                 WidgetWithStatus::Ok :
-                                 WidgetWithStatus::Error,
-                               input_ok ?
-                                 tr("Your store API key is okay.") :
-                                 tr("Enter valid store API key."));
-
-  emit metadataChanged();
-}
-
 void FormUploadBundle::checkMetadata() {
-  m_btnUpload->setEnabled(m_ui->m_txtApiKey->status() == WidgetWithStatus::Ok &&
-                          m_ui->m_txtApplicationName->status() == WidgetWithStatus::Ok &&
+  m_btnUpload->setEnabled(m_ui->m_txtApplicationName->status() == WidgetWithStatus::Ok &&
                           m_ui->m_txtAuthorEmail->status() == WidgetWithStatus::Ok &&
                           m_ui->m_txtAuthorName->status() == WidgetWithStatus::Ok);
 
@@ -159,8 +156,9 @@ void FormUploadBundle::startUpload() {
   // Finally, start file upload.
   m_btnClose->setEnabled(false);
   m_btnUpload->setEnabled(false);
-  m_uploader->uploadBundleFile(STORE_ENDPOINT, xml_bundle_data, m_ui->m_txtApiKey->lineEdit()->text(),
-                               m_ui->m_txtAuthorName->lineEdit()->text(), m_ui->m_txtAuthorEmail->lineEdit()->text(),
+  m_uploader->uploadBundleFile(STORE_ENDPOINT, xml_bundle_data, STORE_API_KEY,
+                               m_ui->m_txtAuthorName->lineEdit()->text(),
+                               m_ui->m_txtAuthorEmail->lineEdit()->text(),
                                m_ui->m_txtApplicationName->lineEdit()->text());
   m_ui->m_lblProgress->setStatus(WidgetWithStatus::Information,
                                  tr("Uploading application..."),

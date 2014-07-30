@@ -263,7 +263,7 @@
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>&amp;Upload mobile application to store.</string>
+    <string>&amp;Submit application to BuildmLearn Store</string>
    </property>
   </action>
  </widget>

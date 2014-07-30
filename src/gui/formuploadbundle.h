@@ -55,7 +55,6 @@ class FormUploadBundle : public QDialog {
     void checkAuthorName(const QString &author_name);
     void checkAuthorEmail(const QString &author_email);
     void checkApplicationName(const QString &application_name);
-    void checkApiKey(const QString &api_key);
     void checkMetadata();
 
     void startUpload();

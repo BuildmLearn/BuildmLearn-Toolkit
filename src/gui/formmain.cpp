@@ -98,9 +98,11 @@ FormMain::FormMain(QWidget *parent)
   loadSizeAndPosition();
   createConnections();
 
+#if !defined(DEBUG)
   if (!qApp->settings()->value(APP_CFG_GEN, "enable_store", false).toBool()) {
     m_ui->m_actionUploadApplicationToStore->setVisible(false);
   }
+#endif
 
   // Make sure simulator window is displayed.
   m_ui->m_actionViewSimulatorWindow->setChecked(m_simulatorWindow->isVisibleOnStartup());
