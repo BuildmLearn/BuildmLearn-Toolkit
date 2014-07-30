@@ -96,7 +96,7 @@ class Downloader : public QObject {
     // Issues new network request.
     void runGetRequest(const QNetworkRequest &request);
 
-    void runPostRequest(const QNetworkRequest &request, QHttpMultiPart *multi_part);
+    void runPostRequest(const QNetworkRequest &request, const QByteArray &data);
 
   private:
     QNetworkReply *m_activeReply;

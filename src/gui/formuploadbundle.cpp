@@ -145,8 +145,8 @@ void FormUploadBundle::startUpload() {
     m_uploader = new Downloader(this);
 
     connect(m_uploader, SIGNAL(progress(qint64,qint64)), this, SLOT(uploadProgress(qint64,qint64)));
-    connect(m_uploader, SIGNAL(completed(QNetworkReply::NetworkError)), this,
-            SLOT(uploadCompleted(QNetworkReply::NetworkError)));
+    connect(m_uploader, SIGNAL(completed(QNetworkReply::NetworkError,QByteArray)), this,
+            SLOT(uploadCompleted(QNetworkReply::NetworkError,QByteArray)));
   }
 
   // Prepare parameters and data.
@@ -171,7 +171,9 @@ void FormUploadBundle::uploadProgress(qint64 bytes_sent, qint64 bytes_total) {
   m_ui->m_progressUpload->setValue(bytes_sent * 100.0 / bytes_total);
 }
 
-void FormUploadBundle::uploadCompleted(QNetworkReply::NetworkError error) {
+void FormUploadBundle::uploadCompleted(QNetworkReply::NetworkError error, QByteArray output) {
+  qDebug(qPrintable(output));
+
   if (error == QNetworkReply::NoError) {
     m_ui->m_lblProgress->setStatus(WidgetWithStatus::Ok,
                                    tr("Uploading finished successfully."),

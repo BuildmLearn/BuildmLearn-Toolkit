@@ -61,7 +61,7 @@ class FormUploadBundle : public QDialog {
     void startUpload();
 
     void uploadProgress(qint64 bytes_sent, qint64 bytes_total);
-    void uploadCompleted(QNetworkReply::NetworkError error);
+    void uploadCompleted(QNetworkReply::NetworkError error, QByteArray output);
 
   signals:
     void metadataChanged();
