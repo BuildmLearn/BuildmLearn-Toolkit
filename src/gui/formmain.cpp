@@ -139,7 +139,7 @@ void FormMain::setupSimulatorWindow() {
 void FormMain::createConnections() {
   // General connections.
   connect(qApp, SIGNAL(aboutToQuit()), this, SLOT(onAboutToQuit()));
-  connect(m_ui->m_actionQuit, SIGNAL(triggered()), qApp, SLOT(quit()));
+  connect(m_ui->m_actionQuit, SIGNAL(triggered()), this, SLOT(close()));
   connect(m_ui->m_actionCheckForUpdates, SIGNAL(triggered()), this, SLOT(showUpdates()));
   connect(m_ui->m_actionAboutToolkit, SIGNAL(triggered()), this, SLOT(showAbout()));
   connect(m_ui->m_actionSettings, SIGNAL(triggered()), this, SLOT(showSettings()));
@@ -264,6 +264,11 @@ void FormMain::saveSizeAndPosition() {
 
   // Save visual state of simulator window.
   m_simulatorWindow->saveState();
+}
+
+void FormMain::quit()
+{
+
 }
 
 void FormMain::startSimulation() {

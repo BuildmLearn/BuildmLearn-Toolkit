@@ -46,7 +46,7 @@ Downloader::Downloader(QObject *parent)
   m_timer->setInterval(2000);
   m_timer->setSingleShot(true);
 
-  connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
+  //connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
   connect(m_downloadManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(finished(QNetworkReply*)));
 }
 
@@ -67,7 +67,6 @@ void Downloader::downloadFile(const QString &url, bool protected_contents,
 
   // Set url for this reques.
   request.setUrl(url);
-
   runGetRequest(request);
 }
 
@@ -76,41 +75,67 @@ void Downloader::uploadBundleFile(QString url, const QString &bundle_data,
                                   const QString &author_email, const QString &application_name) {
   QHttpMultiPart *multi_part = new QHttpMultiPart(QHttpMultiPart::FormDataType);
 
+  QString bundle_file_name = author_name + "-" + application_name + ".buildmlearn";
+
   QHttpPart key_part;
   key_part.setHeader(QNetworkRequest::ContentDispositionHeader, QVariant("form-data; name=\"key\""));
-  key_part.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("text/plain"));
+  //key_part.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("text/plain"));
   key_part.setBody(key.toUtf8());
 
   QHttpPart author_name_part;
   author_name_part.setHeader(QNetworkRequest::ContentDispositionHeader, QVariant("form-data; name=\"author_name\""));
-  author_name_part.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("text/plain"));
+  //author_name_part.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("text/plain"));
   author_name_part.setBody(author_name.toUtf8());
 
   QHttpPart author_email_part;
   author_email_part.setHeader(QNetworkRequest::ContentDispositionHeader, QVariant("form-data; name=\"author_email\""));
-  author_email_part.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("text/plain"));
+  //author_email_part.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("text/plain"));
   author_email_part.setBody(author_email.toUtf8());
 
   QHttpPart application_name_part;
   application_name_part.setHeader(QNetworkRequest::ContentDispositionHeader, QVariant("form-data; name=\"application_name\""));
-  application_name_part.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("text/plain"));
+  //application_name_part.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("text/plain"));
   application_name_part.setBody(application_name.toUtf8());
 
   QHttpPart file_part;
-  file_part.setHeader(QNetworkRequest::ContentDispositionHeader, QVariant("form-data; name=\"file\""));
-  file_part.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("text/xml"));
+  file_part.setHeader(QNetworkRequest::ContentDispositionHeader,
+                      QString("form-data; name=\"file\"; filename=\"%1\"").arg(bundle_file_name));
+  file_part.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("application/octet-stream"));
   file_part.setBody(bundle_data.toUtf8());
 
   multi_part->append(key_part);
-  multi_part->append(author_name_part);
+ /* multi_part->append(author_name_part);
   multi_part->append(author_email_part);
   multi_part->append(application_name_part);
   multi_part->append(file_part);
-
+*/
   QNetworkRequest request;
 
-  request.setUrl(url);
-  runPostRequest(request, multi_part);
+  request.setUrl(QString("http://croozeus.com/buildmlearn/api/v1/testAPI.php"));
+  //request.setUrl(url);
+  request.setRawHeader("Accept-Encoding", "gzip,deflate,sdch");
+  request.setRawHeader("Accept", "*/*");
+  request.setRawHeader("Accept-Language", "cs-CZ,cs;q=0.8,en;q=0.6,sk;q=0.4");
+  request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
+  /*request.setHeader(QNetworkRequest::ContentTypeHeader,
+                    QVariant(QString("multipart/mixed; boundary=\"" + multi_part->boundary() + "\"")));
+*/
+  QString data = "key=%1&author_name=%2&author_email=%3&application_name=%4&file=%5";
+
+  data = data.arg(QUrl::toPercentEncoding(key),
+                  QUrl::toPercentEncoding(author_name),
+                  QUrl::toPercentEncoding(author_email),
+                  QUrl::toPercentEncoding(application_name),
+                  QUrl::toPercentEncoding(bundle_data));
+
+  m_timer->start();
+  m_activeReply = m_downloadManager->post(request, multi_part);
+  multi_part->setParent(m_activeReply);
+
+  connect(m_activeReply, SIGNAL(uploadProgress(qint64,qint64)),
+          this, SLOT(progressInternal(qint64,qint64)));
+
+  //runPostRequest(request, multi_part);
 }
 
 void Downloader::finished(QNetworkReply *reply) {
@@ -169,7 +194,7 @@ void Downloader::runGetRequest(const QNetworkRequest &request) {
 
 void Downloader::runPostRequest(const QNetworkRequest &request, QHttpMultiPart *multi_part) {
   m_timer->start();
-  m_activeReply = m_downloadManager->post(request, multi_part);
+  m_activeReply = m_downloadManager->post(request, "key=efgh");
   multi_part->setParent(m_activeReply);
 
   connect(m_activeReply, SIGNAL(uploadProgress(qint64,qint64)),

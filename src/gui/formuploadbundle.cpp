@@ -31,12 +31,26 @@
 #include "gui/formuploadbundle.h"
 
 #include "gui/lineeditwithstatus.h"
+#include "miscellaneous/application.h"
+#include "network-web/downloader.h"
+#include "core/templatefactory.h"
+#include "core/templatecore.h"
+#include "core/templateeditor.h"
+#include "definitions/definitions.h"
+
+#include <QPushButton>
 
 
-FormUploadBundle::FormUploadBundle(QWidget *parent) : QDialog(parent), m_ui(new Ui::FormUploadBundle) {
+FormUploadBundle::FormUploadBundle(QWidget *parent)
+  : QDialog(parent), m_ui(new Ui::FormUploadBundle), m_uploader(NULL) {
   m_ui->setupUi(this);
 
   setWindowFlags(Qt::MSWindowsFixedSizeDialogHint | Qt::Dialog | Qt::WindowSystemMenuHint | Qt::WindowTitleHint);
+
+  // Obtain buttons.
+  m_btnClose = m_ui->m_buttonBox->button(QDialogButtonBox::Close);
+  m_btnUpload = m_ui->m_buttonBox->addButton(tr("&Upload application"),
+                                             QDialogButtonBox::ActionRole);
 
   m_ui->m_txtApiKey->lineEdit()->setPlaceholderText(tr("Your store API key"));
   m_ui->m_txtApplicationName->lineEdit()->setPlaceholderText(tr("Name of your application"));
@@ -48,6 +62,12 @@ FormUploadBundle::FormUploadBundle(QWidget *parent) : QDialog(parent), m_ui(new 
   connect(m_ui->m_txtAuthorEmail->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(checkAuthorEmail(QString)));
   connect(m_ui->m_txtAuthorName->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(checkAuthorName(QString)));
   connect(this, SIGNAL(metadataChanged()), this, SLOT(checkMetadata()));
+  connect(m_btnUpload, SIGNAL(clicked()), this, SLOT(startUpload()));
+
+  checkApiKey(m_ui->m_txtApiKey->lineEdit()->text());
+  checkApplicationName(m_ui->m_txtApplicationName->lineEdit()->text());
+  checkAuthorEmail(m_ui->m_txtAuthorEmail->lineEdit()->text());
+  checkAuthorName(m_ui->m_txtAuthorName->lineEdit()->text());
 }
 
 FormUploadBundle::~FormUploadBundle() {
@@ -103,5 +123,66 @@ void FormUploadBundle::checkApiKey(const QString &api_key) {
 }
 
 void FormUploadBundle::checkMetadata() {
+  m_btnUpload->setEnabled(m_ui->m_txtApiKey->status() == WidgetWithStatus::Ok &&
+                          m_ui->m_txtApplicationName->status() == WidgetWithStatus::Ok &&
+                          m_ui->m_txtAuthorEmail->status() == WidgetWithStatus::Ok &&
+                          m_ui->m_txtAuthorName->status() == WidgetWithStatus::Ok);
 
+  if (m_btnUpload->isEnabled()) {
+    m_ui->m_lblProgress->setStatus(WidgetWithStatus::Ok,
+                                   tr("Ready to upload."),
+                                   tr("Ready to upload."));
+  }
+  else {
+    m_ui->m_lblProgress->setStatus(WidgetWithStatus::Error,
+                                   tr("Fill-in missing metadata."),
+                                   tr("In order to continue, fill-in missing metadata."));
+  }
+}
+
+void FormUploadBundle::startUpload() {
+  if (m_uploader == NULL) {
+    m_uploader = new Downloader(this);
+
+    connect(m_uploader, SIGNAL(progress(qint64,qint64)), this, SLOT(uploadProgress(qint64,qint64)));
+    connect(m_uploader, SIGNAL(completed(QNetworkReply::NetworkError)), this,
+            SLOT(uploadCompleted(QNetworkReply::NetworkError)));
+  }
+
+  // Prepare parameters and data.
+  QString xml_bundle_data = qApp->templateManager()->activeCore()->editor()->generateBundleData();
+
+  if (xml_bundle_data.isEmpty()) {
+    // TODO: error
+  }
+
+  // Finally, start file upload.
+  m_btnClose->setEnabled(false);
+  m_btnUpload->setEnabled(false);
+  m_uploader->uploadBundleFile(STORE_ENDPOINT, xml_bundle_data, m_ui->m_txtApiKey->lineEdit()->text(),
+                               m_ui->m_txtAuthorName->lineEdit()->text(), m_ui->m_txtAuthorEmail->lineEdit()->text(),
+                               m_ui->m_txtApplicationName->lineEdit()->text());
+  m_ui->m_lblProgress->setStatus(WidgetWithStatus::Information,
+                                 tr("Uploading application..."),
+                                 tr("Uploading application..."));
+}
+
+void FormUploadBundle::uploadProgress(qint64 bytes_sent, qint64 bytes_total) {
+  m_ui->m_progressUpload->setValue(bytes_sent * 100.0 / bytes_total);
+}
+
+void FormUploadBundle::uploadCompleted(QNetworkReply::NetworkError error) {
+  if (error == QNetworkReply::NoError) {
+    m_ui->m_lblProgress->setStatus(WidgetWithStatus::Ok,
+                                   tr("Uploading finished successfully."),
+                                   tr("Uploading finished successfully."));
+  }
+  else {
+    m_ui->m_lblProgress->setStatus(WidgetWithStatus::Error,
+                                   tr("Error occured during upload process."),
+                                   tr("Error occured during upload process."));
+  }
+
+  m_btnClose->setEnabled(true);
+  m_btnUpload->setEnabled(true);
 }

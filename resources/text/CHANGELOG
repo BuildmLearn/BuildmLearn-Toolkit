@@ -10,6 +10,7 @@ Main:
 Fixed:
 <ul>
 <li>Fixed bug #27.</li>
+<li>Prompt to save unsaved project is now correctly displayed if application quits via "Quit" menu item.</li>
 </ul>
 
 Added:

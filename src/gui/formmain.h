@@ -87,6 +87,8 @@ class FormMain : public QMainWindow {
     void saveSizeAndPosition();
 
   private slots:
+    void quit();
+
     // Starts new simulation.
     void startSimulation();
 

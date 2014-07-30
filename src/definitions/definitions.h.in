@@ -62,7 +62,6 @@
 
 #define RELEASES_LIST                   "https://raw.githubusercontent.com/BuildmLearn/BuildmLearn-Toolkit/portage/resources/text/UPDATES"
 #define DEFAULT_LOCALE                  "en_GB"
-#define URL_REGEXP                      "^(http|https|feed|ftp):\\/\\/[\\w\\-_]+(\\.[\\w\\-_]+)+([\\w\\-\\.,@?^=%&amp;:/~\\+#]*[\\w\\-\\@?^=%&amp;/~\\+#])?$"
 #define USER_AGENT_HTTP_HEADER          "User-Agent"
 #define ICON_SIZE_SETTINGS              16
 #define TRAY_ICON_BUBBLE_TIMEOUT        30000
@@ -75,6 +74,8 @@
 #define KEY_PATH                        "key.pk8"
 //#define TTS_SERVICE_URL                 "http://translate.google.com/translate_tts?tl=en&q=%1"
 #define TTS_SERVICE_URL                 "http://mary.dfki.de:59125/process?INPUT_TEXT=%1&INPUT_TYPE=TEXT&OUTPUT_TYPE=AUDIO&AUDIO=WAVE_FILE&LOCALE=en_US"
+
+#define STORE_ENDPOINT                  "http://croozeus.com/buildmlearn/api/v1/store_upload.php"
 
 #define XML_BUNDLE_ROOT_DATA_ELEMENT    "data"
 #define XML_BUNDLE_INDENTATION          2

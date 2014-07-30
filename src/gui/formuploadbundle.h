@@ -35,10 +35,14 @@
 
 #include "ui_formuploadbundle.h"
 
+#include <QNetworkReply>
+
 
 namespace Ui {
   class FormUploadBundle;
 }
+
+class Downloader;
 
 class FormUploadBundle : public QDialog {
     Q_OBJECT
@@ -52,14 +56,21 @@ class FormUploadBundle : public QDialog {
     void checkAuthorEmail(const QString &author_email);
     void checkApplicationName(const QString &application_name);
     void checkApiKey(const QString &api_key);
-
     void checkMetadata();
+
+    void startUpload();
+
+    void uploadProgress(qint64 bytes_sent, qint64 bytes_total);
+    void uploadCompleted(QNetworkReply::NetworkError error);
 
   signals:
     void metadataChanged();
 
   private:
     Ui::FormUploadBundle *m_ui;
+    QPushButton *m_btnUpload;
+    QPushButton *m_btnClose;
+    Downloader *m_uploader;
 };
 
 #endif // FORMUPLOADBUNDLE_H
