@@ -394,6 +394,7 @@ set(APP_SOURCES
   src/miscellaneous/localization.cpp
   src/miscellaneous/skinfactory.cpp
   src/miscellaneous/iofactory.cpp
+  src/miscellaneous/storefactory.cpp
 
   src/network-web/webfactory.cpp
   src/network-web/basenetworkaccessmanager.cpp
@@ -466,6 +467,7 @@ set(APP_HEADERS
   src/miscellaneous/localization.h
   src/miscellaneous/skinfactory.h
   src/miscellaneous/iofactory.h
+  src/miscellaneous/storefactory.h
 
   src/network-web/webfactory.h
   src/network-web/basenetworkaccessmanager.h

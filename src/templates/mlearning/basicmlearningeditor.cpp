@@ -120,6 +120,10 @@ QString BasicmLearningEditor::projectName() {
   return m_ui->m_txtName->lineEdit()->text();
 }
 
+QString BasicmLearningEditor::authorName() {
+  return m_ui->m_txtAuthor->lineEdit()->text();
+}
+
 void BasicmLearningEditor::addNewItem(const QString &title, const QString &description) {
   int marked_item = m_ui->m_listItems->currentRow();
   BasicmLearningItem new_item;

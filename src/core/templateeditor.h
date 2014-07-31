@@ -100,10 +100,14 @@ class TemplateEditor : public QWidget {
     /// \param is_dirty New dirtiness status.
     void setIsDirty(bool is_dirty);
 
-    /// \brief Access to project name of of current editor.
+    /// \brief Access to project name of current editor.
     /// \return Returns string of project name of current editor.
     /// This is usually text in some text box in the editor.
     virtual QString projectName() = 0;
+
+    /// \brief Access to author name of current editor.
+    /// \return Returns string of author name. This is usually text in some text box in the editor.
+    virtual QString authorName() = 0;
 
   public slots:
     /// \brief Dirtifies (sets m_isDirty to true) the editor.

@@ -60,6 +60,7 @@ class LearnSpellingsEditor : public TemplateEditor {
     bool canGenerateApplications();
 
     QString projectName();
+    QString authorName();
 
   private slots:
     void addSampleWord(const QString &title, const QString &description);

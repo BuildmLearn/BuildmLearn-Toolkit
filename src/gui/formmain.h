@@ -87,6 +87,7 @@ class FormMain : public QMainWindow {
     void saveSizeAndPosition();
 
   private slots:
+    // Called when user hits "Quit" button.
     void quit();
 
     // Starts new simulation.

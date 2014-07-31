@@ -652,8 +652,10 @@ void FormMain::generateMobileApplication() {
   }
 }
 
-void FormMain::uploadMobileApplicationToStore() {
-  QPointer<FormUploadBundle> form_pointer = new FormUploadBundle(this);
+void FormMain::uploadMobileApplicationToStore() { 
+  QPointer<FormUploadBundle> form_pointer = new FormUploadBundle(qApp->templateManager()->activeCore()->editor()->authorName(),
+                                                                 qApp->templateManager()->activeCore()->editor()->projectName(),
+                                                                 this);
   form_pointer.data()->exec();
   delete form_pointer.data();
 }

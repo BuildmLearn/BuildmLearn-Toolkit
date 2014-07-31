@@ -48,7 +48,9 @@ class FormUploadBundle : public QDialog {
     Q_OBJECT
 
   public:
-    explicit FormUploadBundle(QWidget *parent = 0);
+    explicit FormUploadBundle(const QString &author_name,
+                              const QString &application_name,
+                              QWidget *parent = 0);
     virtual ~FormUploadBundle();
 
   private slots:

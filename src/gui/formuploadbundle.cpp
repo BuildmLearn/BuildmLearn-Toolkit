@@ -32,6 +32,7 @@
 
 #include "gui/lineeditwithstatus.h"
 #include "miscellaneous/application.h"
+#include "miscellaneous/storefactory.h"
 #include "network-web/downloader.h"
 #include "core/templatefactory.h"
 #include "core/templatecore.h"
@@ -41,7 +42,9 @@
 #include <QPushButton>
 
 
-FormUploadBundle::FormUploadBundle(QWidget *parent)
+FormUploadBundle::FormUploadBundle(const QString &author_name,
+                                   const QString &application_name,
+                                   QWidget *parent)
   : QDialog(parent), m_ui(new Ui::FormUploadBundle), m_uploader(NULL) {
   m_ui->setupUi(this);
 
@@ -57,17 +60,16 @@ FormUploadBundle::FormUploadBundle(QWidget *parent)
   m_ui->m_txtAuthorName->lineEdit()->setPlaceholderText(tr("Your name"));
 
   // Add categories.
-  m_ui->m_cmbCategory->addItems(QStringList() <<
-                                "Science" <<
-                                "Maths" <<
-                                "Physics" <<
-                                "Literature" <<
-                                "English" <<
-                                "Geography" <<
-                                "Social Studies" <<
-                                "Language" <<
-                                "History" <<
-                                "Chemistry");
+  m_ui->m_cmbCategory->addItem(tr("Science"), "Science");
+  m_ui->m_cmbCategory->addItem(tr("Math"), "Math");
+  m_ui->m_cmbCategory->addItem(tr("Physics"), "Physics");
+  m_ui->m_cmbCategory->addItem(tr("Literature"), "Literature");
+  m_ui->m_cmbCategory->addItem(tr("English"), "English");
+  m_ui->m_cmbCategory->addItem(tr("Geography"), "Geography");
+  m_ui->m_cmbCategory->addItem(tr("Social Studies"), "Social Studies");
+  m_ui->m_cmbCategory->addItem(tr("Language"), "Language");
+  m_ui->m_cmbCategory->addItem(tr("History"), "History");
+  m_ui->m_cmbCategory->addItem(tr("Chemistry"), "Chemistry");
 
   connect(m_ui->m_txtApplicationName->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(checkApplicationName(QString)));
   connect(m_ui->m_txtAuthorEmail->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(checkAuthorEmail(QString)));
@@ -75,9 +77,21 @@ FormUploadBundle::FormUploadBundle(QWidget *parent)
   connect(this, SIGNAL(metadataChanged()), this, SLOT(checkMetadata()));
   connect(m_btnUpload, SIGNAL(clicked()), this, SLOT(startUpload()));
 
-  checkApplicationName(m_ui->m_txtApplicationName->lineEdit()->text());
+  if (application_name.isEmpty()) {
+    checkApplicationName(application_name);
+  }
+  else {
+    m_ui->m_txtApplicationName->lineEdit()->setText(application_name);
+  }
+
+  if (author_name.isEmpty()) {
+    checkAuthorName(author_name);
+  }
+  else {
+    m_ui->m_txtAuthorName->lineEdit()->setText(author_name);
+  }
+
   checkAuthorEmail(m_ui->m_txtAuthorEmail->lineEdit()->text());
-  checkAuthorName(m_ui->m_txtAuthorName->lineEdit()->text());
 }
 
 FormUploadBundle::~FormUploadBundle() {
@@ -138,19 +152,22 @@ void FormUploadBundle::checkMetadata() {
 }
 
 void FormUploadBundle::startUpload() {
+  // Prepare parameters and data.
+  QString xml_bundle_data = qApp->templateManager()->activeCore()->editor()->generateBundleData();
+
+  if (xml_bundle_data.isEmpty()) {
+    m_ui->m_lblProgress->setStatus(WidgetWithStatus::Error,
+                                   tr("Cannot upload application."),
+                                   tr("Application cannot be uploaded because template return error.\nContact application developers to fix this issue."));
+    return;
+  }
+
   if (m_uploader == NULL) {
     m_uploader = new Downloader(this);
 
     connect(m_uploader, SIGNAL(progress(qint64,qint64)), this, SLOT(uploadProgress(qint64,qint64)));
     connect(m_uploader, SIGNAL(completed(QNetworkReply::NetworkError,QByteArray)), this,
             SLOT(uploadCompleted(QNetworkReply::NetworkError,QByteArray)));
-  }
-
-  // Prepare parameters and data.
-  QString xml_bundle_data = qApp->templateManager()->activeCore()->editor()->generateBundleData();
-
-  if (xml_bundle_data.isEmpty()) {
-    // TODO: error
   }
 
   // Finally, start file upload.
@@ -172,15 +189,19 @@ void FormUploadBundle::uploadProgress(qint64 bytes_sent, qint64 bytes_total) {
 void FormUploadBundle::uploadCompleted(QNetworkReply::NetworkError error, QByteArray output) {
   qDebug(qPrintable(output));
 
-  if (error == QNetworkReply::NoError) {
+  // TODO: Decode output.
+  StoreFactory::UploadStatus status = StoreFactory::parseResponseXml(error, output);
+  QString string_status = StoreFactory::uploadStatusToString(status);
+
+  if (status == StoreFactory::Success) {
     m_ui->m_lblProgress->setStatus(WidgetWithStatus::Ok,
-                                   tr("Uploading finished successfully."),
-                                   tr("Uploading finished successfully."));
+                                   string_status,
+                                   string_status);
   }
   else {
     m_ui->m_lblProgress->setStatus(WidgetWithStatus::Error,
-                                   tr("Error occured during upload process."),
-                                   tr("Error occured during upload process."));
+                                   string_status,
+                                   string_status);
   }
 
   m_btnClose->setEnabled(true);

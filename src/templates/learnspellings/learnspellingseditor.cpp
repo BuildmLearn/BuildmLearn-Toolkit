@@ -266,6 +266,10 @@ QString LearnSpellingsEditor::projectName() {
   return m_ui->m_txtName->lineEdit()->text();
 }
 
+QString LearnSpellingsEditor::authorName() {
+  return m_ui->m_txtAuthor->lineEdit()->text();
+}
+
 void LearnSpellingsEditor::updateItemCount() {
   m_ui->m_txtNumberOfItems->lineEdit()->setText(QString::number(m_ui->m_listItems->count()));
 

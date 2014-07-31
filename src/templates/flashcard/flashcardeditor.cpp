@@ -218,6 +218,10 @@ QString FlashCardEditor::projectName() {
   return m_ui->m_txtName->lineEdit()->text();
 }
 
+QString FlashCardEditor::authorName() {
+  return m_ui->m_txtAuthor->lineEdit()->text();
+}
+
 void FlashCardEditor::checkAuthor() {
   if (m_ui->m_txtAuthor->lineEdit()->text().isEmpty()) {
     m_ui->m_txtAuthor->setStatus(WidgetWithStatus::Error,

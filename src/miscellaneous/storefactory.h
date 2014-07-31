@@ -28,65 +28,37 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#ifndef FLASHCARDEDITOR_H
-#define FLASHCARDEDITOR_H
+#ifndef STOREFACTORY_H
+#define STOREFACTORY_H
 
-#include "core/templateeditor.h"
+#include <QObject>
 
-#include "ui_flashcardeditor.h"
-#include "templates/flashcard/flashcardquestion.h"
+#include <QNetworkReply>
 
 
-namespace Ui {
-  class FlashCardEditor;
-}
-
-class FlashCardEditor : public TemplateEditor {
+class StoreFactory : public QObject {
     Q_OBJECT
 
-    friend class FlashCardSimulator;
-    friend class FlashCardCore;
-
   public:
-    explicit FlashCardEditor(TemplateCore *core, QWidget *parent = 0);
-    virtual ~FlashCardEditor();
+    enum UploadStatus {
+      Success,
+      NetworkError,
+      MissingParameter,
+      FileTooBig
+    };
 
-    bool canGenerateApplications();
-    QString generateBundleData();
-    bool loadBundleData(const QString &bundle_data);
+    explicit StoreFactory(QObject *parent = 0);
+    virtual ~StoreFactory();
 
-    QList<FlashCardQuestion> activeQuestions() const;
+    static QString uploadStatusToString(UploadStatus status);
 
-    QString projectName();
-    QString authorName();
+    static UploadStatus parseResponseXml(QNetworkReply::NetworkError error_status,
+                                         const QByteArray &response);
 
-  private:
-    void checkAuthor();
-    void checkHint();
-    void checkAnswer();
-    void checkName();
+  signals:
 
-  private slots:
-    void loadPicture(const QString &picture_path);
-    void setEditorsEnabled(bool enabled);
-    void updateQuestionCount();
-    void addQuestion();
-    void loadQuestion(int index);
-    void saveQuestion();
-    void removeQuestion();
-    void onAnswerChanged(const QString &new_answer);
-    void onHintChanged(const QString &new_hint);
-    void onAuthorChanged(const QString &new_author);
-    void onNameChanged(const QString &new_name);
-    void selectPicture();
-    void configureUpDown();
-    void moveQuestionUp();
-    void moveQuestionDown();
-    void addQuestion(const QString& question, const QString& answer, const QString& hint, const QString& picture_path);
+  public slots:
 
-  private:
-    Ui::FlashCardEditor *m_ui;
-    FlashCardQuestion m_activeQuestion;
 };
 
-#endif // FLASHCARDEDITOR_H
+#endif // STOREFACTORY_H

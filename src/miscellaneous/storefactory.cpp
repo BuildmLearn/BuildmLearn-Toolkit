@@ -28,72 +28,37 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#ifndef QUIZEDITOR_H
-#define QUIZEDITOR_H
-
-#include "core/templateeditor.h"
-
-#include "ui_quizeditor.h"
-#include "templates/quiz/quizquestion.h"
-
-#include <QIcon>
+#include "miscellaneous/storefactory.h"
 
 
-namespace Ui {
-  class QuizEditor;
+StoreFactory::StoreFactory(QObject *parent) : QObject(parent) {
 }
 
-class QuizSimulator;
-class QShowEvent;
+StoreFactory::~StoreFactory() {
+}
 
-/// \brief Editor for Quiz.
-/// \ingroup template-quiz
-class QuizEditor : public TemplateEditor {
-    Q_OBJECT
+QString StoreFactory::uploadStatusToString(StoreFactory::UploadStatus status) {
+  switch (status) {
+    case Success:
+      return tr("Application uploaded successfully.");
 
-    friend class QuizSimulator;
-    friend class QuizCore;
+    case NetworkError:
+      return tr("Network error occurred.");
 
-  public:
-    // Constructors and destructors.
-    explicit QuizEditor(TemplateCore *core, QWidget *parent = 0);
-    virtual ~QuizEditor();
+    case MissingParameter:
+      return tr("Error - some parameters are missing.");
 
-    QString generateBundleData();
-    bool canGenerateApplications();
-    bool loadBundleData(const QString &bundle_data);
+    case FileTooBig:
+      return tr("Application file is too big.");
 
-    /// \brief Access to list of added questions.
-    /// \return Returns list of added questions.
-    QList<QuizQuestion> activeQuestions() const;
+    default:
+      return tr("Unknown status.");
+  }
+}
 
-    QString projectName();
-    QString authorName();
+StoreFactory::UploadStatus StoreFactory::parseResponseXml(QNetworkReply::NetworkError error_status,
+                                                          const QByteArray &response) {
+  // TODO: finalize this.
 
-  private slots:
-    void updateQuestionCount();
-    void addQuestion(const QString &question, const QStringList &answers, int correct_answer);
-    void addQuestion();
-    void loadQuestion(int index);
-    void removeQuestion();
-    void saveQuestion();
-    void moveQuestionUp();
-    void moveQuestionDown();
-
-    void configureUpDown();
-    void setEditorsEnabled(bool enabled);
-
-    void checkName();
-    void checkAuthor();
-
-    void updateNameStatus();
-    void updateAuthorStatus();
-
-  private:
-    QuizQuestion m_activeQuestion;
-    Ui::QuizEditor *m_ui;
-    QIcon m_iconYes;
-    QIcon m_iconNo;
-};
-
-#endif // QUIZEDITOR_H
+  return Success;
+}

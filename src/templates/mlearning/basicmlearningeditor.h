@@ -60,6 +60,7 @@ class BasicmLearningEditor : public TemplateEditor {
     bool loadBundleData(const QString &bundle_data);
 
     QString projectName();
+    QString authorName();
 
   private slots:
     void addNewItem(const QString &title, const QString &description);
