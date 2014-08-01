@@ -43,11 +43,12 @@ class StoreFactory : public QObject {
     enum UploadStatus {
       Success,
       NetworkError,
-      MissingParameter,
-      FileTooBig
+      MissingParameters,
+      InvalidKey,
+      FileTooBig,
+      OtherError
     };
 
-    explicit StoreFactory(QObject *parent = 0);
     virtual ~StoreFactory();
 
     static QString uploadStatusToString(UploadStatus status);
@@ -55,10 +56,8 @@ class StoreFactory : public QObject {
     static UploadStatus parseResponseXml(QNetworkReply::NetworkError error_status,
                                          const QByteArray &response);
 
-  signals:
-
-  public slots:
-
+  private:
+    explicit StoreFactory(QObject *parent = 0);
 };
 
 #endif // STOREFACTORY_H

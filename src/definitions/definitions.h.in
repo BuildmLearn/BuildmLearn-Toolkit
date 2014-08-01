@@ -76,7 +76,10 @@
 #define TTS_SERVICE_URL                 "http://mary.dfki.de:59125/process?INPUT_TEXT=%1&INPUT_TYPE=TEXT&OUTPUT_TYPE=AUDIO&AUDIO=WAVE_FILE&LOCALE=en_US"
 
 #define STORE_API_KEY                   "BuildmLearnToolkit"
-#define STORE_ENDPOINT                  "http://croozeus.com/buildmlearn/api/v1/store_upload.php"
+#define STORE_ENDPOINT                  "http://croozeus.com/buildmlearn/api/v1/storeAPI.php"
+#define STORE_ANSWER_SUCCESS            "success"
+#define STORE_ANSWER_NO_PARAMETERS      "missing_parameters"
+#define STORE_ANSWER_INVALID_KEY        "invalid_key"
 
 #define XML_BUNDLE_ROOT_DATA_ELEMENT    "data"
 #define XML_BUNDLE_INDENTATION          2

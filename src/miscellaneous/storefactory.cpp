@@ -30,6 +30,11 @@
 
 #include "miscellaneous/storefactory.h"
 
+#include "definitions/definitions.h"
+
+#include <QDomDocument>
+#include <QDomElement>
+
 
 StoreFactory::StoreFactory(QObject *parent) : QObject(parent) {
 }
@@ -45,7 +50,7 @@ QString StoreFactory::uploadStatusToString(StoreFactory::UploadStatus status) {
     case NetworkError:
       return tr("Network error occurred.");
 
-    case MissingParameter:
+    case MissingParameters:
       return tr("Error - some parameters are missing.");
 
     case FileTooBig:
@@ -59,6 +64,28 @@ QString StoreFactory::uploadStatusToString(StoreFactory::UploadStatus status) {
 StoreFactory::UploadStatus StoreFactory::parseResponseXml(QNetworkReply::NetworkError error_status,
                                                           const QByteArray &response) {
   // TODO: finalize this.
+  switch (error_status) {
+    case QNetworkReply::NoError: {
+      QDomDocument xml_response;
+      xml_response.setContent(QString(response));
 
-  return Success;
+      QString status = xml_response.documentElement().namedItem("status").toElement().text();
+
+      if (status == STORE_ANSWER_SUCCESS) {
+        return Success;
+      }
+      else if (status == STORE_ANSWER_INVALID_KEY) {
+        return InvalidKey;
+      }
+      else if (status == STORE_ANSWER_NO_PARAMETERS) {
+        return MissingParameters;
+      }
+      else {
+        return OtherError;
+      }
+    }
+
+    default:
+      return NetworkError;
+  }
 }

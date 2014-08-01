@@ -5,6 +5,7 @@
 Main:
 <ul>
 <li>Code cleanups, stabilization.</li>
+<li>Experimental BuildmLearn Store functionality added.</li>
 </ul>
 
 Fixed:

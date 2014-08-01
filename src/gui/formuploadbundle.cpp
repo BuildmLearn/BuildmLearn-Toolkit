@@ -34,6 +34,7 @@
 #include "miscellaneous/application.h"
 #include "miscellaneous/storefactory.h"
 #include "network-web/downloader.h"
+#include "network-web/networkfactory.h"
 #include "core/templatefactory.h"
 #include "core/templatecore.h"
 #include "core/templateeditor.h"
@@ -110,8 +111,8 @@ void FormUploadBundle::checkAuthorName(const QString &author_name) {
   emit metadataChanged();
 }
 
-void FormUploadBundle::checkAuthorEmail(const QString &author_email) {  
-  bool input_ok = QRegExp("^\\S+@\\S+\\.\\S{3}$").exactMatch(author_email);
+void FormUploadBundle::checkAuthorEmail(const QString &author_email) {
+  bool input_ok = QRegExp("^\\S+@\\S+\\.\\S{2,3}$").exactMatch(author_email);
   m_ui->m_txtAuthorEmail->setStatus(input_ok ?
                                       WidgetWithStatus::Ok :
                                       WidgetWithStatus::Error,
@@ -173,7 +174,25 @@ void FormUploadBundle::startUpload() {
   // Finally, start file upload.
   m_btnClose->setEnabled(false);
   m_btnUpload->setEnabled(false);
-  m_uploader->uploadBundleFile(STORE_ENDPOINT, xml_bundle_data, STORE_API_KEY,
+
+  // Obtain real endpoint.
+
+  QByteArray endpoint;
+  QNetworkReply::NetworkError endpoint_status = NetworkFactory::downloadFile(STORE_ENDPOINT, 5000,
+                                                                             endpoint);
+
+  if (endpoint_status != QNetworkReply::NoError) {
+    // Endpoint was not obtained.
+    m_btnClose->setEnabled(true);
+    m_btnUpload->setEnabled(true);
+    m_ui->m_lblProgress->setStatus(WidgetWithStatus::Error,
+                                   tr("Endpoint was not obtained."),
+                                   tr("Endpoint was not obtained."));
+
+    return;
+  }
+
+  m_uploader->uploadBundleFile(QString(endpoint), xml_bundle_data, STORE_API_KEY,
                                m_ui->m_txtAuthorName->lineEdit()->text(),
                                m_ui->m_txtAuthorEmail->lineEdit()->text(),
                                m_ui->m_txtApplicationName->lineEdit()->text());
@@ -184,6 +203,7 @@ void FormUploadBundle::startUpload() {
 
 void FormUploadBundle::uploadProgress(qint64 bytes_sent, qint64 bytes_total) {
   m_ui->m_progressUpload->setValue(bytes_sent * 100.0 / bytes_total);
+  qApp->processEvents();
 }
 
 void FormUploadBundle::uploadCompleted(QNetworkReply::NetworkError error, QByteArray output) {

@@ -73,7 +73,6 @@ void Downloader::downloadFile(const QString &url, bool protected_contents,
 void Downloader::uploadBundleFile(QString url, const QString &bundle_data,
                                   const QString &key, const QString &author_name,
                                   const QString &author_email, const QString &application_name) {
-  QString bundle_file_name = author_name + "-" + application_name + ".buildmlearn";
   QNetworkRequest request;
 
   request.setUrl(url);
