@@ -33,6 +33,7 @@
 #include "gui/lineeditwithstatus.h"
 #include "miscellaneous/application.h"
 #include "miscellaneous/storefactory.h"
+#include "miscellaneous/iconfactory.h"
 #include "network-web/downloader.h"
 #include "network-web/networkfactory.h"
 #include "core/templatefactory.h"
@@ -50,6 +51,7 @@ FormUploadBundle::FormUploadBundle(const QString &author_name,
   m_ui->setupUi(this);
 
   setWindowFlags(Qt::MSWindowsFixedSizeDialogHint | Qt::Dialog | Qt::WindowSystemMenuHint | Qt::WindowTitleHint);
+  setWindowIcon(IconFactory::instance()->fromTheme("project-upload"));
 
   // Obtain buttons.
   m_btnClose = m_ui->m_buttonBox->button(QDialogButtonBox::Close);

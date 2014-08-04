@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="hi_IN">
+<TS version="2.1" language="hi_IN">
 <context>
     <name>Application</name>
     <message>
@@ -59,42 +59,47 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/miscellaneous/application.cpp" line="224"/>
+        <location filename="../src/miscellaneous/application.cpp" line="223"/>
         <source>SIGNAPK found and probably working.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/miscellaneous/application.cpp" line="227"/>
+        <location filename="../src/miscellaneous/application.cpp" line="226"/>
+        <source>SIGNAPK found and but there is high risk it is invalid.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/miscellaneous/application.cpp" line="229"/>
         <source>SIGNAPK returned uknown code.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/miscellaneous/application.cpp" line="269"/>
+        <location filename="../src/miscellaneous/application.cpp" line="271"/>
         <source>Update available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/miscellaneous/application.cpp" line="270"/>
+        <location filename="../src/miscellaneous/application.cpp" line="272"/>
         <source>New application update is available.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/miscellaneous/application.cpp" line="279"/>
+        <location filename="../src/miscellaneous/application.cpp" line="281"/>
         <source>No updates available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/miscellaneous/application.cpp" line="280"/>
+        <location filename="../src/miscellaneous/application.cpp" line="282"/>
         <source>No new updates are available.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/miscellaneous/application.cpp" line="289"/>
+        <location filename="../src/miscellaneous/application.cpp" line="291"/>
         <source>Update check error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/miscellaneous/application.cpp" line="290"/>
+        <location filename="../src/miscellaneous/application.cpp" line="292"/>
         <source>Could not check for updates: %1.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -102,42 +107,42 @@
 <context>
     <name>BasicmLearningCore</name>
     <message>
-        <location filename="../src/templates/mlearning/basicmlearningcore.cpp" line="59"/>
+        <location filename="../src/templates/mlearning/basicmlearningcore.cpp" line="57"/>
         <source>Preparing workspace...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/mlearning/basicmlearningcore.cpp" line="63"/>
+        <location filename="../src/templates/mlearning/basicmlearningcore.cpp" line="61"/>
         <source>Extracting raw data from editor...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/mlearning/basicmlearningcore.cpp" line="79"/>
+        <location filename="../src/templates/mlearning/basicmlearningcore.cpp" line="77"/>
         <source>Creating base temporary folder...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/mlearning/basicmlearningcore.cpp" line="87"/>
-        <source>Writting info data into file...</source>
+        <location filename="../src/templates/mlearning/basicmlearningcore.cpp" line="85"/>
+        <source>Writting item data into file...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/mlearning/basicmlearningcore.cpp" line="95"/>
+        <location filename="../src/templates/mlearning/basicmlearningcore.cpp" line="93"/>
         <source>Copying template apk file...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/mlearning/basicmlearningcore.cpp" line="105"/>
+        <location filename="../src/templates/mlearning/basicmlearningcore.cpp" line="103"/>
         <source>Inserting data into apk file...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/mlearning/basicmlearningcore.cpp" line="120"/>
+        <location filename="../src/templates/mlearning/basicmlearningcore.cpp" line="118"/>
         <source>Signing apk file...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/mlearning/basicmlearningcore.cpp" line="138"/>
+        <location filename="../src/templates/mlearning/basicmlearningcore.cpp" line="136"/>
         <source>Copying final apk file to output directory...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -150,75 +155,75 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/mlearning/basicmlearningeditor.ui" line="20"/>
+        <location filename="../src/templates/mlearning/basicmlearningeditor.ui" line="32"/>
         <source>Item editor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/mlearning/basicmlearningeditor.ui" line="29"/>
-        <source>TItle</source>
+        <location filename="../src/templates/mlearning/basicmlearningeditor.ui" line="41"/>
+        <source>Title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/mlearning/basicmlearningeditor.ui" line="36"/>
+        <location filename="../src/templates/mlearning/basicmlearningeditor.ui" line="48"/>
         <source>Description</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/mlearning/basicmlearningeditor.ui" line="49"/>
+        <location filename="../src/templates/mlearning/basicmlearningeditor.ui" line="61"/>
         <source>Active items</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/mlearning/basicmlearningeditor.ui" line="55"/>
+        <location filename="../src/templates/mlearning/basicmlearningeditor.ui" line="67"/>
         <source>Add new item.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/mlearning/basicmlearningeditor.ui" line="58"/>
-        <location filename="../src/templates/mlearning/basicmlearningeditor.ui" line="77"/>
-        <location filename="../src/templates/mlearning/basicmlearningeditor.ui" line="96"/>
-        <location filename="../src/templates/mlearning/basicmlearningeditor.ui" line="115"/>
+        <location filename="../src/templates/mlearning/basicmlearningeditor.ui" line="70"/>
+        <location filename="../src/templates/mlearning/basicmlearningeditor.ui" line="89"/>
+        <location filename="../src/templates/mlearning/basicmlearningeditor.ui" line="108"/>
+        <location filename="../src/templates/mlearning/basicmlearningeditor.ui" line="127"/>
         <source>...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/mlearning/basicmlearningeditor.ui" line="74"/>
+        <location filename="../src/templates/mlearning/basicmlearningeditor.ui" line="86"/>
         <source>Move item down.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/mlearning/basicmlearningeditor.ui" line="93"/>
+        <location filename="../src/templates/mlearning/basicmlearningeditor.ui" line="105"/>
         <source>Remove selected item.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/mlearning/basicmlearningeditor.ui" line="112"/>
+        <location filename="../src/templates/mlearning/basicmlearningeditor.ui" line="124"/>
         <source>Move item up.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/mlearning/basicmlearningeditor.ui" line="147"/>
+        <location filename="../src/templates/mlearning/basicmlearningeditor.ui" line="159"/>
         <source>This list contains already added questions.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/mlearning/basicmlearningeditor.ui" line="157"/>
+        <location filename="../src/templates/mlearning/basicmlearningeditor.ui" line="169"/>
         <source>Collection metadata</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/mlearning/basicmlearningeditor.ui" line="166"/>
+        <location filename="../src/templates/mlearning/basicmlearningeditor.ui" line="178"/>
         <source>Author</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/mlearning/basicmlearningeditor.ui" line="176"/>
+        <location filename="../src/templates/mlearning/basicmlearningeditor.ui" line="188"/>
         <source>Collection title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/mlearning/basicmlearningeditor.ui" line="186"/>
+        <location filename="../src/templates/mlearning/basicmlearningeditor.ui" line="198"/>
         <source>Number of items</source>
         <translation type="unfinished"></translation>
     </message>
@@ -243,78 +248,72 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/mlearning/basicmlearningeditor.cpp" line="71"/>
+        <location filename="../src/templates/mlearning/basicmlearningeditor.cpp" line="59"/>
         <source>John Doe</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/mlearning/basicmlearningeditor.cpp" line="72"/>
+        <location filename="../src/templates/mlearning/basicmlearningeditor.cpp" line="60"/>
         <source>Greatest collection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/mlearning/basicmlearningeditor.cpp" line="89"/>
+        <location filename="../src/templates/mlearning/basicmlearningeditor.cpp" line="164"/>
         <source>No author is specified.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/mlearning/basicmlearningeditor.cpp" line="93"/>
+        <location filename="../src/templates/mlearning/basicmlearningeditor.cpp" line="168"/>
         <source>Author is specified.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/mlearning/basicmlearningeditor.cpp" line="100"/>
+        <location filename="../src/templates/mlearning/basicmlearningeditor.cpp" line="175"/>
         <source>No collection title is specified.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/mlearning/basicmlearningeditor.cpp" line="104"/>
+        <location filename="../src/templates/mlearning/basicmlearningeditor.cpp" line="179"/>
         <source>Collection title is specified.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/mlearning/basicmlearningeditor.cpp" line="165"/>
-        <source>Simulation or mobile application generation cannot be started 
-because there is no question added or quiz does not have name.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/templates/mlearning/basicmlearningeditor.cpp" line="206"/>
+        <location filename="../src/templates/mlearning/basicmlearningeditor.cpp" line="274"/>
         <source>Collection contains at least one item.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/mlearning/basicmlearningeditor.cpp" line="209"/>
+        <location filename="../src/templates/mlearning/basicmlearningeditor.cpp" line="277"/>
         <source>Collection does not contain any items.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/mlearning/basicmlearningeditor.cpp" line="218"/>
+        <location filename="../src/templates/mlearning/basicmlearningeditor.cpp" line="156"/>
         <source>Prague</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/mlearning/basicmlearningeditor.cpp" line="219"/>
+        <location filename="../src/templates/mlearning/basicmlearningeditor.cpp" line="156"/>
         <source>Prague is the city which lies in the heart of Europe.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/mlearning/basicmlearningeditor.cpp" line="290"/>
+        <location filename="../src/templates/mlearning/basicmlearningeditor.cpp" line="328"/>
         <source>Please, enter some title.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/mlearning/basicmlearningeditor.cpp" line="293"/>
+        <location filename="../src/templates/mlearning/basicmlearningeditor.cpp" line="331"/>
         <source>Title seems to be okay.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/mlearning/basicmlearningeditor.cpp" line="317"/>
+        <location filename="../src/templates/mlearning/basicmlearningeditor.cpp" line="355"/>
         <source>Please, enter some description.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/mlearning/basicmlearningeditor.cpp" line="320"/>
+        <location filename="../src/templates/mlearning/basicmlearningeditor.cpp" line="358"/>
         <source>Description seems to be okay.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -330,42 +329,42 @@ because there is no question added or quiz does not have name.</source>
 <context>
     <name>FlashCardCore</name>
     <message>
-        <location filename="../src/templates/flashcard/flashcardcore.cpp" line="65"/>
+        <location filename="../src/templates/flashcard/flashcardcore.cpp" line="57"/>
         <source>Preparing workspace...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/flashcard/flashcardcore.cpp" line="69"/>
+        <location filename="../src/templates/flashcard/flashcardcore.cpp" line="61"/>
         <source>Extracting raw data from editor...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/flashcard/flashcardcore.cpp" line="85"/>
+        <location filename="../src/templates/flashcard/flashcardcore.cpp" line="77"/>
         <source>Creating base temporary folder...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/flashcard/flashcardcore.cpp" line="93"/>
+        <location filename="../src/templates/flashcard/flashcardcore.cpp" line="85"/>
         <source>Writting info data into file...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/flashcard/flashcardcore.cpp" line="101"/>
+        <location filename="../src/templates/flashcard/flashcardcore.cpp" line="93"/>
         <source>Copying template apk file...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/flashcard/flashcardcore.cpp" line="112"/>
+        <location filename="../src/templates/flashcard/flashcardcore.cpp" line="104"/>
         <source>Inserting data into apk file...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/flashcard/flashcardcore.cpp" line="127"/>
+        <location filename="../src/templates/flashcard/flashcardcore.cpp" line="119"/>
         <source>Signing apk file...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/flashcard/flashcardcore.cpp" line="145"/>
+        <location filename="../src/templates/flashcard/flashcardcore.cpp" line="137"/>
         <source>Copying final apk file to output directory...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -491,104 +490,103 @@ because there is no question added or quiz does not have name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/flashcard/flashcardeditor.cpp" line="80"/>
+        <location filename="../src/templates/flashcard/flashcardeditor.cpp" line="66"/>
         <source>John Doe</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/flashcard/flashcardeditor.cpp" line="81"/>
+        <location filename="../src/templates/flashcard/flashcardeditor.cpp" line="67"/>
         <source>Greatest collection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/flashcard/flashcardeditor.cpp" line="100"/>
+        <location filename="../src/templates/flashcard/flashcardeditor.cpp" line="101"/>
         <source>Collection contains at least one question.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/flashcard/flashcardeditor.cpp" line="103"/>
+        <location filename="../src/templates/flashcard/flashcardeditor.cpp" line="104"/>
         <source>Collection does not contain any questions.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/flashcard/flashcardeditor.cpp" line="120"/>
-        <source>Simulation or mobile application generation of flash card template cannot be started 
-because there is no question added or quiz does not have name.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/templates/flashcard/flashcardeditor.cpp" line="183"/>
+        <location filename="../src/templates/flashcard/flashcardeditor.cpp" line="228"/>
         <source>No author is specified.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/flashcard/flashcardeditor.cpp" line="187"/>
+        <location filename="../src/templates/flashcard/flashcardeditor.cpp" line="232"/>
         <source>Author is specified.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/flashcard/flashcardeditor.cpp" line="194"/>
+        <location filename="../src/templates/flashcard/flashcardeditor.cpp" line="239"/>
         <source>Hint is not specified.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/flashcard/flashcardeditor.cpp" line="198"/>
+        <location filename="../src/templates/flashcard/flashcardeditor.cpp" line="243"/>
         <source>Hint is specified.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/flashcard/flashcardeditor.cpp" line="205"/>
+        <location filename="../src/templates/flashcard/flashcardeditor.cpp" line="250"/>
         <source>Answer is not specified.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/flashcard/flashcardeditor.cpp" line="209"/>
+        <location filename="../src/templates/flashcard/flashcardeditor.cpp" line="254"/>
         <source>Answer is specified.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/flashcard/flashcardeditor.cpp" line="216"/>
+        <location filename="../src/templates/flashcard/flashcardeditor.cpp" line="261"/>
         <source>No collection name is specified.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/flashcard/flashcardeditor.cpp" line="220"/>
+        <location filename="../src/templates/flashcard/flashcardeditor.cpp" line="265"/>
         <source>Collection name is specified.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/flashcard/flashcardeditor.cpp" line="270"/>
-        <location filename="../src/templates/flashcard/flashcardeditor.cpp" line="271"/>
+        <location filename="../src/templates/flashcard/flashcardeditor.cpp" line="315"/>
+        <location filename="../src/templates/flashcard/flashcardeditor.cpp" line="316"/>
         <source>Picture is selected.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/flashcard/flashcardeditor.cpp" line="276"/>
+        <location filename="../src/templates/flashcard/flashcardeditor.cpp" line="321"/>
         <source>Picture is not selected.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/flashcard/flashcardeditor.cpp" line="277"/>
+        <location filename="../src/templates/flashcard/flashcardeditor.cpp" line="322"/>
         <source>No picture is selected.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/flashcard/flashcardeditor.cpp" line="288"/>
+        <location filename="../src/templates/flashcard/flashcardeditor.cpp" line="362"/>
         <source>What animal do you see on the picture?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/flashcard/flashcardeditor.cpp" line="289"/>
+        <location filename="../src/templates/flashcard/flashcardeditor.cpp" line="363"/>
+        <source>cat</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/flashcard/flashcardeditor.cpp" line="364"/>
         <source>This animal is hated by dog.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/flashcard/flashcardeditor.cpp" line="407"/>
+        <location filename="../src/templates/flashcard/flashcardeditor.cpp" line="470"/>
         <source>Select picture for question</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/flashcard/flashcardeditor.cpp" line="409"/>
+        <location filename="../src/templates/flashcard/flashcardeditor.cpp" line="472"/>
         <source>Images (*.gif *.jpg *.png)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -611,22 +609,22 @@ because there is no question added or quiz does not have name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/flashcard/flashcarditem.ui" line="128"/>
+        <location filename="../src/templates/flashcard/flashcarditem.ui" line="137"/>
         <source>&amp;Previous</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/flashcard/flashcarditem.ui" line="135"/>
+        <location filename="../src/templates/flashcard/flashcarditem.ui" line="144"/>
         <source>&amp;Flip</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/flashcard/flashcarditem.ui" line="142"/>
+        <location filename="../src/templates/flashcard/flashcarditem.ui" line="151"/>
         <source>&amp;Next</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/flashcard/flashcarditem.cpp" line="55"/>
+        <location filename="../src/templates/flashcard/flashcarditem.cpp" line="59"/>
         <source>Question number %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -698,8 +696,14 @@ because there is no question added or quiz does not have name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formhelp.ui" line="26"/>
+        <location filename="../src/gui/formhelp.ui" line="37"/>
         <source>Do not show this dialog again.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/formhelp.cpp" line="54"/>
+        <source>&lt;body&gt;&lt;h2 style=&quot;text-align: center&quot;&gt;Welcome to help&lt;/h2&gt;&lt;p style=&quot;text-align: center&quot;&gt;&lt;a href=&quot;#introduction&quot;&gt;Introduction&lt;/a&gt; | &lt;a href=&quot;#simulator&quot;&gt;Simulator&lt;/a&gt; | &lt;a href=&quot;#xml-bundles&quot;&gt;XML bundles&lt;/a&gt; | &lt;a href=&quot;#other-facts&quot;&gt;Other facts&lt;/a&gt;&lt;/p&gt;&lt;a name=&quot;introduction&quot;&gt;&lt;/a&gt;&lt;h3 style=&quot;text-align: center&quot;&gt;Introduction&lt;/h3&gt;&lt;p&gt;BuildmLearn Toolkit is an application which helps you to create interactive mobile applications in a WYSIWYG way. You do not need to know anything about programming, no extra skills are required. You simply put in the content you would like to have in your application and that&apos;s all.&lt;/p&gt;&lt;p&gt;You can start new mobile application project by going into main menu and using item &quot;Project -&gt; New project&quot;. Toolkit contains several templates to start with, including template for quiz-like applications or template for learning of word spelling. After creating new project, you will see that main window of BuildmLearn Toolkit contains user interface which expects your input, this is the &quot;editor&quot; of your project. When you save your project using &quot;Project -&gt; Save project as...&quot; menu item, then all data from &quot;editor&quot; are saved, so that you can continue in your work later.&lt;/p&gt;&lt;p&gt;BuildmLearn Toolkit&apos;s main ability is that it is able to generate mobile applications for Android (*.apk files) for you. You just need to select template, fill it with data and use menu item &quot;Project -&gt; Generate mobile application&quot;. Note that this option is only available if &quot;editor&quot; of your template contains enough data and application has correct settings. You can tweak relevant settings in &quot;Tools -&gt; Settings&quot; dialog, in &quot;Project .apk file generation&quot; section. You need to have JRE (Java Runtime Environment) installed in order for this feature to work.&lt;/p&gt;&lt;a name=&quot;simulator&quot;&gt;&lt;/a&gt;&lt;h3 style=&quot;text-align: center&quot;&gt;Simulator&lt;/h3&gt;&lt;p&gt;This applications provides you with option to test you application before you generate it. Simply load your project, fill it with data and hit &quot;Simulator -&gt; Run new simulation&quot; menu item. Separate simulator window with your simulation will appear if not visible already.&lt;/p&gt;&lt;a name=&quot;xml-bundles&quot;&gt;&lt;/a&gt;&lt;h3 style=&quot;text-align: center&quot;&gt;XML bundles&lt;/h3&gt;&lt;p&gt;You can save your work so that you can carry it to another computer and/or continue in your work later. You can do that by pushing &quot;Project -&gt; Save project as...&quot; menu item. Projects are stored in special XML files with &quot;*.buildmlearn&quot; suffix.&lt;/p&gt;&lt;a name=&quot;other-facts&quot;&gt;&lt;/a&gt;&lt;h3 style=&quot;text-align: center&quot;&gt;Other facts&lt;/h3&gt;&lt;p&gt;BuildmLearn Toolkit is portable application which does not store anything to system registry. The only system folders it uses are user-specific folders.&lt;/p&gt;&lt;/body&gt;</source>
+        <extracomment>Help HTML contents, translate including HTML markup!!!</extracomment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -712,103 +716,108 @@ because there is no question added or quiz does not have name.</source>
     </message>
     <message>
         <location filename="../src/gui/formmain.ui" line="33"/>
-        <location filename="../src/gui/formmain.ui" line="206"/>
+        <location filename="../src/gui/formmain.ui" line="207"/>
         <source>&amp;Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formmain.ui" line="54"/>
+        <location filename="../src/gui/formmain.ui" line="55"/>
         <source>&amp;Tools</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formmain.ui" line="62"/>
+        <location filename="../src/gui/formmain.ui" line="63"/>
         <source>&amp;View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formmain.ui" line="66"/>
+        <location filename="../src/gui/formmain.ui" line="67"/>
         <source>&amp;Simulator window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formmain.ui" line="75"/>
+        <location filename="../src/gui/formmain.ui" line="76"/>
         <source>&amp;Simulator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formmain.ui" line="107"/>
+        <location filename="../src/gui/formmain.ui" line="108"/>
         <source>Check for updates</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formmain.ui" line="115"/>
+        <location filename="../src/gui/formmain.ui" line="116"/>
         <source>&amp;About BuildmLearn Toolkit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formmain.ui" line="123"/>
+        <location filename="../src/gui/formmain.ui" line="124"/>
         <source>&amp;Quit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formmain.ui" line="137"/>
+        <location filename="../src/gui/formmain.ui" line="138"/>
         <source>&amp;Generate mobile application</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formmain.ui" line="145"/>
+        <location filename="../src/gui/formmain.ui" line="146"/>
         <source>&amp;New project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formmain.ui" line="159"/>
+        <location filename="../src/gui/formmain.ui" line="160"/>
         <source>&amp;Save project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formmain.ui" line="173"/>
+        <location filename="../src/gui/formmain.ui" line="174"/>
         <source>Save project &amp;as...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formmain.ui" line="184"/>
+        <location filename="../src/gui/formmain.ui" line="185"/>
         <source>&amp;Load project...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formmain.ui" line="195"/>
+        <location filename="../src/gui/formmain.ui" line="196"/>
         <source>&amp;Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formmain.ui" line="220"/>
+        <location filename="../src/gui/formmain.ui" line="221"/>
         <source>Show simulator &amp;window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formmain.ui" line="228"/>
+        <location filename="../src/gui/formmain.ui" line="229"/>
         <source>&amp;Stick simulator window to main window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formmain.ui" line="236"/>
+        <location filename="../src/gui/formmain.ui" line="237"/>
         <source>Run new &amp;simulation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formmain.ui" line="244"/>
+        <location filename="../src/gui/formmain.ui" line="245"/>
         <source>Go &amp;back</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formmain.ui" line="252"/>
+        <location filename="../src/gui/formmain.ui" line="253"/>
         <source>Stop &amp;running simulation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formmain.ui" line="257"/>
+        <location filename="../src/gui/formmain.ui" line="258"/>
         <source>Open mobile applications &amp;output directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/formmain.ui" line="266"/>
+        <source>&amp;Submit application to BuildmLearn Store</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -817,72 +826,94 @@ because there is no question added or quiz does not have name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formmain.cpp" line="208"/>
+        <location filename="../src/gui/formmain.cpp" line="218"/>
         <source>Main toolbar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formmain.cpp" line="288"/>
+        <location filename="../src/gui/formmain.cpp" line="304"/>
         <source>Generate mobile application</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formmain.cpp" line="292"/>
+        <location filename="../src/gui/formmain.cpp" line="308"/>
+        <source>Upload mobile application to store</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/formmain.cpp" line="310"/>
         <source>Start new simulation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formmain.cpp" line="371"/>
+        <location filename="../src/gui/formmain.cpp" line="391"/>
         <source>Mobile application generated</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formmain.cpp" line="373"/>
+        <location filename="../src/gui/formmain.cpp" line="393"/>
         <source>Click here to open its location.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formmain.cpp" line="375"/>
+        <location filename="../src/gui/formmain.cpp" line="395"/>
         <source>Click here to copy output path to clipboard.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formmain.cpp" line="384"/>
+        <location filename="../src/gui/formmain.cpp" line="408"/>
         <source>Mobile application not generated</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formmain.cpp" line="385"/>
+        <location filename="../src/gui/formmain.cpp" line="409"/>
         <source>Application was NOT generated successfully.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formmain.cpp" line="410"/>
+        <location filename="../src/gui/formmain.cpp" line="434"/>
         <source>Cannot open directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formmain.cpp" line="410"/>
+        <location filename="../src/gui/formmain.cpp" line="434"/>
         <source>Directory was copied into your clipboard.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formmain.cpp" line="566"/>
+        <location filename="../src/gui/formmain.cpp" line="590"/>
+        <location filename="../src/gui/formmain.cpp" line="613"/>
         <source>Select destination file for the project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formmain.cpp" line="568"/>
-        <source>XML bundle files (*.xml)</source>
+        <location filename="../src/gui/formmain.cpp" line="592"/>
+        <location filename="../src/gui/formmain.cpp" line="615"/>
+        <source>BuildmLearn Toolkit projects (*.buildmlearn)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formmain.cpp" line="613"/>
+        <location filename="../src/gui/formmain.cpp" line="669"/>
+        <source>Unsaved work</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/formmain.cpp" line="670"/>
+        <source>There is unsaved project. You might want to save your current project, unless you do not mind losing your unsaved work.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/formmain.cpp" line="671"/>
+        <source>Do you want to save your unsaved project before proceeding?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/formmain.cpp" line="651"/>
         <source>Cannot generate application</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formmain.cpp" line="614"/>
+        <location filename="../src/gui/formmain.cpp" line="652"/>
         <source>No project is opened, thus, cannot generate application.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -901,7 +932,7 @@ because there is no question added or quiz does not have name.</source>
     </message>
     <message>
         <location filename="../src/gui/formnewproject.ui" line="42"/>
-        <source>Details</source>
+        <source>Description of selected template</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -936,9 +967,7 @@ because there is no question added or quiz does not have name.</source>
         <location filename="../src/gui/formsettings.ui" line="63"/>
         <location filename="../src/gui/formsettings.cpp" line="68"/>
         <source>Language</source>
-        <extracomment>Language settings section.
-----------
-Language column of language list.</extracomment>
+        <extracomment>Language settings section.</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1163,13 +1192,20 @@ External web browser set on this page is used application-wide. For example, it 
     </message>
     <message>
         <location filename="../src/gui/formsettings.ui" line="847"/>
-        <source>;</source>
+        <source>You can use these placeholders:
+&lt;ul&gt;
+&lt;li&gt;&quot;%1&quot; - name of used template,&lt;/li&gt;
+&lt;li&gt;&quot;%2&quot; - name of the project,&lt;/li&gt;
+&lt;li&gt;&quot;%3&quot; - timestamp of current date and time.&lt;/li&gt;
+&lt;/ul&gt;
+For example, typical application filename pattern can look like this: &quot;application-%1-%2-%3.apk&quot;. This pattern is escaped during the generation process. For example, if you use &quot;flashcard&quot; template, then filename of result will look like this: &quot;application-flashcard-myflashcardproject-20140523T082205.apk&quot;.
+&lt;br&gt;&lt;br&gt;
+Note that not all templates support &quot;name of the project part&quot;, for example Basic mLearning template ignores %2 placeholder.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/formsettings.cpp" line="69"/>
         <source>Code</source>
-        <extracomment>Lang. code column of language list.</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1187,13 +1223,11 @@ External web browser set on this page is used application-wide. For example, it 
     <message>
         <location filename="../src/gui/formsettings.cpp" line="76"/>
         <source>Name</source>
-        <extracomment>Skin list name column.</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/formsettings.cpp" line="77"/>
         <source>Version</source>
-        <extracomment>Version column of skin list.</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1267,91 +1301,91 @@ External web browser set on this page is used application-wide. For example, it 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formsettings.cpp" line="379"/>
+        <location filename="../src/gui/formsettings.cpp" line="380"/>
         <source>Select JAVA executable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formsettings.cpp" line="382"/>
+        <location filename="../src/gui/formsettings.cpp" line="383"/>
         <source>Executables (java*)</source>
         <extracomment>File filter for external browser selection dialog.</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formsettings.cpp" line="393"/>
+        <location filename="../src/gui/formsettings.cpp" line="394"/>
         <source>Select ZIP executable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formsettings.cpp" line="396"/>
+        <location filename="../src/gui/formsettings.cpp" line="397"/>
         <source>Executables (zip*)</source>
         <extracomment>File filter for external browser selection dialog.</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formsettings.cpp" line="406"/>
+        <location filename="../src/gui/formsettings.cpp" line="407"/>
         <source>Select SIGNAPK executable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formsettings.cpp" line="409"/>
+        <location filename="../src/gui/formsettings.cpp" line="410"/>
         <source>Executables (signapk.jar)</source>
         <extracomment>File filter for external browser selection dialog.</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formsettings.cpp" line="437"/>
+        <location filename="../src/gui/formsettings.cpp" line="438"/>
         <source>Opera 12 or older</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formsettings.cpp" line="464"/>
+        <location filename="../src/gui/formsettings.cpp" line="465"/>
         <source>No proxy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formsettings.cpp" line="465"/>
+        <location filename="../src/gui/formsettings.cpp" line="466"/>
         <source>System proxy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formsettings.cpp" line="466"/>
+        <location filename="../src/gui/formsettings.cpp" line="467"/>
         <source>Socks5</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formsettings.cpp" line="467"/>
+        <location filename="../src/gui/formsettings.cpp" line="468"/>
         <source>Http</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formsettings.cpp" line="532"/>
+        <location filename="../src/gui/formsettings.cpp" line="533"/>
         <source>language changed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formsettings.cpp" line="545"/>
+        <location filename="../src/gui/formsettings.cpp" line="546"/>
         <source>no icon theme</source>
         <extracomment>Label for disabling icon theme.</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formsettings.cpp" line="606"/>
+        <location filename="../src/gui/formsettings.cpp" line="607"/>
         <source>icon theme changed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formsettings.cpp" line="615"/>
+        <location filename="../src/gui/formsettings.cpp" line="616"/>
         <source>skin changed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formsettings.cpp" line="646"/>
+        <location filename="../src/gui/formsettings.cpp" line="647"/>
         <source>Select temporary directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/formsettings.cpp" line="656"/>
+        <location filename="../src/gui/formsettings.cpp" line="657"/>
         <source>Select output directory</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1542,6 +1576,530 @@ currently installed one.</source>
     </message>
 </context>
 <context>
+    <name>FormUploadBundle</name>
+    <message>
+        <location filename="../src/gui/formuploadbundle.ui" line="14"/>
+        <source>Submit application to BuildmLearn Store</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/formuploadbundle.ui" line="26"/>
+        <source>Application metadata</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/formuploadbundle.ui" line="35"/>
+        <source>Application name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/formuploadbundle.ui" line="45"/>
+        <source>Author name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/formuploadbundle.ui" line="55"/>
+        <source>Author e-mail</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/formuploadbundle.ui" line="65"/>
+        <source>Category</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/formuploadbundle.ui" line="75"/>
+        <source>Application description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/formuploadbundle.ui" line="95"/>
+        <source>Progress of uploading</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/formuploadbundle.cpp" line="58"/>
+        <source>&amp;Upload application</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/formuploadbundle.cpp" line="61"/>
+        <source>Name of your application</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/formuploadbundle.cpp" line="62"/>
+        <source>Your e-mail</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/formuploadbundle.cpp" line="63"/>
+        <source>Your name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/formuploadbundle.cpp" line="66"/>
+        <source>Science</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/formuploadbundle.cpp" line="67"/>
+        <source>Math</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/formuploadbundle.cpp" line="68"/>
+        <source>Physics</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/formuploadbundle.cpp" line="69"/>
+        <source>Literature</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/formuploadbundle.cpp" line="70"/>
+        <source>English</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/formuploadbundle.cpp" line="71"/>
+        <source>Geography</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/formuploadbundle.cpp" line="72"/>
+        <source>Social Studies</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/formuploadbundle.cpp" line="73"/>
+        <source>Language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/formuploadbundle.cpp" line="74"/>
+        <source>History</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/formuploadbundle.cpp" line="75"/>
+        <source>Chemistry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/formuploadbundle.cpp" line="110"/>
+        <source>Your name is okay.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/formuploadbundle.cpp" line="111"/>
+        <source>Enter valid name.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/formuploadbundle.cpp" line="122"/>
+        <source>Your e-mail is okay.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/formuploadbundle.cpp" line="123"/>
+        <source>Enter valid e-mail in the form &quot;john@doe.com&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/formuploadbundle.cpp" line="134"/>
+        <source>Your application name is okay.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/formuploadbundle.cpp" line="135"/>
+        <source>Enter valid application name.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/formuploadbundle.cpp" line="147"/>
+        <location filename="../src/gui/formuploadbundle.cpp" line="148"/>
+        <source>Ready to upload.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/formuploadbundle.cpp" line="152"/>
+        <source>Fill-in missing metadata.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/formuploadbundle.cpp" line="153"/>
+        <source>In order to continue, fill-in missing metadata.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/formuploadbundle.cpp" line="163"/>
+        <source>Cannot upload application.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/formuploadbundle.cpp" line="164"/>
+        <source>Application cannot be uploaded because template return error.
+Contact application developers to fix this issue.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/formuploadbundle.cpp" line="191"/>
+        <location filename="../src/gui/formuploadbundle.cpp" line="192"/>
+        <source>Endpoint was not obtained.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/formuploadbundle.cpp" line="202"/>
+        <location filename="../src/gui/formuploadbundle.cpp" line="203"/>
+        <source>Uploading application...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>LearnSpellingsCore</name>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingscore.cpp" line="58"/>
+        <source>Preparing workspace...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingscore.cpp" line="62"/>
+        <source>Extracting raw data from editor...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingscore.cpp" line="78"/>
+        <source>Creating base temporary folder...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingscore.cpp" line="86"/>
+        <source>Writting word data into file...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingscore.cpp" line="94"/>
+        <source>Copying template apk file...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingscore.cpp" line="104"/>
+        <source>Inserting data into apk file...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingscore.cpp" line="119"/>
+        <source>Signing apk file...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingscore.cpp" line="137"/>
+        <source>Copying final apk file to output directory...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>LearnSpellingsEditor</name>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingseditor.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingseditor.ui" line="32"/>
+        <source>Word editor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingseditor.ui" line="41"/>
+        <source>Word</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingseditor.ui" line="48"/>
+        <source>Meaning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingseditor.ui" line="61"/>
+        <source>Active items</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingseditor.ui" line="67"/>
+        <source>Add new item.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingseditor.ui" line="70"/>
+        <location filename="../src/templates/learnspellings/learnspellingseditor.ui" line="89"/>
+        <location filename="../src/templates/learnspellings/learnspellingseditor.ui" line="108"/>
+        <location filename="../src/templates/learnspellings/learnspellingseditor.ui" line="127"/>
+        <source>...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingseditor.ui" line="86"/>
+        <source>Move item down.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingseditor.ui" line="105"/>
+        <source>Remove selected item.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingseditor.ui" line="124"/>
+        <source>Move item up.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingseditor.ui" line="159"/>
+        <source>This list contains already added questions.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingseditor.ui" line="169"/>
+        <source>Collection metadata</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingseditor.ui" line="178"/>
+        <source>Author</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingseditor.ui" line="188"/>
+        <source>Collection title</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingseditor.ui" line="198"/>
+        <source>Number of words</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingseditor.cpp" line="46"/>
+        <source>Word to spell</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingseditor.cpp" line="47"/>
+        <source>Meaning of the word</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingseditor.cpp" line="49"/>
+        <source>Author of this collection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingseditor.cpp" line="50"/>
+        <source>Name of this collection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingseditor.cpp" line="59"/>
+        <source>John Doe</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingseditor.cpp" line="60"/>
+        <source>Greatest collection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingseditor.cpp" line="180"/>
+        <source>cat</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingseditor.cpp" line="180"/>
+        <source>Cats are animals which are hated by dogs.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingseditor.cpp" line="188"/>
+        <source>No author is specified.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingseditor.cpp" line="192"/>
+        <source>Author is specified.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingseditor.cpp" line="199"/>
+        <source>No collection title is specified.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingseditor.cpp" line="203"/>
+        <source>Collection title is specified.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingseditor.cpp" line="277"/>
+        <source>Collection contains at least one word.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingseditor.cpp" line="280"/>
+        <source>Collection does not contain any words.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingseditor.cpp" line="331"/>
+        <source>Please, enter some word.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingseditor.cpp" line="334"/>
+        <source>Word seems to be okay.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingseditor.cpp" line="358"/>
+        <source>Please, enter some meaning.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingseditor.cpp" line="361"/>
+        <source>Meaning seems to be okay.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>LearnSpellingsSimulator</name>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingssimulator.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingssimulator.ui" line="124"/>
+        <source>&amp;Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingssimulator.ui" line="183"/>
+        <source>Press &quot;Listen&quot; button when you are ready. Listen to the word as many times as you want before answering. If you are not sure, you can skip the word.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingssimulator.ui" line="221"/>
+        <source>Listen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingssimulator.ui" line="261"/>
+        <source>&amp;Spell it!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingssimulator.ui" line="276"/>
+        <source>S&amp;kip</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingssimulator.ui" line="379"/>
+        <source>&amp;Next word</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingssimulator.ui" line="409"/>
+        <source>This was the last word</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingssimulator.ui" line="484"/>
+        <source>&amp;Exit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingssimulator.ui" line="504"/>
+        <source>&amp;Restart</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingssimulator.cpp" line="130"/>
+        <location filename="../src/templates/learnspellings/learnspellingssimulator.cpp" line="134"/>
+        <location filename="../src/templates/learnspellings/learnspellingssimulator.cpp" line="152"/>
+        <location filename="../src/templates/learnspellings/learnspellingssimulator.cpp" line="156"/>
+        <source>Cannot play sound</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingssimulator.cpp" line="130"/>
+        <location filename="../src/templates/learnspellings/learnspellingssimulator.cpp" line="134"/>
+        <source>Sound cannot play on this platform.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingssimulator.cpp" line="152"/>
+        <location filename="../src/templates/learnspellings/learnspellingssimulator.cpp" line="156"/>
+        <source>Sound cannot play on this platform because sound file was not downloaded.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingssimulator.cpp" line="192"/>
+        <source>Enter spelling</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingssimulator.cpp" line="199"/>
+        <source>This is correct spelling</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingssimulator.cpp" line="204"/>
+        <source>This is not the correct spelling</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingssimulator.cpp" line="208"/>
+        <source>You entered %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingssimulator.cpp" line="209"/>
+        <source>&lt;p style=&quot; font-size: 18pt;&quot;&gt;%1&lt;/p&gt;&lt;p&gt;%2&lt;/p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingssimulator.cpp" line="213"/>
+        <source>Enter some word</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingssimulator.cpp" line="213"/>
+        <source>You must enter some word</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingssimulator.cpp" line="219"/>
+        <source>Word #%1 of %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingssimulator.cpp" line="231"/>
+        <source>Correct spelled %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingssimulator.cpp" line="232"/>
+        <source>Unanswered %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/templates/learnspellings/learnspellingssimulator.cpp" line="233"/>
+        <source>Wrond spelled %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>NetworkFactory</name>
     <message>
         <location filename="../src/network-web/networkfactory.cpp" line="53"/>
@@ -1631,28 +2189,28 @@ currently installed one.</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/main.cpp" line="79"/>
+        <location filename="../src/main.cpp" line="102"/>
         <location filename="../src/miscellaneous/localization.cpp" line="114"/>
         <source>LANG_NAME</source>
         <extracomment>Name of language, e.g. English.</extracomment>
         <translation>Hindi</translation>
     </message>
     <message>
-        <location filename="../src/main.cpp" line="83"/>
+        <location filename="../src/main.cpp" line="106"/>
         <location filename="../src/miscellaneous/localization.cpp" line="115"/>
         <source>LANG_ABBREV</source>
         <extracomment>Abbreviation of language. Use ISO 639-1 code here combined with ISO 3166-1 (alpha-2) code. Examples: &quot;cs_CZ&quot;, &quot;en_GB&quot;, &quot;en_US&quot;.</extracomment>
         <translation>hi_IN</translation>
     </message>
     <message>
-        <location filename="../src/main.cpp" line="85"/>
+        <location filename="../src/main.cpp" line="108"/>
         <location filename="../src/miscellaneous/localization.cpp" line="116"/>
         <source>LANG_AUTHOR</source>
         <extracomment>Name of translator - optional.</extracomment>
         <translation>John Doe</translation>
     </message>
     <message>
-        <location filename="../src/main.cpp" line="87"/>
+        <location filename="../src/main.cpp" line="110"/>
         <location filename="../src/miscellaneous/localization.cpp" line="117"/>
         <source>LANG_EMAIL</source>
         <extracomment>Email of translator - optional.</extracomment>
@@ -1662,42 +2220,42 @@ currently installed one.</source>
 <context>
     <name>QuizCore</name>
     <message>
-        <location filename="../src/templates/quiz/quizcore.cpp" line="59"/>
+        <location filename="../src/templates/quiz/quizcore.cpp" line="60"/>
         <source>Preparing workspace...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/quiz/quizcore.cpp" line="63"/>
+        <location filename="../src/templates/quiz/quizcore.cpp" line="64"/>
         <source>Extracting raw data from editor...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/quiz/quizcore.cpp" line="79"/>
+        <location filename="../src/templates/quiz/quizcore.cpp" line="80"/>
         <source>Creating base temporary folder...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/quiz/quizcore.cpp" line="87"/>
+        <location filename="../src/templates/quiz/quizcore.cpp" line="88"/>
         <source>Writting quiz data into file...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/quiz/quizcore.cpp" line="95"/>
+        <location filename="../src/templates/quiz/quizcore.cpp" line="96"/>
         <source>Copying template apk file...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/quiz/quizcore.cpp" line="105"/>
+        <location filename="../src/templates/quiz/quizcore.cpp" line="106"/>
         <source>Inserting data into apk file...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/quiz/quizcore.cpp" line="120"/>
+        <location filename="../src/templates/quiz/quizcore.cpp" line="121"/>
         <source>Signing apk file...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/quiz/quizcore.cpp" line="138"/>
+        <location filename="../src/templates/quiz/quizcore.cpp" line="139"/>
         <source>Copying final apk file to output directory...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1826,75 +2384,64 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/quiz/quizeditor.cpp" line="100"/>
+        <location filename="../src/templates/quiz/quizeditor.cpp" line="76"/>
         <source>John Doe</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/quiz/quizeditor.cpp" line="101"/>
+        <location filename="../src/templates/quiz/quizeditor.cpp" line="77"/>
         <source>Greatest quiz</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/quiz/quizeditor.cpp" line="129"/>
-        <source>Add new question by clicking here.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/templates/quiz/quizeditor.cpp" line="138"/>
+        <location filename="../src/templates/quiz/quizeditor.cpp" line="135"/>
         <source>Quiz contains at least one question.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/quiz/quizeditor.cpp" line="141"/>
+        <location filename="../src/templates/quiz/quizeditor.cpp" line="138"/>
         <source>Quiz does not contain any questions.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/quiz/quizeditor.cpp" line="150"/>
+        <location filename="../src/templates/quiz/quizeditor.cpp" line="176"/>
         <source>How many cats do you have?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/quiz/quizeditor.cpp" line="152"/>
+        <location filename="../src/templates/quiz/quizeditor.cpp" line="177"/>
         <source>I hate cats!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/quiz/quizeditor.cpp" line="153"/>
+        <location filename="../src/templates/quiz/quizeditor.cpp" line="177"/>
         <source>I have two nice kittens.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/quiz/quizeditor.cpp" line="154"/>
+        <location filename="../src/templates/quiz/quizeditor.cpp" line="178"/>
         <source>I have seven beasts.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/quiz/quizeditor.cpp" line="155"/>
+        <location filename="../src/templates/quiz/quizeditor.cpp" line="178"/>
         <source>Cats? Well, we own eleven dogs.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/quiz/quizeditor.cpp" line="354"/>
+        <location filename="../src/templates/quiz/quizeditor.cpp" line="360"/>
         <source>Enter the name of the quiz.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/quiz/quizeditor.cpp" line="357"/>
+        <location filename="../src/templates/quiz/quizeditor.cpp" line="363"/>
         <source>Name is okay.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/quiz/quizeditor.cpp" line="366"/>
         <location filename="../src/templates/quiz/quizeditor.cpp" line="369"/>
+        <location filename="../src/templates/quiz/quizeditor.cpp" line="372"/>
         <source>Enter the name of the author of the quiz.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/templates/quiz/quizeditor.cpp" line="389"/>
-        <source>Quiz simulation or mobile application generation cannot be started 
-because there is no question added or quiz does not have name.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1946,7 +2493,7 @@ because there is no question added or quiz does not have name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/quiz/quizitem.cpp" line="81"/>
+        <location filename="../src/templates/quiz/quizitem.cpp" line="87"/>
         <source>Question number %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1994,17 +2541,17 @@ because there is no question added or quiz does not have name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/quiz/quizsimulator.cpp" line="139"/>
+        <location filename="../src/templates/quiz/quizsimulator.cpp" line="142"/>
         <source>Total correct %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/quiz/quizsimulator.cpp" line="140"/>
+        <location filename="../src/templates/quiz/quizsimulator.cpp" line="143"/>
         <source>Total wrong %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/templates/quiz/quizsimulator.cpp" line="141"/>
+        <location filename="../src/templates/quiz/quizsimulator.cpp" line="144"/>
         <source>Total unanswered %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2028,10 +2575,96 @@ because there is no question added or quiz does not have name.</source>
     </message>
 </context>
 <context>
+    <name>StoreFactory</name>
+    <message>
+        <location filename="../src/miscellaneous/storefactory.cpp" line="48"/>
+        <source>Application uploaded successfully.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/miscellaneous/storefactory.cpp" line="51"/>
+        <source>Network error occurred.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/miscellaneous/storefactory.cpp" line="54"/>
+        <source>Error - some parameters are missing.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/miscellaneous/storefactory.cpp" line="57"/>
+        <source>Application file is too big.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/miscellaneous/storefactory.cpp" line="60"/>
+        <source>Unknown status.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SystemTrayIcon</name>
     <message>
-        <location filename="../src/gui/systemtrayicon.cpp" line="134"/>
+        <location filename="../src/gui/systemtrayicon.cpp" line="130"/>
         <source>Close opened modal dialogs first.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TemplateEditor</name>
+    <message>
+        <location filename="../src/core/templateeditor.cpp" line="51"/>
+        <source>Simulation or mobile application generation cannot be started 
+because editor does not contain enough data.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TemplateFactory</name>
+    <message>
+        <location filename="../src/core/templatefactory.cpp" line="205"/>
+        <location filename="../src/core/templatefactory.cpp" line="220"/>
+        <location filename="../src/core/templatefactory.cpp" line="230"/>
+        <source>Cannot load XML bundle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/core/templatefactory.cpp" line="206"/>
+        <source>Bundle cannot be loaded because XML file cannot be opened for reading.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/core/templatefactory.cpp" line="221"/>
+        <source>Bundle cannot be loaded because XML file is corrupted.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/core/templatefactory.cpp" line="231"/>
+        <source>Target template was not able to load XML bundle data.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TemplateGenerator</name>
+    <message>
+        <location filename="../src/core/templategenerator.cpp" line="24"/>
+        <source>Specify application output file name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/core/templategenerator.cpp" line="25"/>
+        <source>Type here custom output application file name or leave the default value intact if you are satisfied with it.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/core/templategenerator.cpp" line="62"/>
+        <source>Cannot generate application</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/core/templategenerator.cpp" line="63"/>
+        <source>Master generation lock is locked, try to
+generate application later.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

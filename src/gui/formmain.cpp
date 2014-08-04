@@ -203,6 +203,7 @@ void FormMain::setupIcons() {
   m_ui->m_actionSaveProject->setIcon(factory->fromTheme("project-save"));
   m_ui->m_actionSaveProjectAs->setIcon(factory->fromTheme("project-save-as"));
   m_ui->m_actionLoadProject->setIcon(factory->fromTheme("project-load"));
+  m_ui->m_actionUploadApplicationToStore->setIcon(factory->fromTheme("project-upload"));
   m_ui->m_actionGenerateMobileApplication->setIcon(factory->fromTheme("project-generate"));
   m_ui->m_menuSimulatorWindow->setIcon(factory->fromTheme("view-simulator"));
   m_ui->m_actionStickSimulatorWindow->setIcon(factory->fromTheme("simulation-stick"));
