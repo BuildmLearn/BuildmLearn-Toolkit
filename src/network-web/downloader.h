@@ -93,9 +93,8 @@ class Downloader : public QObject {
     void timeout();
 
   private:
-    // Issues new network request.
+    // Issues new network requests.
     void runGetRequest(const QNetworkRequest &request);
-
     void runPostRequest(const QNetworkRequest &request, const QByteArray &data);
 
   private:

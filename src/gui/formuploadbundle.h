@@ -44,6 +44,8 @@ namespace Ui {
 
 class Downloader;
 
+/// \brief Form for uploading applications to BuildmLearn Store.
+/// \see Downloader, StoreFactory
 class FormUploadBundle : public QDialog {
     Q_OBJECT
 

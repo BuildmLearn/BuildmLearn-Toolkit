@@ -36,10 +36,12 @@
 #include <QNetworkReply>
 
 
+/// \brief Main BuildmLearn Store functionality.
 class StoreFactory : public QObject {
     Q_OBJECT
 
   public:
+    /// \brief Possible states of application upload process.
     enum UploadStatus {
       Success,
       NetworkError,
@@ -51,8 +53,15 @@ class StoreFactory : public QObject {
 
     virtual ~StoreFactory();
 
+    /// \brief Converts UploadStatus enumeration to textual representation.
+    /// \param status Upload result.
+    /// \return Returns textual representation of application upload process status.
     static QString uploadStatusToString(UploadStatus status);
 
+    /// \brief Parses received XML from BuildmLearn Store server.
+    /// \param error_status Network status of connection to BuildmLearn Store server.
+    /// \param response XML received from BuildmLearn Store server.
+    /// \return Returns appropriate UploadStatus for given service response XML.
     static UploadStatus parseResponseXml(QNetworkReply::NetworkError error_status,
                                          const QByteArray &response);
 
