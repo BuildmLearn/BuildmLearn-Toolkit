@@ -43,6 +43,7 @@
 #include <QDir>
 
 
+/// \brief Icon theme manipulator and provider.
 class IconFactory : public QObject {
     Q_OBJECT
 

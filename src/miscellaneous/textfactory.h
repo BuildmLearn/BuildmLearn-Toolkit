@@ -34,9 +34,9 @@
 #include "definitions/definitions.h"
 
 #include <QDateTime>
-#include <QMap>
 
 
+/// \brief Functionality for working with text.
 class TextFactory {
   private:
     // Constructors and destructors.

@@ -39,6 +39,7 @@
 
 class QWebSettings;
 
+/// \brief Web-related functionality.
 class WebFactory : public QObject {
     Q_OBJECT
 

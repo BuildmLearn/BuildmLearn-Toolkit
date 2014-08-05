@@ -36,6 +36,7 @@
 #include <QPointer>
 
 
+/// \brief Representation of single localization.
 struct Language {
     QString m_name;
     QString m_code;

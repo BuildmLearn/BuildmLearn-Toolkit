@@ -36,6 +36,7 @@
 #include <QCoreApplication>
 
 
+/// \brief Network-related functionality.
 class NetworkFactory {
     Q_DECLARE_TR_FUNCTIONS(NetworkFactory)
 
