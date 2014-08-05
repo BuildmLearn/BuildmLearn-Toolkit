@@ -23,6 +23,7 @@ Information regarding build process can be found in CMakeLists.txt file.
 Links
 -----
 * [www.buildmlearn.org](http://buildmlearn.org/)  ~homepage,
+* [http://buildmlearn.github.io/BuildmLearn-Toolkit/docs/]  ~API documentation,
 * [www.martin-rotter.8u.cz](http://www.martin-rotter.8u.cz/)  ~author's homepage,
 * [www.transifex.com/projects/p/buildmlearn-toolkit](https://www.transifex.com/projects/p/buildmlearn-toolkit/)  ~translations,
 * [www.build.opensuse.org/project/show/home:skunkos:buildmlearn] (https://build.opensuse.org/project/show/home:skunkos:buildmlearn)  ~OBS homepage,
