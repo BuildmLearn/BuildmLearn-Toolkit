@@ -9,6 +9,7 @@ Main:
 
 Fixed:
 <ul>
+<li>Arrows on Quiz template are now correctly disabled on startup.</li>
 </ul>
 
 Added:

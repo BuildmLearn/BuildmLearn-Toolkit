@@ -427,7 +427,7 @@ void FormMain::openOutputApplication() {
 void FormMain::openOutputDirectory() {
 #if defined(Q_OS_WIN32)
   // Open explorer window with target path.
-  QProcess::startDetached("explorer", QStringList() << "/root,"  << QDir::toNativeSeparators(qApp->templateManager()->outputDirectory()));
+  QProcess::startDetached("explorer", QStringList() /*<< "/root,"*/  << QDir::toNativeSeparators(qApp->templateManager()->outputDirectory()));
 #else
   // Copy target path to clipboard.
   // TODO: Better handling here and add action icon.
