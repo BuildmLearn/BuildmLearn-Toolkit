@@ -94,6 +94,12 @@
 #     If "ON", then NSIS generator is used instead of ZIP generator.
 #     If "OFF", then default ZIP generator is used.
 #
+#   "-DDISABLE_STORE"
+#     Enables or disables BuildmLearn Store.
+#
+#   "-DDISABLE_APK_GENERATION"
+#     Enables or disables APK generation.
+#
 # Tip for developers: When you COMPILE BuildmLearn Toolkit, you also need to run "make install" ("mingw32-make install" if you use MinGW) to "install
 # the software to some folder. Then you need to take installed files (without root folder) and copy it to your build directory. Detailed steps are these:
 #   a) Compile the program and use this CMake call 
@@ -137,6 +143,16 @@ endif(APPLE)
 option(USE_QT_5 "Use Qt 5 for building" OFF)
 option(BUNDLE_ICON_THEMES "Equip installation with custom icon themes" ON)
 option(INSTALL_ALL_LANGUAGES "Install all available localizations" ON)
+option(DISABLE_STORE "Disable BuildmLearn Store features" OFF)
+option(DISABLE_APK_GENERATION "Disable APK generation" OFF)
+
+if(DISABLE_STORE)
+  add_definitions(-DDISABLE_STORE)
+endif(DISABLE_STORE)
+
+if(DISABLE_STORE)
+  add_definitions(-DDISABLE_APK_GENERATION)
+endif(DISABLE_STORE)
 
 if(WIN32)
   option(USE_NSIS "Use NSIS generator to produce installer" OFF)
@@ -151,6 +167,8 @@ message(STATUS "[${APP_LOW_NAME}] ==== Options summary ====")
 message(STATUS "[${APP_LOW_NAME}] Use Qt 5 for building -> ${USE_QT_5}")
 message(STATUS "[${APP_LOW_NAME}] Equip installation with custom icon themes -> ${BUNDLE_ICON_THEMES}")
 message(STATUS "[${APP_LOW_NAME}] Install all available localizations -> ${INSTALL_ALL_LANGUAGES}")
+message(STATUS "[${APP_LOW_NAME}] Disable BuildmLearn Store features -> ${DISABLE_STORE}")
+message(STATUS "[${APP_LOW_NAME}] Disable APK generation -> ${DISABLE_APK_GENERATION}")
 
 if(WIN32)
   message(STATUS "[${APP_LOW_NAME}] Use NSIS generator to produce installer -> ${USE_NSIS}")
