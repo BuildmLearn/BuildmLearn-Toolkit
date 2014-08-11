@@ -38,8 +38,6 @@ BasicmLearningSimulator::BasicmLearningSimulator(TemplateCore *core, QWidget *pa
   TemplateSimulator(core, parent), m_ui(new Ui::BasicmLearningSimulator) {
   m_ui->setupUi(this);
 
-  m_ui->m_phoneWidget->setStyleSheet("background: #255593; color: white;");
-
   connect(m_ui->m_listItems, SIGNAL(itemClicked(QListWidgetItem*)),
           this, SLOT(displayDescription(QListWidgetItem*)));
 }
@@ -82,6 +80,7 @@ bool BasicmLearningSimulator::stopSimulation() {
 bool BasicmLearningSimulator::goBack() {
   if (m_ui->m_phoneWidget->currentIndex() == 2) {
     m_ui->m_phoneWidget->setCurrentIndex(1);
+    m_ui->m_listItems->setCurrentRow(-1);
 
     emit canGoBackChanged(false);
 

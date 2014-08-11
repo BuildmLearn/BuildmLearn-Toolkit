@@ -49,6 +49,7 @@ struct Skin {
     QString m_rawData;
 
     QString m_simulatorBackgroundMain;
+    QString m_simulatorStyle;
 };
 
 Q_DECLARE_METATYPE(Skin)

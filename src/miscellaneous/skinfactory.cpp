@@ -160,6 +160,9 @@ Skin SkinFactory::skinInfo(const QString &skin_name, bool *ok) {
   skin.m_simulatorBackgroundMain = APP_SKIN_PATH + '/' + skin.m_baseFolder + '/' + simulator_image;
   skin.m_simulatorBackgroundMain = skin.m_simulatorBackgroundMain.replace('\\', '/');
 
+  skin.m_simulatorStyle = skin_node.namedItem("simulator").namedItem("style").toElement().text();
+  skin.m_simulatorStyle = QByteArray::fromBase64(skin.m_simulatorStyle.toLocal8Bit());
+
   // Free resources.
   skin_file.close();
   skin_file.deleteLater();

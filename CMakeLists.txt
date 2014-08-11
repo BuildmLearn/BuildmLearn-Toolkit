@@ -586,6 +586,17 @@ if(WIN32)
   set(APP_DLLS_QT4_MSVC2010_PHONON
     resources/binaries/windows/deployment/qt4-msvc2010/phonon_backend/phonon_ds94.dll
   )
+
+  set(APP_DLLS_QT4_MSVC2010_IMAGEFORMATS
+    resources/binaries/windows/deployment/qt4-msvc2010/imageformats/qgif.dll
+    resources/binaries/windows/deployment/qt4-msvc2010/imageformats/qico.dll
+    resources/binaries/windows/deployment/qt4-msvc2010/imageformats/qjpeg.dll
+    resources/binaries/windows/deployment/qt4-msvc2010/imageformats/qmng.dll
+    resources/binaries/windows/deployment/qt4-msvc2010/imageformats/qsvg.dll
+    resources/binaries/windows/deployment/qt4-msvc2010/imageformats/qtga.dll
+    resources/binaries/windows/deployment/qt4-msvc2010/imageformats/qtiff.dll
+    resources/binaries/windows/deployment/qt4-msvc2010/imageformats/qwbmp.dll
+  )
 endif(WIN32)
 
 # Add custom icon on Mac OS X.
@@ -695,6 +706,8 @@ if(WIN32 OR OS2)
             DESTINATION ./)
     install(FILES ${APP_DLLS_QT4_MSVC2010_PHONON}
             DESTINATION ./phonon_backend)
+    install(FILES ${APP_DLLS_QT4_MSVC2010_IMAGEFORMATS}
+            DESTINATION ./imageformats)
     install(DIRECTORY resources/binaries/windows/zip
             DESTINATION ./binaries)
   else(WIN32)

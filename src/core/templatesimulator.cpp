@@ -31,6 +31,8 @@
 #include "core/templatesimulator.h"
 
 #include "definitions/definitions.h"
+#include "miscellaneous/application.h"
+#include "miscellaneous/skinfactory.h"
 
 #include <QTextEdit>
 #include <QLabel>
@@ -41,6 +43,7 @@
 
 TemplateSimulator::TemplateSimulator(TemplateCore *core, QWidget *parent)
   : QWidget(parent, 0), m_core(core) {
+  setStyleSheet(qApp->skinFactory()->currentSkin().m_simulatorStyle);
 }
 
 TemplateSimulator::~TemplateSimulator() {
