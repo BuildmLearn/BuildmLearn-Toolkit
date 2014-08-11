@@ -84,6 +84,9 @@
           <verstretch>1</verstretch>
          </sizepolicy>
         </property>
+        <property name="tabChangesFocus">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
      </layout>
@@ -144,6 +147,11 @@
    <container>1</container>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>m_cmbCategory</tabstop>
+  <tabstop>m_buttonBox</tabstop>
+  <tabstop>m_txtApplicationDescription</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>
