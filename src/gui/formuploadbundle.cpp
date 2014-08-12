@@ -42,11 +42,10 @@
 #include "definitions/definitions.h"
 
 #include <QPushButton>
+#include "QFileDialog"
 
 
-FormUploadBundle::FormUploadBundle(const QString &author_name,
-                                   const QString &application_name,
-                                   QWidget *parent)
+FormUploadBundle::FormUploadBundle(QWidget *parent)
   : QDialog(parent), m_ui(new Ui::FormUploadBundle), m_uploader(NULL) {
   m_ui->setupUi(this);
 
@@ -79,22 +78,19 @@ FormUploadBundle::FormUploadBundle(const QString &author_name,
   connect(m_ui->m_txtAuthorName->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(checkAuthorName(QString)));
   connect(this, SIGNAL(metadataChanged()), this, SLOT(checkMetadata()));
   connect(m_btnUpload, SIGNAL(clicked()), this, SLOT(startUpload()));
+  connect(m_ui->m_btnSelectIcon, SIGNAL(clicked()), this, SLOT(selectApplicationIcon()));
 
-  if (application_name.isEmpty()) {
-    checkApplicationName(application_name);
-  }
-  else {
-    m_ui->m_txtApplicationName->lineEdit()->setText(application_name);
-  }
-
-  if (author_name.isEmpty()) {
-    checkAuthorName(author_name);
-  }
-  else {
-    m_ui->m_txtAuthorName->lineEdit()->setText(author_name);
-  }
-
-  checkAuthorEmail(m_ui->m_txtAuthorEmail->lineEdit()->text());
+  setTabOrder(m_ui->m_txtApplicationName->lineEdit(), m_ui->m_txtApplicationDescription);
+  setTabOrder(m_ui->m_txtApplicationDescription, m_ui->m_txtAuthorName->lineEdit());
+  setTabOrder(m_ui->m_txtAuthorName->lineEdit(), m_ui->m_txtAuthorEmail->lineEdit());
+  setTabOrder(m_ui->m_txtAuthorEmail->lineEdit(), m_ui->m_cmbCategory);
+  /*setTabOrder(m_ui->m_cmbCategory, m_btnUpload);
+  setTabOrder(m_btnUpload, m_ui->m_buttonBox->);
+  */
+  checkApplicationName(QString());
+  checkAuthorName(QString());
+  checkAuthorEmail(QString());
+  checkApplicationIcon(QString());
 }
 
 FormUploadBundle::~FormUploadBundle() {
@@ -140,7 +136,8 @@ void FormUploadBundle::checkApplicationName(const QString &application_name) {
 void FormUploadBundle::checkMetadata() {
   m_btnUpload->setEnabled(m_ui->m_txtApplicationName->status() == WidgetWithStatus::Ok &&
                           m_ui->m_txtAuthorEmail->status() == WidgetWithStatus::Ok &&
-                          m_ui->m_txtAuthorName->status() == WidgetWithStatus::Ok);
+                          m_ui->m_txtAuthorName->status() == WidgetWithStatus::Ok &&
+                          m_ui->m_lblIcon->status() == WidgetWithStatus::Ok);
 
   if (m_btnUpload->isEnabled()) {
     m_ui->m_lblProgress->setStatus(WidgetWithStatus::Ok,
@@ -152,6 +149,31 @@ void FormUploadBundle::checkMetadata() {
                                    tr("Fill-in missing metadata."),
                                    tr("In order to continue, fill-in missing metadata."));
   }
+}
+
+void FormUploadBundle::selectApplicationIcon() {
+  QString selected_picture = QFileDialog::getOpenFileName(this, tr("Select icon for application"),
+                                                          m_ui->m_lblIcon->label()->toolTip().isEmpty() ?
+                                                            APP_APK_ICON_PATH :
+                                                            m_ui->m_lblIcon->label()->toolTip(),
+                                                          tr("Icons (*.jpg *.png)"));
+
+  checkApplicationIcon(selected_picture);
+}
+
+void FormUploadBundle::checkApplicationIcon(const QString &icon_path) {
+  if (!icon_path.isEmpty()) {
+    m_ui->m_lblIcon->setStatus(WidgetWithStatus::Ok,
+                               tr("Correct icon is selected."),
+                               QDir::toNativeSeparators(icon_path));
+  }
+  else {
+    m_ui->m_lblIcon->setStatus(WidgetWithStatus::Error,
+                               tr("No valid icon is selected."),
+                               QDir::toNativeSeparators(icon_path));
+  }
+
+  emit metadataChanged();
 }
 
 void FormUploadBundle::startUpload() {
@@ -197,7 +219,8 @@ void FormUploadBundle::startUpload() {
   m_uploader->uploadBundleFile(QString(endpoint), xml_bundle_data, STORE_API_KEY,
                                m_ui->m_txtAuthorName->lineEdit()->text(),
                                m_ui->m_txtAuthorEmail->lineEdit()->text(),
-                               m_ui->m_txtApplicationName->lineEdit()->text());
+                               m_ui->m_txtApplicationName->lineEdit()->text(),
+                               m_ui->m_lblIcon->label()->toolTip());
   m_ui->m_lblProgress->setStatus(WidgetWithStatus::Information,
                                  tr("Uploading application..."),
                                  tr("Uploading application..."));

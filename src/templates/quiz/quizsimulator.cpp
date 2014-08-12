@@ -45,7 +45,6 @@
 QuizSimulator::QuizSimulator(TemplateCore *core, QWidget *parent)
   : TemplateSimulator(core, parent), m_ui(new Ui::QuizSimulator) {
   m_ui->setupUi(this);
-  m_ui->m_phoneWidget->setStyleSheet("background: #255593; color: white;");
 
   QFont caption_font = m_ui->m_lblHeading->font();
   caption_font.setPointSize(caption_font.pointSize() + SIMULATOR_HEADING_SIZE_INCREASE);

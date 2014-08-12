@@ -130,7 +130,7 @@ set(APP_URL "http://buildmlearn.org/")
 set(APP_URL_ISSUES "https://github.com/BuildmLearn/BuildmLearn-Toolkit/issues")
 set(APP_URL_ISSUES_NEW "https://github.com/BuildmLearn/BuildmLearn-Toolkit/issues/new")
 set(APP_URL_DOWNLOADS "http://buildmlearn.org/download")
-set(APP_EMAIL "rotter.martinos@gmail.com")
+set(APP_EMAIL "buildmlearn@gmail.com")
 set(APP_BRIEF "BuildmLearn Toolkit is an easy-to-use program that helps users make mobile apps without any knowledge of application development.")
 set(MINIMUM_QT_VERSION 4.7.3)
 set(EXE_NAME ${APP_LOW_NAME})
@@ -586,6 +586,17 @@ if(WIN32)
   set(APP_DLLS_QT4_MSVC2010_PHONON
     resources/binaries/windows/deployment/qt4-msvc2010/phonon_backend/phonon_ds94.dll
   )
+
+  set(APP_DLLS_QT4_MSVC2010_IMAGEFORMATS
+    resources/binaries/windows/deployment/qt4-msvc2010/imageformats/qgif.dll
+    resources/binaries/windows/deployment/qt4-msvc2010/imageformats/qico.dll
+    resources/binaries/windows/deployment/qt4-msvc2010/imageformats/qjpeg.dll
+    resources/binaries/windows/deployment/qt4-msvc2010/imageformats/qmng.dll
+    resources/binaries/windows/deployment/qt4-msvc2010/imageformats/qsvg.dll
+    resources/binaries/windows/deployment/qt4-msvc2010/imageformats/qtga.dll
+    resources/binaries/windows/deployment/qt4-msvc2010/imageformats/qtiff.dll
+    resources/binaries/windows/deployment/qt4-msvc2010/imageformats/qwbmp.dll
+  )
 endif(WIN32)
 
 # Add custom icon on Mac OS X.
@@ -695,6 +706,8 @@ if(WIN32 OR OS2)
             DESTINATION ./)
     install(FILES ${APP_DLLS_QT4_MSVC2010_PHONON}
             DESTINATION ./phonon_backend)
+    install(FILES ${APP_DLLS_QT4_MSVC2010_IMAGEFORMATS}
+            DESTINATION ./imageformats)
     install(DIRECTORY resources/binaries/windows/zip
             DESTINATION ./binaries)
   else(WIN32)
@@ -702,6 +715,8 @@ if(WIN32 OR OS2)
             DESTINATION ./binaries)
   endif(WIN32)
 
+  install(DIRECTORY resources/graphics/app_icons
+          DESTINATION ./)
   install(DIRECTORY resources/templates
           DESTINATION ./)
   install(DIRECTORY resources/skins
@@ -750,6 +765,8 @@ elseif(APPLE)
             DESTINATION ${APPLE_PREFIX}/icons)
   endif(BUNDLE_ICON_THEMES)
 
+  install(DIRECTORY resources/graphics/app_icons
+          DESTINATION ${APPLE_PREFIX})
   install(DIRECTORY resources/templates
           DESTINATION ${APPLE_PREFIX})
   install(DIRECTORY resources/skins
@@ -784,6 +801,8 @@ elseif(UNIX)
             DESTINATION share/${APP_LOW_NAME}/icons)
   endif(BUNDLE_ICON_THEMES)
 
+  install(DIRECTORY resources/graphics/app_icons
+          DESTINATION share/${APP_LOW_NAME})
   install(DIRECTORY resources/templates
           DESTINATION share/${APP_LOW_NAME})
   install(DIRECTORY resources/skins

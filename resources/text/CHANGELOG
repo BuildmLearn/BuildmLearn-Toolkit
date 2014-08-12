@@ -14,6 +14,7 @@ Fixed:
 
 Added:
 <ul>
+<li>Application icon can now be specified when uploading XML bundle.</li>
 </ul>
 
 <hr/>
@@ -104,14 +105,22 @@ Main:
 <li>Last pre-GSoC release.</li>
 </ul>
 
-Fixed:
-<ul>
-<li>Not noted.</li>
-</ul>
+We are working on some new templates for the BuildmLearn Toolkit and refining the existing templates; we thought it would be good to provide an intermediate update with the refined version of mobile templates.
+<br><br>
+Today, we are pleased to announce the release of the BuildmLearn Toolkit 2.0.0. The new version of the toolkit contains refined mobile application templates - with better, consistent UI across templates and android versions. Our target is to support the toolkit for android 2.3+ versions. The templates have several enhancements (for e.g. improved animation for Flash cards) and several bug fixes. We have also now tested and optimized the mobile templates for use on larger screen devices (tablets, phablets).
+<br><br>
+You can download the latest version of the toolkit here. Please post your feedback and suggestions to our Google Group.
 
-Added:
+<hr/>
+<center><h2>2.0.0</h2></center>
+
+Main:
 <ul>
-<li>Not noted.</li>
+<li>Added options to save and load applications. Many teachers asked us to add options to save the application that they were building so that they can work on it over a period of time. We prioritized this request and now teachers can save their 'work in progress' apps and work on them at a later time. The app files are saved with an extension '.buildmlearn'.</li>
+<li>New template for flashcards introduced. This template allows to create apps as a collection of flashcards. The simulator is also available to preview apps before generating the apps for this template.This idea for this template was contributed on our Google group by Ashmita Nigam (thanks!).</li>
+<li>Added toolbar for easy access of important options. This was one of the tasks for our Season of BuildmLearn program and now it's integrated into the released.</li>
+<li>Bug fixes for the existing templates and overall improvement in the usability of the Toolkit.
+You can download the latest version of the toolkit here. Please post your feedback and suggestions to our Google group.</li>
 </ul>
 
 </body>

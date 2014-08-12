@@ -57,11 +57,20 @@ FormAbout::FormAbout(QWidget *parent) : QDialog(parent), m_ui(new Ui::FormAbout)
   file.setFileName(APP_INFO_PATH + "/CHANGELOG");
   if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
     m_ui->m_txtChangelog->setText(text_stream.readAll());
+    file.close();
   }
   else {
     m_ui->m_txtChangelog->setText(tr("Changelog not found."));
   }
-  file.close();
+
+  file.setFileName(APP_INFO_PATH + "/LICENSE");
+  if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+    m_ui->m_txtLicense->setText(text_stream.readAll());
+    file.close();
+  }
+  else {
+    m_ui->m_txtLicense->setText(tr("License not found."));
+  }
 
   // Set other informative texts.
   m_ui->m_lblDesc->setText(tr("<b>%8</b><br>"
@@ -78,16 +87,13 @@ FormAbout::FormAbout(QWidget *parent) : QDialog(parent), m_ui(new Ui::FormAbout)
                                                                              QT_VERSION_STR,
                                                                              APP_NAME));
 
-  m_ui->m_txtInfo->setText(tr("<body>%5 is an easy-to-use program that helps users make mobile apps without any knowledge of application development."
-                              "<br><br>This software is distributed under the terms of BSD 3-Clause License."
-                              "<br><br>Contacts:"
-                              "<ul><li><a href=\"mailto://%1\">%1</a> ~email</li>"
-                              "<li><a href=\"%2\">%2</a> ~website</li></ul>"
-                              "<br><br>Copyright (C) 2011-%3 %4</body>").arg(APP_EMAIL,
-                                                                             APP_URL,
-                                                                             QString::number(QDateTime::currentDateTime().date().year()),
-                                                                             APP_AUTHOR,
-                                                                             APP_NAME));
+  m_ui->m_txtInfo->setText(tr("<body>%4 is an easy-to-use program that helps users make mobile apps without any knowledge of application development."
+                              "<br><br>Visit us at <a href=\"%2\">%2</a>."
+                              "<br><br>Any feedback or suggestions related to %4 are always welcome. Please write to us at <a href=\"mailto:%1\">%1</a>."
+                              "<br><br>Copyright (C) 2012 %3</body>").arg(APP_EMAIL,
+                                                                          APP_URL,
+                                                                          APP_AUTHOR,
+                                                                          APP_NAME));
 }
 
 FormAbout::~FormAbout() {

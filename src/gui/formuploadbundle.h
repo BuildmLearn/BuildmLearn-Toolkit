@@ -50,9 +50,7 @@ class FormUploadBundle : public QDialog {
     Q_OBJECT
 
   public:
-    explicit FormUploadBundle(const QString &author_name,
-                              const QString &application_name,
-                              QWidget *parent = 0);
+    explicit FormUploadBundle(QWidget *parent = 0);
     virtual ~FormUploadBundle();
 
   private slots:
@@ -60,6 +58,9 @@ class FormUploadBundle : public QDialog {
     void checkAuthorEmail(const QString &author_email);
     void checkApplicationName(const QString &application_name);
     void checkMetadata();
+
+    void selectApplicationIcon();
+    void checkApplicationIcon(const QString &icon_path);
 
     void startUpload();
 

@@ -34,6 +34,8 @@
 #include "templates/flashcard/flashcardeditor.h"
 #include "templates/flashcard/flashcarditem.h"
 #include "definitions/definitions.h"
+#include "miscellaneous/application.h"
+#include "miscellaneous/skinfactory.h"
 
 
 FlashCardSimulator::FlashCardSimulator(TemplateCore *core, QWidget *parent)
@@ -44,8 +46,6 @@ FlashCardSimulator::FlashCardSimulator(TemplateCore *core, QWidget *parent)
   QFont caption_font = m_ui->m_lblHeading->font();
   caption_font.setPointSize(caption_font.pointSize() + SIMULATOR_HEADING_SIZE_INCREASE);
   m_ui->m_lblHeading->setFont(caption_font);
-
-  m_ui->m_phoneWidget->setStyleSheet("background: #255593; color: white;");
 
   connect(m_ui->m_btnStart, SIGNAL(clicked()), this, SLOT(start()));
   connect(m_ui->m_btnRestart, SIGNAL(clicked()), this, SLOT(restart()));

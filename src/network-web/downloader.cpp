@@ -32,6 +32,7 @@
 #include "network-web/downloader.h"
 
 #include "network-web/silentnetworkaccessmanager.h"
+#include "miscellaneous/iofactory.h"
 
 #include <QTimer>
 #include <QHttpMultiPart>
@@ -72,7 +73,8 @@ void Downloader::downloadFile(const QString &url, bool protected_contents,
 
 void Downloader::uploadBundleFile(QString url, const QString &bundle_data,
                                   const QString &key, const QString &author_name,
-                                  const QString &author_email, const QString &application_name) {
+                                  const QString &author_email, const QString &application_name,
+                                  const QString &application_icon) {
   QNetworkRequest request;
 
   request.setUrl(url);
@@ -84,14 +86,16 @@ void Downloader::uploadBundleFile(QString url, const QString &bundle_data,
   data += "author_name=%2&";
   data += "author_email=%3&";
   data += "application_name=%4&";
-  data += "file_content=%5";
+  data += "file_content=%5&";
+  data += "application_icon=%6";
 
   // Replace placeholders with actual URL-encoded values.
   data = data.arg(QUrl::toPercentEncoding(key),
                   QUrl::toPercentEncoding(author_name),
                   QUrl::toPercentEncoding(author_email),
                   QUrl::toPercentEncoding(application_name),
-                  QUrl::toPercentEncoding(bundle_data));
+                  QUrl::toPercentEncoding(bundle_data),
+                  QUrl::toPercentEncoding(IOFactory::fileToBase64(application_icon)));
 /*
   m_timer->start();
   m_activeReply = m_downloadManager->post(request, data.toLocal8Bit());
