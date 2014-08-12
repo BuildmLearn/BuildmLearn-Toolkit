@@ -93,7 +93,7 @@
    <item row="0" column="1">
     <widget class="QStackedWidget" name="m_stackedSettings">
      <property name="currentIndex">
-      <number>6</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="m_pageGeneral">
       <layout class="QFormLayout" name="formLayout_2">
@@ -170,8 +170,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>167</width>
-                <height>219</height>
+                <width>570</width>
+                <height>354</height>
                </rect>
               </property>
               <layout class="QFormLayout" name="formLayout">
@@ -304,8 +304,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>100</width>
-            <height>30</height>
+            <width>576</width>
+            <height>380</height>
            </rect>
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -666,7 +666,7 @@ External web browser set on this page is used application-wide. For example, it 
          <item>
           <widget class="QPushButton" name="m_btnSelectSignapk">
            <property name="text">
-            <string>&amp;Select file</string>
+            <string>&amp;Select file...</string>
            </property>
           </widget>
          </item>
@@ -697,7 +697,7 @@ External web browser set on this page is used application-wide. For example, it 
          <item>
           <widget class="QPushButton" name="m_btnSelectZip">
            <property name="text">
-            <string>&amp;Select file</string>
+            <string>&amp;Select file...</string>
            </property>
           </widget>
          </item>
@@ -728,7 +728,7 @@ External web browser set on this page is used application-wide. For example, it 
          <item>
           <widget class="QPushButton" name="m_btnSelectJava">
            <property name="text">
-            <string>&amp;Select file</string>
+            <string>&amp;Select file...</string>
            </property>
           </widget>
          </item>
@@ -778,7 +778,7 @@ External web browser set on this page is used application-wide. For example, it 
          <item>
           <widget class="QPushButton" name="m_btnGenerationTempSelect">
            <property name="text">
-            <string>&amp;Select directory</string>
+            <string>&amp;Select directory...</string>
            </property>
           </widget>
          </item>
@@ -812,7 +812,7 @@ External web browser set on this page is used application-wide. For example, it 
          <item>
           <widget class="QPushButton" name="m_btnGenerationOutputSelect">
            <property name="text">
-            <string>Select &amp;directory</string>
+            <string>Select &amp;directory...</string>
            </property>
           </widget>
          </item>
@@ -876,15 +876,15 @@ Note that not all templates support &quot;name of the project part&quot;, for ex
  </widget>
  <customwidgets>
   <customwidget>
-   <class>DynamicShortcutsWidget</class>
-   <extends>QWidget</extends>
-   <header>dynamicshortcutswidget.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
    <class>LabelWithStatus</class>
    <extends>QWidget</extends>
    <header>labelwithstatus.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>DynamicShortcutsWidget</class>
+   <extends>QWidget</extends>
+   <header>dynamicshortcutswidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

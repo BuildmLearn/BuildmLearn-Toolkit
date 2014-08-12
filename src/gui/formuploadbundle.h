@@ -59,6 +59,9 @@ class FormUploadBundle : public QDialog {
     void checkApplicationName(const QString &application_name);
     void checkMetadata();
 
+    void selectApplicationIcon();
+    void checkApplicationIcon(const QString &icon_path);
+
     void startUpload();
 
     void uploadProgress(qint64 bytes_sent, qint64 bytes_total);

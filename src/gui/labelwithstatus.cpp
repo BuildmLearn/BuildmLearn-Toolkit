@@ -56,4 +56,5 @@ void LabelWithStatus::setStatus(WidgetWithStatus::StatusType status,
                                 const QString &status_text) {
   WidgetWithStatus::setStatus(status, status_text);
   label()->setText(label_text);
+  label()->setToolTip(status_text);
 }

@@ -69,7 +69,8 @@ class Downloader : public QObject {
     /// \param bundle_data
     void uploadBundleFile(QString url, const QString &bundle_data,
                           const QString &key, const QString &author_name,
-                          const QString &author_email, const QString &application_name);
+                          const QString &author_email, const QString &application_name,
+                          const QString &application_icon);
 
   signals:
     /// \brief Emitted when new progress is known.

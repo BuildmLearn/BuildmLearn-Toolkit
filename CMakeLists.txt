@@ -715,6 +715,8 @@ if(WIN32 OR OS2)
             DESTINATION ./binaries)
   endif(WIN32)
 
+  install(DIRECTORY resources/graphics/app_icons
+          DESTINATION ./)
   install(DIRECTORY resources/templates
           DESTINATION ./)
   install(DIRECTORY resources/skins
@@ -763,6 +765,8 @@ elseif(APPLE)
             DESTINATION ${APPLE_PREFIX}/icons)
   endif(BUNDLE_ICON_THEMES)
 
+  install(DIRECTORY resources/graphics/app_icons
+          DESTINATION ${APPLE_PREFIX})
   install(DIRECTORY resources/templates
           DESTINATION ${APPLE_PREFIX})
   install(DIRECTORY resources/skins
@@ -797,6 +801,8 @@ elseif(UNIX)
             DESTINATION share/${APP_LOW_NAME}/icons)
   endif(BUNDLE_ICON_THEMES)
 
+  install(DIRECTORY resources/graphics/app_icons
+          DESTINATION share/${APP_LOW_NAME})
   install(DIRECTORY resources/templates
           DESTINATION share/${APP_LOW_NAME})
   install(DIRECTORY resources/skins
