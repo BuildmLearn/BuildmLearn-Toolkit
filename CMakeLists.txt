@@ -588,14 +588,13 @@ if(WIN32)
   )
 
   set(APP_DLLS_QT4_MSVC2010_IMAGEFORMATS
-    resources/binaries/windows/deployment/qt4-msvc2010/imageformats/qgif.dll
-    resources/binaries/windows/deployment/qt4-msvc2010/imageformats/qico.dll
-    resources/binaries/windows/deployment/qt4-msvc2010/imageformats/qjpeg.dll
-    resources/binaries/windows/deployment/qt4-msvc2010/imageformats/qmng.dll
-    resources/binaries/windows/deployment/qt4-msvc2010/imageformats/qsvg.dll
-    resources/binaries/windows/deployment/qt4-msvc2010/imageformats/qtga.dll
-    resources/binaries/windows/deployment/qt4-msvc2010/imageformats/qtiff.dll
-    resources/binaries/windows/deployment/qt4-msvc2010/imageformats/qwbmp.dll
+    resources/binaries/windows/deployment/qt4-msvc2010/imageformats/qgif4.dll
+    resources/binaries/windows/deployment/qt4-msvc2010/imageformats/qico4.dll
+    resources/binaries/windows/deployment/qt4-msvc2010/imageformats/qjpeg4.dll
+    resources/binaries/windows/deployment/qt4-msvc2010/imageformats/qmng4.dll
+    resources/binaries/windows/deployment/qt4-msvc2010/imageformats/qsvg4.dll
+    resources/binaries/windows/deployment/qt4-msvc2010/imageformats/qtga4.dll
+    resources/binaries/windows/deployment/qt4-msvc2010/imageformats/qtiff4.dll
   )
 endif(WIN32)
 
