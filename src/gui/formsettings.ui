@@ -844,7 +844,9 @@ External web browser set on this page is used application-wide. For example, it 
        <item row="3" column="0" colspan="2">
         <widget class="QLabel" name="m_lblGenerationInfo">
          <property name="text">
-          <string>You can use these placeholders:
+          <string>&lt;html&gt;
+&lt;body&gt;
+You can use these placeholders:
 &lt;ul&gt;
 &lt;li&gt;&quot;%1&quot; - name of used template,&lt;/li&gt;
 &lt;li&gt;&quot;%2&quot; - name of the project,&lt;/li&gt;
@@ -852,7 +854,9 @@ External web browser set on this page is used application-wide. For example, it 
 &lt;/ul&gt;
 For example, typical application filename pattern can look like this: &quot;application-%1-%2-%3.apk&quot;. This pattern is escaped during the generation process. For example, if you use &quot;flashcard&quot; template, then filename of result will look like this: &quot;application-flashcard-myflashcardproject-20140523T082205.apk&quot;.
 &lt;br&gt;&lt;br&gt;
-Note that not all templates support &quot;name of the project part&quot;, for example Basic mLearning template ignores %2 placeholder.</string>
+Note that not all templates support &quot;name of the project part&quot;, for example Basic mLearning template ignores %2 placeholder.
+&lt;/body&gt;
+&lt;/html&gt;</string>
          </property>
          <property name="textFormat">
           <enum>Qt::RichText</enum>
