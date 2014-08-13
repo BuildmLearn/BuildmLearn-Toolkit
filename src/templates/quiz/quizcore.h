@@ -52,7 +52,7 @@ class QuizCore : public TemplateCore {
     explicit QuizCore(TemplateEntryPoint *entry_point, QObject *parent = 0);
     virtual ~QuizCore();
 
-    GenerationResult generateMobileApplication(QString &output_file);
+    GenerationResult generateMobileApplication(const QString &input_apk_file, QString &output_file);
 
   private:
     QuizEditor *quizEditor();

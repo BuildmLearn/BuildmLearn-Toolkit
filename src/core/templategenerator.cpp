@@ -45,7 +45,7 @@ void TemplateGenerator::generateMobileApplication(TemplateCore *core) {
     // aby brala i ten vstupni nazev ciloveho apk souboru.
 
     QString output_file;
-    TemplateCore::GenerationResult result = core->generateMobileApplication(output_file);
+    TemplateCore::GenerationResult result = core->generateMobileApplication(input_file_name, output_file);
 
     disconnect(core, SIGNAL(generationProgress(int,QString)), this, SIGNAL(generationProgress(int,QString)));
 

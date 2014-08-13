@@ -47,7 +47,7 @@ class LearnSpellingsCore : public TemplateCore {
     explicit LearnSpellingsCore(TemplateEntryPoint *entry_point, QObject *parent = 0);
     virtual ~LearnSpellingsCore();
 
-    GenerationResult generateMobileApplication(QString &output_file);
+    GenerationResult generateMobileApplication(const QString &input_apk_file, QString &output_file);
 
   private:
     LearnSpellingsEditor *learnSpellingsEditor();
