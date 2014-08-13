@@ -34,10 +34,12 @@
 #include "core/templatefactory.h"
 #include "miscellaneous/iconfactory.h"
 
+#include <QShowEvent>
+
 
 FormNewProject::FormNewProject(TemplateFactory *template_manager, QWidget *parent)
   : QDialog(parent),
-    m_ui(new Ui::FormNewProject){
+    m_ui(new Ui::FormNewProject), m_adjusted(false) {
   m_ui->setupUi(this);
 
   m_ui->m_lblThumbnail->setFixedSize(200, 213);
@@ -70,6 +72,17 @@ TemplateEntryPoint *FormNewProject::startNewTemplate() {
   }
   else {
     return NULL;
+  }
+}
+
+void FormNewProject::showEvent(QShowEvent *e) {
+  e->accept();
+
+  if (!m_adjusted) {
+    adjustSize();
+    adjustPosition(parentWidget());
+
+    m_adjusted = true;
   }
 }
 

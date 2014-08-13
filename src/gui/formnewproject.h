@@ -58,6 +58,9 @@ class FormNewProject : public QDialog {
     /// is hit, then NULL is returned.
     TemplateEntryPoint *startNewTemplate();
 
+  protected:
+    void showEvent(QShowEvent *e);
+
   private slots:
     void templateSelected(int index);
 
@@ -66,6 +69,7 @@ class FormNewProject : public QDialog {
     void loadTemplates(const QList<TemplateEntryPoint*> &entry_points);
 
     Ui::FormNewProject *m_ui;
+    bool m_adjusted;
 };
 
 #endif // FORMNEWPROJECT_H
