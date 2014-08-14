@@ -43,6 +43,16 @@ LearnSpellingsEditor::LearnSpellingsEditor(TemplateCore *core, QWidget *parent)
   : TemplateEditor(core, parent), m_ui(new Ui::LearnSpellingsEditor) {
   m_ui->setupUi(this);
 
+  // Set validators.
+  QRegExpValidator *author_validator = new QRegExpValidator(this);
+  QRegExpValidator *title_validator = new QRegExpValidator(this);
+
+  author_validator->setRegExp(QRegExp(".{,50}"));
+  title_validator->setRegExp(QRegExp(".{,100}"));
+
+  m_ui->m_txtAuthor->lineEdit()->setValidator(author_validator);
+  m_ui->m_txtName->lineEdit()->setValidator(title_validator);
+
   // Set tab order.
   QList<QWidget*> tab_order_widgets;
   tab_order_widgets << m_ui->m_txtTitle->lineEdit() << m_ui->m_txtDescription->lineEdit()  <<

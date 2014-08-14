@@ -29,7 +29,7 @@
    <item>
     <widget class="QStackedWidget" name="m_phoneWidget">
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="m_pageStopped">
       <layout class="QHBoxLayout" name="horizontalLayout_3">
