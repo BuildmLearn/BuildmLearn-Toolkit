@@ -55,6 +55,16 @@ FlashCardEditor::FlashCardEditor(TemplateCore *core, QWidget *parent)
   m_ui->m_txtAuthor->lineEdit()->setValidator(author_validator);
   m_ui->m_txtName->lineEdit()->setValidator(title_validator);
 
+  // Set validators.
+  QRegExpValidator *question_validator = new QRegExpValidator(this);
+  QRegExpValidator *hint_validator = new QRegExpValidator(this);
+
+  question_validator->setRegExp(QRegExp(".{,100}"));
+  hint_validator->setRegExp(QRegExp(".{,30}"));
+
+  m_ui->m_txtQuestion->lineEdit()->setValidator(question_validator);
+  m_ui->m_txtHint->lineEdit()->setValidator(hint_validator);
+
   // Set tab order.
   QList<QWidget*> tab_order_widgets;
   tab_order_widgets << m_ui->m_txtQuestion->lineEdit() << m_ui->m_btnPictureSelect  <<
