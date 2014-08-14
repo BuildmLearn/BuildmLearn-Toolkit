@@ -111,7 +111,6 @@ class FormMain : public QMainWindow {
     void onGenerationDone(TemplateCore::GenerationResult result_code, const QString &output_file);
 
     // Opens output application/directory.
-    void openOutputApplication();
     void openOutputDirectory();
 
     // Called when user opens new project or loads existing project.

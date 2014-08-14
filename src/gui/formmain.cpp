@@ -98,7 +98,7 @@ FormMain::FormMain(QWidget *parent)
   loadSizeAndPosition();
   createConnections();
 
-//#if !defined(DEBUG)
+  //#if !defined(DEBUG)
 #if defined(DISABLE_STORE)
   m_ui->m_actionUploadApplicationToStore->setVisible(false);
 #else
@@ -114,7 +114,7 @@ FormMain::FormMain(QWidget *parent)
     m_ui->m_actionGenerateMobileApplication->setVisible(false);
   }
 #endif
-//#endif
+  //#endif
 
   // Make sure simulator window is displayed.
   m_ui->m_actionViewSimulatorWindow->setChecked(m_simulatorWindow->isVisibleOnStartup());
@@ -399,41 +399,42 @@ void FormMain::onGenerationDone(TemplateCore::GenerationResult result_code, cons
 
   // TODO: Print information about result.
   switch (result_code) {
-    case TemplateCore::Success:
-      qApp->trayIcon()->showMessage(tr("Mobile application generated"),
-                              #if defined(Q_OS_WIN32)
-                                    tr("Click here to open its location."),
-                              #else
-                                    tr("Click here to copy output path to clipboard."),
-                              #endif
-                                    QSystemTrayIcon::Information,
-                                    20000,
-                                    this,
-                                    SLOT(openOutputApplication()));
-      break;
+    case TemplateCore::Success: {
+      CustomMessageBox msg_box(this);
 
+      // Initialize message box properties.
+      msg_box.setWindowTitle(tr("Mobile application generated"));
+#if defined(Q_OS_WIN32)
+      msg_box.setText(tr("Mobile application was successfully generated."));
+
+      QPushButton *btn_open_folder = msg_box.addButton(tr("Open output folder"),
+                                                       QMessageBox::DestructiveRole);
+      connect(btn_open_folder, SIGNAL(clicked()), this, SLOT(openOutputDirectory()));
+#else
+      msg_box.setText(tr("Mobile application was successfully generated and is placed in "
+                         "output directory \"%1\"").arg(QDir::toNativeSeparators(qApp->templateManager()->outputDirectory())));
+#endif
+      msg_box.setIcon(QMessageBox::Information);
+      msg_box.setStandardButtons(QMessageBox::Ok);
+
+      // Setup button box icons.
+#if defined(Q_OS_OS2)
+      QDialogButtonBox *button_box = msg_box.findChild<QDialogButtonBox*>();
+      iconify(button_box);
+#endif
+
+      msg_box.exec();
+      break;
+    }
     case TemplateCore::Aborted:
       // Supress abortion state because this is not critical state.
       break;
 
     default:
-      qApp->trayIcon()->showMessage(tr("Mobile application not generated"),
-                                    tr("Application was NOT generated successfully."),
-                                    QSystemTrayIcon::Critical);
+      CustomMessageBox::show(this, QMessageBox::Critical, tr("Mobile application not generated"),
+                             tr("Application was NOT generated successfully."));
       break;
   }
-}
-
-void FormMain::openOutputApplication() {
-#if defined(Q_OS_WIN32)
-  // Open explorer window with target path.
-  QProcess::startDetached("explorer", QStringList() << "/select,"  << QDir::toNativeSeparators(m_generatedApplicationPath));
-#else
-  // Copy target path to clipboard.
-  QApplication::clipboard()->setText(m_generatedApplicationPath);
-#endif
-
-  m_generatedApplicationPath = QString();
 }
 
 void FormMain::openOutputDirectory() {
@@ -441,10 +442,9 @@ void FormMain::openOutputDirectory() {
   // Open explorer window with target path.
   QProcess::startDetached("explorer", QStringList() /*<< "/root,"*/  << QDir::toNativeSeparators(qApp->templateManager()->outputDirectory()));
 #else
-  // Copy target path to clipboard.
   // TODO: Better handling here and add action icon.
-  QMessageBox::information(this, tr("Cannot open directory"), tr("Directory was copied into your clipboard."));
-  QApplication::clipboard()->setText(qApp->templateManager()->outputDirectory());
+  CustomMessageBox::show(this, QMessageBox::Warning, tr("Cannot open directory"),
+                         tr("Output directory cannot be opened, output directory is \"%1\".").arg(QDir::toNativeSeparators(qApp->templateManager()->outputDirectory())));
 #endif
 }
 
