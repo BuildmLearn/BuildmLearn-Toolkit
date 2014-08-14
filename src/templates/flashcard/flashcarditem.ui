@@ -39,6 +39,16 @@
     </widget>
    </item>
    <item>
+    <widget class="QLabel" name="m_lblDummy">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QStackedWidget" name="m_flipper">
      <property name="currentIndex">
       <number>0</number>
@@ -88,6 +98,9 @@
        </property>
        <item>
         <widget class="QLabel" name="m_lblAnswer">
+         <property name="frameShape">
+          <enum>QFrame::Box</enum>
+         </property>
          <property name="text">
           <string/>
          </property>

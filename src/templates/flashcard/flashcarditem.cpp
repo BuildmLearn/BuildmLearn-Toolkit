@@ -68,6 +68,7 @@ void FlashCardItem::flip(int target_side) {
   target_side = target_side < 0 ? (m_ui->m_flipper->currentIndex() == 0 ? 1 : 0) : target_side;
 
   m_ui->m_lblHint->setVisible(target_side == 0);
+  m_ui->m_lblDummy->setVisible(target_side != 0);
   m_ui->m_lblQuestionText->setVisible(target_side == 0);
   m_ui->m_flipper->setCurrentIndex(target_side);
 }
