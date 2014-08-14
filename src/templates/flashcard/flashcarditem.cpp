@@ -54,9 +54,10 @@ void FlashCardItem::reset() {
   flip(0);
 }
 
-void FlashCardItem::setQuestion(const FlashCardQuestion &question, int question_number) {
+void FlashCardItem::setQuestion(const FlashCardQuestion &question, int question_number, int total_questions) {
   m_ui->m_btnPrevious->setEnabled(question_number != 1);
-  m_ui->m_lblQuestionNumber->setText(tr("Question number %1").arg(question_number));
+  m_ui->m_lblQuestionNumber->setText(tr("Question number %1 of %2").arg(QString::number(question_number),
+                                                                        QString::number(total_questions)));
   m_ui->m_lblQuestionText->setText(question.question());
   m_ui->m_lblHint->setText(question.hint());
   m_ui->m_lblAnswer->setText(QString("<span style=\" font-size:14pt;\">%1</span>").arg(question.answer()));

@@ -71,7 +71,7 @@ void QuizItem::clearStylesheets() {
   }
 }
 
-void QuizItem::setQuestion(const QuizQuestion &question, int question_number) {
+void QuizItem::setQuestion(const QuizQuestion &question, int question_number, int total_questions) {
   m_question = question;
 
   m_ui->m_rbAnswerOne->setText(question.answerOne());
@@ -84,7 +84,8 @@ void QuizItem::setQuestion(const QuizQuestion &question, int question_number) {
   m_ui->m_rbAnswerThree->setVisible(question.correctAnswer() == 2 || !question.answerThree().simplified().isEmpty());
   m_ui->m_rbAnswerFour->setVisible(question.correctAnswer() == 3 || !question.answerFour().simplified().isEmpty());
 
-  m_ui->m_lblQuestionNumber->setText(tr("Question number %1").arg(question_number));
+  m_ui->m_lblQuestionNumber->setText(tr("Question number %1 of %2").arg(QString::number(question_number),
+                                                                        QString::number(total_questions)));
   m_ui->m_lblQuestionText->setText(question.question());
 }
 

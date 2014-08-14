@@ -62,7 +62,7 @@ class QuizItem : public QWidget {
     /// \brief Sets new question for this widget.
     /// \param question Question object.
     /// \param question_number Number of the question.
-    void setQuestion(const QuizQuestion &question, int question_number);
+    void setQuestion(const QuizQuestion &question, int question_number, int total_questions);
 
     /// \brief Access to state of quiz question widget.
     /// \return Returns the state of quiz question widget.

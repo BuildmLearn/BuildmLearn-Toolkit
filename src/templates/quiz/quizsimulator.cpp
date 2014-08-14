@@ -84,13 +84,14 @@ bool QuizSimulator::startSimulation() {
   m_ui->m_lblHeading->setText(editor->m_ui->m_txtName->lineEdit()->text());
 
   int question_number = 1;
+  QList<QuizQuestion> questions = editor->activeQuestions();
 
-  foreach (const QuizQuestion &question, editor->activeQuestions()) {
+  foreach (const QuizQuestion &question, questions) {
     QuizItem *item = new QuizItem(m_ui->m_phoneWidget);
 
     connect(item, SIGNAL(questionSubmitted()), this, SLOT(questionSubmitted()));
 
-    item->setQuestion(question, question_number++);
+    item->setQuestion(question, question_number++, questions.size());
     m_ui->m_phoneWidget->insertWidget(m_ui->m_phoneWidget->count() - 1, item);
   }
 

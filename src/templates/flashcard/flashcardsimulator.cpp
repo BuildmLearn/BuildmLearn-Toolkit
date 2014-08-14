@@ -80,14 +80,15 @@ bool FlashCardSimulator::startSimulation() {
   m_ui->m_lblHeading->setText(editor->m_ui->m_txtName->lineEdit()->text());
 
   int question_number = 1;
+  QList<FlashCardQuestion> questions = editor->activeQuestions();
 
-  foreach (const FlashCardQuestion &question, editor->activeQuestions()) {
+  foreach (const FlashCardQuestion &question, questions) {
     FlashCardItem *item = new FlashCardItem(m_ui->m_phoneWidget);
 
     connect(item, SIGNAL(nextCardRequested()), this, SLOT(moveToNextCard()));
     connect(item, SIGNAL(previousCardRequested()), this, SLOT(moveToPreviousCard()));
 
-    item->setQuestion(question, question_number++);
+    item->setQuestion(question, question_number++, questions.size());
     m_ui->m_phoneWidget->insertWidget(m_ui->m_phoneWidget->count() - 1, item);
   }
 

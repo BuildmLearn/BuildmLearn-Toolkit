@@ -55,7 +55,7 @@ class FlashCardItem : public QWidget {
     /// \brief Sets new question for this widget.
     /// \param question Question object.
     /// \param question_number Number of the question.
-    void setQuestion(const FlashCardQuestion &question, int question_number);
+    void setQuestion(const FlashCardQuestion &question, int question_number, int total_questions);
 
   private slots:
     void flip(int target_side = -1);
