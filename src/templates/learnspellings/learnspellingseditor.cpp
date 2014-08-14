@@ -67,9 +67,6 @@ LearnSpellingsEditor::LearnSpellingsEditor(TemplateCore *core, QWidget *parent)
   m_ui->m_btnItemUp->setIcon(factory->fromTheme("move-up"));
   m_ui->m_btnItemDown->setIcon(factory->fromTheme("move-down"));
 
-  m_ui->m_txtAuthor->lineEdit()->setText(tr("John Doe"));
-  m_ui->m_txtName->lineEdit()->setText(tr("Greatest collection"));
-
   connect(m_ui->m_txtDescription->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(checkDescription(QString)));
   connect(m_ui->m_txtTitle->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(checkTitle(QString)));
   connect(m_ui->m_btnItemAdd, SIGNAL(clicked()), this, SLOT(addSampleWord()));

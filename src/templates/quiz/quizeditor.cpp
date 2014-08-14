@@ -87,9 +87,6 @@ QuizEditor::QuizEditor(TemplateCore *core, QWidget *parent)
   m_ui->m_btnAnswerThree->setIcon(m_iconNo);
   m_ui->m_btnAnswerFour->setIcon(m_iconNo);
 
-  m_ui->m_txtAuthor->lineEdit()->setText(tr("John Doe"));
-  m_ui->m_txtName->lineEdit()->setText(tr("Greatest quiz"));
-
   connect(m_ui->m_txtAuthor->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(updateAuthorStatus()));
   connect(m_ui->m_txtName->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(updateNameStatus()));
 

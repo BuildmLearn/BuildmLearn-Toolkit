@@ -74,9 +74,6 @@ FlashCardEditor::FlashCardEditor(TemplateCore *core, QWidget *parent)
   m_ui->m_btnQuestionUp->setIcon(factory->fromTheme("move-up"));
   m_ui->m_btnQuestionDown->setIcon(factory->fromTheme("move-down"));
 
-  m_ui->m_txtAuthor->lineEdit()->setText(tr("John Doe"));
-  m_ui->m_txtName->lineEdit()->setText(tr("Greatest collection"));
-
   connect(m_ui->m_btnPictureSelect, SIGNAL(clicked()), this, SLOT(selectPicture()));
   connect(m_ui->m_txtAuthor->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(onAuthorChanged(QString)));
   connect(m_ui->m_txtQuestion, SIGNAL(textEdited(QString)), this, SLOT(saveQuestion()));
