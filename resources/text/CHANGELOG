@@ -11,7 +11,7 @@ Fixed:
 <ul>
 <li>Arrows on Quiz template are now correctly disabled on startup.</li>
 <li>Generated APK files now have correct custom names.</li>
-<li>Fixed bugs #33, #32, #30, #29.</li>
+<li>Fixed bugs #33, #32, #30, #29 and many others.</li>
 </ul>
 
 Added:
