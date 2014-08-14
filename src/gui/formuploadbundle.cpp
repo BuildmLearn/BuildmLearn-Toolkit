@@ -32,7 +32,6 @@
 
 #include "gui/lineeditwithstatus.h"
 #include "miscellaneous/application.h"
-#include "miscellaneous/storefactory.h"
 #include "miscellaneous/iconfactory.h"
 #include "network-web/downloader.h"
 #include "network-web/networkfactory.h"
@@ -46,7 +45,7 @@
 
 
 FormUploadBundle::FormUploadBundle(QWidget *parent)
-  : QDialog(parent), m_ui(new Ui::FormUploadBundle), m_uploader(NULL) {
+  : QDialog(parent), m_ui(new Ui::FormUploadBundle), m_uploader(NULL), m_uploadStatus(StoreFactory::OtherError) {
   m_ui->setupUi(this);
 
   setWindowFlags(Qt::MSWindowsFixedSizeDialogHint | Qt::Dialog | Qt::WindowSystemMenuHint | Qt::WindowTitleHint);
@@ -234,14 +233,11 @@ void FormUploadBundle::uploadProgress(qint64 bytes_sent, qint64 bytes_total) {
 void FormUploadBundle::uploadCompleted(QNetworkReply::NetworkError error, QByteArray output) {
   qDebug(qPrintable(output));
 
-  // TODO: Decode output.
-  StoreFactory::UploadStatus status = StoreFactory::parseResponseXml(error, output);
-  QString string_status = StoreFactory::uploadStatusToString(status);
+  m_uploadStatus = StoreFactory::parseResponseXml(error, output);
+  QString string_status = StoreFactory::uploadStatusToString(m_uploadStatus);
 
-  if (status == StoreFactory::Success) {
-    m_ui->m_lblProgress->setStatus(WidgetWithStatus::Ok,
-                                   string_status,
-                                   string_status);
+  if (m_uploadStatus == StoreFactory::Success) {
+    close();
   }
   else {
     m_ui->m_lblProgress->setStatus(WidgetWithStatus::Error,
@@ -251,4 +247,8 @@ void FormUploadBundle::uploadCompleted(QNetworkReply::NetworkError error, QByteA
 
   m_btnClose->setEnabled(true);
   m_btnUpload->setEnabled(true);
+}
+
+StoreFactory::UploadStatus FormUploadBundle::uploadStatus() const {
+  return m_uploadStatus;
 }

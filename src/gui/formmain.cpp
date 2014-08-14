@@ -668,7 +668,15 @@ void FormMain::generateMobileApplication() {
 void FormMain::uploadMobileApplicationToStore() { 
   QPointer<FormUploadBundle> form_pointer = new FormUploadBundle(this);
   form_pointer.data()->exec();
-  delete form_pointer.data();
+
+  if (form_pointer.data()->uploadStatus() == StoreFactory::Success) {
+    // Successfully uploaded, show message.
+    CustomMessageBox::show(this, QMessageBox::Information,
+                           tr("Application uploaded"),
+                           tr("Your application was successfully uploaded to BuildmLearn Store."));
+  }
+
+  delete form_pointer.data();  
 }
 
 bool FormMain::saveUnsavedProject() {

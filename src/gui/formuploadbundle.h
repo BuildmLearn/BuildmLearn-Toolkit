@@ -34,6 +34,7 @@
 #include <QDialog>
 
 #include "ui_formuploadbundle.h"
+#include "miscellaneous/storefactory.h"
 
 #include <QNetworkReply>
 
@@ -52,6 +53,8 @@ class FormUploadBundle : public QDialog {
   public:
     explicit FormUploadBundle(QWidget *parent = 0);
     virtual ~FormUploadBundle();
+
+    StoreFactory::UploadStatus uploadStatus() const;
 
   private slots:
     void checkAuthorName(const QString &author_name);
@@ -75,6 +78,8 @@ class FormUploadBundle : public QDialog {
     QPushButton *m_btnUpload;
     QPushButton *m_btnClose;
     Downloader *m_uploader;
+
+    StoreFactory::UploadStatus m_uploadStatus;
 };
 
 #endif // FORMUPLOADBUNDLE_H
