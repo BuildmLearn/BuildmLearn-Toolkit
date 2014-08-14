@@ -43,6 +43,17 @@ LearnSpellingsEditor::LearnSpellingsEditor(TemplateCore *core, QWidget *parent)
   : TemplateEditor(core, parent), m_ui(new Ui::LearnSpellingsEditor) {
   m_ui->setupUi(this);
 
+  // Set tab order.
+  QList<QWidget*> tab_order_widgets;
+  tab_order_widgets << m_ui->m_txtTitle->lineEdit() << m_ui->m_txtDescription->lineEdit()  <<
+                       m_ui->m_txtAuthor->lineEdit() << m_ui->m_txtName->lineEdit() <<
+                       m_ui->m_listItems << m_ui->m_btnItemAdd << m_ui->m_btnItemRemove <<
+                       m_ui->m_btnItemUp << m_ui->m_btnItemDown;
+
+  for (int i = 1; i < tab_order_widgets.size(); i++) {
+    setTabOrder(tab_order_widgets.at(i - 1), tab_order_widgets.at(i));
+  }
+
   m_ui->m_txtTitle->lineEdit()->setPlaceholderText(tr("Word to spell"));
   m_ui->m_txtDescription->lineEdit()->setPlaceholderText(tr("Meaning of the word"));
   m_ui->m_txtNumberOfItems->lineEdit()->setEnabled(false);

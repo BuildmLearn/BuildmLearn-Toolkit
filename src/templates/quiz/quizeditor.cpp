@@ -48,6 +48,20 @@ QuizEditor::QuizEditor(TemplateCore *core, QWidget *parent)
   : TemplateEditor(core, parent), m_ui(new Ui::QuizEditor) {
   m_ui->setupUi(this);
 
+  // Set tab order.
+  QList<QWidget*> tab_order_widgets;
+  tab_order_widgets << m_ui->m_txtQuestion << m_ui->m_btnAnswerOne << m_ui->m_txtAnswerOne <<
+                       m_ui->m_btnAnswerTwo << m_ui->m_txtAnswerTwo <<
+                       m_ui->m_btnAnswerThree << m_ui->m_txtAnswerThree <<
+                       m_ui->m_btnAnswerFour << m_ui->m_txtAnswerFour <<
+                       m_ui->m_txtAuthor->lineEdit() << m_ui->m_txtName->lineEdit() <<
+                       m_ui->m_listQuestions << m_ui->m_btnQuestionAdd << m_ui->m_btnQuestionRemove <<
+                       m_ui->m_btnQuestionUp << m_ui->m_btnQuestionDown;
+
+  for (int i = 1; i < tab_order_widgets.size(); i++) {
+    setTabOrder(tab_order_widgets.at(i - 1), tab_order_widgets.at(i));
+  }
+
   m_ui->m_txtNumberOfQuestions->lineEdit()->setEnabled(false);
 
   IconFactory *factory = IconFactory::instance();

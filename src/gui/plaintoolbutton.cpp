@@ -56,11 +56,19 @@ void PlainToolButton::paintEvent(QPaintEvent *e) {
   if (!isEnabled()) {
     p.setOpacity(0.4);
   }
-  else if (underMouse()) {
+  else if (underMouse() || hasFocus()) {
     p.setOpacity(0.7);
   }
 
   icon().paint(&p, rect);
+}
+
+void PlainToolButton::keyPressEvent(QKeyEvent *e) {
+  e->accept();
+
+  if (e->key() == Qt::Key_Enter || e->key() == Qt::Key_Return) {
+    click();
+  }
 }
 
 int PlainToolButton::padding() const {

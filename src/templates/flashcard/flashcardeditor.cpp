@@ -45,6 +45,18 @@ FlashCardEditor::FlashCardEditor(TemplateCore *core, QWidget *parent)
   : TemplateEditor(core, parent), m_ui(new Ui::FlashCardEditor) {
   m_ui->setupUi(this);
 
+  // Set tab order.
+  QList<QWidget*> tab_order_widgets;
+  tab_order_widgets << m_ui->m_txtQuestion->lineEdit() << m_ui->m_btnPictureSelect  <<
+                       m_ui->m_txtAnswer->lineEdit() << m_ui->m_txtHint->lineEdit() <<
+                       m_ui->m_txtAuthor->lineEdit() << m_ui->m_txtName->lineEdit() <<
+                       m_ui->m_listQuestions << m_ui->m_btnQuestionAdd << m_ui->m_btnQuestionRemove <<
+                       m_ui->m_btnQuestionUp << m_ui->m_btnQuestionDown;
+
+  for (int i = 1; i < tab_order_widgets.size(); i++) {
+    setTabOrder(tab_order_widgets.at(i - 1), tab_order_widgets.at(i));
+  }
+
   m_ui->m_txtNumberOfQuestions->lineEdit()->setEnabled(false);
 
   m_ui->m_lblPictureFile->label()->setWordWrap(true);
@@ -61,7 +73,6 @@ FlashCardEditor::FlashCardEditor(TemplateCore *core, QWidget *parent)
   m_ui->m_btnQuestionRemove->setIcon(factory->fromTheme("item-remove"));
   m_ui->m_btnQuestionUp->setIcon(factory->fromTheme("move-up"));
   m_ui->m_btnQuestionDown->setIcon(factory->fromTheme("move-down"));
-
 
   m_ui->m_txtAuthor->lineEdit()->setText(tr("John Doe"));
   m_ui->m_txtName->lineEdit()->setText(tr("Greatest collection"));
@@ -244,6 +255,17 @@ void FlashCardEditor::checkHint() {
   }
 }
 
+void FlashCardEditor::checkQuestion() {
+  if (m_ui->m_txtQuestion->lineEdit()->text().isEmpty()) {
+    m_ui->m_txtQuestion->setStatus(WidgetWithStatus::Warning,
+                               tr("Question is not specified."));
+  }
+  else {
+    m_ui->m_txtQuestion->setStatus(WidgetWithStatus::Ok,
+                               tr("Question is specified."));
+  }
+}
+
 void FlashCardEditor::checkAnswer() {
   if (m_ui->m_txtAnswer->lineEdit()->text().isEmpty()) {
     m_ui->m_txtAnswer->setStatus(WidgetWithStatus::Error,
@@ -380,7 +402,7 @@ void FlashCardEditor::loadQuestion(int index) {
   if (index >= 0) {
     FlashCardQuestion question = m_ui->m_listQuestions->item(index)->data(Qt::UserRole).value<FlashCardQuestion>();
 
-    m_ui->m_txtQuestion->setText(question.question());
+    m_ui->m_txtQuestion->lineEdit()->setText(question.question());
     m_ui->m_txtAnswer->lineEdit()->setText(question.answer());
     m_ui->m_txtHint->lineEdit()->setText(question.hint());
     loadPicture(question.picturePath());
@@ -388,7 +410,7 @@ void FlashCardEditor::loadQuestion(int index) {
     m_activeQuestion = question;
   }
   else {
-    m_ui->m_txtQuestion->setText(QString());
+    m_ui->m_txtQuestion->lineEdit()->setText(QString());
     m_ui->m_txtAnswer->lineEdit()->setText(QString());
     m_ui->m_txtHint->lineEdit()->setText(QString());
     loadPicture(QString());
@@ -404,7 +426,7 @@ void FlashCardEditor::loadQuestion(int index) {
 }
 
 void FlashCardEditor::saveQuestion() {
-  m_activeQuestion.setQuestion(m_ui->m_txtQuestion->text());
+  m_activeQuestion.setQuestion(m_ui->m_txtQuestion->lineEdit()->text());
   m_activeQuestion.setAnswer(m_ui->m_txtAnswer->lineEdit()->text());
   m_activeQuestion.setHint(m_ui->m_txtHint->lineEdit()->text());
   m_activeQuestion.setPicturePath(m_ui->m_lblPictureFile->label()->toolTip());

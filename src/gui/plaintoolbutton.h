@@ -58,6 +58,8 @@ class PlainToolButton : public QToolButton {
     /// \param e Info about painting event.
     void paintEvent(QPaintEvent *e);
 
+    void keyPressEvent(QKeyEvent *e);
+
   private:
     int m_padding;
 };

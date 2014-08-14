@@ -63,6 +63,7 @@ class FlashCardEditor : public TemplateEditor {
   private:
     void checkAuthor();
     void checkHint();
+    void checkQuestion();
     void checkAnswer();
     void checkName();
 
