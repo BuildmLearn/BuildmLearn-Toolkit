@@ -45,7 +45,7 @@ BasicmLearningEditor::BasicmLearningEditor(TemplateCore *core, QWidget *parent)
 
   // Set tab order.
   QList<QWidget*> tab_order_widgets;
-  tab_order_widgets << m_ui->m_txtTitle->lineEdit() << m_ui->m_txtDescription->lineEdit() <<
+  tab_order_widgets << m_ui->m_txtTitle->lineEdit() << m_ui->m_txtDescription <<
                        m_ui->m_txtAuthor->lineEdit() << m_ui->m_txtName->lineEdit() <<
                        m_ui->m_listItems << m_ui->m_btnItemAdd << m_ui->m_btnItemRemove <<
                        m_ui->m_btnItemUp << m_ui->m_btnItemDown;
@@ -56,7 +56,6 @@ BasicmLearningEditor::BasicmLearningEditor(TemplateCore *core, QWidget *parent)
 
 
   m_ui->m_txtTitle->lineEdit()->setPlaceholderText(tr("Title of the item"));
-  m_ui->m_txtDescription->lineEdit()->setPlaceholderText(tr("Description of the item"));
   m_ui->m_txtNumberOfItems->lineEdit()->setEnabled(false);
   m_ui->m_txtAuthor->lineEdit()->setPlaceholderText(tr("Author of this collection"));
   m_ui->m_txtName->lineEdit()->setPlaceholderText(tr("Name of this collection"));
@@ -68,11 +67,10 @@ BasicmLearningEditor::BasicmLearningEditor(TemplateCore *core, QWidget *parent)
   m_ui->m_btnItemUp->setIcon(factory->fromTheme("move-up"));
   m_ui->m_btnItemDown->setIcon(factory->fromTheme("move-down"));
 
-  connect(m_ui->m_txtDescription->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(checkDescription(QString)));
   connect(m_ui->m_txtTitle->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(checkTitle(QString)));
   connect(m_ui->m_btnItemAdd, SIGNAL(clicked()), this, SLOT(addNewItem()));
   connect(m_ui->m_btnItemRemove, SIGNAL(clicked()), this, SLOT(removeSelectedItem()));
-  connect(m_ui->m_txtDescription->lineEdit(), SIGNAL(textEdited(QString)), this, SLOT(saveItem()));
+  connect(m_ui->m_txtDescription, SIGNAL(textChanged()), this, SLOT(saveItem()));
   connect(m_ui->m_txtTitle->lineEdit(), SIGNAL(textEdited(QString)), this, SLOT(saveItem()));
   connect(m_ui->m_listItems, SIGNAL(currentRowChanged(int)), this, SLOT(displayItem(int)));
   connect(m_ui->m_btnItemUp, SIGNAL(clicked()), this, SLOT(moveItemUp()));
@@ -80,7 +78,6 @@ BasicmLearningEditor::BasicmLearningEditor(TemplateCore *core, QWidget *parent)
   connect(m_ui->m_txtAuthor->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(onAuthorChanged(QString)));
   connect(m_ui->m_txtName->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(onNameChanged(QString)));
 
-  checkDescription(m_ui->m_txtDescription->lineEdit()->text());
   checkTitle(m_ui->m_txtTitle->lineEdit()->text());
   checkAuthor();
   checkName();
@@ -308,7 +305,7 @@ void BasicmLearningEditor::removeSelectedItem() {
 
 void BasicmLearningEditor::saveItem() {
   m_activeItem.setTitle(m_ui->m_txtTitle->lineEdit()->text());
-  m_activeItem.setDescription(m_ui->m_txtDescription->lineEdit()->text());
+  m_activeItem.setDescription(m_ui->m_txtDescription->toPlainText());
 
   m_ui->m_listItems->currentItem()->setData(Qt::UserRole, QVariant::fromValue(m_activeItem));
   m_ui->m_listItems->currentItem()->setText(m_activeItem.title());
@@ -321,12 +318,12 @@ void BasicmLearningEditor::displayItem(int index) {
     BasicmLearningItem item = m_ui->m_listItems->item(index)->data(Qt::UserRole).value<BasicmLearningItem>();
 
     m_ui->m_txtTitle->lineEdit()->setText(item.title());
-    m_ui->m_txtDescription->lineEdit()->setText(item.description());
+    m_ui->m_txtDescription->setText(item.description());
     m_activeItem = item;
   }
   else {
     m_ui->m_txtTitle->lineEdit()->clear();
-    m_ui->m_txtDescription->lineEdit()->clear();
+    m_ui->m_txtDescription->clear();
   }
 
   QTimer::singleShot(0, this, SLOT(configureUpDown()));
@@ -357,15 +354,6 @@ void BasicmLearningEditor::moveItemDown() {
   m_ui->m_listItems->setCurrentRow(index + 1);
 
   emit changed();
-}
-
-void BasicmLearningEditor::checkDescription(const QString &description) {
-  if (description.simplified().isEmpty()) {
-    m_ui->m_txtDescription->setStatus(WidgetWithStatus::Error, tr("Please, enter some description."));
-  }
-  else {
-    m_ui->m_txtDescription->setStatus(WidgetWithStatus::Ok, tr("Description seems to be okay."));
-  }
 }
 
 void BasicmLearningEditor::setEditorsEnabled(bool enabled) {

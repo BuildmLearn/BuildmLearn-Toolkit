@@ -69,7 +69,6 @@ class BasicmLearningEditor : public TemplateEditor {
     void saveItem();
     void displayItem(int index);
     void checkTitle(const QString &title);
-    void checkDescription(const QString &description);
     void moveItemUp();
     void moveItemDown();
     void configureUpDown();
