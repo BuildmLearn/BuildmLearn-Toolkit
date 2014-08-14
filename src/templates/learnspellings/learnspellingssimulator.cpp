@@ -192,7 +192,7 @@ void LearnSpellingsSimulator::spellThisWord() {
   LearnSpellingsItem current_word = m_words.at(m_activeWord);
 
   if (!guessed_word.isEmpty()) {
-    if (guessed_word == current_word.word()) {
+    if (QString::compare(guessed_word, current_word.word(), Qt::CaseInsensitive) == 0) {
       // User guessed the word!!!
       m_resultCorrect++;
       m_ui->m_lblResultCaption->setText(tr("This is correct spelling"));
