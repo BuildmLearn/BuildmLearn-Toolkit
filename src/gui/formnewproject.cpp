@@ -76,14 +76,14 @@ TemplateEntryPoint *FormNewProject::startNewTemplate() {
 }
 
 void FormNewProject::showEvent(QShowEvent *e) {
-  e->accept();
-
   if (!m_adjusted) {
     adjustSize();
     adjustPosition(parentWidget());
 
     m_adjusted = true;
   }
+
+  e->accept();
 }
 
 void FormNewProject::templateSelected(int index) {

@@ -51,12 +51,19 @@ QuizEditor::QuizEditor(TemplateCore *core, QWidget *parent)
   // Set validators.
   QRegExpValidator *author_validator = new QRegExpValidator(this);
   QRegExpValidator *title_validator = new QRegExpValidator(this);
+  QRegExpValidator *option_validator = new QRegExpValidator(this);
 
   author_validator->setRegExp(QRegExp(".{,50}"));
   title_validator->setRegExp(QRegExp(".{,100}"));
+  option_validator->setRegExp(QRegExp(".{,60}"));
 
   m_ui->m_txtAuthor->lineEdit()->setValidator(author_validator);
   m_ui->m_txtName->lineEdit()->setValidator(title_validator);
+  m_ui->m_txtAnswerOne->setValidator(option_validator);
+  m_ui->m_txtAnswerTwo->setValidator(option_validator);
+  m_ui->m_txtAnswerThree->setValidator(option_validator);
+  m_ui->m_txtAnswerFour->setValidator(option_validator);
+  m_ui->m_txtQuestion->setMaxLength(160);
 
   // Set tab order.
   QList<QWidget*> tab_order_widgets;
