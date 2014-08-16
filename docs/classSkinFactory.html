@@ -64,7 +64,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
@@ -98,11 +98,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Inheritance diagram for SkinFactory:</div>
 <div class="dyncontent">
- <div class="center">
-  <img src="classSkinFactory.png" usemap="#SkinFactory_map" alt=""/>
-  <map id="SkinFactory_map" name="SkinFactory_map">
+<div class="center"><img src="classSkinFactory__inherit__graph.png" border="0" usemap="#SkinFactory_inherit__map" alt="Inheritance graph"/></div>
+<map name="SkinFactory_inherit__map" id="SkinFactory_inherit__map">
 </map>
- </div></div>
+</div>
+<div class="dynheader">
+Collaboration diagram for SkinFactory:</div>
+<div class="dyncontent">
+<div class="center"><img src="classSkinFactory__coll__graph.png" border="0" usemap="#SkinFactory_coll__map" alt="Collaboration graph"/></div>
+<map name="SkinFactory_coll__map" id="SkinFactory_coll__map">
+</map>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -140,7 +146,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Main features for skinning. </p>
 
-<p>Definition at line <a class="el" href="skinfactory_8h_source.html#l00058">58</a> of file <a class="el" href="skinfactory_8h_source.html">skinfactory.h</a>.</p>
+<p>Definition at line <a class="el" href="skinfactory_8h_source.html#l00059">59</a> of file <a class="el" href="skinfactory_8h_source.html">skinfactory.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a4e8d6fd1eaf7952c4c4cd3e96172fbb3"></a>
 <div class="memitem">
@@ -166,10 +172,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>Access to activated skin. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns <a class="el" href="structSkin.html" title="Skin representation. ">Skin</a> instance which holds data of currently active skin. </dd></dl>
 
-<p>Definition at line <a class="el" href="skinfactory_8h_source.html#l00088">88</a> of file <a class="el" href="skinfactory_8h_source.html">skinfactory.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                                    {</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;      <span class="keywordflow">return</span> m_currentSkin;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    }</div>
+<p>Definition at line <a class="el" href="skinfactory_8h_source.html#l00089">89</a> of file <a class="el" href="skinfactory_8h_source.html">skinfactory.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                                    {</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;      <span class="keywordflow">return</span> m_currentSkin;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -196,16 +202,25 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                                 APP_SKIN_DEFAULT).toString();</div>
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;}</div>
 </div><!-- fragment -->
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classSkinFactory_aaa370a0bf7527d5d484fed9de0910600_icgraph.png" border="0" usemap="#classSkinFactory_aaa370a0bf7527d5d484fed9de0910600_icgraph" alt=""/></div>
+<map name="classSkinFactory_aaa370a0bf7527d5d484fed9de0910600_icgraph" id="classSkinFactory_aaa370a0bf7527d5d484fed9de0910600_icgraph">
+<area shape="rect" id="node2" href="classSkinFactory.html#a3d137ecc14c3d6b7c5553856a36dd5dc" title="Loads skin name from settings and sets it as active. " alt="" coords="276,5,480,32"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/d/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/miscellaneous/<a class="el" href="skinfactory_8h_source.html">skinfactory.h</a></li>
-<li>/d/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/miscellaneous/<a class="el" href="skinfactory_8cpp_source.html">skinfactory.cpp</a></li>
+<li>/mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/miscellaneous/<a class="el" href="skinfactory_8h_source.html">skinfactory.h</a></li>
+<li>/mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/miscellaneous/<a class="el" href="skinfactory_8cpp_source.html">skinfactory.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Aug 4 2014 15:44:03 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Aug 16 2014 15:00:50 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

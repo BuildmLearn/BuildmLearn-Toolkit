@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.7"/>
-<title>BuildmLearn Toolkit: /d/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/gui/formnewproject.cpp Source File</title>
+<title>BuildmLearn Toolkit: /mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/gui/formnewproject.cpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -81,7 +81,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_e93149b64a4ea39523ce969bab267145.html">portage</a></li><li class="navelem"><a class="el" href="dir_82928ddbc3bafdd403330d98a74b0283.html">src</a></li><li class="navelem"><a class="el" href="dir_8192186afa7be297fb205b8bb6175b9f.html">gui</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_5b13d613d053bd10e358ecb54357a5d6.html">data</a></li><li class="navelem"><a class="el" href="dir_68083efcf9ee33d99b45b272b86cc0c8.html">Martin</a></li><li class="navelem"><a class="el" href="dir_9398520d5aff4fa5fa64f9289982f118.html">Coding</a></li><li class="navelem"><a class="el" href="dir_8ff144ddfa1be06761cc38923377bd6f.html">Projekty</a></li><li class="navelem"><a class="el" href="dir_30a37e2355ef12c08d706bdcf80fec43.html">buildmlearn-toolkit</a></li><li class="navelem"><a class="el" href="dir_2813711323521bd6091a9c8a8d0a4efc.html">portage</a></li><li class="navelem"><a class="el" href="dir_0ecbf50818981b7b30cb590f4d05bbf9.html">src</a></li><li class="navelem"><a class="el" href="dir_ef646354cc5c8f5c2993f1edd92da48b.html">gui</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -125,70 +125,83 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &quot;core/templatefactory.h&quot;</span></div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &quot;miscellaneous/iconfactory.h&quot;</span></div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;FormNewProject::FormNewProject(<a class="code" href="classTemplateFactory.html">TemplateFactory</a> *template_manager, QWidget *parent)</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;  : QDialog(parent),</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    m_ui(new Ui::<a class="code" href="classFormNewProject.html">FormNewProject</a>){</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  m_ui-&gt;setupUi(<span class="keyword">this</span>);</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  m_ui-&gt;m_lblThumbnail-&gt;setFixedSize(200, 213);</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;  m_ui-&gt;m_listTemplates-&gt;setFixedWidth(200);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;  QMargins description_margins = m_ui-&gt;m_lblDescription-&gt;contentsMargins();</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#include &lt;QShowEvent&gt;</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;FormNewProject::FormNewProject(<a class="code" href="classTemplateFactory.html">TemplateFactory</a> *template_manager, QWidget *parent)</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  : QDialog(parent),</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    m_ui(new Ui::<a class="code" href="classFormNewProject.html">FormNewProject</a>), m_adjusted(false) {</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  m_ui-&gt;setupUi(<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  m_ui-&gt;m_lblThumbnail-&gt;setFixedSize(200, 213);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;  m_ui-&gt;m_listTemplates-&gt;setFixedWidth(200);</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  description_margins.setTop(20);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  QMargins description_margins = m_ui-&gt;m_lblDescription-&gt;contentsMargins();</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;  m_ui-&gt;m_lblDescription-&gt;setContentsMargins(description_margins);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;  description_margins.setTop(20);</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;  connect(m_ui-&gt;m_listTemplates, SIGNAL(currentRowChanged(<span class="keywordtype">int</span>)), <span class="keyword">this</span>, SLOT(templateSelected(<span class="keywordtype">int</span>)));</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;  connect(m_ui-&gt;m_listTemplates, SIGNAL(itemDoubleClicked(QListWidgetItem*)), <span class="keyword">this</span>, SLOT(accept()));</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  <span class="comment">// This window mustn&#39;t be deleted when closed by user.</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;  setAttribute(Qt::WA_DeleteOnClose, <span class="keyword">false</span>);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;  setWindowIcon(<a class="code" href="classIconFactory.html#aafe98384c2523486fa9c46b556eb1383">IconFactory::instance</a>()-&gt;fromTheme(<span class="stringliteral">&quot;project-new&quot;</span>));</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  setWindowFlags(Qt::MSWindowsFixedSizeDialogHint | Qt::Dialog | (windowFlags() &amp; ~Qt::WindowContextHelpButtonHint));</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  loadTemplates(template_manager-&gt;<a class="code" href="classTemplateFactory.html#a5a2bd26f239f73d50d35122d6388b3d1">availableTemplates</a>());</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;}</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;FormNewProject::~FormNewProject() {</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;  <span class="keyword">delete</span> m_ui;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;}</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="classFormNewProject.html#a77f58d6287f4b5296bc6e79987ecc30e">   67</a></span>&#160;<a class="code" href="classTemplateEntryPoint.html">TemplateEntryPoint</a> *<a class="code" href="classFormNewProject.html#a77f58d6287f4b5296bc6e79987ecc30e">FormNewProject::startNewTemplate</a>() {</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;  <span class="keywordflow">if</span> (exec() == QDialog::Accepted &amp;&amp; m_ui-&gt;m_listTemplates-&gt;currentRow() &gt;= 0) {</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><a class="code" href="classTemplateEntryPoint.html">TemplateEntryPoint</a>*<span class="keyword">&gt;</span>(m_ui-&gt;m_listTemplates-&gt;currentItem()-&gt;data(Qt::UserRole).value&lt;<span class="keywordtype">void</span>*&gt;());</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;  }</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;  <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;  }</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;}</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="keywordtype">void</span> FormNewProject::templateSelected(<span class="keywordtype">int</span> index) {</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;  <span class="keywordflow">if</span> (index &gt;= 0) {</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <a class="code" href="classTemplateEntryPoint.html">TemplateEntryPoint</a> *entry_point = <span class="keyword">static_cast&lt;</span><a class="code" href="classTemplateEntryPoint.html">TemplateEntryPoint</a>*<span class="keyword">&gt;</span>(m_ui-&gt;m_listTemplates-&gt;currentItem()-&gt;data(Qt::UserRole).value&lt;<span class="keywordtype">void</span>*&gt;());</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    m_ui-&gt;m_lblDescription-&gt;setText(entry_point-&gt;<a class="code" href="classTemplateEntryPoint.html#aa44250c70b91aa3a2627c974e9b996cf">description</a>());</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    m_ui-&gt;m_lblThumbnail-&gt;setPixmap(QPixmap(APP_TEMPLATES_PATH + QDir::separator() +</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                                            entry_point-&gt;<a class="code" href="classTemplateEntryPoint.html#aa5acd3888e3d29b6f091b4a9d3a465ba">baseFolder</a>() + QDir::separator() +</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                                            entry_point-&gt;<a class="code" href="classTemplateEntryPoint.html#aa6d3b89bc07885e1744c7e608ae75523">thumbnailImage</a>()));</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;  m_ui-&gt;m_lblDescription-&gt;setContentsMargins(description_margins);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;  connect(m_ui-&gt;m_listTemplates, SIGNAL(currentRowChanged(<span class="keywordtype">int</span>)), <span class="keyword">this</span>, SLOT(templateSelected(<span class="keywordtype">int</span>)));</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  connect(m_ui-&gt;m_listTemplates, SIGNAL(itemDoubleClicked(QListWidgetItem*)), <span class="keyword">this</span>, SLOT(accept()));</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;  <span class="comment">// This window mustn&#39;t be deleted when closed by user.</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  setAttribute(Qt::WA_DeleteOnClose, <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;  setWindowIcon(<a class="code" href="classIconFactory.html#aafe98384c2523486fa9c46b556eb1383">IconFactory::instance</a>()-&gt;fromTheme(<span class="stringliteral">&quot;project-new&quot;</span>));</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  setWindowFlags(Qt::MSWindowsFixedSizeDialogHint | Qt::Dialog | (windowFlags() &amp; ~Qt::WindowContextHelpButtonHint));</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;  loadTemplates(template_manager-&gt;<a class="code" href="classTemplateFactory.html#a5a2bd26f239f73d50d35122d6388b3d1">availableTemplates</a>());</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;}</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;FormNewProject::~FormNewProject() {</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;  <span class="keyword">delete</span> m_ui;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;}</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="classFormNewProject.html#a77f58d6287f4b5296bc6e79987ecc30e">   69</a></span>&#160;<a class="code" href="classTemplateEntryPoint.html">TemplateEntryPoint</a> *<a class="code" href="classFormNewProject.html#a77f58d6287f4b5296bc6e79987ecc30e">FormNewProject::startNewTemplate</a>() {</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;  <span class="keywordflow">if</span> (exec() == QDialog::Accepted &amp;&amp; m_ui-&gt;m_listTemplates-&gt;currentRow() &gt;= 0) {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><a class="code" href="classTemplateEntryPoint.html">TemplateEntryPoint</a>*<span class="keyword">&gt;</span>(m_ui-&gt;m_listTemplates-&gt;currentItem()-&gt;data(Qt::UserRole).value&lt;<span class="keywordtype">void</span>*&gt;());</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;  }</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;  <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;  }</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;}</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="keywordtype">void</span> FormNewProject::showEvent(QShowEvent *e) {</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;  <span class="keywordflow">if</span> (!m_adjusted) {</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    adjustSize();</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    adjustPosition(parentWidget());</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    m_adjusted = <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;  }</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;}</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="keywordtype">void</span> FormNewProject::loadTemplates(<span class="keyword">const</span> QList&lt;TemplateEntryPoint*&gt; &amp;entry_points) {</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;  <span class="keywordflow">foreach</span> (<a class="code" href="classTemplateEntryPoint.html">TemplateEntryPoint</a> *entry_point, entry_points) {</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="comment">// Add the template.</span></div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    (<span class="keyword">new</span> QListWidgetItem(entry_point-&gt;<a class="code" href="classTemplateEntryPoint.html#afe2e72c1cdfe1d2371e230bb2a5bc8c7">humanName</a>(),</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                         m_ui-&gt;m_listTemplates))-&gt;setData(Qt::UserRole,</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                                                          QVariant::fromValue((<span class="keywordtype">void</span>*) entry_point));</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;  }</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;  <span class="keywordflow">if</span> (m_ui-&gt;m_listTemplates-&gt;count() &gt; 0) {</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    m_ui-&gt;m_listTemplates-&gt;setCurrentRow(0);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;  e-&gt;accept();</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;}</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="keywordtype">void</span> FormNewProject::templateSelected(<span class="keywordtype">int</span> index) {</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;  <span class="keywordflow">if</span> (index &gt;= 0) {</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <a class="code" href="classTemplateEntryPoint.html">TemplateEntryPoint</a> *entry_point = <span class="keyword">static_cast&lt;</span><a class="code" href="classTemplateEntryPoint.html">TemplateEntryPoint</a>*<span class="keyword">&gt;</span>(m_ui-&gt;m_listTemplates-&gt;currentItem()-&gt;data(Qt::UserRole).value&lt;<span class="keywordtype">void</span>*&gt;());</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    m_ui-&gt;m_lblDescription-&gt;setText(entry_point-&gt;<a class="code" href="classTemplateEntryPoint.html#aa44250c70b91aa3a2627c974e9b996cf">description</a>());</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    m_ui-&gt;m_lblThumbnail-&gt;setPixmap(QPixmap(APP_TEMPLATES_PATH + QDir::separator() +</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                                            entry_point-&gt;<a class="code" href="classTemplateEntryPoint.html#aa5acd3888e3d29b6f091b4a9d3a465ba">baseFolder</a>() + QDir::separator() +</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                                            entry_point-&gt;<a class="code" href="classTemplateEntryPoint.html#aa6d3b89bc07885e1744c7e608ae75523">thumbnailImage</a>()));</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;  }</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;}</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="keywordtype">void</span> FormNewProject::loadTemplates(<span class="keyword">const</span> QList&lt;TemplateEntryPoint*&gt; &amp;entry_points) {</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;  <span class="keywordflow">foreach</span> (<a class="code" href="classTemplateEntryPoint.html">TemplateEntryPoint</a> *entry_point, entry_points) {</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="comment">// Add the template.</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    (<span class="keyword">new</span> QListWidgetItem(entry_point-&gt;<a class="code" href="classTemplateEntryPoint.html#afe2e72c1cdfe1d2371e230bb2a5bc8c7">humanName</a>(),</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                         m_ui-&gt;m_listTemplates))-&gt;setData(Qt::UserRole,</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                                                          QVariant::fromValue((<span class="keywordtype">void</span>*) entry_point));</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;  }</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;  <span class="keywordflow">if</span> (m_ui-&gt;m_listTemplates-&gt;count() &gt; 0) {</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    m_ui-&gt;m_listTemplates-&gt;setCurrentRow(0);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;  }</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;}</div>
 <div class="ttc" id="classTemplateEntryPoint_html_aa44250c70b91aa3a2627c974e9b996cf"><div class="ttname"><a href="classTemplateEntryPoint.html#aa44250c70b91aa3a2627c974e9b996cf">TemplateEntryPoint::description</a></div><div class="ttdeci">virtual QString description() const </div><div class="ttdoc">Description of template. </div><div class="ttdef"><b>Definition:</b> <a href="templateentrypoint_8cpp_source.html#l00055">templateentrypoint.cpp:55</a></div></div>
-<div class="ttc" id="classFormNewProject_html_a77f58d6287f4b5296bc6e79987ecc30e"><div class="ttname"><a href="classFormNewProject.html#a77f58d6287f4b5296bc6e79987ecc30e">FormNewProject::startNewTemplate</a></div><div class="ttdeci">TemplateEntryPoint * startNewTemplate()</div><div class="ttdoc">Displays the dialog and returns entry point of desired template which user wants to create new projec...</div><div class="ttdef"><b>Definition:</b> <a href="formnewproject_8cpp_source.html#l00067">formnewproject.cpp:67</a></div></div>
+<div class="ttc" id="classFormNewProject_html_a77f58d6287f4b5296bc6e79987ecc30e"><div class="ttname"><a href="classFormNewProject.html#a77f58d6287f4b5296bc6e79987ecc30e">FormNewProject::startNewTemplate</a></div><div class="ttdeci">TemplateEntryPoint * startNewTemplate()</div><div class="ttdoc">Displays the dialog and returns entry point of desired template which user wants to create new projec...</div><div class="ttdef"><b>Definition:</b> <a href="formnewproject_8cpp_source.html#l00069">formnewproject.cpp:69</a></div></div>
 <div class="ttc" id="classTemplateEntryPoint_html_afe2e72c1cdfe1d2371e230bb2a5bc8c7"><div class="ttname"><a href="classTemplateEntryPoint.html#afe2e72c1cdfe1d2371e230bb2a5bc8c7">TemplateEntryPoint::humanName</a></div><div class="ttdeci">virtual QString humanName() const </div><div class="ttdoc">Human-readable name of template. </div><div class="ttdef"><b>Definition:</b> <a href="templateentrypoint_8cpp_source.html#l00047">templateentrypoint.cpp:47</a></div></div>
 <div class="ttc" id="classTemplateFactory_html"><div class="ttname"><a href="classTemplateFactory.html">TemplateFactory</a></div><div class="ttdoc">The top-level manager of templates. </div><div class="ttdef"><b>Definition:</b> <a href="templatefactory_8h_source.html#l00069">templatefactory.h:69</a></div></div>
 <div class="ttc" id="classTemplateFactory_html_a5a2bd26f239f73d50d35122d6388b3d1"><div class="ttname"><a href="classTemplateFactory.html#a5a2bd26f239f73d50d35122d6388b3d1">TemplateFactory::availableTemplates</a></div><div class="ttdeci">QList&lt; TemplateEntryPoint * &gt; availableTemplates()</div><div class="ttdoc">Access to available templates. </div><div class="ttdef"><b>Definition:</b> <a href="templatefactory_8cpp_source.html#l00067">templatefactory.cpp:67</a></div></div>
@@ -200,7 +213,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Aug 4 2014 15:44:02 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Aug 16 2014 15:00:50 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

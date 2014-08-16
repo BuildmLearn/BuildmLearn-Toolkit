@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.7"/>
-<title>BuildmLearn Toolkit: /d/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/templates/learnspellings/learnspellingssimulator.cpp Source File</title>
+<title>BuildmLearn Toolkit: /mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/templates/learnspellings/learnspellingssimulator.cpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -81,7 +81,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_e93149b64a4ea39523ce969bab267145.html">portage</a></li><li class="navelem"><a class="el" href="dir_82928ddbc3bafdd403330d98a74b0283.html">src</a></li><li class="navelem"><a class="el" href="dir_4767c88c1a0b9b2a275c20dd758afde4.html">templates</a></li><li class="navelem"><a class="el" href="dir_e48e5605515492b8c47435cee8828103.html">learnspellings</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_5b13d613d053bd10e358ecb54357a5d6.html">data</a></li><li class="navelem"><a class="el" href="dir_68083efcf9ee33d99b45b272b86cc0c8.html">Martin</a></li><li class="navelem"><a class="el" href="dir_9398520d5aff4fa5fa64f9289982f118.html">Coding</a></li><li class="navelem"><a class="el" href="dir_8ff144ddfa1be06761cc38923377bd6f.html">Projekty</a></li><li class="navelem"><a class="el" href="dir_30a37e2355ef12c08d706bdcf80fec43.html">buildmlearn-toolkit</a></li><li class="navelem"><a class="el" href="dir_2813711323521bd6091a9c8a8d0a4efc.html">portage</a></li><li class="navelem"><a class="el" href="dir_0ecbf50818981b7b30cb590f4d05bbf9.html">src</a></li><li class="navelem"><a class="el" href="dir_22d20830482ee44b44184604348edacd.html">templates</a></li><li class="navelem"><a class="el" href="dir_d3a5f60dd031828d7c7d1eff03109d9c.html">learnspellings</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -141,197 +141,196 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;LearnSpellingsSimulator::LearnSpellingsSimulator(<a class="code" href="classTemplateCore.html">TemplateCore</a> *core, QWidget *parent)</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;  : <a class="code" href="classTemplateSimulator.html">TemplateSimulator</a>(core, parent), m_ui(new Ui::<a class="code" href="classLearnSpellingsSimulator.html">LearnSpellingsSimulator</a>), m_words(QList&lt;<a class="code" href="classLearnSpellingsItem.html">LearnSpellingsItem</a>&gt;()), m_activeWord(-1) {</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;  m_ui-&gt;setupUi(<span class="keyword">this</span>);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;  m_ui-&gt;m_phoneWidget-&gt;setStyleSheet(<span class="stringliteral">&quot;background: #255593; color: white;&quot;</span>);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  QFont caption_font = m_ui-&gt;m_lblQuestionNumber-&gt;font();</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;  caption_font.setPointSize(caption_font.pointSize() + SIMULATOR_HEADER_SIZE_INCREASE);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;  m_ui-&gt;m_lblQuestionNumber-&gt;setFont(caption_font);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;  caption_font = m_ui-&gt;m_lblHeading-&gt;font();</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  caption_font.setPointSize(caption_font.pointSize() + SIMULATOR_HEADING_SIZE_INCREASE);</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  m_ui-&gt;m_lblHeading-&gt;setFont(caption_font);</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;  connect(m_ui-&gt;m_btnPlayWord, SIGNAL(clicked()), <span class="keyword">this</span>, SLOT(playWord()));</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;  connect(m_ui-&gt;m_btnStart, SIGNAL(clicked()), <span class="keyword">this</span>, SLOT(start()));</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;  connect(m_ui-&gt;m_btnRestart, SIGNAL(clicked()), <span class="keyword">this</span>, SLOT(restart()));</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;  connect(m_ui-&gt;m_btnExit, SIGNAL(clicked()), <span class="keyword">this</span>, SLOT(exit()));</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;  connect(m_ui-&gt;m_btnSkip, SIGNAL(clicked()), <span class="keyword">this</span>, SLOT(skipThisWord()));</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;  connect(m_ui-&gt;m_btnSpellIt, SIGNAL(clicked()), <span class="keyword">this</span>, SLOT(spellThisWord()));</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  connect(m_ui-&gt;m_btnGoToNextWord, SIGNAL(clicked()), <span class="keyword">this</span>, SLOT(loadNextWord()));</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;}</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;LearnSpellingsSimulator::~LearnSpellingsSimulator() {</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;  <span class="keyword">delete</span> m_ui;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;}</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="keywordtype">bool</span> LearnSpellingsSimulator::startSimulation() {</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;  <a class="code" href="classLearnSpellingsEditor.html">LearnSpellingsEditor</a> *editor = <span class="keyword">static_cast&lt;</span><a class="code" href="classLearnSpellingsEditor.html">LearnSpellingsEditor</a>*<span class="keyword">&gt;</span>(<a class="code" href="classTemplateSimulator.html#a45b7d8698ecd78d959c03a29d904976f">core</a>()-&gt;<a class="code" href="classTemplateCore.html#a1b8cc0d291b14259b3cd42c5d5abc87d">editor</a>());</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;  <span class="keywordflow">if</span> (!editor-&gt;<a class="code" href="classLearnSpellingsEditor.html#af9c0057678a08530d3220ae585d7ef03">canGenerateApplications</a>()) {</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="comment">// There are no active questions or quiz does not</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="comment">// containt its name or author name.</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;  }</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;  <span class="comment">// Load the questions, setup the quiz and start it.</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;  m_words = editor-&gt;activeWords();</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;  <span class="keywordflow">if</span> (m_words.isEmpty()) {</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;  }</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;  m_ui-&gt;m_btnStart-&gt;setEnabled(<span class="keyword">true</span>);</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;  m_ui-&gt;m_lblAuthor-&gt;setText(editor-&gt;m_ui-&gt;m_txtAuthor-&gt;lineEdit()-&gt;text());</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;  m_ui-&gt;m_lblHeading-&gt;setText(editor-&gt;m_ui-&gt;m_txtName-&gt;lineEdit()-&gt;text());</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;  m_ui-&gt;m_phoneWidget-&gt;setCurrentIndex(1);</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;  <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;}</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="keywordtype">bool</span> LearnSpellingsSimulator::stopSimulation() {</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;  m_ui-&gt;m_phoneWidget-&gt;setCurrentIndex(0);</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;  emit <a class="code" href="classTemplateSimulator.html#a4eaa2c620b5ba5f6702e0d21660ce6b1">canGoBackChanged</a>(<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;  <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;}</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="keywordtype">bool</span> LearnSpellingsSimulator::goBack() {</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;  <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;}</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="keywordtype">void</span> LearnSpellingsSimulator::start() {</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;  m_activeWord = -1;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;  m_resultCorrect = m_resultIncorrect = m_resultSkipped = 0;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;  loadNextWord();</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;}</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="keywordtype">void</span> LearnSpellingsSimulator::restart() {</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;  m_ui-&gt;m_phoneWidget-&gt;setCurrentIndex(1);</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;}</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="keywordtype">void</span> LearnSpellingsSimulator::exit() {</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;  stopSimulation();</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;  emit <a class="code" href="classTemplateSimulator.html#a7dfc6b54cee390384bc3b3c5bbd0f1f3">simulationStopRequested</a>();</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;}</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="keywordtype">void</span> LearnSpellingsSimulator::playWord() {</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="preprocessor">#if defined(Q_OS_OS2)</span></div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;  <span class="keywordflow">if</span> (<a class="code" href="classSystemTrayIcon.html#ae534644382bd8d60691bfda7c105d167">SystemTrayIcon::isSystemTrayAvailable</a>()) {</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    qApp-&gt;trayIcon()-&gt;showMessage(tr(<span class="stringliteral">&quot;Cannot play sound&quot;</span>), tr(<span class="stringliteral">&quot;Sound cannot play on this platform.&quot;</span>),</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;                                  QSystemTrayIcon::Warning);</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;  }</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;  <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    <a class="code" href="classCustomMessageBox.html#a351bd1dcc646d4de05ba9b8d6e09893f">CustomMessageBox::show</a>(<span class="keyword">this</span>, QMessageBox::Warning, tr(<span class="stringliteral">&quot;Cannot play sound&quot;</span>), tr(<span class="stringliteral">&quot;Sound cannot play on this platform.&quot;</span>));</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;  }</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;  <span class="comment">// Play sound.</span></div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;  QByteArray output;</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;  <a class="code" href="classLearnSpellingsItem.html">LearnSpellingsItem</a> current_item = m_words.at(m_activeWord);</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;  <span class="keywordflow">if</span> (current_item.audioFilePath().isEmpty() || !QFile::exists(current_item.audioFilePath())) {</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    <span class="comment">// Current word does not contain downloaded audio file.</span></div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    QString word = m_words.at(m_activeWord).word().replace(<span class="charliteral">&#39; &#39;</span>, <span class="charliteral">&#39;+&#39;</span>);</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    <span class="comment">//QString word = QUrl::toPercentEncoding(m_words.at(m_activeWord).word());</span></div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    QString url = QString(TTS_SERVICE_URL).arg(word);</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    QNetworkReply::NetworkError result_of_download = <a class="code" href="classNetworkFactory.html#ab2ed607a42b58b7912c85537ddc2b0d7">NetworkFactory::downloadFile</a>(url, 10000, output);</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <span class="keywordflow">if</span> (result_of_download != QNetworkReply::NoError) {</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;      <span class="comment">// There was apparently some error.</span></div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;      <span class="keywordflow">if</span> (<a class="code" href="classSystemTrayIcon.html#ae534644382bd8d60691bfda7c105d167">SystemTrayIcon::isSystemTrayAvailable</a>()) {</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        qApp-&gt;trayIcon()-&gt;showMessage(tr(<span class="stringliteral">&quot;Cannot play sound&quot;</span>), tr(<span class="stringliteral">&quot;Sound cannot play on this platform because sound file was not downloaded.&quot;</span>),</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;                                      QSystemTrayIcon::Warning);</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;      }</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;      <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        <a class="code" href="classCustomMessageBox.html#a351bd1dcc646d4de05ba9b8d6e09893f">CustomMessageBox::show</a>(<span class="keyword">this</span>, QMessageBox::Warning, tr(<span class="stringliteral">&quot;Cannot play sound&quot;</span>), tr(<span class="stringliteral">&quot;Sound cannot play on this platform because sound file was not downloaded.&quot;</span>));</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;      }</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;      <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    }</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    <span class="comment">// Store downloaded sound file.</span></div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    QString sound_file_name = qApp-&gt;templateManager()-&gt;tempDirectory() + QDir::separator() +</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;                              <span class="stringliteral">&quot;sound_&quot;</span> + QDateTime::currentDateTime().toString(<span class="stringliteral">&quot;yyyy-MM-dd-hhmmss&quot;</span>) + <span class="stringliteral">&quot;.wav&quot;</span>;</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    QFile sound_file(sound_file_name);</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    sound_file.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Unbuffered);</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    sound_file.write(output);</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    sound_file.close();</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    <span class="comment">// We obtained new sound file for this particular word.</span></div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    <span class="comment">// So, store the path.</span></div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    <span class="comment">// NOTE: Note that this is forgotten when new simulation is started.</span></div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    m_words[m_activeWord].setAudioFilePath(sound_file_name);</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;  }</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;  <a class="code" href="classIOFactory.html#af16ecfba8acd9acaf638dcaf9ef1f0f4">IOFactory::playWaveFile</a>(m_words.at(m_activeWord).audioFilePath());</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;  m_ui-&gt;m_btnSkip-&gt;setEnabled(<span class="keyword">true</span>);</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;  m_ui-&gt;m_btnSpellIt-&gt;setEnabled(<span class="keyword">true</span>);</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;}</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;<span class="keywordtype">void</span> LearnSpellingsSimulator::skipThisWord() {</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;  m_resultSkipped++;</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;  loadNextWord();</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;}</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;<span class="keywordtype">void</span> LearnSpellingsSimulator::spellThisWord() {</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;  <span class="comment">// TODO: display input box for spell word, if answer is correct</span></div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;  <span class="comment">// then increment.</span></div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;  <span class="comment">// then display &quot;word result page&quot;</span></div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;  QString guessed_word = QInputDialog::getText(<span class="keyword">this</span>, tr(<span class="stringliteral">&quot;Enter spelling&quot;</span>), tr(<span class="stringliteral">&quot;Enter spelling&quot;</span>)).simplified();</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;  <a class="code" href="classLearnSpellingsItem.html">LearnSpellingsItem</a> current_word = m_words.at(m_activeWord);</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;  <span class="keywordflow">if</span> (!guessed_word.isEmpty()) {</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    <span class="keywordflow">if</span> (guessed_word == current_word.word()) {</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;      <span class="comment">// User guessed the word!!!</span></div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;      m_resultCorrect++;</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;      m_ui-&gt;m_lblResultCaption-&gt;setText(tr(<span class="stringliteral">&quot;This is correct spelling&quot;</span>));</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    }</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;    <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;      <span class="comment">// User made a mistake.</span></div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;      m_resultIncorrect++;</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;      m_ui-&gt;m_lblResultCaption-&gt;setText(tr(<span class="stringliteral">&quot;This is not the correct spelling&quot;</span>));</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    }</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    <span class="comment">// Display page with overview of current word status.</span></div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    m_ui-&gt;m_lblEnteredWord-&gt;setText(tr(<span class="stringliteral">&quot;You entered %1&quot;</span>).arg(guessed_word));</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    m_ui-&gt;m_lblCorrectWordDescription-&gt;setText(tr(<span class="stringliteral">&quot;&lt;p style=\&quot; font-size: 18pt;\&quot;&gt;%1&lt;/p&gt;&lt;p&gt;%2&lt;/p&gt;&quot;</span>).arg(current_word.word(), current_word.meaning()));</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    m_ui-&gt;m_listener-&gt;setCurrentIndex(1);</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;  }</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;  <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    <a class="code" href="classCustomMessageBox.html#a351bd1dcc646d4de05ba9b8d6e09893f">CustomMessageBox::show</a>(<span class="keyword">this</span>, QMessageBox::Warning, tr(<span class="stringliteral">&quot;Enter some word&quot;</span>), tr(<span class="stringliteral">&quot;You must enter some word&quot;</span>));</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;  }</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;}</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;<span class="keywordtype">void</span> LearnSpellingsSimulator::loadNextWord() {</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;  m_activeWord++;</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;  m_ui-&gt;m_lblQuestionNumber-&gt;setText(tr(<span class="stringliteral">&quot;Word #%1 of %2&quot;</span>).arg(QString::number(m_activeWord + 1),</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;                                                              QString::number(m_words.size())));</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;  <span class="keywordflow">if</span> (m_activeWord &lt; m_words.size()) {</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    <span class="comment">// We are not viewing last word, display the &quot;listening&quot; page.</span></div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    m_ui-&gt;m_btnSkip-&gt;setEnabled(<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;    m_ui-&gt;m_btnSpellIt-&gt;setEnabled(<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;    m_ui-&gt;m_listener-&gt;setCurrentIndex(0);</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    m_ui-&gt;m_phoneWidget-&gt;setCurrentIndex(2);</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;  }</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;  <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    <span class="comment">// We are already viewing last word, we need to go to &quot;summary&quot; page and display results.</span></div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    m_ui-&gt;m_lblTotalCorrect-&gt;setText(tr(<span class="stringliteral">&quot;Correct spelled %1&quot;</span>).arg(QString::number(m_resultCorrect)));</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    m_ui-&gt;m_lblTotalUnanswered-&gt;setText(tr(<span class="stringliteral">&quot;Unanswered %1&quot;</span>).arg(QString::number(m_resultSkipped)));</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    m_ui-&gt;m_lblTotalWrong-&gt;setText(tr(<span class="stringliteral">&quot;Wrond spelled %1&quot;</span>).arg(QString::number(m_resultIncorrect)));</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;    m_ui-&gt;m_phoneWidget-&gt;setCurrentIndex(3);</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;  }</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;}</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;  QFont caption_font = m_ui-&gt;m_lblQuestionNumber-&gt;font();</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  caption_font.setPointSize(caption_font.pointSize() + SIMULATOR_HEADER_SIZE_INCREASE);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;  m_ui-&gt;m_lblQuestionNumber-&gt;setFont(caption_font);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  caption_font = m_ui-&gt;m_lblHeading-&gt;font();</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;  caption_font.setPointSize(caption_font.pointSize() + SIMULATOR_HEADING_SIZE_INCREASE);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  m_ui-&gt;m_lblHeading-&gt;setFont(caption_font);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;  connect(m_ui-&gt;m_btnPlayWord, SIGNAL(clicked()), <span class="keyword">this</span>, SLOT(playWord()));</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;  connect(m_ui-&gt;m_btnStart, SIGNAL(clicked()), <span class="keyword">this</span>, SLOT(start()));</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;  connect(m_ui-&gt;m_btnRestart, SIGNAL(clicked()), <span class="keyword">this</span>, SLOT(restart()));</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;  connect(m_ui-&gt;m_btnExit, SIGNAL(clicked()), <span class="keyword">this</span>, SLOT(exit()));</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;  connect(m_ui-&gt;m_btnSkip, SIGNAL(clicked()), <span class="keyword">this</span>, SLOT(skipThisWord()));</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;  connect(m_ui-&gt;m_btnSpellIt, SIGNAL(clicked()), <span class="keyword">this</span>, SLOT(spellThisWord()));</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;  connect(m_ui-&gt;m_btnGoToNextWord, SIGNAL(clicked()), <span class="keyword">this</span>, SLOT(loadNextWord()));</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;}</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;LearnSpellingsSimulator::~LearnSpellingsSimulator() {</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;  <span class="keyword">delete</span> m_ui;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;}</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="keywordtype">bool</span> LearnSpellingsSimulator::startSimulation() {</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;  <a class="code" href="classLearnSpellingsEditor.html">LearnSpellingsEditor</a> *editor = <span class="keyword">static_cast&lt;</span><a class="code" href="classLearnSpellingsEditor.html">LearnSpellingsEditor</a>*<span class="keyword">&gt;</span>(<a class="code" href="classTemplateSimulator.html#a45b7d8698ecd78d959c03a29d904976f">core</a>()-&gt;<a class="code" href="classTemplateCore.html#a1b8cc0d291b14259b3cd42c5d5abc87d">editor</a>());</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;  <span class="keywordflow">if</span> (!editor-&gt;<a class="code" href="classLearnSpellingsEditor.html#af9c0057678a08530d3220ae585d7ef03">canGenerateApplications</a>()) {</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="comment">// There are no active questions or quiz does not</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="comment">// containt its name or author name.</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;  }</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;  <span class="comment">// Load the questions, setup the quiz and start it.</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;  m_words = editor-&gt;activeWords();</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;  <span class="keywordflow">if</span> (m_words.isEmpty()) {</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;  }</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;  m_ui-&gt;m_btnStart-&gt;setEnabled(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;  m_ui-&gt;m_lblAuthor-&gt;setText(editor-&gt;m_ui-&gt;m_txtAuthor-&gt;lineEdit()-&gt;text());</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;  m_ui-&gt;m_lblHeading-&gt;setText(editor-&gt;m_ui-&gt;m_txtName-&gt;lineEdit()-&gt;text());</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;  m_ui-&gt;m_phoneWidget-&gt;setCurrentIndex(1);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;  <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;}</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="keywordtype">bool</span> LearnSpellingsSimulator::stopSimulation() {</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;  m_ui-&gt;m_phoneWidget-&gt;setCurrentIndex(0);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;  emit <a class="code" href="classTemplateSimulator.html#a4eaa2c620b5ba5f6702e0d21660ce6b1">canGoBackChanged</a>(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;  <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;}</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="keywordtype">bool</span> LearnSpellingsSimulator::goBack() {</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;  <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;}</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="keywordtype">void</span> LearnSpellingsSimulator::start() {</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;  m_activeWord = -1;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;  m_resultCorrect = m_resultIncorrect = m_resultSkipped = 0;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;  loadNextWord();</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;}</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="keywordtype">void</span> LearnSpellingsSimulator::restart() {</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;  m_ui-&gt;m_phoneWidget-&gt;setCurrentIndex(1);</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;}</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="keywordtype">void</span> LearnSpellingsSimulator::exit() {</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;  stopSimulation();</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;  emit <a class="code" href="classTemplateSimulator.html#a7dfc6b54cee390384bc3b3c5bbd0f1f3">simulationStopRequested</a>();</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;}</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="keywordtype">void</span> LearnSpellingsSimulator::playWord() {</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="preprocessor">#if defined(Q_OS_OS2)</span></div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;  <span class="keywordflow">if</span> (<a class="code" href="classSystemTrayIcon.html#ae534644382bd8d60691bfda7c105d167">SystemTrayIcon::isSystemTrayAvailable</a>()) {</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    qApp-&gt;trayIcon()-&gt;showMessage(tr(<span class="stringliteral">&quot;Cannot play sound&quot;</span>), tr(<span class="stringliteral">&quot;Sound cannot play on this platform.&quot;</span>),</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                                  QSystemTrayIcon::Warning);</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;  }</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;  <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    <a class="code" href="classCustomMessageBox.html#a351bd1dcc646d4de05ba9b8d6e09893f">CustomMessageBox::show</a>(<span class="keyword">this</span>, QMessageBox::Warning, tr(<span class="stringliteral">&quot;Cannot play sound&quot;</span>), tr(<span class="stringliteral">&quot;Sound cannot play on this platform.&quot;</span>));</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;  }</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;  <span class="comment">// Play sound.</span></div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;  QByteArray output;</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;  <a class="code" href="classLearnSpellingsItem.html">LearnSpellingsItem</a> current_item = m_words.at(m_activeWord);</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;  <span class="keywordflow">if</span> (current_item.audioFilePath().isEmpty() || !QFile::exists(current_item.audioFilePath())) {</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    <span class="comment">// Current word does not contain downloaded audio file.</span></div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    QString word = m_words.at(m_activeWord).word().replace(<span class="charliteral">&#39; &#39;</span>, <span class="charliteral">&#39;+&#39;</span>);</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    <span class="comment">//QString word = QUrl::toPercentEncoding(m_words.at(m_activeWord).word());</span></div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    QString url = QString(TTS_SERVICE_URL).arg(word);</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    QNetworkReply::NetworkError result_of_download = <a class="code" href="classNetworkFactory.html#ab2ed607a42b58b7912c85537ddc2b0d7">NetworkFactory::downloadFile</a>(url, 10000, output);</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    <span class="keywordflow">if</span> (result_of_download != QNetworkReply::NoError) {</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;      <span class="comment">// There was apparently some error.</span></div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;      <span class="keywordflow">if</span> (<a class="code" href="classSystemTrayIcon.html#ae534644382bd8d60691bfda7c105d167">SystemTrayIcon::isSystemTrayAvailable</a>()) {</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        qApp-&gt;trayIcon()-&gt;showMessage(tr(<span class="stringliteral">&quot;Cannot play sound&quot;</span>), tr(<span class="stringliteral">&quot;Sound cannot play on this platform because sound file was not downloaded.&quot;</span>),</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;                                      QSystemTrayIcon::Warning);</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;      }</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;      <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        <a class="code" href="classCustomMessageBox.html#a351bd1dcc646d4de05ba9b8d6e09893f">CustomMessageBox::show</a>(<span class="keyword">this</span>, QMessageBox::Warning, tr(<span class="stringliteral">&quot;Cannot play sound&quot;</span>), tr(<span class="stringliteral">&quot;Sound cannot play on this platform because sound file was not downloaded.&quot;</span>));</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;      }</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;      <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    }</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    <span class="comment">// Store downloaded sound file.</span></div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    QString sound_file_name = qApp-&gt;templateManager()-&gt;tempDirectory() + QDir::separator() +</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;                              <span class="stringliteral">&quot;sound_&quot;</span> + QDateTime::currentDateTime().toString(<span class="stringliteral">&quot;yyyy-MM-dd-hhmmss&quot;</span>) + <span class="stringliteral">&quot;.wav&quot;</span>;</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    QFile sound_file(sound_file_name);</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    sound_file.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Unbuffered);</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    sound_file.write(output);</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    sound_file.close();</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    <span class="comment">// We obtained new sound file for this particular word.</span></div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    <span class="comment">// So, store the path.</span></div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    <span class="comment">// NOTE: Note that this is forgotten when new simulation is started.</span></div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    m_words[m_activeWord].setAudioFilePath(sound_file_name);</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;  }</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;  <a class="code" href="classIOFactory.html#af16ecfba8acd9acaf638dcaf9ef1f0f4">IOFactory::playWaveFile</a>(m_words.at(m_activeWord).audioFilePath());</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;  m_ui-&gt;m_btnSkip-&gt;setEnabled(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;  m_ui-&gt;m_btnSpellIt-&gt;setEnabled(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;}</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;<span class="keywordtype">void</span> LearnSpellingsSimulator::skipThisWord() {</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;  m_resultSkipped++;</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;  loadNextWord();</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;}</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;<span class="keywordtype">void</span> LearnSpellingsSimulator::spellThisWord() {</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;  <span class="comment">// TODO: display input box for spell word, if answer is correct</span></div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;  <span class="comment">// then increment.</span></div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;  <span class="comment">// then display &quot;word result page&quot;</span></div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;  QString guessed_word = QInputDialog::getText(<span class="keyword">this</span>, tr(<span class="stringliteral">&quot;Enter spelling&quot;</span>), tr(<span class="stringliteral">&quot;Enter spelling&quot;</span>)).simplified();</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;  <a class="code" href="classLearnSpellingsItem.html">LearnSpellingsItem</a> current_word = m_words.at(m_activeWord);</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;  <span class="keywordflow">if</span> (!guessed_word.isEmpty()) {</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    <span class="keywordflow">if</span> (QString::compare(guessed_word, current_word.word(), Qt::CaseInsensitive) == 0) {</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;      <span class="comment">// User guessed the word!!!</span></div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;      m_resultCorrect++;</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;      m_ui-&gt;m_lblResultCaption-&gt;setText(tr(<span class="stringliteral">&quot;This is correct spelling&quot;</span>));</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    }</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;      <span class="comment">// User made a mistake.</span></div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;      m_resultIncorrect++;</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;      m_ui-&gt;m_lblResultCaption-&gt;setText(tr(<span class="stringliteral">&quot;This is not the correct spelling&quot;</span>));</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    }</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    <span class="comment">// Display page with overview of current word status.</span></div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    m_ui-&gt;m_lblEnteredWord-&gt;setText(tr(<span class="stringliteral">&quot;You entered %1&quot;</span>).arg(guessed_word));</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    m_ui-&gt;m_lblCorrectWordDescription-&gt;setText(tr(<span class="stringliteral">&quot;&lt;p style=\&quot; font-size: 18pt;\&quot;&gt;%1&lt;/p&gt;&lt;p&gt;%2&lt;/p&gt;&quot;</span>).arg(current_word.word(), current_word.meaning()));</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    m_ui-&gt;m_listener-&gt;setCurrentIndex(1);</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;  }</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;  <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;    <a class="code" href="classCustomMessageBox.html#a351bd1dcc646d4de05ba9b8d6e09893f">CustomMessageBox::show</a>(<span class="keyword">this</span>, QMessageBox::Warning, tr(<span class="stringliteral">&quot;Enter some word&quot;</span>), tr(<span class="stringliteral">&quot;You must enter some word&quot;</span>));</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;  }</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;}</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;<span class="keywordtype">void</span> LearnSpellingsSimulator::loadNextWord() {</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;  m_activeWord++;</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;  m_ui-&gt;m_lblQuestionNumber-&gt;setText(tr(<span class="stringliteral">&quot;Word #%1 of %2&quot;</span>).arg(QString::number(m_activeWord + 1),</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;                                                              QString::number(m_words.size())));</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;  <span class="keywordflow">if</span> (m_activeWord &lt; m_words.size()) {</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    <span class="comment">// We are not viewing last word, display the &quot;listening&quot; page.</span></div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    m_ui-&gt;m_btnSkip-&gt;setEnabled(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    m_ui-&gt;m_btnSpellIt-&gt;setEnabled(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;    m_ui-&gt;m_listener-&gt;setCurrentIndex(0);</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;    m_ui-&gt;m_phoneWidget-&gt;setCurrentIndex(2);</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;  }</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;  <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    <span class="comment">// We are already viewing last word, we need to go to &quot;summary&quot; page and display results.</span></div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    m_ui-&gt;m_lblTotalCorrect-&gt;setText(tr(<span class="stringliteral">&quot;Correct spelled %1&quot;</span>).arg(QString::number(m_resultCorrect)));</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    m_ui-&gt;m_lblTotalUnanswered-&gt;setText(tr(<span class="stringliteral">&quot;Unanswered %1&quot;</span>).arg(QString::number(m_resultSkipped)));</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    m_ui-&gt;m_lblTotalWrong-&gt;setText(tr(<span class="stringliteral">&quot;Wrond spelled %1&quot;</span>).arg(QString::number(m_resultIncorrect)));</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    m_ui-&gt;m_phoneWidget-&gt;setCurrentIndex(3);</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;  }</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;}</div>
 <div class="ttc" id="classTemplateCore_html_a1b8cc0d291b14259b3cd42c5d5abc87d"><div class="ttname"><a href="classTemplateCore.html#a1b8cc0d291b14259b3cd42c5d5abc87d">TemplateCore::editor</a></div><div class="ttdeci">virtual TemplateEditor * editor() const </div><div class="ttdoc">Access to editor widget of the template. </div><div class="ttdef"><b>Definition:</b> <a href="templatecore_8h_source.html#l00084">templatecore.h:84</a></div></div>
 <div class="ttc" id="classLearnSpellingsEditor_html"><div class="ttname"><a href="classLearnSpellingsEditor.html">LearnSpellingsEditor</a></div><div class="ttdoc">Editor widget of Learn Spellings template. </div><div class="ttdef"><b>Definition:</b> <a href="learnspellingseditor_8h_source.html#l00046">learnspellingseditor.h:46</a></div></div>
 <div class="ttc" id="classTemplateSimulator_html_a4eaa2c620b5ba5f6702e0d21660ce6b1"><div class="ttname"><a href="classTemplateSimulator.html#a4eaa2c620b5ba5f6702e0d21660ce6b1">TemplateSimulator::canGoBackChanged</a></div><div class="ttdeci">void canGoBackChanged(bool can_go_back)</div><div class="ttdoc">Emitted if "can go back" status of simulator changes. </div></div>
-<div class="ttc" id="classLearnSpellingsEditor_html_af9c0057678a08530d3220ae585d7ef03"><div class="ttname"><a href="classLearnSpellingsEditor.html#af9c0057678a08530d3220ae585d7ef03">LearnSpellingsEditor::canGenerateApplications</a></div><div class="ttdeci">bool canGenerateApplications()</div><div class="ttdoc">Specifies if template can generate applications or not. </div><div class="ttdef"><b>Definition:</b> <a href="learnspellingseditor_8cpp_source.html#l00258">learnspellingseditor.cpp:258</a></div></div>
+<div class="ttc" id="classLearnSpellingsEditor_html_af9c0057678a08530d3220ae585d7ef03"><div class="ttname"><a href="classLearnSpellingsEditor.html#af9c0057678a08530d3220ae585d7ef03">LearnSpellingsEditor::canGenerateApplications</a></div><div class="ttdeci">bool canGenerateApplications()</div><div class="ttdoc">Specifies if template can generate applications or not. </div><div class="ttdef"><b>Definition:</b> <a href="learnspellingseditor_8cpp_source.html#l00276">learnspellingseditor.cpp:276</a></div></div>
 <div class="ttc" id="classLearnSpellingsSimulator_html"><div class="ttname"><a href="classLearnSpellingsSimulator.html">LearnSpellingsSimulator</a></div><div class="ttdoc">Simulator widget for Learn Spellings template. </div><div class="ttdef"><b>Definition:</b> <a href="learnspellingssimulator_8h_source.html#l00046">learnspellingssimulator.h:46</a></div></div>
 <div class="ttc" id="classIOFactory_html_af16ecfba8acd9acaf638dcaf9ef1f0f4"><div class="ttname"><a href="classIOFactory.html#af16ecfba8acd9acaf638dcaf9ef1f0f4">IOFactory::playWaveFile</a></div><div class="ttdeci">static void playWaveFile(const QString &amp;file_path)</div><div class="ttdoc">Plays selected file with default audio output. </div><div class="ttdef"><b>Definition:</b> <a href="iofactory_8cpp_source.html#l00050">iofactory.cpp:50</a></div></div>
-<div class="ttc" id="classTemplateSimulator_html_a45b7d8698ecd78d959c03a29d904976f"><div class="ttname"><a href="classTemplateSimulator.html#a45b7d8698ecd78d959c03a29d904976f">TemplateSimulator::core</a></div><div class="ttdeci">TemplateCore * core() const </div><div class="ttdoc">Access to associated template core. </div><div class="ttdef"><b>Definition:</b> <a href="templatesimulator_8cpp_source.html#l00058">templatesimulator.cpp:58</a></div></div>
+<div class="ttc" id="classTemplateSimulator_html_a45b7d8698ecd78d959c03a29d904976f"><div class="ttname"><a href="classTemplateSimulator.html#a45b7d8698ecd78d959c03a29d904976f">TemplateSimulator::core</a></div><div class="ttdeci">TemplateCore * core() const </div><div class="ttdoc">Access to associated template core. </div><div class="ttdef"><b>Definition:</b> <a href="templatesimulator_8cpp_source.html#l00061">templatesimulator.cpp:61</a></div></div>
 <div class="ttc" id="classSystemTrayIcon_html_ae534644382bd8d60691bfda7c105d167"><div class="ttname"><a href="classSystemTrayIcon.html#ae534644382bd8d60691bfda7c105d167">SystemTrayIcon::isSystemTrayAvailable</a></div><div class="ttdeci">static bool isSystemTrayAvailable()</div><div class="ttdoc">Indicates whether tray icon is supported. </div><div class="ttdef"><b>Definition:</b> <a href="systemtrayicon_8cpp_source.html#l00102">systemtrayicon.cpp:102</a></div></div>
 <div class="ttc" id="classCustomMessageBox_html_a351bd1dcc646d4de05ba9b8d6e09893f"><div class="ttname"><a href="classCustomMessageBox.html#a351bd1dcc646d4de05ba9b8d6e09893f">CustomMessageBox::show</a></div><div class="ttdeci">static QMessageBox::StandardButton show(QWidget *parent, QMessageBox::Icon icon, const QString &amp;title, const QString &amp;text, const QString &amp;informative_text=QString(), const QString &amp;detailed_text=QString(), QMessageBox::StandardButtons buttons=QMessageBox::Ok, QMessageBox::StandardButton default_button=QMessageBox::Ok)</div><div class="ttdoc">Displays custom message box. </div><div class="ttdef"><b>Definition:</b> <a href="custommessagebox_8cpp_source.html#l00107">custommessagebox.cpp:107</a></div></div>
 <div class="ttc" id="classNetworkFactory_html_ab2ed607a42b58b7912c85537ddc2b0d7"><div class="ttname"><a href="classNetworkFactory.html#ab2ed607a42b58b7912c85537ddc2b0d7">NetworkFactory::downloadFile</a></div><div class="ttdeci">static QNetworkReply::NetworkError downloadFile(const QString &amp;url, int timeout, QByteArray &amp;output, bool protected_contents=false, const QString &amp;username=QString(), const QString &amp;password=QString())</div><div class="ttdoc">Performs SYNCHRONOUS download of file with given URL and given timeout. </div><div class="ttdef"><b>Definition:</b> <a href="networkfactory_8cpp_source.html#l00112">networkfactory.cpp:112</a></div></div>
@@ -342,7 +341,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Aug 4 2014 15:44:02 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Aug 16 2014 15:00:50 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

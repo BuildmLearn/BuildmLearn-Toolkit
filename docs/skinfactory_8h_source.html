@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.7"/>
-<title>BuildmLearn Toolkit: /d/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/miscellaneous/skinfactory.h Source File</title>
+<title>BuildmLearn Toolkit: /mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/miscellaneous/skinfactory.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -81,7 +81,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_e93149b64a4ea39523ce969bab267145.html">portage</a></li><li class="navelem"><a class="el" href="dir_82928ddbc3bafdd403330d98a74b0283.html">src</a></li><li class="navelem"><a class="el" href="dir_bcfe8d2e761b1ba2b85d78dde743ae7b.html">miscellaneous</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_5b13d613d053bd10e358ecb54357a5d6.html">data</a></li><li class="navelem"><a class="el" href="dir_68083efcf9ee33d99b45b272b86cc0c8.html">Martin</a></li><li class="navelem"><a class="el" href="dir_9398520d5aff4fa5fa64f9289982f118.html">Coding</a></li><li class="navelem"><a class="el" href="dir_8ff144ddfa1be06761cc38923377bd6f.html">Projekty</a></li><li class="navelem"><a class="el" href="dir_30a37e2355ef12c08d706bdcf80fec43.html">buildmlearn-toolkit</a></li><li class="navelem"><a class="el" href="dir_2813711323521bd6091a9c8a8d0a4efc.html">portage</a></li><li class="navelem"><a class="el" href="dir_0ecbf50818981b7b30cb590f4d05bbf9.html">src</a></li><li class="navelem"><a class="el" href="dir_9a10fef63a2a1b965e15d27cdc748bae.html">miscellaneous</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -140,63 +140,64 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    QString m_rawData;</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    QString m_simulatorBackgroundMain;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;};</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;Q_DECLARE_METATYPE(<a class="code" href="structSkin.html">Skin</a>)</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">///</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment"></span><span class="comment">/// \brief Main features for skinning.</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="classSkinFactory.html">   58</a></span>&#160;<span class="comment"></span>class <a class="code" href="classSkinFactory.html">SkinFactory</a> : public QObject {</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    Q_OBJECT</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">    /// \brief Constructor.</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment"></span>    <span class="keyword">explicit</span> <a class="code" href="classSkinFactory.html">SkinFactory</a>(QObject *parent = 0);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">    /// \brief Destructor.</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment"></span>    <span class="keyword">virtual</span> ~<a class="code" href="classSkinFactory.html">SkinFactory</a>();</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">    /// \brief Loads skin name from settings and sets it as active.</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> loadCurrentSkin();</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">    /// \brief Name of this &quot;activated&quot; skin.</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">    /// \return Returns the name of the skin, that should be activated</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">    /// after application restart.</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment"></span>    QString selectedSkinName();</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">    /// \brief Gets skin about a particular skin.</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment"></span>    <a class="code" href="structSkin.html">Skin</a> skinInfo(<span class="keyword">const</span> QString &amp;skin_name, <span class="keywordtype">bool</span> *ok = NULL);</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment">    /// \brief Returns list of installed skins.</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment"></span>    QList&lt;Skin&gt; installedSkins();</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">    /// \brief Sets the desired skin as the active one if it exists.</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> setCurrentSkinName(<span class="keyword">const</span> QString &amp;skin_name);</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment">    /// \brief Access to activated skin.</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment">    /// \return Returns Skin instance which holds data of currently</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment">    /// active skin.</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="classSkinFactory.html#a4e8d6fd1eaf7952c4c4cd3e96172fbb3">   88</a></span>&#160;<span class="comment"></span>    <span class="keyword">inline</span> <a class="code" href="structSkin.html">Skin</a> <a class="code" href="classSkinFactory.html#a4e8d6fd1eaf7952c4c4cd3e96172fbb3">currentSkin</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;      <span class="keywordflow">return</span> m_currentSkin;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    }</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;  <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="comment">// Loads the skin from give skin_data.</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keywordtype">bool</span> loadSkinFromData(<span class="keyword">const</span> <a class="code" href="structSkin.html">Skin</a> &amp;skin);</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;  <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="comment">// Holds name of the current skin.</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <a class="code" href="structSkin.html">Skin</a> m_currentSkin;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;};</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="preprocessor">#endif // SKINFACTORY_H</span></div>
-<div class="ttc" id="classSkinFactory_html"><div class="ttname"><a href="classSkinFactory.html">SkinFactory</a></div><div class="ttdoc">Main features for skinning. </div><div class="ttdef"><b>Definition:</b> <a href="skinfactory_8h_source.html#l00058">skinfactory.h:58</a></div></div>
-<div class="ttc" id="classSkinFactory_html_a4e8d6fd1eaf7952c4c4cd3e96172fbb3"><div class="ttname"><a href="classSkinFactory.html#a4e8d6fd1eaf7952c4c4cd3e96172fbb3">SkinFactory::currentSkin</a></div><div class="ttdeci">Skin currentSkin() const </div><div class="ttdoc">Access to activated skin. </div><div class="ttdef"><b>Definition:</b> <a href="skinfactory_8h_source.html#l00088">skinfactory.h:88</a></div></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    QString m_simulatorStyle;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;};</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;Q_DECLARE_METATYPE(<a class="code" href="structSkin.html">Skin</a>)</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">///</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment"></span><span class="comment">/// \brief Main features for skinning.</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="classSkinFactory.html">   59</a></span>&#160;<span class="comment"></span>class <a class="code" href="classSkinFactory.html">SkinFactory</a> : public QObject {</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    Q_OBJECT</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;  <span class="keyword">public</span>:<span class="comment"></span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">    /// \brief Constructor.</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment"></span>    <span class="keyword">explicit</span> <a class="code" href="classSkinFactory.html">SkinFactory</a>(QObject *parent = 0);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">    /// \brief Destructor.</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment"></span>    <span class="keyword">virtual</span> ~<a class="code" href="classSkinFactory.html">SkinFactory</a>();</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">    /// \brief Loads skin name from settings and sets it as active.</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> loadCurrentSkin();</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">    /// \brief Name of this &quot;activated&quot; skin.</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">    /// \return Returns the name of the skin, that should be activated</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">    /// after application restart.</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment"></span>    QString selectedSkinName();</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment">    /// \brief Gets skin about a particular skin.</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment"></span>    <a class="code" href="structSkin.html">Skin</a> skinInfo(<span class="keyword">const</span> QString &amp;skin_name, <span class="keywordtype">bool</span> *ok = NULL);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">    /// \brief Returns list of installed skins.</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment"></span>    QList&lt;Skin&gt; installedSkins();</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">    /// \brief Sets the desired skin as the active one if it exists.</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> setCurrentSkinName(<span class="keyword">const</span> QString &amp;skin_name);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment">    /// \brief Access to activated skin.</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment">    /// \return Returns Skin instance which holds data of currently</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment">    /// active skin.</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="classSkinFactory.html#a4e8d6fd1eaf7952c4c4cd3e96172fbb3">   89</a></span>&#160;<span class="comment"></span>    <span class="keyword">inline</span> <a class="code" href="structSkin.html">Skin</a> <a class="code" href="classSkinFactory.html#a4e8d6fd1eaf7952c4c4cd3e96172fbb3">currentSkin</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;      <span class="keywordflow">return</span> m_currentSkin;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    }</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;  <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="comment">// Loads the skin from give skin_data.</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordtype">bool</span> loadSkinFromData(<span class="keyword">const</span> <a class="code" href="structSkin.html">Skin</a> &amp;skin);</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;  <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="comment">// Holds name of the current skin.</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <a class="code" href="structSkin.html">Skin</a> m_currentSkin;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;};</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="preprocessor">#endif // SKINFACTORY_H</span></div>
+<div class="ttc" id="classSkinFactory_html"><div class="ttname"><a href="classSkinFactory.html">SkinFactory</a></div><div class="ttdoc">Main features for skinning. </div><div class="ttdef"><b>Definition:</b> <a href="skinfactory_8h_source.html#l00059">skinfactory.h:59</a></div></div>
+<div class="ttc" id="classSkinFactory_html_a4e8d6fd1eaf7952c4c4cd3e96172fbb3"><div class="ttname"><a href="classSkinFactory.html#a4e8d6fd1eaf7952c4c4cd3e96172fbb3">SkinFactory::currentSkin</a></div><div class="ttdeci">Skin currentSkin() const </div><div class="ttdoc">Access to activated skin. </div><div class="ttdef"><b>Definition:</b> <a href="skinfactory_8h_source.html#l00089">skinfactory.h:89</a></div></div>
 <div class="ttc" id="structSkin_html"><div class="ttname"><a href="structSkin.html">Skin</a></div><div class="ttdoc">Skin representation. </div><div class="ttdef"><b>Definition:</b> <a href="skinfactory_8h_source.html#l00041">skinfactory.h:41</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Aug 4 2014 15:44:02 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Aug 16 2014 15:00:50 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

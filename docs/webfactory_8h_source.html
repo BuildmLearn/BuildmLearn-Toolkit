@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.7"/>
-<title>BuildmLearn Toolkit: /d/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/network-web/webfactory.h Source File</title>
+<title>BuildmLearn Toolkit: /mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/network-web/webfactory.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -81,7 +81,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_e93149b64a4ea39523ce969bab267145.html">portage</a></li><li class="navelem"><a class="el" href="dir_82928ddbc3bafdd403330d98a74b0283.html">src</a></li><li class="navelem"><a class="el" href="dir_34cdb21ce70b246fbbf86925292da634.html">network-web</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_5b13d613d053bd10e358ecb54357a5d6.html">data</a></li><li class="navelem"><a class="el" href="dir_68083efcf9ee33d99b45b272b86cc0c8.html">Martin</a></li><li class="navelem"><a class="el" href="dir_9398520d5aff4fa5fa64f9289982f118.html">Coding</a></li><li class="navelem"><a class="el" href="dir_8ff144ddfa1be06761cc38923377bd6f.html">Projekty</a></li><li class="navelem"><a class="el" href="dir_30a37e2355ef12c08d706bdcf80fec43.html">buildmlearn-toolkit</a></li><li class="navelem"><a class="el" href="dir_2813711323521bd6091a9c8a8d0a4efc.html">portage</a></li><li class="navelem"><a class="el" href="dir_0ecbf50818981b7b30cb590f4d05bbf9.html">src</a></li><li class="navelem"><a class="el" href="dir_ef040f6e4e7805c8dc0d6141fe622292.html">network-web</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -129,38 +129,39 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">class </span>QWebSettings;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classWebFactory.html">   42</a></span>&#160;<span class="keyword">class </span><a class="code" href="classWebFactory.html">WebFactory</a> : <span class="keyword">public</span> QObject {</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    Q_OBJECT</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="comment">// Destructor.</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="classWebFactory.html">WebFactory</a>();</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="comment">// Singleton getter.</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">static</span> <a class="code" href="classWebFactory.html">WebFactory</a> *instance();</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;  <span class="keyword">public</span> slots:<span class="comment"></span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">    /// \brief Opens given string URL in external browser.</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">    /// \param url URL to open.</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">    /// \return Returns true if URL was opened in external web browser.</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment"></span>    <span class="keywordtype">bool</span> <a class="code" href="classWebFactory.html#a804d22978a6a3eeb2978406419e288c9">openUrlInExternalBrowser</a>(<span class="keyword">const</span> QString &amp;url);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="comment">// Constructor.</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="classWebFactory.html">WebFactory</a>(QObject *parent = 0);</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="comment">// Singleton.</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keyword">static</span> QPointer&lt;WebFactory&gt; s_instance;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;};</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="preprocessor">#endif // WEBFACTORY_H</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">/// \brief Web-related functionality.</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="classWebFactory.html">   43</a></span>&#160;<span class="comment"></span><span class="keyword">class </span><a class="code" href="classWebFactory.html">WebFactory</a> : <span class="keyword">public</span> QObject {</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    Q_OBJECT</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;  <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="comment">// Destructor.</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="classWebFactory.html">WebFactory</a>();</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="comment">// Singleton getter.</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keyword">static</span> <a class="code" href="classWebFactory.html">WebFactory</a> *instance();</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;  <span class="keyword">public</span> slots:<span class="comment"></span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">    /// \brief Opens given string URL in external browser.</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">    /// \param url URL to open.</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">    /// \return Returns true if URL was opened in external web browser.</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment"></span>    <span class="keywordtype">bool</span> <a class="code" href="classWebFactory.html#a804d22978a6a3eeb2978406419e288c9">openUrlInExternalBrowser</a>(<span class="keyword">const</span> QString &amp;url);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;  <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="comment">// Constructor.</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="classWebFactory.html">WebFactory</a>(QObject *parent = 0);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="comment">// Singleton.</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keyword">static</span> QPointer&lt;WebFactory&gt; s_instance;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;};</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor">#endif // WEBFACTORY_H</span></div>
 <div class="ttc" id="classWebFactory_html_a804d22978a6a3eeb2978406419e288c9"><div class="ttname"><a href="classWebFactory.html#a804d22978a6a3eeb2978406419e288c9">WebFactory::openUrlInExternalBrowser</a></div><div class="ttdeci">bool openUrlInExternalBrowser(const QString &amp;url)</div><div class="ttdoc">Opens given string URL in external browser. </div><div class="ttdef"><b>Definition:</b> <a href="webfactory_8cpp_source.html#l00054">webfactory.cpp:54</a></div></div>
-<div class="ttc" id="classWebFactory_html"><div class="ttname"><a href="classWebFactory.html">WebFactory</a></div><div class="ttdef"><b>Definition:</b> <a href="webfactory_8h_source.html#l00042">webfactory.h:42</a></div></div>
+<div class="ttc" id="classWebFactory_html"><div class="ttname"><a href="classWebFactory.html">WebFactory</a></div><div class="ttdoc">Web-related functionality. </div><div class="ttdef"><b>Definition:</b> <a href="webfactory_8h_source.html#l00043">webfactory.h:43</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Aug 4 2014 15:44:02 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Aug 16 2014 15:00:50 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

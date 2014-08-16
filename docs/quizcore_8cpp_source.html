@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.7"/>
-<title>BuildmLearn Toolkit: /d/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/templates/quiz/quizcore.cpp Source File</title>
+<title>BuildmLearn Toolkit: /mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/templates/quiz/quizcore.cpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -81,7 +81,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_e93149b64a4ea39523ce969bab267145.html">portage</a></li><li class="navelem"><a class="el" href="dir_82928ddbc3bafdd403330d98a74b0283.html">src</a></li><li class="navelem"><a class="el" href="dir_4767c88c1a0b9b2a275c20dd758afde4.html">templates</a></li><li class="navelem"><a class="el" href="dir_ef9040741370b59663765cc922ab05cb.html">quiz</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_5b13d613d053bd10e358ecb54357a5d6.html">data</a></li><li class="navelem"><a class="el" href="dir_68083efcf9ee33d99b45b272b86cc0c8.html">Martin</a></li><li class="navelem"><a class="el" href="dir_9398520d5aff4fa5fa64f9289982f118.html">Coding</a></li><li class="navelem"><a class="el" href="dir_8ff144ddfa1be06761cc38923377bd6f.html">Projekty</a></li><li class="navelem"><a class="el" href="dir_30a37e2355ef12c08d706bdcf80fec43.html">buildmlearn-toolkit</a></li><li class="navelem"><a class="el" href="dir_2813711323521bd6091a9c8a8d0a4efc.html">portage</a></li><li class="navelem"><a class="el" href="dir_0ecbf50818981b7b30cb590f4d05bbf9.html">src</a></li><li class="navelem"><a class="el" href="dir_22d20830482ee44b44184604348edacd.html">templates</a></li><li class="navelem"><a class="el" href="dir_f3e49e8361c609995916c6df7e2172b7.html">quiz</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -147,7 +147,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;  qDebug(<span class="stringliteral">&quot;Destroying QuizCore instance.&quot;</span>);</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;}</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
-<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="classQuizCore.html#a8130ff8deb83b566ed57750a38b84e8a">   59</a></span>&#160;<a class="code" href="classTemplateCore.html#a64e34dd774ee57ad8ad32b8d5185ae4b">TemplateCore::GenerationResult</a> <a class="code" href="classQuizCore.html#a8130ff8deb83b566ed57750a38b84e8a">QuizCore::generateMobileApplication</a>(QString &amp;output_file) {</div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="classQuizCore.html#ac1be74e283990c61d852e461dda722cc">   59</a></span>&#160;<a class="code" href="classTemplateCore.html#a64e34dd774ee57ad8ad32b8d5185ae4b">TemplateCore::GenerationResult</a> <a class="code" href="classQuizCore.html#ac1be74e283990c61d852e461dda722cc">QuizCore::generateMobileApplication</a>(<span class="keyword">const</span> QString &amp;input_apk_file, QString &amp;output_file) {</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  emit <a class="code" href="classTemplateCore.html#adbf87d1c4725174d6d8a834a90e7bd54">generationProgress</a>(5, tr(<span class="stringliteral">&quot;Preparing workspace...&quot;</span>));</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;  qApp-&gt;templateManager()-&gt;generator()-&gt;cleanWorkspace();</div>
@@ -187,7 +187,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;  emit <a class="code" href="classTemplateCore.html#adbf87d1c4725174d6d8a834a90e7bd54">generationProgress</a>(40, tr(<span class="stringliteral">&quot;Copying template apk file...&quot;</span>));</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;  <span class="comment">// Copying of target apk file.</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;  QString new_apk_name = qApp-&gt;templateManager()-&gt;applicationFileName(quizEditor()-&gt;m_ui-&gt;m_txtName-&gt;lineEdit()-&gt;text());</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;  QString new_apk_name = input_apk_file;</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;  <span class="keywordflow">if</span> (!QFile::copy(APP_TEMPLATES_PATH + <span class="stringliteral">&quot;/&quot;</span> + <a class="code" href="classTemplateCore.html#aa551e031299f9f4683c3fe12d81d18bd">entryPoint</a>()-&gt;baseFolder() + <span class="stringliteral">&quot;/&quot;</span> + <a class="code" href="classTemplateCore.html#aa551e031299f9f4683c3fe12d81d18bd">entryPoint</a>()-&gt;mobileApplicationApkFile(),</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                   base_folder + <span class="stringliteral">&quot;/&quot;</span> + new_apk_name)) {</div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    qApp-&gt;templateManager()-&gt;generator()-&gt;cleanWorkspace();</div>
@@ -254,7 +254,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="classTemplateCore_html_a1b8cc0d291b14259b3cd42c5d5abc87d"><div class="ttname"><a href="classTemplateCore.html#a1b8cc0d291b14259b3cd42c5d5abc87d">TemplateCore::editor</a></div><div class="ttdeci">virtual TemplateEditor * editor() const </div><div class="ttdoc">Access to editor widget of the template. </div><div class="ttdef"><b>Definition:</b> <a href="templatecore_8h_source.html#l00084">templatecore.h:84</a></div></div>
 <div class="ttc" id="classQuizSimulator_html"><div class="ttname"><a href="classQuizSimulator.html">QuizSimulator</a></div><div class="ttdoc">Simulator for Quiz template. </div><div class="ttdef"><b>Definition:</b> <a href="quizsimulator_8h_source.html#l00050">quizsimulator.h:50</a></div></div>
 <div class="ttc" id="classIOFactory_html_a6ef3caa32304d9b26bc8fd7c645bf598"><div class="ttname"><a href="classIOFactory.html#a6ef3caa32304d9b26bc8fd7c645bf598">IOFactory::copyFile</a></div><div class="ttdeci">static bool copyFile(const QString &amp;source, const QString &amp;destination)</div><div class="ttdoc">Copies source file into destination path. </div><div class="ttdef"><b>Definition:</b> <a href="iofactory_8cpp_source.html#l00069">iofactory.cpp:69</a></div></div>
-<div class="ttc" id="classQuizCore_html_a8130ff8deb83b566ed57750a38b84e8a"><div class="ttname"><a href="classQuizCore.html#a8130ff8deb83b566ed57750a38b84e8a">QuizCore::generateMobileApplication</a></div><div class="ttdeci">GenerationResult generateMobileApplication(QString &amp;output_file)</div><div class="ttdoc">Generates APK file from current project with active settings. </div><div class="ttdef"><b>Definition:</b> <a href="quizcore_8cpp_source.html#l00059">quizcore.cpp:59</a></div></div>
+<div class="ttc" id="classQuizCore_html_ac1be74e283990c61d852e461dda722cc"><div class="ttname"><a href="classQuizCore.html#ac1be74e283990c61d852e461dda722cc">QuizCore::generateMobileApplication</a></div><div class="ttdeci">GenerationResult generateMobileApplication(const QString &amp;input_apk_file, QString &amp;output_file)</div><div class="ttdoc">Generates APK file from current project with active settings. </div><div class="ttdef"><b>Definition:</b> <a href="quizcore_8cpp_source.html#l00059">quizcore.cpp:59</a></div></div>
 <div class="ttc" id="classTemplateCore_html_adbf87d1c4725174d6d8a834a90e7bd54"><div class="ttname"><a href="classTemplateCore.html#adbf87d1c4725174d6d8a834a90e7bd54">TemplateCore::generationProgress</a></div><div class="ttdeci">void generationProgress(int percent_completed, const QString &amp;progress_info)</div><div class="ttdoc">Emitted when there is something new concerning generating of mobile APK application. </div></div>
 <div class="ttc" id="classTemplateCore_html_aa551e031299f9f4683c3fe12d81d18bd"><div class="ttname"><a href="classTemplateCore.html#aa551e031299f9f4683c3fe12d81d18bd">TemplateCore::entryPoint</a></div><div class="ttdeci">virtual TemplateEntryPoint * entryPoint() const </div><div class="ttdoc">Access to entry point of the template. </div><div class="ttdef"><b>Definition:</b> <a href="templatecore_8h_source.html#l00078">templatecore.h:78</a></div></div>
 <div class="ttc" id="classTemplateEntryPoint_html"><div class="ttname"><a href="classTemplateEntryPoint.html">TemplateEntryPoint</a></div><div class="ttdoc">The entry point for a template. </div><div class="ttdef"><b>Definition:</b> <a href="templateentrypoint_8h_source.html#l00047">templateentrypoint.h:47</a></div></div>
@@ -264,7 +264,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Aug 4 2014 15:44:02 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Aug 16 2014 15:00:50 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

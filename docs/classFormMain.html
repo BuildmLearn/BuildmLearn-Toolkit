@@ -64,7 +64,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
@@ -101,11 +101,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Inheritance diagram for FormMain:</div>
 <div class="dyncontent">
- <div class="center">
-  <img src="classFormMain.png" usemap="#FormMain_map" alt=""/>
-  <map id="FormMain_map" name="FormMain_map">
+<div class="center"><img src="classFormMain__inherit__graph.png" border="0" usemap="#FormMain_inherit__map" alt="Inheritance graph"/></div>
+<map name="FormMain_inherit__map" id="FormMain_inherit__map">
 </map>
- </div></div>
+</div>
+<div class="dynheader">
+Collaboration diagram for FormMain:</div>
+<div class="dyncontent">
+<div class="center"><img src="classFormMain__coll__graph.png" border="0" usemap="#FormMain_coll__map" alt="Collaboration graph"/></div>
+<map name="FormMain_coll__map" id="FormMain_coll__map">
+</map>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-slots"></a>
 Public Slots</h2></td></tr>
@@ -253,19 +259,40 @@ Protected Member Functions</h2></td></tr>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;  loadSizeAndPosition();</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;  createConnections();</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="preprocessor">#if !defined(DEBUG)</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;  <span class="keywordflow">if</span> (!qApp-&gt;settings()-&gt;value(APP_CFG_GEN, <span class="stringliteral">&quot;enable_store&quot;</span>, <span class="keyword">false</span>).toBool()) {</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    m_ui-&gt;m_actionUploadApplicationToStore-&gt;setVisible(<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;  }</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;  <span class="comment">// Make sure simulator window is displayed.</span></div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;  m_ui-&gt;m_actionViewSimulatorWindow-&gt;setChecked(m_simulatorWindow-&gt;<a class="code" href="classFormSimulator.html#a2beead88fcedb61b7ca68e7aeaacda8d">isVisibleOnStartup</a>());</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;  m_ui-&gt;m_actionStickSimulatorWindow-&gt;setChecked(m_simulatorWindow-&gt;<a class="code" href="classFormSimulator.html#ad9fe8f3fc10c39d3e085c81d9374d830">isSticked</a>());</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;}</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;  <span class="comment">//#if !defined(DEBUG)</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="preprocessor">#if defined(DISABLE_STORE)</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;  m_ui-&gt;m_actionUploadApplicationToStore-&gt;setVisible(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;  <span class="keywordflow">if</span> (!qApp-&gt;settings()-&gt;value(APP_CFG_GEN, <span class="stringliteral">&quot;enable_store&quot;</span>, <span class="keyword">true</span>).toBool()) {</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    m_ui-&gt;m_actionUploadApplicationToStore-&gt;setVisible(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;  }</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="preprocessor">#if defined(DISABLE_APK_GENERATION)</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;  m_ui-&gt;m_actionGenerateMobileApplication-&gt;setVisible(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;  <span class="keywordflow">if</span> (!qApp-&gt;settings()-&gt;value(APP_CFG_GEN, <span class="stringliteral">&quot;enable_apk_generation&quot;</span>, <span class="keyword">true</span>).toBool()) {</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    m_ui-&gt;m_actionGenerateMobileApplication-&gt;setVisible(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;  }</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;  <span class="comment">//#endif</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;  <span class="comment">// Make sure simulator window is displayed.</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;  m_ui-&gt;m_actionViewSimulatorWindow-&gt;setChecked(m_simulatorWindow-&gt;<a class="code" href="classFormSimulator.html#a2beead88fcedb61b7ca68e7aeaacda8d">isVisibleOnStartup</a>());</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;  m_ui-&gt;m_actionStickSimulatorWindow-&gt;setChecked(m_simulatorWindow-&gt;<a class="code" href="classFormSimulator.html#ad9fe8f3fc10c39d3e085c81d9374d830">isSticked</a>());</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;}</div>
 <div class="ttc" id="classFormSimulator_html_a2beead88fcedb61b7ca68e7aeaacda8d"><div class="ttname"><a href="classFormSimulator.html#a2beead88fcedb61b7ca68e7aeaacda8d">FormSimulator::isVisibleOnStartup</a></div><div class="ttdeci">bool isVisibleOnStartup() const </div><div class="ttdoc">Indicates whether simulator window should be shown when application launches. </div><div class="ttdef"><b>Definition:</b> <a href="formsimulator_8h_source.html#l00045">formsimulator.h:45</a></div></div>
 <div class="ttc" id="classFormSimulator_html_ad9fe8f3fc10c39d3e085c81d9374d830"><div class="ttname"><a href="classFormSimulator.html#ad9fe8f3fc10c39d3e085c81d9374d830">FormSimulator::isSticked</a></div><div class="ttdeci">bool isSticked() const </div><div class="ttdoc">Indicates whether simulator window is sticked to main window or not. </div><div class="ttdef"><b>Definition:</b> <a href="formsimulator_8h_source.html#l00039">formsimulator.h:39</a></div></div>
 </div><!-- fragment -->
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classFormMain_a19007dce5aea659cf42cfbc7cf1e0c58_cgraph.png" border="0" usemap="#classFormMain_a19007dce5aea659cf42cfbc7cf1e0c58_cgraph" alt=""/></div>
+<map name="classFormMain_a19007dce5aea659cf42cfbc7cf1e0c58_cgraph" id="classFormMain_a19007dce5aea659cf42cfbc7cf1e0c58_cgraph">
+<area shape="rect" id="node2" href="classFormSimulator.html#a2beead88fcedb61b7ca68e7aeaacda8d" title="Indicates whether simulator window should be shown when application launches. " alt="" coords="213,5,389,47"/><area shape="rect" id="node3" href="classFormSimulator.html#ad9fe8f3fc10c39d3e085c81d9374d830" title="Indicates whether simulator window is sticked to main window or not. " alt="" coords="209,71,392,98"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -285,29 +312,38 @@ Protected Member Functions</h2></td></tr>
 <p>Access to all actions provided by this window. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classDynamicShortcuts.html" title="Access for methods for loading/saving keyboard shortcuts to/from settings. ">DynamicShortcuts</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="formmain_8cpp_source.html#l00118">118</a> of file <a class="el" href="formmain_8cpp_source.html">formmain.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                                     {</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;  QList&lt;QAction*&gt; actions;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;  actions.append(m_ui-&gt;m_actionCheckForUpdates);</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;  actions.append(m_ui-&gt;m_actionGenerateMobileApplication);</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;  actions.append(m_ui-&gt;m_actionUploadApplicationToStore);</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;  actions.append(m_ui-&gt;m_actionLoadProject);</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;  actions.append(m_ui-&gt;m_actionNewProject);</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;  actions.append(m_ui-&gt;m_actionSaveProject);</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;  actions.append(m_ui-&gt;m_actionSaveProjectAs);</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;  actions.append(m_ui-&gt;m_actionSimulatorRun);</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;  actions.append(m_ui-&gt;m_actionSimulatorStop);</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;  actions.append(m_ui-&gt;m_actionSimulatorGoBack);</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;  actions.append(m_ui-&gt;m_actionViewSimulatorWindow);</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;  actions.append(m_ui-&gt;m_actionStickSimulatorWindow);</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;  actions.append(m_ui-&gt;m_actionQuit);</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;  actions.append( m_ui-&gt;m_actionSettings);</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;  actions.append(m_ui-&gt;m_actionHelp);</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;  <span class="keywordflow">return</span> actions;</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;}</div>
+<p>Definition at line <a class="el" href="formmain_8cpp_source.html#l00130">130</a> of file <a class="el" href="formmain_8cpp_source.html">formmain.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                                     {</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;  QList&lt;QAction*&gt; actions;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;  actions.append(m_ui-&gt;m_actionCheckForUpdates);</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;  actions.append(m_ui-&gt;m_actionGenerateMobileApplication);</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;  actions.append(m_ui-&gt;m_actionUploadApplicationToStore);</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;  actions.append(m_ui-&gt;m_actionLoadProject);</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;  actions.append(m_ui-&gt;m_actionNewProject);</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;  actions.append(m_ui-&gt;m_actionSaveProject);</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;  actions.append(m_ui-&gt;m_actionSaveProjectAs);</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;  actions.append(m_ui-&gt;m_actionSimulatorRun);</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;  actions.append(m_ui-&gt;m_actionSimulatorStop);</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;  actions.append(m_ui-&gt;m_actionSimulatorGoBack);</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;  actions.append(m_ui-&gt;m_actionViewSimulatorWindow);</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;  actions.append(m_ui-&gt;m_actionStickSimulatorWindow);</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;  actions.append(m_ui-&gt;m_actionQuit);</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;  actions.append( m_ui-&gt;m_actionSettings);</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;  actions.append(m_ui-&gt;m_actionHelp);</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;  <span class="keywordflow">return</span> actions;</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;}</div>
 </div><!-- fragment -->
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classFormMain_a71f25dda5f8f0486a1ee339db91e60e2_icgraph.png" border="0" usemap="#classFormMain_a71f25dda5f8f0486a1ee339db91e60e2_icgraph" alt=""/></div>
+<map name="classFormMain_a71f25dda5f8f0486a1ee339db91e60e2_icgraph" id="classFormMain_a71f25dda5f8f0486a1ee339db91e60e2_icgraph">
+<area shape="rect" id="node2" href="classApplication.html#a4c2da9a3700b41120a98794237af5072" title="Access to all application&#45;wide useable actions. " alt="" coords="208,5,411,32"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="a4e331db3fe97b57f6ce8575945e8c18f"></a>
@@ -340,25 +376,34 @@ Protected Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="formmain_8cpp_source.html#l00693">693</a> of file <a class="el" href="formmain_8cpp_source.html">formmain.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00693"></a><span class="lineno">  693</span>&#160;                                        {</div>
-<div class="line"><a name="l00694"></a><span class="lineno">  694</span>&#160;  <span class="keywordflow">if</span> (!qApp-&gt;isClosing()) {</div>
-<div class="line"><a name="l00695"></a><span class="lineno">  695</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="classFormMain.html#a6c5909a7fff46abeb0b7f4e02b4e1f64">saveUnsavedProject</a>()) {</div>
-<div class="line"><a name="l00696"></a><span class="lineno">  696</span>&#160;      e-&gt;ignore();</div>
-<div class="line"><a name="l00697"></a><span class="lineno">  697</span>&#160;      <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00698"></a><span class="lineno">  698</span>&#160;    }</div>
-<div class="line"><a name="l00699"></a><span class="lineno">  699</span>&#160;  }</div>
-<div class="line"><a name="l00700"></a><span class="lineno">  700</span>&#160;</div>
-<div class="line"><a name="l00701"></a><span class="lineno">  701</span>&#160;  <span class="keywordflow">if</span> (<a class="code" href="classSystemTrayIcon.html#ae534644382bd8d60691bfda7c105d167">SystemTrayIcon::isSystemTrayAvailable</a>()) {</div>
-<div class="line"><a name="l00702"></a><span class="lineno">  702</span>&#160;    qApp-&gt;trayIcon()-&gt;hide();</div>
-<div class="line"><a name="l00703"></a><span class="lineno">  703</span>&#160;  }</div>
-<div class="line"><a name="l00704"></a><span class="lineno">  704</span>&#160;</div>
-<div class="line"><a name="l00705"></a><span class="lineno">  705</span>&#160;  e-&gt;accept();</div>
-<div class="line"><a name="l00706"></a><span class="lineno">  706</span>&#160;  qApp-&gt;quit();</div>
-<div class="line"><a name="l00707"></a><span class="lineno">  707</span>&#160;}</div>
-<div class="ttc" id="classFormMain_html_a6c5909a7fff46abeb0b7f4e02b4e1f64"><div class="ttname"><a href="classFormMain.html#a6c5909a7fff46abeb0b7f4e02b4e1f64">FormMain::saveUnsavedProject</a></div><div class="ttdeci">bool saveUnsavedProject()</div><div class="ttdoc">Performs necessary steps to save active project if there is unsaved work. </div><div class="ttdef"><b>Definition:</b> <a href="formmain_8cpp_source.html#l00664">formmain.cpp:664</a></div></div>
+<p>Definition at line <a class="el" href="formmain_8cpp_source.html#l00711">711</a> of file <a class="el" href="formmain_8cpp_source.html">formmain.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00711"></a><span class="lineno">  711</span>&#160;                                        {</div>
+<div class="line"><a name="l00712"></a><span class="lineno">  712</span>&#160;  <span class="keywordflow">if</span> (!qApp-&gt;isClosing()) {</div>
+<div class="line"><a name="l00713"></a><span class="lineno">  713</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="classFormMain.html#a6c5909a7fff46abeb0b7f4e02b4e1f64">saveUnsavedProject</a>()) {</div>
+<div class="line"><a name="l00714"></a><span class="lineno">  714</span>&#160;      e-&gt;ignore();</div>
+<div class="line"><a name="l00715"></a><span class="lineno">  715</span>&#160;      <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00716"></a><span class="lineno">  716</span>&#160;    }</div>
+<div class="line"><a name="l00717"></a><span class="lineno">  717</span>&#160;  }</div>
+<div class="line"><a name="l00718"></a><span class="lineno">  718</span>&#160;</div>
+<div class="line"><a name="l00719"></a><span class="lineno">  719</span>&#160;  <span class="keywordflow">if</span> (<a class="code" href="classSystemTrayIcon.html#ae534644382bd8d60691bfda7c105d167">SystemTrayIcon::isSystemTrayAvailable</a>()) {</div>
+<div class="line"><a name="l00720"></a><span class="lineno">  720</span>&#160;    qApp-&gt;trayIcon()-&gt;hide();</div>
+<div class="line"><a name="l00721"></a><span class="lineno">  721</span>&#160;  }</div>
+<div class="line"><a name="l00722"></a><span class="lineno">  722</span>&#160;</div>
+<div class="line"><a name="l00723"></a><span class="lineno">  723</span>&#160;  e-&gt;accept();</div>
+<div class="line"><a name="l00724"></a><span class="lineno">  724</span>&#160;  qApp-&gt;quit();</div>
+<div class="line"><a name="l00725"></a><span class="lineno">  725</span>&#160;}</div>
+<div class="ttc" id="classFormMain_html_a6c5909a7fff46abeb0b7f4e02b4e1f64"><div class="ttname"><a href="classFormMain.html#a6c5909a7fff46abeb0b7f4e02b4e1f64">FormMain::saveUnsavedProject</a></div><div class="ttdeci">bool saveUnsavedProject()</div><div class="ttdoc">Performs necessary steps to save active project if there is unsaved work. </div><div class="ttdef"><b>Definition:</b> <a href="formmain_8cpp_source.html#l00682">formmain.cpp:682</a></div></div>
 <div class="ttc" id="classSystemTrayIcon_html_ae534644382bd8d60691bfda7c105d167"><div class="ttname"><a href="classSystemTrayIcon.html#ae534644382bd8d60691bfda7c105d167">SystemTrayIcon::isSystemTrayAvailable</a></div><div class="ttdeci">static bool isSystemTrayAvailable()</div><div class="ttdoc">Indicates whether tray icon is supported. </div><div class="ttdef"><b>Definition:</b> <a href="systemtrayicon_8cpp_source.html#l00102">systemtrayicon.cpp:102</a></div></div>
 </div><!-- fragment -->
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classFormMain_a4e331db3fe97b57f6ce8575945e8c18f_cgraph.png" border="0" usemap="#classFormMain_a4e331db3fe97b57f6ce8575945e8c18f_cgraph" alt=""/></div>
+<map name="classFormMain_a4e331db3fe97b57f6ce8575945e8c18f_cgraph" id="classFormMain_a4e331db3fe97b57f6ce8575945e8c18f_cgraph">
+<area shape="rect" id="node2" href="classFormMain.html#a6c5909a7fff46abeb0b7f4e02b4e1f64" title="Performs necessary steps to save active project if there is unsaved work. " alt="" coords="216,31,439,57"/><area shape="rect" id="node6" href="classSystemTrayIcon.html#ae534644382bd8d60691bfda7c105d167" title="Indicates whether tray icon is supported. " alt="" coords="233,82,422,123"/><area shape="rect" id="node3" href="classCustomMessageBox.html#a351bd1dcc646d4de05ba9b8d6e09893f" title="Displays custom message box. " alt="" coords="487,31,680,57"/><area shape="rect" id="node4" href="classCustomMessageBox.html#a173696064b419d95bf7fae2f9b593199" title="Custom icon setting. " alt="" coords="728,5,935,32"/><area shape="rect" id="node5" href="classCustomMessageBox.html#af7e3eba74e1e7c3fe91096ced36973ea" title="Performs icon replacements for given button box. " alt="" coords="731,56,932,83"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="a5a4e081566cf3cf8689b32b4d8a00be4"></a>
@@ -385,21 +430,39 @@ Protected Member Functions</h2></td></tr>
 <p>Displays the window. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classFormMain.html#ae0e94720b058d8b20fd3ef899eae4e4f" title="Displays window. ">show()</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="formmain_8cpp_source.html#l00557">557</a> of file <a class="el" href="formmain_8cpp_source.html">formmain.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00557"></a><span class="lineno">  557</span>&#160;                       {</div>
-<div class="line"><a name="l00558"></a><span class="lineno">  558</span>&#160;  <span class="comment">// Make sure window is not minimized.</span></div>
-<div class="line"><a name="l00559"></a><span class="lineno">  559</span>&#160;  setWindowState(windowState() &amp; ~Qt::WindowMinimized);</div>
-<div class="line"><a name="l00560"></a><span class="lineno">  560</span>&#160;</div>
-<div class="line"><a name="l00561"></a><span class="lineno">  561</span>&#160;  <span class="comment">// Display the window and make sure it is raised on top.</span></div>
-<div class="line"><a name="l00562"></a><span class="lineno">  562</span>&#160;  <a class="code" href="classFormMain.html#ae0e94720b058d8b20fd3ef899eae4e4f">show</a>();</div>
-<div class="line"><a name="l00563"></a><span class="lineno">  563</span>&#160;  activateWindow();</div>
-<div class="line"><a name="l00564"></a><span class="lineno">  564</span>&#160;  <span class="keyword">raise</span>();</div>
-<div class="line"><a name="l00565"></a><span class="lineno">  565</span>&#160;</div>
-<div class="line"><a name="l00566"></a><span class="lineno">  566</span>&#160;  <span class="comment">// Raise alert event. Check the documentation for more info on this.</span></div>
-<div class="line"><a name="l00567"></a><span class="lineno">  567</span>&#160;  Application::alert(<span class="keyword">this</span>);</div>
-<div class="line"><a name="l00568"></a><span class="lineno">  568</span>&#160;}</div>
-<div class="ttc" id="classFormMain_html_ae0e94720b058d8b20fd3ef899eae4e4f"><div class="ttname"><a href="classFormMain.html#ae0e94720b058d8b20fd3ef899eae4e4f">FormMain::show</a></div><div class="ttdeci">void show()</div><div class="ttdoc">Displays window. </div><div class="ttdef"><b>Definition:</b> <a href="formmain_8cpp_source.html#l00545">formmain.cpp:545</a></div></div>
+<p>Definition at line <a class="el" href="formmain_8cpp_source.html#l00569">569</a> of file <a class="el" href="formmain_8cpp_source.html">formmain.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00569"></a><span class="lineno">  569</span>&#160;                       {</div>
+<div class="line"><a name="l00570"></a><span class="lineno">  570</span>&#160;  <span class="comment">// Make sure window is not minimized.</span></div>
+<div class="line"><a name="l00571"></a><span class="lineno">  571</span>&#160;  setWindowState(windowState() &amp; ~Qt::WindowMinimized);</div>
+<div class="line"><a name="l00572"></a><span class="lineno">  572</span>&#160;</div>
+<div class="line"><a name="l00573"></a><span class="lineno">  573</span>&#160;  <span class="comment">// Display the window and make sure it is raised on top.</span></div>
+<div class="line"><a name="l00574"></a><span class="lineno">  574</span>&#160;  <a class="code" href="classFormMain.html#ae0e94720b058d8b20fd3ef899eae4e4f">show</a>();</div>
+<div class="line"><a name="l00575"></a><span class="lineno">  575</span>&#160;  activateWindow();</div>
+<div class="line"><a name="l00576"></a><span class="lineno">  576</span>&#160;  <span class="keyword">raise</span>();</div>
+<div class="line"><a name="l00577"></a><span class="lineno">  577</span>&#160;</div>
+<div class="line"><a name="l00578"></a><span class="lineno">  578</span>&#160;  <span class="comment">// Raise alert event. Check the documentation for more info on this.</span></div>
+<div class="line"><a name="l00579"></a><span class="lineno">  579</span>&#160;  Application::alert(<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160;}</div>
+<div class="ttc" id="classFormMain_html_ae0e94720b058d8b20fd3ef899eae4e4f"><div class="ttname"><a href="classFormMain.html#ae0e94720b058d8b20fd3ef899eae4e4f">FormMain::show</a></div><div class="ttdeci">void show()</div><div class="ttdoc">Displays window. </div><div class="ttdef"><b>Definition:</b> <a href="formmain_8cpp_source.html#l00557">formmain.cpp:557</a></div></div>
 </div><!-- fragment -->
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classFormMain_a5a4e081566cf3cf8689b32b4d8a00be4_cgraph.png" border="0" usemap="#classFormMain_a5a4e081566cf3cf8689b32b4d8a00be4_cgraph" alt=""/></div>
+<map name="classFormMain_a5a4e081566cf3cf8689b32b4d8a00be4_cgraph" id="classFormMain_a5a4e081566cf3cf8689b32b4d8a00be4_cgraph">
+<area shape="rect" id="node2" href="classFormMain.html#ae0e94720b058d8b20fd3ef899eae4e4f" title="Displays window. " alt="" coords="191,5,316,32"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classFormMain_a5a4e081566cf3cf8689b32b4d8a00be4_icgraph.png" border="0" usemap="#classFormMain_a5a4e081566cf3cf8689b32b4d8a00be4_icgraph" alt=""/></div>
+<map name="classFormMain_a5a4e081566cf3cf8689b32b4d8a00be4_icgraph" id="classFormMain_a5a4e081566cf3cf8689b32b4d8a00be4_icgraph">
+<area shape="rect" id="node2" href="classFormMain.html#ac97480ebe759e61d2e5ee96d0ceea325" title="Switches visibility of main window. " alt="" coords="191,5,373,32"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="a5a59b1b2735e12b8c243bd90004556f0"></a>
@@ -432,11 +495,11 @@ Protected Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="formmain_8cpp_source.html#l00709">709</a> of file <a class="el" href="formmain_8cpp_source.html">formmain.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00709"></a><span class="lineno">  709</span>&#160;                                      {</div>
-<div class="line"><a name="l00710"></a><span class="lineno">  710</span>&#160;  e-&gt;accept();</div>
-<div class="line"><a name="l00711"></a><span class="lineno">  711</span>&#160;  emit <a class="code" href="classFormMain.html#a1addc40f21d537777d6a1e6ea06f51a7">moved</a>();</div>
-<div class="line"><a name="l00712"></a><span class="lineno">  712</span>&#160;}</div>
+<p>Definition at line <a class="el" href="formmain_8cpp_source.html#l00727">727</a> of file <a class="el" href="formmain_8cpp_source.html">formmain.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00727"></a><span class="lineno">  727</span>&#160;                                      {</div>
+<div class="line"><a name="l00728"></a><span class="lineno">  728</span>&#160;  e-&gt;accept();</div>
+<div class="line"><a name="l00729"></a><span class="lineno">  729</span>&#160;  emit <a class="code" href="classFormMain.html#a1addc40f21d537777d6a1e6ea06f51a7">moved</a>();</div>
+<div class="line"><a name="l00730"></a><span class="lineno">  730</span>&#160;}</div>
 <div class="ttc" id="classFormMain_html_a1addc40f21d537777d6a1e6ea06f51a7"><div class="ttname"><a href="classFormMain.html#a1addc40f21d537777d6a1e6ea06f51a7">FormMain::moved</a></div><div class="ttdeci">void moved()</div><div class="ttdoc">Emitted when window is moved. </div></div>
 </div><!-- fragment -->
 </div>
@@ -465,27 +528,36 @@ Protected Member Functions</h2></td></tr>
 <p>Opens "New project" dialog. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classFormNewProject.html" title="Dialog for creating new projects. ">FormNewProject</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="formmain_8cpp_source.html#l00628">628</a> of file <a class="el" href="formmain_8cpp_source.html">formmain.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00628"></a><span class="lineno">  628</span>&#160;                                    {</div>
-<div class="line"><a name="l00629"></a><span class="lineno">  629</span>&#160;  <span class="keywordflow">if</span> (!<a class="code" href="classFormMain.html#a6c5909a7fff46abeb0b7f4e02b4e1f64">saveUnsavedProject</a>()) {</div>
-<div class="line"><a name="l00630"></a><span class="lineno">  630</span>&#160;    <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00631"></a><span class="lineno">  631</span>&#160;  }</div>
-<div class="line"><a name="l00632"></a><span class="lineno">  632</span>&#160;</div>
-<div class="line"><a name="l00633"></a><span class="lineno">  633</span>&#160;  QPointer&lt;FormNewProject&gt; form_new_project = <span class="keyword">new</span> <a class="code" href="classFormNewProject.html">FormNewProject</a>(qApp-&gt;templateManager(), <span class="keyword">this</span>);</div>
-<div class="line"><a name="l00634"></a><span class="lineno">  634</span>&#160;  <a class="code" href="classTemplateEntryPoint.html">TemplateEntryPoint</a> *entry_point = form_new_project.data()-&gt;startNewTemplate();</div>
-<div class="line"><a name="l00635"></a><span class="lineno">  635</span>&#160;</div>
-<div class="line"><a name="l00636"></a><span class="lineno">  636</span>&#160;  <span class="keyword">delete</span> form_new_project.data();</div>
-<div class="line"><a name="l00637"></a><span class="lineno">  637</span>&#160;</div>
-<div class="line"><a name="l00638"></a><span class="lineno">  638</span>&#160;  <span class="keywordflow">if</span> (entry_point != NULL) {</div>
-<div class="line"><a name="l00639"></a><span class="lineno">  639</span>&#160;    <span class="comment">// User selected proper template to start with.</span></div>
-<div class="line"><a name="l00640"></a><span class="lineno">  640</span>&#160;    <span class="comment">// Load the template.</span></div>
-<div class="line"><a name="l00641"></a><span class="lineno">  641</span>&#160;    qApp-&gt;templateManager()-&gt;startNewProject(entry_point);</div>
-<div class="line"><a name="l00642"></a><span class="lineno">  642</span>&#160;  }</div>
-<div class="line"><a name="l00643"></a><span class="lineno">  643</span>&#160;}</div>
-<div class="ttc" id="classFormMain_html_a6c5909a7fff46abeb0b7f4e02b4e1f64"><div class="ttname"><a href="classFormMain.html#a6c5909a7fff46abeb0b7f4e02b4e1f64">FormMain::saveUnsavedProject</a></div><div class="ttdeci">bool saveUnsavedProject()</div><div class="ttdoc">Performs necessary steps to save active project if there is unsaved work. </div><div class="ttdef"><b>Definition:</b> <a href="formmain_8cpp_source.html#l00664">formmain.cpp:664</a></div></div>
+<p>Definition at line <a class="el" href="formmain_8cpp_source.html#l00640">640</a> of file <a class="el" href="formmain_8cpp_source.html">formmain.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00640"></a><span class="lineno">  640</span>&#160;                                    {</div>
+<div class="line"><a name="l00641"></a><span class="lineno">  641</span>&#160;  <span class="keywordflow">if</span> (!<a class="code" href="classFormMain.html#a6c5909a7fff46abeb0b7f4e02b4e1f64">saveUnsavedProject</a>()) {</div>
+<div class="line"><a name="l00642"></a><span class="lineno">  642</span>&#160;    <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00643"></a><span class="lineno">  643</span>&#160;  }</div>
+<div class="line"><a name="l00644"></a><span class="lineno">  644</span>&#160;</div>
+<div class="line"><a name="l00645"></a><span class="lineno">  645</span>&#160;  QPointer&lt;FormNewProject&gt; form_new_project = <span class="keyword">new</span> <a class="code" href="classFormNewProject.html">FormNewProject</a>(qApp-&gt;templateManager(), <span class="keyword">this</span>);</div>
+<div class="line"><a name="l00646"></a><span class="lineno">  646</span>&#160;  <a class="code" href="classTemplateEntryPoint.html">TemplateEntryPoint</a> *entry_point = form_new_project.data()-&gt;startNewTemplate();</div>
+<div class="line"><a name="l00647"></a><span class="lineno">  647</span>&#160;</div>
+<div class="line"><a name="l00648"></a><span class="lineno">  648</span>&#160;  <span class="keyword">delete</span> form_new_project.data();</div>
+<div class="line"><a name="l00649"></a><span class="lineno">  649</span>&#160;</div>
+<div class="line"><a name="l00650"></a><span class="lineno">  650</span>&#160;  <span class="keywordflow">if</span> (entry_point != NULL) {</div>
+<div class="line"><a name="l00651"></a><span class="lineno">  651</span>&#160;    <span class="comment">// User selected proper template to start with.</span></div>
+<div class="line"><a name="l00652"></a><span class="lineno">  652</span>&#160;    <span class="comment">// Load the template.</span></div>
+<div class="line"><a name="l00653"></a><span class="lineno">  653</span>&#160;    qApp-&gt;templateManager()-&gt;startNewProject(entry_point);</div>
+<div class="line"><a name="l00654"></a><span class="lineno">  654</span>&#160;  }</div>
+<div class="line"><a name="l00655"></a><span class="lineno">  655</span>&#160;}</div>
+<div class="ttc" id="classFormMain_html_a6c5909a7fff46abeb0b7f4e02b4e1f64"><div class="ttname"><a href="classFormMain.html#a6c5909a7fff46abeb0b7f4e02b4e1f64">FormMain::saveUnsavedProject</a></div><div class="ttdeci">bool saveUnsavedProject()</div><div class="ttdoc">Performs necessary steps to save active project if there is unsaved work. </div><div class="ttdef"><b>Definition:</b> <a href="formmain_8cpp_source.html#l00682">formmain.cpp:682</a></div></div>
 <div class="ttc" id="classTemplateEntryPoint_html"><div class="ttname"><a href="classTemplateEntryPoint.html">TemplateEntryPoint</a></div><div class="ttdoc">The entry point for a template. </div><div class="ttdef"><b>Definition:</b> <a href="templateentrypoint_8h_source.html#l00047">templateentrypoint.h:47</a></div></div>
 <div class="ttc" id="classFormNewProject_html"><div class="ttname"><a href="classFormNewProject.html">FormNewProject</a></div><div class="ttdoc">Dialog for creating new projects. </div><div class="ttdef"><b>Definition:</b> <a href="formnewproject_8h_source.html#l00047">formnewproject.h:47</a></div></div>
 </div><!-- fragment -->
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classFormMain_a889d104676975cc73eab84b9d1c55312_cgraph.png" border="0" usemap="#classFormMain_a889d104676975cc73eab84b9d1c55312_cgraph" alt=""/></div>
+<map name="classFormMain_a889d104676975cc73eab84b9d1c55312_cgraph" id="classFormMain_a889d104676975cc73eab84b9d1c55312_cgraph">
+<area shape="rect" id="node2" href="classFormMain.html#a6c5909a7fff46abeb0b7f4e02b4e1f64" title="Performs necessary steps to save active project if there is unsaved work. " alt="" coords="249,31,472,57"/><area shape="rect" id="node3" href="classCustomMessageBox.html#a351bd1dcc646d4de05ba9b8d6e09893f" title="Displays custom message box. " alt="" coords="520,31,713,57"/><area shape="rect" id="node4" href="classCustomMessageBox.html#a173696064b419d95bf7fae2f9b593199" title="Custom icon setting. " alt="" coords="761,5,968,32"/><area shape="rect" id="node5" href="classCustomMessageBox.html#af7e3eba74e1e7c3fe91096ced36973ea" title="Performs icon replacements for given button box. " alt="" coords="764,56,965,83"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="a3fefc7c4af9be8b0f4d229b45fc875d8"></a>
@@ -518,11 +590,11 @@ Protected Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="formmain_8cpp_source.html#l00714">714</a> of file <a class="el" href="formmain_8cpp_source.html">formmain.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00714"></a><span class="lineno">  714</span>&#160;                                          {</div>
-<div class="line"><a name="l00715"></a><span class="lineno">  715</span>&#160;  e-&gt;accept();</div>
-<div class="line"><a name="l00716"></a><span class="lineno">  716</span>&#160;  emit <a class="code" href="classFormMain.html#aef2cb492d67c6d6ab86e995cf25d4c3e">resized</a>();</div>
-<div class="line"><a name="l00717"></a><span class="lineno">  717</span>&#160;}</div>
+<p>Definition at line <a class="el" href="formmain_8cpp_source.html#l00732">732</a> of file <a class="el" href="formmain_8cpp_source.html">formmain.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00732"></a><span class="lineno">  732</span>&#160;                                          {</div>
+<div class="line"><a name="l00733"></a><span class="lineno">  733</span>&#160;  e-&gt;accept();</div>
+<div class="line"><a name="l00734"></a><span class="lineno">  734</span>&#160;  emit <a class="code" href="classFormMain.html#aef2cb492d67c6d6ab86e995cf25d4c3e">resized</a>();</div>
+<div class="line"><a name="l00735"></a><span class="lineno">  735</span>&#160;}</div>
 <div class="ttc" id="classFormMain_html_aef2cb492d67c6d6ab86e995cf25d4c3e"><div class="ttname"><a href="classFormMain.html#aef2cb492d67c6d6ab86e995cf25d4c3e">FormMain::resized</a></div><div class="ttdeci">void resized()</div><div class="ttdoc">Emitted when window is resized. </div></div>
 </div><!-- fragment -->
 </div>
@@ -551,37 +623,55 @@ Protected Member Functions</h2></td></tr>
 <p>Performs necessary steps to save active project if there is unsaved work. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if there is no opened project or current project is already saved, otherwise returns false. </dd></dl>
 
-<p>Definition at line <a class="el" href="formmain_8cpp_source.html#l00664">664</a> of file <a class="el" href="formmain_8cpp_source.html">formmain.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00664"></a><span class="lineno">  664</span>&#160;                                  {</div>
-<div class="line"><a name="l00665"></a><span class="lineno">  665</span>&#160;  <span class="keywordflow">if</span> (qApp-&gt;templateManager()-&gt;activeCore() != NULL) {</div>
-<div class="line"><a name="l00666"></a><span class="lineno">  666</span>&#160;    <span class="keywordflow">if</span> (qApp-&gt;templateManager()-&gt;activeCore()-&gt;editor()-&gt;isDirty()) {</div>
-<div class="line"><a name="l00667"></a><span class="lineno">  667</span>&#160;      QMessageBox::StandardButton decision = <a class="code" href="classCustomMessageBox.html#a351bd1dcc646d4de05ba9b8d6e09893f">CustomMessageBox::show</a>(<span class="keyword">this</span>,</div>
-<div class="line"><a name="l00668"></a><span class="lineno">  668</span>&#160;                                                                    QMessageBox::Warning,</div>
-<div class="line"><a name="l00669"></a><span class="lineno">  669</span>&#160;                                                                    tr(<span class="stringliteral">&quot;Unsaved work&quot;</span>),</div>
-<div class="line"><a name="l00670"></a><span class="lineno">  670</span>&#160;                                                                    tr(<span class="stringliteral">&quot;There is unsaved project. You might want to save your current project, unless you do not mind losing your unsaved work.&quot;</span>),</div>
-<div class="line"><a name="l00671"></a><span class="lineno">  671</span>&#160;                                                                    tr(<span class="stringliteral">&quot;Do you want to save your unsaved project before proceeding?&quot;</span>), QString(),</div>
-<div class="line"><a name="l00672"></a><span class="lineno">  672</span>&#160;                                                                    QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel,</div>
-<div class="line"><a name="l00673"></a><span class="lineno">  673</span>&#160;                                                                    QMessageBox::Yes);</div>
-<div class="line"><a name="l00674"></a><span class="lineno">  674</span>&#160;</div>
-<div class="line"><a name="l00675"></a><span class="lineno">  675</span>&#160;      <span class="keywordflow">switch</span> (decision) {</div>
-<div class="line"><a name="l00676"></a><span class="lineno">  676</span>&#160;        <span class="keywordflow">case</span> QMessageBox::Yes:</div>
-<div class="line"><a name="l00677"></a><span class="lineno">  677</span>&#160;          openSaveProjectDialog();</div>
-<div class="line"><a name="l00678"></a><span class="lineno">  678</span>&#160;          <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00679"></a><span class="lineno">  679</span>&#160;</div>
-<div class="line"><a name="l00680"></a><span class="lineno">  680</span>&#160;        <span class="keywordflow">case</span> QMessageBox::No:</div>
-<div class="line"><a name="l00681"></a><span class="lineno">  681</span>&#160;          <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00682"></a><span class="lineno">  682</span>&#160;</div>
-<div class="line"><a name="l00683"></a><span class="lineno">  683</span>&#160;        <span class="keywordflow">case</span> QMessageBox::Cancel:</div>
-<div class="line"><a name="l00684"></a><span class="lineno">  684</span>&#160;        <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00685"></a><span class="lineno">  685</span>&#160;          <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00686"></a><span class="lineno">  686</span>&#160;      }</div>
-<div class="line"><a name="l00687"></a><span class="lineno">  687</span>&#160;    }</div>
-<div class="line"><a name="l00688"></a><span class="lineno">  688</span>&#160;  }</div>
-<div class="line"><a name="l00689"></a><span class="lineno">  689</span>&#160;</div>
-<div class="line"><a name="l00690"></a><span class="lineno">  690</span>&#160;  <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00691"></a><span class="lineno">  691</span>&#160;}</div>
+<p>Definition at line <a class="el" href="formmain_8cpp_source.html#l00682">682</a> of file <a class="el" href="formmain_8cpp_source.html">formmain.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00682"></a><span class="lineno">  682</span>&#160;                                  {</div>
+<div class="line"><a name="l00683"></a><span class="lineno">  683</span>&#160;  <span class="keywordflow">if</span> (qApp-&gt;templateManager()-&gt;activeCore() != NULL) {</div>
+<div class="line"><a name="l00684"></a><span class="lineno">  684</span>&#160;    <span class="keywordflow">if</span> (qApp-&gt;templateManager()-&gt;activeCore()-&gt;editor()-&gt;isDirty()) {</div>
+<div class="line"><a name="l00685"></a><span class="lineno">  685</span>&#160;      QMessageBox::StandardButton decision = <a class="code" href="classCustomMessageBox.html#a351bd1dcc646d4de05ba9b8d6e09893f">CustomMessageBox::show</a>(<span class="keyword">this</span>,</div>
+<div class="line"><a name="l00686"></a><span class="lineno">  686</span>&#160;                                                                    QMessageBox::Warning,</div>
+<div class="line"><a name="l00687"></a><span class="lineno">  687</span>&#160;                                                                    tr(<span class="stringliteral">&quot;Unsaved work&quot;</span>),</div>
+<div class="line"><a name="l00688"></a><span class="lineno">  688</span>&#160;                                                                    tr(<span class="stringliteral">&quot;There is unsaved project. You might want to save your current project, unless you do not mind losing your unsaved work.&quot;</span>),</div>
+<div class="line"><a name="l00689"></a><span class="lineno">  689</span>&#160;                                                                    tr(<span class="stringliteral">&quot;Do you want to save your unsaved project before proceeding?&quot;</span>), QString(),</div>
+<div class="line"><a name="l00690"></a><span class="lineno">  690</span>&#160;                                                                    QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel,</div>
+<div class="line"><a name="l00691"></a><span class="lineno">  691</span>&#160;                                                                    QMessageBox::Yes);</div>
+<div class="line"><a name="l00692"></a><span class="lineno">  692</span>&#160;</div>
+<div class="line"><a name="l00693"></a><span class="lineno">  693</span>&#160;      <span class="keywordflow">switch</span> (decision) {</div>
+<div class="line"><a name="l00694"></a><span class="lineno">  694</span>&#160;        <span class="keywordflow">case</span> QMessageBox::Yes:</div>
+<div class="line"><a name="l00695"></a><span class="lineno">  695</span>&#160;          openSaveProjectDialog();</div>
+<div class="line"><a name="l00696"></a><span class="lineno">  696</span>&#160;          <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00697"></a><span class="lineno">  697</span>&#160;</div>
+<div class="line"><a name="l00698"></a><span class="lineno">  698</span>&#160;        <span class="keywordflow">case</span> QMessageBox::No:</div>
+<div class="line"><a name="l00699"></a><span class="lineno">  699</span>&#160;          <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00700"></a><span class="lineno">  700</span>&#160;</div>
+<div class="line"><a name="l00701"></a><span class="lineno">  701</span>&#160;        <span class="keywordflow">case</span> QMessageBox::Cancel:</div>
+<div class="line"><a name="l00702"></a><span class="lineno">  702</span>&#160;        <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l00703"></a><span class="lineno">  703</span>&#160;          <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00704"></a><span class="lineno">  704</span>&#160;      }</div>
+<div class="line"><a name="l00705"></a><span class="lineno">  705</span>&#160;    }</div>
+<div class="line"><a name="l00706"></a><span class="lineno">  706</span>&#160;  }</div>
+<div class="line"><a name="l00707"></a><span class="lineno">  707</span>&#160;</div>
+<div class="line"><a name="l00708"></a><span class="lineno">  708</span>&#160;  <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00709"></a><span class="lineno">  709</span>&#160;}</div>
 <div class="ttc" id="classCustomMessageBox_html_a351bd1dcc646d4de05ba9b8d6e09893f"><div class="ttname"><a href="classCustomMessageBox.html#a351bd1dcc646d4de05ba9b8d6e09893f">CustomMessageBox::show</a></div><div class="ttdeci">static QMessageBox::StandardButton show(QWidget *parent, QMessageBox::Icon icon, const QString &amp;title, const QString &amp;text, const QString &amp;informative_text=QString(), const QString &amp;detailed_text=QString(), QMessageBox::StandardButtons buttons=QMessageBox::Ok, QMessageBox::StandardButton default_button=QMessageBox::Ok)</div><div class="ttdoc">Displays custom message box. </div><div class="ttdef"><b>Definition:</b> <a href="custommessagebox_8cpp_source.html#l00107">custommessagebox.cpp:107</a></div></div>
 </div><!-- fragment -->
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classFormMain_a6c5909a7fff46abeb0b7f4e02b4e1f64_cgraph.png" border="0" usemap="#classFormMain_a6c5909a7fff46abeb0b7f4e02b4e1f64_cgraph" alt=""/></div>
+<map name="classFormMain_a6c5909a7fff46abeb0b7f4e02b4e1f64_cgraph" id="classFormMain_a6c5909a7fff46abeb0b7f4e02b4e1f64_cgraph">
+<area shape="rect" id="node2" href="classCustomMessageBox.html#a351bd1dcc646d4de05ba9b8d6e09893f" title="Displays custom message box. " alt="" coords="276,31,469,57"/><area shape="rect" id="node3" href="classCustomMessageBox.html#a173696064b419d95bf7fae2f9b593199" title="Custom icon setting. " alt="" coords="517,5,724,32"/><area shape="rect" id="node4" href="classCustomMessageBox.html#af7e3eba74e1e7c3fe91096ced36973ea" title="Performs icon replacements for given button box. " alt="" coords="520,56,721,83"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classFormMain_a6c5909a7fff46abeb0b7f4e02b4e1f64_icgraph.png" border="0" usemap="#classFormMain_a6c5909a7fff46abeb0b7f4e02b4e1f64_icgraph" alt=""/></div>
+<map name="classFormMain_a6c5909a7fff46abeb0b7f4e02b4e1f64_icgraph" id="classFormMain_a6c5909a7fff46abeb0b7f4e02b4e1f64_icgraph">
+<area shape="rect" id="node2" href="classFormMain.html#a889d104676975cc73eab84b9d1c55312" title="Opens &quot;New project&quot; dialog. " alt="" coords="276,5,472,47"/><area shape="rect" id="node3" href="classFormMain.html#a4e331db3fe97b57f6ce8575945e8c18f" title="Executed when main application window is closed. " alt="" coords="293,71,455,98"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="ae0e94720b058d8b20fd3ef899eae4e4f"></a>
@@ -608,19 +698,28 @@ Protected Member Functions</h2></td></tr>
 <p>Displays window. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classFormMain.html#a5a4e081566cf3cf8689b32b4d8a00be4" title="Displays the window. ">display()</a>, <a class="el" href="classFormMain.html#ac97480ebe759e61d2e5ee96d0ceea325" title="Switches visibility of main window. ">switchVisibility()</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="formmain_8cpp_source.html#l00545">545</a> of file <a class="el" href="formmain_8cpp_source.html">formmain.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160;                    {</div>
-<div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160;  QMainWindow::show();</div>
-<div class="line"><a name="l00547"></a><span class="lineno">  547</span>&#160;</div>
-<div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160;  <span class="keywordflow">if</span> (m_firstTimeShow) {</div>
-<div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160;    m_firstTimeShow = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00550"></a><span class="lineno">  550</span>&#160;</div>
-<div class="line"><a name="l00551"></a><span class="lineno">  551</span>&#160;    <span class="keywordflow">if</span> (qApp-&gt;settings()-&gt;value(APP_CFG_GUI, <span class="stringliteral">&quot;show_help_startup&quot;</span>, <span class="keyword">true</span>).toBool()) {</div>
-<div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160;      showHelp(<span class="keyword">true</span>);</div>
-<div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160;    }</div>
-<div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160;  }</div>
-<div class="line"><a name="l00555"></a><span class="lineno">  555</span>&#160;}</div>
+<p>Definition at line <a class="el" href="formmain_8cpp_source.html#l00557">557</a> of file <a class="el" href="formmain_8cpp_source.html">formmain.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00557"></a><span class="lineno">  557</span>&#160;                    {</div>
+<div class="line"><a name="l00558"></a><span class="lineno">  558</span>&#160;  QMainWindow::show();</div>
+<div class="line"><a name="l00559"></a><span class="lineno">  559</span>&#160;</div>
+<div class="line"><a name="l00560"></a><span class="lineno">  560</span>&#160;  <span class="keywordflow">if</span> (m_firstTimeShow) {</div>
+<div class="line"><a name="l00561"></a><span class="lineno">  561</span>&#160;    m_firstTimeShow = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00562"></a><span class="lineno">  562</span>&#160;</div>
+<div class="line"><a name="l00563"></a><span class="lineno">  563</span>&#160;    <span class="keywordflow">if</span> (qApp-&gt;settings()-&gt;value(APP_CFG_GUI, <span class="stringliteral">&quot;show_help_startup&quot;</span>, <span class="keyword">true</span>).toBool()) {</div>
+<div class="line"><a name="l00564"></a><span class="lineno">  564</span>&#160;      showHelp(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00565"></a><span class="lineno">  565</span>&#160;    }</div>
+<div class="line"><a name="l00566"></a><span class="lineno">  566</span>&#160;  }</div>
+<div class="line"><a name="l00567"></a><span class="lineno">  567</span>&#160;}</div>
 </div><!-- fragment -->
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classFormMain_ae0e94720b058d8b20fd3ef899eae4e4f_icgraph.png" border="0" usemap="#classFormMain_ae0e94720b058d8b20fd3ef899eae4e4f_icgraph" alt=""/></div>
+<map name="classFormMain_ae0e94720b058d8b20fd3ef899eae4e4f_icgraph" id="classFormMain_ae0e94720b058d8b20fd3ef899eae4e4f_icgraph">
+<area shape="rect" id="node2" href="classFormMain.html#a5a4e081566cf3cf8689b32b4d8a00be4" title="Displays the window. " alt="" coords="179,5,316,32"/><area shape="rect" id="node3" href="classFormMain.html#ac97480ebe759e61d2e5ee96d0ceea325" title="Switches visibility of main window. " alt="" coords="364,5,547,32"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="a33cac7ccb170cb1c6ebbe92851bb33f3"></a>
@@ -684,30 +783,39 @@ Protected Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="formmain_8cpp_source.html#l00525">525</a> of file <a class="el" href="formmain_8cpp_source.html">formmain.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;                                               {</div>
-<div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160;  <span class="keywordflow">if</span> (force_hide || isVisible()) {</div>
-<div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="classSystemTrayIcon.html#ae534644382bd8d60691bfda7c105d167">SystemTrayIcon::isSystemTrayAvailable</a>()) {</div>
-<div class="line"><a name="l00528"></a><span class="lineno">  528</span>&#160;      hide();</div>
-<div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160;      m_simulatorWindow-&gt;hide();</div>
-<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;    }</div>
-<div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160;    <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160;      <span class="comment">// Window gets minimized in single-window mode.</span></div>
-<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;      showMinimized();</div>
-<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;    }</div>
-<div class="line"><a name="l00535"></a><span class="lineno">  535</span>&#160;  }</div>
-<div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160;  <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;    <a class="code" href="classFormMain.html#a5a4e081566cf3cf8689b32b4d8a00be4">display</a>();</div>
-<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160;</div>
+<p>Definition at line <a class="el" href="formmain_8cpp_source.html#l00537">537</a> of file <a class="el" href="formmain_8cpp_source.html">formmain.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;                                               {</div>
+<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160;  <span class="keywordflow">if</span> (force_hide || isVisible()) {</div>
 <div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="classSystemTrayIcon.html#ae534644382bd8d60691bfda7c105d167">SystemTrayIcon::isSystemTrayAvailable</a>()) {</div>
-<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;      m_simulatorWindow-&gt;<a class="code" href="classFormSimulator.html#a37e28a6ca8562ed2ceccd28b6d68de3a">show</a>();</div>
-<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;    }</div>
-<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;  }</div>
-<div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;}</div>
+<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;      hide();</div>
+<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;      m_simulatorWindow-&gt;hide();</div>
+<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;    }</div>
+<div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;    <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;      <span class="comment">// Window gets minimized in single-window mode.</span></div>
+<div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160;      showMinimized();</div>
+<div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160;    }</div>
+<div class="line"><a name="l00547"></a><span class="lineno">  547</span>&#160;  }</div>
+<div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160;  <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160;    <a class="code" href="classFormMain.html#a5a4e081566cf3cf8689b32b4d8a00be4">display</a>();</div>
+<div class="line"><a name="l00550"></a><span class="lineno">  550</span>&#160;</div>
+<div class="line"><a name="l00551"></a><span class="lineno">  551</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="classSystemTrayIcon.html#ae534644382bd8d60691bfda7c105d167">SystemTrayIcon::isSystemTrayAvailable</a>()) {</div>
+<div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160;      m_simulatorWindow-&gt;<a class="code" href="classFormSimulator.html#a37e28a6ca8562ed2ceccd28b6d68de3a">show</a>();</div>
+<div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160;    }</div>
+<div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160;  }</div>
+<div class="line"><a name="l00555"></a><span class="lineno">  555</span>&#160;}</div>
 <div class="ttc" id="classFormSimulator_html_a37e28a6ca8562ed2ceccd28b6d68de3a"><div class="ttname"><a href="classFormSimulator.html#a37e28a6ca8562ed2ceccd28b6d68de3a">FormSimulator::show</a></div><div class="ttdeci">void show()</div><div class="ttdoc">Displays simulator window. </div><div class="ttdef"><b>Definition:</b> <a href="formsimulator_8cpp_source.html#l00124">formsimulator.cpp:124</a></div></div>
-<div class="ttc" id="classFormMain_html_a5a4e081566cf3cf8689b32b4d8a00be4"><div class="ttname"><a href="classFormMain.html#a5a4e081566cf3cf8689b32b4d8a00be4">FormMain::display</a></div><div class="ttdeci">void display()</div><div class="ttdoc">Displays the window. </div><div class="ttdef"><b>Definition:</b> <a href="formmain_8cpp_source.html#l00557">formmain.cpp:557</a></div></div>
+<div class="ttc" id="classFormMain_html_a5a4e081566cf3cf8689b32b4d8a00be4"><div class="ttname"><a href="classFormMain.html#a5a4e081566cf3cf8689b32b4d8a00be4">FormMain::display</a></div><div class="ttdeci">void display()</div><div class="ttdoc">Displays the window. </div><div class="ttdef"><b>Definition:</b> <a href="formmain_8cpp_source.html#l00569">formmain.cpp:569</a></div></div>
 <div class="ttc" id="classSystemTrayIcon_html_ae534644382bd8d60691bfda7c105d167"><div class="ttname"><a href="classSystemTrayIcon.html#ae534644382bd8d60691bfda7c105d167">SystemTrayIcon::isSystemTrayAvailable</a></div><div class="ttdeci">static bool isSystemTrayAvailable()</div><div class="ttdoc">Indicates whether tray icon is supported. </div><div class="ttdef"><b>Definition:</b> <a href="systemtrayicon_8cpp_source.html#l00102">systemtrayicon.cpp:102</a></div></div>
 </div><!-- fragment -->
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classFormMain_ac97480ebe759e61d2e5ee96d0ceea325_cgraph.png" border="0" usemap="#classFormMain_ac97480ebe759e61d2e5ee96d0ceea325_cgraph" alt=""/></div>
+<map name="classFormMain_ac97480ebe759e61d2e5ee96d0ceea325_cgraph" id="classFormMain_ac97480ebe759e61d2e5ee96d0ceea325_cgraph">
+<area shape="rect" id="node2" href="classSystemTrayIcon.html#ae534644382bd8d60691bfda7c105d167" title="Indicates whether tray icon is supported. " alt="" coords="236,5,425,47"/><area shape="rect" id="node3" href="classFormMain.html#a5a4e081566cf3cf8689b32b4d8a00be4" title="Displays the window. " alt="" coords="262,71,399,98"/><area shape="rect" id="node5" href="classFormSimulator.html#a37e28a6ca8562ed2ceccd28b6d68de3a" title="Displays simulator window. " alt="" coords="252,123,409,150"/><area shape="rect" id="node4" href="classFormMain.html#ae0e94720b058d8b20fd3ef899eae4e4f" title="Displays window. " alt="" coords="513,69,638,95"/><area shape="rect" id="node6" href="classFormSimulator.html#ab2723ea14add2fa95279f26733447fa8" title="Conditionally sticks simulator window to its parent. " alt="" coords="473,120,677,161"/><area shape="rect" id="node7" href="classFormSimulator.html#af016dbce17a3ee65d723541ce325a7da" title="Forces this window to align itself next to its parent window. " alt="" coords="725,127,945,154"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="a3a050807918c3c069b0ef2a7b4b59098"></a>
@@ -742,13 +850,13 @@ Protected Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/d/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/gui/<a class="el" href="formmain_8h_source.html">formmain.h</a></li>
-<li>/d/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/gui/<a class="el" href="formmain_8cpp_source.html">formmain.cpp</a></li>
+<li>/mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/gui/<a class="el" href="formmain_8h_source.html">formmain.h</a></li>
+<li>/mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/gui/<a class="el" href="formmain_8cpp_source.html">formmain.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Aug 4 2014 15:44:03 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Aug 16 2014 15:00:50 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

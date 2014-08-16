@@ -64,7 +64,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
@@ -99,11 +99,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Inheritance diagram for PlainToolButton:</div>
 <div class="dyncontent">
- <div class="center">
-  <img src="classPlainToolButton.png" usemap="#PlainToolButton_map" alt=""/>
-  <map id="PlainToolButton_map" name="PlainToolButton_map">
+<div class="center"><img src="classPlainToolButton__inherit__graph.png" border="0" usemap="#PlainToolButton_inherit__map" alt="Inheritance graph"/></div>
+<map name="PlainToolButton_inherit__map" id="PlainToolButton_inherit__map">
 </map>
- </div></div>
+</div>
+<div class="dynheader">
+Collaboration diagram for PlainToolButton:</div>
+<div class="dyncontent">
+<div class="center"><img src="classPlainToolButton__coll__graph.png" border="0" usemap="#PlainToolButton_coll__map" alt="Collaboration graph"/></div>
+<map name="PlainToolButton_coll__map" id="PlainToolButton_coll__map">
+</map>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -122,6 +128,9 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:acbf8ef9dc3f2ce684fae36c52521dddb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPlainToolButton.html#acbf8ef9dc3f2ce684fae36c52521dddb">paintEvent</a> (QPaintEvent *e)</td></tr>
 <tr class="memdesc:acbf8ef9dc3f2ce684fae36c52521dddb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Custom look.  <a href="#acbf8ef9dc3f2ce684fae36c52521dddb">More...</a><br /></td></tr>
 <tr class="separator:acbf8ef9dc3f2ce684fae36c52521dddb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7af7ca49a08a6eb555c23921d52e3997"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7af7ca49a08a6eb555c23921d52e3997"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>keyPressEvent</b> (QKeyEvent *e)</td></tr>
+<tr class="separator:a7af7ca49a08a6eb555c23921d52e3997"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Tool button without frame. </p>
@@ -146,10 +155,10 @@ Protected Member Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>Returns padding. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>setPadding() </dd></dl>
 
-<p>Definition at line <a class="el" href="plaintoolbutton_8cpp_source.html#l00066">66</a> of file <a class="el" href="plaintoolbutton_8cpp_source.html">plaintoolbutton.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                                   {</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;  <span class="keywordflow">return</span> m_padding;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;}</div>
+<p>Definition at line <a class="el" href="plaintoolbutton_8cpp_source.html#l00074">74</a> of file <a class="el" href="plaintoolbutton_8cpp_source.html">plaintoolbutton.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                                   {</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;  <span class="keywordflow">return</span> m_padding;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -197,7 +206,7 @@ Protected Member Functions</h2></td></tr>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;  if (!isEnabled()) {</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    p.setOpacity(0.4);</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  }</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;  <span class="keywordflow">else</span> <span class="keywordflow">if</span> (underMouse()) {</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;  <span class="keywordflow">else</span> <span class="keywordflow">if</span> (underMouse() || hasFocus()) {</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    p.setOpacity(0.7);</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  }</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
@@ -207,13 +216,13 @@ Protected Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/d/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/gui/<a class="el" href="plaintoolbutton_8h_source.html">plaintoolbutton.h</a></li>
-<li>/d/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/gui/<a class="el" href="plaintoolbutton_8cpp_source.html">plaintoolbutton.cpp</a></li>
+<li>/mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/gui/<a class="el" href="plaintoolbutton_8h_source.html">plaintoolbutton.h</a></li>
+<li>/mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/gui/<a class="el" href="plaintoolbutton_8cpp_source.html">plaintoolbutton.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Aug 4 2014 15:44:03 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Aug 16 2014 15:00:50 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

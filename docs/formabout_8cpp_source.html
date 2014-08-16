@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.7"/>
-<title>BuildmLearn Toolkit: /d/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/gui/formabout.cpp Source File</title>
+<title>BuildmLearn Toolkit: /mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/gui/formabout.cpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -81,7 +81,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_e93149b64a4ea39523ce969bab267145.html">portage</a></li><li class="navelem"><a class="el" href="dir_82928ddbc3bafdd403330d98a74b0283.html">src</a></li><li class="navelem"><a class="el" href="dir_8192186afa7be297fb205b8bb6175b9f.html">gui</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_5b13d613d053bd10e358ecb54357a5d6.html">data</a></li><li class="navelem"><a class="el" href="dir_68083efcf9ee33d99b45b272b86cc0c8.html">Martin</a></li><li class="navelem"><a class="el" href="dir_9398520d5aff4fa5fa64f9289982f118.html">Coding</a></li><li class="navelem"><a class="el" href="dir_8ff144ddfa1be06761cc38923377bd6f.html">Projekty</a></li><li class="navelem"><a class="el" href="dir_30a37e2355ef12c08d706bdcf80fec43.html">buildmlearn-toolkit</a></li><li class="navelem"><a class="el" href="dir_2813711323521bd6091a9c8a8d0a4efc.html">portage</a></li><li class="navelem"><a class="el" href="dir_0ecbf50818981b7b30cb590f4d05bbf9.html">src</a></li><li class="navelem"><a class="el" href="dir_ef646354cc5c8f5c2993f1edd92da48b.html">gui</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -148,43 +148,49 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;  file.setFileName(APP_INFO_PATH + <span class="stringliteral">&quot;/CHANGELOG&quot;</span>);</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  <span class="keywordflow">if</span> (file.open(QIODevice::ReadOnly | QIODevice::Text)) {</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    m_ui-&gt;m_txtChangelog-&gt;setText(text_stream.readAll());</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  }</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    m_ui-&gt;m_txtChangelog-&gt;setText(tr(<span class="stringliteral">&quot;Changelog not found.&quot;</span>));</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;  }</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;  file.close();</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    file.close();</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  }</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;  <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    m_ui-&gt;m_txtChangelog-&gt;setText(tr(<span class="stringliteral">&quot;Changelog not found.&quot;</span>));</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;  }</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;  <span class="comment">// Set other informative texts.</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;  m_ui-&gt;m_lblDesc-&gt;setText(tr(<span class="stringliteral">&quot;&lt;b&gt;%8&lt;/b&gt;&lt;br&gt;&quot;</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                              <span class="stringliteral">&quot;&lt;b&gt;Version:&lt;/b&gt; %1 (build on %2 with CMake %3)&lt;br&gt;&quot;</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                              <span class="stringliteral">&quot;&lt;b&gt;Revision:&lt;/b&gt; %4&lt;br&gt;&quot;</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                              <span class="stringliteral">&quot;&lt;b&gt;Build date:&lt;/b&gt; %5&lt;br&gt;&quot;</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                              <span class="stringliteral">&quot;&lt;b&gt;Qt:&lt;/b&gt; %6 (compiled against %7)&lt;br&gt;&quot;</span>).arg(qApp-&gt;applicationVersion(),</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                                                                             CMAKE_SYSTEM,</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                                                                             CMAKE_VERSION,</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                                                                             APP_REVISION,</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                                                                             <a class="code" href="classTextFactory.html#aefbc5ae1845f1db1e6b54628c4986d00">TextFactory::parseDateTime</a>(QString(<span class="stringliteral">&quot;%1 %2&quot;</span>).arg(__DATE__,</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                                                                                                                             __TIME__)).toString(Qt::DefaultLocaleShortDate),</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                                                                             qVersion(),</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                                                                             QT_VERSION_STR,</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                                                                             APP_NAME));</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;  m_ui-&gt;m_txtInfo-&gt;setText(tr(<span class="stringliteral">&quot;&lt;body&gt;%5 is an easy-to-use program that helps users make mobile apps without any knowledge of application development.&quot;</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                              <span class="stringliteral">&quot;&lt;br&gt;&lt;br&gt;This software is distributed under the terms of BSD 3-Clause License.&quot;</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                              <span class="stringliteral">&quot;&lt;br&gt;&lt;br&gt;Contacts:&quot;</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                              <span class="stringliteral">&quot;&lt;ul&gt;&lt;li&gt;&lt;a href=\&quot;mailto://%1\&quot;&gt;%1&lt;/a&gt; ~email&lt;/li&gt;&quot;</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                              <span class="stringliteral">&quot;&lt;li&gt;&lt;a href=\&quot;%2\&quot;&gt;%2&lt;/a&gt; ~website&lt;/li&gt;&lt;/ul&gt;&quot;</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                              <span class="stringliteral">&quot;&lt;br&gt;&lt;br&gt;Copyright (C) 2011-%3 %4&lt;/body&gt;&quot;</span>).arg(APP_EMAIL,</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                                                                             APP_URL,</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                                                                             QString::number(QDateTime::currentDateTime().date().year()),</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                                                                             APP_AUTHOR,</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                                                                             APP_NAME));</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;}</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;FormAbout::~FormAbout() {</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;  qDebug(<span class="stringliteral">&quot;Destroying FormAbout instance.&quot;</span>);</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;  <span class="keyword">delete</span> m_ui;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;}</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;  file.setFileName(APP_INFO_PATH + <span class="stringliteral">&quot;/LICENSE&quot;</span>);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;  <span class="keywordflow">if</span> (file.open(QIODevice::ReadOnly | QIODevice::Text)) {</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    m_ui-&gt;m_txtLicense-&gt;setText(text_stream.readAll());</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    file.close();</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;  }</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;  <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    m_ui-&gt;m_txtLicense-&gt;setText(tr(<span class="stringliteral">&quot;License not found.&quot;</span>));</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;  }</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;  <span class="comment">// Set other informative texts.</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;  m_ui-&gt;m_lblDesc-&gt;setText(tr(<span class="stringliteral">&quot;&lt;b&gt;%8&lt;/b&gt;&lt;br&gt;&quot;</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                              <span class="stringliteral">&quot;&lt;b&gt;Version:&lt;/b&gt; %1 (build on %2 with CMake %3)&lt;br&gt;&quot;</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                              <span class="stringliteral">&quot;&lt;b&gt;Revision:&lt;/b&gt; %4&lt;br&gt;&quot;</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                              <span class="stringliteral">&quot;&lt;b&gt;Build date:&lt;/b&gt; %5&lt;br&gt;&quot;</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                              <span class="stringliteral">&quot;&lt;b&gt;Qt:&lt;/b&gt; %6 (compiled against %7)&lt;br&gt;&quot;</span>).arg(qApp-&gt;applicationVersion(),</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                                                                             CMAKE_SYSTEM,</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                                                                             CMAKE_VERSION,</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                                                                             APP_REVISION,</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                                                                             <a class="code" href="classTextFactory.html#aefbc5ae1845f1db1e6b54628c4986d00">TextFactory::parseDateTime</a>(QString(<span class="stringliteral">&quot;%1 %2&quot;</span>).arg(__DATE__,</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                                                                                                                             __TIME__)).toString(Qt::DefaultLocaleShortDate),</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                                                                             qVersion(),</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                                                                             QT_VERSION_STR,</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                                                                             APP_NAME));</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;  m_ui-&gt;m_txtInfo-&gt;setText(tr(<span class="stringliteral">&quot;&lt;body&gt;%4 is an easy-to-use program that helps users make mobile apps without any knowledge of application development.&quot;</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                              <span class="stringliteral">&quot;&lt;br&gt;&lt;br&gt;Visit us at &lt;a href=\&quot;%2\&quot;&gt;%2&lt;/a&gt;.&quot;</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                              <span class="stringliteral">&quot;&lt;br&gt;&lt;br&gt;Any feedback or suggestions related to %4 are always welcome. Please write to us at &lt;a href=\&quot;mailto:%1\&quot;&gt;%1&lt;/a&gt;.&quot;</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                              <span class="stringliteral">&quot;&lt;br&gt;&lt;br&gt;Copyright (C) 2012 %3&lt;/body&gt;&quot;</span>).arg(APP_EMAIL,</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                                                                          APP_URL,</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                                                                          APP_AUTHOR,</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                                                                          APP_NAME));</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;}</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;FormAbout::~FormAbout() {</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;  qDebug(<span class="stringliteral">&quot;Destroying FormAbout instance.&quot;</span>);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;  <span class="keyword">delete</span> m_ui;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;}</div>
 <div class="ttc" id="classFormAbout_html_a243c5fbaf3dd3e5eb4e4f5ebfa579632"><div class="ttname"><a href="classFormAbout.html#a243c5fbaf3dd3e5eb4e4f5ebfa579632">FormAbout::FormAbout</a></div><div class="ttdeci">FormAbout(QWidget *parent)</div><div class="ttdoc">Constructor. </div><div class="ttdef"><b>Definition:</b> <a href="formabout_8cpp_source.html#l00040">formabout.cpp:40</a></div></div>
 <div class="ttc" id="classTextFactory_html_aefbc5ae1845f1db1e6b54628c4986d00"><div class="ttname"><a href="classTextFactory.html#aefbc5ae1845f1db1e6b54628c4986d00">TextFactory::parseDateTime</a></div><div class="ttdeci">static QDateTime parseDateTime(const QString &amp;date_time)</div><div class="ttdoc">Tries to parse input textual date/time representation. </div><div class="ttdef"><b>Definition:</b> <a href="textfactory_8cpp_source.html#l00043">textfactory.cpp:43</a></div></div>
 <div class="ttc" id="classFormAbout_html"><div class="ttname"><a href="classFormAbout.html">FormAbout</a></div><div class="ttdoc">Form for displaying "about" information. </div><div class="ttdef"><b>Definition:</b> <a href="formabout_8h_source.html#l00046">formabout.h:46</a></div></div>
@@ -192,7 +198,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Aug 4 2014 15:44:01 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Aug 16 2014 15:00:50 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

@@ -1,12 +1,9 @@
 var searchData=
 [
-  ['settings',['Settings',['../classSettings.html',1,'']]],
-  ['shortcutbutton',['ShortcutButton',['../classShortcutButton.html',1,'']]],
-  ['shortcutcatcher',['ShortcutCatcher',['../classShortcutCatcher.html',1,'']]],
-  ['silentnetworkaccessmanager',['SilentNetworkAccessManager',['../classSilentNetworkAccessManager.html',1,'']]],
-  ['skin',['Skin',['../structSkin.html',1,'']]],
-  ['skinfactory',['SkinFactory',['../classSkinFactory.html',1,'']]],
-  ['storefactory',['StoreFactory',['../classStoreFactory.html',1,'']]],
-  ['systemfactory',['SystemFactory',['../classSystemFactory.html',1,'']]],
-  ['systemtrayicon',['SystemTrayIcon',['../classSystemTrayIcon.html',1,'']]]
+  ['quizcore',['QuizCore',['../classQuizCore.html',1,'']]],
+  ['quizeditor',['QuizEditor',['../classQuizEditor.html',1,'']]],
+  ['quizentrypoint',['QuizEntryPoint',['../classQuizEntryPoint.html',1,'']]],
+  ['quizitem',['QuizItem',['../classQuizItem.html',1,'']]],
+  ['quizquestion',['QuizQuestion',['../classQuizQuestion.html',1,'']]],
+  ['quizsimulator',['QuizSimulator',['../classQuizSimulator.html',1,'']]]
 ];

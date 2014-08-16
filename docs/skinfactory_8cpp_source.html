@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.7"/>
-<title>BuildmLearn Toolkit: /d/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/miscellaneous/skinfactory.cpp Source File</title>
+<title>BuildmLearn Toolkit: /mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/miscellaneous/skinfactory.cpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -81,7 +81,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_e93149b64a4ea39523ce969bab267145.html">portage</a></li><li class="navelem"><a class="el" href="dir_82928ddbc3bafdd403330d98a74b0283.html">src</a></li><li class="navelem"><a class="el" href="dir_bcfe8d2e761b1ba2b85d78dde743ae7b.html">miscellaneous</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_5b13d613d053bd10e358ecb54357a5d6.html">data</a></li><li class="navelem"><a class="el" href="dir_68083efcf9ee33d99b45b272b86cc0c8.html">Martin</a></li><li class="navelem"><a class="el" href="dir_9398520d5aff4fa5fa64f9289982f118.html">Coding</a></li><li class="navelem"><a class="el" href="dir_8ff144ddfa1be06761cc38923377bd6f.html">Projekty</a></li><li class="navelem"><a class="el" href="dir_30a37e2355ef12c08d706bdcf80fec43.html">buildmlearn-toolkit</a></li><li class="navelem"><a class="el" href="dir_2813711323521bd6091a9c8a8d0a4efc.html">portage</a></li><li class="navelem"><a class="el" href="dir_0ecbf50818981b7b30cb590f4d05bbf9.html">src</a></li><li class="navelem"><a class="el" href="dir_9a10fef63a2a1b965e15d27cdc748bae.html">miscellaneous</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -251,45 +251,48 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;  skin.m_simulatorBackgroundMain = APP_SKIN_PATH + <span class="charliteral">&#39;/&#39;</span> + skin.m_baseFolder + <span class="charliteral">&#39;/&#39;</span> + simulator_image;</div>
 <div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;  skin.m_simulatorBackgroundMain = skin.m_simulatorBackgroundMain.replace(<span class="charliteral">&#39;\\&#39;</span>, <span class="charliteral">&#39;/&#39;</span>);</div>
 <div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;  <span class="comment">// Free resources.</span></div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;  skin_file.close();</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;  skin_file.deleteLater();</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;  <span class="keywordflow">if</span> (ok) {</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    *ok = !skin.m_author.isEmpty() &amp;&amp; !skin.m_version.isEmpty() &amp;&amp;</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;          !skin.m_baseName.isEmpty() &amp;&amp; !skin.m_email.isEmpty();</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;  }</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;  <span class="keywordflow">return</span> skin;</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;}</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;  skin.m_simulatorStyle = skin_node.namedItem(<span class="stringliteral">&quot;simulator&quot;</span>).namedItem(<span class="stringliteral">&quot;style&quot;</span>).toElement().text();</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;  skin.m_simulatorStyle = QByteArray::fromBase64(skin.m_simulatorStyle.toLocal8Bit());</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;  <span class="comment">// Free resources.</span></div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;  skin_file.close();</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;  skin_file.deleteLater();</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;  <span class="keywordflow">if</span> (ok) {</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    *ok = !skin.m_author.isEmpty() &amp;&amp; !skin.m_version.isEmpty() &amp;&amp;</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;          !skin.m_baseName.isEmpty() &amp;&amp; !skin.m_email.isEmpty();</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;  }</div>
 <div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;</div>
-<div class="line"><a name="l00175"></a><span class="lineno"><a class="line" href="classSkinFactory.html#a1690441a736a7da6e00103abf7a7aed9">  175</a></span>&#160;QList&lt;Skin&gt; <a class="code" href="classSkinFactory.html#a1690441a736a7da6e00103abf7a7aed9">SkinFactory::installedSkins</a>() {</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;  QList&lt;Skin&gt; skins;</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;  <span class="keywordtype">bool</span> skin_load_ok;</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;  QStringList skin_directories = QDir(APP_SKIN_PATH).entryList(QDir::Dirs |</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;                                                               QDir::NoDotAndDotDot |</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;                                                               QDir::NoSymLinks |</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;                                                               QDir::Readable);</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;  <span class="keywordflow">foreach</span> (<span class="keyword">const</span> QString &amp;base_directory, skin_directories) {</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    <span class="comment">// Check skins installed in this base directory.</span></div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    QStringList skin_files = QDir(APP_SKIN_PATH + QDir::separator() + base_directory).entryList(QStringList() &lt;&lt; <span class="stringliteral">&quot;*.xml&quot;</span>,</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;                                                                                                QDir::Files | QDir::Readable | QDir::NoDotAndDotDot | QDir::NoSymLinks);</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    <span class="keywordflow">foreach</span> (<span class="keyword">const</span> QString &amp;skin_file, skin_files) {</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;      <span class="comment">// Check if skin file is valid and add it if it is valid.</span></div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;      <a class="code" href="structSkin.html">Skin</a> skin_info = <a class="code" href="classSkinFactory.html#a5a76b7dcb1d338365cefe1ab0e5f7e46">skinInfo</a>(base_directory + QDir::separator() + skin_file,</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;                                &amp;skin_load_ok);</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;      <span class="keywordflow">if</span> (skin_load_ok) {</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;        skins.append(skin_info);</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;      }</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    }</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;  }</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;  <span class="keywordflow">return</span> skins;</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;}</div>
-<div class="ttc" id="classSkinFactory_html_a1690441a736a7da6e00103abf7a7aed9"><div class="ttname"><a href="classSkinFactory.html#a1690441a736a7da6e00103abf7a7aed9">SkinFactory::installedSkins</a></div><div class="ttdeci">QList&lt; Skin &gt; installedSkins()</div><div class="ttdoc">Returns list of installed skins. </div><div class="ttdef"><b>Definition:</b> <a href="skinfactory_8cpp_source.html#l00175">skinfactory.cpp:175</a></div></div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;  <span class="keywordflow">return</span> skin;</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;}</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;</div>
+<div class="line"><a name="l00178"></a><span class="lineno"><a class="line" href="classSkinFactory.html#a1690441a736a7da6e00103abf7a7aed9">  178</a></span>&#160;QList&lt;Skin&gt; <a class="code" href="classSkinFactory.html#a1690441a736a7da6e00103abf7a7aed9">SkinFactory::installedSkins</a>() {</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;  QList&lt;Skin&gt; skins;</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;  <span class="keywordtype">bool</span> skin_load_ok;</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;  QStringList skin_directories = QDir(APP_SKIN_PATH).entryList(QDir::Dirs |</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;                                                               QDir::NoDotAndDotDot |</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;                                                               QDir::NoSymLinks |</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;                                                               QDir::Readable);</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;  <span class="keywordflow">foreach</span> (<span class="keyword">const</span> QString &amp;base_directory, skin_directories) {</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    <span class="comment">// Check skins installed in this base directory.</span></div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    QStringList skin_files = QDir(APP_SKIN_PATH + QDir::separator() + base_directory).entryList(QStringList() &lt;&lt; <span class="stringliteral">&quot;*.xml&quot;</span>,</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;                                                                                                QDir::Files | QDir::Readable | QDir::NoDotAndDotDot | QDir::NoSymLinks);</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    <span class="keywordflow">foreach</span> (<span class="keyword">const</span> QString &amp;skin_file, skin_files) {</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;      <span class="comment">// Check if skin file is valid and add it if it is valid.</span></div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;      <a class="code" href="structSkin.html">Skin</a> skin_info = <a class="code" href="classSkinFactory.html#a5a76b7dcb1d338365cefe1ab0e5f7e46">skinInfo</a>(base_directory + QDir::separator() + skin_file,</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;                                &amp;skin_load_ok);</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;      <span class="keywordflow">if</span> (skin_load_ok) {</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;        skins.append(skin_info);</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;      }</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    }</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;  }</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;  <span class="keywordflow">return</span> skins;</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;}</div>
+<div class="ttc" id="classSkinFactory_html_a1690441a736a7da6e00103abf7a7aed9"><div class="ttname"><a href="classSkinFactory.html#a1690441a736a7da6e00103abf7a7aed9">SkinFactory::installedSkins</a></div><div class="ttdeci">QList&lt; Skin &gt; installedSkins()</div><div class="ttdoc">Returns list of installed skins. </div><div class="ttdef"><b>Definition:</b> <a href="skinfactory_8cpp_source.html#l00178">skinfactory.cpp:178</a></div></div>
 <div class="ttc" id="classSkinFactory_html_a0607019e282aabc76568c1ac2ba58c50"><div class="ttname"><a href="classSkinFactory.html#a0607019e282aabc76568c1ac2ba58c50">SkinFactory::~SkinFactory</a></div><div class="ttdeci">virtual ~SkinFactory()</div><div class="ttdoc">Destructor. </div><div class="ttdef"><b>Definition:</b> <a href="skinfactory_8cpp_source.html#l00046">skinfactory.cpp:46</a></div></div>
 <div class="ttc" id="classSkinFactory_html_a5a76b7dcb1d338365cefe1ab0e5f7e46"><div class="ttname"><a href="classSkinFactory.html#a5a76b7dcb1d338365cefe1ab0e5f7e46">SkinFactory::skinInfo</a></div><div class="ttdeci">Skin skinInfo(const QString &amp;skin_name, bool *ok=NULL)</div><div class="ttdoc">Gets skin about a particular skin. </div><div class="ttdef"><b>Definition:</b> <a href="skinfactory_8cpp_source.html#l00116">skinfactory.cpp:116</a></div></div>
 <div class="ttc" id="classSkinFactory_html_a3d137ecc14c3d6b7c5553856a36dd5dc"><div class="ttname"><a href="classSkinFactory.html#a3d137ecc14c3d6b7c5553856a36dd5dc">SkinFactory::loadCurrentSkin</a></div><div class="ttdeci">void loadCurrentSkin()</div><div class="ttdoc">Loads skin name from settings and sets it as active. </div><div class="ttdef"><b>Definition:</b> <a href="skinfactory_8cpp_source.html#l00050">skinfactory.cpp:50</a></div></div>
@@ -300,7 +303,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Aug 4 2014 15:44:02 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Aug 16 2014 15:00:50 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

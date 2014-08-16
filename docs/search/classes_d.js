@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['webfactory',['WebFactory',['../classWebFactory.html',1,'']]],
-  ['widgetwithstatus',['WidgetWithStatus',['../classWidgetWithStatus.html',1,'']]]
+  ['updateinfo',['UpdateInfo',['../classUpdateInfo.html',1,'']]],
+  ['updateurl',['UpdateUrl',['../classUpdateUrl.html',1,'']]]
 ];

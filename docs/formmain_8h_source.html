@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.7"/>
-<title>BuildmLearn Toolkit: /d/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/gui/formmain.h Source File</title>
+<title>BuildmLearn Toolkit: /mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/gui/formmain.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -81,7 +81,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_e93149b64a4ea39523ce969bab267145.html">portage</a></li><li class="navelem"><a class="el" href="dir_82928ddbc3bafdd403330d98a74b0283.html">src</a></li><li class="navelem"><a class="el" href="dir_8192186afa7be297fb205b8bb6175b9f.html">gui</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_5b13d613d053bd10e358ecb54357a5d6.html">data</a></li><li class="navelem"><a class="el" href="dir_68083efcf9ee33d99b45b272b86cc0c8.html">Martin</a></li><li class="navelem"><a class="el" href="dir_9398520d5aff4fa5fa64f9289982f118.html">Coding</a></li><li class="navelem"><a class="el" href="dir_8ff144ddfa1be06761cc38923377bd6f.html">Projekty</a></li><li class="navelem"><a class="el" href="dir_30a37e2355ef12c08d706bdcf80fec43.html">buildmlearn-toolkit</a></li><li class="navelem"><a class="el" href="dir_2813711323521bd6091a9c8a8d0a4efc.html">portage</a></li><li class="navelem"><a class="el" href="dir_0ecbf50818981b7b30cb590f4d05bbf9.html">src</a></li><li class="navelem"><a class="el" href="dir_ef646354cc5c8f5c2993f1edd92da48b.html">gui</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -202,119 +202,118 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keywordtype">void</span> onGenerationDone(<a class="code" href="classTemplateCore.html#a64e34dd774ee57ad8ad32b8d5185ae4b">TemplateCore::GenerationResult</a> result_code, <span class="keyword">const</span> QString &amp;output_file);</div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;</div>
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="comment">// Opens output application/directory.</span></div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keywordtype">void</span> openOutputApplication();</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keywordtype">void</span> openOutputDirectory();</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="comment">// Called when user opens new project or loads existing project.</span></div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <span class="comment">// This should read &quot;editor&quot; from core and set it as central widget.</span></div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <span class="keywordtype">void</span> setTemplateCore(<a class="code" href="classTemplateCore.html">TemplateCore</a> *core);</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="keywordtype">void</span> onAboutToQuit();</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keywordtype">void</span> onSimulatorWindowClosed();</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="keywordtype">void</span> switchSimulatorWindow(<span class="keywordtype">bool</span> <a class="code" href="classFormMain.html#ae0e94720b058d8b20fd3ef899eae4e4f">show</a>);</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    <span class="keywordtype">void</span> showSimulator();</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <span class="keywordtype">void</span> showSettings();</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    <span class="keywordtype">void</span> showAbout();</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="keywordtype">void</span> showUpdates();</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <span class="keywordtype">void</span> showHelp(<span class="keywordtype">bool</span> enable_do_not_show_again_option = <span class="keyword">false</span>);</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <span class="keywordtype">void</span> showUpdatesAfterBubbleClick();</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;  <span class="keyword">public</span> slots:<span class="comment"></span></div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="comment">    /// \brief Switches visibility of main window.</span></div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="comment">    /// \param force_hide If true, then window is not switched but hidden.</span></div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classFormMain.html#ac97480ebe759e61d2e5ee96d0ceea325">switchVisibility</a>(<span class="keywordtype">bool</span> force_hide = <span class="keyword">false</span>);</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="comment">    /// \brief Displays window.</span></div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="comment">    /// \see display(), switchVisibility()</span></div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classFormMain.html#ae0e94720b058d8b20fd3ef899eae4e4f">show</a>();</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="comment">    /// \brief Displays the window.</span></div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="comment">    /// \see show()</span></div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classFormMain.html#a5a4e081566cf3cf8689b32b4d8a00be4">display</a>();</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="comment">    /// \brief Opens &quot;New project&quot; dialog.</span></div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="comment">    /// \see FormNewProject</span></div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classFormMain.html#a889d104676975cc73eab84b9d1c55312">openNewProjectDialog</a>();</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <span class="keywordtype">void</span> openSaveProjectDialog();</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    <span class="keywordtype">void</span> openSaveProjectAsDialog();</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    <span class="keywordtype">void</span> openLoadProjectDialog();</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="comment">    /// \brief Generates mobile APK application from currently active</span></div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="comment">    /// project.</span></div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classFormMain.html#a27b97d618f3dadd2de0929711a701b08">generateMobileApplication</a>();</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="comment">    /// \brief Displays dialog for uploading applications to store.</span></div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classFormMain.html#a94b9b26aa811c70fbde564125dc54464">uploadMobileApplicationToStore</a>();</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="comment">    /// \brief Performs necessary steps to save active project if there is unsaved work.</span></div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<span class="comment">    /// \return Returns true if there is no opened project or current project is already saved,</span></div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;<span class="comment">    /// otherwise returns false.</span></div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<span class="comment"></span>    <span class="keywordtype">bool</span> <a class="code" href="classFormMain.html#a6c5909a7fff46abeb0b7f4e02b4e1f64">saveUnsavedProject</a>();</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;  <span class="keyword">protected</span>:<span class="comment"></span></div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<span class="comment">    /// \brief Executed when main application window is closed.</span></div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<span class="comment">    /// \param e Event message.</span></div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classFormMain.html#a4e331db3fe97b57f6ce8575945e8c18f">closeEvent</a>(QCloseEvent *e);</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;<span class="comment">    /// \brief Executed when window is moved.</span></div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;<span class="comment">    /// \param e Event message.</span></div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classFormMain.html#a5a59b1b2735e12b8c243bd90004556f0">moveEvent</a>(QMoveEvent *e);</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span class="comment">    /// \brief Executed when window is resized.</span></div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="comment">    /// \param e Event message.</span></div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classFormMain.html#a3fefc7c4af9be8b0f4d229b45fc875d8">resizeEvent</a>(QResizeEvent *e);</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;  signals:<span class="comment"></span></div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="comment">    /// \brief Emitted when window is resized.</span></div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classFormMain.html#aef2cb492d67c6d6ab86e995cf25d4c3e">resized</a>();</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;<span class="comment">    /// \brief Emitted when window is moved.</span></div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classFormMain.html#a1addc40f21d537777d6a1e6ea06f51a7">moved</a>();</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;  <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    QProgressBar *m_statusProgress;</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    QLabel *m_statusLabel;</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    QScrollArea *m_centralArea;</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    QVBoxLayout *m_centralLayout;</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    <span class="keywordtype">bool</span> m_firstTimeShow;</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    Ui::FormMain *m_ui;</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    QMenu *m_trayMenu;</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    <a class="code" href="classFormSimulator.html">FormSimulator</a> *m_simulatorWindow;</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    QString m_normalTitle;</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    QString m_unsavedTitle;</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    QString m_generatedApplicationPath;</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;};</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;<span class="preprocessor">#endif // FORMMAIN_H</span></div>
-<div class="ttc" id="classFormMain_html_a27b97d618f3dadd2de0929711a701b08"><div class="ttname"><a href="classFormMain.html#a27b97d618f3dadd2de0929711a701b08">FormMain::generateMobileApplication</a></div><div class="ttdeci">void generateMobileApplication()</div><div class="ttdoc">Generates mobile APK application from currently active project. </div><div class="ttdef"><b>Definition:</b> <a href="formmain_8cpp_source.html#l00645">formmain.cpp:645</a></div></div>
-<div class="ttc" id="classFormMain_html_ac97480ebe759e61d2e5ee96d0ceea325"><div class="ttname"><a href="classFormMain.html#ac97480ebe759e61d2e5ee96d0ceea325">FormMain::switchVisibility</a></div><div class="ttdeci">void switchVisibility(bool force_hide=false)</div><div class="ttdoc">Switches visibility of main window. </div><div class="ttdef"><b>Definition:</b> <a href="formmain_8cpp_source.html#l00525">formmain.cpp:525</a></div></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keywordtype">void</span> openOutputDirectory();</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="comment">// Called when user opens new project or loads existing project.</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="comment">// This should read &quot;editor&quot; from core and set it as central widget.</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <span class="keywordtype">void</span> setTemplateCore(<a class="code" href="classTemplateCore.html">TemplateCore</a> *core);</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keywordtype">void</span> onAboutToQuit();</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="keywordtype">void</span> onSimulatorWindowClosed();</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keywordtype">void</span> switchSimulatorWindow(<span class="keywordtype">bool</span> <a class="code" href="classFormMain.html#ae0e94720b058d8b20fd3ef899eae4e4f">show</a>);</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="keywordtype">void</span> showSimulator();</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    <span class="keywordtype">void</span> showSettings();</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <span class="keywordtype">void</span> showAbout();</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    <span class="keywordtype">void</span> showUpdates();</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="keywordtype">void</span> showHelp(<span class="keywordtype">bool</span> enable_do_not_show_again_option = <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <span class="keywordtype">void</span> showUpdatesAfterBubbleClick();</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;  <span class="keyword">public</span> slots:<span class="comment"></span></div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="comment">    /// \brief Switches visibility of main window.</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="comment">    /// \param force_hide If true, then window is not switched but hidden.</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classFormMain.html#ac97480ebe759e61d2e5ee96d0ceea325">switchVisibility</a>(<span class="keywordtype">bool</span> force_hide = <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="comment">    /// \brief Displays window.</span></div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="comment">    /// \see display(), switchVisibility()</span></div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classFormMain.html#ae0e94720b058d8b20fd3ef899eae4e4f">show</a>();</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="comment">    /// \brief Displays the window.</span></div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="comment">    /// \see show()</span></div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classFormMain.html#a5a4e081566cf3cf8689b32b4d8a00be4">display</a>();</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="comment">    /// \brief Opens &quot;New project&quot; dialog.</span></div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="comment">    /// \see FormNewProject</span></div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classFormMain.html#a889d104676975cc73eab84b9d1c55312">openNewProjectDialog</a>();</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    <span class="keywordtype">void</span> openSaveProjectDialog();</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <span class="keywordtype">void</span> openSaveProjectAsDialog();</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    <span class="keywordtype">void</span> openLoadProjectDialog();</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="comment">    /// \brief Generates mobile APK application from currently active</span></div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="comment">    /// project.</span></div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classFormMain.html#a27b97d618f3dadd2de0929711a701b08">generateMobileApplication</a>();</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;<span class="comment">    /// \brief Displays dialog for uploading applications to store.</span></div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classFormMain.html#a94b9b26aa811c70fbde564125dc54464">uploadMobileApplicationToStore</a>();</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="comment">    /// \brief Performs necessary steps to save active project if there is unsaved work.</span></div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="comment">    /// \return Returns true if there is no opened project or current project is already saved,</span></div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<span class="comment">    /// otherwise returns false.</span></div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;<span class="comment"></span>    <span class="keywordtype">bool</span> <a class="code" href="classFormMain.html#a6c5909a7fff46abeb0b7f4e02b4e1f64">saveUnsavedProject</a>();</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;  <span class="keyword">protected</span>:<span class="comment"></span></div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<span class="comment">    /// \brief Executed when main application window is closed.</span></div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<span class="comment">    /// \param e Event message.</span></div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classFormMain.html#a4e331db3fe97b57f6ce8575945e8c18f">closeEvent</a>(QCloseEvent *e);</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;<span class="comment">    /// \brief Executed when window is moved.</span></div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;<span class="comment">    /// \param e Event message.</span></div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classFormMain.html#a5a59b1b2735e12b8c243bd90004556f0">moveEvent</a>(QMoveEvent *e);</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="comment">    /// \brief Executed when window is resized.</span></div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span class="comment">    /// \param e Event message.</span></div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classFormMain.html#a3fefc7c4af9be8b0f4d229b45fc875d8">resizeEvent</a>(QResizeEvent *e);</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;  signals:<span class="comment"></span></div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="comment">    /// \brief Emitted when window is resized.</span></div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classFormMain.html#aef2cb492d67c6d6ab86e995cf25d4c3e">resized</a>();</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;<span class="comment">    /// \brief Emitted when window is moved.</span></div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classFormMain.html#a1addc40f21d537777d6a1e6ea06f51a7">moved</a>();</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;  <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    QProgressBar *m_statusProgress;</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    QLabel *m_statusLabel;</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    QScrollArea *m_centralArea;</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    QVBoxLayout *m_centralLayout;</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    <span class="keywordtype">bool</span> m_firstTimeShow;</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    Ui::FormMain *m_ui;</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    QMenu *m_trayMenu;</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    <a class="code" href="classFormSimulator.html">FormSimulator</a> *m_simulatorWindow;</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    QString m_normalTitle;</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    QString m_unsavedTitle;</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    QString m_generatedApplicationPath;</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;};</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="preprocessor">#endif // FORMMAIN_H</span></div>
+<div class="ttc" id="classFormMain_html_a27b97d618f3dadd2de0929711a701b08"><div class="ttname"><a href="classFormMain.html#a27b97d618f3dadd2de0929711a701b08">FormMain::generateMobileApplication</a></div><div class="ttdeci">void generateMobileApplication()</div><div class="ttdoc">Generates mobile APK application from currently active project. </div><div class="ttdef"><b>Definition:</b> <a href="formmain_8cpp_source.html#l00657">formmain.cpp:657</a></div></div>
+<div class="ttc" id="classFormMain_html_ac97480ebe759e61d2e5ee96d0ceea325"><div class="ttname"><a href="classFormMain.html#ac97480ebe759e61d2e5ee96d0ceea325">FormMain::switchVisibility</a></div><div class="ttdeci">void switchVisibility(bool force_hide=false)</div><div class="ttdoc">Switches visibility of main window. </div><div class="ttdef"><b>Definition:</b> <a href="formmain_8cpp_source.html#l00537">formmain.cpp:537</a></div></div>
 <div class="ttc" id="classFormMain_html_a1addc40f21d537777d6a1e6ea06f51a7"><div class="ttname"><a href="classFormMain.html#a1addc40f21d537777d6a1e6ea06f51a7">FormMain::moved</a></div><div class="ttdeci">void moved()</div><div class="ttdoc">Emitted when window is moved. </div></div>
 <div class="ttc" id="classFormSimulator_html"><div class="ttname"><a href="classFormSimulator.html">FormSimulator</a></div><div class="ttdoc">Separate window which contains active simulator. </div><div class="ttdef"><b>Definition:</b> <a href="formsimulator_8h_source.html#l00019">formsimulator.h:19</a></div></div>
 <div class="ttc" id="classFormMain_html"><div class="ttname"><a href="classFormMain.html">FormMain</a></div><div class="ttdoc">Main application window. </div><div class="ttdef"><b>Definition:</b> <a href="formmain_8h_source.html#l00053">formmain.h:53</a></div></div>
-<div class="ttc" id="classFormMain_html_a3fefc7c4af9be8b0f4d229b45fc875d8"><div class="ttname"><a href="classFormMain.html#a3fefc7c4af9be8b0f4d229b45fc875d8">FormMain::resizeEvent</a></div><div class="ttdeci">void resizeEvent(QResizeEvent *e)</div><div class="ttdoc">Executed when window is resized. </div><div class="ttdef"><b>Definition:</b> <a href="formmain_8cpp_source.html#l00714">formmain.cpp:714</a></div></div>
+<div class="ttc" id="classFormMain_html_a3fefc7c4af9be8b0f4d229b45fc875d8"><div class="ttname"><a href="classFormMain.html#a3fefc7c4af9be8b0f4d229b45fc875d8">FormMain::resizeEvent</a></div><div class="ttdeci">void resizeEvent(QResizeEvent *e)</div><div class="ttdoc">Executed when window is resized. </div><div class="ttdef"><b>Definition:</b> <a href="formmain_8cpp_source.html#l00732">formmain.cpp:732</a></div></div>
 <div class="ttc" id="classFormMain_html_a33cac7ccb170cb1c6ebbe92851bb33f3"><div class="ttname"><a href="classFormMain.html#a33cac7ccb170cb1c6ebbe92851bb33f3">FormMain::simulatorWindow</a></div><div class="ttdeci">FormSimulator * simulatorWindow() const </div><div class="ttdoc">Access to simulator window. </div><div class="ttdef"><b>Definition:</b> <a href="formmain_8h_source.html#l00070">formmain.h:70</a></div></div>
-<div class="ttc" id="classFormMain_html_a5a59b1b2735e12b8c243bd90004556f0"><div class="ttname"><a href="classFormMain.html#a5a59b1b2735e12b8c243bd90004556f0">FormMain::moveEvent</a></div><div class="ttdeci">void moveEvent(QMoveEvent *e)</div><div class="ttdoc">Executed when window is moved. </div><div class="ttdef"><b>Definition:</b> <a href="formmain_8cpp_source.html#l00709">formmain.cpp:709</a></div></div>
-<div class="ttc" id="classFormMain_html_a94b9b26aa811c70fbde564125dc54464"><div class="ttname"><a href="classFormMain.html#a94b9b26aa811c70fbde564125dc54464">FormMain::uploadMobileApplicationToStore</a></div><div class="ttdeci">void uploadMobileApplicationToStore()</div><div class="ttdoc">Displays dialog for uploading applications to store. </div><div class="ttdef"><b>Definition:</b> <a href="formmain_8cpp_source.html#l00656">formmain.cpp:656</a></div></div>
-<div class="ttc" id="classFormMain_html_a889d104676975cc73eab84b9d1c55312"><div class="ttname"><a href="classFormMain.html#a889d104676975cc73eab84b9d1c55312">FormMain::openNewProjectDialog</a></div><div class="ttdeci">void openNewProjectDialog()</div><div class="ttdoc">Opens "New project" dialog. </div><div class="ttdef"><b>Definition:</b> <a href="formmain_8cpp_source.html#l00628">formmain.cpp:628</a></div></div>
+<div class="ttc" id="classFormMain_html_a5a59b1b2735e12b8c243bd90004556f0"><div class="ttname"><a href="classFormMain.html#a5a59b1b2735e12b8c243bd90004556f0">FormMain::moveEvent</a></div><div class="ttdeci">void moveEvent(QMoveEvent *e)</div><div class="ttdoc">Executed when window is moved. </div><div class="ttdef"><b>Definition:</b> <a href="formmain_8cpp_source.html#l00727">formmain.cpp:727</a></div></div>
+<div class="ttc" id="classFormMain_html_a94b9b26aa811c70fbde564125dc54464"><div class="ttname"><a href="classFormMain.html#a94b9b26aa811c70fbde564125dc54464">FormMain::uploadMobileApplicationToStore</a></div><div class="ttdeci">void uploadMobileApplicationToStore()</div><div class="ttdoc">Displays dialog for uploading applications to store. </div><div class="ttdef"><b>Definition:</b> <a href="formmain_8cpp_source.html#l00668">formmain.cpp:668</a></div></div>
+<div class="ttc" id="classFormMain_html_a889d104676975cc73eab84b9d1c55312"><div class="ttname"><a href="classFormMain.html#a889d104676975cc73eab84b9d1c55312">FormMain::openNewProjectDialog</a></div><div class="ttdeci">void openNewProjectDialog()</div><div class="ttdoc">Opens "New project" dialog. </div><div class="ttdef"><b>Definition:</b> <a href="formmain_8cpp_source.html#l00640">formmain.cpp:640</a></div></div>
 <div class="ttc" id="classFormMain_html_aef2cb492d67c6d6ab86e995cf25d4c3e"><div class="ttname"><a href="classFormMain.html#aef2cb492d67c6d6ab86e995cf25d4c3e">FormMain::resized</a></div><div class="ttdeci">void resized()</div><div class="ttdoc">Emitted when window is resized. </div></div>
-<div class="ttc" id="classFormMain_html_ae0e94720b058d8b20fd3ef899eae4e4f"><div class="ttname"><a href="classFormMain.html#ae0e94720b058d8b20fd3ef899eae4e4f">FormMain::show</a></div><div class="ttdeci">void show()</div><div class="ttdoc">Displays window. </div><div class="ttdef"><b>Definition:</b> <a href="formmain_8cpp_source.html#l00545">formmain.cpp:545</a></div></div>
-<div class="ttc" id="classFormMain_html_a5a4e081566cf3cf8689b32b4d8a00be4"><div class="ttname"><a href="classFormMain.html#a5a4e081566cf3cf8689b32b4d8a00be4">FormMain::display</a></div><div class="ttdeci">void display()</div><div class="ttdoc">Displays the window. </div><div class="ttdef"><b>Definition:</b> <a href="formmain_8cpp_source.html#l00557">formmain.cpp:557</a></div></div>
-<div class="ttc" id="classFormMain_html_a6c5909a7fff46abeb0b7f4e02b4e1f64"><div class="ttname"><a href="classFormMain.html#a6c5909a7fff46abeb0b7f4e02b4e1f64">FormMain::saveUnsavedProject</a></div><div class="ttdeci">bool saveUnsavedProject()</div><div class="ttdoc">Performs necessary steps to save active project if there is unsaved work. </div><div class="ttdef"><b>Definition:</b> <a href="formmain_8cpp_source.html#l00664">formmain.cpp:664</a></div></div>
+<div class="ttc" id="classFormMain_html_ae0e94720b058d8b20fd3ef899eae4e4f"><div class="ttname"><a href="classFormMain.html#ae0e94720b058d8b20fd3ef899eae4e4f">FormMain::show</a></div><div class="ttdeci">void show()</div><div class="ttdoc">Displays window. </div><div class="ttdef"><b>Definition:</b> <a href="formmain_8cpp_source.html#l00557">formmain.cpp:557</a></div></div>
+<div class="ttc" id="classFormMain_html_a5a4e081566cf3cf8689b32b4d8a00be4"><div class="ttname"><a href="classFormMain.html#a5a4e081566cf3cf8689b32b4d8a00be4">FormMain::display</a></div><div class="ttdeci">void display()</div><div class="ttdoc">Displays the window. </div><div class="ttdef"><b>Definition:</b> <a href="formmain_8cpp_source.html#l00569">formmain.cpp:569</a></div></div>
+<div class="ttc" id="classFormMain_html_a6c5909a7fff46abeb0b7f4e02b4e1f64"><div class="ttname"><a href="classFormMain.html#a6c5909a7fff46abeb0b7f4e02b4e1f64">FormMain::saveUnsavedProject</a></div><div class="ttdeci">bool saveUnsavedProject()</div><div class="ttdoc">Performs necessary steps to save active project if there is unsaved work. </div><div class="ttdef"><b>Definition:</b> <a href="formmain_8cpp_source.html#l00682">formmain.cpp:682</a></div></div>
 <div class="ttc" id="classFormMain_html_a19007dce5aea659cf42cfbc7cf1e0c58"><div class="ttname"><a href="classFormMain.html#a19007dce5aea659cf42cfbc7cf1e0c58">FormMain::FormMain</a></div><div class="ttdeci">FormMain(QWidget *parent=0)</div><div class="ttdoc">Constructor. </div><div class="ttdef"><b>Definition:</b> <a href="formmain_8cpp_source.html#l00063">formmain.cpp:63</a></div></div>
-<div class="ttc" id="classFormMain_html_a4e331db3fe97b57f6ce8575945e8c18f"><div class="ttname"><a href="classFormMain.html#a4e331db3fe97b57f6ce8575945e8c18f">FormMain::closeEvent</a></div><div class="ttdeci">void closeEvent(QCloseEvent *e)</div><div class="ttdoc">Executed when main application window is closed. </div><div class="ttdef"><b>Definition:</b> <a href="formmain_8cpp_source.html#l00693">formmain.cpp:693</a></div></div>
-<div class="ttc" id="classFormMain_html_a71f25dda5f8f0486a1ee339db91e60e2"><div class="ttname"><a href="classFormMain.html#a71f25dda5f8f0486a1ee339db91e60e2">FormMain::allActions</a></div><div class="ttdeci">QList&lt; QAction * &gt; allActions()</div><div class="ttdoc">Access to all actions provided by this window. </div><div class="ttdef"><b>Definition:</b> <a href="formmain_8cpp_source.html#l00118">formmain.cpp:118</a></div></div>
+<div class="ttc" id="classFormMain_html_a4e331db3fe97b57f6ce8575945e8c18f"><div class="ttname"><a href="classFormMain.html#a4e331db3fe97b57f6ce8575945e8c18f">FormMain::closeEvent</a></div><div class="ttdeci">void closeEvent(QCloseEvent *e)</div><div class="ttdoc">Executed when main application window is closed. </div><div class="ttdef"><b>Definition:</b> <a href="formmain_8cpp_source.html#l00711">formmain.cpp:711</a></div></div>
+<div class="ttc" id="classFormMain_html_a71f25dda5f8f0486a1ee339db91e60e2"><div class="ttname"><a href="classFormMain.html#a71f25dda5f8f0486a1ee339db91e60e2">FormMain::allActions</a></div><div class="ttdeci">QList&lt; QAction * &gt; allActions()</div><div class="ttdoc">Access to all actions provided by this window. </div><div class="ttdef"><b>Definition:</b> <a href="formmain_8cpp_source.html#l00130">formmain.cpp:130</a></div></div>
 <div class="ttc" id="classTemplateCore_html"><div class="ttname"><a href="classTemplateCore.html">TemplateCore</a></div><div class="ttdoc">The core class container for single template. </div><div class="ttdef"><b>Definition:</b> <a href="templatecore_8h_source.html#l00043">templatecore.h:43</a></div></div>
 <div class="ttc" id="classTemplateCore_html_a64e34dd774ee57ad8ad32b8d5185ae4b"><div class="ttname"><a href="classTemplateCore.html#a64e34dd774ee57ad8ad32b8d5185ae4b">TemplateCore::GenerationResult</a></div><div class="ttdeci">GenerationResult</div><div class="ttdoc">Possible results of generation of bundle data. </div><div class="ttdef"><b>Definition:</b> <a href="templatecore_8h_source.html#l00048">templatecore.h:48</a></div></div>
 <div class="ttc" id="classFormMain_html_a3a050807918c3c069b0ef2a7b4b59098"><div class="ttname"><a href="classFormMain.html#a3a050807918c3c069b0ef2a7b4b59098">FormMain::trayMenu</a></div><div class="ttdeci">QMenu * trayMenu() const </div><div class="ttdoc">Access to tray menu. </div><div class="ttdef"><b>Definition:</b> <a href="formmain_8h_source.html#l00064">formmain.h:64</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Aug 4 2014 15:44:02 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Aug 16 2014 15:00:50 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

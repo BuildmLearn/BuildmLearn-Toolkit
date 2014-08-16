@@ -64,7 +64,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
@@ -91,14 +91,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">IconFactory Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Icon theme manipulator and provider.  
+ <a href="classIconFactory.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="iconfactory_8h_source.html">iconfactory.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for IconFactory:</div>
 <div class="dyncontent">
- <div class="center">
-  <img src="classIconFactory.png" usemap="#IconFactory_map" alt=""/>
-  <map id="IconFactory_map" name="IconFactory_map">
+<div class="center"><img src="classIconFactory__inherit__graph.png" border="0" usemap="#IconFactory_inherit__map" alt="Inheritance graph"/></div>
+<map name="IconFactory_inherit__map" id="IconFactory_inherit__map">
 </map>
- </div></div>
+</div>
+<div class="dynheader">
+Collaboration diagram for IconFactory:</div>
+<div class="dyncontent">
+<div class="center"><img src="classIconFactory__coll__graph.png" border="0" usemap="#IconFactory_coll__map" alt="Collaboration graph"/></div>
+<map name="IconFactory_coll__map" id="IconFactory_coll__map">
+</map>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -129,8 +140,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="separator:aafe98384c2523486fa9c46b556eb1383"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p>Definition at line <a class="el" href="iconfactory_8h_source.html#l00046">46</a> of file <a class="el" href="iconfactory_8h_source.html">iconfactory.h</a>.</p>
+<div class="textblock"><p>Icon theme manipulator and provider. </p>
+
+<p>Definition at line <a class="el" href="iconfactory_8h_source.html#l00047">47</a> of file <a class="el" href="iconfactory_8h_source.html">iconfactory.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="ae76eb37c62c6ea204ece4a3e6468129d"></a>
 <div class="memitem">
@@ -156,10 +168,10 @@ Static Public Member Functions</h2></td></tr>
 <p>Gets name of current theme. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns name of currently activated theme for the application. </dd></dl>
 
-<p>Definition at line <a class="el" href="iconfactory_8h_source.html#l00086">86</a> of file <a class="el" href="iconfactory_8h_source.html">iconfactory.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                                            {</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;      <span class="keywordflow">return</span> m_currentIconTheme;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    }</div>
+<p>Definition at line <a class="el" href="iconfactory_8h_source.html#l00087">87</a> of file <a class="el" href="iconfactory_8h_source.html">iconfactory.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                                            {</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;      <span class="keywordflow">return</span> m_currentIconTheme;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -194,21 +206,21 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns icon from active theme or invalid icon if "no icon theme" is set. </dd></dl>
 
-<p>Definition at line <a class="el" href="iconfactory_8h_source.html#l00057">57</a> of file <a class="el" href="iconfactory_8h_source.html">iconfactory.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                                                {</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;      <span class="keywordflow">if</span> (m_currentIconTheme == APP_NO_THEME) {</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="keywordflow">return</span> QIcon();</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;      }</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;      <span class="keywordflow">if</span> (!m_cachedIcons.contains(name)) {</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="comment">// Icon is not cached yet.</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        m_cachedIcons.insert(name, QIcon(APP_THEME_PATH + QDir::separator() +</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                                         m_currentIconTheme + QDir::separator() +</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                                         name + APP_THEME_SUFFIX));</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;      }</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;      <span class="keywordflow">return</span> m_cachedIcons.value(name);</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    }</div>
+<p>Definition at line <a class="el" href="iconfactory_8h_source.html#l00058">58</a> of file <a class="el" href="iconfactory_8h_source.html">iconfactory.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                                                {</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;      <span class="keywordflow">if</span> (m_currentIconTheme == APP_NO_THEME) {</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordflow">return</span> QIcon();</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;      }</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;      <span class="keywordflow">if</span> (!m_cachedIcons.contains(name)) {</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="comment">// Icon is not cached yet.</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        m_cachedIcons.insert(name, QIcon(APP_THEME_PATH + QDir::separator() +</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                                         m_currentIconTheme + QDir::separator() +</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                                         name + APP_THEME_SUFFIX));</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;      }</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;      <span class="keywordflow">return</span> m_cachedIcons.value(name);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -253,6 +265,15 @@ Static Public Member Functions</h2></td></tr>
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;  <span class="keywordflow">return</span> icon_theme_names;</div>
 <div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;}</div>
 </div><!-- fragment -->
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classIconFactory_a9353ae1f2b874a57520a56aa771abffb_icgraph.png" border="0" usemap="#classIconFactory_a9353ae1f2b874a57520a56aa771abffb_icgraph" alt=""/></div>
+<map name="classIconFactory_a9353ae1f2b874a57520a56aa771abffb_icgraph" id="classIconFactory_a9353ae1f2b874a57520a56aa771abffb_icgraph">
+<area shape="rect" id="node2" href="classIconFactory.html#a361db6501a104f39ab2dfdea0ba4feab" title="Loads name of selected icon theme (from settings) for the application and activates it..." alt="" coords="233,5,409,47"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="aafe98384c2523486fa9c46b556eb1383"></a>
@@ -287,8 +308,17 @@ Static Public Member Functions</h2></td></tr>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;  <span class="keywordflow">return</span> s_instance;</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;}</div>
-<div class="ttc" id="classIconFactory_html"><div class="ttname"><a href="classIconFactory.html">IconFactory</a></div><div class="ttdef"><b>Definition:</b> <a href="iconfactory_8h_source.html#l00046">iconfactory.h:46</a></div></div>
+<div class="ttc" id="classIconFactory_html"><div class="ttname"><a href="classIconFactory.html">IconFactory</a></div><div class="ttdoc">Icon theme manipulator and provider. </div><div class="ttdef"><b>Definition:</b> <a href="iconfactory_8h_source.html#l00047">iconfactory.h:47</a></div></div>
 </div><!-- fragment -->
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classIconFactory_aafe98384c2523486fa9c46b556eb1383_icgraph.png" border="0" usemap="#classIconFactory_aafe98384c2523486fa9c46b556eb1383_icgraph" alt=""/></div>
+<map name="classIconFactory_aafe98384c2523486fa9c46b556eb1383_icgraph" id="classIconFactory_aafe98384c2523486fa9c46b556eb1383_icgraph">
+<area shape="rect" id="node2" href="classShortcutCatcher.html#abd7052f8db2f13ef3446fbee3a81e05b" title="Constructor. " alt="" coords="214,5,405,47"/><area shape="rect" id="node3" href="classFormAbout.html#a243c5fbaf3dd3e5eb4e4f5ebfa579632" title="Constructor. " alt="" coords="223,71,395,98"/><area shape="rect" id="node4" href="classFormHelp.html#aeee67b31f15330b91f873236e7b17737" title="Constructor. " alt="" coords="232,122,387,149"/><area shape="rect" id="node5" href="classFormSettings.html#a14a5bad209c1a85b3d3fab6615bb0585" title="Constructor. " alt="" coords="208,173,411,199"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="a361db6501a104f39ab2dfdea0ba4feab"></a>
@@ -341,6 +371,15 @@ Static Public Member Functions</h2></td></tr>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;}</div>
 <div class="ttc" id="classIconFactory_html_a9353ae1f2b874a57520a56aa771abffb"><div class="ttname"><a href="classIconFactory.html#a9353ae1f2b874a57520a56aa771abffb">IconFactory::installedIconThemes</a></div><div class="ttdeci">QStringList installedIconThemes() const </div><div class="ttdoc">Access to list of icon themes. </div><div class="ttdef"><b>Definition:</b> <a href="iconfactory_8cpp_source.html#l00101">iconfactory.cpp:101</a></div></div>
 </div><!-- fragment -->
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classIconFactory_a361db6501a104f39ab2dfdea0ba4feab_cgraph.png" border="0" usemap="#classIconFactory_a361db6501a104f39ab2dfdea0ba4feab_cgraph" alt=""/></div>
+<map name="classIconFactory_a361db6501a104f39ab2dfdea0ba4feab_cgraph" id="classIconFactory_a361db6501a104f39ab2dfdea0ba4feab_cgraph">
+<area shape="rect" id="node2" href="classIconFactory.html#a9353ae1f2b874a57520a56aa771abffb" title="Access to list of icon themes. " alt="" coords="229,5,409,47"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="a224ec943e640c363cb55dc36c460b453"></a>
@@ -373,13 +412,13 @@ Static Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/d/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/miscellaneous/<a class="el" href="iconfactory_8h_source.html">iconfactory.h</a></li>
-<li>/d/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/miscellaneous/<a class="el" href="iconfactory_8cpp_source.html">iconfactory.cpp</a></li>
+<li>/mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/miscellaneous/<a class="el" href="iconfactory_8h_source.html">iconfactory.h</a></li>
+<li>/mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/miscellaneous/<a class="el" href="iconfactory_8cpp_source.html">iconfactory.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Aug 4 2014 15:44:03 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Aug 16 2014 15:00:50 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

@@ -64,7 +64,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
@@ -94,12 +94,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Inheritance diagram for FlashCardEditor:</div>
 <div class="dyncontent">
- <div class="center">
-  <img src="classFlashCardEditor.png" usemap="#FlashCardEditor_map" alt=""/>
-  <map id="FlashCardEditor_map" name="FlashCardEditor_map">
-<area href="classTemplateEditor.html" title="Represents the editor of the template. " alt="TemplateEditor" shape="rect" coords="0,56,104,80"/>
-</map>
- </div></div>
+<div class="center"><img src="classFlashCardEditor__inherit__graph.png" border="0" usemap="#FlashCardEditor_inherit__map" alt="Inheritance graph"/></div>
+<map name="FlashCardEditor_inherit__map" id="FlashCardEditor_inherit__map">
+<area shape="rect" id="node2" href="classTemplateEditor.html" title="Represents the editor of the template. " alt="" coords="5,131,236,443"/></map>
+</div>
+<div class="dynheader">
+Collaboration diagram for FlashCardEditor:</div>
+<div class="dyncontent">
+<div class="center"><img src="classFlashCardEditor__coll__graph.png" border="0" usemap="#FlashCardEditor_coll__map" alt="Collaboration graph"/></div>
+<map name="FlashCardEditor_coll__map" id="FlashCardEditor_coll__map">
+<area shape="rect" id="node2" href="classTemplateEditor.html" title="Represents the editor of the template. " alt="" coords="94,139,325,437"/><area shape="rect" id="node4" href="classTemplateCore.html" title="The core class container for single template. " alt="" coords="309,507,525,701"/><area shape="rect" id="node7" href="classTemplateSimulator.html" title="Base widget which represents simulator of the template. " alt="" coords="201,764,380,944"/><area shape="rect" id="node6" href="classTemplateEntryPoint.html" title="The entry point for a template. " alt="" coords="454,132,669,444"/></map>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -215,10 +220,10 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_isDirty</b></td></t
 
 <p>Implements <a class="el" href="classTemplateEditor.html#aad49694bf1d7ec82584b8100a726281d">TemplateEditor</a>.</p>
 
-<p>Definition at line <a class="el" href="flashcardeditor_8cpp_source.html#l00221">221</a> of file <a class="el" href="flashcardeditor_8cpp_source.html">flashcardeditor.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;                                    {</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;  <span class="keywordflow">return</span> m_ui-&gt;m_txtAuthor-&gt;lineEdit()-&gt;text();</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;}</div>
+<p>Definition at line <a class="el" href="flashcardeditor_8cpp_source.html#l00249">249</a> of file <a class="el" href="flashcardeditor_8cpp_source.html">flashcardeditor.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;                                    {</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;  <span class="keywordflow">return</span> m_ui-&gt;m_txtAuthor-&gt;lineEdit()-&gt;text();</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -249,13 +254,13 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_isDirty</b></td></t
 
 <p>Reimplemented from <a class="el" href="classTemplateEditor.html#a72191612460f9832863e556664d6313b">TemplateEditor</a>.</p>
 
-<p>Definition at line <a class="el" href="flashcardeditor_8cpp_source.html#l00108">108</a> of file <a class="el" href="flashcardeditor_8cpp_source.html">flashcardeditor.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                                              {</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;  <span class="keywordflow">return</span></div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;      !m_ui-&gt;m_txtName-&gt;lineEdit()-&gt;text().simplified().isEmpty() &amp;&amp;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;      !m_ui-&gt;m_txtAuthor-&gt;lineEdit()-&gt;text().simplified().isEmpty() &amp;&amp;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;      !activeQuestions().isEmpty();</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;}</div>
+<p>Definition at line <a class="el" href="flashcardeditor_8cpp_source.html#l00136">136</a> of file <a class="el" href="flashcardeditor_8cpp_source.html">flashcardeditor.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;                                              {</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;  <span class="keywordflow">return</span></div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;      !m_ui-&gt;m_txtName-&gt;lineEdit()-&gt;text().simplified().isEmpty() &amp;&amp;</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;      !m_ui-&gt;m_txtAuthor-&gt;lineEdit()-&gt;text().simplified().isEmpty() &amp;&amp;</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;      !activeQuestions().isEmpty();</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -287,55 +292,64 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_isDirty</b></td></t
 
 <p>Implements <a class="el" href="classTemplateEditor.html#a2839331eb383f1b166ac6afe77e2528b">TemplateEditor</a>.</p>
 
-<p>Definition at line <a class="el" href="flashcardeditor_8cpp_source.html#l00115">115</a> of file <a class="el" href="flashcardeditor_8cpp_source.html">flashcardeditor.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;                                            {</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;  <span class="comment">/*if (!canGenerateApplications()) {</span></div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="comment">    return QString();</span></div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="comment">  }*/</span></div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;  QDomDocument source_document = qApp-&gt;templateManager()-&gt;generateBundleHeader(<a class="code" href="classTemplateEditor.html#a171503c880d22a461d2f78209d27a958">core</a>()-&gt;entryPoint()-&gt;typeIndentifier(),</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                                                                               m_ui-&gt;m_txtAuthor-&gt;lineEdit()-&gt;text(),</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                                                                               QString(),</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                                                                               m_ui-&gt;m_txtName-&gt;lineEdit()-&gt;text(),</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;                                                                               QString(),</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                                                                               <span class="stringliteral">&quot;1&quot;</span>);</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;  FIND_DATA_ELEMENT(data_element, source_document);</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;  <span class="keywordflow">foreach</span> (<span class="keyword">const</span> <a class="code" href="classFlashCardQuestion.html">FlashCardQuestion</a> &amp;question, activeQuestions()) {</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    QDomElement item_element = source_document.createElement(<span class="stringliteral">&quot;item&quot;</span>);</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="comment">// Fill in details about question.</span></div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    QDomElement question_element = source_document.createElement(<span class="stringliteral">&quot;question&quot;</span>);</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    QDomElement answer_element = source_document.createElement(<span class="stringliteral">&quot;answer&quot;</span>);</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    QDomElement hint_element = source_document.createElement(<span class="stringliteral">&quot;hint&quot;</span>);</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    QDomElement image_element = source_document.createElement(<span class="stringliteral">&quot;image&quot;</span>);</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    question_element.appendChild(source_document.createTextNode(question.question()));</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    answer_element.appendChild(source_document.createTextNode(question.answer()));</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    hint_element.appendChild(source_document.createTextNode(question.hint()));</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <span class="comment">// Read file with image, convert it to base64 and insert into XML bundle.</span></div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    QByteArray picture_encoded = <a class="code" href="classIOFactory.html#a5754874523b6e00933cf496e53255984">IOFactory::fileToBase64</a>(question.picturePath());</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    <span class="keywordflow">if</span> (picture_encoded.isEmpty() || picture_encoded.isNull()) {</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;      <span class="keywordflow">return</span> QString();</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    }</div>
+<p>Definition at line <a class="el" href="flashcardeditor_8cpp_source.html#l00143">143</a> of file <a class="el" href="flashcardeditor_8cpp_source.html">flashcardeditor.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;                                            {</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;  <span class="comment">/*if (!canGenerateApplications()) {</span></div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="comment">    return QString();</span></div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="comment">  }*/</span></div>
 <div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    image_element.appendChild(source_document.createTextNode(QString::fromUtf8(picture_encoded)));</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    item_element.appendChild(question_element);</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    item_element.appendChild(answer_element);</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    item_element.appendChild(hint_element);</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    item_element.appendChild(image_element);</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    data_element.appendChild(item_element);</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;  }</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;  <span class="keywordflow">return</span> source_document.toString(XML_BUNDLE_INDENTATION);</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;}</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;  QDomDocument source_document = qApp-&gt;templateManager()-&gt;generateBundleHeader(<a class="code" href="classTemplateEditor.html#a171503c880d22a461d2f78209d27a958">core</a>()-&gt;entryPoint()-&gt;typeIndentifier(),</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;                                                                               m_ui-&gt;m_txtAuthor-&gt;lineEdit()-&gt;text(),</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;                                                                               QString(),</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;                                                                               m_ui-&gt;m_txtName-&gt;lineEdit()-&gt;text(),</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;                                                                               QString(),</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;                                                                               <span class="stringliteral">&quot;1&quot;</span>);</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;  FIND_DATA_ELEMENT(data_element, source_document);</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;  <span class="keywordflow">foreach</span> (<span class="keyword">const</span> <a class="code" href="classFlashCardQuestion.html">FlashCardQuestion</a> &amp;question, activeQuestions()) {</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    QDomElement item_element = source_document.createElement(<span class="stringliteral">&quot;item&quot;</span>);</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    <span class="comment">// Fill in details about question.</span></div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    QDomElement question_element = source_document.createElement(<span class="stringliteral">&quot;question&quot;</span>);</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    QDomElement answer_element = source_document.createElement(<span class="stringliteral">&quot;answer&quot;</span>);</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    QDomElement hint_element = source_document.createElement(<span class="stringliteral">&quot;hint&quot;</span>);</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    QDomElement image_element = source_document.createElement(<span class="stringliteral">&quot;image&quot;</span>);</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    question_element.appendChild(source_document.createTextNode(question.question()));</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    answer_element.appendChild(source_document.createTextNode(question.answer()));</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    hint_element.appendChild(source_document.createTextNode(question.hint()));</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    <span class="comment">// Read file with image, convert it to base64 and insert into XML bundle.</span></div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    QByteArray picture_encoded = <a class="code" href="classIOFactory.html#a5754874523b6e00933cf496e53255984">IOFactory::fileToBase64</a>(question.picturePath());</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    <span class="keywordflow">if</span> (picture_encoded.isEmpty() || picture_encoded.isNull()) {</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;      <span class="keywordflow">return</span> QString();</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    }</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    image_element.appendChild(source_document.createTextNode(QString::fromUtf8(picture_encoded)));</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    item_element.appendChild(question_element);</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    item_element.appendChild(answer_element);</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    item_element.appendChild(hint_element);</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    item_element.appendChild(image_element);</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    data_element.appendChild(item_element);</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;  }</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;  <span class="keywordflow">return</span> source_document.toString(XML_BUNDLE_INDENTATION);</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;}</div>
 <div class="ttc" id="classFlashCardQuestion_html"><div class="ttname"><a href="classFlashCardQuestion.html">FlashCardQuestion</a></div><div class="ttdef"><b>Definition:</b> <a href="flashcardquestion_8h_source.html#l00037">flashcardquestion.h:37</a></div></div>
 <div class="ttc" id="classTemplateEditor_html_a171503c880d22a461d2f78209d27a958"><div class="ttname"><a href="classTemplateEditor.html#a171503c880d22a461d2f78209d27a958">TemplateEditor::core</a></div><div class="ttdeci">TemplateCore * core() const </div><div class="ttdoc">Access to associated template core. </div><div class="ttdef"><b>Definition:</b> <a href="templateeditor_8cpp_source.html#l00056">templateeditor.cpp:56</a></div></div>
 <div class="ttc" id="classIOFactory_html_a5754874523b6e00933cf496e53255984"><div class="ttname"><a href="classIOFactory.html#a5754874523b6e00933cf496e53255984">IOFactory::fileToBase64</a></div><div class="ttdeci">static QByteArray fileToBase64(const QString &amp;file_name)</div><div class="ttdoc">Takes input file and reads it into base64 byte array. </div><div class="ttdef"><b>Definition:</b> <a href="iofactory_8cpp_source.html#l00111">iofactory.cpp:111</a></div></div>
 </div><!-- fragment -->
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classFlashCardEditor_a0d3ac017c15366776f462bd33fcccae9_cgraph.png" border="0" usemap="#classFlashCardEditor_a0d3ac017c15366776f462bd33fcccae9_cgraph" alt=""/></div>
+<map name="classFlashCardEditor_a0d3ac017c15366776f462bd33fcccae9_cgraph" id="classFlashCardEditor_a0d3ac017c15366776f462bd33fcccae9_cgraph">
+<area shape="rect" id="node2" href="classTemplateEditor.html#a171503c880d22a461d2f78209d27a958" title="Access to associated template core. " alt="" coords="248,5,401,32"/><area shape="rect" id="node3" href="classIOFactory.html#a5754874523b6e00933cf496e53255984" title="Takes input file and reads it into base64 byte array. " alt="" coords="241,56,408,83"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="ad309cba025acc43065d9bf316ff87180"></a>
@@ -371,55 +385,64 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_isDirty</b></td></t
 
 <p>Implements <a class="el" href="classTemplateEditor.html#a95b1adbfffca51d842efba063b8b0f47">TemplateEditor</a>.</p>
 
-<p>Definition at line <a class="el" href="flashcardeditor_8cpp_source.html#l00160">160</a> of file <a class="el" href="flashcardeditor_8cpp_source.html">flashcardeditor.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;                                                               {</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;  QDomDocument bundle_document;</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;  bundle_document.setContent(bundle_data);</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;  QDomNodeList items = bundle_document.documentElement().elementsByTagName(<span class="stringliteral">&quot;item&quot;</span>);</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; items.size(); i++) {</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    QDomNode item = items.at(i);</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    <span class="keywordflow">if</span> (item.isElement()) {</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;      QString question = item.namedItem(<span class="stringliteral">&quot;question&quot;</span>).toElement().text();</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;      QString answer = item.namedItem(<span class="stringliteral">&quot;answer&quot;</span>).toElement().text();</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;      QString hint = item.namedItem(<span class="stringliteral">&quot;hint&quot;</span>).toElement().text();</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;      QString image_data = item.namedItem(<span class="stringliteral">&quot;image&quot;</span>).toElement().text();</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;      <span class="keywordflow">if</span> (question.isEmpty() || answer.isEmpty() || image_data.isEmpty()) {</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;        <span class="comment">// TODO: error</span></div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;        <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;      }</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;      <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;        <span class="comment">// TODO: POKRACOVAT TADY, prevadeni z base64 do souboru blbne.</span></div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        <span class="comment">// https://www.google.cz/webhp?sourceid=chrome-instant&amp;ion=1&amp;espv=2&amp;ie=UTF-8#q=qt%20base64%20to%20file</span></div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;        QString output_directory = qApp-&gt;templateManager()-&gt;tempDirectory();</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        QString target_image_file = output_directory +</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;                                    QString(<span class="stringliteral">&quot;/image_%1.png&quot;</span>).arg(i);</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="classIOFactory.html#a8b78ee0af08afbd8dda7260fbe4c6ad8">IOFactory::base64ToFile</a>(image_data, target_image_file)) {</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;          <span class="comment">// Picture from the item was saved to disk.</span></div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;          addQuestion(question, answer, hint, target_image_file);</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        }</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;        <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;          <span class="comment">// TODO: errro</span></div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        }</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;      }</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    }</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;      <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    }</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;  }</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;  <span class="comment">// Load author &amp; name.</span></div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;  m_ui-&gt;m_txtAuthor-&gt;lineEdit()-&gt;setText(bundle_document.documentElement().namedItem(<span class="stringliteral">&quot;author&quot;</span>).namedItem(<span class="stringliteral">&quot;name&quot;</span>).toElement().text());</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;  m_ui-&gt;m_txtName-&gt;lineEdit()-&gt;setText(bundle_document.documentElement().namedItem(<span class="stringliteral">&quot;title&quot;</span>).toElement().text());</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;  <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;}</div>
+<p>Definition at line <a class="el" href="flashcardeditor_8cpp_source.html#l00188">188</a> of file <a class="el" href="flashcardeditor_8cpp_source.html">flashcardeditor.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;                                                               {</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;  QDomDocument bundle_document;</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;  bundle_document.setContent(bundle_data);</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;  QDomNodeList items = bundle_document.documentElement().elementsByTagName(<span class="stringliteral">&quot;item&quot;</span>);</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; items.size(); i++) {</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    QDomNode item = items.at(i);</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    <span class="keywordflow">if</span> (item.isElement()) {</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;      QString question = item.namedItem(<span class="stringliteral">&quot;question&quot;</span>).toElement().text();</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;      QString answer = item.namedItem(<span class="stringliteral">&quot;answer&quot;</span>).toElement().text();</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;      QString hint = item.namedItem(<span class="stringliteral">&quot;hint&quot;</span>).toElement().text();</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;      QString image_data = item.namedItem(<span class="stringliteral">&quot;image&quot;</span>).toElement().text();</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;      <span class="keywordflow">if</span> (question.isEmpty() || answer.isEmpty() || image_data.isEmpty()) {</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;        <span class="comment">// TODO: error</span></div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;        <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;      }</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;      <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;        <span class="comment">// TODO: POKRACOVAT TADY, prevadeni z base64 do souboru blbne.</span></div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;        <span class="comment">// https://www.google.cz/webhp?sourceid=chrome-instant&amp;ion=1&amp;espv=2&amp;ie=UTF-8#q=qt%20base64%20to%20file</span></div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;        QString output_directory = qApp-&gt;templateManager()-&gt;tempDirectory();</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;        QString target_image_file = output_directory +</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;                                    QString(<span class="stringliteral">&quot;/image_%1.png&quot;</span>).arg(i);</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="classIOFactory.html#a8b78ee0af08afbd8dda7260fbe4c6ad8">IOFactory::base64ToFile</a>(image_data, target_image_file)) {</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;          <span class="comment">// Picture from the item was saved to disk.</span></div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;          addQuestion(question, answer, hint, target_image_file);</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;        }</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;        <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;          <span class="comment">// TODO: errro</span></div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;        }</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;      }</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    }</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;      <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;    }</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;  }</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;  <span class="comment">// Load author &amp; name.</span></div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;  m_ui-&gt;m_txtAuthor-&gt;lineEdit()-&gt;setText(bundle_document.documentElement().namedItem(<span class="stringliteral">&quot;author&quot;</span>).namedItem(<span class="stringliteral">&quot;name&quot;</span>).toElement().text());</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;  m_ui-&gt;m_txtName-&gt;lineEdit()-&gt;setText(bundle_document.documentElement().namedItem(<span class="stringliteral">&quot;title&quot;</span>).toElement().text());</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;  <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;}</div>
 <div class="ttc" id="classIOFactory_html_a8b78ee0af08afbd8dda7260fbe4c6ad8"><div class="ttname"><a href="classIOFactory.html#a8b78ee0af08afbd8dda7260fbe4c6ad8">IOFactory::base64ToFile</a></div><div class="ttdeci">static bool base64ToFile(const QString &amp;source_data, const QString &amp;target_file)</div><div class="ttdoc">Takes base64 byte array and saves it into file. </div><div class="ttdef"><b>Definition:</b> <a href="iofactory_8cpp_source.html#l00125">iofactory.cpp:125</a></div></div>
 </div><!-- fragment -->
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classFlashCardEditor_ad309cba025acc43065d9bf316ff87180_cgraph.png" border="0" usemap="#classFlashCardEditor_ad309cba025acc43065d9bf316ff87180_cgraph" alt=""/></div>
+<map name="classFlashCardEditor_ad309cba025acc43065d9bf316ff87180_cgraph" id="classFlashCardEditor_ad309cba025acc43065d9bf316ff87180_cgraph">
+<area shape="rect" id="node2" href="classIOFactory.html#a8b78ee0af08afbd8dda7260fbe4c6ad8" title="Takes base64 byte array and saves it into file. " alt="" coords="285,5,453,32"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="acf2c7670f235572691b96df5188fd21c"></a>
@@ -448,21 +471,21 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_isDirty</b></td></t
 
 <p>Implements <a class="el" href="classTemplateEditor.html#a9e7fb03a99c4cf22e3782f09bdaf85e6">TemplateEditor</a>.</p>
 
-<p>Definition at line <a class="el" href="flashcardeditor_8cpp_source.html#l00217">217</a> of file <a class="el" href="flashcardeditor_8cpp_source.html">flashcardeditor.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;                                     {</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;  <span class="keywordflow">return</span> m_ui-&gt;m_txtName-&gt;lineEdit()-&gt;text();</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;}</div>
+<p>Definition at line <a class="el" href="flashcardeditor_8cpp_source.html#l00245">245</a> of file <a class="el" href="flashcardeditor_8cpp_source.html">flashcardeditor.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;                                     {</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;  <span class="keywordflow">return</span> m_ui-&gt;m_txtName-&gt;lineEdit()-&gt;text();</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/d/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/templates/flashcard/<a class="el" href="flashcardeditor_8h_source.html">flashcardeditor.h</a></li>
-<li>/d/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/templates/flashcard/<a class="el" href="flashcardeditor_8cpp_source.html">flashcardeditor.cpp</a></li>
+<li>/mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/templates/flashcard/<a class="el" href="flashcardeditor_8h_source.html">flashcardeditor.h</a></li>
+<li>/mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/templates/flashcard/<a class="el" href="flashcardeditor_8cpp_source.html">flashcardeditor.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Aug 4 2014 15:44:03 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Aug 16 2014 15:00:50 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

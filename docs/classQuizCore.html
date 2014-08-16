@@ -64,7 +64,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
@@ -98,21 +98,26 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Inheritance diagram for QuizCore:</div>
 <div class="dyncontent">
- <div class="center">
-  <img src="classQuizCore.png" usemap="#QuizCore_map" alt=""/>
-  <map id="QuizCore_map" name="QuizCore_map">
-<area href="classTemplateCore.html" title="The core class container for single template. " alt="TemplateCore" shape="rect" coords="0,56,90,80"/>
-</map>
- </div></div>
+<div class="center"><img src="classQuizCore__inherit__graph.png" border="0" usemap="#QuizCore_inherit__map" alt="Inheritance graph"/></div>
+<map name="QuizCore_inherit__map" id="QuizCore_inherit__map">
+<area shape="rect" id="node2" href="classTemplateCore.html" title="The core class container for single template. " alt="" coords="5,131,221,369"/></map>
+</div>
+<div class="dynheader">
+Collaboration diagram for QuizCore:</div>
+<div class="dyncontent">
+<div class="center"><img src="classQuizCore__coll__graph.png" border="0" usemap="#QuizCore_coll__map" alt="Collaboration graph"/></div>
+<map name="QuizCore_coll__map" id="QuizCore_coll__map">
+<area shape="rect" id="node2" href="classTemplateCore.html" title="The core class container for single template. " alt="" coords="225,507,441,701"/><area shape="rect" id="node4" href="classTemplateEditor.html" title="Represents the editor of the template. " alt="" coords="449,764,679,1061"/><area shape="rect" id="node7" href="classTemplateSimulator.html" title="Base widget which represents simulator of the template. " alt="" coords="245,823,424,1003"/><area shape="rect" id="node6" href="classTemplateEntryPoint.html" title="The entry point for a template. " alt="" coords="350,132,565,444"/></map>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a5896a8cbf256679992a99da6462daee5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5896a8cbf256679992a99da6462daee5"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>QuizCore</b> (<a class="el" href="classTemplateEntryPoint.html">TemplateEntryPoint</a> *entry_point, QObject *parent=0)</td></tr>
 <tr class="separator:a5896a8cbf256679992a99da6462daee5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8130ff8deb83b566ed57750a38b84e8a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTemplateCore.html#a64e34dd774ee57ad8ad32b8d5185ae4b">GenerationResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQuizCore.html#a8130ff8deb83b566ed57750a38b84e8a">generateMobileApplication</a> (QString &amp;output_file)</td></tr>
-<tr class="memdesc:a8130ff8deb83b566ed57750a38b84e8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates APK file from current project with active settings.  <a href="#a8130ff8deb83b566ed57750a38b84e8a">More...</a><br /></td></tr>
-<tr class="separator:a8130ff8deb83b566ed57750a38b84e8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1be74e283990c61d852e461dda722cc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTemplateCore.html#a64e34dd774ee57ad8ad32b8d5185ae4b">GenerationResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQuizCore.html#ac1be74e283990c61d852e461dda722cc">generateMobileApplication</a> (const QString &amp;input_apk_file, QString &amp;output_file)</td></tr>
+<tr class="memdesc:ac1be74e283990c61d852e461dda722cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates APK file from current project with active settings.  <a href="#ac1be74e283990c61d852e461dda722cc">More...</a><br /></td></tr>
+<tr class="separator:ac1be74e283990c61d852e461dda722cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classTemplateCore"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classTemplateCore')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classTemplateCore.html">TemplateCore</a></td></tr>
 <tr class="memitem:ac35313d3707a91b3184db420c0faec6f inherit pub_methods_classTemplateCore"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac35313d3707a91b3184db420c0faec6f"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>TemplateCore</b> (<a class="el" href="classTemplateEntryPoint.html">TemplateEntryPoint</a> *entry_point, QObject *parent=0)</td></tr>
@@ -176,7 +181,7 @@ QString&#160;</td><td class="memItemRight" valign="bottom"><b>m_assignedFile</b>
 
 <p>Definition at line <a class="el" href="quizcore_8h_source.html#l00047">47</a> of file <a class="el" href="quizcore_8h_source.html">quizcore.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a8130ff8deb83b566ed57750a38b84e8a"></a>
+<a class="anchor" id="ac1be74e283990c61d852e461dda722cc"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -186,9 +191,19 @@ QString&#160;</td><td class="memItemRight" valign="bottom"><b>m_assignedFile</b>
         <tr>
           <td class="memname"><a class="el" href="classTemplateCore.html#a64e34dd774ee57ad8ad32b8d5185ae4b">TemplateCore::GenerationResult</a> QuizCore::generateMobileApplication </td>
           <td>(</td>
-          <td class="paramtype">QString &amp;&#160;</td>
-          <td class="paramname"><em>output_file</em></td><td>)</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>input_apk_file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">QString &amp;&#160;</td>
+          <td class="paramname"><em>output_file</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -202,10 +217,10 @@ QString&#160;</td><td class="memItemRight" valign="bottom"><b>m_assignedFile</b>
 <dl class="section return"><dt>Returns</dt><dd>Returns true on success, otherwise returns false. </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>This is used only if template can actually generate mobile application, so that editor of the template must contain sufficient data for doing so. </dd></dl>
 
-<p>Implements <a class="el" href="classTemplateCore.html#a15f47ff1698b1d6d9e4ba08c7ed37bf1">TemplateCore</a>.</p>
+<p>Implements <a class="el" href="classTemplateCore.html#a4e4e16e8fe56f0d89bf0afd47ae83ea4">TemplateCore</a>.</p>
 
 <p>Definition at line <a class="el" href="quizcore_8cpp_source.html#l00059">59</a> of file <a class="el" href="quizcore_8cpp_source.html">quizcore.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                                                                                     {</div>
+<div class="fragment"><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                                                                                                                    {</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  emit <a class="code" href="classTemplateCore.html#adbf87d1c4725174d6d8a834a90e7bd54">generationProgress</a>(5, tr(<span class="stringliteral">&quot;Preparing workspace...&quot;</span>));</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;  qApp-&gt;templateManager()-&gt;generator()-&gt;cleanWorkspace();</div>
@@ -245,7 +260,7 @@ QString&#160;</td><td class="memItemRight" valign="bottom"><b>m_assignedFile</b>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;  emit <a class="code" href="classTemplateCore.html#adbf87d1c4725174d6d8a834a90e7bd54">generationProgress</a>(40, tr(<span class="stringliteral">&quot;Copying template apk file...&quot;</span>));</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;  <span class="comment">// Copying of target apk file.</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;  QString new_apk_name = qApp-&gt;templateManager()-&gt;applicationFileName(quizEditor()-&gt;m_ui-&gt;m_txtName-&gt;lineEdit()-&gt;text());</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;  QString new_apk_name = input_apk_file;</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;  <span class="keywordflow">if</span> (!QFile::copy(APP_TEMPLATES_PATH + <span class="stringliteral">&quot;/&quot;</span> + <a class="code" href="classTemplateCore.html#aa551e031299f9f4683c3fe12d81d18bd">entryPoint</a>()-&gt;baseFolder() + <span class="stringliteral">&quot;/&quot;</span> + <a class="code" href="classTemplateCore.html#aa551e031299f9f4683c3fe12d81d18bd">entryPoint</a>()-&gt;mobileApplicationApkFile(),</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                   base_folder + <span class="stringliteral">&quot;/&quot;</span> + new_apk_name)) {</div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    qApp-&gt;templateManager()-&gt;generator()-&gt;cleanWorkspace();</div>
@@ -306,16 +321,25 @@ QString&#160;</td><td class="memItemRight" valign="bottom"><b>m_assignedFile</b>
 <div class="ttc" id="classTemplateCore_html_aa551e031299f9f4683c3fe12d81d18bd"><div class="ttname"><a href="classTemplateCore.html#aa551e031299f9f4683c3fe12d81d18bd">TemplateCore::entryPoint</a></div><div class="ttdeci">virtual TemplateEntryPoint * entryPoint() const </div><div class="ttdoc">Access to entry point of the template. </div><div class="ttdef"><b>Definition:</b> <a href="templatecore_8h_source.html#l00078">templatecore.h:78</a></div></div>
 <div class="ttc" id="classTemplateEditor_html_a2839331eb383f1b166ac6afe77e2528b"><div class="ttname"><a href="classTemplateEditor.html#a2839331eb383f1b166ac6afe77e2528b">TemplateEditor::generateBundleData</a></div><div class="ttdeci">virtual QString generateBundleData()=0</div><div class="ttdoc">Generates RAW data which represent data of this template. </div></div>
 </div><!-- fragment -->
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classQuizCore_ac1be74e283990c61d852e461dda722cc_cgraph.png" border="0" usemap="#classQuizCore_ac1be74e283990c61d852e461dda722cc_cgraph" alt=""/></div>
+<map name="classQuizCore_ac1be74e283990c61d852e461dda722cc_cgraph" id="classQuizCore_ac1be74e283990c61d852e461dda722cc_cgraph">
+<area shape="rect" id="node2" href="classTemplateCore.html#a1b8cc0d291b14259b3cd42c5d5abc87d" title="Access to editor widget of the template. " alt="" coords="254,5,409,32"/><area shape="rect" id="node3" href="classTemplateEditor.html#a2839331eb383f1b166ac6afe77e2528b" title="Generates RAW data which represent data of this template. " alt="" coords="240,57,423,98"/><area shape="rect" id="node4" href="classTemplateCore.html#aa551e031299f9f4683c3fe12d81d18bd" title="Access to entry point of the template. " alt="" coords="240,123,423,149"/><area shape="rect" id="node5" href="classIOFactory.html#a6ef3caa32304d9b26bc8fd7c645bf598" title="Copies source file into destination path. " alt="" coords="262,173,401,200"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/d/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/templates/quiz/<a class="el" href="quizcore_8h_source.html">quizcore.h</a></li>
-<li>/d/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/templates/quiz/<a class="el" href="quizcore_8cpp_source.html">quizcore.cpp</a></li>
+<li>/mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/templates/quiz/<a class="el" href="quizcore_8h_source.html">quizcore.h</a></li>
+<li>/mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/templates/quiz/<a class="el" href="quizcore_8cpp_source.html">quizcore.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Aug 4 2014 15:44:03 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Aug 16 2014 15:00:50 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

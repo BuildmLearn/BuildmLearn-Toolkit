@@ -64,7 +64,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
@@ -100,11 +100,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Inheritance diagram for TemplateGenerator:</div>
 <div class="dyncontent">
- <div class="center">
-  <img src="classTemplateGenerator.png" usemap="#TemplateGenerator_map" alt=""/>
-  <map id="TemplateGenerator_map" name="TemplateGenerator_map">
+<div class="center"><img src="classTemplateGenerator__inherit__graph.png" border="0" usemap="#TemplateGenerator_inherit__map" alt="Inheritance graph"/></div>
+<map name="TemplateGenerator_inherit__map" id="TemplateGenerator_inherit__map">
 </map>
- </div></div>
+</div>
+<div class="dynheader">
+Collaboration diagram for TemplateGenerator:</div>
+<div class="dyncontent">
+<div class="center"><img src="classTemplateGenerator__coll__graph.png" border="0" usemap="#TemplateGenerator_coll__map" alt="Collaboration graph"/></div>
+<map name="TemplateGenerator_coll__map" id="TemplateGenerator_coll__map">
+</map>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-slots"></a>
 Public Slots</h2></td></tr>
@@ -203,7 +209,7 @@ Public Member Functions</h2></td></tr>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="comment">// aby brala i ten vstupni nazev ciloveho apk souboru.</span></div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    QString output_file;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="classTemplateCore.html#a64e34dd774ee57ad8ad32b8d5185ae4b">TemplateCore::GenerationResult</a> result = core-&gt;<a class="code" href="classTemplateCore.html#a15f47ff1698b1d6d9e4ba08c7ed37bf1">generateMobileApplication</a>(output_file);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="classTemplateCore.html#a64e34dd774ee57ad8ad32b8d5185ae4b">TemplateCore::GenerationResult</a> result = core-&gt;<a class="code" href="classTemplateCore.html#a4e4e16e8fe56f0d89bf0afd47ae83ea4">generateMobileApplication</a>(input_file_name, output_file);</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    disconnect(core, SIGNAL(<a class="code" href="classTemplateGenerator.html#ad955300d42c3c702e626dbe41a19f998">generationProgress</a>(<span class="keywordtype">int</span>,QString)), <span class="keyword">this</span>, SIGNAL(<a class="code" href="classTemplateGenerator.html#ad955300d42c3c702e626dbe41a19f998">generationProgress</a>(<span class="keywordtype">int</span>,QString)));</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
@@ -225,11 +231,20 @@ Public Member Functions</h2></td></tr>
 <div class="ttc" id="classTemplateEditor_html_a9e7fb03a99c4cf22e3782f09bdaf85e6"><div class="ttname"><a href="classTemplateEditor.html#a9e7fb03a99c4cf22e3782f09bdaf85e6">TemplateEditor::projectName</a></div><div class="ttdeci">virtual QString projectName()=0</div><div class="ttdoc">Access to project name of current editor. </div></div>
 <div class="ttc" id="classTemplateCore_html_a1b8cc0d291b14259b3cd42c5d5abc87d"><div class="ttname"><a href="classTemplateCore.html#a1b8cc0d291b14259b3cd42c5d5abc87d">TemplateCore::editor</a></div><div class="ttdeci">virtual TemplateEditor * editor() const </div><div class="ttdoc">Access to editor widget of the template. </div><div class="ttdef"><b>Definition:</b> <a href="templatecore_8h_source.html#l00084">templatecore.h:84</a></div></div>
 <div class="ttc" id="classTemplateGenerator_html_ad955300d42c3c702e626dbe41a19f998"><div class="ttname"><a href="classTemplateGenerator.html#ad955300d42c3c702e626dbe41a19f998">TemplateGenerator::generationProgress</a></div><div class="ttdeci">void generationProgress(int progress, const QString &amp;message)</div><div class="ttdoc">Emitted when there is some progress in generating APK application. </div></div>
+<div class="ttc" id="classTemplateCore_html_a4e4e16e8fe56f0d89bf0afd47ae83ea4"><div class="ttname"><a href="classTemplateCore.html#a4e4e16e8fe56f0d89bf0afd47ae83ea4">TemplateCore::generateMobileApplication</a></div><div class="ttdeci">virtual GenerationResult generateMobileApplication(const QString &amp;input_apk_file, QString &amp;output_file)=0</div><div class="ttdoc">Generates APK file from current project with active settings. </div></div>
 <div class="ttc" id="classTemplateGenerator_html_af6f7a55d1eb7a8f381474841472ff4e7"><div class="ttname"><a href="classTemplateGenerator.html#af6f7a55d1eb7a8f381474841472ff4e7">TemplateGenerator::generationFinished</a></div><div class="ttdeci">void generationFinished(TemplateCore::GenerationResult result_code, const QString &amp;output_file=QString())</div><div class="ttdoc">Emitted if generating process is finished. </div></div>
 <div class="ttc" id="classTemplateGenerator_html_af8b278361faf8dc3407b73e49b112394"><div class="ttname"><a href="classTemplateGenerator.html#af8b278361faf8dc3407b73e49b112394">TemplateGenerator::generationStarted</a></div><div class="ttdeci">void generationStarted()</div><div class="ttdoc">Emitted if generating process is started. </div></div>
-<div class="ttc" id="classTemplateCore_html_a15f47ff1698b1d6d9e4ba08c7ed37bf1"><div class="ttname"><a href="classTemplateCore.html#a15f47ff1698b1d6d9e4ba08c7ed37bf1">TemplateCore::generateMobileApplication</a></div><div class="ttdeci">virtual GenerationResult generateMobileApplication(QString &amp;output_file)=0</div><div class="ttdoc">Generates APK file from current project with active settings. </div></div>
 <div class="ttc" id="classTemplateCore_html_a64e34dd774ee57ad8ad32b8d5185ae4b"><div class="ttname"><a href="classTemplateCore.html#a64e34dd774ee57ad8ad32b8d5185ae4b">TemplateCore::GenerationResult</a></div><div class="ttdeci">GenerationResult</div><div class="ttdoc">Possible results of generation of bundle data. </div><div class="ttdef"><b>Definition:</b> <a href="templatecore_8h_source.html#l00048">templatecore.h:48</a></div></div>
 </div><!-- fragment -->
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classTemplateGenerator_acd0fa658144dfd6210cef797a6ec1ceb_cgraph.png" border="0" usemap="#classTemplateGenerator_acd0fa658144dfd6210cef797a6ec1ceb_cgraph" alt=""/></div>
+<map name="classTemplateGenerator_acd0fa658144dfd6210cef797a6ec1ceb_cgraph" id="classTemplateGenerator_acd0fa658144dfd6210cef797a6ec1ceb_cgraph">
+<area shape="rect" id="node2" href="classTemplateCore.html#a1b8cc0d291b14259b3cd42c5d5abc87d" title="Access to editor widget of the template. " alt="" coords="275,5,430,32"/><area shape="rect" id="node3" href="classTemplateEditor.html#a9e7fb03a99c4cf22e3782f09bdaf85e6" title="Access to project name of current editor. " alt="" coords="249,56,457,83"/><area shape="rect" id="node4" href="classTemplateCore.html#a4e4e16e8fe56f0d89bf0afd47ae83ea4" title="Generates APK file from current project with active settings. " alt="" coords="244,107,461,149"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="af6f7a55d1eb7a8f381474841472ff4e7"></a>
@@ -272,6 +287,15 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classTemplateGenerator_af6f7a55d1eb7a8f381474841472ff4e7_icgraph.png" border="0" usemap="#classTemplateGenerator_af6f7a55d1eb7a8f381474841472ff4e7_icgraph" alt=""/></div>
+<map name="classTemplateGenerator_af6f7a55d1eb7a8f381474841472ff4e7_icgraph" id="classTemplateGenerator_af6f7a55d1eb7a8f381474841472ff4e7_icgraph">
+<area shape="rect" id="node2" href="classTemplateGenerator.html#acd0fa658144dfd6210cef797a6ec1ceb" title="Generates new APK application using given core. " alt="" coords="207,5,397,47"/></map>
+</div>
+</p>
 
 </div>
 </div>
@@ -316,16 +340,25 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classTemplateGenerator_ad955300d42c3c702e626dbe41a19f998_icgraph.png" border="0" usemap="#classTemplateGenerator_ad955300d42c3c702e626dbe41a19f998_icgraph" alt=""/></div>
+<map name="classTemplateGenerator_ad955300d42c3c702e626dbe41a19f998_icgraph" id="classTemplateGenerator_ad955300d42c3c702e626dbe41a19f998_icgraph">
+<area shape="rect" id="node2" href="classTemplateGenerator.html#acd0fa658144dfd6210cef797a6ec1ceb" title="Generates new APK application using given core. " alt="" coords="207,5,397,47"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/d/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/core/<a class="el" href="templategenerator_8h_source.html">templategenerator.h</a></li>
-<li>/d/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/core/<a class="el" href="templategenerator_8cpp_source.html">templategenerator.cpp</a></li>
+<li>/mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/core/<a class="el" href="templategenerator_8h_source.html">templategenerator.h</a></li>
+<li>/mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/core/<a class="el" href="templategenerator_8cpp_source.html">templategenerator.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Aug 4 2014 15:44:03 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Aug 16 2014 15:00:50 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.7"/>
-<title>BuildmLearn Toolkit: /d/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/core/templategenerator.cpp Source File</title>
+<title>BuildmLearn Toolkit: /mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/core/templategenerator.cpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -81,7 +81,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_e93149b64a4ea39523ce969bab267145.html">portage</a></li><li class="navelem"><a class="el" href="dir_82928ddbc3bafdd403330d98a74b0283.html">src</a></li><li class="navelem"><a class="el" href="dir_91e92dbcd5fcba90e23e9c12632d4658.html">core</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_5b13d613d053bd10e358ecb54357a5d6.html">data</a></li><li class="navelem"><a class="el" href="dir_68083efcf9ee33d99b45b272b86cc0c8.html">Martin</a></li><li class="navelem"><a class="el" href="dir_9398520d5aff4fa5fa64f9289982f118.html">Coding</a></li><li class="navelem"><a class="el" href="dir_8ff144ddfa1be06761cc38923377bd6f.html">Projekty</a></li><li class="navelem"><a class="el" href="dir_30a37e2355ef12c08d706bdcf80fec43.html">buildmlearn-toolkit</a></li><li class="navelem"><a class="el" href="dir_2813711323521bd6091a9c8a8d0a4efc.html">portage</a></li><li class="navelem"><a class="el" href="dir_0ecbf50818981b7b30cb590f4d05bbf9.html">src</a></li><li class="navelem"><a class="el" href="dir_691d729ee6106a8a2c486afa807fe580.html">core</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -136,7 +136,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="comment">// aby brala i ten vstupni nazev ciloveho apk souboru.</span></div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    QString output_file;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="classTemplateCore.html#a64e34dd774ee57ad8ad32b8d5185ae4b">TemplateCore::GenerationResult</a> result = core-&gt;<a class="code" href="classTemplateCore.html#a15f47ff1698b1d6d9e4ba08c7ed37bf1">generateMobileApplication</a>(output_file);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="classTemplateCore.html#a64e34dd774ee57ad8ad32b8d5185ae4b">TemplateCore::GenerationResult</a> result = core-&gt;<a class="code" href="classTemplateCore.html#a4e4e16e8fe56f0d89bf0afd47ae83ea4">generateMobileApplication</a>(input_file_name, output_file);</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    disconnect(core, SIGNAL(<a class="code" href="classTemplateGenerator.html#ad955300d42c3c702e626dbe41a19f998">generationProgress</a>(<span class="keywordtype">int</span>,QString)), <span class="keyword">this</span>, SIGNAL(<a class="code" href="classTemplateGenerator.html#ad955300d42c3c702e626dbe41a19f998">generationProgress</a>(<span class="keywordtype">int</span>,QString)));</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
@@ -170,16 +170,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="classTemplateGenerator_html_adde0afd6514967f1da10c2ab8a65432c"><div class="ttname"><a href="classTemplateGenerator.html#adde0afd6514967f1da10c2ab8a65432c">TemplateGenerator::refreshWorkspace</a></div><div class="ttdeci">void refreshWorkspace()</div><div class="ttdoc">Cleans and recreates base workspace path. </div><div class="ttdef"><b>Definition:</b> <a href="templategenerator_8cpp_source.html#l00072">templategenerator.cpp:72</a></div></div>
 <div class="ttc" id="classTemplateGenerator_html_a5bbcb76cdd37e86305d3e413c16d7849"><div class="ttname"><a href="classTemplateGenerator.html#a5bbcb76cdd37e86305d3e413c16d7849">TemplateGenerator::cleanWorkspace</a></div><div class="ttdeci">void cleanWorkspace()</div><div class="ttdoc">Cleans workspace used for generating applications. </div><div class="ttdef"><b>Definition:</b> <a href="templategenerator_8cpp_source.html#l00068">templategenerator.cpp:68</a></div></div>
 <div class="ttc" id="classTemplateGenerator_html_ad955300d42c3c702e626dbe41a19f998"><div class="ttname"><a href="classTemplateGenerator.html#ad955300d42c3c702e626dbe41a19f998">TemplateGenerator::generationProgress</a></div><div class="ttdeci">void generationProgress(int progress, const QString &amp;message)</div><div class="ttdoc">Emitted when there is some progress in generating APK application. </div></div>
+<div class="ttc" id="classTemplateCore_html_a4e4e16e8fe56f0d89bf0afd47ae83ea4"><div class="ttname"><a href="classTemplateCore.html#a4e4e16e8fe56f0d89bf0afd47ae83ea4">TemplateCore::generateMobileApplication</a></div><div class="ttdeci">virtual GenerationResult generateMobileApplication(const QString &amp;input_apk_file, QString &amp;output_file)=0</div><div class="ttdoc">Generates APK file from current project with active settings. </div></div>
 <div class="ttc" id="classTemplateGenerator_html_af6f7a55d1eb7a8f381474841472ff4e7"><div class="ttname"><a href="classTemplateGenerator.html#af6f7a55d1eb7a8f381474841472ff4e7">TemplateGenerator::generationFinished</a></div><div class="ttdeci">void generationFinished(TemplateCore::GenerationResult result_code, const QString &amp;output_file=QString())</div><div class="ttdoc">Emitted if generating process is finished. </div></div>
 <div class="ttc" id="classTemplateGenerator_html_af8b278361faf8dc3407b73e49b112394"><div class="ttname"><a href="classTemplateGenerator.html#af8b278361faf8dc3407b73e49b112394">TemplateGenerator::generationStarted</a></div><div class="ttdeci">void generationStarted()</div><div class="ttdoc">Emitted if generating process is started. </div></div>
 <div class="ttc" id="classTemplateCore_html"><div class="ttname"><a href="classTemplateCore.html">TemplateCore</a></div><div class="ttdoc">The core class container for single template. </div><div class="ttdef"><b>Definition:</b> <a href="templatecore_8h_source.html#l00043">templatecore.h:43</a></div></div>
-<div class="ttc" id="classTemplateCore_html_a15f47ff1698b1d6d9e4ba08c7ed37bf1"><div class="ttname"><a href="classTemplateCore.html#a15f47ff1698b1d6d9e4ba08c7ed37bf1">TemplateCore::generateMobileApplication</a></div><div class="ttdeci">virtual GenerationResult generateMobileApplication(QString &amp;output_file)=0</div><div class="ttdoc">Generates APK file from current project with active settings. </div></div>
 <div class="ttc" id="classTemplateCore_html_a64e34dd774ee57ad8ad32b8d5185ae4b"><div class="ttname"><a href="classTemplateCore.html#a64e34dd774ee57ad8ad32b8d5185ae4b">TemplateCore::GenerationResult</a></div><div class="ttdeci">GenerationResult</div><div class="ttdoc">Possible results of generation of bundle data. </div><div class="ttdef"><b>Definition:</b> <a href="templatecore_8h_source.html#l00048">templatecore.h:48</a></div></div>
 <div class="ttc" id="classIOFactory_html_a6fdf00267b348c9886a222344343158f"><div class="ttname"><a href="classIOFactory.html#a6fdf00267b348c9886a222344343158f">IOFactory::removeDirectory</a></div><div class="ttdeci">static bool removeDirectory(const QString &amp;directory_name, const QStringList &amp;exception_file_list=QStringList(), const QStringList &amp;exception_folder_list=QStringList())</div><div class="ttdoc">Removes given directory and all its contents if not exceptions are given. </div><div class="ttdef"><b>Definition:</b> <a href="iofactory_8cpp_source.html#l00085">iofactory.cpp:85</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Aug 4 2014 15:44:01 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Aug 16 2014 15:00:50 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

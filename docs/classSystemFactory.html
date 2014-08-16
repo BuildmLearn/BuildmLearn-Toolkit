@@ -64,7 +64,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
@@ -95,6 +95,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <a href="classSystemFactory.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="systemfactory_8h_source.html">systemfactory.h</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for SystemFactory:</div>
+<div class="dyncontent">
+<div class="center"><img src="classSystemFactory__coll__graph.png" border="0" usemap="#SystemFactory_coll__map" alt="Collaboration graph"/></div>
+<map name="SystemFactory_coll__map" id="SystemFactory_coll__map">
+</map>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -153,6 +160,24 @@ QNetworkReply::NetworkError &gt;&#160;</td><td class="memItemRight" valign="bott
 <div class="ttc" id="classSystemFactory_html_a04ca168cb45b7dab26c1246de345714c"><div class="ttname"><a href="classSystemFactory.html#a04ca168cb45b7dab26c1246de345714c">SystemFactory::parseUpdatesFile</a></div><div class="ttdeci">static UpdateInfo parseUpdatesFile(const QByteArray &amp;updates_file)</div><div class="ttdoc">Performs parsing of downloaded file with list of updates. </div><div class="ttdef"><b>Definition:</b> <a href="systemfactory_8cpp_source.html#l00069">systemfactory.cpp:69</a></div></div>
 <div class="ttc" id="classNetworkFactory_html_ab2ed607a42b58b7912c85537ddc2b0d7"><div class="ttname"><a href="classNetworkFactory.html#ab2ed607a42b58b7912c85537ddc2b0d7">NetworkFactory::downloadFile</a></div><div class="ttdeci">static QNetworkReply::NetworkError downloadFile(const QString &amp;url, int timeout, QByteArray &amp;output, bool protected_contents=false, const QString &amp;username=QString(), const QString &amp;password=QString())</div><div class="ttdoc">Performs SYNCHRONOUS download of file with given URL and given timeout. </div><div class="ttdef"><b>Definition:</b> <a href="networkfactory_8cpp_source.html#l00112">networkfactory.cpp:112</a></div></div>
 </div><!-- fragment -->
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classSystemFactory_ac1175e644ebb4cc273c9064171a5bda5_cgraph.png" border="0" usemap="#classSystemFactory_ac1175e644ebb4cc273c9064171a5bda5_cgraph" alt=""/></div>
+<map name="classSystemFactory_ac1175e644ebb4cc273c9064171a5bda5_cgraph" id="classSystemFactory_ac1175e644ebb4cc273c9064171a5bda5_cgraph">
+<area shape="rect" id="node2" href="classNetworkFactory.html#ab2ed607a42b58b7912c85537ddc2b0d7" title="Performs SYNCHRONOUS download of file with given URL and given timeout. " alt="" coords="302,5,509,32"/><area shape="rect" id="node4" href="classSystemFactory.html#a04ca168cb45b7dab26c1246de345714c" title="Performs parsing of downloaded file with list of updates. " alt="" coords="288,56,523,83"/><area shape="rect" id="node3" href="classNetworkFactory.html#a30cef8b2f120dfcfd2002e4b78bf7a42" title="Gets human readable text for given network error. " alt="" coords="571,5,804,32"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classSystemFactory_ac1175e644ebb4cc273c9064171a5bda5_icgraph.png" border="0" usemap="#classSystemFactory_ac1175e644ebb4cc273c9064171a5bda5_icgraph" alt=""/></div>
+<map name="classSystemFactory_ac1175e644ebb4cc273c9064171a5bda5_icgraph" id="classSystemFactory_ac1175e644ebb4cc273c9064171a5bda5_icgraph">
+<area shape="rect" id="node2" href="classApplication.html#ae55251b8f67a9e892f9880ee67aad4e4" title="Tries to download list with new updates. " alt="" coords="288,13,499,39"/><area shape="rect" id="node3" href="classApplication.html#ae561be62fe17ea0763a8c42b8fa2969d" title="Schedules check for updates. " alt="" coords="547,5,757,47"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="a04ca168cb45b7dab26c1246de345714c"></a>
@@ -230,16 +255,25 @@ QNetworkReply::NetworkError &gt;&#160;</td><td class="memItemRight" valign="bott
 <div class="ttc" id="classUpdateInfo_html"><div class="ttname"><a href="classUpdateInfo.html">UpdateInfo</a></div><div class="ttdoc">Information about available update. </div><div class="ttdef"><b>Definition:</b> <a href="systemfactory_8h_source.html#l00049">systemfactory.h:49</a></div></div>
 <div class="ttc" id="classUpdateUrl_html"><div class="ttname"><a href="classUpdateUrl.html">UpdateUrl</a></div><div class="ttdoc">Information about update metadata. </div><div class="ttdef"><b>Definition:</b> <a href="systemfactory_8h_source.html#l00041">systemfactory.h:41</a></div></div>
 </div><!-- fragment -->
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classSystemFactory_a04ca168cb45b7dab26c1246de345714c_icgraph.png" border="0" usemap="#classSystemFactory_a04ca168cb45b7dab26c1246de345714c_icgraph" alt=""/></div>
+<map name="classSystemFactory_a04ca168cb45b7dab26c1246de345714c_icgraph" id="classSystemFactory_a04ca168cb45b7dab26c1246de345714c_icgraph">
+<area shape="rect" id="node2" href="classSystemFactory.html#ac1175e644ebb4cc273c9064171a5bda5" title="Tries to synchronously download list with new updates. " alt="" coords="288,13,523,39"/><area shape="rect" id="node3" href="classApplication.html#ae55251b8f67a9e892f9880ee67aad4e4" title="Tries to download list with new updates. " alt="" coords="571,13,781,39"/><area shape="rect" id="node4" href="classApplication.html#ae561be62fe17ea0763a8c42b8fa2969d" title="Schedules check for updates. " alt="" coords="829,5,1040,47"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/d/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/miscellaneous/<a class="el" href="systemfactory_8h_source.html">systemfactory.h</a></li>
-<li>/d/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/miscellaneous/<a class="el" href="systemfactory_8cpp_source.html">systemfactory.cpp</a></li>
+<li>/mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/miscellaneous/<a class="el" href="systemfactory_8h_source.html">systemfactory.h</a></li>
+<li>/mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/miscellaneous/<a class="el" href="systemfactory_8cpp_source.html">systemfactory.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Aug 4 2014 15:44:03 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Aug 16 2014 15:00:50 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.7"/>
-<title>BuildmLearn Toolkit: /d/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/templates/mlearning/basicmlearningeditor.h Source File</title>
+<title>BuildmLearn Toolkit: /mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/templates/mlearning/basicmlearningeditor.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -81,7 +81,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_e93149b64a4ea39523ce969bab267145.html">portage</a></li><li class="navelem"><a class="el" href="dir_82928ddbc3bafdd403330d98a74b0283.html">src</a></li><li class="navelem"><a class="el" href="dir_4767c88c1a0b9b2a275c20dd758afde4.html">templates</a></li><li class="navelem"><a class="el" href="dir_e52262109fe4f5ba812665cfeab69a2e.html">mlearning</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_5b13d613d053bd10e358ecb54357a5d6.html">data</a></li><li class="navelem"><a class="el" href="dir_68083efcf9ee33d99b45b272b86cc0c8.html">Martin</a></li><li class="navelem"><a class="el" href="dir_9398520d5aff4fa5fa64f9289982f118.html">Coding</a></li><li class="navelem"><a class="el" href="dir_8ff144ddfa1be06761cc38923377bd6f.html">Projekty</a></li><li class="navelem"><a class="el" href="dir_30a37e2355ef12c08d706bdcf80fec43.html">buildmlearn-toolkit</a></li><li class="navelem"><a class="el" href="dir_2813711323521bd6091a9c8a8d0a4efc.html">portage</a></li><li class="navelem"><a class="el" href="dir_0ecbf50818981b7b30cb590f4d05bbf9.html">src</a></li><li class="navelem"><a class="el" href="dir_22d20830482ee44b44184604348edacd.html">templates</a></li><li class="navelem"><a class="el" href="dir_5073ba7daaacf0e7f7c50d205104b1b2.html">mlearning</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -160,40 +160,39 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordtype">void</span> saveItem();</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordtype">void</span> displayItem(<span class="keywordtype">int</span> index);</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordtype">void</span> checkTitle(<span class="keyword">const</span> QString &amp;title);</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordtype">void</span> checkDescription(<span class="keyword">const</span> QString &amp;description);</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordtype">void</span> moveItemUp();</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordtype">void</span> moveItemDown();</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordtype">void</span> configureUpDown();</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordtype">void</span> updateItemCount();</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordtype">void</span> checkAuthor();</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">void</span> checkName();</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordtype">void</span> onAuthorChanged(<span class="keyword">const</span> QString &amp;new_author);</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordtype">void</span> onNameChanged(<span class="keyword">const</span> QString &amp;new_name);</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;  <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordtype">void</span> setEditorsEnabled(<span class="keywordtype">bool</span> enabled);</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;  <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    Ui::BasicmLearningEditor *m_ui;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <a class="code" href="classBasicmLearningItem.html">BasicmLearningItem</a> m_activeItem;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;};</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="preprocessor">#endif // BASICMLEARNINGEDITOR_H</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordtype">void</span> moveItemUp();</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordtype">void</span> moveItemDown();</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordtype">void</span> configureUpDown();</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordtype">void</span> updateItemCount();</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordtype">void</span> checkAuthor();</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordtype">void</span> checkName();</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">void</span> onAuthorChanged(<span class="keyword">const</span> QString &amp;new_author);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordtype">void</span> onNameChanged(<span class="keyword">const</span> QString &amp;new_name);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;  <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordtype">void</span> setEditorsEnabled(<span class="keywordtype">bool</span> enabled);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;  <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    Ui::BasicmLearningEditor *m_ui;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <a class="code" href="classBasicmLearningItem.html">BasicmLearningItem</a> m_activeItem;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;};</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="preprocessor">#endif // BASICMLEARNINGEDITOR_H</span></div>
 <div class="ttc" id="classBasicmLearningCore_html"><div class="ttname"><a href="classBasicmLearningCore.html">BasicmLearningCore</a></div><div class="ttdef"><b>Definition:</b> <a href="basicmlearningcore_8h_source.html#l00040">basicmlearningcore.h:40</a></div></div>
 <div class="ttc" id="classTemplateEditor_html_a171503c880d22a461d2f78209d27a958"><div class="ttname"><a href="classTemplateEditor.html#a171503c880d22a461d2f78209d27a958">TemplateEditor::core</a></div><div class="ttdeci">TemplateCore * core() const </div><div class="ttdoc">Access to associated template core. </div><div class="ttdef"><b>Definition:</b> <a href="templateeditor_8cpp_source.html#l00056">templateeditor.cpp:56</a></div></div>
 <div class="ttc" id="classTemplateEditor_html"><div class="ttname"><a href="classTemplateEditor.html">TemplateEditor</a></div><div class="ttdoc">Represents the editor of the template. </div><div class="ttdef"><b>Definition:</b> <a href="templateeditor_8h_source.html#l00046">templateeditor.h:46</a></div></div>
-<div class="ttc" id="classBasicmLearningEditor_html_a7c3909e4cb1c6cbcb38ddfd34b42b7d0"><div class="ttname"><a href="classBasicmLearningEditor.html#a7c3909e4cb1c6cbcb38ddfd34b42b7d0">BasicmLearningEditor::authorName</a></div><div class="ttdeci">QString authorName()</div><div class="ttdoc">Access to author name of current editor. </div><div class="ttdef"><b>Definition:</b> <a href="basicmlearningeditor_8cpp_source.html#l00123">basicmlearningeditor.cpp:123</a></div></div>
-<div class="ttc" id="classBasicmLearningEditor_html_a25382cd2729f5e821147d1cde5513aab"><div class="ttname"><a href="classBasicmLearningEditor.html#a25382cd2729f5e821147d1cde5513aab">BasicmLearningEditor::canGenerateApplications</a></div><div class="ttdeci">bool canGenerateApplications()</div><div class="ttdoc">Specifies if template can generate applications or not. </div><div class="ttdef"><b>Definition:</b> <a href="basicmlearningeditor_8cpp_source.html#l00234">basicmlearningeditor.cpp:234</a></div></div>
-<div class="ttc" id="classBasicmLearningEditor_html_a0cdf10c1e16fce6c7dfdf40029d8d9b9"><div class="ttname"><a href="classBasicmLearningEditor.html#a0cdf10c1e16fce6c7dfdf40029d8d9b9">BasicmLearningEditor::generateBundleData</a></div><div class="ttdeci">QString generateBundleData()</div><div class="ttdoc">Generates RAW data which represent data of this template. </div><div class="ttdef"><b>Definition:</b> <a href="basicmlearningeditor_8cpp_source.html#l00238">basicmlearningeditor.cpp:238</a></div></div>
+<div class="ttc" id="classBasicmLearningEditor_html_a7c3909e4cb1c6cbcb38ddfd34b42b7d0"><div class="ttname"><a href="classBasicmLearningEditor.html#a7c3909e4cb1c6cbcb38ddfd34b42b7d0">BasicmLearningEditor::authorName</a></div><div class="ttdeci">QString authorName()</div><div class="ttdoc">Access to author name of current editor. </div><div class="ttdef"><b>Definition:</b> <a href="basicmlearningeditor_8cpp_source.html#l00139">basicmlearningeditor.cpp:139</a></div></div>
+<div class="ttc" id="classBasicmLearningEditor_html_a25382cd2729f5e821147d1cde5513aab"><div class="ttname"><a href="classBasicmLearningEditor.html#a25382cd2729f5e821147d1cde5513aab">BasicmLearningEditor::canGenerateApplications</a></div><div class="ttdeci">bool canGenerateApplications()</div><div class="ttdoc">Specifies if template can generate applications or not. </div><div class="ttdef"><b>Definition:</b> <a href="basicmlearningeditor_8cpp_source.html#l00250">basicmlearningeditor.cpp:250</a></div></div>
+<div class="ttc" id="classBasicmLearningEditor_html_a0cdf10c1e16fce6c7dfdf40029d8d9b9"><div class="ttname"><a href="classBasicmLearningEditor.html#a0cdf10c1e16fce6c7dfdf40029d8d9b9">BasicmLearningEditor::generateBundleData</a></div><div class="ttdeci">QString generateBundleData()</div><div class="ttdoc">Generates RAW data which represent data of this template. </div><div class="ttdef"><b>Definition:</b> <a href="basicmlearningeditor_8cpp_source.html#l00254">basicmlearningeditor.cpp:254</a></div></div>
 <div class="ttc" id="classBasicmLearningItem_html"><div class="ttname"><a href="classBasicmLearningItem.html">BasicmLearningItem</a></div><div class="ttdef"><b>Definition:</b> <a href="basicmlearningitem_8h_source.html#l00038">basicmlearningitem.h:38</a></div></div>
-<div class="ttc" id="classBasicmLearningEditor_html_a255298c10e1d87efb8285cb6e0c878ae"><div class="ttname"><a href="classBasicmLearningEditor.html#a255298c10e1d87efb8285cb6e0c878ae">BasicmLearningEditor::loadBundleData</a></div><div class="ttdeci">bool loadBundleData(const QString &amp;bundle_data)</div><div class="ttdoc">Loads editor state from XML bundle. </div><div class="ttdef"><b>Definition:</b> <a href="basicmlearningeditor_8cpp_source.html#l00086">basicmlearningeditor.cpp:86</a></div></div>
+<div class="ttc" id="classBasicmLearningEditor_html_a255298c10e1d87efb8285cb6e0c878ae"><div class="ttname"><a href="classBasicmLearningEditor.html#a255298c10e1d87efb8285cb6e0c878ae">BasicmLearningEditor::loadBundleData</a></div><div class="ttdeci">bool loadBundleData(const QString &amp;bundle_data)</div><div class="ttdoc">Loads editor state from XML bundle. </div><div class="ttdef"><b>Definition:</b> <a href="basicmlearningeditor_8cpp_source.html#l00102">basicmlearningeditor.cpp:102</a></div></div>
 <div class="ttc" id="classBasicmLearningEditor_html"><div class="ttname"><a href="classBasicmLearningEditor.html">BasicmLearningEditor</a></div><div class="ttdef"><b>Definition:</b> <a href="basicmlearningeditor_8h_source.html#l00047">basicmlearningeditor.h:47</a></div></div>
 <div class="ttc" id="classTemplateCore_html"><div class="ttname"><a href="classTemplateCore.html">TemplateCore</a></div><div class="ttdoc">The core class container for single template. </div><div class="ttdef"><b>Definition:</b> <a href="templatecore_8h_source.html#l00043">templatecore.h:43</a></div></div>
-<div class="ttc" id="classBasicmLearningEditor_html_a044d5b429438d71a782c84128a230c2e"><div class="ttname"><a href="classBasicmLearningEditor.html#a044d5b429438d71a782c84128a230c2e">BasicmLearningEditor::projectName</a></div><div class="ttdeci">QString projectName()</div><div class="ttdoc">Access to project name of current editor. </div><div class="ttdef"><b>Definition:</b> <a href="basicmlearningeditor_8cpp_source.html#l00119">basicmlearningeditor.cpp:119</a></div></div>
+<div class="ttc" id="classBasicmLearningEditor_html_a044d5b429438d71a782c84128a230c2e"><div class="ttname"><a href="classBasicmLearningEditor.html#a044d5b429438d71a782c84128a230c2e">BasicmLearningEditor::projectName</a></div><div class="ttdeci">QString projectName()</div><div class="ttdoc">Access to project name of current editor. </div><div class="ttdef"><b>Definition:</b> <a href="basicmlearningeditor_8cpp_source.html#l00135">basicmlearningeditor.cpp:135</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Aug 4 2014 15:44:02 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Aug 16 2014 15:00:50 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

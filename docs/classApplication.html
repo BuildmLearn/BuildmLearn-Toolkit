@@ -64,7 +64,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
@@ -101,11 +101,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Inheritance diagram for Application:</div>
 <div class="dyncontent">
- <div class="center">
-  <img src="classApplication.png" usemap="#Application_map" alt=""/>
-  <map id="Application_map" name="Application_map">
+<div class="center"><img src="classApplication__inherit__graph.png" border="0" usemap="#Application_inherit__map" alt="Inheritance graph"/></div>
+<map name="Application_inherit__map" id="Application_inherit__map">
 </map>
- </div></div>
+</div>
+<div class="dynheader">
+Collaboration diagram for Application:</div>
+<div class="dyncontent">
+<div class="center"><img src="classApplication__coll__graph.png" border="0" usemap="#Application_coll__map" alt="Collaboration graph"/></div>
+<map name="Application_coll__map" id="Application_coll__map">
+</map>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-slots"></a>
 Public Slots</h2></td></tr>
@@ -304,8 +310,17 @@ Static Public Member Functions</h2></td></tr>
 <div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    <span class="keywordflow">return</span> m_availableActions;</div>
 <div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;  }</div>
 <div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;}</div>
-<div class="ttc" id="classFormMain_html_a71f25dda5f8f0486a1ee339db91e60e2"><div class="ttname"><a href="classFormMain.html#a71f25dda5f8f0486a1ee339db91e60e2">FormMain::allActions</a></div><div class="ttdeci">QList&lt; QAction * &gt; allActions()</div><div class="ttdoc">Access to all actions provided by this window. </div><div class="ttdef"><b>Definition:</b> <a href="formmain_8cpp_source.html#l00118">formmain.cpp:118</a></div></div>
+<div class="ttc" id="classFormMain_html_a71f25dda5f8f0486a1ee339db91e60e2"><div class="ttname"><a href="classFormMain.html#a71f25dda5f8f0486a1ee339db91e60e2">FormMain::allActions</a></div><div class="ttdeci">QList&lt; QAction * &gt; allActions()</div><div class="ttdoc">Access to all actions provided by this window. </div><div class="ttdef"><b>Definition:</b> <a href="formmain_8cpp_source.html#l00130">formmain.cpp:130</a></div></div>
 </div><!-- fragment -->
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classApplication_a4c2da9a3700b41120a98794237af5072_cgraph.png" border="0" usemap="#classApplication_a4c2da9a3700b41120a98794237af5072_cgraph" alt=""/></div>
+<map name="classApplication_a4c2da9a3700b41120a98794237af5072_cgraph" id="classApplication_a4c2da9a3700b41120a98794237af5072_cgraph">
+<area shape="rect" id="node2" href="classFormMain.html#a71f25dda5f8f0486a1ee339db91e60e2" title="Access to all actions provided by this window. " alt="" coords="256,5,411,32"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="ae55251b8f67a9e892f9880ee67aad4e4"></a>
@@ -330,6 +345,24 @@ Static Public Member Functions</h2></td></tr>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;}</div>
 <div class="ttc" id="classSystemFactory_html_ac1175e644ebb4cc273c9064171a5bda5"><div class="ttname"><a href="classSystemFactory.html#ac1175e644ebb4cc273c9064171a5bda5">SystemFactory::checkForUpdates</a></div><div class="ttdeci">static QPair&lt; UpdateInfo, QNetworkReply::NetworkError &gt; checkForUpdates()</div><div class="ttdoc">Tries to synchronously download list with new updates. </div><div class="ttdef"><b>Definition:</b> <a href="systemfactory_8cpp_source.html#l00054">systemfactory.cpp:54</a></div></div>
 </div><!-- fragment -->
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classApplication_ae55251b8f67a9e892f9880ee67aad4e4_cgraph.png" border="0" usemap="#classApplication_ae55251b8f67a9e892f9880ee67aad4e4_cgraph" alt=""/></div>
+<map name="classApplication_ae55251b8f67a9e892f9880ee67aad4e4_cgraph" id="classApplication_ae55251b8f67a9e892f9880ee67aad4e4_cgraph">
+<area shape="rect" id="node2" href="classSystemFactory.html#ac1175e644ebb4cc273c9064171a5bda5" title="Tries to synchronously download list with new updates. " alt="" coords="264,31,499,57"/><area shape="rect" id="node3" href="classNetworkFactory.html#ab2ed607a42b58b7912c85537ddc2b0d7" title="Performs SYNCHRONOUS download of file with given URL and given timeout. " alt="" coords="561,5,767,32"/><area shape="rect" id="node5" href="classSystemFactory.html#a04ca168cb45b7dab26c1246de345714c" title="Performs parsing of downloaded file with list of updates. " alt="" coords="547,56,781,83"/><area shape="rect" id="node4" href="classNetworkFactory.html#a30cef8b2f120dfcfd2002e4b78bf7a42" title="Gets human readable text for given network error. " alt="" coords="829,5,1063,32"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classApplication_ae55251b8f67a9e892f9880ee67aad4e4_icgraph.png" border="0" usemap="#classApplication_ae55251b8f67a9e892f9880ee67aad4e4_icgraph" alt=""/></div>
+<map name="classApplication_ae55251b8f67a9e892f9880ee67aad4e4_icgraph" id="classApplication_ae55251b8f67a9e892f9880ee67aad4e4_icgraph">
+<area shape="rect" id="node2" href="classApplication.html#ae561be62fe17ea0763a8c42b8fa2969d" title="Schedules check for updates. " alt="" coords="264,5,475,47"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="ae561be62fe17ea0763a8c42b8fa2969d"></a>
@@ -375,6 +408,15 @@ Static Public Member Functions</h2></td></tr>
 <div class="ttc" id="classApplication_html_ae2c9557de52ed56485be93dc13ab929d"><div class="ttname"><a href="classApplication.html#ae2c9557de52ed56485be93dc13ab929d">Application::settings</a></div><div class="ttdeci">Settings * settings()</div><div class="ttdoc">Access to application-wide settings. </div><div class="ttdef"><b>Definition:</b> <a href="application_8h_source.html#l00080">application.h:80</a></div></div>
 <div class="ttc" id="classApplication_html_ae55251b8f67a9e892f9880ee67aad4e4"><div class="ttname"><a href="classApplication.html#ae55251b8f67a9e892f9880ee67aad4e4">Application::checkForUpdates</a></div><div class="ttdeci">UpdateCheck checkForUpdates()</div><div class="ttdoc">Tries to download list with new updates. </div><div class="ttdef"><b>Definition:</b> <a href="application_8cpp_source.html#l00070">application.cpp:70</a></div></div>
 </div><!-- fragment -->
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classApplication_ae561be62fe17ea0763a8c42b8fa2969d_cgraph.png" border="0" usemap="#classApplication_ae561be62fe17ea0763a8c42b8fa2969d_cgraph" alt=""/></div>
+<map name="classApplication_ae561be62fe17ea0763a8c42b8fa2969d_cgraph" id="classApplication_ae561be62fe17ea0763a8c42b8fa2969d_cgraph">
+<area shape="rect" id="node2" href="classApplication.html#ae2c9557de52ed56485be93dc13ab929d" title="Access to application&#45;wide settings. " alt="" coords="294,5,445,32"/><area shape="rect" id="node4" href="classApplication.html#ae55251b8f67a9e892f9880ee67aad4e4" title="Tries to download list with new updates. " alt="" coords="264,56,475,83"/><area shape="rect" id="node3" href="classSettings.html#a59ec5afcafd34266e9827093f7742067" title="Creates settings file in correct location. " alt="" coords="554,5,726,32"/><area shape="rect" id="node5" href="classSystemFactory.html#ac1175e644ebb4cc273c9064171a5bda5" title="Tries to synchronously download list with new updates. " alt="" coords="523,56,757,83"/><area shape="rect" id="node6" href="classNetworkFactory.html#ab2ed607a42b58b7912c85537ddc2b0d7" title="Performs SYNCHRONOUS download of file with given URL and given timeout. " alt="" coords="819,31,1026,57"/><area shape="rect" id="node8" href="classSystemFactory.html#a04ca168cb45b7dab26c1246de345714c" title="Performs parsing of downloaded file with list of updates. " alt="" coords="805,81,1040,108"/><area shape="rect" id="node7" href="classNetworkFactory.html#a30cef8b2f120dfcfd2002e4b78bf7a42" title="Gets human readable text for given network error. " alt="" coords="1088,31,1321,57"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="af58a5a2b744c3cfd15b76e81881dc6da"></a>
@@ -419,6 +461,15 @@ Static Public Member Functions</h2></td></tr>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;}</div>
 <div class="ttc" id="classApplication_html_a2fcefcd0be7d65ca7be0a43269c3f542"><div class="ttname"><a href="classApplication.html#a2fcefcd0be7d65ca7be0a43269c3f542">Application::javaInterpreterPath</a></div><div class="ttdeci">QString javaInterpreterPath()</div><div class="ttdoc">Access to path to "java" interpreter. </div><div class="ttdef"><b>Definition:</b> <a href="application_8h_source.html#l00126">application.h:126</a></div></div>
 </div><!-- fragment -->
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classApplication_af58a5a2b744c3cfd15b76e81881dc6da_cgraph.png" border="0" usemap="#classApplication_af58a5a2b744c3cfd15b76e81881dc6da_cgraph" alt=""/></div>
+<map name="classApplication_af58a5a2b744c3cfd15b76e81881dc6da_cgraph" id="classApplication_af58a5a2b744c3cfd15b76e81881dc6da_cgraph">
+<area shape="rect" id="node2" href="classApplication.html#a2fcefcd0be7d65ca7be0a43269c3f542" title="Access to path to &quot;java&quot; interpreter. " alt="" coords="216,31,439,57"/><area shape="rect" id="node3" href="classApplication.html#ae2c9557de52ed56485be93dc13ab929d" title="Access to application&#45;wide settings. " alt="" coords="487,5,637,32"/><area shape="rect" id="node5" href="classSettings.html#a2b2ae54dc7fc444df6f52c9a1f6143f5" title="Getter/setter for settings values. " alt="" coords="503,56,621,83"/><area shape="rect" id="node4" href="classSettings.html#a59ec5afcafd34266e9827093f7742067" title="Creates settings file in correct location. " alt="" coords="685,5,857,32"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="af3e3e38a5f68340cd31ade18aac5f728"></a>
@@ -477,6 +528,15 @@ Static Public Member Functions</h2></td></tr>
 <div class="ttc" id="classApplication_html_a2fcefcd0be7d65ca7be0a43269c3f542"><div class="ttname"><a href="classApplication.html#a2fcefcd0be7d65ca7be0a43269c3f542">Application::javaInterpreterPath</a></div><div class="ttdeci">QString javaInterpreterPath()</div><div class="ttdoc">Access to path to "java" interpreter. </div><div class="ttdef"><b>Definition:</b> <a href="application_8h_source.html#l00126">application.h:126</a></div></div>
 <div class="ttc" id="classApplication_html_a8ece375a09251ccae4d479d034c4fa2b"><div class="ttname"><a href="classApplication.html#a8ece375a09251ccae4d479d034c4fa2b">Application::signApkUtlityPath</a></div><div class="ttdeci">QString signApkUtlityPath()</div><div class="ttdoc">Access to path to "signapk" utility. </div><div class="ttdef"><b>Definition:</b> <a href="application_8h_source.html#l00114">application.h:114</a></div></div>
 </div><!-- fragment -->
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classApplication_af3e3e38a5f68340cd31ade18aac5f728_cgraph.png" border="0" usemap="#classApplication_af3e3e38a5f68340cd31ade18aac5f728_cgraph" alt=""/></div>
+<map name="classApplication_af3e3e38a5f68340cd31ade18aac5f728_cgraph" id="classApplication_af3e3e38a5f68340cd31ade18aac5f728_cgraph">
+<area shape="rect" id="node2" href="classApplication.html#a2fcefcd0be7d65ca7be0a43269c3f542" title="Access to path to &quot;java&quot; interpreter. " alt="" coords="243,5,465,32"/><area shape="rect" id="node6" href="classApplication.html#a8ece375a09251ccae4d479d034c4fa2b" title="Access to path to &quot;signapk&quot; utility. " alt="" coords="249,56,459,83"/><area shape="rect" id="node3" href="classApplication.html#ae2c9557de52ed56485be93dc13ab929d" title="Access to application&#45;wide settings. " alt="" coords="513,5,664,32"/><area shape="rect" id="node5" href="classSettings.html#a2b2ae54dc7fc444df6f52c9a1f6143f5" title="Getter/setter for settings values. " alt="" coords="530,56,647,83"/><area shape="rect" id="node4" href="classSettings.html#a59ec5afcafd34266e9827093f7742067" title="Creates settings file in correct location. " alt="" coords="712,5,884,32"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="a3b70c8738e05c665d39c9ccb97f85f06"></a>
@@ -521,6 +581,15 @@ Static Public Member Functions</h2></td></tr>
 <div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;}</div>
 <div class="ttc" id="classApplication_html_a0762f85fbec5968aaa441e4f6ddad749"><div class="ttname"><a href="classApplication.html#a0762f85fbec5968aaa441e4f6ddad749">Application::zipUtilityPath</a></div><div class="ttdeci">QString zipUtilityPath()</div><div class="ttdoc">Access to "zip" utility path. </div><div class="ttdef"><b>Definition:</b> <a href="application_8h_source.html#l00102">application.h:102</a></div></div>
 </div><!-- fragment -->
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classApplication_a3b70c8738e05c665d39c9ccb97f85f06_cgraph.png" border="0" usemap="#classApplication_a3b70c8738e05c665d39c9ccb97f85f06_cgraph" alt=""/></div>
+<map name="classApplication_a3b70c8738e05c665d39c9ccb97f85f06_cgraph" id="classApplication_a3b70c8738e05c665d39c9ccb97f85f06_cgraph">
+<area shape="rect" id="node2" href="classApplication.html#a0762f85fbec5968aaa441e4f6ddad749" title="Access to &quot;zip&quot; utility path. " alt="" coords="212,31,395,57"/><area shape="rect" id="node3" href="classApplication.html#ae2c9557de52ed56485be93dc13ab929d" title="Access to application&#45;wide settings. " alt="" coords="443,5,593,32"/><area shape="rect" id="node5" href="classSettings.html#a2b2ae54dc7fc444df6f52c9a1f6143f5" title="Getter/setter for settings values. " alt="" coords="459,56,577,83"/><area shape="rect" id="node4" href="classSettings.html#a59ec5afcafd34266e9827093f7742067" title="Creates settings file in correct location. " alt="" coords="641,5,813,32"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="a150d258a24824d3955798b73aa326e7a"></a>
@@ -641,6 +710,24 @@ Static Public Member Functions</h2></td></tr>
 <div class="ttc" id="classApplication_html_ae2c9557de52ed56485be93dc13ab929d"><div class="ttname"><a href="classApplication.html#ae2c9557de52ed56485be93dc13ab929d">Application::settings</a></div><div class="ttdeci">Settings * settings()</div><div class="ttdoc">Access to application-wide settings. </div><div class="ttdef"><b>Definition:</b> <a href="application_8h_source.html#l00080">application.h:80</a></div></div>
 <div class="ttc" id="classSettings_html_a2b2ae54dc7fc444df6f52c9a1f6143f5"><div class="ttname"><a href="classSettings.html#a2b2ae54dc7fc444df6f52c9a1f6143f5">Settings::value</a></div><div class="ttdeci">QVariant value(const QString &amp;section, const QString &amp;key, const QVariant &amp;default_value=QVariant())</div><div class="ttdoc">Getter/setter for settings values. </div><div class="ttdef"><b>Definition:</b> <a href="settings_8h_source.html#l00064">settings.h:64</a></div></div>
 </div><!-- fragment -->
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classApplication_a2fcefcd0be7d65ca7be0a43269c3f542_cgraph.png" border="0" usemap="#classApplication_a2fcefcd0be7d65ca7be0a43269c3f542_cgraph" alt=""/></div>
+<map name="classApplication_a2fcefcd0be7d65ca7be0a43269c3f542_cgraph" id="classApplication_a2fcefcd0be7d65ca7be0a43269c3f542_cgraph">
+<area shape="rect" id="node2" href="classApplication.html#ae2c9557de52ed56485be93dc13ab929d" title="Access to application&#45;wide settings. " alt="" coords="276,5,427,32"/><area shape="rect" id="node4" href="classSettings.html#a2b2ae54dc7fc444df6f52c9a1f6143f5" title="Getter/setter for settings values. " alt="" coords="293,56,410,83"/><area shape="rect" id="node3" href="classSettings.html#a59ec5afcafd34266e9827093f7742067" title="Creates settings file in correct location. " alt="" coords="475,5,647,32"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classApplication_a2fcefcd0be7d65ca7be0a43269c3f542_icgraph.png" border="0" usemap="#classApplication_a2fcefcd0be7d65ca7be0a43269c3f542_icgraph" alt=""/></div>
+<map name="classApplication_a2fcefcd0be7d65ca7be0a43269c3f542_icgraph" id="classApplication_a2fcefcd0be7d65ca7be0a43269c3f542_icgraph">
+<area shape="rect" id="node2" href="classApplication.html#af58a5a2b744c3cfd15b76e81881dc6da" title="Tests if binary in new_path is correct JAVA executable. " alt="" coords="289,5,452,32"/><area shape="rect" id="node3" href="classApplication.html#af3e3e38a5f68340cd31ade18aac5f728" title="Tests if binary in new_path is correct SIGNAPK executable. " alt="" coords="276,56,465,83"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="ac3b810fbb691dbae4054977900842d91"></a>
@@ -711,6 +798,15 @@ Static Public Member Functions</h2></td></tr>
 <div class="ttc" id="classApplication_html_ae2c9557de52ed56485be93dc13ab929d"><div class="ttname"><a href="classApplication.html#ae2c9557de52ed56485be93dc13ab929d">Application::settings</a></div><div class="ttdeci">Settings * settings()</div><div class="ttdoc">Access to application-wide settings. </div><div class="ttdef"><b>Definition:</b> <a href="application_8h_source.html#l00080">application.h:80</a></div></div>
 <div class="ttc" id="classSettings_html_a9b6421e864b980818a51da33062ae280"><div class="ttname"><a href="classSettings.html#a9b6421e864b980818a51da33062ae280">Settings::setValue</a></div><div class="ttdeci">void setValue(const QString &amp;section, const QString &amp;key, const QVariant &amp;value)</div><div class="ttdoc">Sets new value into settings. </div><div class="ttdef"><b>Definition:</b> <a href="settings_8h_source.html#l00074">settings.h:74</a></div></div>
 </div><!-- fragment -->
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classApplication_ae42c4de41c29d23e6e7c56b933576497_cgraph.png" border="0" usemap="#classApplication_ae42c4de41c29d23e6e7c56b933576497_cgraph" alt=""/></div>
+<map name="classApplication_ae42c4de41c29d23e6e7c56b933576497_cgraph" id="classApplication_ae42c4de41c29d23e6e7c56b933576497_cgraph">
+<area shape="rect" id="node2" href="classApplication.html#ae2c9557de52ed56485be93dc13ab929d" title="Access to application&#45;wide settings. " alt="" coords="296,5,447,32"/><area shape="rect" id="node4" href="classSettings.html#a9b6421e864b980818a51da33062ae280" title="Sets new value into settings. " alt="" coords="302,56,441,83"/><area shape="rect" id="node3" href="classSettings.html#a59ec5afcafd34266e9827093f7742067" title="Creates settings file in correct location. " alt="" coords="495,5,667,32"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="aaa149a543a4d9b112dacce3da005834c"></a>
@@ -779,6 +875,15 @@ Static Public Member Functions</h2></td></tr>
 <div class="ttc" id="classApplication_html_ae2c9557de52ed56485be93dc13ab929d"><div class="ttname"><a href="classApplication.html#ae2c9557de52ed56485be93dc13ab929d">Application::settings</a></div><div class="ttdeci">Settings * settings()</div><div class="ttdoc">Access to application-wide settings. </div><div class="ttdef"><b>Definition:</b> <a href="application_8h_source.html#l00080">application.h:80</a></div></div>
 <div class="ttc" id="classSettings_html_a2b2ae54dc7fc444df6f52c9a1f6143f5"><div class="ttname"><a href="classSettings.html#a2b2ae54dc7fc444df6f52c9a1f6143f5">Settings::value</a></div><div class="ttdeci">QVariant value(const QString &amp;section, const QString &amp;key, const QVariant &amp;default_value=QVariant())</div><div class="ttdoc">Getter/setter for settings values. </div><div class="ttdef"><b>Definition:</b> <a href="settings_8h_source.html#l00064">settings.h:64</a></div></div>
 </div><!-- fragment -->
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classApplication_ad7e1f4961d50558b9ae9ff667857cb36_cgraph.png" border="0" usemap="#classApplication_ad7e1f4961d50558b9ae9ff667857cb36_cgraph" alt=""/></div>
+<map name="classApplication_ad7e1f4961d50558b9ae9ff667857cb36_cgraph" id="classApplication_ad7e1f4961d50558b9ae9ff667857cb36_cgraph">
+<area shape="rect" id="node2" href="classApplication.html#ae2c9557de52ed56485be93dc13ab929d" title="Access to application&#45;wide settings. " alt="" coords="289,5,440,32"/><area shape="rect" id="node4" href="classSettings.html#a2b2ae54dc7fc444df6f52c9a1f6143f5" title="Getter/setter for settings values. " alt="" coords="306,56,423,83"/><area shape="rect" id="node3" href="classSettings.html#a59ec5afcafd34266e9827093f7742067" title="Creates settings file in correct location. " alt="" coords="488,5,660,32"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="ae2c9557de52ed56485be93dc13ab929d"></a>
@@ -815,6 +920,24 @@ Static Public Member Functions</h2></td></tr>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    }</div>
 <div class="ttc" id="classSettings_html_a59ec5afcafd34266e9827093f7742067"><div class="ttname"><a href="classSettings.html#a59ec5afcafd34266e9827093f7742067">Settings::setupSettings</a></div><div class="ttdeci">static Settings * setupSettings(QObject *parent)</div><div class="ttdoc">Creates settings file in correct location. </div><div class="ttdef"><b>Definition:</b> <a href="settings_8cpp_source.html#l00057">settings.cpp:57</a></div></div>
 </div><!-- fragment -->
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classApplication_ae2c9557de52ed56485be93dc13ab929d_cgraph.png" border="0" usemap="#classApplication_ae2c9557de52ed56485be93dc13ab929d_cgraph" alt=""/></div>
+<map name="classApplication_ae2c9557de52ed56485be93dc13ab929d_cgraph" id="classApplication_ae2c9557de52ed56485be93dc13ab929d_cgraph">
+<area shape="rect" id="node2" href="classSettings.html#a59ec5afcafd34266e9827093f7742067" title="Creates settings file in correct location. " alt="" coords="204,5,376,32"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classApplication_ae2c9557de52ed56485be93dc13ab929d_icgraph.png" border="0" usemap="#classApplication_ae2c9557de52ed56485be93dc13ab929d_icgraph" alt=""/></div>
+<map name="classApplication_ae2c9557de52ed56485be93dc13ab929d_icgraph" id="classApplication_ae2c9557de52ed56485be93dc13ab929d_icgraph">
+<area shape="rect" id="node2" href="classApplication.html#a1dd271254dd68afa548999e37cbeca27" title="Sets new path to &quot;zip&quot;. " alt="" coords="223,5,428,32"/><area shape="rect" id="node3" href="classApplication.html#ad7e1f4961d50558b9ae9ff667857cb36" title="Sets new path to &quot;signapk&quot;. " alt="" coords="207,56,443,83"/><area shape="rect" id="node4" href="classApplication.html#ae561be62fe17ea0763a8c42b8fa2969d" title="Schedules check for updates. " alt="" coords="220,107,431,149"/><area shape="rect" id="node5" href="classApplication.html#a0762f85fbec5968aaa441e4f6ddad749" title="Access to &quot;zip&quot; utility path. " alt="" coords="234,173,417,200"/><area shape="rect" id="node7" href="classApplication.html#a8ece375a09251ccae4d479d034c4fa2b" title="Access to path to &quot;signapk&quot; utility. " alt="" coords="220,224,431,251"/><area shape="rect" id="node9" href="classApplication.html#a2fcefcd0be7d65ca7be0a43269c3f542" title="Access to path to &quot;java&quot; interpreter. " alt="" coords="214,275,437,301"/><area shape="rect" id="node11" href="classApplication.html#ae42c4de41c29d23e6e7c56b933576497" title="Sets new &quot;java&quot; interpreter path. " alt="" coords="204,325,447,352"/><area shape="rect" id="node6" href="classApplication.html#a3b70c8738e05c665d39c9ccb97f85f06" title="Tests if binary in new_path is correct ZIP executable. " alt="" coords="510,173,669,200"/><area shape="rect" id="node8" href="classApplication.html#af3e3e38a5f68340cd31ade18aac5f728" title="Tests if binary in new_path is correct SIGNAPK executable. " alt="" coords="495,224,684,251"/><area shape="rect" id="node10" href="classApplication.html#af58a5a2b744c3cfd15b76e81881dc6da" title="Tests if binary in new_path is correct JAVA executable. " alt="" coords="508,275,671,301"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="a1dd271254dd68afa548999e37cbeca27"></a>
@@ -846,6 +969,15 @@ Static Public Member Functions</h2></td></tr>
 <div class="ttc" id="classApplication_html_ae2c9557de52ed56485be93dc13ab929d"><div class="ttname"><a href="classApplication.html#ae2c9557de52ed56485be93dc13ab929d">Application::settings</a></div><div class="ttdeci">Settings * settings()</div><div class="ttdoc">Access to application-wide settings. </div><div class="ttdef"><b>Definition:</b> <a href="application_8h_source.html#l00080">application.h:80</a></div></div>
 <div class="ttc" id="classSettings_html_a9b6421e864b980818a51da33062ae280"><div class="ttname"><a href="classSettings.html#a9b6421e864b980818a51da33062ae280">Settings::setValue</a></div><div class="ttdeci">void setValue(const QString &amp;section, const QString &amp;key, const QVariant &amp;value)</div><div class="ttdoc">Sets new value into settings. </div><div class="ttdef"><b>Definition:</b> <a href="settings_8h_source.html#l00074">settings.h:74</a></div></div>
 </div><!-- fragment -->
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classApplication_a1dd271254dd68afa548999e37cbeca27_cgraph.png" border="0" usemap="#classApplication_a1dd271254dd68afa548999e37cbeca27_cgraph" alt=""/></div>
+<map name="classApplication_a1dd271254dd68afa548999e37cbeca27_cgraph" id="classApplication_a1dd271254dd68afa548999e37cbeca27_cgraph">
+<area shape="rect" id="node2" href="classApplication.html#ae2c9557de52ed56485be93dc13ab929d" title="Access to application&#45;wide settings. " alt="" coords="259,5,409,32"/><area shape="rect" id="node4" href="classSettings.html#a9b6421e864b980818a51da33062ae280" title="Sets new value into settings. " alt="" coords="265,56,403,83"/><area shape="rect" id="node3" href="classSettings.html#a59ec5afcafd34266e9827093f7742067" title="Creates settings file in correct location. " alt="" coords="457,5,629,32"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="a8ece375a09251ccae4d479d034c4fa2b"></a>
@@ -881,6 +1013,24 @@ Static Public Member Functions</h2></td></tr>
 <div class="ttc" id="classApplication_html_ae2c9557de52ed56485be93dc13ab929d"><div class="ttname"><a href="classApplication.html#ae2c9557de52ed56485be93dc13ab929d">Application::settings</a></div><div class="ttdeci">Settings * settings()</div><div class="ttdoc">Access to application-wide settings. </div><div class="ttdef"><b>Definition:</b> <a href="application_8h_source.html#l00080">application.h:80</a></div></div>
 <div class="ttc" id="classSettings_html_a2b2ae54dc7fc444df6f52c9a1f6143f5"><div class="ttname"><a href="classSettings.html#a2b2ae54dc7fc444df6f52c9a1f6143f5">Settings::value</a></div><div class="ttdeci">QVariant value(const QString &amp;section, const QString &amp;key, const QVariant &amp;default_value=QVariant())</div><div class="ttdoc">Getter/setter for settings values. </div><div class="ttdef"><b>Definition:</b> <a href="settings_8h_source.html#l00064">settings.h:64</a></div></div>
 </div><!-- fragment -->
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classApplication_a8ece375a09251ccae4d479d034c4fa2b_cgraph.png" border="0" usemap="#classApplication_a8ece375a09251ccae4d479d034c4fa2b_cgraph" alt=""/></div>
+<map name="classApplication_a8ece375a09251ccae4d479d034c4fa2b_cgraph" id="classApplication_a8ece375a09251ccae4d479d034c4fa2b_cgraph">
+<area shape="rect" id="node2" href="classApplication.html#ae2c9557de52ed56485be93dc13ab929d" title="Access to application&#45;wide settings. " alt="" coords="264,5,415,32"/><area shape="rect" id="node4" href="classSettings.html#a2b2ae54dc7fc444df6f52c9a1f6143f5" title="Getter/setter for settings values. " alt="" coords="281,56,398,83"/><area shape="rect" id="node3" href="classSettings.html#a59ec5afcafd34266e9827093f7742067" title="Creates settings file in correct location. " alt="" coords="463,5,635,32"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classApplication_a8ece375a09251ccae4d479d034c4fa2b_icgraph.png" border="0" usemap="#classApplication_a8ece375a09251ccae4d479d034c4fa2b_icgraph" alt=""/></div>
+<map name="classApplication_a8ece375a09251ccae4d479d034c4fa2b_icgraph" id="classApplication_a8ece375a09251ccae4d479d034c4fa2b_icgraph">
+<area shape="rect" id="node2" href="classApplication.html#af3e3e38a5f68340cd31ade18aac5f728" title="Tests if binary in new_path is correct SIGNAPK executable. " alt="" coords="264,5,453,32"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="a84556d3c3587aabe1589649bac02fa8f"></a>
@@ -907,7 +1057,7 @@ Static Public Member Functions</h2></td></tr>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;  <span class="keywordflow">return</span> m_skinFactory;</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;}</div>
-<div class="ttc" id="classSkinFactory_html"><div class="ttname"><a href="classSkinFactory.html">SkinFactory</a></div><div class="ttdoc">Main features for skinning. </div><div class="ttdef"><b>Definition:</b> <a href="skinfactory_8h_source.html#l00058">skinfactory.h:58</a></div></div>
+<div class="ttc" id="classSkinFactory_html"><div class="ttname"><a href="classSkinFactory.html">SkinFactory</a></div><div class="ttdoc">Main features for skinning. </div><div class="ttdef"><b>Definition:</b> <a href="skinfactory_8h_source.html#l00059">skinfactory.h:59</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1002,16 +1152,34 @@ Static Public Member Functions</h2></td></tr>
 <div class="ttc" id="classApplication_html_ae2c9557de52ed56485be93dc13ab929d"><div class="ttname"><a href="classApplication.html#ae2c9557de52ed56485be93dc13ab929d">Application::settings</a></div><div class="ttdeci">Settings * settings()</div><div class="ttdoc">Access to application-wide settings. </div><div class="ttdef"><b>Definition:</b> <a href="application_8h_source.html#l00080">application.h:80</a></div></div>
 <div class="ttc" id="classSettings_html_a2b2ae54dc7fc444df6f52c9a1f6143f5"><div class="ttname"><a href="classSettings.html#a2b2ae54dc7fc444df6f52c9a1f6143f5">Settings::value</a></div><div class="ttdeci">QVariant value(const QString &amp;section, const QString &amp;key, const QVariant &amp;default_value=QVariant())</div><div class="ttdoc">Getter/setter for settings values. </div><div class="ttdef"><b>Definition:</b> <a href="settings_8h_source.html#l00064">settings.h:64</a></div></div>
 </div><!-- fragment -->
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classApplication_a0762f85fbec5968aaa441e4f6ddad749_cgraph.png" border="0" usemap="#classApplication_a0762f85fbec5968aaa441e4f6ddad749_cgraph" alt=""/></div>
+<map name="classApplication_a0762f85fbec5968aaa441e4f6ddad749_cgraph" id="classApplication_a0762f85fbec5968aaa441e4f6ddad749_cgraph">
+<area shape="rect" id="node2" href="classApplication.html#ae2c9557de52ed56485be93dc13ab929d" title="Access to application&#45;wide settings. " alt="" coords="236,5,387,32"/><area shape="rect" id="node4" href="classSettings.html#a2b2ae54dc7fc444df6f52c9a1f6143f5" title="Getter/setter for settings values. " alt="" coords="253,56,370,83"/><area shape="rect" id="node3" href="classSettings.html#a59ec5afcafd34266e9827093f7742067" title="Creates settings file in correct location. " alt="" coords="435,5,607,32"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classApplication_a0762f85fbec5968aaa441e4f6ddad749_icgraph.png" border="0" usemap="#classApplication_a0762f85fbec5968aaa441e4f6ddad749_icgraph" alt=""/></div>
+<map name="classApplication_a0762f85fbec5968aaa441e4f6ddad749_icgraph" id="classApplication_a0762f85fbec5968aaa441e4f6ddad749_icgraph">
+<area shape="rect" id="node2" href="classApplication.html#a3b70c8738e05c665d39c9ccb97f85f06" title="Tests if binary in new_path is correct ZIP executable. " alt="" coords="236,5,395,32"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/d/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/miscellaneous/<a class="el" href="application_8h_source.html">application.h</a></li>
-<li>/d/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/miscellaneous/<a class="el" href="application_8cpp_source.html">application.cpp</a></li>
+<li>/mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/miscellaneous/<a class="el" href="application_8h_source.html">application.h</a></li>
+<li>/mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/miscellaneous/<a class="el" href="application_8cpp_source.html">application.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Aug 4 2014 15:44:02 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Aug 16 2014 15:00:50 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

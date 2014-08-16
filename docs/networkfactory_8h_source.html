@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.7"/>
-<title>BuildmLearn Toolkit: /d/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/network-web/networkfactory.h Source File</title>
+<title>BuildmLearn Toolkit: /mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/network-web/networkfactory.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -81,7 +81,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_e93149b64a4ea39523ce969bab267145.html">portage</a></li><li class="navelem"><a class="el" href="dir_82928ddbc3bafdd403330d98a74b0283.html">src</a></li><li class="navelem"><a class="el" href="dir_34cdb21ce70b246fbbf86925292da634.html">network-web</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_5b13d613d053bd10e358ecb54357a5d6.html">data</a></li><li class="navelem"><a class="el" href="dir_68083efcf9ee33d99b45b272b86cc0c8.html">Martin</a></li><li class="navelem"><a class="el" href="dir_9398520d5aff4fa5fa64f9289982f118.html">Coding</a></li><li class="navelem"><a class="el" href="dir_8ff144ddfa1be06761cc38923377bd6f.html">Projekty</a></li><li class="navelem"><a class="el" href="dir_30a37e2355ef12c08d706bdcf80fec43.html">buildmlearn-toolkit</a></li><li class="navelem"><a class="el" href="dir_2813711323521bd6091a9c8a8d0a4efc.html">portage</a></li><li class="navelem"><a class="el" href="dir_0ecbf50818981b7b30cb590f4d05bbf9.html">src</a></li><li class="navelem"><a class="el" href="dir_ef040f6e4e7805c8dc0d6141fe622292.html">network-web</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -126,44 +126,45 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &lt;QNetworkReply&gt;</span></div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &lt;QCoreApplication&gt;</span></div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classNetworkFactory.html">   39</a></span>&#160;<span class="keyword">class </span><a class="code" href="classNetworkFactory.html">NetworkFactory</a> {</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    Q_DECLARE_TR_FUNCTIONS(<a class="code" href="classNetworkFactory.html">NetworkFactory</a>)</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="comment">// Constructor.</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="classNetworkFactory.html">NetworkFactory</a>();</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;  <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">    /// \brief Gets human readable text for given network error.</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">    /// \param error_code</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">    /// \return Returns human readable text for given network error.</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment"></span>    <span class="keyword">static</span> QString <a class="code" href="classNetworkFactory.html#a30cef8b2f120dfcfd2002e4b78bf7a42">networkErrorText</a>(QNetworkReply::NetworkError error_code);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">    /// \brief Performs SYNCHRONOUS download of file with given URL and given timeout.</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">    /// \param url Url.</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">    /// \param timeout Download timeout.</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">    /// \param output Output to store data to.</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">    /// \param protected_contents Is destination URL protected?</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">    /// \param username Username.</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">    /// \param password Password.</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">    /// \return Returns indication of network status after the donwload finished.</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment"></span>    <span class="keyword">static</span> QNetworkReply::NetworkError <a class="code" href="classNetworkFactory.html#ab2ed607a42b58b7912c85537ddc2b0d7">downloadFile</a>(<span class="keyword">const</span> QString &amp;url,</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                                                        <span class="keywordtype">int</span> timeout,</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                                                        QByteArray &amp;output,</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                                                        <span class="keywordtype">bool</span> protected_contents = <span class="keyword">false</span>,</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                                                        <span class="keyword">const</span> QString &amp;username = QString(),</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                                                        <span class="keyword">const</span> QString &amp;password = QString());</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;};</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">#endif // NETWORKFACTORY_H</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">/// \brief Network-related functionality.</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classNetworkFactory.html">   40</a></span>&#160;<span class="comment"></span><span class="keyword">class </span><a class="code" href="classNetworkFactory.html">NetworkFactory</a> {</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    Q_DECLARE_TR_FUNCTIONS(<a class="code" href="classNetworkFactory.html">NetworkFactory</a>)</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="comment">// Constructor.</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="classNetworkFactory.html">NetworkFactory</a>();</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  <span class="keyword">public</span>:<span class="comment"></span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">    /// \brief Gets human readable text for given network error.</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">    /// \param error_code</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">    /// \return Returns human readable text for given network error.</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment"></span>    <span class="keyword">static</span> QString <a class="code" href="classNetworkFactory.html#a30cef8b2f120dfcfd2002e4b78bf7a42">networkErrorText</a>(QNetworkReply::NetworkError error_code);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">    /// \brief Performs SYNCHRONOUS download of file with given URL and given timeout.</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">    /// \param url Url.</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">    /// \param timeout Download timeout.</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">    /// \param output Output to store data to.</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">    /// \param protected_contents Is destination URL protected?</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">    /// \param username Username.</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">    /// \param password Password.</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">    /// \return Returns indication of network status after the donwload finished.</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment"></span>    <span class="keyword">static</span> QNetworkReply::NetworkError <a class="code" href="classNetworkFactory.html#ab2ed607a42b58b7912c85537ddc2b0d7">downloadFile</a>(<span class="keyword">const</span> QString &amp;url,</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                                                        <span class="keywordtype">int</span> timeout,</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                                                        QByteArray &amp;output,</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                                                        <span class="keywordtype">bool</span> protected_contents = <span class="keyword">false</span>,</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                                                        <span class="keyword">const</span> QString &amp;username = QString(),</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                                                        <span class="keyword">const</span> QString &amp;password = QString());</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;};</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">#endif // NETWORKFACTORY_H</span></div>
 <div class="ttc" id="classNetworkFactory_html_a30cef8b2f120dfcfd2002e4b78bf7a42"><div class="ttname"><a href="classNetworkFactory.html#a30cef8b2f120dfcfd2002e4b78bf7a42">NetworkFactory::networkErrorText</a></div><div class="ttdeci">static QString networkErrorText(QNetworkReply::NetworkError error_code)</div><div class="ttdoc">Gets human readable text for given network error. </div><div class="ttdef"><b>Definition:</b> <a href="networkfactory_8cpp_source.html#l00048">networkfactory.cpp:48</a></div></div>
 <div class="ttc" id="classNetworkFactory_html_ab2ed607a42b58b7912c85537ddc2b0d7"><div class="ttname"><a href="classNetworkFactory.html#ab2ed607a42b58b7912c85537ddc2b0d7">NetworkFactory::downloadFile</a></div><div class="ttdeci">static QNetworkReply::NetworkError downloadFile(const QString &amp;url, int timeout, QByteArray &amp;output, bool protected_contents=false, const QString &amp;username=QString(), const QString &amp;password=QString())</div><div class="ttdoc">Performs SYNCHRONOUS download of file with given URL and given timeout. </div><div class="ttdef"><b>Definition:</b> <a href="networkfactory_8cpp_source.html#l00112">networkfactory.cpp:112</a></div></div>
-<div class="ttc" id="classNetworkFactory_html"><div class="ttname"><a href="classNetworkFactory.html">NetworkFactory</a></div><div class="ttdef"><b>Definition:</b> <a href="networkfactory_8h_source.html#l00039">networkfactory.h:39</a></div></div>
+<div class="ttc" id="classNetworkFactory_html"><div class="ttname"><a href="classNetworkFactory.html">NetworkFactory</a></div><div class="ttdoc">Network-related functionality. </div><div class="ttdef"><b>Definition:</b> <a href="networkfactory_8h_source.html#l00040">networkfactory.h:40</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Aug 4 2014 15:44:02 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Aug 16 2014 15:00:50 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

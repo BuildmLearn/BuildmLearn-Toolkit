@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.7"/>
-<title>BuildmLearn Toolkit: /d/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/network-web/downloader.h Source File</title>
+<title>BuildmLearn Toolkit: /mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/network-web/downloader.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -81,7 +81,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_e93149b64a4ea39523ce969bab267145.html">portage</a></li><li class="navelem"><a class="el" href="dir_82928ddbc3bafdd403330d98a74b0283.html">src</a></li><li class="navelem"><a class="el" href="dir_34cdb21ce70b246fbbf86925292da634.html">network-web</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_5b13d613d053bd10e358ecb54357a5d6.html">data</a></li><li class="navelem"><a class="el" href="dir_68083efcf9ee33d99b45b272b86cc0c8.html">Martin</a></li><li class="navelem"><a class="el" href="dir_9398520d5aff4fa5fa64f9289982f118.html">Coding</a></li><li class="navelem"><a class="el" href="dir_8ff144ddfa1be06761cc38923377bd6f.html">Projekty</a></li><li class="navelem"><a class="el" href="dir_30a37e2355ef12c08d706bdcf80fec43.html">buildmlearn-toolkit</a></li><li class="navelem"><a class="el" href="dir_2813711323521bd6091a9c8a8d0a4efc.html">portage</a></li><li class="navelem"><a class="el" href="dir_0ecbf50818981b7b30cb590f4d05bbf9.html">src</a></li><li class="navelem"><a class="el" href="dir_ef040f6e4e7805c8dc0d6141fe622292.html">network-web</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -158,54 +158,55 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">    /// \brief Uploads given bundle_data to store server via HTTP POST.</span></div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">    /// \param url URL to store server</span></div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">    /// \param bundle_data</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classDownloader.html#ac0d108b4738346e85d8bb4994e81e3f8">uploadBundleFile</a>(QString url, <span class="keyword">const</span> QString &amp;bundle_data,</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classDownloader.html#a8dc3232160df3985a9dad5190bc97920">uploadBundleFile</a>(QString url, <span class="keyword">const</span> QString &amp;bundle_data,</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                          <span class="keyword">const</span> QString &amp;key, <span class="keyword">const</span> QString &amp;author_name,</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                          <span class="keyword">const</span> QString &amp;author_email, <span class="keyword">const</span> QString &amp;application_name);</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;  signals:<span class="comment"></span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">    /// \brief Emitted when new progress is known.</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">    /// \param bytes_received Number of bytes received.</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment">    /// \param bytes_total Number of bytes total.</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classDownloader.html#abc743dca2d6bdecdff981da50cdc1460">progress</a>(qint64 bytes_received, qint64 bytes_total);</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">    /// \brief Emitted if file download or upload completes (un)successfully.</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">    /// \param status Status of file download/upload.</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">    /// \param contents QByteArray containing downloaded file (if any) or post reply.</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classDownloader.html#a9632531da3276ec797a0df5ed6fcba85">completed</a>(QNetworkReply::NetworkError status, QByteArray contents = QByteArray());</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;  <span class="keyword">private</span> slots:</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="comment">// Called when current reply is processed.</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keywordtype">void</span> finished(QNetworkReply *reply);</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="comment">// Called when progress of downloaded file changes.</span></div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keywordtype">void</span> progressInternal(qint64 bytes_received, qint64 bytes_total);</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="comment">// Called when current operation times out.</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordtype">void</span> timeout();</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;  <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="comment">// Issues new network requests.</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keywordtype">void</span> runGetRequest(<span class="keyword">const</span> QNetworkRequest &amp;request);</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordtype">void</span> runPostRequest(<span class="keyword">const</span> QNetworkRequest &amp;request, <span class="keyword">const</span> QByteArray &amp;data);</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;  <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    QNetworkReply *m_activeReply;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <a class="code" href="classSilentNetworkAccessManager.html">SilentNetworkAccessManager</a> *m_downloadManager;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    QTimer *m_timer;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;};</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="preprocessor">#endif // DOWNLOADER_H</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                          <span class="keyword">const</span> QString &amp;author_email, <span class="keyword">const</span> QString &amp;application_name,</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                          <span class="keyword">const</span> QString &amp;application_icon);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;  signals:<span class="comment"></span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">    /// \brief Emitted when new progress is known.</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment">    /// \param bytes_received Number of bytes received.</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">    /// \param bytes_total Number of bytes total.</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classDownloader.html#abc743dca2d6bdecdff981da50cdc1460">progress</a>(qint64 bytes_received, qint64 bytes_total);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">    /// \brief Emitted if file download or upload completes (un)successfully.</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">    /// \param status Status of file download/upload.</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">    /// \param contents QByteArray containing downloaded file (if any) or post reply.</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classDownloader.html#a9632531da3276ec797a0df5ed6fcba85">completed</a>(QNetworkReply::NetworkError status, QByteArray contents = QByteArray());</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;  <span class="keyword">private</span> slots:</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="comment">// Called when current reply is processed.</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordtype">void</span> finished(QNetworkReply *reply);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="comment">// Called when progress of downloaded file changes.</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keywordtype">void</span> progressInternal(qint64 bytes_received, qint64 bytes_total);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="comment">// Called when current operation times out.</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keywordtype">void</span> timeout();</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;  <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="comment">// Issues new network requests.</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordtype">void</span> runGetRequest(<span class="keyword">const</span> QNetworkRequest &amp;request);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keywordtype">void</span> runPostRequest(<span class="keyword">const</span> QNetworkRequest &amp;request, <span class="keyword">const</span> QByteArray &amp;data);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;  <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    QNetworkReply *m_activeReply;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <a class="code" href="classSilentNetworkAccessManager.html">SilentNetworkAccessManager</a> *m_downloadManager;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    QTimer *m_timer;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;};</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="preprocessor">#endif // DOWNLOADER_H</span></div>
 <div class="ttc" id="classDownloader_html_a9632531da3276ec797a0df5ed6fcba85"><div class="ttname"><a href="classDownloader.html#a9632531da3276ec797a0df5ed6fcba85">Downloader::completed</a></div><div class="ttdeci">void completed(QNetworkReply::NetworkError status, QByteArray contents=QByteArray())</div><div class="ttdoc">Emitted if file download or upload completes (un)successfully. </div></div>
-<div class="ttc" id="classDownloader_html_ac0d108b4738346e85d8bb4994e81e3f8"><div class="ttname"><a href="classDownloader.html#ac0d108b4738346e85d8bb4994e81e3f8">Downloader::uploadBundleFile</a></div><div class="ttdeci">void uploadBundleFile(QString url, const QString &amp;bundle_data, const QString &amp;key, const QString &amp;author_name, const QString &amp;author_email, const QString &amp;application_name)</div><div class="ttdoc">Uploads given bundle_data to store server via HTTP POST. </div><div class="ttdef"><b>Definition:</b> <a href="downloader_8cpp_source.html#l00073">downloader.cpp:73</a></div></div>
 <div class="ttc" id="classDownloader_html"><div class="ttname"><a href="classDownloader.html">Downloader</a></div><div class="ttdoc">Simple file downloader with progress reporting. </div><div class="ttdef"><b>Definition:</b> <a href="downloader_8h_source.html#l00047">downloader.h:47</a></div></div>
 <div class="ttc" id="classSilentNetworkAccessManager_html"><div class="ttname"><a href="classSilentNetworkAccessManager.html">SilentNetworkAccessManager</a></div><div class="ttdoc">Network access manager with supressed authentication dialogs. </div><div class="ttdef"><b>Definition:</b> <a href="silentnetworkaccessmanager_8h_source.html#l00041">silentnetworkaccessmanager.h:41</a></div></div>
 <div class="ttc" id="classDownloader_html_abc743dca2d6bdecdff981da50cdc1460"><div class="ttname"><a href="classDownloader.html#abc743dca2d6bdecdff981da50cdc1460">Downloader::progress</a></div><div class="ttdeci">void progress(qint64 bytes_received, qint64 bytes_total)</div><div class="ttdoc">Emitted when new progress is known. </div></div>
-<div class="ttc" id="classDownloader_html_a3e993d3b9c39892a59764ec461f71dc5"><div class="ttname"><a href="classDownloader.html#a3e993d3b9c39892a59764ec461f71dc5">Downloader::downloadFile</a></div><div class="ttdeci">void downloadFile(const QString &amp;url, bool protected_contents=false, const QString &amp;username=QString(), const QString &amp;password=QString())</div><div class="ttdoc">Performs asynchronous download of given file. Redirections are handled. </div><div class="ttdef"><b>Definition:</b> <a href="downloader_8cpp_source.html#l00057">downloader.cpp:57</a></div></div>
-<div class="ttc" id="classDownloader_html_aa63e8a222893145c34b15bfbcf93d9d0"><div class="ttname"><a href="classDownloader.html#aa63e8a222893145c34b15bfbcf93d9d0">Downloader::Downloader</a></div><div class="ttdeci">Downloader(QObject *parent=0)</div><div class="ttdoc">Constructor. </div><div class="ttdef"><b>Definition:</b> <a href="downloader_8cpp_source.html#l00040">downloader.cpp:40</a></div></div>
+<div class="ttc" id="classDownloader_html_a3e993d3b9c39892a59764ec461f71dc5"><div class="ttname"><a href="classDownloader.html#a3e993d3b9c39892a59764ec461f71dc5">Downloader::downloadFile</a></div><div class="ttdeci">void downloadFile(const QString &amp;url, bool protected_contents=false, const QString &amp;username=QString(), const QString &amp;password=QString())</div><div class="ttdoc">Performs asynchronous download of given file. Redirections are handled. </div><div class="ttdef"><b>Definition:</b> <a href="downloader_8cpp_source.html#l00058">downloader.cpp:58</a></div></div>
+<div class="ttc" id="classDownloader_html_aa63e8a222893145c34b15bfbcf93d9d0"><div class="ttname"><a href="classDownloader.html#aa63e8a222893145c34b15bfbcf93d9d0">Downloader::Downloader</a></div><div class="ttdeci">Downloader(QObject *parent=0)</div><div class="ttdoc">Constructor. </div><div class="ttdef"><b>Definition:</b> <a href="downloader_8cpp_source.html#l00041">downloader.cpp:41</a></div></div>
+<div class="ttc" id="classDownloader_html_a8dc3232160df3985a9dad5190bc97920"><div class="ttname"><a href="classDownloader.html#a8dc3232160df3985a9dad5190bc97920">Downloader::uploadBundleFile</a></div><div class="ttdeci">void uploadBundleFile(QString url, const QString &amp;bundle_data, const QString &amp;key, const QString &amp;author_name, const QString &amp;author_email, const QString &amp;application_name, const QString &amp;application_icon)</div><div class="ttdoc">Uploads given bundle_data to store server via HTTP POST. </div><div class="ttdef"><b>Definition:</b> <a href="downloader_8cpp_source.html#l00074">downloader.cpp:74</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Aug 4 2014 15:44:02 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Aug 16 2014 15:00:50 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

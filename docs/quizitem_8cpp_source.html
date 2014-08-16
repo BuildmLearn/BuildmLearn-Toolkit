@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.7"/>
-<title>BuildmLearn Toolkit: /d/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/templates/quiz/quizitem.cpp Source File</title>
+<title>BuildmLearn Toolkit: /mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/templates/quiz/quizitem.cpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -81,7 +81,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_e93149b64a4ea39523ce969bab267145.html">portage</a></li><li class="navelem"><a class="el" href="dir_82928ddbc3bafdd403330d98a74b0283.html">src</a></li><li class="navelem"><a class="el" href="dir_4767c88c1a0b9b2a275c20dd758afde4.html">templates</a></li><li class="navelem"><a class="el" href="dir_ef9040741370b59663765cc922ab05cb.html">quiz</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_5b13d613d053bd10e358ecb54357a5d6.html">data</a></li><li class="navelem"><a class="el" href="dir_68083efcf9ee33d99b45b272b86cc0c8.html">Martin</a></li><li class="navelem"><a class="el" href="dir_9398520d5aff4fa5fa64f9289982f118.html">Coding</a></li><li class="navelem"><a class="el" href="dir_8ff144ddfa1be06761cc38923377bd6f.html">Projekty</a></li><li class="navelem"><a class="el" href="dir_30a37e2355ef12c08d706bdcf80fec43.html">buildmlearn-toolkit</a></li><li class="navelem"><a class="el" href="dir_2813711323521bd6091a9c8a8d0a4efc.html">portage</a></li><li class="navelem"><a class="el" href="dir_0ecbf50818981b7b30cb590f4d05bbf9.html">src</a></li><li class="navelem"><a class="el" href="dir_22d20830482ee44b44184604348edacd.html">templates</a></li><li class="navelem"><a class="el" href="dir_f3e49e8361c609995916c6df7e2172b7.html">quiz</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -162,7 +162,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;  }</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;}</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="classQuizItem.html#acc6ead116e777887a5620559fe05fbf3">   74</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classQuizItem.html#acc6ead116e777887a5620559fe05fbf3">QuizItem::setQuestion</a>(<span class="keyword">const</span> <a class="code" href="classQuizQuestion.html">QuizQuestion</a> &amp;question, <span class="keywordtype">int</span> question_number) {</div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="classQuizItem.html#a9f154936a6342485fa26dc5755f5463e">   74</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classQuizItem.html#a9f154936a6342485fa26dc5755f5463e">QuizItem::setQuestion</a>(<span class="keyword">const</span> <a class="code" href="classQuizQuestion.html">QuizQuestion</a> &amp;question, <span class="keywordtype">int</span> question_number, <span class="keywordtype">int</span> total_questions) {</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;  m_question = question;</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;  m_ui-&gt;m_rbAnswerOne-&gt;setText(question.answerOne());</div>
@@ -175,78 +175,79 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;  m_ui-&gt;m_rbAnswerThree-&gt;setVisible(question.<a class="code" href="classQuizQuestion.html#a2effe3d871c645658b6e18756f3be371">correctAnswer</a>() == 2 || !question.answerThree().simplified().isEmpty());</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;  m_ui-&gt;m_rbAnswerFour-&gt;setVisible(question.<a class="code" href="classQuizQuestion.html#a2effe3d871c645658b6e18756f3be371">correctAnswer</a>() == 3 || !question.answerFour().simplified().isEmpty());</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;  m_ui-&gt;m_lblQuestionNumber-&gt;setText(tr(<span class="stringliteral">&quot;Question number %1&quot;</span>).arg(question_number));</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;  m_ui-&gt;m_lblQuestionText-&gt;setText(question.question());</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;}</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
-<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="classQuizItem.html#abd172acb95c93163687547c8d24c03e3">   91</a></span>&#160;<a class="code" href="classQuizItem.html#a31ab8b66ac724436f2160eb5974d4f24">QuizItem::State</a> <a class="code" href="classQuizItem.html#abd172acb95c93163687547c8d24c03e3">QuizItem::state</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;  <span class="keywordflow">return</span> m_state;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;}</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
-<div class="line"><a name="l00095"></a><span class="lineno"><a class="line" href="classQuizItem.html#afeeb48363d76b42252aa90f9fd9d718b">   95</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classQuizItem.html#afeeb48363d76b42252aa90f9fd9d718b">QuizItem::reset</a>() {</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;  clearStylesheets();</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;  <span class="keywordflow">foreach</span> (QRadioButton *answer_button, m_answerButtons) {</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="comment">// Hacky way to really force all radio buttons to be unchecked.</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    answer_button-&gt;setEnabled(<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    answer_button-&gt;setCheckable(<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    answer_button-&gt;setChecked(<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    answer_button-&gt;setEnabled(<span class="keyword">true</span>);</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    answer_button-&gt;setCheckable(<span class="keyword">true</span>);</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;  }</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;  m_ui-&gt;m_lblWarning-&gt;setVisible(<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;  m_ui-&gt;m_btnConfirm-&gt;setEnabled(<span class="keyword">true</span>);</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;  m_state = Unanswered;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;}</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="keywordtype">void</span> QuizItem::onNextClicked() {</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;  <span class="comment">// Just signal that user is done with this question.</span></div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;  emit <a class="code" href="classQuizItem.html#af9bc933040a750b8005f442ecf3e3311">questionSubmitted</a>();</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;}</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="keywordtype">void</span> QuizItem::onSubmitClicked() {</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;  <span class="comment">// Check if user selected any answer, if he did not, then remind him it.</span></div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;  <span class="keywordflow">if</span> (!m_ui-&gt;m_rbAnswerOne-&gt;isChecked() &amp;&amp; !m_ui-&gt;m_rbAnswerTwo-&gt;isChecked() &amp;&amp;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;      !m_ui-&gt;m_rbAnswerThree-&gt;isChecked() &amp;&amp; !m_ui-&gt;m_rbAnswerFour-&gt;isChecked()) {</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="comment">// No answer seems to be selected.</span></div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    m_ui-&gt;m_lblWarning-&gt;setText(<span class="stringliteral">&quot;Select some answer, please.&quot;</span>);</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    m_ui-&gt;m_lblWarning-&gt;setVisible(<span class="keyword">true</span>);</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;  }</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;  <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <span class="keywordtype">int</span> selected_answer = 0;</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="comment">// User selected some answer, highlight correct and incorrect answer.</span></div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; m_answerButtons.size(); i++) {</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;      <span class="keywordflow">if</span> (m_answerButtons.at(i)-&gt;isChecked()) {</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        selected_answer = i;</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;      }</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    }</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    <span class="keywordflow">if</span> (selected_answer == m_question.<a class="code" href="classQuizQuestion.html#a2effe3d871c645658b6e18756f3be371">correctAnswer</a>()) {</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;      m_ui-&gt;m_lblWarning-&gt;setText(<span class="stringliteral">&quot;That is correct answer.&quot;</span>);</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;      m_answerButtons.at(selected_answer)-&gt;setStyleSheet(<span class="stringliteral">&quot;background-color: green;&quot;</span>);</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;      m_state = AnsweredCorrectly;</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    }</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;      m_ui-&gt;m_lblWarning-&gt;setText(<span class="stringliteral">&quot;That is wrong answer.&quot;</span>);</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;      m_answerButtons.at(selected_answer)-&gt;setStyleSheet(<span class="stringliteral">&quot;background-color: red;&quot;</span>);</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;      m_answerButtons.at(m_question.<a class="code" href="classQuizQuestion.html#a2effe3d871c645658b6e18756f3be371">correctAnswer</a>())-&gt;setStyleSheet(<span class="stringliteral">&quot;background-color: green;&quot;</span>);</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;      m_state = AnsweredWrongly;</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    }</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    <span class="keywordflow">foreach</span> (QRadioButton *button, m_answerButtons) {</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;      button-&gt;setEnabled(<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    }</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    m_ui-&gt;m_btnConfirm-&gt;setEnabled(<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    m_ui-&gt;m_lblWarning-&gt;setVisible(<span class="keyword">true</span>);</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;  }</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;}</div>
-<div class="ttc" id="classQuizItem_html_afeeb48363d76b42252aa90f9fd9d718b"><div class="ttname"><a href="classQuizItem.html#afeeb48363d76b42252aa90f9fd9d718b">QuizItem::reset</a></div><div class="ttdeci">void reset()</div><div class="ttdoc">Resets widget for the question to its original/default state. </div><div class="ttdef"><b>Definition:</b> <a href="quizitem_8cpp_source.html#l00095">quizitem.cpp:95</a></div></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;  m_ui-&gt;m_lblQuestionNumber-&gt;setText(tr(<span class="stringliteral">&quot;Question number %1 of %2&quot;</span>).arg(QString::number(question_number),</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                                                                        QString::number(total_questions)));</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;  m_ui-&gt;m_lblQuestionText-&gt;setText(question.question());</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;}</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="classQuizItem.html#abd172acb95c93163687547c8d24c03e3">   92</a></span>&#160;<a class="code" href="classQuizItem.html#a31ab8b66ac724436f2160eb5974d4f24">QuizItem::State</a> <a class="code" href="classQuizItem.html#abd172acb95c93163687547c8d24c03e3">QuizItem::state</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;  <span class="keywordflow">return</span> m_state;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;}</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
+<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="classQuizItem.html#afeeb48363d76b42252aa90f9fd9d718b">   96</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classQuizItem.html#afeeb48363d76b42252aa90f9fd9d718b">QuizItem::reset</a>() {</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;  clearStylesheets();</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;  <span class="keywordflow">foreach</span> (QRadioButton *answer_button, m_answerButtons) {</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="comment">// Hacky way to really force all radio buttons to be unchecked.</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    answer_button-&gt;setEnabled(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    answer_button-&gt;setCheckable(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    answer_button-&gt;setChecked(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    answer_button-&gt;setEnabled(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    answer_button-&gt;setCheckable(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;  }</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;  m_ui-&gt;m_lblWarning-&gt;setVisible(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;  m_ui-&gt;m_btnConfirm-&gt;setEnabled(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;  m_state = Unanswered;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;}</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="keywordtype">void</span> QuizItem::onNextClicked() {</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;  <span class="comment">// Just signal that user is done with this question.</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;  emit <a class="code" href="classQuizItem.html#af9bc933040a750b8005f442ecf3e3311">questionSubmitted</a>();</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;}</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="keywordtype">void</span> QuizItem::onSubmitClicked() {</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;  <span class="comment">// Check if user selected any answer, if he did not, then remind him it.</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;  <span class="keywordflow">if</span> (!m_ui-&gt;m_rbAnswerOne-&gt;isChecked() &amp;&amp; !m_ui-&gt;m_rbAnswerTwo-&gt;isChecked() &amp;&amp;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;      !m_ui-&gt;m_rbAnswerThree-&gt;isChecked() &amp;&amp; !m_ui-&gt;m_rbAnswerFour-&gt;isChecked()) {</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="comment">// No answer seems to be selected.</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    m_ui-&gt;m_lblWarning-&gt;setText(<span class="stringliteral">&quot;Select some answer, please.&quot;</span>);</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    m_ui-&gt;m_lblWarning-&gt;setVisible(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;  }</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;  <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    <span class="keywordtype">int</span> selected_answer = 0;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <span class="comment">// User selected some answer, highlight correct and incorrect answer.</span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; m_answerButtons.size(); i++) {</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;      <span class="keywordflow">if</span> (m_answerButtons.at(i)-&gt;isChecked()) {</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        selected_answer = i;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;      }</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    }</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    <span class="keywordflow">if</span> (selected_answer == m_question.<a class="code" href="classQuizQuestion.html#a2effe3d871c645658b6e18756f3be371">correctAnswer</a>()) {</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;      m_ui-&gt;m_lblWarning-&gt;setText(<span class="stringliteral">&quot;That is correct answer.&quot;</span>);</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;      m_answerButtons.at(selected_answer)-&gt;setStyleSheet(<span class="stringliteral">&quot;background-color: green;&quot;</span>);</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;      m_state = AnsweredCorrectly;</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    }</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;      m_ui-&gt;m_lblWarning-&gt;setText(<span class="stringliteral">&quot;That is wrong answer.&quot;</span>);</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;      m_answerButtons.at(selected_answer)-&gt;setStyleSheet(<span class="stringliteral">&quot;background-color: red;&quot;</span>);</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;      m_answerButtons.at(m_question.<a class="code" href="classQuizQuestion.html#a2effe3d871c645658b6e18756f3be371">correctAnswer</a>())-&gt;setStyleSheet(<span class="stringliteral">&quot;background-color: green;&quot;</span>);</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;      m_state = AnsweredWrongly;</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    }</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    <span class="keywordflow">foreach</span> (QRadioButton *button, m_answerButtons) {</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;      button-&gt;setEnabled(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    }</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    m_ui-&gt;m_btnConfirm-&gt;setEnabled(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    m_ui-&gt;m_lblWarning-&gt;setVisible(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;  }</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;}</div>
+<div class="ttc" id="classQuizItem_html_afeeb48363d76b42252aa90f9fd9d718b"><div class="ttname"><a href="classQuizItem.html#afeeb48363d76b42252aa90f9fd9d718b">QuizItem::reset</a></div><div class="ttdeci">void reset()</div><div class="ttdoc">Resets widget for the question to its original/default state. </div><div class="ttdef"><b>Definition:</b> <a href="quizitem_8cpp_source.html#l00096">quizitem.cpp:96</a></div></div>
 <div class="ttc" id="classQuizItem_html"><div class="ttname"><a href="classQuizItem.html">QuizItem</a></div><div class="ttdoc">Widget which represents single question in Quiz. </div><div class="ttdef"><b>Definition:</b> <a href="quizitem_8h_source.html#l00047">quizitem.h:47</a></div></div>
-<div class="ttc" id="classQuizItem_html_acc6ead116e777887a5620559fe05fbf3"><div class="ttname"><a href="classQuizItem.html#acc6ead116e777887a5620559fe05fbf3">QuizItem::setQuestion</a></div><div class="ttdeci">void setQuestion(const QuizQuestion &amp;question, int question_number)</div><div class="ttdoc">Sets new question for this widget. </div><div class="ttdef"><b>Definition:</b> <a href="quizitem_8cpp_source.html#l00074">quizitem.cpp:74</a></div></div>
-<div class="ttc" id="classQuizItem_html_abd172acb95c93163687547c8d24c03e3"><div class="ttname"><a href="classQuizItem.html#abd172acb95c93163687547c8d24c03e3">QuizItem::state</a></div><div class="ttdeci">State state() const </div><div class="ttdoc">Access to state of quiz question widget. </div><div class="ttdef"><b>Definition:</b> <a href="quizitem_8cpp_source.html#l00091">quizitem.cpp:91</a></div></div>
+<div class="ttc" id="classQuizItem_html_abd172acb95c93163687547c8d24c03e3"><div class="ttname"><a href="classQuizItem.html#abd172acb95c93163687547c8d24c03e3">QuizItem::state</a></div><div class="ttdeci">State state() const </div><div class="ttdoc">Access to state of quiz question widget. </div><div class="ttdef"><b>Definition:</b> <a href="quizitem_8cpp_source.html#l00092">quizitem.cpp:92</a></div></div>
+<div class="ttc" id="classQuizItem_html_a9f154936a6342485fa26dc5755f5463e"><div class="ttname"><a href="classQuizItem.html#a9f154936a6342485fa26dc5755f5463e">QuizItem::setQuestion</a></div><div class="ttdeci">void setQuestion(const QuizQuestion &amp;question, int question_number, int total_questions)</div><div class="ttdoc">Sets new question for this widget. </div><div class="ttdef"><b>Definition:</b> <a href="quizitem_8cpp_source.html#l00074">quizitem.cpp:74</a></div></div>
 <div class="ttc" id="classQuizItem_html_a31ab8b66ac724436f2160eb5974d4f24"><div class="ttname"><a href="classQuizItem.html#a31ab8b66ac724436f2160eb5974d4f24">QuizItem::State</a></div><div class="ttdeci">State</div><div class="ttdoc">Enum containing possible states for widget for the question. </div><div class="ttdef"><b>Definition:</b> <a href="quizitem_8h_source.html#l00052">quizitem.h:52</a></div></div>
 <div class="ttc" id="classQuizQuestion_html_a2effe3d871c645658b6e18756f3be371"><div class="ttname"><a href="classQuizQuestion.html#a2effe3d871c645658b6e18756f3be371">QuizQuestion::correctAnswer</a></div><div class="ttdeci">int correctAnswer() const </div><div class="ttdoc">Access to inde of correct answer. </div><div class="ttdef"><b>Definition:</b> <a href="quizquestion_8cpp_source.html#l00044">quizquestion.cpp:44</a></div></div>
 <div class="ttc" id="classQuizItem_html_af9bc933040a750b8005f442ecf3e3311"><div class="ttname"><a href="classQuizItem.html#af9bc933040a750b8005f442ecf3e3311">QuizItem::questionSubmitted</a></div><div class="ttdeci">void questionSubmitted()</div><div class="ttdoc">Emitted if users clicks "Next" or "Submit". </div></div>
@@ -254,7 +255,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Aug 4 2014 15:44:02 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Aug 16 2014 15:00:50 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

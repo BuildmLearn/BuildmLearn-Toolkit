@@ -64,7 +64,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
@@ -99,11 +99,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Inheritance diagram for Localization:</div>
 <div class="dyncontent">
- <div class="center">
-  <img src="classLocalization.png" usemap="#Localization_map" alt=""/>
-  <map id="Localization_map" name="Localization_map">
+<div class="center"><img src="classLocalization__inherit__graph.png" border="0" usemap="#Localization_inherit__map" alt="Inheritance graph"/></div>
+<map name="Localization_inherit__map" id="Localization_inherit__map">
 </map>
- </div></div>
+</div>
+<div class="dynheader">
+Collaboration diagram for Localization:</div>
+<div class="dyncontent">
+<div class="center"><img src="classLocalization__coll__graph.png" border="0" usemap="#Localization_coll__map" alt="Collaboration graph"/></div>
+<map name="Localization_coll__map" id="Localization_coll__map">
+</map>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -130,7 +136,7 @@ Static Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classLocalization.html" title="Localization facilities. ">Localization</a> facilities. </p>
 
-<p>Definition at line <a class="el" href="localization_8h_source.html#l00047">47</a> of file <a class="el" href="localization_8h_source.html">localization.h</a>.</p>
+<p>Definition at line <a class="el" href="localization_8h_source.html#l00048">48</a> of file <a class="el" href="localization_8h_source.html">localization.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="ac41b9b07d5a3a6839d48b3fa5bd19b87"></a>
 <div class="memitem">
@@ -155,6 +161,15 @@ Static Public Member Functions</h2></td></tr>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                                     QLocale::system().name()).toString();</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;}</div>
 </div><!-- fragment -->
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classLocalization_ac41b9b07d5a3a6839d48b3fa5bd19b87_icgraph.png" border="0" usemap="#classLocalization_ac41b9b07d5a3a6839d48b3fa5bd19b87_icgraph" alt=""/></div>
+<map name="classLocalization_ac41b9b07d5a3a6839d48b3fa5bd19b87_icgraph" id="classLocalization_ac41b9b07d5a3a6839d48b3fa5bd19b87_icgraph">
+<area shape="rect" id="node2" href="classLocalization.html#a3e8f00afcfc811e4ca40063a63855027" title="Loads currently active language. " alt="" coords="268,5,400,32"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="ab4e45a91e53bdd9f6acdf644bcd02a16"></a>
@@ -195,7 +210,7 @@ Static Public Member Functions</h2></td></tr>
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;  }</div>
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;  <span class="keywordflow">return</span> languages;</div>
 <div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;}</div>
-<div class="ttc" id="structLanguage_html"><div class="ttname"><a href="structLanguage.html">Language</a></div><div class="ttdef"><b>Definition:</b> <a href="localization_8h_source.html#l00039">localization.h:39</a></div></div>
+<div class="ttc" id="structLanguage_html"><div class="ttname"><a href="structLanguage.html">Language</a></div><div class="ttdoc">Representation of single localization. </div><div class="ttdef"><b>Definition:</b> <a href="localization_8h_source.html#l00040">localization.h:40</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -231,7 +246,7 @@ Static Public Member Functions</h2></td></tr>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;  <span class="keywordflow">return</span> s_instance;</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;}</div>
-<div class="ttc" id="classLocalization_html"><div class="ttname"><a href="classLocalization.html">Localization</a></div><div class="ttdoc">Localization facilities. </div><div class="ttdef"><b>Definition:</b> <a href="localization_8h_source.html#l00047">localization.h:47</a></div></div>
+<div class="ttc" id="classLocalization_html"><div class="ttname"><a href="classLocalization.html">Localization</a></div><div class="ttdoc">Localization facilities. </div><div class="ttdef"><b>Definition:</b> <a href="localization_8h_source.html#l00048">localization.h:48</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -259,21 +274,21 @@ Static Public Member Functions</h2></td></tr>
 <p>Access to code of loaded language. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns empty string or loaded language name if it is really loaded. </dd></dl>
 
-<p>Definition at line <a class="el" href="localization_8h_source.html#l00079">79</a> of file <a class="el" href="localization_8h_source.html">localization.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                                          {</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;      <span class="keywordflow">return</span> m_loadedLanguage;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    }</div>
+<p>Definition at line <a class="el" href="localization_8h_source.html#l00080">80</a> of file <a class="el" href="localization_8h_source.html">localization.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                                          {</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;      <span class="keywordflow">return</span> m_loadedLanguage;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/d/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/miscellaneous/<a class="el" href="localization_8h_source.html">localization.h</a></li>
-<li>/d/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/miscellaneous/<a class="el" href="localization_8cpp_source.html">localization.cpp</a></li>
+<li>/mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/miscellaneous/<a class="el" href="localization_8h_source.html">localization.h</a></li>
+<li>/mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/miscellaneous/<a class="el" href="localization_8cpp_source.html">localization.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Aug 4 2014 15:44:03 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Aug 16 2014 15:00:50 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

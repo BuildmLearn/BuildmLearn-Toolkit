@@ -64,7 +64,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
@@ -101,15 +101,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Inheritance diagram for TemplateSimulator:</div>
 <div class="dyncontent">
- <div class="center">
-  <img src="classTemplateSimulator.png" usemap="#TemplateSimulator_map" alt=""/>
-  <map id="TemplateSimulator_map" name="TemplateSimulator_map">
-<area href="classBasicmLearningSimulator.html" alt="BasicmLearningSimulator" shape="rect" coords="0,112,154,136"/>
-<area href="classFlashCardSimulator.html" alt="FlashCardSimulator" shape="rect" coords="164,112,318,136"/>
-<area href="classLearnSpellingsSimulator.html" title="Simulator widget for Learn Spellings template. " alt="LearnSpellingsSimulator" shape="rect" coords="328,112,482,136"/>
-<area href="classQuizSimulator.html" title="Simulator for Quiz template. " alt="QuizSimulator" shape="rect" coords="492,112,646,136"/>
-</map>
- </div></div>
+<div class="center"><img src="classTemplateSimulator__inherit__graph.png" border="0" usemap="#TemplateSimulator_inherit__map" alt="Inheritance graph"/></div>
+<map name="TemplateSimulator_inherit__map" id="TemplateSimulator_inherit__map">
+<area shape="rect" id="node3" href="classBasicmLearningSimulator.html" title="{BasicmLearningSimulator\n||+ BasicmLearningSimulator()\l+ ~BasicmLearningSimulator()\l+ startSimulation()\l+ stopSimulation()\l+ goBack()\l}" alt="" coords="5,359,228,495"/><area shape="rect" id="node4" href="classFlashCardSimulator.html" title="{FlashCardSimulator\n||+ FlashCardSimulator()\l+ ~FlashCardSimulator()\l+ startSimulation()\l+ stopSimulation()\l+ goBack()\l}" alt="" coords="252,359,435,495"/><area shape="rect" id="node5" href="classLearnSpellingsSimulator.html" title="Simulator widget for Learn Spellings template. " alt="" coords="459,359,673,495"/><area shape="rect" id="node6" href="classQuizSimulator.html" title="Simulator for Quiz template. " alt="" coords="697,359,845,495"/></map>
+</div>
+<div class="dynheader">
+Collaboration diagram for TemplateSimulator:</div>
+<div class="dyncontent">
+<div class="center"><img src="classTemplateSimulator__coll__graph.png" border="0" usemap="#TemplateSimulator_coll__map" alt="Collaboration graph"/></div>
+<map name="TemplateSimulator_coll__map" id="TemplateSimulator_coll__map">
+<area shape="rect" id="node3" href="classTemplateCore.html" title="The core class container for single template. " alt="" coords="107,507,323,701"/><area shape="rect" id="node5" href="classTemplateEditor.html" title="Represents the editor of the template. " alt="" coords="5,764,236,1061"/><area shape="rect" id="node6" href="classTemplateEntryPoint.html" title="The entry point for a template. " alt="" coords="337,132,552,444"/></map>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-slots"></a>
 Public Slots</h2></td></tr>
@@ -192,6 +194,15 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section warning"><dt>Warning</dt><dd>This signal MUST be emitted explicitly by simulator when its stopSimulator() slot is called. </dd></dl>
 
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classTemplateSimulator_a4eaa2c620b5ba5f6702e0d21660ce6b1_icgraph.png" border="0" usemap="#classTemplateSimulator_a4eaa2c620b5ba5f6702e0d21660ce6b1_icgraph" alt=""/></div>
+<map name="classTemplateSimulator_a4eaa2c620b5ba5f6702e0d21660ce6b1_icgraph" id="classTemplateSimulator_a4eaa2c620b5ba5f6702e0d21660ce6b1_icgraph">
+<area shape="rect" id="node2" href="classTemplateSimulator.html#a61b84b0554dcbd271193897c32df667b" title="Called when core with this simulator widget is fully loaded from XML bundle or newly created..." alt="" coords="204,5,355,47"/><area shape="rect" id="node3" href="classTemplateCore.html#a42c45b1c867a55a82d3ad174119b7efd" title="Called after this template is fully loaded in toolkit. " alt="" coords="403,13,563,39"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="a45b7d8698ecd78d959c03a29d904976f"></a>
@@ -211,11 +222,20 @@ Protected Attributes</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>Returns associated template core. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classTemplateCore.html" title="The core class container for single template. ">TemplateCore</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="templatesimulator_8cpp_source.html#l00058">58</a> of file <a class="el" href="templatesimulator_8cpp_source.html">templatesimulator.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                                            {</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;  <span class="keywordflow">return</span> m_core;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;}</div>
+<p>Definition at line <a class="el" href="templatesimulator_8cpp_source.html#l00061">61</a> of file <a class="el" href="templatesimulator_8cpp_source.html">templatesimulator.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                                            {</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;  <span class="keywordflow">return</span> m_core;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;}</div>
 </div><!-- fragment -->
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classTemplateSimulator_a45b7d8698ecd78d959c03a29d904976f_icgraph.png" border="0" usemap="#classTemplateSimulator_a45b7d8698ecd78d959c03a29d904976f_icgraph" alt=""/></div>
+<map name="classTemplateSimulator_a45b7d8698ecd78d959c03a29d904976f_icgraph" id="classTemplateSimulator_a45b7d8698ecd78d959c03a29d904976f_icgraph">
+<area shape="rect" id="node2" href="classFormSimulator.html#a8634d0b5e997d5246d7ddb8d7c02944a" title="Sets new active simulation widget. " alt="" coords="232,5,416,47"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="aefc70bc1149506cfb47b64b1195c2855"></a>
@@ -241,6 +261,15 @@ Protected Attributes</h2></td></tr>
 
 <p>Gets simulation one step back. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if simulation was rolled one step back, false otherwise. </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classTemplateSimulator_aefc70bc1149506cfb47b64b1195c2855_icgraph.png" border="0" usemap="#classTemplateSimulator_aefc70bc1149506cfb47b64b1195c2855_icgraph" alt=""/></div>
+<map name="classTemplateSimulator_aefc70bc1149506cfb47b64b1195c2855_icgraph" id="classTemplateSimulator_aefc70bc1149506cfb47b64b1195c2855_icgraph">
+<area shape="rect" id="node2" href="classFormSimulator.html#af66e4e286ab69dcff9b18dde1862448a" title="Takes active simulation one step back. " alt="" coords="204,13,376,39"/></map>
+</div>
+</p>
 
 </div>
 </div>
@@ -268,6 +297,15 @@ Protected Attributes</h2></td></tr>
 <p>(Re)starts the simulation. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if simulation was (re)started, false otherwise. </dd></dl>
 
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classTemplateSimulator_ae3fb234eb98af5ced6d3bf19bb45ce71_icgraph.png" border="0" usemap="#classTemplateSimulator_ae3fb234eb98af5ced6d3bf19bb45ce71_icgraph" alt=""/></div>
+<map name="classTemplateSimulator_ae3fb234eb98af5ced6d3bf19bb45ce71_icgraph" id="classTemplateSimulator_ae3fb234eb98af5ced6d3bf19bb45ce71_icgraph">
+<area shape="rect" id="node2" href="classFormSimulator.html#a65d0c1ead45678bb5192b266a189dc12" title="Starts active simulation. " alt="" coords="204,13,427,39"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="a1ebdad3b739f5b87411237b6c052387a"></a>
@@ -294,16 +332,25 @@ Protected Attributes</h2></td></tr>
 <p>Stops simulation and resets its to initial state, all user data from simulation are cleared. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if simulation was stopped, false otherwise. </dd></dl>
 
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classTemplateSimulator_a1ebdad3b739f5b87411237b6c052387a_icgraph.png" border="0" usemap="#classTemplateSimulator_a1ebdad3b739f5b87411237b6c052387a_icgraph" alt=""/></div>
+<map name="classTemplateSimulator_a1ebdad3b739f5b87411237b6c052387a_icgraph" id="classTemplateSimulator_a1ebdad3b739f5b87411237b6c052387a_icgraph">
+<area shape="rect" id="node2" href="classFormSimulator.html#a3a3d64841a4b884e6d1a103c42b423ce" title="Stops active simulation. " alt="" coords="204,13,425,39"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/d/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/core/<a class="el" href="templatesimulator_8h_source.html">templatesimulator.h</a></li>
-<li>/d/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/core/<a class="el" href="templatesimulator_8cpp_source.html">templatesimulator.cpp</a></li>
+<li>/mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/core/<a class="el" href="templatesimulator_8h_source.html">templatesimulator.h</a></li>
+<li>/mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/core/<a class="el" href="templatesimulator_8cpp_source.html">templatesimulator.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Aug 4 2014 15:44:03 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Aug 16 2014 15:00:50 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

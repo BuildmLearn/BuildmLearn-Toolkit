@@ -16,7 +16,7 @@ var searchData=
   ['setissticked',['setIsSticked',['../classFormSimulator.html#a190268166fe07fabb73203ceca57d1a5',1,'FormSimulator']]],
   ['setjavainterpreterpath',['setJavaInterpreterPath',['../classApplication.html#ae42c4de41c29d23e6e7c56b933576497',1,'Application']]],
   ['setmainform',['setMainForm',['../classApplication.html#aaa149a543a4d9b112dacce3da005834c',1,'Application']]],
-  ['setquestion',['setQuestion',['../classFlashCardItem.html#a41449a821d48950e8cacc45728dc59a8',1,'FlashCardItem::setQuestion()'],['../classQuizItem.html#acc6ead116e777887a5620559fe05fbf3',1,'QuizItem::setQuestion()']]],
+  ['setquestion',['setQuestion',['../classFlashCardItem.html#a2d6588a061bb8c4b5f050e46dba78c58',1,'FlashCardItem::setQuestion()'],['../classQuizItem.html#a9f154936a6342485fa26dc5755f5463e',1,'QuizItem::setQuestion()']]],
   ['setshortcut',['setShortcut',['../classShortcutCatcher.html#a70e5839eab2f16175fe8e8207c557d72',1,'ShortcutCatcher']]],
   ['setsignapkutilitypath',['setSignApkUtilityPath',['../classApplication.html#ad7e1f4961d50558b9ae9ff667857cb36',1,'Application']]],
   ['setstatus',['setStatus',['../classLabelWithStatus.html#aee33209a4c1566d80dbdc668efd5729e',1,'LabelWithStatus::setStatus()'],['../classWidgetWithStatus.html#a537a811ed7064118bd817c40adac484d',1,'WidgetWithStatus::setStatus()']]],

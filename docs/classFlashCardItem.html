@@ -64,7 +64,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
@@ -94,11 +94,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Inheritance diagram for FlashCardItem:</div>
 <div class="dyncontent">
- <div class="center">
-  <img src="classFlashCardItem.png" usemap="#FlashCardItem_map" alt=""/>
-  <map id="FlashCardItem_map" name="FlashCardItem_map">
+<div class="center"><img src="classFlashCardItem__inherit__graph.png" border="0" usemap="#FlashCardItem_inherit__map" alt="Inheritance graph"/></div>
+<map name="FlashCardItem_inherit__map" id="FlashCardItem_inherit__map">
 </map>
- </div></div>
+</div>
+<div class="dynheader">
+Collaboration diagram for FlashCardItem:</div>
+<div class="dyncontent">
+<div class="center"><img src="classFlashCardItem__coll__graph.png" border="0" usemap="#FlashCardItem_coll__map" alt="Collaboration graph"/></div>
+<map name="FlashCardItem_coll__map" id="FlashCardItem_coll__map">
+</map>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="signals"></a>
 Signals</h2></td></tr>
@@ -117,15 +123,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9e3e8e53154cad090092026c2f9be260"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9e3e8e53154cad090092026c2f9be260"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>reset</b> ()</td></tr>
 <tr class="separator:a9e3e8e53154cad090092026c2f9be260"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a41449a821d48950e8cacc45728dc59a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFlashCardItem.html#a41449a821d48950e8cacc45728dc59a8">setQuestion</a> (const <a class="el" href="classFlashCardQuestion.html">FlashCardQuestion</a> &amp;question, int question_number)</td></tr>
-<tr class="memdesc:a41449a821d48950e8cacc45728dc59a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets new question for this widget.  <a href="#a41449a821d48950e8cacc45728dc59a8">More...</a><br /></td></tr>
-<tr class="separator:a41449a821d48950e8cacc45728dc59a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d6588a061bb8c4b5f050e46dba78c58"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFlashCardItem.html#a2d6588a061bb8c4b5f050e46dba78c58">setQuestion</a> (const <a class="el" href="classFlashCardQuestion.html">FlashCardQuestion</a> &amp;question, int question_number, int total_questions)</td></tr>
+<tr class="memdesc:a2d6588a061bb8c4b5f050e46dba78c58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets new question for this widget.  <a href="#a2d6588a061bb8c4b5f050e46dba78c58">More...</a><br /></td></tr>
+<tr class="separator:a2d6588a061bb8c4b5f050e46dba78c58"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
 <p>Definition at line <a class="el" href="flashcarditem_8h_source.html#l00045">45</a> of file <a class="el" href="flashcarditem_8h_source.html">flashcarditem.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a41449a821d48950e8cacc45728dc59a8"></a>
+<a class="anchor" id="a2d6588a061bb8c4b5f050e46dba78c58"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -139,7 +145,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>reset</b> ()</td></tr
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>question_number</em>&#160;</td>
+          <td class="paramname"><em>question_number</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>total_questions</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -159,25 +171,26 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>reset</b> ()</td></tr
 </dl>
 
 <p>Definition at line <a class="el" href="flashcarditem_8cpp_source.html#l00057">57</a> of file <a class="el" href="flashcarditem_8cpp_source.html">flashcarditem.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                                                                                      {</div>
+<div class="fragment"><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                                                                                                           {</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  m_ui-&gt;m_btnPrevious-&gt;setEnabled(question_number != 1);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;  m_ui-&gt;m_lblQuestionNumber-&gt;setText(tr(<span class="stringliteral">&quot;Question number %1&quot;</span>).arg(question_number));</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  m_ui-&gt;m_lblQuestionText-&gt;setText(question.question());</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  m_ui-&gt;m_lblHint-&gt;setText(question.hint());</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;  m_ui-&gt;m_lblAnswer-&gt;setText(QString(<span class="stringliteral">&quot;&lt;span style=\&quot; font-size:14pt;\&quot;&gt;%1&lt;/span&gt;&quot;</span>).arg(question.answer()));</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;  m_ui-&gt;m_lblPicture-&gt;setPixmap(QPixmap(question.picturePath()).scaled(m_ui-&gt;m_lblPicture-&gt;size(), Qt::KeepAspectRatio));</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;}</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;  m_ui-&gt;m_lblQuestionNumber-&gt;setText(tr(<span class="stringliteral">&quot;Question number %1 of %2&quot;</span>).arg(QString::number(question_number),</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                                                                        QString::number(total_questions)));</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  m_ui-&gt;m_lblQuestionText-&gt;setText(question.question());</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;  m_ui-&gt;m_lblHint-&gt;setText(question.hint());</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;  m_ui-&gt;m_lblAnswer-&gt;setText(QString(<span class="stringliteral">&quot;&lt;span style=\&quot; font-size:14pt;\&quot;&gt;%1&lt;/span&gt;&quot;</span>).arg(question.answer()));</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;  m_ui-&gt;m_lblPicture-&gt;setPixmap(QPixmap(question.picturePath()).scaled(m_ui-&gt;m_lblPicture-&gt;size(), Qt::KeepAspectRatio));</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/d/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/templates/flashcard/<a class="el" href="flashcarditem_8h_source.html">flashcarditem.h</a></li>
-<li>/d/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/templates/flashcard/<a class="el" href="flashcarditem_8cpp_source.html">flashcarditem.cpp</a></li>
+<li>/mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/templates/flashcard/<a class="el" href="flashcarditem_8h_source.html">flashcarditem.h</a></li>
+<li>/mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/templates/flashcard/<a class="el" href="flashcarditem_8cpp_source.html">flashcarditem.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Aug 4 2014 15:44:03 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Aug 16 2014 15:00:50 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

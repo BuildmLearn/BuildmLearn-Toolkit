@@ -64,7 +64,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
@@ -101,11 +101,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Inheritance diagram for QuizItem:</div>
 <div class="dyncontent">
- <div class="center">
-  <img src="classQuizItem.png" usemap="#QuizItem_map" alt=""/>
-  <map id="QuizItem_map" name="QuizItem_map">
+<div class="center"><img src="classQuizItem__inherit__graph.png" border="0" usemap="#QuizItem_inherit__map" alt="Inheritance graph"/></div>
+<map name="QuizItem_inherit__map" id="QuizItem_inherit__map">
 </map>
- </div></div>
+</div>
+<div class="dynheader">
+Collaboration diagram for QuizItem:</div>
+<div class="dyncontent">
+<div class="center"><img src="classQuizItem__coll__graph.png" border="0" usemap="#QuizItem_coll__map" alt="Collaboration graph"/></div>
+<map name="QuizItem_coll__map" id="QuizItem_coll__map">
+</map>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
@@ -135,9 +141,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a380948ad2ce7edf4afca53ccb6cae6c5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a380948ad2ce7edf4afca53ccb6cae6c5"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>QuizItem</b> (QWidget *parent=0)</td></tr>
 <tr class="separator:a380948ad2ce7edf4afca53ccb6cae6c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc6ead116e777887a5620559fe05fbf3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQuizItem.html#acc6ead116e777887a5620559fe05fbf3">setQuestion</a> (const <a class="el" href="classQuizQuestion.html">QuizQuestion</a> &amp;question, int question_number)</td></tr>
-<tr class="memdesc:acc6ead116e777887a5620559fe05fbf3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets new question for this widget.  <a href="#acc6ead116e777887a5620559fe05fbf3">More...</a><br /></td></tr>
-<tr class="separator:acc6ead116e777887a5620559fe05fbf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f154936a6342485fa26dc5755f5463e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQuizItem.html#a9f154936a6342485fa26dc5755f5463e">setQuestion</a> (const <a class="el" href="classQuizQuestion.html">QuizQuestion</a> &amp;question, int question_number, int total_questions)</td></tr>
+<tr class="memdesc:a9f154936a6342485fa26dc5755f5463e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets new question for this widget.  <a href="#a9f154936a6342485fa26dc5755f5463e">More...</a><br /></td></tr>
+<tr class="separator:a9f154936a6342485fa26dc5755f5463e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd172acb95c93163687547c8d24c03e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQuizItem.html#a31ab8b66ac724436f2160eb5974d4f24">State</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQuizItem.html#abd172acb95c93163687547c8d24c03e3">state</a> () const </td></tr>
 <tr class="memdesc:abd172acb95c93163687547c8d24c03e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access to state of quiz question widget.  <a href="#abd172acb95c93163687547c8d24c03e3">More...</a><br /></td></tr>
 <tr class="separator:abd172acb95c93163687547c8d24c03e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -147,7 +153,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Definition at line <a class="el" href="quizitem_8h_source.html#l00047">47</a> of file <a class="el" href="quizitem_8h_source.html">quizitem.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="acc6ead116e777887a5620559fe05fbf3"></a>
+<a class="anchor" id="a9f154936a6342485fa26dc5755f5463e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -161,7 +167,13 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>question_number</em>&#160;</td>
+          <td class="paramname"><em>question_number</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>total_questions</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -181,7 +193,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 
 <p>Definition at line <a class="el" href="quizitem_8cpp_source.html#l00074">74</a> of file <a class="el" href="quizitem_8cpp_source.html">quizitem.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                                                                            {</div>
+<div class="fragment"><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                                                                                                 {</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;  m_question = question;</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;  m_ui-&gt;m_rbAnswerOne-&gt;setText(question.answerOne());</div>
@@ -194,11 +206,21 @@ Public Member Functions</h2></td></tr>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;  m_ui-&gt;m_rbAnswerThree-&gt;setVisible(question.<a class="code" href="classQuizQuestion.html#a2effe3d871c645658b6e18756f3be371">correctAnswer</a>() == 2 || !question.answerThree().simplified().isEmpty());</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;  m_ui-&gt;m_rbAnswerFour-&gt;setVisible(question.<a class="code" href="classQuizQuestion.html#a2effe3d871c645658b6e18756f3be371">correctAnswer</a>() == 3 || !question.answerFour().simplified().isEmpty());</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;  m_ui-&gt;m_lblQuestionNumber-&gt;setText(tr(<span class="stringliteral">&quot;Question number %1&quot;</span>).arg(question_number));</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;  m_ui-&gt;m_lblQuestionText-&gt;setText(question.question());</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;}</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;  m_ui-&gt;m_lblQuestionNumber-&gt;setText(tr(<span class="stringliteral">&quot;Question number %1 of %2&quot;</span>).arg(QString::number(question_number),</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                                                                        QString::number(total_questions)));</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;  m_ui-&gt;m_lblQuestionText-&gt;setText(question.question());</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;}</div>
 <div class="ttc" id="classQuizQuestion_html_a2effe3d871c645658b6e18756f3be371"><div class="ttname"><a href="classQuizQuestion.html#a2effe3d871c645658b6e18756f3be371">QuizQuestion::correctAnswer</a></div><div class="ttdeci">int correctAnswer() const </div><div class="ttdoc">Access to inde of correct answer. </div><div class="ttdef"><b>Definition:</b> <a href="quizquestion_8cpp_source.html#l00044">quizquestion.cpp:44</a></div></div>
 </div><!-- fragment -->
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classQuizItem_a9f154936a6342485fa26dc5755f5463e_cgraph.png" border="0" usemap="#classQuizItem_a9f154936a6342485fa26dc5755f5463e_cgraph" alt=""/></div>
+<map name="classQuizItem_a9f154936a6342485fa26dc5755f5463e_cgraph" id="classQuizItem_a9f154936a6342485fa26dc5755f5463e_cgraph">
+<area shape="rect" id="node2" href="classQuizQuestion.html#a2effe3d871c645658b6e18756f3be371" title="Access to inde of correct answer. " alt="" coords="217,5,424,32"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="abd172acb95c93163687547c8d24c03e3"></a>
@@ -217,21 +239,21 @@ Public Member Functions</h2></td></tr>
 <p>Access to state of quiz question widget. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns the state of quiz question widget. </dd></dl>
 
-<p>Definition at line <a class="el" href="quizitem_8cpp_source.html#l00091">91</a> of file <a class="el" href="quizitem_8cpp_source.html">quizitem.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                                    {</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;  <span class="keywordflow">return</span> m_state;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;}</div>
+<p>Definition at line <a class="el" href="quizitem_8cpp_source.html#l00092">92</a> of file <a class="el" href="quizitem_8cpp_source.html">quizitem.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                                    {</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;  <span class="keywordflow">return</span> m_state;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/d/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/templates/quiz/<a class="el" href="quizitem_8h_source.html">quizitem.h</a></li>
-<li>/d/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/templates/quiz/<a class="el" href="quizitem_8cpp_source.html">quizitem.cpp</a></li>
+<li>/mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/templates/quiz/<a class="el" href="quizitem_8h_source.html">quizitem.h</a></li>
+<li>/mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/templates/quiz/<a class="el" href="quizitem_8cpp_source.html">quizitem.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Aug 4 2014 15:44:03 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Aug 16 2014 15:00:50 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>
