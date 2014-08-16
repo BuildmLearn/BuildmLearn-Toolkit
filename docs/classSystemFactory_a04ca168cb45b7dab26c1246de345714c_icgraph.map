@@ -1,5 +1,0 @@
-<map id="SystemFactory::parseUpdatesFile" name="SystemFactory::parseUpdatesFile">
-<area shape="rect" id="node2" href="$classSystemFactory.html#ac1175e644ebb4cc273c9064171a5bda5" title="Tries to synchronously download list with new updates. " alt="" coords="288,13,523,39"/>
-<area shape="rect" id="node3" href="$classApplication.html#ae55251b8f67a9e892f9880ee67aad4e4" title="Tries to download list with new updates. " alt="" coords="571,13,781,39"/>
-<area shape="rect" id="node4" href="$classApplication.html#ae561be62fe17ea0763a8c42b8fa2969d" title="Schedules check for updates. " alt="" coords="829,5,1040,47"/>
-</map>

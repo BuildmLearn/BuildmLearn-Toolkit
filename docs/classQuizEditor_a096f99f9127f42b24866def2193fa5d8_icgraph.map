@@ -1,4 +1,0 @@
-<map id="QuizEditor::activeQuestions" name="QuizEditor::activeQuestions">
-<area shape="rect" id="node2" href="$classQuizEditor.html#a376ac80816f47762bdc8c2a4034cda80" title="Specifies if template can generate applications or not. " alt="" coords="251,5,505,32"/>
-<area shape="rect" id="node3" href="$classQuizEditor.html#a8bc7ce12d082ef78792e11ac9d4b2f6e" title="Generates RAW data which represent data of this template. " alt="" coords="264,56,492,83"/>
-</map>

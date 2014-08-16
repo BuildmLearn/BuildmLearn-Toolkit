@@ -1,6 +1,0 @@
-<map id="TemplateEditor::loadBundleData" name="TemplateEditor::loadBundleData">
-<area shape="rect" id="node2" href="$classFlashCardEntryPoint.html#aade064527758bd5ae1f54a7a76c65635" title="Creates new instance and fills it template&#45;specific data (&quot;load project&quot; functionality). " alt="" coords="280,5,475,47"/>
-<area shape="rect" id="node3" href="$classLearnSpellingsEntryPoint.html#a5d4ea7c1a3408e3eb5c532f57db0fb01" title="Creates new instance and fills it template&#45;specific data (&quot;load project&quot; functionality). " alt="" coords="280,71,475,112"/>
-<area shape="rect" id="node4" href="$classBasicmLearningEntryPoint.html#a055cc06223b1dd63a39dab6da22b700d" title="Creates new instance and fills it template&#45;specific data (&quot;load project&quot; functionality). " alt="" coords="280,136,475,177"/>
-<area shape="rect" id="node5" href="$classQuizEntryPoint.html#a438e6e6a12961cbb146ffca50e675c87" title="Creates new instance and fills it template&#45;specific data (&quot;load project&quot; functionality). " alt="" coords="287,201,467,243"/>
-</map>

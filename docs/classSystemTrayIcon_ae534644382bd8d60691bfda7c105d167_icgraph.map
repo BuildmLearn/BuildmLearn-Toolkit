@@ -1,4 +1,0 @@
-<map id="SystemTrayIcon::isSystemTrayAvailable" name="SystemTrayIcon::isSystemTrayAvailable">
-<area shape="rect" id="node2" href="$classFormMain.html#ac97480ebe759e61d2e5ee96d0ceea325" title="Switches visibility of main window. " alt="" coords="243,5,425,32"/>
-<area shape="rect" id="node3" href="$classFormMain.html#a4e331db3fe97b57f6ce8575945e8c18f" title="Executed when main application window is closed. " alt="" coords="253,56,415,83"/>
-</map>

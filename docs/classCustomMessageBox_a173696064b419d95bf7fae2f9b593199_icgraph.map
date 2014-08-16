@@ -1,7 +1,0 @@
-<map id="CustomMessageBox::setIcon" name="CustomMessageBox::setIcon">
-<area shape="rect" id="node2" href="$classCustomMessageBox.html#a351bd1dcc646d4de05ba9b8d6e09893f" title="Displays custom message box. " alt="" coords="260,42,453,69"/>
-<area shape="rect" id="node3" href="$classFormMain.html#a94b9b26aa811c70fbde564125dc54464" title="Displays dialog for uploading applications to store. " alt="" coords="501,5,748,47"/>
-<area shape="rect" id="node4" href="$classFormMain.html#a6c5909a7fff46abeb0b7f4e02b4e1f64" title="Performs necessary steps to save active project if there is unsaved work. " alt="" coords="513,71,736,98"/>
-<area shape="rect" id="node5" href="$classFormMain.html#a889d104676975cc73eab84b9d1c55312" title="Opens &quot;New project&quot; dialog. " alt="" coords="796,35,992,76"/>
-<area shape="rect" id="node6" href="$classFormMain.html#a4e331db3fe97b57f6ce8575945e8c18f" title="Executed when main application window is closed. " alt="" coords="813,101,975,127"/>
-</map>

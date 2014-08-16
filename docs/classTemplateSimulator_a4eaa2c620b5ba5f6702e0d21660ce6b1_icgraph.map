@@ -1,4 +1,0 @@
-<map id="TemplateSimulator::canGoBackChanged" name="TemplateSimulator::canGoBackChanged">
-<area shape="rect" id="node2" href="$classTemplateSimulator.html#a61b84b0554dcbd271193897c32df667b" title="Called when core with this simulator widget is fully loaded from XML bundle or newly created..." alt="" coords="204,5,355,47"/>
-<area shape="rect" id="node3" href="$classTemplateCore.html#a42c45b1c867a55a82d3ad174119b7efd" title="Called after this template is fully loaded in toolkit. " alt="" coords="403,13,563,39"/>
-</map>

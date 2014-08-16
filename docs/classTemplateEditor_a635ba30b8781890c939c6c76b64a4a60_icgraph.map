@@ -1,4 +1,0 @@
-<map id="TemplateEditor::issueNewGenereationStatus" name="TemplateEditor::issueNewGenereationStatus">
-<area shape="rect" id="node2" href="$classTemplateEditor.html#a9c2574089a102a935a0831d1f694253b" title="Executed when given template with this editor is launched. " alt="" coords="239,13,405,39"/>
-<area shape="rect" id="node3" href="$classTemplateCore.html#a42c45b1c867a55a82d3ad174119b7efd" title="Called after this template is fully loaded in toolkit. " alt="" coords="453,13,613,39"/>
-</map>
