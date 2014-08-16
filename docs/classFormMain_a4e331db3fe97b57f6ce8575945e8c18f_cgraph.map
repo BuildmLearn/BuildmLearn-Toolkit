@@ -1,0 +1,7 @@
+<map id="FormMain::closeEvent" name="FormMain::closeEvent">
+<area shape="rect" id="node2" href="$classFormMain.html#a6c5909a7fff46abeb0b7f4e02b4e1f64" title="Performs necessary steps to save active project if there is unsaved work. " alt="" coords="216,31,439,57"/>
+<area shape="rect" id="node6" href="$classSystemTrayIcon.html#ae534644382bd8d60691bfda7c105d167" title="Indicates whether tray icon is supported. " alt="" coords="233,82,422,123"/>
+<area shape="rect" id="node3" href="$classCustomMessageBox.html#a351bd1dcc646d4de05ba9b8d6e09893f" title="Displays custom message box. " alt="" coords="487,31,680,57"/>
+<area shape="rect" id="node4" href="$classCustomMessageBox.html#a173696064b419d95bf7fae2f9b593199" title="Custom icon setting. " alt="" coords="728,5,935,32"/>
+<area shape="rect" id="node5" href="$classCustomMessageBox.html#af7e3eba74e1e7c3fe91096ced36973ea" title="Performs icon replacements for given button box. " alt="" coords="731,56,932,83"/>
+</map>

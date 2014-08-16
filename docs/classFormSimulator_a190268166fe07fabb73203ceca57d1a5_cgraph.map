@@ -1,0 +1,4 @@
+<map id="FormSimulator::setIsSticked" name="FormSimulator::setIsSticked">
+<area shape="rect" id="node2" href="$classFormSimulator.html#af016dbce17a3ee65d723541ce325a7da" title="Forces this window to align itself next to its parent window. " alt="" coords="256,5,476,32"/>
+<area shape="rect" id="node3" href="$classFormSimulator.html#a94b6f673e5d597a13df3bdee7a465285" title="Allows window to be unattached and allows vertical resize policy. " alt="" coords="259,57,473,98"/>
+</map>

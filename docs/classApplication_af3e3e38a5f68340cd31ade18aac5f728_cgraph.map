@@ -1,0 +1,7 @@
+<map id="Application::checkSignApk" name="Application::checkSignApk">
+<area shape="rect" id="node2" href="$classApplication.html#a2fcefcd0be7d65ca7be0a43269c3f542" title="Access to path to &quot;java&quot; interpreter. " alt="" coords="243,5,465,32"/>
+<area shape="rect" id="node6" href="$classApplication.html#a8ece375a09251ccae4d479d034c4fa2b" title="Access to path to &quot;signapk&quot; utility. " alt="" coords="249,56,459,83"/>
+<area shape="rect" id="node3" href="$classApplication.html#ae2c9557de52ed56485be93dc13ab929d" title="Access to application&#45;wide settings. " alt="" coords="513,5,664,32"/>
+<area shape="rect" id="node5" href="$classSettings.html#a2b2ae54dc7fc444df6f52c9a1f6143f5" title="Getter/setter for settings values. " alt="" coords="530,56,647,83"/>
+<area shape="rect" id="node4" href="$classSettings.html#a59ec5afcafd34266e9827093f7742067" title="Creates settings file in correct location. " alt="" coords="712,5,884,32"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="WidgetWithStatus" name="WidgetWithStatus">
+<area shape="rect" id="node3" href="$classLabelWithStatus.html" title="Iconified label widget. " alt="" coords="5,403,167,524"/>
+<area shape="rect" id="node4" href="$classLineEditWithStatus.html" title="Custom line edit with status icon. " alt="" coords="191,410,368,517"/>
+</map>

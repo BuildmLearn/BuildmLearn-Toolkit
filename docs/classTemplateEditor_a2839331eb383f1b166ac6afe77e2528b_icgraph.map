@@ -1,0 +1,8 @@
+<map id="TemplateEditor::generateBundleData" name="TemplateEditor::generateBundleData">
+<area shape="rect" id="node2" href="$classTemplateFactory.html#aa887809c4cac619c2b7b6300fc8727c9" title="Saves current project to given file. " alt="" coords="242,5,453,47"/>
+<area shape="rect" id="node4" href="$classFlashCardCore.html#a1ed4d740950fd4b13e41f2a457a7f6fa" title="Generates APK file from current project with active settings. " alt="" coords="236,71,459,112"/>
+<area shape="rect" id="node5" href="$classLearnSpellingsCore.html#acf49ec2b863bd345883ca5de65922fef" title="Generates APK file from current project with active settings. " alt="" coords="248,136,447,177"/>
+<area shape="rect" id="node6" href="$classBasicmLearningCore.html#a46b5ee62940ebc3e9c8b37d6a92354bb" title="Generates APK file from current project with active settings. " alt="" coords="248,201,447,243"/>
+<area shape="rect" id="node7" href="$classQuizCore.html#ac1be74e283990c61d852e461dda722cc" title="Generates APK file from current project with active settings. " alt="" coords="254,267,441,308"/>
+<area shape="rect" id="node3" href="$classTemplateFactory.html#a5a37e9468eb307cdfe317662c66aac2f" title="Saves current project to assigned file if there is any. " alt="" coords="507,5,717,47"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="TemplateFactory::loadProject" name="TemplateFactory::loadProject">
+<area shape="rect" id="node2" href="$classTemplateFactory.html#a1332ff22fcadc2d4c4eb10999fe27f51" title="Decides which entry point raw XML bundle data belong to. " alt="" coords="266,5,465,47"/>
+<area shape="rect" id="node3" href="$classTemplateEntryPoint.html#a28c114e5421b3549a160868bb25539da" title="Creates new instance and fills it template&#45;specific data (&quot;load project&quot; functionality). " alt="" coords="268,71,463,112"/>
+<area shape="rect" id="node4" href="$classTemplateCore.html#a537735637643ccba96859b290b07fab2" title="Sets new assigned file. " alt="" coords="257,137,473,163"/>
+<area shape="rect" id="node5" href="$classTemplateCore.html#a1b8cc0d291b14259b3cd42c5d5abc87d" title="Access to editor widget of the template. " alt="" coords="288,187,443,214"/>
+<area shape="rect" id="node6" href="$classTemplateEditor.html#a7ede92fa2eb9f0c333922ed786a1e0b2" title="Sets new dirtiness status. " alt="" coords="273,238,458,265"/>
+</map>

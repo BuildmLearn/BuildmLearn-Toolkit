@@ -1,0 +1,5 @@
+<map id="Application::signApkUtlityPath" name="Application::signApkUtlityPath">
+<area shape="rect" id="node2" href="$classApplication.html#ae2c9557de52ed56485be93dc13ab929d" title="Access to application&#45;wide settings. " alt="" coords="264,5,415,32"/>
+<area shape="rect" id="node4" href="$classSettings.html#a2b2ae54dc7fc444df6f52c9a1f6143f5" title="Getter/setter for settings values. " alt="" coords="281,56,398,83"/>
+<area shape="rect" id="node3" href="$classSettings.html#a59ec5afcafd34266e9827093f7742067" title="Creates settings file in correct location. " alt="" coords="463,5,635,32"/>
+</map>

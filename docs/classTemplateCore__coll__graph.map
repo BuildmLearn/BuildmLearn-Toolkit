@@ -1,0 +1,5 @@
+<map id="TemplateCore" name="TemplateCore">
+<area shape="rect" id="node3" href="$classTemplateEditor.html" title="Represents the editor of the template. " alt="" coords="210,764,441,1061"/>
+<area shape="rect" id="node6" href="$classTemplateSimulator.html" title="Base widget which represents simulator of the template. " alt="" coords="5,823,184,1003"/>
+<area shape="rect" id="node5" href="$classTemplateEntryPoint.html" title="The entry point for a template. " alt="" coords="174,132,389,444"/>
+</map>

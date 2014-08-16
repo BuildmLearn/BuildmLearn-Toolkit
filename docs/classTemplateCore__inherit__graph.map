@@ -1,0 +1,6 @@
+<map id="TemplateCore" name="TemplateCore">
+<area shape="rect" id="node3" href="$classBasicmLearningCore.html" title="{BasicmLearningCore\n||+ BasicmLearningCore()\l+ ~BasicmLearningCore()\l+ generateMobileApplication()\l}" alt="" coords="5,417,221,524"/>
+<area shape="rect" id="node4" href="$classFlashCardCore.html" title="{FlashCardCore\n||+ FlashCardCore()\l+ ~FlashCardCore()\l+ generateMobileApplication()\l}" alt="" coords="245,417,461,524"/>
+<area shape="rect" id="node5" href="$classLearnSpellingsCore.html" title="Core of Learn Spellings template. " alt="" coords="485,417,701,524"/>
+<area shape="rect" id="node6" href="$classQuizCore.html" title="Main core of Quiz template. " alt="" coords="725,417,941,524"/>
+</map>

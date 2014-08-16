@@ -1,0 +1,8 @@
+<map id="FormMain::switchVisibility" name="FormMain::switchVisibility">
+<area shape="rect" id="node2" href="$classSystemTrayIcon.html#ae534644382bd8d60691bfda7c105d167" title="Indicates whether tray icon is supported. " alt="" coords="236,5,425,47"/>
+<area shape="rect" id="node3" href="$classFormMain.html#a5a4e081566cf3cf8689b32b4d8a00be4" title="Displays the window. " alt="" coords="262,71,399,98"/>
+<area shape="rect" id="node5" href="$classFormSimulator.html#a37e28a6ca8562ed2ceccd28b6d68de3a" title="Displays simulator window. " alt="" coords="252,123,409,150"/>
+<area shape="rect" id="node4" href="$classFormMain.html#ae0e94720b058d8b20fd3ef899eae4e4f" title="Displays window. " alt="" coords="513,69,638,95"/>
+<area shape="rect" id="node6" href="$classFormSimulator.html#ab2723ea14add2fa95279f26733447fa8" title="Conditionally sticks simulator window to its parent. " alt="" coords="473,120,677,161"/>
+<area shape="rect" id="node7" href="$classFormSimulator.html#af016dbce17a3ee65d723541ce325a7da" title="Forces this window to align itself next to its parent window. " alt="" coords="725,127,945,154"/>
+</map>

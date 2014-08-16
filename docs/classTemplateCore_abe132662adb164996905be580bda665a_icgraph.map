@@ -1,0 +1,6 @@
+<map id="TemplateCore::simulator" name="TemplateCore::simulator">
+<area shape="rect" id="node2" href="$classFlashCardEntryPoint.html#aade064527758bd5ae1f54a7a76c65635" title="Creates new instance and fills it template&#45;specific data (&quot;load project&quot; functionality). " alt="" coords="232,5,427,47"/>
+<area shape="rect" id="node3" href="$classLearnSpellingsEntryPoint.html#a5d4ea7c1a3408e3eb5c532f57db0fb01" title="Creates new instance and fills it template&#45;specific data (&quot;load project&quot; functionality). " alt="" coords="232,71,427,112"/>
+<area shape="rect" id="node4" href="$classBasicmLearningEntryPoint.html#a055cc06223b1dd63a39dab6da22b700d" title="Creates new instance and fills it template&#45;specific data (&quot;load project&quot; functionality). " alt="" coords="232,136,427,177"/>
+<area shape="rect" id="node5" href="$classQuizEntryPoint.html#a438e6e6a12961cbb146ffca50e675c87" title="Creates new instance and fills it template&#45;specific data (&quot;load project&quot; functionality). " alt="" coords="239,201,419,243"/>
+</map>

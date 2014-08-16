@@ -1,0 +1,12 @@
+<map id="Settings::value" name="Settings::value">
+<area shape="rect" id="node2" href="$classDynamicShortcuts.html#a66f0dc0e658b3845c219b452afed630d" title="Checks the application settings and then initializes shortcut of each action from actions from the se..." alt="" coords="201,5,376,32"/>
+<area shape="rect" id="node3" href="$classApplication.html#ad7e1f4961d50558b9ae9ff667857cb36" title="Sets new path to &quot;signapk&quot;. " alt="" coords="171,56,407,83"/>
+<area shape="rect" id="node4" href="$classApplication.html#a0762f85fbec5968aaa441e4f6ddad749" title="Access to &quot;zip&quot; utility path. " alt="" coords="197,107,380,133"/>
+<area shape="rect" id="node6" href="$classApplication.html#a8ece375a09251ccae4d479d034c4fa2b" title="Access to path to &quot;signapk&quot; utility. " alt="" coords="183,157,394,184"/>
+<area shape="rect" id="node8" href="$classApplication.html#a2fcefcd0be7d65ca7be0a43269c3f542" title="Access to path to &quot;java&quot; interpreter. " alt="" coords="177,208,400,235"/>
+<area shape="rect" id="node10" href="$classBaseNetworkAccessManager.html#aef2731daf22a2e699e73514368b36b6f" title="Loads network settings for this instance. " alt="" coords="185,259,392,301"/>
+<area shape="rect" id="node5" href="$classApplication.html#a3b70c8738e05c665d39c9ccb97f85f06" title="Tests if binary in new_path is correct ZIP executable. " alt="" coords="483,107,641,133"/>
+<area shape="rect" id="node7" href="$classApplication.html#af3e3e38a5f68340cd31ade18aac5f728" title="Tests if binary in new_path is correct SIGNAPK executable. " alt="" coords="467,157,657,184"/>
+<area shape="rect" id="node9" href="$classApplication.html#af58a5a2b744c3cfd15b76e81881dc6da" title="Tests if binary in new_path is correct JAVA executable. " alt="" coords="481,208,643,235"/>
+<area shape="rect" id="node11" href="$classBaseNetworkAccessManager.html#aa07b9da92e0857165286c222e5d0abd5" title="Constructor. " alt="" coords="455,259,669,301"/>
+</map>

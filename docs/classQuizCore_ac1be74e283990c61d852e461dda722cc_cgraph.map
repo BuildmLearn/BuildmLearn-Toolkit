@@ -1,0 +1,6 @@
+<map id="QuizCore::generateMobileApplication" name="QuizCore::generateMobileApplication">
+<area shape="rect" id="node2" href="$classTemplateCore.html#a1b8cc0d291b14259b3cd42c5d5abc87d" title="Access to editor widget of the template. " alt="" coords="254,5,409,32"/>
+<area shape="rect" id="node3" href="$classTemplateEditor.html#a2839331eb383f1b166ac6afe77e2528b" title="Generates RAW data which represent data of this template. " alt="" coords="240,57,423,98"/>
+<area shape="rect" id="node4" href="$classTemplateCore.html#aa551e031299f9f4683c3fe12d81d18bd" title="Access to entry point of the template. " alt="" coords="240,123,423,149"/>
+<area shape="rect" id="node5" href="$classIOFactory.html#a6ef3caa32304d9b26bc8fd7c645bf598" title="Copies source file into destination path. " alt="" coords="262,173,401,200"/>
+</map>

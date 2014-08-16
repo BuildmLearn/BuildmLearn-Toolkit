@@ -1,0 +1,5 @@
+<map id="Application::setJavaInterpreterPath" name="Application::setJavaInterpreterPath">
+<area shape="rect" id="node2" href="$classApplication.html#ae2c9557de52ed56485be93dc13ab929d" title="Access to application&#45;wide settings. " alt="" coords="296,5,447,32"/>
+<area shape="rect" id="node4" href="$classSettings.html#a9b6421e864b980818a51da33062ae280" title="Sets new value into settings. " alt="" coords="302,56,441,83"/>
+<area shape="rect" id="node3" href="$classSettings.html#a59ec5afcafd34266e9827093f7742067" title="Creates settings file in correct location. " alt="" coords="495,5,667,32"/>
+</map>

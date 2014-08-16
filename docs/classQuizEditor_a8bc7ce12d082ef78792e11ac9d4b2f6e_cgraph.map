@@ -1,0 +1,5 @@
+<map id="QuizEditor::generateBundleData" name="QuizEditor::generateBundleData">
+<area shape="rect" id="node2" href="$classTemplateEditor.html#a171503c880d22a461d2f78209d27a958" title="Access to associated template core. " alt="" coords="308,5,461,32"/>
+<area shape="rect" id="node3" href="$classQuizEditor.html#a096f99f9127f42b24866def2193fa5d8" title="Access to list of added questions. " alt="" coords="286,56,483,83"/>
+<area shape="rect" id="node4" href="$classQuizQuestion.html#a2effe3d871c645658b6e18756f3be371" title="Access to inde of correct answer. " alt="" coords="281,107,488,133"/>
+</map>

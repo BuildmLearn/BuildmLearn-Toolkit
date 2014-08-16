@@ -1,0 +1,4 @@
+<map id="FormMain::FormMain" name="FormMain::FormMain">
+<area shape="rect" id="node2" href="$classFormSimulator.html#a2beead88fcedb61b7ca68e7aeaacda8d" title="Indicates whether simulator window should be shown when application launches. " alt="" coords="213,5,389,47"/>
+<area shape="rect" id="node3" href="$classFormSimulator.html#ad9fe8f3fc10c39d3e085c81d9374d830" title="Indicates whether simulator window is sticked to main window or not. " alt="" coords="209,71,392,98"/>
+</map>

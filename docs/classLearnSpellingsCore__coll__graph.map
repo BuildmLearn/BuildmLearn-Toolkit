@@ -1,0 +1,6 @@
+<map id="LearnSpellingsCore" name="LearnSpellingsCore">
+<area shape="rect" id="node2" href="$classTemplateCore.html" title="The core class container for single template. " alt="" coords="225,507,441,701"/>
+<area shape="rect" id="node4" href="$classTemplateEditor.html" title="Represents the editor of the template. " alt="" coords="449,764,679,1061"/>
+<area shape="rect" id="node7" href="$classTemplateSimulator.html" title="Base widget which represents simulator of the template. " alt="" coords="245,823,424,1003"/>
+<area shape="rect" id="node6" href="$classTemplateEntryPoint.html" title="The entry point for a template. " alt="" coords="350,132,565,444"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="IOFactory::removeDirectory" name="IOFactory::removeDirectory">
+<area shape="rect" id="node2" href="$classTemplateGenerator.html#a5bbcb76cdd37e86305d3e413c16d7849" title="Cleans workspace used for generating applications. " alt="" coords="248,5,401,47"/>
+<area shape="rect" id="node3" href="$classTemplateGenerator.html#adde0afd6514967f1da10c2ab8a65432c" title="Cleans and recreates base workspace path. " alt="" coords="449,5,603,47"/>
+</map>

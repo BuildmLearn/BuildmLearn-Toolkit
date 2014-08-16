@@ -1,0 +1,5 @@
+<map id="TemplateGenerator::generateMobileApplication" name="TemplateGenerator::generateMobileApplication">
+<area shape="rect" id="node2" href="$classTemplateCore.html#a1b8cc0d291b14259b3cd42c5d5abc87d" title="Access to editor widget of the template. " alt="" coords="275,5,430,32"/>
+<area shape="rect" id="node3" href="$classTemplateEditor.html#a9e7fb03a99c4cf22e3782f09bdaf85e6" title="Access to project name of current editor. " alt="" coords="249,56,457,83"/>
+<area shape="rect" id="node4" href="$classTemplateCore.html#a4e4e16e8fe56f0d89bf0afd47ae83ea4" title="Generates APK file from current project with active settings. " alt="" coords="244,107,461,149"/>
+</map>

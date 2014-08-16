@@ -1,0 +1,6 @@
+<map id="Application::checkForUpdates" name="Application::checkForUpdates">
+<area shape="rect" id="node2" href="$classSystemFactory.html#ac1175e644ebb4cc273c9064171a5bda5" title="Tries to synchronously download list with new updates. " alt="" coords="264,31,499,57"/>
+<area shape="rect" id="node3" href="$classNetworkFactory.html#ab2ed607a42b58b7912c85537ddc2b0d7" title="Performs SYNCHRONOUS download of file with given URL and given timeout. " alt="" coords="561,5,767,32"/>
+<area shape="rect" id="node5" href="$classSystemFactory.html#a04ca168cb45b7dab26c1246de345714c" title="Performs parsing of downloaded file with list of updates. " alt="" coords="547,56,781,83"/>
+<area shape="rect" id="node4" href="$classNetworkFactory.html#a30cef8b2f120dfcfd2002e4b78bf7a42" title="Gets human readable text for given network error. " alt="" coords="829,5,1063,32"/>
+</map>

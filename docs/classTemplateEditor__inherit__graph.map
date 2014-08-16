@@ -1,0 +1,6 @@
+<map id="TemplateEditor" name="TemplateEditor">
+<area shape="rect" id="node3" href="$classBasicmLearningEditor.html" title="{BasicmLearningEditor\n||+ BasicmLearningEditor()\l+ ~BasicmLearningEditor()\l+ activeItems()\l+ canGenerateApplications()\l+ generateBundleData()\l+ loadBundleData()\l+ projectName()\l+ authorName()\l}" alt="" coords="5,491,212,671"/>
+<area shape="rect" id="node4" href="$classFlashCardEditor.html" title="{FlashCardEditor\n||+ FlashCardEditor()\l+ ~FlashCardEditor()\l+ canGenerateApplications()\l+ generateBundleData()\l+ loadBundleData()\l+ activeQuestions()\l+ projectName()\l+ authorName()\l}" alt="" coords="236,491,443,671"/>
+<area shape="rect" id="node5" href="$classLearnSpellingsEditor.html" title="Editor widget of Learn Spellings template. " alt="" coords="467,491,673,671"/>
+<area shape="rect" id="node6" href="$classQuizEditor.html" title="Editor for Quiz. " alt="" coords="697,491,904,671"/>
+</map>

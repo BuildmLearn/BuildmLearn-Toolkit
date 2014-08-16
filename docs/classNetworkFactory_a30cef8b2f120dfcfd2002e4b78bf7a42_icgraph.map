@@ -1,0 +1,7 @@
+<map id="NetworkFactory::networkErrorText" name="NetworkFactory::networkErrorText">
+<area shape="rect" id="node2" href="$classFormUpdate.html#a86e0d3f6da33ac4a65242058dec9fa86" title="Check for updates and interprets the results. " alt="" coords="287,5,508,32"/>
+<area shape="rect" id="node3" href="$classNetworkFactory.html#ab2ed607a42b58b7912c85537ddc2b0d7" title="Performs SYNCHRONOUS download of file with given URL and given timeout. " alt="" coords="294,56,501,83"/>
+<area shape="rect" id="node4" href="$classSystemFactory.html#ac1175e644ebb4cc273c9064171a5bda5" title="Tries to synchronously download list with new updates. " alt="" coords="556,56,791,83"/>
+<area shape="rect" id="node5" href="$classApplication.html#ae55251b8f67a9e892f9880ee67aad4e4" title="Tries to download list with new updates. " alt="" coords="839,56,1049,83"/>
+<area shape="rect" id="node6" href="$classApplication.html#ae561be62fe17ea0763a8c42b8fa2969d" title="Schedules check for updates. " alt="" coords="1097,49,1308,90"/>
+</map>

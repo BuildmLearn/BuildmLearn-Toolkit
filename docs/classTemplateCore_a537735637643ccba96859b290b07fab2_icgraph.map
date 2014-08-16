@@ -1,0 +1,5 @@
+<map id="TemplateCore::setAssignedFile" name="TemplateCore::setAssignedFile">
+<area shape="rect" id="node2" href="$classTemplateFactory.html#abc2dd0c6cfe26a99260a488f16484a58" title="Loads stored project and initializes new core according to it. " alt="" coords="273,5,477,32"/>
+<area shape="rect" id="node3" href="$classTemplateFactory.html#aa887809c4cac619c2b7b6300fc8727c9" title="Saves current project to given file. " alt="" coords="269,57,480,98"/>
+<area shape="rect" id="node4" href="$classTemplateFactory.html#a5a37e9468eb307cdfe317662c66aac2f" title="Saves current project to assigned file if there is any. " alt="" coords="528,57,739,98"/>
+</map>

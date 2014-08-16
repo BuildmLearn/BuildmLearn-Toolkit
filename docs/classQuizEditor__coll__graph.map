@@ -1,0 +1,6 @@
+<map id="QuizEditor" name="QuizEditor">
+<area shape="rect" id="node2" href="$classTemplateEditor.html" title="Represents the editor of the template. " alt="" coords="94,139,325,437"/>
+<area shape="rect" id="node4" href="$classTemplateCore.html" title="The core class container for single template. " alt="" coords="309,507,525,701"/>
+<area shape="rect" id="node7" href="$classTemplateSimulator.html" title="Base widget which represents simulator of the template. " alt="" coords="201,764,380,944"/>
+<area shape="rect" id="node6" href="$classTemplateEntryPoint.html" title="The entry point for a template. " alt="" coords="454,132,669,444"/>
+</map>

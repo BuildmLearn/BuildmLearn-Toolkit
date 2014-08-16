@@ -1,0 +1,6 @@
+<map id="TemplateCore::launch" name="TemplateCore::launch">
+<area shape="rect" id="node2" href="$classTemplateEditor.html#a9c2574089a102a935a0831d1f694253b" title="Executed when given template with this editor is launched. " alt="" coords="213,46,380,73"/>
+<area shape="rect" id="node5" href="$classTemplateSimulator.html#a61b84b0554dcbd271193897c32df667b" title="Called when core with this simulator widget is fully loaded from XML bundle or newly created..." alt="" coords="221,97,372,139"/>
+<area shape="rect" id="node3" href="$classTemplateEditor.html#a72191612460f9832863e556664d6313b" title="Specifies if template can generate applications or not. " alt="" coords="428,5,636,47"/>
+<area shape="rect" id="node4" href="$classTemplateEditor.html#a635ba30b8781890c939c6c76b64a4a60" title="Emits new signal notifying other components about state of creating of APK application. " alt="" coords="439,71,625,112"/>
+</map>

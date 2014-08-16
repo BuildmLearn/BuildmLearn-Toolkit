@@ -1,0 +1,5 @@
+<map id="LabelWithStatus::setStatus" name="LabelWithStatus::setStatus">
+<area shape="rect" id="node2" href="$classWidgetWithStatus.html#a537a811ed7064118bd817c40adac484d" title="Sets custom status for this control. " alt="" coords="248,5,452,32"/>
+<area shape="rect" id="node4" href="$classLabelWithStatus.html#ad818491b65901d53442b8ef3af1dc239" title="Access to label. " alt="" coords="269,56,431,83"/>
+<area shape="rect" id="node3" href="$classWidgetWithStatus.html#ac16d855bdcf4be0a9a6752b1132074f2" title="Access to current status of the widget. " alt="" coords="500,5,683,32"/>
+</map>

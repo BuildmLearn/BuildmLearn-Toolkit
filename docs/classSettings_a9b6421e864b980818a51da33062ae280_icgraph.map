@@ -1,0 +1,5 @@
+<map id="Settings::setValue" name="Settings::setValue">
+<area shape="rect" id="node2" href="$classDynamicShortcuts.html#a489e348279eae707acf6678e0938af8e" title="Stores shortcut of each action from actions into the application settings. " alt="" coords="224,5,403,32"/>
+<area shape="rect" id="node3" href="$classApplication.html#a1dd271254dd68afa548999e37cbeca27" title="Sets new path to &quot;zip&quot;. " alt="" coords="211,56,416,83"/>
+<area shape="rect" id="node4" href="$classApplication.html#ae42c4de41c29d23e6e7c56b933576497" title="Sets new &quot;java&quot; interpreter path. " alt="" coords="192,107,435,133"/>
+</map>

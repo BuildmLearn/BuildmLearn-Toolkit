@@ -1,0 +1,15 @@
+<map id="TemplateCore::editor" name="TemplateCore::editor">
+<area shape="rect" id="node2" href="$classTemplateFactory.html#abc2dd0c6cfe26a99260a488f16484a58" title="Loads stored project and initializes new core according to it. " alt="" coords="217,5,421,32"/>
+<area shape="rect" id="node3" href="$classTemplateFactory.html#aa887809c4cac619c2b7b6300fc8727c9" title="Saves current project to given file. " alt="" coords="214,57,425,98"/>
+<area shape="rect" id="node5" href="$classTemplateGenerator.html#acd0fa658144dfd6210cef797a6ec1ceb" title="Generates new APK application using given core. " alt="" coords="224,122,415,163"/>
+<area shape="rect" id="node6" href="$classFormSimulator.html#a8634d0b5e997d5246d7ddb8d7c02944a" title="Sets new active simulation widget. " alt="" coords="227,187,411,229"/>
+<area shape="rect" id="node7" href="$classFlashCardCore.html#a1ed4d740950fd4b13e41f2a457a7f6fa" title="Generates APK file from current project with active settings. " alt="" coords="208,253,431,294"/>
+<area shape="rect" id="node8" href="$classFlashCardEntryPoint.html#aade064527758bd5ae1f54a7a76c65635" title="Creates new instance and fills it template&#45;specific data (&quot;load project&quot; functionality). " alt="" coords="222,318,417,359"/>
+<area shape="rect" id="node9" href="$classLearnSpellingsCore.html#acf49ec2b863bd345883ca5de65922fef" title="Generates APK file from current project with active settings. " alt="" coords="220,383,419,425"/>
+<area shape="rect" id="node10" href="$classLearnSpellingsEntryPoint.html#a5d4ea7c1a3408e3eb5c532f57db0fb01" title="Creates new instance and fills it template&#45;specific data (&quot;load project&quot; functionality). " alt="" coords="222,449,417,490"/>
+<area shape="rect" id="node11" href="$classBasicmLearningCore.html#a46b5ee62940ebc3e9c8b37d6a92354bb" title="Generates APK file from current project with active settings. " alt="" coords="220,514,419,555"/>
+<area shape="rect" id="node12" href="$classBasicmLearningEntryPoint.html#a055cc06223b1dd63a39dab6da22b700d" title="Creates new instance and fills it template&#45;specific data (&quot;load project&quot; functionality). " alt="" coords="222,579,417,621"/>
+<area shape="rect" id="node13" href="$classQuizCore.html#ac1be74e283990c61d852e461dda722cc" title="Generates APK file from current project with active settings. " alt="" coords="226,645,413,686"/>
+<area shape="rect" id="node14" href="$classQuizEntryPoint.html#a438e6e6a12961cbb146ffca50e675c87" title="Creates new instance and fills it template&#45;specific data (&quot;load project&quot; functionality). " alt="" coords="229,710,409,751"/>
+<area shape="rect" id="node4" href="$classTemplateFactory.html#a5a37e9468eb307cdfe317662c66aac2f" title="Saves current project to assigned file if there is any. " alt="" coords="479,57,689,98"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="TemplateEntryPoint" name="TemplateEntryPoint">
+<area shape="rect" id="node3" href="$classBasicmLearningEntryPoint.html" title="{BasicmLearningEntryPoint\n||+ BasicmLearningEntryPoint()\l+ ~BasicmLearningEntryPoint()\l+ createNewCore()\l+ loadCoreFromBundleData()\l}" alt="" coords="5,491,231,612"/>
+<area shape="rect" id="node4" href="$classFlashCardEntryPoint.html" title="{FlashCardEntryPoint\n||+ FlashCardEntryPoint()\l+ ~FlashCardEntryPoint()\l+ createNewCore()\l+ loadCoreFromBundleData()\l}" alt="" coords="254,491,465,612"/>
+<area shape="rect" id="node5" href="$classLearnSpellingsEntryPoint.html" title="Entry point of Learn Spellings template. " alt="" coords="489,491,705,612"/>
+<area shape="rect" id="node6" href="$classQuizEntryPoint.html" title="Entry point. " alt="" coords="729,491,939,612"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="TemplateEditor::core" name="TemplateEditor::core">
+<area shape="rect" id="node2" href="$classFlashCardEditor.html#a0d3ac017c15366776f462bd33fcccae9" title="Generates RAW data which represent data of this template. " alt="" coords="227,5,415,47"/>
+<area shape="rect" id="node3" href="$classLearnSpellingsEditor.html#a11f8b230173f3715acb98c57671dbbb2" title="Generates RAW data which represent data of this template. " alt="" coords="239,71,402,112"/>
+<area shape="rect" id="node4" href="$classBasicmLearningEditor.html#a0cdf10c1e16fce6c7dfdf40029d8d9b9" title="Generates RAW data which represent data of this template. " alt="" coords="239,136,402,177"/>
+<area shape="rect" id="node5" href="$classQuizEditor.html#a8bc7ce12d082ef78792e11ac9d4b2f6e" title="Generates RAW data which represent data of this template. " alt="" coords="207,202,435,229"/>
+</map>

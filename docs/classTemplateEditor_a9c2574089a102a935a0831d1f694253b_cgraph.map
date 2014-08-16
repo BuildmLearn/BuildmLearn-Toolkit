@@ -1,0 +1,4 @@
+<map id="TemplateEditor::launch" name="TemplateEditor::launch">
+<area shape="rect" id="node2" href="$classTemplateEditor.html#a72191612460f9832863e556664d6313b" title="Specifies if template can generate applications or not. " alt="" coords="220,5,428,47"/>
+<area shape="rect" id="node3" href="$classTemplateEditor.html#a635ba30b8781890c939c6c76b64a4a60" title="Emits new signal notifying other components about state of creating of APK application. " alt="" coords="231,71,417,112"/>
+</map>

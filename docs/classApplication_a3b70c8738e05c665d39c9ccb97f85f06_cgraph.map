@@ -1,0 +1,6 @@
+<map id="Application::checkZip" name="Application::checkZip">
+<area shape="rect" id="node2" href="$classApplication.html#a0762f85fbec5968aaa441e4f6ddad749" title="Access to &quot;zip&quot; utility path. " alt="" coords="212,31,395,57"/>
+<area shape="rect" id="node3" href="$classApplication.html#ae2c9557de52ed56485be93dc13ab929d" title="Access to application&#45;wide settings. " alt="" coords="443,5,593,32"/>
+<area shape="rect" id="node5" href="$classSettings.html#a2b2ae54dc7fc444df6f52c9a1f6143f5" title="Getter/setter for settings values. " alt="" coords="459,56,577,83"/>
+<area shape="rect" id="node4" href="$classSettings.html#a59ec5afcafd34266e9827093f7742067" title="Creates settings file in correct location. " alt="" coords="641,5,813,32"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="FormMain::saveUnsavedProject" name="FormMain::saveUnsavedProject">
+<area shape="rect" id="node2" href="$classFormMain.html#a889d104676975cc73eab84b9d1c55312" title="Opens &quot;New project&quot; dialog. " alt="" coords="276,5,472,47"/>
+<area shape="rect" id="node3" href="$classFormMain.html#a4e331db3fe97b57f6ce8575945e8c18f" title="Executed when main application window is closed. " alt="" coords="293,71,455,98"/>
+</map>

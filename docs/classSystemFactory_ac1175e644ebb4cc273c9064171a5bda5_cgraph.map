@@ -1,0 +1,5 @@
+<map id="SystemFactory::checkForUpdates" name="SystemFactory::checkForUpdates">
+<area shape="rect" id="node2" href="$classNetworkFactory.html#ab2ed607a42b58b7912c85537ddc2b0d7" title="Performs SYNCHRONOUS download of file with given URL and given timeout. " alt="" coords="302,5,509,32"/>
+<area shape="rect" id="node4" href="$classSystemFactory.html#a04ca168cb45b7dab26c1246de345714c" title="Performs parsing of downloaded file with list of updates. " alt="" coords="288,56,523,83"/>
+<area shape="rect" id="node3" href="$classNetworkFactory.html#a30cef8b2f120dfcfd2002e4b78bf7a42" title="Gets human readable text for given network error. " alt="" coords="571,5,804,32"/>
+</map>

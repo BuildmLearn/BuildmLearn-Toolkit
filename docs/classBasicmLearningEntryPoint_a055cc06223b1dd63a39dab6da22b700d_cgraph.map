@@ -1,0 +1,5 @@
+<map id="BasicmLearningEntryPoint::loadCoreFromBundleData" name="BasicmLearningEntryPoint::loadCoreFromBundleData">
+<area shape="rect" id="node2" href="$classTemplateCore.html#a1b8cc0d291b14259b3cd42c5d5abc87d" title="Access to editor widget of the template. " alt="" coords="284,5,439,32"/>
+<area shape="rect" id="node3" href="$classTemplateEditor.html#a95b1adbfffca51d842efba063b8b0f47" title="Loads editor state from XML bundle. " alt="" coords="248,56,475,83"/>
+<area shape="rect" id="node4" href="$classTemplateCore.html#abe132662adb164996905be580bda665a" title="Access to simulator widget of the template. " alt="" coords="272,107,451,133"/>
+</map>

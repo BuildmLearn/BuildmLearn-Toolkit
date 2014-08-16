@@ -1,0 +1,7 @@
+<map id="ShortcutCatcher::ShortcutCatcher" name="ShortcutCatcher::ShortcutCatcher">
+<area shape="rect" id="node2" href="$classIconFactory.html#aafe98384c2523486fa9c46b556eb1383" title="Singleton getter. " alt="" coords="280,5,435,32"/>
+<area shape="rect" id="node3" href="$classShortcutCatcher.html#a589493d8e03099447eb92ba567db5dda" title="Resets active shortcut to default shortcut. " alt="" coords="246,56,469,83"/>
+<area shape="rect" id="node5" href="$classShortcutCatcher.html#aa68efdc8451f548cebef1067aef224d7" title="Clears current active shortcut. " alt="" coords="247,107,468,133"/>
+<area shape="rect" id="node6" href="$classShortcutCatcher.html#afd3f621ef89a9834dd94cf1021f391e2" title="Updates text displayed in catcher according to active shortcut. " alt="" coords="244,158,471,199"/>
+<area shape="rect" id="node4" href="$classShortcutCatcher.html#a70e5839eab2f16175fe8e8207c557d72" title="Sets active shortcut for the widget. " alt="" coords="519,81,729,108"/>
+</map>

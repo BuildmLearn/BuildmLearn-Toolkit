@@ -1,0 +1,4 @@
+<map id="TemplateFactory::newTemplateCoreCreated" name="TemplateFactory::newTemplateCoreCreated">
+<area shape="rect" id="node2" href="$classTemplateFactory.html#a4b00695c32fb4b3421d722dbba9d8f74" title="Starts new project core from given entry point. " alt="" coords="276,5,467,47"/>
+<area shape="rect" id="node3" href="$classTemplateFactory.html#abc2dd0c6cfe26a99260a488f16484a58" title="Loads stored project and initializes new core according to it. " alt="" coords="269,71,473,98"/>
+</map>
