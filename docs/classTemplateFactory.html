@@ -8,6 +8,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
@@ -21,6 +28,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="buildmlearn-toolkit_128.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">BuildmLearn Toolkit
    &#160;<span id="projectnumber">2.0.4</span>
@@ -40,7 +48,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -62,18 +70,33 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
-      <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
+      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
       <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
-      <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('classTemplateFactory.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -82,13 +105,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-slots">Public Slots</a> &#124;
 <a href="#signals">Signals</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-static-methods">Static Public Member Functions</a>  </div>
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="classTemplateFactory-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">TemplateFactory Class Reference<div class="ingroups"><a class="el" href="group__template-interfaces.html">Template interfaces</a></div></div>  </div>
 </div><!--header-->
@@ -217,6 +240,15 @@ Static Public Member Functions</h2></td></tr>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;      <span class="keywordflow">return</span> m_activeCore;</div>
 <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    }</div>
 </div><!-- fragment -->
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classTemplateFactory_ac186ff7309246dd69e91405d90463911_icgraph.png" border="0" usemap="#classTemplateFactory_ac186ff7309246dd69e91405d90463911_icgraph" alt=""/></div>
+<map name="classTemplateFactory_ac186ff7309246dd69e91405d90463911_icgraph" id="classTemplateFactory_ac186ff7309246dd69e91405d90463911_icgraph">
+<area shape="rect" id="node2" href="classTemplateFactory.html#aa887809c4cac619c2b7b6300fc8727c9" title="Saves current project to given file. " alt="" coords="255,5,465,47"/><area shape="rect" id="node3" href="classTemplateFactory.html#a5a37e9468eb307cdfe317662c66aac2f" title="Saves current project to assigned file if there is any. " alt="" coords="513,35,724,76"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="a36fcac4b987f3d143bc415de6331dec5"></a>
@@ -248,6 +280,15 @@ Static Public Member Functions</h2></td></tr>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;      <span class="keywordflow">return</span> m_activeEntryPoint;</div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    }</div>
 </div><!-- fragment -->
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classTemplateFactory_a36fcac4b987f3d143bc415de6331dec5_icgraph.png" border="0" usemap="#classTemplateFactory_a36fcac4b987f3d143bc415de6331dec5_icgraph" alt=""/></div>
+<map name="classTemplateFactory_a36fcac4b987f3d143bc415de6331dec5_icgraph" id="classTemplateFactory_a36fcac4b987f3d143bc415de6331dec5_icgraph">
+<area shape="rect" id="node2" href="classTemplateFactory.html#a9aa0eece331c772a843deb0193a98b61" title="Generates file name for output APK file. " alt="" coords="257,5,460,47"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="a9aa0eece331c772a843deb0193a98b61"></a>
@@ -320,6 +361,15 @@ Here is the call graph for this function:</div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;                                 <span class="stringliteral">&quot;application-%1-%2-%3.apk&quot;</span>).toString();</div>
 <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;}</div>
 </div><!-- fragment -->
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classTemplateFactory_ae3f519b660fee3898ce1c3a3d9a512db_icgraph.png" border="0" usemap="#classTemplateFactory_ae3f519b660fee3898ce1c3a3d9a512db_icgraph" alt=""/></div>
+<map name="classTemplateFactory_ae3f519b660fee3898ce1c3a3d9a512db_icgraph" id="classTemplateFactory_ae3f519b660fee3898ce1c3a3d9a512db_icgraph">
+<area shape="rect" id="node2" href="classTemplateFactory.html#a9aa0eece331c772a843deb0193a98b61" title="Generates file name for output APK file. " alt="" coords="256,5,459,47"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="a5a2bd26f239f73d50d35122d6388b3d1"></a>
@@ -407,6 +457,15 @@ Here is the call graph for this function:</div>
 <div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;  <span class="keywordflow">return</span> m_availableTemplates.value(xml_document.documentElement().attribute(<span class="stringliteral">&quot;type&quot;</span>), NULL);</div>
 <div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;}</div>
 </div><!-- fragment -->
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classTemplateFactory_a1332ff22fcadc2d4c4eb10999fe27f51_icgraph.png" border="0" usemap="#classTemplateFactory_a1332ff22fcadc2d4c4eb10999fe27f51_icgraph" alt=""/></div>
+<map name="classTemplateFactory_a1332ff22fcadc2d4c4eb10999fe27f51_icgraph" id="classTemplateFactory_a1332ff22fcadc2d4c4eb10999fe27f51_icgraph">
+<area shape="rect" id="node2" href="classTemplateFactory.html#abc2dd0c6cfe26a99260a488f16484a58" title="Loads stored project and initializes new core according to it. " alt="" coords="252,13,456,39"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="addd883f682687277ad4bb5ea52430a9f"></a>
@@ -712,6 +771,15 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classTemplateFactory_a56f2b81ccee5fd37abb3eb69ed955778_icgraph.png" border="0" usemap="#classTemplateFactory_a56f2b81ccee5fd37abb3eb69ed955778_icgraph" alt=""/></div>
+<map name="classTemplateFactory_a56f2b81ccee5fd37abb3eb69ed955778_icgraph" id="classTemplateFactory_a56f2b81ccee5fd37abb3eb69ed955778_icgraph">
+<area shape="rect" id="node2" href="classTemplateFactory.html#a4b00695c32fb4b3421d722dbba9d8f74" title="Starts new project core from given entry point. " alt="" coords="276,5,467,47"/><area shape="rect" id="node3" href="classTemplateFactory.html#abc2dd0c6cfe26a99260a488f16484a58" title="Loads stored project and initializes new core according to it. " alt="" coords="269,71,473,98"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="a2888def7e34937f36c1d33b057ed7d80"></a>
@@ -869,6 +937,15 @@ Here is the call graph for this function:</div>
 </div>
 </p>
 
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classTemplateFactory_aa887809c4cac619c2b7b6300fc8727c9_icgraph.png" border="0" usemap="#classTemplateFactory_aa887809c4cac619c2b7b6300fc8727c9_icgraph" alt=""/></div>
+<map name="classTemplateFactory_aa887809c4cac619c2b7b6300fc8727c9_icgraph" id="classTemplateFactory_aa887809c4cac619c2b7b6300fc8727c9_icgraph">
+<area shape="rect" id="node2" href="classTemplateFactory.html#a5a37e9468eb307cdfe317662c66aac2f" title="Saves current project to assigned file if there is any. " alt="" coords="264,5,475,47"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="a4b00695c32fb4b3421d722dbba9d8f74"></a>
@@ -957,15 +1034,19 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/core/<a class="el" href="templatefactory_8h_source.html">templatefactory.h</a></li>
-<li>/mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/core/<a class="el" href="templatefactory_8cpp_source.html">templatefactory.cpp</a></li>
+<li><a class="el" href="templatefactory_8h_source.html">templatefactory.h</a></li>
+<li><a class="el" href="templatefactory_8cpp_source.html">templatefactory.cpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Sat Aug 16 2014 19:40:54 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.7
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="classTemplateFactory.html">TemplateFactory</a></li>
+    <li class="footer">Generated on Sun Aug 17 2014 16:42:36 for BuildmLearn Toolkit by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
+  </ul>
+</div>
 </body>
 </html>

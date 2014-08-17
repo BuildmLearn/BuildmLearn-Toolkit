@@ -4,10 +4,17 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.7"/>
-<title>BuildmLearn Toolkit: /mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/miscellaneous Directory Reference</title>
+<title>BuildmLearn Toolkit: miscellaneous Directory Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
@@ -21,6 +28,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="buildmlearn-toolkit_128.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">BuildmLearn Toolkit
    &#160;<span id="projectnumber">2.0.4</span>
@@ -40,7 +48,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
-      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -60,12 +68,27 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       </li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('dir_9a10fef63a2a1b965e15d27cdc748bae.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -74,11 +97,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_5b13d613d053bd10e358ecb54357a5d6.html">data</a></li><li class="navelem"><a class="el" href="dir_68083efcf9ee33d99b45b272b86cc0c8.html">Martin</a></li><li class="navelem"><a class="el" href="dir_9398520d5aff4fa5fa64f9289982f118.html">Coding</a></li><li class="navelem"><a class="el" href="dir_8ff144ddfa1be06761cc38923377bd6f.html">Projekty</a></li><li class="navelem"><a class="el" href="dir_30a37e2355ef12c08d706bdcf80fec43.html">buildmlearn-toolkit</a></li><li class="navelem"><a class="el" href="dir_2813711323521bd6091a9c8a8d0a4efc.html">portage</a></li><li class="navelem"><a class="el" href="dir_0ecbf50818981b7b30cb590f4d05bbf9.html">src</a></li><li class="navelem"><a class="el" href="dir_9a10fef63a2a1b965e15d27cdc748bae.html">miscellaneous</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">miscellaneous Directory Reference</div>  </div>
@@ -87,7 +105,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Directory dependency graph for miscellaneous:</div>
 <div class="dyncontent">
-<div class="center"><img src="dir_9a10fef63a2a1b965e15d27cdc748bae_dep.png" border="0" usemap="#dir__9a10fef63a2a1b965e15d27cdc748bae__dep" alt="/mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/miscellaneous"/></div>
+<div class="center"><img src="dir_9a10fef63a2a1b965e15d27cdc748bae_dep.png" border="0" usemap="#dir__9a10fef63a2a1b965e15d27cdc748bae__dep" alt="miscellaneous"/></div>
 <map name="dir__9a10fef63a2a1b965e15d27cdc748bae__dep" id="dir__9a10fef63a2a1b965e15d27cdc748bae__dep">
 <area shape="rect" id="node1" href="dir_9a10fef63a2a1b965e15d27cdc748bae.html" title="miscellaneous" alt="" coords="27,52,141,100"/><area shape="rect" id="clust1" href="dir_0ecbf50818981b7b30cb590f4d05bbf9.html" title="src" alt="" coords="16,16,152,111"/></map>
 </div>
@@ -136,11 +154,15 @@ Files</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Sat Aug 16 2014 19:40:54 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.7
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_5b13d613d053bd10e358ecb54357a5d6.html">data</a></li><li class="navelem"><a class="el" href="dir_68083efcf9ee33d99b45b272b86cc0c8.html">Martin</a></li><li class="navelem"><a class="el" href="dir_9398520d5aff4fa5fa64f9289982f118.html">Coding</a></li><li class="navelem"><a class="el" href="dir_8ff144ddfa1be06761cc38923377bd6f.html">Projekty</a></li><li class="navelem"><a class="el" href="dir_30a37e2355ef12c08d706bdcf80fec43.html">buildmlearn-toolkit</a></li><li class="navelem"><a class="el" href="dir_2813711323521bd6091a9c8a8d0a4efc.html">portage</a></li><li class="navelem"><a class="el" href="dir_0ecbf50818981b7b30cb590f4d05bbf9.html">src</a></li><li class="navelem"><a class="el" href="dir_9a10fef63a2a1b965e15d27cdc748bae.html">miscellaneous</a></li>
+    <li class="footer">Generated on Sun Aug 17 2014 16:42:36 for BuildmLearn Toolkit by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
+  </ul>
+</div>
 </body>
 </html>

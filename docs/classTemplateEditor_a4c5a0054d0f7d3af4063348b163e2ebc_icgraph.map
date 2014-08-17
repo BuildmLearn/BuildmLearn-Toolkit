@@ -1,0 +1,5 @@
+<map id="TemplateEditor::canGenerateChanged" name="TemplateEditor::canGenerateChanged">
+<area shape="rect" id="node2" href="$classTemplateEditor.html#a635ba30b8781890c939c6c76b64a4a60" title="Emits new signal notifying other components about state of creating of APK application. " alt="" coords="261,5,447,47"/>
+<area shape="rect" id="node3" href="$classTemplateEditor.html#a9c2574089a102a935a0831d1f694253b" title="Executed when given template with this editor is launched. " alt="" coords="495,13,661,39"/>
+<area shape="rect" id="node4" href="$classTemplateCore.html#a42c45b1c867a55a82d3ad174119b7efd" title="Called after this template is fully loaded in toolkit. " alt="" coords="709,13,869,39"/>
+</map>

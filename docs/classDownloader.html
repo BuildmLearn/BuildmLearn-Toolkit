@@ -8,6 +8,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
@@ -21,6 +28,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="buildmlearn-toolkit_128.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">BuildmLearn Toolkit
    &#160;<span id="projectnumber">2.0.4</span>
@@ -40,7 +48,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -62,18 +70,33 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
-      <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
+      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
       <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
-      <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('classDownloader.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -82,12 +105,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-slots">Public Slots</a> &#124;
 <a href="#signals">Signals</a> &#124;
-<a href="#pub-methods">Public Member Functions</a>  </div>
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="classDownloader-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Downloader Class Reference</div>  </div>
 </div><!--header-->
@@ -164,18 +187,18 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="downloader_8cpp_source.html#l00041">41</a> of file <a class="el" href="downloader_8cpp_source.html">downloader.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  : QObject(parent),</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    m_activeReply(NULL),</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    m_downloadManager(<span class="keyword">new</span> <a class="code" href="classSilentNetworkAccessManager.html">SilentNetworkAccessManager</a>(<span class="keyword">this</span>)),</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    m_timer(<span class="keyword">new</span> QTimer(<span class="keyword">this</span>)) {</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  m_timer-&gt;setInterval(2000);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  m_timer-&gt;setSingleShot(<span class="keyword">true</span>);</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;  <span class="comment">//connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;  connect(m_downloadManager, SIGNAL(finished(QNetworkReply*)), <span class="keyword">this</span>, SLOT(finished(QNetworkReply*)));</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;}</div>
+<p>Definition at line <a class="el" href="downloader_8cpp_source.html#l00040">40</a> of file <a class="el" href="downloader_8cpp_source.html">downloader.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  : QObject(parent),</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    m_activeReply(NULL),</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    m_downloadManager(<span class="keyword">new</span> <a class="code" href="classSilentNetworkAccessManager.html">SilentNetworkAccessManager</a>(<span class="keyword">this</span>)),</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    m_timer(<span class="keyword">new</span> QTimer(<span class="keyword">this</span>)) {</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;  m_timer-&gt;setInterval(2000);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  m_timer-&gt;setSingleShot(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;  <span class="comment">//connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;  connect(m_downloadManager, SIGNAL(finished(QNetworkReply*)), <span class="keyword">this</span>, SLOT(finished(QNetworkReply*)));</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;}</div>
 <div class="ttc" id="classSilentNetworkAccessManager_html"><div class="ttname"><a href="classSilentNetworkAccessManager.html">SilentNetworkAccessManager</a></div><div class="ttdoc">Network access manager with supressed authentication dialogs. </div><div class="ttdef"><b>Definition:</b> <a href="silentnetworkaccessmanager_8h_source.html#l00041">silentnetworkaccessmanager.h:41</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -279,21 +302,21 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="downloader_8cpp_source.html#l00058">58</a> of file <a class="el" href="downloader_8cpp_source.html">downloader.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                                                                                {</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  QNetworkRequest request;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  QObject originatingObject;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;  <span class="comment">// Set credential information as originating object.</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;  originatingObject.setProperty(<span class="stringliteral">&quot;protected&quot;</span>, protected_contents);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;  originatingObject.setProperty(<span class="stringliteral">&quot;username&quot;</span>, username);</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;  originatingObject.setProperty(<span class="stringliteral">&quot;password&quot;</span>, password);</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;  request.setOriginatingObject(&amp;originatingObject);</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  <span class="comment">// Set url for this reques.</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;  request.setUrl(url);</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;  runGetRequest(request);</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;}</div>
+<p>Definition at line <a class="el" href="downloader_8cpp_source.html#l00057">57</a> of file <a class="el" href="downloader_8cpp_source.html">downloader.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                                                                                {</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;  QNetworkRequest request;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  QObject originatingObject;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;  <span class="comment">// Set credential information as originating object.</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;  originatingObject.setProperty(<span class="stringliteral">&quot;protected&quot;</span>, protected_contents);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;  originatingObject.setProperty(<span class="stringliteral">&quot;username&quot;</span>, username);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;  originatingObject.setProperty(<span class="stringliteral">&quot;password&quot;</span>, password);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;  request.setOriginatingObject(&amp;originatingObject);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;  <span class="comment">// Set url for this reques.</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  request.setUrl(url);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;  runGetRequest(request);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -411,38 +434,38 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="downloader_8cpp_source.html#l00074">74</a> of file <a class="el" href="downloader_8cpp_source.html">downloader.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                                                                   {</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;  QNetworkRequest request;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;  request.setUrl(url);</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;  request.setHeader(QNetworkRequest::ContentTypeHeader, <span class="stringliteral">&quot;application/x-www-form-urlencoded&quot;</span>);</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;  QString data;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;  data += <span class="stringliteral">&quot;key=%1&amp;&quot;</span>;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;  data += <span class="stringliteral">&quot;author_name=%2&amp;&quot;</span>;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;  data += <span class="stringliteral">&quot;author_email=%3&amp;&quot;</span>;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;  data += <span class="stringliteral">&quot;application_name=%4&amp;&quot;</span>;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;  data += <span class="stringliteral">&quot;file_content=%5&amp;&quot;</span>;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;  data += <span class="stringliteral">&quot;application_icon=%6&quot;</span>;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;  <span class="comment">// Replace placeholders with actual URL-encoded values.</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;  data = data.arg(QUrl::toPercentEncoding(key),</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                  QUrl::toPercentEncoding(author_name),</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                  QUrl::toPercentEncoding(author_email),</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                  QUrl::toPercentEncoding(application_name),</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                  QUrl::toPercentEncoding(bundle_data),</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                  QUrl::toPercentEncoding(<a class="code" href="classIOFactory.html#a5754874523b6e00933cf496e53255984">IOFactory::fileToBase64</a>(application_icon)));</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment">  m_timer-&gt;start();</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment">  m_activeReply = m_downloadManager-&gt;post(request, data.toLocal8Bit());</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment">  connect(m_activeReply, SIGNAL(uploadProgress(qint64,qint64)),</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment">          this, SLOT(progressInternal(qint64,qint64)));</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment">*/</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;  runPostRequest(request, data.toLocal8Bit());</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;}</div>
+<p>Definition at line <a class="el" href="downloader_8cpp_source.html#l00073">73</a> of file <a class="el" href="downloader_8cpp_source.html">downloader.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                                                                   {</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;  QNetworkRequest request;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;  request.setUrl(url);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;  request.setHeader(QNetworkRequest::ContentTypeHeader, <span class="stringliteral">&quot;application/x-www-form-urlencoded&quot;</span>);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;  QString data;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;  data += <span class="stringliteral">&quot;key=%1&amp;&quot;</span>;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;  data += <span class="stringliteral">&quot;author_name=%2&amp;&quot;</span>;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;  data += <span class="stringliteral">&quot;author_email=%3&amp;&quot;</span>;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;  data += <span class="stringliteral">&quot;application_name=%4&amp;&quot;</span>;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;  data += <span class="stringliteral">&quot;file_content=%5&amp;&quot;</span>;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;  data += <span class="stringliteral">&quot;application_icon=%6&quot;</span>;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;  <span class="comment">// Replace placeholders with actual URL-encoded values.</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;  data = data.arg(QUrl::toPercentEncoding(key),</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                  QUrl::toPercentEncoding(author_name),</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                  QUrl::toPercentEncoding(author_email),</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                  QUrl::toPercentEncoding(application_name),</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                  QUrl::toPercentEncoding(bundle_data),</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                  QUrl::toPercentEncoding(<a class="code" href="classIOFactory.html#a5754874523b6e00933cf496e53255984">IOFactory::fileToBase64</a>(application_icon)));</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment">  m_timer-&gt;start();</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment">  m_activeReply = m_downloadManager-&gt;post(request, data.toLocal8Bit());</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment">  connect(m_activeReply, SIGNAL(uploadProgress(qint64,qint64)),</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment">          this, SLOT(progressInternal(qint64,qint64)));</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment">*/</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;  runPostRequest(request, data.toLocal8Bit());</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;}</div>
 <div class="ttc" id="classIOFactory_html_a5754874523b6e00933cf496e53255984"><div class="ttname"><a href="classIOFactory.html#a5754874523b6e00933cf496e53255984">IOFactory::fileToBase64</a></div><div class="ttdeci">static QByteArray fileToBase64(const QString &amp;file_name)</div><div class="ttdoc">Takes input file and reads it into base64 byte array. </div><div class="ttdef"><b>Definition:</b> <a href="iofactory_8cpp_source.html#l00111">iofactory.cpp:111</a></div></div>
 </div><!-- fragment -->
 <p><div class="dynheader">
@@ -457,15 +480,19 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/network-web/<a class="el" href="downloader_8h_source.html">downloader.h</a></li>
-<li>/mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/network-web/<a class="el" href="downloader_8cpp_source.html">downloader.cpp</a></li>
+<li><a class="el" href="downloader_8h_source.html">downloader.h</a></li>
+<li><a class="el" href="downloader_8cpp_source.html">downloader.cpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Sat Aug 16 2014 19:40:54 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.7
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="classDownloader.html">Downloader</a></li>
+    <li class="footer">Generated on Sun Aug 17 2014 16:42:36 for BuildmLearn Toolkit by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
+  </ul>
+</div>
 </body>
 </html>

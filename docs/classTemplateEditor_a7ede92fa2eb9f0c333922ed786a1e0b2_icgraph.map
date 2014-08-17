@@ -1,0 +1,6 @@
+<map id="TemplateEditor::setIsDirty" name="TemplateEditor::setIsDirty">
+<area shape="rect" id="node2" href="$classTemplateEditor.html#abac895bd37e94ed941b3553fee6ae09f" title="Dirtifies (sets m_isDirty to true) the editor. " alt="" coords="264,5,424,32"/>
+<area shape="rect" id="node3" href="$classTemplateFactory.html#abc2dd0c6cfe26a99260a488f16484a58" title="Loads stored project and initializes new core according to it. " alt="" coords="242,56,446,83"/>
+<area shape="rect" id="node4" href="$classTemplateFactory.html#aa887809c4cac619c2b7b6300fc8727c9" title="Saves current project to given file. " alt="" coords="239,107,449,149"/>
+<area shape="rect" id="node5" href="$classTemplateFactory.html#a5a37e9468eb307cdfe317662c66aac2f" title="Saves current project to assigned file if there is any. " alt="" coords="497,107,708,149"/>
+</map>

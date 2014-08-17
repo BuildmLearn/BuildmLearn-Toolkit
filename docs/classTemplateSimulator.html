@@ -8,6 +8,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
@@ -21,6 +28,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="buildmlearn-toolkit_128.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">BuildmLearn Toolkit
    &#160;<span id="projectnumber">2.0.4</span>
@@ -40,7 +48,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -62,18 +70,33 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
-      <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
+      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
       <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
-      <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('classTemplateSimulator.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -82,13 +105,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-slots">Public Slots</a> &#124;
 <a href="#signals">Signals</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pro-attribs">Protected Attributes</a>  </div>
+<a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="classTemplateSimulator-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">TemplateSimulator Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span><div class="ingroups"><a class="el" href="group__template-interfaces.html">Template interfaces</a></div></div>  </div>
 </div><!--header-->
@@ -187,6 +210,15 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section warning"><dt>Warning</dt><dd>This signal MUST be emitted explicitly by simulator when its stopSimulator() slot is called. </dd></dl>
 
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classTemplateSimulator_a4eaa2c620b5ba5f6702e0d21660ce6b1_icgraph.png" border="0" usemap="#classTemplateSimulator_a4eaa2c620b5ba5f6702e0d21660ce6b1_icgraph" alt=""/></div>
+<map name="classTemplateSimulator_a4eaa2c620b5ba5f6702e0d21660ce6b1_icgraph" id="classTemplateSimulator_a4eaa2c620b5ba5f6702e0d21660ce6b1_icgraph">
+<area shape="rect" id="node2" href="classTemplateSimulator.html#a61b84b0554dcbd271193897c32df667b" title="Called when core with this simulator widget is fully loaded from XML bundle or newly created..." alt="" coords="204,5,355,47"/><area shape="rect" id="node3" href="classTemplateCore.html#a42c45b1c867a55a82d3ad174119b7efd" title="Called after this template is fully loaded in toolkit. " alt="" coords="403,13,563,39"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="a45b7d8698ecd78d959c03a29d904976f"></a>
@@ -211,6 +243,15 @@ Protected Attributes</h2></td></tr>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;  <span class="keywordflow">return</span> m_core;</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;}</div>
 </div><!-- fragment -->
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classTemplateSimulator_a45b7d8698ecd78d959c03a29d904976f_icgraph.png" border="0" usemap="#classTemplateSimulator_a45b7d8698ecd78d959c03a29d904976f_icgraph" alt=""/></div>
+<map name="classTemplateSimulator_a45b7d8698ecd78d959c03a29d904976f_icgraph" id="classTemplateSimulator_a45b7d8698ecd78d959c03a29d904976f_icgraph">
+<area shape="rect" id="node2" href="classFormSimulator.html#a8634d0b5e997d5246d7ddb8d7c02944a" title="Sets new active simulation widget. " alt="" coords="232,5,416,47"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="aefc70bc1149506cfb47b64b1195c2855"></a>
@@ -236,6 +277,15 @@ Protected Attributes</h2></td></tr>
 
 <p>Gets simulation one step back. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if simulation was rolled one step back, false otherwise. </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classTemplateSimulator_aefc70bc1149506cfb47b64b1195c2855_icgraph.png" border="0" usemap="#classTemplateSimulator_aefc70bc1149506cfb47b64b1195c2855_icgraph" alt=""/></div>
+<map name="classTemplateSimulator_aefc70bc1149506cfb47b64b1195c2855_icgraph" id="classTemplateSimulator_aefc70bc1149506cfb47b64b1195c2855_icgraph">
+<area shape="rect" id="node2" href="classFormSimulator.html#af66e4e286ab69dcff9b18dde1862448a" title="Takes active simulation one step back. " alt="" coords="204,13,376,39"/></map>
+</div>
+</p>
 
 </div>
 </div>
@@ -263,6 +313,15 @@ Protected Attributes</h2></td></tr>
 <p>(Re)starts the simulation. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if simulation was (re)started, false otherwise. </dd></dl>
 
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classTemplateSimulator_ae3fb234eb98af5ced6d3bf19bb45ce71_icgraph.png" border="0" usemap="#classTemplateSimulator_ae3fb234eb98af5ced6d3bf19bb45ce71_icgraph" alt=""/></div>
+<map name="classTemplateSimulator_ae3fb234eb98af5ced6d3bf19bb45ce71_icgraph" id="classTemplateSimulator_ae3fb234eb98af5ced6d3bf19bb45ce71_icgraph">
+<area shape="rect" id="node2" href="classFormSimulator.html#a65d0c1ead45678bb5192b266a189dc12" title="Starts active simulation. " alt="" coords="204,13,427,39"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="a1ebdad3b739f5b87411237b6c052387a"></a>
@@ -289,18 +348,31 @@ Protected Attributes</h2></td></tr>
 <p>Stops simulation and resets its to initial state, all user data from simulation are cleared. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if simulation was stopped, false otherwise. </dd></dl>
 
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classTemplateSimulator_a1ebdad3b739f5b87411237b6c052387a_icgraph.png" border="0" usemap="#classTemplateSimulator_a1ebdad3b739f5b87411237b6c052387a_icgraph" alt=""/></div>
+<map name="classTemplateSimulator_a1ebdad3b739f5b87411237b6c052387a_icgraph" id="classTemplateSimulator_a1ebdad3b739f5b87411237b6c052387a_icgraph">
+<area shape="rect" id="node2" href="classFormSimulator.html#a3a3d64841a4b884e6d1a103c42b423ce" title="Stops active simulation. " alt="" coords="204,13,425,39"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/core/<a class="el" href="templatesimulator_8h_source.html">templatesimulator.h</a></li>
-<li>/mnt/data/Martin/Coding/Projekty/buildmlearn-toolkit/portage/src/core/<a class="el" href="templatesimulator_8cpp_source.html">templatesimulator.cpp</a></li>
+<li><a class="el" href="templatesimulator_8h_source.html">templatesimulator.h</a></li>
+<li><a class="el" href="templatesimulator_8cpp_source.html">templatesimulator.cpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Sat Aug 16 2014 19:40:54 for BuildmLearn Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.7
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="classTemplateSimulator.html">TemplateSimulator</a></li>
+    <li class="footer">Generated on Sun Aug 17 2014 16:42:36 for BuildmLearn Toolkit by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
+  </ul>
+</div>
 </body>
 </html>

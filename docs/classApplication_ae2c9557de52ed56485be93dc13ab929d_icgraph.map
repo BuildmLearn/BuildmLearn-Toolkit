@@ -1,0 +1,12 @@
+<map id="Application::settings" name="Application::settings">
+<area shape="rect" id="node2" href="$classApplication.html#a1dd271254dd68afa548999e37cbeca27" title="Sets new path to &quot;zip&quot;. " alt="" coords="223,5,428,32"/>
+<area shape="rect" id="node3" href="$classApplication.html#ad7e1f4961d50558b9ae9ff667857cb36" title="Sets new path to &quot;signapk&quot;. " alt="" coords="207,56,443,83"/>
+<area shape="rect" id="node4" href="$classApplication.html#ae561be62fe17ea0763a8c42b8fa2969d" title="Schedules check for updates. " alt="" coords="220,107,431,149"/>
+<area shape="rect" id="node5" href="$classApplication.html#a0762f85fbec5968aaa441e4f6ddad749" title="Access to &quot;zip&quot; utility path. " alt="" coords="234,173,417,200"/>
+<area shape="rect" id="node7" href="$classApplication.html#a8ece375a09251ccae4d479d034c4fa2b" title="Access to path to &quot;signapk&quot; utility. " alt="" coords="220,224,431,251"/>
+<area shape="rect" id="node9" href="$classApplication.html#a2fcefcd0be7d65ca7be0a43269c3f542" title="Access to path to &quot;java&quot; interpreter. " alt="" coords="214,275,437,301"/>
+<area shape="rect" id="node11" href="$classApplication.html#ae42c4de41c29d23e6e7c56b933576497" title="Sets new &quot;java&quot; interpreter path. " alt="" coords="204,325,447,352"/>
+<area shape="rect" id="node6" href="$classApplication.html#a3b70c8738e05c665d39c9ccb97f85f06" title="Tests if binary in new_path is correct ZIP executable. " alt="" coords="510,173,669,200"/>
+<area shape="rect" id="node8" href="$classApplication.html#af3e3e38a5f68340cd31ade18aac5f728" title="Tests if binary in new_path is correct SIGNAPK executable. " alt="" coords="495,224,684,251"/>
+<area shape="rect" id="node10" href="$classApplication.html#af58a5a2b744c3cfd15b76e81881dc6da" title="Tests if binary in new_path is correct JAVA executable. " alt="" coords="508,275,671,301"/>
+</map>
