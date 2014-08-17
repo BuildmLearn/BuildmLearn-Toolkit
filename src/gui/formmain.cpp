@@ -420,7 +420,7 @@ void FormMain::onGenerationDone(TemplateCore::GenerationResult result_code, cons
       // Setup button box icons.
 #if defined(Q_OS_OS2)
       QDialogButtonBox *button_box = msg_box.findChild<QDialogButtonBox*>();
-      iconify(button_box);
+      CustomMessageBox::iconify(button_box);
 #endif
 
       msg_box.exec();
