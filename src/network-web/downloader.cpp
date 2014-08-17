@@ -35,7 +35,6 @@
 #include "miscellaneous/iofactory.h"
 
 #include <QTimer>
-#include <QHttpMultiPart>
 
 
 Downloader::Downloader(QObject *parent)
