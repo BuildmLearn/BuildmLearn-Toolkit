@@ -231,7 +231,7 @@ void FormUploadBundle::uploadProgress(qint64 bytes_sent, qint64 bytes_total) {
 }
 
 void FormUploadBundle::uploadCompleted(QNetworkReply::NetworkError error, QByteArray output) {
-  qDebug(qPrintable(output));
+  qDebug(qPrintable(QString(output)));
 
   m_uploadStatus = StoreFactory::parseResponseXml(error, output);
   QString string_status = StoreFactory::uploadStatusToString(m_uploadStatus);
