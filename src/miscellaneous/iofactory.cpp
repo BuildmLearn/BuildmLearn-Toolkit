@@ -36,11 +36,13 @@
 #include <QFile>
 #include <QTextStream>
 
+#if !defined(Q_OS_OS2)
 #if QT_VERSION >= 0x050000
 #include <QSound>
 #else
 #include <MediaObject>
 #include <AudioOutput>
+#endif
 #endif
 
 
@@ -61,8 +63,6 @@ void IOFactory::playWaveFile(const QString &file_path) {
   music->play();
   QObject::connect(music, SIGNAL(finished()), music, SLOT(deleteLater()));
   QObject::connect(music, SIGNAL(finished()), out, SLOT(deleteLater()));
-
-  // TODO: navazat na music::finished() smazani pres deleteLater() obou veci
 #endif
 }
 
