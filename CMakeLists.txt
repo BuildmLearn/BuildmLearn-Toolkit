@@ -353,12 +353,6 @@ if(WIN32)
     ${PROJECT_SOURCE_DIR}/resources/executable_properties/${APP_LOW_NAME}_win.rc.in
     ${CMAKE_CURRENT_BINARY_DIR}/resources/executable_properties/${APP_LOW_NAME}_win.rc
   )
-elseif(OS2)
-  message(STATUS "[${APP_LOW_NAME}] Generating executable file properties for OS2.")
-  configure_file (
-    ${PROJECT_SOURCE_DIR}/resources/executable_properties/${APP_LOW_NAME}_os2.rc.in
-    ${CMAKE_CURRENT_BINARY_DIR}/resources/executable_properties/${APP_LOW_NAME}_os2.rc
-  )
 endif(WIN32)
 
 # Compile application icon if compiling with MinGW on WIN32 or with OS2.
