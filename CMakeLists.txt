@@ -47,7 +47,7 @@
 #
 #   c) Mac OS X RELEASE build.
 #     mkdir build && cd build
-#     cmake ../ -DCMAKE_BUILD_TYPE="release" -DCMAKE_INSTALL_PREFIX="./install -DCMAKE_INSTALL_PREFIX=/usr -DUSE_QT_5="ON"
+#     cmake ../ -DCMAKE_BUILD_TYPE="release" -DCMAKE_INSTALL_PREFIX="./install -DUSE_QT_5="ON"
 #     make
 #     make install
 #     cd install
@@ -60,7 +60,6 @@
 #     nmake install (or mingw32-make if you use MinGW compiler)
 #     
 #     Now it is done. You now need to copy all files contained in "build\install" subfolder and copy it into "build" folder.
-#   
 #
 # Refreshing translations:
 #   make lupdate
