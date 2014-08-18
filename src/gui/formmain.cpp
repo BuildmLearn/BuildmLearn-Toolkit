@@ -673,7 +673,7 @@ void FormMain::uploadMobileApplicationToStore() {
     // Successfully uploaded, show message.
     CustomMessageBox::show(this, QMessageBox::Information,
                            tr("Application uploaded"),
-                           tr("Your application was successfully uploaded to BuildmLearn Store."));
+                           tr("Your application was successfully submitted. It would be reviewed and published to the BuildmLearn Store. You would receive email notification regarding this."));
   }
 
   delete form_pointer.data();  
