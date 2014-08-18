@@ -1,7 +1,7 @@
 var NAVTREE =
 [
   [ "BuildmLearn Toolkit", "index.html", [
-    [ "Welcome to documentation!!!", "index.html", null ],
+    [ "Welcome to documentation!", "index.html", null ],
     [ "Modules", "modules.html", "modules" ],
     [ "Classes", null, [
       [ "Class List", "annotated.html", "annotated" ],
