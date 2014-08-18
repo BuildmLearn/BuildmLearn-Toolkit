@@ -4,6 +4,7 @@
 
 Main:
 <ul>
+<li>This is final GSoC 2014 release.</li>
 <li>Maintenance release, speedups and optimizations.</li>
 </ul>
 
@@ -11,7 +12,8 @@ Fixed:
 <ul>
 <li>Arrows on Quiz template are now correctly disabled on startup.</li>
 <li>Generated APK files now have correct custom names.</li>
-<li>Fixed bugs #33, #32, #30, #29 and many others.</li>
+<li>Fixed issues #47, #45, #44, #43, #42, #41, #40, #33, #32, #30, #29 and many others.</li>
+<li>Some things changed in skins and user interface.</li>
 </ul>
 
 Added:
