@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>542</width>
-    <height>450</height>
+    <width>664</width>
+    <height>458</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -28,6 +28,9 @@
     <widget class="QGroupBox" name="groupBox">
      <property name="title">
       <string>Description of selected template</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
@@ -78,6 +81,9 @@
     <widget class="QGroupBox" name="groupBox_2">
      <property name="title">
       <string>Available templates</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
