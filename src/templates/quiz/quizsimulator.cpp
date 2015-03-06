@@ -119,6 +119,7 @@ void QuizSimulator::prepareSummary() {
   int answered_correctly = 0;
   int answered_wrongly = 0;
   int unanswered = 0;
+  float percentile_score = 0.0;
 
   for (int i = 2; i < m_ui->m_phoneWidget->count() - 1; i++) {
     QuizItem *widget = static_cast<QuizItem*>(m_ui->m_phoneWidget->widget(i));
@@ -139,9 +140,12 @@ void QuizSimulator::prepareSummary() {
     }
   }
 
+  percentile_score = 100 * (answered_correctly/(answered_wrongly + answered_correctly + unanswered));
+
   m_ui->m_lblTotalCorrect->setText(tr("Total correct %1").arg(answered_correctly));
   m_ui->m_lblTotalWrong->setText(tr("Total wrong %1").arg(answered_wrongly));
   m_ui->m_lblTotalUnanswered->setText(tr("Total unanswered %1").arg(unanswered));
+  m_ui->m_lblTotalPercentileScore->setText(tr("Accuracy : %1 %").arg(percentile_score));
 }
 
 void QuizSimulator::questionSubmitted() {
