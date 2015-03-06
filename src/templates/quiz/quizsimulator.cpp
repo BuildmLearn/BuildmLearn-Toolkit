@@ -40,6 +40,7 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QRadioButton>
+#include <QDir>
 
 
 QuizSimulator::QuizSimulator(TemplateCore *core, QWidget *parent)
@@ -153,6 +154,9 @@ void QuizSimulator::questionSubmitted() {
   }
 
   m_ui->m_phoneWidget->setCurrentIndex(current_index + 1);
+  m_ui->m_quizBar->setPixmap(QPixmap(APP_TEMPLATES_PATH + QDir::separator() +
+                                            "quiz" + QDir::separator() +
+                                            "QuizBar.png"));
 }
 
 void QuizSimulator::restart() {
