@@ -37,6 +37,8 @@
 #include "miscellaneous/application.h"
 #include "miscellaneous/skinfactory.h"
 
+#include <QDir>
+
 
 FlashCardSimulator::FlashCardSimulator(TemplateCore *core, QWidget *parent)
   : TemplateSimulator(core, parent),
@@ -94,6 +96,9 @@ bool FlashCardSimulator::startSimulation() {
 
   // Go to "start" page and begin.
   m_ui->m_phoneWidget->setCurrentIndex(1);
+  m_ui->m_flashcardBar->setPixmap(QPixmap(APP_TEMPLATES_PATH + QDir::separator() +
+                                            "flashcard" + QDir::separator() +
+                                            "FlashCardBar.png"));
   return true;
 }
 
