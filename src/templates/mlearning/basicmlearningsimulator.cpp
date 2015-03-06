@@ -33,6 +33,8 @@
 #include "templates/mlearning/basicmlearningeditor.h"
 #include "core/templatecore.h"
 
+#include <QDir>
+
 
 BasicmLearningSimulator::BasicmLearningSimulator(TemplateCore *core, QWidget *parent) :
   TemplateSimulator(core, parent), m_ui(new Ui::BasicmLearningSimulator) {
@@ -65,6 +67,9 @@ bool BasicmLearningSimulator::startSimulation() {
   }
 
   m_ui->m_phoneWidget->setCurrentIndex(1);
+  m_ui->m_mlearningBar->setPixmap(QPixmap(APP_TEMPLATES_PATH + QDir::separator() +
+                                            "mlearning" + QDir::separator() +
+                                            "MlearningBar.png"));
 
   return true;
 }
