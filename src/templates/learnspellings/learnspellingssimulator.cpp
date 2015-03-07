@@ -160,7 +160,7 @@ void LearnSpellingsSimulator::playWord() {
 
     // Store downloaded sound file.
     QString sound_file_name = qApp->templateManager()->tempDirectory() + QDir::separator() +
-                              "sound_" + QDateTime::currentDateTime().toString("yyyy-MM-dd-hhmmss") + ".wav";
+                              "sound_" + QDateTime::currentDateTime().toString("yyyy-MM-dd-hhmmss") + ".mp3";
     QFile sound_file(sound_file_name);
     sound_file.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Unbuffered);
     sound_file.write(output);
