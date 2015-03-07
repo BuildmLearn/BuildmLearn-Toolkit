@@ -97,6 +97,9 @@ bool QuizSimulator::startSimulation() {
   }
 
   m_ui->m_phoneWidget->setCurrentIndex(1);
+  m_ui->m_quizBar->setPixmap(QPixmap(APP_TEMPLATES_PATH + QDir::separator() +
+                                            "quiz" + QDir::separator() +
+                                            "QuizBar.png"));
   return true;
 }
 
@@ -154,9 +157,6 @@ void QuizSimulator::questionSubmitted() {
   }
 
   m_ui->m_phoneWidget->setCurrentIndex(current_index + 1);
-  m_ui->m_quizBar->setPixmap(QPixmap(APP_TEMPLATES_PATH + QDir::separator() +
-                                            "quiz" + QDir::separator() +
-                                            "QuizBar.png"));
 }
 
 void QuizSimulator::restart() {

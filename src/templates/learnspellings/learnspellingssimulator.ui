@@ -20,6 +20,9 @@
    <string>Form</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_6">
+  <property name="spacing">
+    <number>0</number>
+   </property>
    <property name="margin">
     <number>0</number>
    </property>

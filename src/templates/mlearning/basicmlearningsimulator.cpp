@@ -32,6 +32,7 @@
 
 #include "templates/mlearning/basicmlearningeditor.h"
 #include "core/templatecore.h"
+#include "definitions/definitions.h"
 
 #include <QDir>
 
