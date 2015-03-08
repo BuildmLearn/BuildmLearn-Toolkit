@@ -95,6 +95,7 @@ bool LearnSpellingsSimulator::startSimulation() {
   m_ui->m_learnspellingBar->setPixmap(QPixmap(APP_TEMPLATES_PATH + QDir::separator() +
                                             "learnspellings" + QDir::separator() +
                                             "SpellingBar.png"));
+  m_ui->m_barText->setStyleSheet("background-color: rgb(221, 221, 221);color: black");
 
   return true;
 }
