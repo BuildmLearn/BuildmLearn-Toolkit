@@ -248,7 +248,10 @@ QList<BasicmLearningItem> BasicmLearningEditor::activeItems() const {
 }
 
 bool BasicmLearningEditor::canGenerateApplications() {
-  return !activeItems().isEmpty();
+  return
+      !activeItems().isEmpty() &&
+      !m_ui->m_txtAuthor->lineEdit()->text().simplified().isEmpty() &&
+      !m_ui->m_txtName->lineEdit()->text().simplified().isEmpty();
 }
 
 QString BasicmLearningEditor::generateBundleData() {
