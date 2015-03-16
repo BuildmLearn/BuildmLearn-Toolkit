@@ -275,6 +275,9 @@ bool TemplateFactory::saveCurrentProjectAs(const QString &bundle_file_name) {
                            QIODevice::Unbuffered | QIODevice::Text)) {
     QTextStream stream(&target_xml_file);
 
+    stream.setCodec("UTF-8");
+    stream.setGenerateByteOrderMark(true);
+
     stream << xml_bundle_contents;
     stream.flush();
 
