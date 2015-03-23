@@ -87,6 +87,7 @@ void QuizItem::setQuestion(const QuizQuestion &question, int question_number, in
   m_ui->m_lblQuestionNumber->setText(tr("Question number %1 of %2").arg(QString::number(question_number),
                                                                         QString::number(total_questions)));
   m_ui->m_lblQuestionText->setText(question.question());
+  m_ui->m_lblQuestionText->setWordWrap(true);
 }
 
 QuizItem::State QuizItem::state() const {
