@@ -1,0 +1,736 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+   <FileVersion major="1" minor="6" />
+   <Project>
+      <Option title="buildmlearn-toolkit" />
+      <Option makefile_is_custom="1" />
+      <Option compiler="gcc" />
+      <Option virtualFolders="CMake Files\;CMake Files\src\;CMake Files\src\definitions\;CMake Files\resources\;CMake Files\resources\documentation\;CMake Files\resources\executable_properties\;CMake Files\resources\nsis\;CMake Files\..\;CMake Files\..\Qt\;CMake Files\..\Qt\Qt5.4.1\;CMake Files\..\Qt\Qt5.4.1\5.4\;CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\;CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\;CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\;CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5\;CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Sql\;CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Core\;CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Widgets\;CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Gui\;CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Xml\;CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5XmlPatterns\;CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Network\;CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5LinguistTools\;CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Multimedia\;" />
+      <Build>
+      <Target title="all">
+         <Option working_dir="C:/blm/Buildmlearn-Toolkit-build/build" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 all" />
+            <CompileFile command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="buildmlearn-toolkit">
+         <Option output="C:/blm/Buildmlearn-Toolkit-build/build/buildmlearn-toolkit.exe" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="C:/blm/Buildmlearn-Toolkit-build/build" />
+         <Option object_output="./" />
+         <Option type="0" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add option="-DQT_CORE_LIB" />
+            <Add option="-DQT_WIDGETS_LIB" />
+            <Add option="-DQT_GUI_LIB" />
+            <Add option="-DQT_SQL_LIB" />
+            <Add option="-DQT_NETWORK_LIB" />
+            <Add option="-DQT_XML_LIB" />
+            <Add option="-DQT_MULTIMEDIA_LIB" />
+            <Add option="-DDEBUG" />
+            <Add option="-DQT_USE_QSTRINGBUILDER" />
+            <Add option="-DUNICODE" />
+            <Add option="-D_UNICODE" />
+            <Add option="-DQT_USE_FAST_CONCATENATION" />
+            <Add option="-DQT_USE_FAST_OPERATOR_PLUS" />
+            <Add directory="C:/Qt/Qt5.4.1/5.4/mingw491_32/include" />
+            <Add directory="C:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore" />
+            <Add directory="C:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui" />
+            <Add directory="C:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia" />
+            <Add directory="C:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork" />
+            <Add directory="C:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtSql" />
+            <Add directory="C:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets" />
+            <Add directory="C:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtXml" />
+            <Add directory="C:/Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/win32-g++" />
+            <Add directory="C:/Qt/mingw32/bin/../lib/gcc/i686-w64-mingw32/4.8.2/../../../../i686-w64-mingw32/include" />
+            <Add directory="C:/Qt/mingw32/bin/../lib/gcc/i686-w64-mingw32/4.8.2/include" />
+            <Add directory="C:/Qt/mingw32/bin/../lib/gcc/i686-w64-mingw32/4.8.2/include-fixed" />
+            <Add directory="C:/Qt/mingw32/lib/gcc/../../i686-w64-mingw32/include/c++" />
+            <Add directory="C:/Qt/mingw32/lib/gcc/../../i686-w64-mingw32/include/c++/backward" />
+            <Add directory="C:/Qt/mingw32/lib/gcc/../../i686-w64-mingw32/include/c++/i686-w64-mingw32" />
+            <Add directory="C:/blm" />
+            <Add directory="C:/blm/Buildmlearn-Toolkit-build/build" />
+            <Add directory="C:/blm/Buildmlearn-Toolkit-build/build/src" />
+            <Add directory="C:/blm/src" />
+            <Add directory="C:/blm/src/core" />
+            <Add directory="C:/blm/src/dynamic-shortcuts" />
+            <Add directory="C:/blm/src/gui" />
+            <Add directory="C:/blm/src/miscellaneous" />
+            <Add directory="C:/blm/src/network-web" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 buildmlearn-toolkit" />
+            <CompileFile command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="buildmlearn-toolkit/fast">
+         <Option output="C:/blm/Buildmlearn-Toolkit-build/build/buildmlearn-toolkit.exe" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="C:/blm/Buildmlearn-Toolkit-build/build" />
+         <Option object_output="./" />
+         <Option type="0" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add option="-DQT_CORE_LIB" />
+            <Add option="-DQT_WIDGETS_LIB" />
+            <Add option="-DQT_GUI_LIB" />
+            <Add option="-DQT_SQL_LIB" />
+            <Add option="-DQT_NETWORK_LIB" />
+            <Add option="-DQT_XML_LIB" />
+            <Add option="-DQT_MULTIMEDIA_LIB" />
+            <Add option="-DDEBUG" />
+            <Add option="-DQT_USE_QSTRINGBUILDER" />
+            <Add option="-DUNICODE" />
+            <Add option="-D_UNICODE" />
+            <Add option="-DQT_USE_FAST_CONCATENATION" />
+            <Add option="-DQT_USE_FAST_OPERATOR_PLUS" />
+            <Add directory="C:/Qt/Qt5.4.1/5.4/mingw491_32/include" />
+            <Add directory="C:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore" />
+            <Add directory="C:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui" />
+            <Add directory="C:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia" />
+            <Add directory="C:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork" />
+            <Add directory="C:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtSql" />
+            <Add directory="C:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets" />
+            <Add directory="C:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtXml" />
+            <Add directory="C:/Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/win32-g++" />
+            <Add directory="C:/Qt/mingw32/bin/../lib/gcc/i686-w64-mingw32/4.8.2/../../../../i686-w64-mingw32/include" />
+            <Add directory="C:/Qt/mingw32/bin/../lib/gcc/i686-w64-mingw32/4.8.2/include" />
+            <Add directory="C:/Qt/mingw32/bin/../lib/gcc/i686-w64-mingw32/4.8.2/include-fixed" />
+            <Add directory="C:/Qt/mingw32/lib/gcc/../../i686-w64-mingw32/include/c++" />
+            <Add directory="C:/Qt/mingw32/lib/gcc/../../i686-w64-mingw32/include/c++/backward" />
+            <Add directory="C:/Qt/mingw32/lib/gcc/../../i686-w64-mingw32/include/c++/i686-w64-mingw32" />
+            <Add directory="C:/blm" />
+            <Add directory="C:/blm/Buildmlearn-Toolkit-build/build" />
+            <Add directory="C:/blm/Buildmlearn-Toolkit-build/build/src" />
+            <Add directory="C:/blm/src" />
+            <Add directory="C:/blm/src/core" />
+            <Add directory="C:/blm/src/dynamic-shortcuts" />
+            <Add directory="C:/blm/src/gui" />
+            <Add directory="C:/blm/src/miscellaneous" />
+            <Add directory="C:/blm/src/network-web" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 buildmlearn-toolkit/fast" />
+            <CompileFile command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="buildmlearn-toolkit_automoc">
+         <Option working_dir="C:/blm/Buildmlearn-Toolkit-build/build" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 buildmlearn-toolkit_automoc" />
+            <CompileFile command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="dist">
+         <Option working_dir="C:/blm/Buildmlearn-Toolkit-build/build" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 dist" />
+            <CompileFile command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="edit_cache">
+         <Option working_dir="C:/blm/Buildmlearn-Toolkit-build/build" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 edit_cache" />
+            <CompileFile command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="install">
+         <Option working_dir="C:/blm/Buildmlearn-Toolkit-build/build" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 install" />
+            <CompileFile command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="install/local">
+         <Option working_dir="C:/blm/Buildmlearn-Toolkit-build/build" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 install/local" />
+            <CompileFile command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="install/strip">
+         <Option working_dir="C:/blm/Buildmlearn-Toolkit-build/build" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 install/strip" />
+            <CompileFile command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="list_install_components">
+         <Option working_dir="C:/blm/Buildmlearn-Toolkit-build/build" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 list_install_components" />
+            <CompileFile command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="lupdate">
+         <Option working_dir="C:/blm/Buildmlearn-Toolkit-build/build" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 lupdate" />
+            <CompileFile command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="package">
+         <Option working_dir="C:/blm/Buildmlearn-Toolkit-build/build" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 package" />
+            <CompileFile command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="package_source">
+         <Option working_dir="C:/blm/Buildmlearn-Toolkit-build/build" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 package_source" />
+            <CompileFile command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="rebuild_cache">
+         <Option working_dir="C:/blm/Buildmlearn-Toolkit-build/build" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 rebuild_cache" />
+            <CompileFile command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="C:/Qt/mingw32/bin/mingw32-make.exe -f &quot;C:/blm/Buildmlearn-Toolkit-build/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      </Build>
+      <Unit filename="C:/blm/src/core/templatecore.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/core/templateeditor.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/core/templateentrypoint.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/core/templatefactory.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/core/templategenerator.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/core/templatesimulator.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/dynamic-shortcuts/dynamicshortcuts.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/dynamic-shortcuts/dynamicshortcutswidget.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/dynamic-shortcuts/shortcutbutton.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/dynamic-shortcuts/shortcutcatcher.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/gui/custommessagebox.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/gui/formabout.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/gui/formhelp.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/gui/formmain.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/gui/formnewproject.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/gui/formsettings.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/gui/formsimulator.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/gui/formupdate.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/gui/formuploadbundle.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/gui/labelwithstatus.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/gui/lineeditwithstatus.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/gui/maxlengthtextedit.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/gui/plaintoolbutton.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/gui/systemtrayicon.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/gui/widgetwithstatus.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/main.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/miscellaneous/application.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/miscellaneous/debugging.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/miscellaneous/iconfactory.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/miscellaneous/iofactory.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/miscellaneous/localization.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/miscellaneous/settings.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/miscellaneous/skinfactory.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/miscellaneous/storefactory.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/miscellaneous/systemfactory.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/miscellaneous/textfactory.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/network-web/basenetworkaccessmanager.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/network-web/downloader.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/network-web/networkfactory.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/network-web/silentnetworkaccessmanager.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/network-web/webfactory.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/comprehension/comprehensioncore.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/comprehension/comprehensioneditor.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/comprehension/comprehensionentrypoint.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/comprehension/comprehensionpassage.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/comprehension/comprehensionpassageitem.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/comprehension/comprehensionquestion.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/comprehension/comprehensionquestionitem.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/comprehension/comprehensionsimulator.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/flashcard/flashcardcore.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/flashcard/flashcardeditor.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/flashcard/flashcardentrypoint.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/flashcard/flashcarditem.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/flashcard/flashcardquestion.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/flashcard/flashcardsimulator.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/learnspellings/learnspellingscore.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/learnspellings/learnspellingseditor.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/learnspellings/learnspellingsentrypoint.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/learnspellings/learnspellingsitem.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/learnspellings/learnspellingssimulator.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/mlearning/basicmlearningcore.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/mlearning/basicmlearningeditor.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/mlearning/basicmlearningentrypoint.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/mlearning/basicmlearningitem.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/mlearning/basicmlearningsimulator.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/quiz/quizcore.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/quiz/quizeditor.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/quiz/quizentrypoint.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/quiz/quizitem.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/quiz/quizquestion.cpp">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/quiz/quizsimulator.cpp">
+      </Unit>
+      <Unit filename="C:/blm/Buildmlearn-Toolkit-build/build/resources/executable_properties/buildmlearn-toolkit_win.rc">
+      </Unit>
+      <Unit filename="C:/blm/src/core/templatecore.h">
+      </Unit>
+      <Unit filename="C:/blm/src/core/templateeditor.h">
+      </Unit>
+      <Unit filename="C:/blm/src/core/templateentrypoint.h">
+      </Unit>
+      <Unit filename="C:/blm/src/core/templatefactory.h">
+      </Unit>
+      <Unit filename="C:/blm/src/core/templategenerator.h">
+      </Unit>
+      <Unit filename="C:/blm/src/core/templatesimulator.h">
+      </Unit>
+      <Unit filename="C:/blm/src/dynamic-shortcuts/dynamicshortcuts.h">
+      </Unit>
+      <Unit filename="C:/blm/src/dynamic-shortcuts/dynamicshortcutswidget.h">
+      </Unit>
+      <Unit filename="C:/blm/src/dynamic-shortcuts/shortcutbutton.h">
+      </Unit>
+      <Unit filename="C:/blm/src/dynamic-shortcuts/shortcutcatcher.h">
+      </Unit>
+      <Unit filename="C:/blm/src/gui/custommessagebox.h">
+      </Unit>
+      <Unit filename="C:/blm/src/gui/formabout.h">
+      </Unit>
+      <Unit filename="C:/blm/src/gui/formabout.ui">
+      </Unit>
+      <Unit filename="C:/blm/src/gui/formhelp.h">
+      </Unit>
+      <Unit filename="C:/blm/src/gui/formhelp.ui">
+      </Unit>
+      <Unit filename="C:/blm/src/gui/formmain.h">
+      </Unit>
+      <Unit filename="C:/blm/src/gui/formmain.ui">
+      </Unit>
+      <Unit filename="C:/blm/src/gui/formnewproject.h">
+      </Unit>
+      <Unit filename="C:/blm/src/gui/formnewproject.ui">
+      </Unit>
+      <Unit filename="C:/blm/src/gui/formsettings.h">
+      </Unit>
+      <Unit filename="C:/blm/src/gui/formsettings.ui">
+      </Unit>
+      <Unit filename="C:/blm/src/gui/formsimulator.h">
+      </Unit>
+      <Unit filename="C:/blm/src/gui/formsimulator.ui">
+      </Unit>
+      <Unit filename="C:/blm/src/gui/formupdate.h">
+      </Unit>
+      <Unit filename="C:/blm/src/gui/formupdate.ui">
+      </Unit>
+      <Unit filename="C:/blm/src/gui/formuploadbundle.h">
+      </Unit>
+      <Unit filename="C:/blm/src/gui/formuploadbundle.ui">
+      </Unit>
+      <Unit filename="C:/blm/src/gui/labelwithstatus.h">
+      </Unit>
+      <Unit filename="C:/blm/src/gui/lineeditwithstatus.h">
+      </Unit>
+      <Unit filename="C:/blm/src/gui/maxlengthtextedit.h">
+      </Unit>
+      <Unit filename="C:/blm/src/gui/plaintoolbutton.h">
+      </Unit>
+      <Unit filename="C:/blm/src/gui/systemtrayicon.h">
+      </Unit>
+      <Unit filename="C:/blm/src/gui/widgetwithstatus.h">
+      </Unit>
+      <Unit filename="C:/blm/src/miscellaneous/application.h">
+      </Unit>
+      <Unit filename="C:/blm/src/miscellaneous/debugging.h">
+      </Unit>
+      <Unit filename="C:/blm/src/miscellaneous/iconfactory.h">
+      </Unit>
+      <Unit filename="C:/blm/src/miscellaneous/iofactory.h">
+      </Unit>
+      <Unit filename="C:/blm/src/miscellaneous/localization.h">
+      </Unit>
+      <Unit filename="C:/blm/src/miscellaneous/settings.h">
+      </Unit>
+      <Unit filename="C:/blm/src/miscellaneous/skinfactory.h">
+      </Unit>
+      <Unit filename="C:/blm/src/miscellaneous/storefactory.h">
+      </Unit>
+      <Unit filename="C:/blm/src/miscellaneous/systemfactory.h">
+      </Unit>
+      <Unit filename="C:/blm/src/miscellaneous/textfactory.h">
+      </Unit>
+      <Unit filename="C:/blm/src/network-web/basenetworkaccessmanager.h">
+      </Unit>
+      <Unit filename="C:/blm/src/network-web/downloader.h">
+      </Unit>
+      <Unit filename="C:/blm/src/network-web/networkfactory.h">
+      </Unit>
+      <Unit filename="C:/blm/src/network-web/silentnetworkaccessmanager.h">
+      </Unit>
+      <Unit filename="C:/blm/src/network-web/webfactory.h">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/comprehension/comprehensioncore.h">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/comprehension/comprehensioneditor.ui">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/comprehension/comprehensionentrypoint.h">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/comprehension/comprehensionpassage.h">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/comprehension/comprehensionpassageitem.h">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/comprehension/comprehensionpassageitem.ui">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/comprehension/comprehensionquestion.h">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/comprehension/comprehensionquestionitem.h">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/comprehension/comprehensionquestionitem.ui">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/comprehension/comprehensionsimulator.h">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/comprehension/comprehensionsimulator.ui">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/flashcard/flashcardcore.h">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/flashcard/flashcardeditor.h">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/flashcard/flashcardeditor.ui">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/flashcard/flashcardentrypoint.h">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/flashcard/flashcarditem.h">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/flashcard/flashcarditem.ui">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/flashcard/flashcardquestion.h">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/flashcard/flashcardsimulator.h">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/flashcard/flashcardsimulator.ui">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/learnspellings/learnspellingscore.h">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/learnspellings/learnspellingseditor.h">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/learnspellings/learnspellingseditor.ui">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/learnspellings/learnspellingsentrypoint.h">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/learnspellings/learnspellingsitem.h">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/learnspellings/learnspellingssimulator.h">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/learnspellings/learnspellingssimulator.ui">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/mlearning/basicmlearningcore.h">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/mlearning/basicmlearningeditor.h">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/mlearning/basicmlearningeditor.ui">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/mlearning/basicmlearningentrypoint.h">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/mlearning/basicmlearningitem.h">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/mlearning/basicmlearningsimulator.h">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/mlearning/basicmlearningsimulator.ui">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/quiz/quizcore.h">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/quiz/quizeditor.h">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/quiz/quizeditor.ui">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/quiz/quizentrypoint.h">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/quiz/quizitem.h">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/quiz/quizitem.ui">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/quiz/quizquestion.h">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/quiz/quizsimulator.h">
+      </Unit>
+      <Unit filename="C:/blm/src/templates/quiz/quizsimulator.ui">
+      </Unit>
+      <Unit filename="C:/blm/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\" />
+      </Unit>
+      <Unit filename="C:/blm/src/definitions/definitions.h.in">
+          <Option virtualFolder="CMake Files\src\definitions\" />
+      </Unit>
+      <Unit filename="C:/blm/resources/documentation/Doxyfile.in">
+          <Option virtualFolder="CMake Files\resources\documentation\" />
+      </Unit>
+      <Unit filename="C:/blm/resources/executable_properties/buildmlearn-toolkit_win.rc.in">
+          <Option virtualFolder="CMake Files\resources\executable_properties\" />
+      </Unit>
+      <Unit filename="C:/blm/resources/nsis/NSIS.definitions.nsh.in">
+          <Option virtualFolder="CMake Files\resources\nsis\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5/Qt5ConfigVersion.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5/Qt5Config.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5Sql/Qt5SqlConfigVersion.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Sql\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5Sql/Qt5SqlConfig.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Sql\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5Sql/Qt5Sql_QMYSQLDriverPlugin.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Sql\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5Sql/Qt5Sql_QODBCDriverPlugin.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Sql\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5Sql/Qt5Sql_QPSQLDriverPlugin.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Sql\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5Sql/Qt5Sql_QSQLiteDriverPlugin.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Sql\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5Core/Qt5CoreConfigVersion.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Core\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5Core/Qt5CoreConfig.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Core\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5Core/Qt5CoreConfigExtras.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Core\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5Core/Qt5CoreConfigExtrasMkspecDir.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Core\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5Core/Qt5CoreMacros.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Core\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5Widgets/Qt5WidgetsConfigVersion.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Widgets\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5Widgets/Qt5WidgetsConfig.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Widgets\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5Widgets/Qt5WidgetsConfigExtras.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Widgets\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5Widgets/Qt5WidgetsMacros.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Widgets\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5Gui/Qt5GuiConfigVersion.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Gui\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5Gui/Qt5GuiConfig.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Gui\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5Gui/Qt5Gui_QDDSPlugin.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Gui\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5Gui/Qt5Gui_QGifPlugin.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Gui\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5Gui/Qt5Gui_QICNSPlugin.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Gui\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5Gui/Qt5Gui_QICOPlugin.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Gui\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5Gui/Qt5Gui_QJp2Plugin.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Gui\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5Gui/Qt5Gui_QJpegPlugin.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Gui\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5Gui/Qt5Gui_QMinimalIntegrationPlugin.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Gui\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5Gui/Qt5Gui_QMngPlugin.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Gui\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5Gui/Qt5Gui_QOffscreenIntegrationPlugin.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Gui\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5Gui/Qt5Gui_QTgaPlugin.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Gui\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5Gui/Qt5Gui_QTiffPlugin.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Gui\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5Gui/Qt5Gui_QWbmpPlugin.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Gui\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5Gui/Qt5Gui_QWebpPlugin.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Gui\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5Gui/Qt5Gui_QWindowsIntegrationPlugin.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Gui\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5Gui/Qt5GuiConfigExtras.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Gui\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5Xml/Qt5XmlConfigVersion.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Xml\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5Xml/Qt5XmlConfig.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Xml\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5XmlPatterns/Qt5XmlPatternsConfigVersion.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5XmlPatterns\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5XmlPatterns/Qt5XmlPatternsConfig.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5XmlPatterns\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5Network/Qt5NetworkConfigVersion.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Network\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5Network/Qt5NetworkConfig.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Network\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5Network/Qt5Network_QGenericEnginePlugin.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Network\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5Network/Qt5Network_QNativeWifiEnginePlugin.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Network\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5Network/Qt5NetworkConfigVersion.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Network\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5Network/Qt5NetworkConfig.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Network\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5LinguistTools/Qt5LinguistToolsConfigVersion.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5LinguistTools\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5LinguistTools/Qt5LinguistToolsConfig.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5LinguistTools\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5LinguistTools\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5Multimedia/Qt5MultimediaConfigVersion.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Multimedia\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5Multimedia/Qt5MultimediaConfig.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Multimedia\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5Multimedia/Qt5Multimedia_AudioCaptureServicePlugin.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Multimedia\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5Multimedia/Qt5Multimedia_DSServicePlugin.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Multimedia\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5Multimedia/Qt5Multimedia_QM3uPlaylistPlugin.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Multimedia\" />
+      </Unit>
+      <Unit filename="C:/blm/../Qt/Qt5.4.1/5.4/mingw491_32/lib/cmake/Qt5Multimedia/Qt5Multimedia_QWindowsAudioPlugin.cmake">
+          <Option virtualFolder="CMake Files\..\Qt\Qt5.4.1\5.4\mingw491_32\lib\cmake\Qt5Multimedia\" />
+      </Unit>
+   </Project>
+</CodeBlocks_project_file>
