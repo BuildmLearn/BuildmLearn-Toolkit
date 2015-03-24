@@ -1,0 +1,4 @@
+/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir
+/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit_automoc.dir
+/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/dist.dir
+/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/lupdate.dir

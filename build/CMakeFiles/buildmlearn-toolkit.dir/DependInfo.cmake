@@ -1,0 +1,118 @@
+# The set of languages for which implicit dependencies are needed:
+SET(CMAKE_DEPENDS_LANGUAGES
+  "CXX"
+  )
+# The set of files for implicit dependencies of each language:
+SET(CMAKE_DEPENDS_CHECK_CXX
+  "/home/yogesh/git/BuildmLearn-Toolkit/build/buildmlearn-toolkit_automoc.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/buildmlearn-toolkit_automoc.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/core/templatecore.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/core/templatecore.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/core/templateeditor.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/core/templateeditor.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/core/templateentrypoint.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/core/templateentrypoint.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/core/templatefactory.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/core/templatefactory.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/core/templategenerator.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/core/templategenerator.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/core/templatesimulator.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/core/templatesimulator.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/dynamic-shortcuts/dynamicshortcuts.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/dynamic-shortcuts/dynamicshortcuts.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/dynamic-shortcuts/dynamicshortcutswidget.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/dynamic-shortcuts/dynamicshortcutswidget.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/dynamic-shortcuts/shortcutbutton.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/dynamic-shortcuts/shortcutbutton.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/dynamic-shortcuts/shortcutcatcher.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/dynamic-shortcuts/shortcutcatcher.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/gui/custommessagebox.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/gui/custommessagebox.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/gui/formabout.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/gui/formabout.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/gui/formhelp.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/gui/formhelp.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/gui/formmain.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/gui/formmain.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/gui/formnewproject.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/gui/formnewproject.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/gui/formsettings.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/gui/formsettings.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/gui/formsimulator.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/gui/formsimulator.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/gui/formupdate.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/gui/formupdate.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/gui/formuploadbundle.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/gui/formuploadbundle.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/gui/labelwithstatus.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/gui/labelwithstatus.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/gui/lineeditwithstatus.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/gui/lineeditwithstatus.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/gui/maxlengthtextedit.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/gui/maxlengthtextedit.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/gui/plaintoolbutton.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/gui/plaintoolbutton.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/gui/systemtrayicon.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/gui/systemtrayicon.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/gui/widgetwithstatus.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/gui/widgetwithstatus.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/main.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/main.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/miscellaneous/application.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/miscellaneous/application.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/miscellaneous/debugging.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/miscellaneous/debugging.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/miscellaneous/iconfactory.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/miscellaneous/iconfactory.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/miscellaneous/iofactory.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/miscellaneous/iofactory.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/miscellaneous/localization.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/miscellaneous/localization.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/miscellaneous/settings.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/miscellaneous/settings.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/miscellaneous/skinfactory.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/miscellaneous/skinfactory.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/miscellaneous/storefactory.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/miscellaneous/storefactory.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/miscellaneous/systemfactory.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/miscellaneous/systemfactory.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/miscellaneous/textfactory.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/miscellaneous/textfactory.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/network-web/basenetworkaccessmanager.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/network-web/basenetworkaccessmanager.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/network-web/downloader.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/network-web/downloader.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/network-web/networkfactory.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/network-web/networkfactory.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/network-web/silentnetworkaccessmanager.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/network-web/silentnetworkaccessmanager.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/network-web/webfactory.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/network-web/webfactory.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/templates/flashcard/flashcardcore.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/templates/flashcard/flashcardcore.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/templates/flashcard/flashcardeditor.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/templates/flashcard/flashcardeditor.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/templates/flashcard/flashcardentrypoint.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/templates/flashcard/flashcardentrypoint.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/templates/flashcard/flashcarditem.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/templates/flashcard/flashcarditem.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/templates/flashcard/flashcardquestion.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/templates/flashcard/flashcardquestion.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/templates/flashcard/flashcardsimulator.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/templates/flashcard/flashcardsimulator.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/templates/learnspellings/learnspellingscore.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/templates/learnspellings/learnspellingscore.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/templates/learnspellings/learnspellingseditor.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/templates/learnspellings/learnspellingseditor.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/templates/learnspellings/learnspellingsentrypoint.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/templates/learnspellings/learnspellingsentrypoint.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/templates/learnspellings/learnspellingsitem.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/templates/learnspellings/learnspellingsitem.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/templates/learnspellings/learnspellingssimulator.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/templates/learnspellings/learnspellingssimulator.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/templates/mlearning/basicmlearningcore.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/templates/mlearning/basicmlearningcore.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/templates/mlearning/basicmlearningeditor.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/templates/mlearning/basicmlearningeditor.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/templates/mlearning/basicmlearningentrypoint.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/templates/mlearning/basicmlearningentrypoint.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/templates/mlearning/basicmlearningitem.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/templates/mlearning/basicmlearningitem.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/templates/mlearning/basicmlearningsimulator.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/templates/mlearning/basicmlearningsimulator.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/templates/quiz/quizcore.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/templates/quiz/quizcore.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/templates/quiz/quizeditor.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/templates/quiz/quizeditor.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/templates/quiz/quizentrypoint.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/templates/quiz/quizentrypoint.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/templates/quiz/quizitem.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/templates/quiz/quizitem.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/templates/quiz/quizquestion.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/templates/quiz/quizquestion.cpp.o"
+  "/home/yogesh/git/BuildmLearn-Toolkit/src/templates/quiz/quizsimulator.cpp" "/home/yogesh/git/BuildmLearn-Toolkit/build/CMakeFiles/buildmlearn-toolkit.dir/src/templates/quiz/quizsimulator.cpp.o"
+  )
+SET(CMAKE_CXX_COMPILER_ID "GNU")
+
+# Preprocessor definitions for this target.
+SET(CMAKE_TARGET_DEFINITIONS
+  "QT_CORE_LIB"
+  "QT_GUI_LIB"
+  "QT_MULTIMEDIA_LIB"
+  "QT_NETWORK_LIB"
+  "QT_NO_DEBUG"
+  "QT_SQL_LIB"
+  "QT_USE_FAST_CONCATENATION"
+  "QT_USE_FAST_OPERATOR_PLUS"
+  "QT_USE_QSTRINGBUILDER"
+  "QT_WIDGETS_LIB"
+  "QT_XML_LIB"
+  "UNICODE"
+  "_UNICODE"
+  )
+
+# Targets to which this target links.
+SET(CMAKE_TARGET_LINKED_INFO_FILES
+  )
+
+# The include file search paths:
+SET(CMAKE_C_TARGET_INCLUDE_PATH
+  "."
+  ".."
+  "../src"
+  "../src/core"
+  "../src/gui"
+  "../src/miscellaneous"
+  "../src/network-web"
+  "../src/dynamic-shortcuts"
+  "src"
+  "/usr/include/qt5"
+  "/usr/include/qt5/QtCore"
+  "/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64"
+  "/usr/include/qt5/QtWidgets"
+  "/usr/include/qt5/QtGui"
+  "/usr/include/qt5/QtSql"
+  "/usr/include/qt5/QtNetwork"
+  "/usr/include/qt5/QtXml"
+  "/usr/include/qt5/QtMultimedia"
+  )
+SET(CMAKE_CXX_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})
+SET(CMAKE_Fortran_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})
+SET(CMAKE_ASM_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})
