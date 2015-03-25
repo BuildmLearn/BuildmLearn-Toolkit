@@ -91,6 +91,8 @@ bool LearnSpellingsSimulator::startSimulation() {
   m_ui->m_btnStart->setEnabled(true);
   m_ui->m_lblAuthor->setText(editor->m_ui->m_txtAuthor->lineEdit()->text());
   m_ui->m_lblHeading->setText(editor->m_ui->m_txtName->lineEdit()->text());
+  m_ui->m_lblAuthor->setWordWrap(true);
+  m_ui->m_lblHeading->setWordWrap(true);
   m_ui->m_phoneWidget->setCurrentIndex(1);
 
   return true;
