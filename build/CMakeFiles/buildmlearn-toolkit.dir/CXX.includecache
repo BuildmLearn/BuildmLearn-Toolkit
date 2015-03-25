@@ -10,14 +10,12 @@
 QObject
 -
 
-../src/core/templateeditor.h
-QWidget
+../src/core/templatefactory.h
+QObject
+-
+QHash
 -
 QDomDocument
--
-
-../src/core/templatesimulator.h
-QWidget
 -
 
 ../src/gui/formmain.h
@@ -39,16 +37,6 @@ QDialog
 -
 ui_formnewproject.h
 ../src/gui/ui_formnewproject.h
-
-../src/gui/formsimulator.h
-QDialog
--
-ui_formsimulator.h
-../src/gui/ui_formsimulator.h
-
-../src/gui/plaintoolbutton.h
-QToolButton
--
 
 ../src/gui/systemtrayicon.h
 QSystemTrayIcon
@@ -76,24 +64,6 @@ QSessionManager
 QHash
 -
 
-../src/miscellaneous/iconfactory.h
-QObject
--
-definitions/definitions.h
-../src/miscellaneous/definitions/definitions.h
-application.h
-../src/miscellaneous/application.h
-QString
--
-QIcon
--
-QPointer
--
-QHash
--
-QDir
--
-
 ../src/miscellaneous/settings.h
 QSettings
 -
@@ -118,33 +88,77 @@ QPair
 QNetworkReply
 -
 
-/home/yogesh/git/BuildmLearn-Toolkit/src/gui/formsimulator.cpp
-gui/formsimulator.h
-/home/yogesh/git/BuildmLearn-Toolkit/src/gui/gui/formsimulator.h
-gui/formmain.h
-/home/yogesh/git/BuildmLearn-Toolkit/src/gui/gui/formmain.h
-definitions/definitions.h
-/home/yogesh/git/BuildmLearn-Toolkit/src/gui/definitions/definitions.h
-miscellaneous/iconfactory.h
-/home/yogesh/git/BuildmLearn-Toolkit/src/gui/miscellaneous/iconfactory.h
-miscellaneous/application.h
-/home/yogesh/git/BuildmLearn-Toolkit/src/gui/miscellaneous/application.h
-miscellaneous/skinfactory.h
-/home/yogesh/git/BuildmLearn-Toolkit/src/gui/miscellaneous/skinfactory.h
-core/templatesimulator.h
-/home/yogesh/git/BuildmLearn-Toolkit/src/gui/core/templatesimulator.h
-core/templatecore.h
-/home/yogesh/git/BuildmLearn-Toolkit/src/gui/core/templatecore.h
-core/templateeditor.h
-/home/yogesh/git/BuildmLearn-Toolkit/src/gui/core/templateeditor.h
-QWidget
+../src/network-web/networkfactory.h
+QNetworkReply
 -
-QCloseEvent
+QCoreApplication
 -
 
-/usr/include/qt5/QtCore/QDir
-qdir.h
-/usr/include/qt5/QtCore/qdir.h
+/home/yogesh/git/BuildmLearn-Toolkit/src/miscellaneous/application.cpp
+miscellaneous/application.h
+/home/yogesh/git/BuildmLearn-Toolkit/src/miscellaneous/miscellaneous/application.h
+miscellaneous/systemfactory.h
+/home/yogesh/git/BuildmLearn-Toolkit/src/miscellaneous/miscellaneous/systemfactory.h
+miscellaneous/skinfactory.h
+/home/yogesh/git/BuildmLearn-Toolkit/src/miscellaneous/miscellaneous/skinfactory.h
+network-web/networkfactory.h
+/home/yogesh/git/BuildmLearn-Toolkit/src/miscellaneous/network-web/networkfactory.h
+gui/systemtrayicon.h
+/home/yogesh/git/BuildmLearn-Toolkit/src/miscellaneous/gui/systemtrayicon.h
+gui/formmain.h
+/home/yogesh/git/BuildmLearn-Toolkit/src/miscellaneous/gui/formmain.h
+core/templatefactory.h
+/home/yogesh/git/BuildmLearn-Toolkit/src/miscellaneous/core/templatefactory.h
+QMutex
+-
+QFuture
+-
+QFutureWatcher
+-
+QtConcurrent/QtConcurrentRun
+-
+QtConcurrentRun
+-
+
+/usr/include/qt5/QtConcurrent/QtConcurrentRun
+qtconcurrentrun.h
+/usr/include/qt5/QtConcurrent/qtconcurrentrun.h
+
+/usr/include/qt5/QtConcurrent/qtconcurrent_global.h
+QtCore/qglobal.h
+-
+
+/usr/include/qt5/QtConcurrent/qtconcurrentcompilertest.h
+QtConcurrent/qtconcurrent_global.h
+-
+
+/usr/include/qt5/QtConcurrent/qtconcurrentrun.h
+QtConcurrent/qtconcurrentcompilertest.h
+-
+QtConcurrent/qtconcurrentrunbase.h
+-
+QtConcurrent/qtconcurrentstoredfunctioncall.h
+-
+
+/usr/include/qt5/QtConcurrent/qtconcurrentrunbase.h
+QtConcurrent/qtconcurrent_global.h
+-
+QtCore/qfuture.h
+-
+QtCore/qrunnable.h
+-
+QtCore/qthreadpool.h
+-
+
+/usr/include/qt5/QtConcurrent/qtconcurrentstoredfunctioncall.h
+QtConcurrent/qtconcurrent_global.h
+-
+QtConcurrent/qtconcurrentrunbase.h
+-
+
+/usr/include/qt5/QtCore/QCoreApplication
+qcoreapplication.h
+/usr/include/qt5/QtCore/qcoreapplication.h
 
 /usr/include/qt5/QtCore/QEvent
 qcoreevent.h
@@ -153,6 +167,14 @@ qcoreevent.h
 /usr/include/qt5/QtCore/QFlags
 qflags.h
 /usr/include/qt5/QtCore/qflags.h
+
+/usr/include/qt5/QtCore/QFuture
+qfuture.h
+/usr/include/qt5/QtCore/qfuture.h
+
+/usr/include/qt5/QtCore/QFutureWatcher
+qfuturewatcher.h
+/usr/include/qt5/QtCore/qfuturewatcher.h
 
 /usr/include/qt5/QtCore/QHash
 qhash.h
@@ -173,6 +195,10 @@ qmargins.h
 /usr/include/qt5/QtCore/QMetaType
 qmetatype.h
 /usr/include/qt5/QtCore/qmetatype.h
+
+/usr/include/qt5/QtCore/QMutex
+qmutex.h
+/usr/include/qt5/QtCore/qmutex.h
 
 /usr/include/qt5/QtCore/QObject
 qobject.h
@@ -1908,14 +1934,6 @@ QtCore/qvector.h
 QtCore/qscopedpointer.h
 -
 
-/usr/include/qt5/QtGui/QCloseEvent
-qevent.h
-/usr/include/qt5/QtGui/qevent.h
-
-/usr/include/qt5/QtGui/QIcon
-qicon.h
-/usr/include/qt5/QtGui/qicon.h
-
 /usr/include/qt5/QtGui/QSessionManager
 qsessionmanager.h
 /usr/include/qt5/QtGui/qsessionmanager.h
@@ -3244,14 +3262,6 @@ qmenu.h
 qmenubar.h
 /usr/include/qt5/QtWidgets/qmenubar.h
 
-/usr/include/qt5/QtWidgets/QScrollArea
-qscrollarea.h
-/usr/include/qt5/QtWidgets/qscrollarea.h
-
-/usr/include/qt5/QtWidgets/QSpacerItem
-qlayoutitem.h
-/usr/include/qt5/QtWidgets/qlayoutitem.h
-
 /usr/include/qt5/QtWidgets/QStatusBar
 qstatusbar.h
 /usr/include/qt5/QtWidgets/qstatusbar.h
@@ -3264,10 +3274,6 @@ qsystemtrayicon.h
 qtoolbar.h
 /usr/include/qt5/QtWidgets/qtoolbar.h
 
-/usr/include/qt5/QtWidgets/QToolButton
-qtoolbutton.h
-/usr/include/qt5/QtWidgets/qtoolbutton.h
-
 /usr/include/qt5/QtWidgets/QVBoxLayout
 qboxlayout.h
 /usr/include/qt5/QtWidgets/qboxlayout.h
@@ -3275,14 +3281,6 @@ qboxlayout.h
 /usr/include/qt5/QtWidgets/QWidget
 qwidget.h
 /usr/include/qt5/QtWidgets/qwidget.h
-
-/usr/include/qt5/QtWidgets/qabstractbutton.h
-QtGui/qicon.h
--
-QtGui/qkeysequence.h
--
-QtWidgets/qwidget.h
--
 
 /usr/include/qt5/QtWidgets/qabstractitemdelegate.h
 QtCore/qobject.h
@@ -3464,10 +3462,6 @@ QtWidgets/qmenu.h
 QtWidgets/qwidget.h
 -
 
-/usr/include/qt5/QtWidgets/qscrollarea.h
-QtWidgets/qabstractscrollarea.h
--
-
 /usr/include/qt5/QtWidgets/qsizepolicy.h
 QtCore/qobject.h
 -
@@ -3538,10 +3532,6 @@ QtGui/qicon.h
 
 /usr/include/qt5/QtWidgets/qtoolbar.h
 QtWidgets/qwidget.h
--
-
-/usr/include/qt5/QtWidgets/qtoolbutton.h
-QtWidgets/qabstractbutton.h
 -
 
 /usr/include/qt5/QtWidgets/qwidget.h
@@ -3645,34 +3635,4 @@ QtWidgets/QListWidget
 -
 QtWidgets/QVBoxLayout
 -
-
-ui_formsimulator.h
-QtCore/QVariant
--
-QtWidgets/QAction
--
-QtWidgets/QApplication
--
-QtWidgets/QButtonGroup
--
-QtWidgets/QDialog
--
-QtWidgets/QGridLayout
--
-QtWidgets/QHBoxLayout
--
-QtWidgets/QHeaderView
--
-QtWidgets/QLabel
--
-QtWidgets/QScrollArea
--
-QtWidgets/QSpacerItem
--
-QtWidgets/QVBoxLayout
--
-QtWidgets/QWidget
--
-plaintoolbutton.h
-plaintoolbutton.h
 

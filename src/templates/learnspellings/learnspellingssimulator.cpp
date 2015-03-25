@@ -229,7 +229,7 @@ void LearnSpellingsSimulator::loadNextWord() {
     // We are already viewing last word, we need to go to "summary" page and display results.
     m_ui->m_lblTotalCorrect->setText(tr("Correct spelled %1").arg(QString::number(m_resultCorrect)));
     m_ui->m_lblTotalUnanswered->setText(tr("Unanswered %1").arg(QString::number(m_resultSkipped)));
-    m_ui->m_lblTotalWrong->setText(tr("Wrond spelled %1").arg(QString::number(m_resultIncorrect)));
+    m_ui->m_lblTotalWrong->setText(tr("Wrong spelled %1").arg(QString::number(m_resultIncorrect)));
     m_ui->m_phoneWidget->setCurrentIndex(3);
   }
 }

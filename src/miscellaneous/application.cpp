@@ -338,6 +338,7 @@ void Application::onAboutToQuit() {
     // in a safety way.
     qDebug("Close lock was obtained safely.");
 
+
     templateManager()->quit();
 
     // We locked the lock to exit peacefully, unlock it to avoid warnings.
