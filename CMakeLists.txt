@@ -446,7 +446,10 @@ set(APP_SOURCES
   src/templates/learnspellings/learnspellingseditor.cpp
   src/templates/learnspellings/learnspellingssimulator.cpp
   src/templates/learnspellings/learnspellingsitem.cpp
-
+  
+  src/templates/matchthefollowing/matchfollowingentrypoint.cpp
+  src/templates/matchthefollowing/matchfollowingcore.cpp
+  
   src/main.cpp
 )
 
@@ -514,6 +517,9 @@ set(APP_HEADERS
   src/templates/learnspellings/learnspellingscore.h
   src/templates/learnspellings/learnspellingseditor.h
   src/templates/learnspellings/learnspellingssimulator.h
+  
+  src/templates/matchthefollowing/matchfollowingentrypoint.h
+  src/templates/matchthefollowing/matchfollowingcore.h
 )
 
 # APP form files.
@@ -540,6 +546,7 @@ set(APP_FORMS
 
   src/templates/learnspellings/learnspellingseditor.ui
   src/templates/learnspellings/learnspellingssimulator.ui
+  
 )
 
 # APP translations.
