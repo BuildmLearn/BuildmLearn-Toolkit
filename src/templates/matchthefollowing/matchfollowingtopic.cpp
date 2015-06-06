@@ -28,41 +28,27 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include "templates/matchthefollowing/matchfollowingentrypoint.h"
-
-#include "templates/matchthefollowing/matchfollowingcore.h"
-#include "core/templateeditor.h"
-#include "core/templatesimulator.h"
+#include "matchfollowingtopic.h"
 
 
-MatchFollowingEntryPoint::MatchFollowingEntryPoint(TemplateFactory *parent)
-  : TemplateEntryPoint(parent) {
-  m_baseFolder = "matchthefollowing";
-  m_description = "Choose this template to create applications matching the given two sets";
-  m_humanName = "Match The Following";
-  m_name = "matchthefollowing";
-  m_thumbnailImage = "thumbnail2.png";
-  m_typeIndentifier = "MatchFollowingTemplate";
-  m_mobileApplicationApkFile = "MatchTheFollowingTemplateApp.apk";
+MatchFollowingTopic::MatchFollowingTopic() {
 }
 
-MatchFollowingEntryPoint::~MatchFollowingEntryPoint() {
-
+MatchFollowingTopic::~MatchFollowingTopic() {
 }
 
-TemplateCore *MatchFollowingEntryPoint::createNewCore() {
-  return new MatchFollowingCore(this, this);
+QString MatchFollowingTopic::firstListTopic() const {
+    return m_firstListTopic;
 }
 
-TemplateCore *MatchFollowingEntryPoint::loadCoreFromBundleData(const QString& raw_data) {
-  MatchFollowingCore *core = new MatchFollowingCore(this, this);
-  if (core->editor()->loadBundleData(raw_data)) {
-    return core;
-  }
-  else {
-    core->simulator()->deleteLater();
-    core->editor()->deleteLater();
-    core->deleteLater();
-    return NULL;
-  }
+void MatchFollowingTopic::setFirstListTopic(const QString& firstListTopic) {
+    m_firstListTopic = firstListTopic;
+}
+
+QString MatchFollowingTopic::secondListTopic() const {
+    return m_secondListTopic;
+}
+
+void MatchFollowingTopic::setSecondListTopic(const QString& secondListTopic) {
+    m_secondListTopic = secondListTopic;
 }

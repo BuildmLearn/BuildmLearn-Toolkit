@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>PicCollectionEditor</class>
- <widget class="QWidget" name="PicCollectionEditor">
+ <class>MatchFollowingEditor</class>
+ <widget class="QWidget" name="MatchFollowingEditor">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -32,14 +32,14 @@
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout">
-       <item row="0" column="1" rowspan="3">
+       <item row="0" column="1" rowspan="5">
         <widget class="QGroupBox" name="groupBox_2">
          <property name="title">
           <string>Active Items</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_2">
           <item row="1" column="0">
-           <widget class="PlainToolButton" name="m_btnItemAdd">
+           <widget class="PlainToolButton" name="m_btnTopicAdd">
             <property name="toolTip">
              <string>Add new image.</string>
             </property>
@@ -55,7 +55,7 @@
            </widget>
           </item>
           <item row="1" column="3">
-           <widget class="PlainToolButton" name="m_btnItemDown">
+           <widget class="PlainToolButton" name="m_btnTopicDown">
             <property name="toolTip">
              <string>Move image down.</string>
             </property>
@@ -71,7 +71,7 @@
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="PlainToolButton" name="m_btnItemRemove">
+           <widget class="PlainToolButton" name="m_btnTopicRemove">
             <property name="enabled">
              <bool>false</bool>
             </property>
@@ -90,7 +90,7 @@
            </widget>
           </item>
           <item row="1" column="2">
-           <widget class="PlainToolButton" name="m_btnItemUp">
+           <widget class="PlainToolButton" name="m_btnTopicUp">
             <property name="toolTip">
              <string>Move image up.</string>
             </property>
@@ -119,7 +119,7 @@
            </spacer>
           </item>
           <item row="0" column="0" colspan="5">
-           <widget class="QListWidget" name="m_listImages">
+           <widget class="QListWidget" name="m_listTopics">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>1</horstretch>
@@ -127,14 +127,14 @@
              </sizepolicy>
             </property>
             <property name="toolTip">
-             <string>This list contains already added images.</string>
+             <string>This list contains already added topics.</string>
             </property>
            </widget>
           </item>
          </layout>
         </widget>
        </item>
-       <item row="1" column="0">
+       <item row="2" column="0">
         <widget class="QGroupBox" name="m_groupTitleEditor">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
@@ -154,7 +154,7 @@
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="LineEditWithStatus" name="m_templateTitle" native="true"/>
+           <widget class="LineEditWithStatus" name="m_txtTemplateTitle" native="true"/>
           </item>
           <item row="1" column="0">
            <widget class="QLabel" name="label_9">
@@ -164,7 +164,7 @@
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="LineEditWithStatus" name="m_firstListTitle" native="true"/>
+           <widget class="LineEditWithStatus" name="m_txtFirstListTitle" native="true"/>
           </item>
           <item row="2" column="0">
            <widget class="QLabel" name="label_10">
@@ -174,13 +174,13 @@
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="LineEditWithStatus" name="m_secondListTitle" native="true"/>
+           <widget class="LineEditWithStatus" name="m_txtSecondListTitle" native="true"/>
           </item>
          </layout>
         </widget>
        </item>
        <item row="0" column="0">
-        <widget class="QGroupBox" name="m_groupListEditor">
+        <widget class="QGroupBox" name="m_groupTopicEditor">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
            <horstretch>0</horstretch>
@@ -199,7 +199,7 @@
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="LineEditWithStatus" name="m_firstItem" native="true"/>
+           <widget class="LineEditWithStatus" name="m_txtFirstListTopic" native="true"/>
           </item>
           <item row="1" column="0">
            <widget class="QLabel" name="label_2">
@@ -209,12 +209,12 @@
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="LineEditWithStatus" name="m_secondItem" native="true"/>
+           <widget class="LineEditWithStatus" name="m_txtSecondListTopic" native="true"/>
           </item>
          </layout>
         </widget>
        </item>
-       <item row="2" column="0">
+       <item row="4" column="0">
         <widget class="QGroupBox" name="groupBox_3">
          <property name="title">
           <string>MatchTheFollowing metadata</string>
@@ -243,15 +243,41 @@
           <item row="2" column="0">
            <widget class="QLabel" name="label_6">
             <property name="text">
-             <string>Number of images</string>
+             <string>Number of items</string>
             </property>
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="LineEditWithStatus" name="m_txtNumberOfItems" native="true"/>
+           <widget class="LineEditWithStatus" name="m_txtNumberOfTopics" native="true"/>
           </item>
          </layout>
         </widget>
+       </item>
+       <item row="1" column="0">
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="3" column="0">
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </widget>

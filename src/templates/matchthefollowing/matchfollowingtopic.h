@@ -28,41 +28,28 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include "templates/matchthefollowing/matchfollowingentrypoint.h"
+#ifndef MATCHFOLLOWINGQUESTION_H
+#define MATCHFOLLOWINGQUESTION_H
 
-#include "templates/matchthefollowing/matchfollowingcore.h"
-#include "core/templateeditor.h"
-#include "core/templatesimulator.h"
+#include <QMetaType>
 
 
-MatchFollowingEntryPoint::MatchFollowingEntryPoint(TemplateFactory *parent)
-  : TemplateEntryPoint(parent) {
-  m_baseFolder = "matchthefollowing";
-  m_description = "Choose this template to create applications matching the given two sets";
-  m_humanName = "Match The Following";
-  m_name = "matchthefollowing";
-  m_thumbnailImage = "thumbnail2.png";
-  m_typeIndentifier = "MatchFollowingTemplate";
-  m_mobileApplicationApkFile = "MatchTheFollowingTemplateApp.apk";
-}
+class MatchFollowingTopic {
+  public:
+    explicit MatchFollowingTopic();
+    virtual ~MatchFollowingTopic();
 
-MatchFollowingEntryPoint::~MatchFollowingEntryPoint() {
+    QString firstListTopic() const;
+    void setFirstListTopic(const QString& firstListTopic);
 
-}
+    QString secondListTopic() const;
+    void setSecondListTopic(const QString& secondListTopic);
 
-TemplateCore *MatchFollowingEntryPoint::createNewCore() {
-  return new MatchFollowingCore(this, this);
-}
+  private:
+    QString m_firstListTopic;
+    QString m_secondListTopic;
+};
 
-TemplateCore *MatchFollowingEntryPoint::loadCoreFromBundleData(const QString& raw_data) {
-  MatchFollowingCore *core = new MatchFollowingCore(this, this);
-  if (core->editor()->loadBundleData(raw_data)) {
-    return core;
-  }
-  else {
-    core->simulator()->deleteLater();
-    core->editor()->deleteLater();
-    core->deleteLater();
-    return NULL;
-  }
-}
+Q_DECLARE_METATYPE(MatchFollowingTopic)
+
+#endif // MATCHFOLLOWINGQUESTION_H

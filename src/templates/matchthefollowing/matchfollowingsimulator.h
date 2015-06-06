@@ -28,41 +28,33 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include "templates/matchthefollowing/matchfollowingentrypoint.h"
+#ifndef MATCHFOLLOWINGSIMULATOR_H
+#define MATCHFOLLOWINGSIMULATOR_H
 
-#include "templates/matchthefollowing/matchfollowingcore.h"
-#include "core/templateeditor.h"
 #include "core/templatesimulator.h"
 
+#include "ui_matchfollowingsimulator.h"
 
-MatchFollowingEntryPoint::MatchFollowingEntryPoint(TemplateFactory *parent)
-  : TemplateEntryPoint(parent) {
-  m_baseFolder = "matchthefollowing";
-  m_description = "Choose this template to create applications matching the given two sets";
-  m_humanName = "Match The Following";
-  m_name = "matchthefollowing";
-  m_thumbnailImage = "thumbnail2.png";
-  m_typeIndentifier = "MatchFollowingTemplate";
-  m_mobileApplicationApkFile = "MatchTheFollowingTemplateApp.apk";
+
+namespace Ui {
+  class MatchFollowingSimulator;
 }
 
-MatchFollowingEntryPoint::~MatchFollowingEntryPoint() {
+class MatchFollowingSimulator : public TemplateSimulator {
+    Q_OBJECT
 
-}
+  public:
+    //Constructors and destructors.
+    explicit MatchFollowingSimulator(TemplateCore *core, QWidget *parent = 0);
+    virtual ~MatchFollowingSimulator();
+    
+  public slots:
+    bool startSimulation();
+    bool stopSimulation();
+    bool goBack();
 
-TemplateCore *MatchFollowingEntryPoint::createNewCore() {
-  return new MatchFollowingCore(this, this);
-}
+  private:
+    Ui::MatchFollowingSimulator *m_ui;
+};
 
-TemplateCore *MatchFollowingEntryPoint::loadCoreFromBundleData(const QString& raw_data) {
-  MatchFollowingCore *core = new MatchFollowingCore(this, this);
-  if (core->editor()->loadBundleData(raw_data)) {
-    return core;
-  }
-  else {
-    core->simulator()->deleteLater();
-    core->editor()->deleteLater();
-    core->deleteLater();
-    return NULL;
-  }
-}
+#endif // MATCHFOLLOWINGSIMULATOR_H
