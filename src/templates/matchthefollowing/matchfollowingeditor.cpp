@@ -29,7 +29,7 @@
 */
 
 #include "templates/matchthefollowing/matchfollowingeditor.h"
-#include "templates/matchthefollowing/listDelegate.h"
+#include "templates/matchthefollowing/listdelegate.h"
 #include "templates/matchthefollowing/matchfollowingcore.h"
 #include "templates/matchthefollowing/matchfollowingentrypoint.h"
 #include "miscellaneous/iconfactory.h"
@@ -39,11 +39,12 @@
 #include <QTimer>
 #include <QFileDialog>
 
+
 MatchFollowingEditor::MatchFollowingEditor(TemplateCore *core, QWidget *parent)
   : TemplateEditor(core, parent), m_ui(new Ui::MatchFollowingEditor) {
   m_ui->setupUi(this);
 
-  // Set initial delegate
+  // Set initial delegate.
   m_ui->m_listTopics->setItemDelegate(NULL);
   
   // Set validators.
@@ -57,14 +58,14 @@ MatchFollowingEditor::MatchFollowingEditor(TemplateCore *core, QWidget *parent)
   m_ui->m_txtName->lineEdit()->setValidator(title_validator);
   
   // Set validators.
-  QRegExpValidator *firstListTopic_validator = new QRegExpValidator(this);
-  QRegExpValidator *secondListTopic_validator = new QRegExpValidator(this);
+  QRegExpValidator *first_list_topic_validator = new QRegExpValidator(this);
+  QRegExpValidator *second_list_topic_validator = new QRegExpValidator(this);
 
-  firstListTopic_validator->setRegExp(QRegExp(".{,100}"));
-  secondListTopic_validator->setRegExp(QRegExp(".{,100}"));
+  first_list_topic_validator->setRegExp(QRegExp(".{,100}"));
+  second_list_topic_validator->setRegExp(QRegExp(".{,100}"));
 
-  m_ui->m_txtFirstListTopic->lineEdit()->setValidator(firstListTopic_validator);
-  m_ui->m_txtSecondListTopic->lineEdit()->setValidator(secondListTopic_validator);
+  m_ui->m_txtFirstListTopic->lineEdit()->setValidator(first_list_topic_validator);
+  m_ui->m_txtSecondListTopic->lineEdit()->setValidator(second_list_topic_validator);
 
   // Set tab order.
   QList<QWidget*> tab_order_widgets;
@@ -81,7 +82,7 @@ MatchFollowingEditor::MatchFollowingEditor(TemplateCore *core, QWidget *parent)
 
   m_ui->m_txtNumberOfTopics->lineEdit()->setEnabled(false);
 
-  // Set Default Text
+  // Set Default Text.
   m_ui->m_txtFirstListTopic->lineEdit()->setPlaceholderText(tr("First Set Topic"));
   m_ui->m_txtSecondListTopic->lineEdit()->setPlaceholderText(tr("Matching Topic"));
   m_ui->m_txtTemplateTitle->lineEdit()->setPlaceholderText(tr("Title of this Template"));
@@ -90,7 +91,7 @@ MatchFollowingEditor::MatchFollowingEditor(TemplateCore *core, QWidget *parent)
   m_ui->m_txtAuthor->lineEdit()->setPlaceholderText(tr("Author of this Collection"));
   m_ui->m_txtName->lineEdit()->setPlaceholderText(tr("Name of this Collection"));
 
-  // Set Icons for the buttons
+  // Set Icons for the buttons.
   IconFactory *factory = IconFactory::instance();
 
   m_ui->m_btnTopicAdd->setIcon(factory->fromTheme("item-add"));
@@ -98,7 +99,7 @@ MatchFollowingEditor::MatchFollowingEditor(TemplateCore *core, QWidget *parent)
   m_ui->m_btnTopicUp->setIcon(factory->fromTheme("move-up"));
   m_ui->m_btnTopicDown->setIcon(factory->fromTheme("move-down"));
 
-  // Set Signals and Slots
+  // Set Signals and Slots.
   connect(m_ui->m_txtAuthor->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(onAuthorChanged(QString)));
   connect(m_ui->m_txtName->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(onNameChanged(QString)));
   connect(m_ui->m_txtFirstListTopic->lineEdit(), SIGNAL(textEdited(QString)), this, SLOT(onFirstListTopicChanged(QString)));
@@ -117,7 +118,7 @@ MatchFollowingEditor::MatchFollowingEditor(TemplateCore *core, QWidget *parent)
 	
   qRegisterMetaType<MatchFollowingTopic>("MatchFollowingTopic");
 
-  // Start the validation
+  // Start the validation.
   checkFirstListTopic();
   checkSecondListTopic();
   checkTemplateTitle();
@@ -135,7 +136,7 @@ MatchFollowingEditor::~MatchFollowingEditor() {
   delete m_ui;
 }
 
-// For Updating the number of topics present in the List
+// For Updating the number of topics present in the List.
 void MatchFollowingEditor::updateTopicCount() {
   m_ui->m_txtNumberOfTopics->lineEdit()->setText(QString::number(m_ui->m_listTopics->count()));
 
@@ -154,10 +155,10 @@ bool MatchFollowingEditor::canGenerateApplications() {
       !m_ui->m_txtTemplateTitle->lineEdit()->text().simplified().isEmpty() &&
       !m_ui->m_txtFirstListTitle->lineEdit()->text().simplified().isEmpty() &&
       !m_ui->m_txtSecondListTitle->lineEdit()->text().simplified().isEmpty() &&
-      activeTopics().count()>1;
+      activeTopics().count() > 1;
 }
 
-// For Generating Bundle Data
+// For Generating Bundle Data.
 QString MatchFollowingEditor::generateBundleData() {
   /*if (!canGenerateApplications()) {
     return QString();
@@ -175,14 +176,14 @@ QString MatchFollowingEditor::generateBundleData() {
     QDomElement item_element = source_document.createElement("item");
 
     // Fill in details about topic.
-    QDomElement firstListTopic_element = source_document.createElement("firstListTopic");
-    QDomElement secondListTopic_element = source_document.createElement("secondListTopic");
+    QDomElement first_list_topic_element = source_document.createElement("firstListTopic");
+    QDomElement second_list_topic_element = source_document.createElement("secondListTopic");
     
-    firstListTopic_element.appendChild(source_document.createTextNode(topic.firstListTopic()));
-    secondListTopic_element.appendChild(source_document.createTextNode(topic.secondListTopic()));
+    first_list_topic_element.appendChild(source_document.createTextNode(topic.firstListTopic()));
+    second_list_topic_element.appendChild(source_document.createTextNode(topic.secondListTopic()));
 
-    item_element.appendChild(firstListTopic_element);
-    item_element.appendChild(secondListTopic_element);
+    item_element.appendChild(first_list_topic_element);
+    item_element.appendChild(second_list_topic_element);
     
     data_element.appendChild(item_element);
   }
@@ -190,7 +191,7 @@ QString MatchFollowingEditor::generateBundleData() {
   return source_document.toString(XML_BUNDLE_INDENTATION);
 }
 
-// For Loading bundle data
+// For Loading bundle data.
 bool MatchFollowingEditor::loadBundleData(const QString &bundle_data) {
   QDomDocument bundle_document;
   bundle_document.setContent(bundle_data);
@@ -201,11 +202,8 @@ bool MatchFollowingEditor::loadBundleData(const QString &bundle_data) {
     QDomNode item = items.at(i);
 
     if (item.isElement()) {
-      QString firstListTopic = item.namedItem("firstListTopic").toElement().text();
-      QString secondListTopic = item.namedItem("secondListTopic").toElement().text();
-    }
-    else {
-      continue;
+      QString first_list_topic = item.namedItem("firstListTopic").toElement().text();
+      QString second_list_topic = item.namedItem("secondListTopic").toElement().text();
     }
   }
 
@@ -216,7 +214,7 @@ bool MatchFollowingEditor::loadBundleData(const QString &bundle_data) {
   return true;
 }
 
-// Storing the topics in a list
+// Storing the topics in a list.
 QList<MatchFollowingTopic> MatchFollowingEditor::activeTopics() const {
   QList<MatchFollowingTopic> topics;
 
@@ -238,55 +236,55 @@ QString MatchFollowingEditor::authorName() {
 void MatchFollowingEditor::checkFirstListTopic() {
   if (m_ui->m_txtFirstListTopic->lineEdit()->text().isEmpty()) {
     m_ui->m_txtFirstListTopic->setStatus(WidgetWithStatus::Error,
-                                 tr("Topic is not specified."));
+										 tr("Topic is not specified."));
   }
   else {
     m_ui->m_txtFirstListTopic->setStatus(WidgetWithStatus::Ok,
-                                 tr("Topic is specified."));
+										 tr("Topic is specified."));
   }
 }
 
 void MatchFollowingEditor::checkSecondListTopic() {
   if (m_ui->m_txtSecondListTopic->lineEdit()->text().isEmpty()) {
     m_ui->m_txtSecondListTopic->setStatus(WidgetWithStatus::Error,
-                                 tr("Topic is not specified."));
+										  tr("Topic is not specified."));
   }
   else {
     m_ui->m_txtSecondListTopic->setStatus(WidgetWithStatus::Ok,
-                                 tr("Topic is specified."));
+										  tr("Topic is specified."));
   }
 }
 
 void MatchFollowingEditor::checkTemplateTitle() {
   if (m_ui->m_txtTemplateTitle->lineEdit()->text().isEmpty()) {
     m_ui->m_txtTemplateTitle->setStatus(WidgetWithStatus::Error,
-                                 tr("Title is not specified."));
+										tr("Title is not specified."));
   }
   else {
     m_ui->m_txtTemplateTitle->setStatus(WidgetWithStatus::Ok,
-                                 tr("Title is specified."));
+										tr("Title is specified."));
   }
 }
 
 void MatchFollowingEditor::checkFirstListTitle() {
   if (m_ui->m_txtFirstListTitle->lineEdit()->text().isEmpty()) {
     m_ui->m_txtFirstListTitle->setStatus(WidgetWithStatus::Error,
-                                 tr("Title is not specified."));
+										 tr("Title is not specified."));
   }
   else {
     m_ui->m_txtFirstListTitle->setStatus(WidgetWithStatus::Ok,
-                                 tr("Title is specified."));
+										 tr("Title is specified."));
   }
 }
 
 void MatchFollowingEditor::checkSecondListTitle() {
   if (m_ui->m_txtSecondListTitle->lineEdit()->text().isEmpty()) {
     m_ui->m_txtSecondListTitle->setStatus(WidgetWithStatus::Error,
-                                 tr("Title is not specified."));
+										  tr("Title is not specified."));
   }
   else {
     m_ui->m_txtSecondListTitle->setStatus(WidgetWithStatus::Ok,
-                                 tr("Title is specified."));
+										  tr("Title is specified."));
   }
 }
 
@@ -312,7 +310,7 @@ void MatchFollowingEditor::checkName() {
   }
 }
 
-// Configuring up/down button for QListWidget
+// Configuring up/down button for QListWidget.
 void MatchFollowingEditor::configureUpDown() {
   if (m_ui->m_listTopics->count() > 1) {
     int index = m_ui->m_listTopics->currentRow();
@@ -354,11 +352,11 @@ void MatchFollowingEditor::moveTopicDown() {
   emit changed();
 }
 
-// For adding a new topic in the list
+// For adding a new topic in the list.
 void MatchFollowingEditor::addTopic(const QString &firstListTopic,
                                   const QString &secondListTopic) {
 									 
-  // Set Delegate
+  // Set Delegate.
   bool nullDelegate = false;
   if (m_ui->m_listTopics->itemDelegate() == NULL) { 
     nullDelegate = true;
@@ -407,7 +405,7 @@ void MatchFollowingEditor::setEditorsEnabled(bool enabled) {
   m_ui->m_groupTopicEditor->setEnabled(enabled);
 }
 
-// For selecting a topic from the list
+// For selecting a topic from the list.
 void MatchFollowingEditor::loadTopic(int index) {
   m_ui->m_txtFirstListTopic->blockSignals(true);
   m_ui->m_txtSecondListTopic->blockSignals(true);
@@ -434,7 +432,7 @@ void MatchFollowingEditor::loadTopic(int index) {
   QTimer::singleShot(0, this, SLOT(configureUpDown()));
 }
 
-// For saving the data of individual topic present in the list
+// For saving the data of individual topic present in the list.
 void MatchFollowingEditor::saveTopic() {
   m_activeTopic.setFirstListTopic(m_ui->m_txtFirstListTopic->lineEdit()->text());
   m_activeTopic.setSecondListTopic(m_ui->m_txtSecondListTopic->lineEdit()->text());
@@ -446,7 +444,7 @@ void MatchFollowingEditor::saveTopic() {
   emit changed();
 }
 
-// For removing the topic from the list
+// For removing the topic from the list.
 void MatchFollowingEditor::removeTopic() {
   int current_row = m_ui->m_listTopics->currentRow();
           	  
@@ -454,9 +452,13 @@ void MatchFollowingEditor::removeTopic() {
     if (m_ui->m_listTopics->count() == 1) {
 	  // We are removing last visible topic.
 	  m_ui->m_listTopics->setItemDelegate(NULL);
-      setEditorsEnabled(false);
+      	  setEditorsEnabled(false);
 	  m_ui->m_btnTopicRemove->setEnabled(false);
 	  m_ui->m_txtNumberOfTopics->lineEdit()->setText("0");
+	  m_ui->m_txtFirstListTopic->lineEdit()->setText(QString::null);
+	  m_ui->m_txtSecondListTopic->lineEdit()->setText(QString::null);
+	  m_ui->m_txtFirstListTopic->setStatus(WidgetWithStatus::Error,
+										   tr("Topic is not specified."));
     }
     else {
 	  delete m_ui->m_listTopics->takeItem(current_row);
@@ -468,7 +470,7 @@ void MatchFollowingEditor::removeTopic() {
   emit changed();
 }
 
-// For saving the various titles, will be completed with simulator part
+// For saving the various titles, will be completed with simulator part.
 void MatchFollowingEditor::saveTitle() {
 }
 

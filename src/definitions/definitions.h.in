@@ -84,6 +84,16 @@
 #define XML_BUNDLE_ROOT_DATA_ELEMENT    "data"
 #define XML_BUNDLE_INDENTATION          2
 
+// Constants for delegate used in Match the following template
+#define LIST_DELEGATE_DX1            	10
+#define LIST_DELEGATE_DX2	            -10
+#define LIST_DELEGATE_FDY1	            0
+#define LIST_DELEGATE_SDY1	            27
+#define LIST_DELEGATE_FDY2	            -24
+#define LIST_DELEGATE_SDY2	            20
+#define LIST_DELEGATE_WIDTH	        	40
+#define LIST_DELEGATE_HEIGHT	        50
+
 // Line delimiters.
 #define DELIMITER_LINE                  "##L##"
 #define DELIMITER_INLINE                "##IL##"

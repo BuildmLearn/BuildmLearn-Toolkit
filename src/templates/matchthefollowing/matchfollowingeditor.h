@@ -56,6 +56,7 @@ class MatchFollowingEditor : public TemplateEditor {
     bool loadBundleData(const QString &bundle_data);
 
     QList<MatchFollowingTopic> activeTopics() const;
+	Ui::MatchFollowingEditor *m_ui;
 
     QString projectName();
     QString authorName();
@@ -90,7 +91,7 @@ class MatchFollowingEditor : public TemplateEditor {
     void addTopic(const QString& title, const QString& secondListTopic);
 
   private:
-    Ui::MatchFollowingEditor *m_ui;
+    //Ui::MatchFollowingEditor *m_ui;
     MatchFollowingTopic m_activeTopic;
 };
 

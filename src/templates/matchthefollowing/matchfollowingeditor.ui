@@ -27,8 +27,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>641</width>
-        <height>514</height>
+        <width>635</width>
+        <height>508</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout">
@@ -145,7 +145,7 @@
          <property name="title">
           <string>Title editor</string>
          </property>
-         <layout class="QFormLayout" name="formLayout_3">
+         <layout class="QGridLayout" name="gridLayout_5">
           <item row="0" column="0">
            <widget class="QLabel" name="label_8">
             <property name="text">
@@ -190,7 +190,7 @@
          <property name="title">
           <string>List editor</string>
          </property>
-         <layout class="QFormLayout" name="formLayout">
+         <layout class="QGridLayout" name="gridLayout_4">
           <item row="0" column="0">
            <widget class="QLabel" name="label">
             <property name="text">
@@ -209,7 +209,14 @@
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="LineEditWithStatus" name="m_txtSecondListTopic" native="true"/>
+           <widget class="LineEditWithStatus" name="m_txtSecondListTopic" native="true">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>
@@ -219,7 +226,7 @@
          <property name="title">
           <string>MatchTheFollowing metadata</string>
          </property>
-         <layout class="QFormLayout" name="formLayout_2">
+         <layout class="QGridLayout" name="gridLayout_6">
           <item row="0" column="0">
            <widget class="QLabel" name="label_3">
             <property name="text">

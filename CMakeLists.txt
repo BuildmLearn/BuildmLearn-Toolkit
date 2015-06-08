@@ -453,7 +453,7 @@ set(APP_SOURCES
   src/templates/matchthefollowing/matchfollowingsimulator.cpp
   src/templates/matchthefollowing/matchfollowingtopic.cpp
   src/templates/matchthefollowing/slidingstackedwidget.cpp
-  src/templates/matchthefollowing/listDelegate.cpp
+  src/templates/matchthefollowing/listdelegate.cpp
   
   src/main.cpp
 )
@@ -529,7 +529,7 @@ set(APP_HEADERS
   src/templates/matchthefollowing/matchfollowingsimulator.h
   src/templates/matchthefollowing/matchfollowingtopic.h
   src/templates/matchthefollowing/slidingstackedwidget.h
-  src/templates/matchthefollowing/listDelegate.h
+  src/templates/matchthefollowing/listdelegate.h
 )
 
 # APP form files.
