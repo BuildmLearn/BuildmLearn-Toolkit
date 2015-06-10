@@ -47,7 +47,7 @@ class MatchFollowingSimulator : public TemplateSimulator {
     //Constructors and destructors.
     explicit MatchFollowingSimulator(TemplateCore *core, QWidget *parent = 0);
     virtual ~MatchFollowingSimulator();
-    
+
   public slots:
     bool startSimulation();
     bool stopSimulation();
@@ -60,7 +60,7 @@ class MatchFollowingSimulator : public TemplateSimulator {
     void moveSecondListTopicUp();
     void moveSecondListTopicDown();
     void checkAnswer();
-    
+
   private:
     Ui::MatchFollowingSimulator *m_ui;
 };

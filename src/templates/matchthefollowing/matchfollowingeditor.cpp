@@ -150,12 +150,12 @@ void MatchFollowingEditor::updateTopicCount() {
 
 bool MatchFollowingEditor::canGenerateApplications() {
   return
-      !m_ui->m_txtName->lineEdit()->text().simplified().isEmpty() &&
-      !m_ui->m_txtAuthor->lineEdit()->text().simplified().isEmpty() &&
-      !m_ui->m_txtTemplateTitle->lineEdit()->text().simplified().isEmpty() &&
-      !m_ui->m_txtFirstListTitle->lineEdit()->text().simplified().isEmpty() &&
-      !m_ui->m_txtSecondListTitle->lineEdit()->text().simplified().isEmpty() &&
-      activeTopics().count() > 1;
+    !m_ui->m_txtName->lineEdit()->text().simplified().isEmpty() &&
+    !m_ui->m_txtAuthor->lineEdit()->text().simplified().isEmpty() &&
+    !m_ui->m_txtTemplateTitle->lineEdit()->text().simplified().isEmpty() &&
+    !m_ui->m_txtFirstListTitle->lineEdit()->text().simplified().isEmpty() &&
+    !m_ui->m_txtSecondListTitle->lineEdit()->text().simplified().isEmpty() &&
+    activeTopics().count() > 1;
 }
 
 // For Generating Bundle Data.
