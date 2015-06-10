@@ -28,148 +28,151 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include "templates/matchthefollowing/slidingstackedwidget.h" 
- 
+#include "templates/matchthefollowing/slidingstackedwidget.h"
+
+
 SlidingStackedWidget::SlidingStackedWidget(QWidget *parent) : QStackedWidget(parent) {
-	if (parent!=0)
-		m_mainwindow=parent;
-	else
-		m_mainwindow=this;
-	
-	m_speed=750;
-	m_animationtype = QEasingCurve::OutBack;
-	m_now=0;
-	m_next=0;
-	m_wrap=true;
-	m_pnow=QPoint(0,0);
-	m_active=false;
+  if (parent!=0)
+    m_mainwindow=parent;
+  else
+    m_mainwindow=this;
+
+  m_speed=750;
+  m_animationtype = QEasingCurve::OutBack;
+  m_now=0;
+  m_next=0;
+  m_wrap=true;
+  m_pnow=QPoint(0,0);
+  m_active=false;
 }
- 
- 
+
+
 SlidingStackedWidget::~SlidingStackedWidget(){
 }
- 
+
 void SlidingStackedWidget::setSpeed(int speed) {
   m_speed = speed;
 }
- 
+
 void SlidingStackedWidget::setAnimation(enum QEasingCurve::Type animationtype) {
   m_animationtype = animationtype;
 }
- 
+
 void SlidingStackedWidget::setWrap(bool wrap) {
   m_wrap=wrap;
 }
- 
+
 void SlidingStackedWidget::slideInNext() {
-	int now=currentIndex();
-	if (m_wrap||(now<count()-1))
-		slideInIdx(now+1);
+  int now=currentIndex();
+  if (m_wrap||(now<count()-1))
+    slideInIdx(now+1);
 }
- 
- 
+
+
 void SlidingStackedWidget::slideInPrev() {
-	int now=currentIndex();
-	if (m_wrap||(now>0))
-		slideInIdx(now-1);
+  int now=currentIndex();
+  if (m_wrap||(now>0))
+    slideInIdx(now-1);
 }
- 
+
 void SlidingStackedWidget::slideInIdx(int idx, enum t_direction direction) {
-	//int idx, t_direction direction=AUTOMATIC
-	if (idx>count()-1) {
-		direction=RIGHT2LEFT;
-		idx=(idx)%count();
-	}
-	else if (idx<0) {
-		direction=LEFT2RIGHT;
-		idx=(idx+count())%count();
-	}
-	slideInWgt(widget ( idx ),direction);
-	//widget() is a function inherited from QStackedWidget
+  //int idx, t_direction direction=AUTOMATIC
+  if (idx>count()-1) {
+    direction=RIGHT2LEFT;
+    idx=(idx)%count();
+  }
+  else if (idx<0) {
+    direction=LEFT2RIGHT;
+    idx=(idx+count())%count();
+  }
+  //widget() is a function inherited from QStackedWidget
+  slideInWgt(widget ( idx ),direction);
 }
- 
- 
+
+
 void SlidingStackedWidget::slideInWgt(QWidget * newwidget, enum t_direction direction) {
- 
-	if (m_active)
-		return;
-	else 
-		m_active=true;
 
-	enum t_direction directionhint;
-	int now=currentIndex();		//currentIndex() is a function inherited from QStackedWidget
-	int next=indexOf(newwidget);
-	if (now==next) {
-		m_active=false;
-		return;
-	}
-	else if (now<next)
-		directionhint=RIGHT2LEFT;
-	else 
-		directionhint=LEFT2RIGHT;
-	if (direction == AUTOMATIC)
-		direction=directionhint;
-	//NOW....
-	//calculate the shifts
-	int offsetx=frameRect().width(); //inherited from mother
-	int offsety=frameRect().height();//inherited from mother
-	//the following is important, to ensure that the new widget
-	//has correct geometry information when sliding in first time
-	widget(next)->setGeometry ( 0,  0, offsetx, offsety );
+  if (m_active)
+    return;
+  else
+    m_active=true;
 
-	if (direction==RIGHT2LEFT) {
-		offsetx=-offsetx;
-		offsety=0;
-	}
-	else if (direction==LEFT2RIGHT)
-		offsety=0;
-		
-	//re-position the next widget outside/aside of the display area
-	QPoint pnext=widget(next)->pos();
-	QPoint pnow=widget(now)->pos();
-	m_pnow=pnow;
+  enum t_direction directionhint;
+  //currentIndex() is a function inherited from QStackedWidget
+  int now=currentIndex();
+  int next=indexOf(newwidget);
+  if (now==next) {
+    m_active=false;
+    return;
+  }
+  else if (now<next)
+    directionhint=RIGHT2LEFT;
+  else
+    directionhint=LEFT2RIGHT;
+  if (direction == AUTOMATIC)
+    direction=directionhint;
+  //NOW....
+  //calculate the shifts
+  //inherited from mother
+  int offsetx=frameRect().width();
+  //inherited from mother
+  int offsety=frameRect().height();
+  //the following is important, to ensure that the new widget
+  //has correct geometry information when sliding in first time
+  widget(next)->setGeometry ( 0,  0, offsetx, offsety );
 
-	widget(next)->move(pnext.x()-offsetx,pnext.y()-offsety);
-	//make it visible/show
-	widget(next)->show();
-	widget(next)->raise();
+  if (direction==RIGHT2LEFT) {
+    offsetx=-offsetx;
+    offsety=0;
+  }
+  else if (direction==LEFT2RIGHT)
+    offsety=0;
 
-	//animate both, the now and next widget to the side, using animation framework
-	QPropertyAnimation *animnow = new QPropertyAnimation(widget(now), "pos");
+  //re-position the next widget outside/aside of the display area
+  QPoint pnext=widget(next)->pos();
+  QPoint pnow=widget(now)->pos();
+  m_pnow=pnow;
 
-	animnow->setDuration(m_speed);
-	animnow->setEasingCurve(m_animationtype);
-	animnow->setStartValue(QPoint(pnow.x(), pnow.y()));
-	animnow->setEndValue(QPoint(offsetx+pnow.x(), offsety+pnow.y()));
-	QPropertyAnimation *animnext = new QPropertyAnimation(widget(next), "pos");
-	animnext->setDuration(m_speed);
-	animnext->setEasingCurve(m_animationtype);
-	animnext->setStartValue(QPoint(-offsetx+pnext.x(), offsety+pnext.y()));
-	animnext->setEndValue(QPoint(pnext.x(), pnext.y()));
+  widget(next)->move(pnext.x()-offsetx,pnext.y()-offsety);
+  //make it visible/show
+  widget(next)->show();
+  widget(next)->raise();
 
-	QParallelAnimationGroup *animgroup = new QParallelAnimationGroup;
+  //animate both, the now and next widget to the side, using animation framework
+  QPropertyAnimation *animnow = new QPropertyAnimation(widget(now), "pos");
 
-	animgroup->addAnimation(animnow);
-	animgroup->addAnimation(animnext);
+  animnow->setDuration(m_speed);
+  animnow->setEasingCurve(m_animationtype);
+  animnow->setStartValue(QPoint(pnow.x(), pnow.y()));
+  animnow->setEndValue(QPoint(offsetx+pnow.x(), offsety+pnow.y()));
+  QPropertyAnimation *animnext = new QPropertyAnimation(widget(next), "pos");
+  animnext->setDuration(m_speed);
+  animnext->setEasingCurve(m_animationtype);
+  animnext->setStartValue(QPoint(-offsetx+pnext.x(), offsety+pnext.y()));
+  animnext->setEndValue(QPoint(pnext.x(), pnext.y()));
 
-	QObject::connect(animgroup, SIGNAL(finished()),this,SLOT(animationDoneSlot()));
-	m_next=next;
-	m_now=now;
-	m_active=true;
-	animgroup->start();
+  QParallelAnimationGroup *animgroup = new QParallelAnimationGroup;
+
+  animgroup->addAnimation(animnow);
+  animgroup->addAnimation(animnext);
+
+  QObject::connect(animgroup, SIGNAL(finished()),this,SLOT(animationDoneSlot()));
+  m_next=next;
+  m_now=now;
+  m_active=true;
+  animgroup->start();
 }
- 
- 
+
 void SlidingStackedWidget::animationDoneSlot(void) {
-	//when ready, call the QStackedWidget slot setCurrentIndex(int)
-	setCurrentIndex(m_next);  //this function is inherit from QStackedWidget
-	//then hide the outshifted widget now, and  (may be done already implicitely by QStackedWidget)
-	widget(m_now)->hide();
-	//then set the position of the outshifted widget now back to its original
-	widget(m_now)->move(m_pnow);
-	//so that the application could also still call the QStackedWidget original functions/slots for changings
-	//widget(m_now)->update();
-	//setCurrentIndex(m_next);  //this function is inherit from QStackedWidget
-	m_active=false;
-	emit animationFinished();
+  //when ready, call the QStackedWidget slot setCurrentIndex(int)
+  setCurrentIndex(m_next);  //this function is inherit from QStackedWidget
+  //then hide the outshifted widget now, and  (may be done already implicitely by QStackedWidget)
+  widget(m_now)->hide();
+  //then set the position of the outshifted widget now back to its original
+  widget(m_now)->move(m_pnow);
+  //so that the application could also still call the QStackedWidget original functions/slots for changings
+  //widget(m_now)->update();
+  //setCurrentIndex(m_next);  //this function is inherit from QStackedWidget
+  m_active=false;
+  emit animationFinished();
 }

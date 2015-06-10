@@ -53,6 +53,14 @@ class MatchFollowingSimulator : public TemplateSimulator {
     bool stopSimulation();
     bool goBack();
 
+  private slots:
+    void start();
+    void moveFirstListTopicUp();
+    void moveFirstListTopicDown();
+    void moveSecondListTopicUp();
+    void moveSecondListTopicDown();
+    void checkAnswer();
+    
   private:
     Ui::MatchFollowingSimulator *m_ui;
 };

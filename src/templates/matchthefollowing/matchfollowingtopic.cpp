@@ -38,17 +38,17 @@ MatchFollowingTopic::~MatchFollowingTopic() {
 }
 
 QString MatchFollowingTopic::firstListTopic() const {
-    return m_firstListTopic;
+  return m_firstListTopic;
 }
 
 void MatchFollowingTopic::setFirstListTopic(const QString& firstListTopic) {
-    m_firstListTopic = firstListTopic;
+  m_firstListTopic = firstListTopic;
 }
 
 QString MatchFollowingTopic::secondListTopic() const {
-    return m_secondListTopic;
+  return m_secondListTopic;
 }
 
 void MatchFollowingTopic::setSecondListTopic(const QString& secondListTopic) {
-    m_secondListTopic = secondListTopic;
+  m_secondListTopic = secondListTopic;
 }

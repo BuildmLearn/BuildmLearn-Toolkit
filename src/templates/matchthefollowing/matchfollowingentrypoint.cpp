@@ -41,7 +41,7 @@ MatchFollowingEntryPoint::MatchFollowingEntryPoint(TemplateFactory *parent)
   m_description = "Choose this template to create applications matching the given two sets";
   m_humanName = "Match The Following";
   m_name = "matchthefollowing";
-  m_thumbnailImage = "thumbnail2.png";
+  m_thumbnailImage = "thumbnail.png";
   m_typeIndentifier = "MatchFollowingTemplate";
   m_mobileApplicationApkFile = "MatchTheFollowingTemplateApp.apk";
 }

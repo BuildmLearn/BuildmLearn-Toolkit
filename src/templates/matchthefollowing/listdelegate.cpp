@@ -35,7 +35,7 @@
 ListDelegate::ListDelegate() {
 }
 
-void ListDelegate::paint ( QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index ) const {
+void ListDelegate::paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const {
   QRect r = option.rect;
 
   // Color: #C4C4C4.
@@ -51,7 +51,7 @@ void ListDelegate::paint ( QPainter * painter, const QStyleOptionViewItem & opti
   QPen font_marked_pen(Qt::white, 1, Qt::SolidLine);
 
   // For highlighting the seleted item.
-  if(option.state & QStyle::State_Selected) {
+  if (option.state & QStyle::State_Selected) {
     QLinearGradient gradient_selected(r.left(),r.top(),r.left(),r.height()+r.top());
     gradient_selected.setColorAt(0.0, QColor::fromRgb(119,213,247));
     gradient_selected.setColorAt(0.9, QColor::fromRgb(27,134,183));
@@ -84,10 +84,17 @@ void ListDelegate::paint ( QPainter * painter, const QStyleOptionViewItem & opti
   }
 
   // Get First list topic and Second list topic.
-  QString first_list_topic = tr("First List Topic - ");
-  first_list_topic = first_list_topic + index.data(Qt::UserRole + 1).toString();
-  QString second_list_topic = tr("Matching Topic - ");
-  second_list_topic= second_list_topic + index.data(Qt::UserRole + 2).toString();
+  QString first_list_topic;
+  if (index.data(Qt::UserRole + 3).toString().isEmpty() || index.data(Qt::UserRole + 3).toString().isNull())
+    first_list_topic = tr("First List Topic - ") + index.data(Qt::UserRole + 1).toString();
+  else
+    first_list_topic = index.data(Qt::UserRole + 3).toString() + " - " + index.data(Qt::UserRole + 1).toString();
+    
+  QString second_list_topic;
+  if (index.data(Qt::UserRole + 4).toString().isEmpty() || index.data(Qt::UserRole + 4).toString().isNull())
+    second_list_topic = tr("Matching Topic - ") + index.data(Qt::UserRole + 2).toString();
+  else
+    second_list_topic = index.data(Qt::UserRole + 4).toString() + " - " + index.data(Qt::UserRole + 2).toString();
 
   // First List Topic.
   r = option.rect.adjusted(LIST_DELEGATE_DX1, LIST_DELEGATE_FDY1, LIST_DELEGATE_DX2, LIST_DELEGATE_FDY2);
@@ -101,7 +108,7 @@ void ListDelegate::paint ( QPainter * painter, const QStyleOptionViewItem & opti
 }
 
 // Size of the ListWidgetItem.
-QSize ListDelegate::sizeHint ( const QStyleOptionViewItem & option, const QModelIndex & index ) const{
+QSize ListDelegate::sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const{
   Q_UNUSED(option);
   Q_UNUSED(index);
   return QSize(LIST_DELEGATE_WIDTH, LIST_DELEGATE_HEIGHT);
