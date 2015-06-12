@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2012, BuildmLearn Contributors listed at http://buildmlearn.org/people/
+  Copyright (c) 2015, BuildmLearn Contributors listed at http://buildmlearn.org/people/
   All rights reserved.
 
   Redistribution and use in source and binary forms, with or without
@@ -64,9 +64,9 @@ TemplateCore::GenerationResult ComprehensionCore::generateMobileApplication(cons
   emit generationProgress(10, tr("Extracting raw data from editor..."));
 
   // We need data which will be imported into apk/zip file.
-  QString quiz_data = editor()->generateBundleData();
+  QString comprehension_data = editor()->generateBundleData();
 
-  if (quiz_data.isEmpty()) {
+  if (comprehension_data.isEmpty()) {
     // No date received, this is big problem.
     return BundleProblem;
   }
@@ -82,13 +82,13 @@ TemplateCore::GenerationResult ComprehensionCore::generateMobileApplication(cons
   temp_directory.mkdir(APP_LOW_NAME);
   base_directory.mkdir("assets");
 
-  QFile index_file(base_folder + "/assets/quiz_content.xml");
+  QFile index_file(base_folder + "/assets/comprehension_content.xml");
   index_file.open(QIODevice::WriteOnly | QIODevice::Text);
 
-  emit generationProgress(30, tr("Writting quiz data into file..."));
+  emit generationProgress(30, tr("Writting comprehension data into file..."));
 
   QTextStream out(&index_file);
-  out << quiz_data;
+  out << comprehension_data;
 
   out.flush();
   index_file.close();
@@ -113,7 +113,7 @@ TemplateCore::GenerationResult ComprehensionCore::generateMobileApplication(cons
   zip.waitForFinished();
 
   if (zip.exitCode() != EXIT_STATUS_ZIP_NORMAL) {
-    // Error during inserting quiz data via zip.
+    // Error during inserting comprehension data via zip.
     qApp->templateManager()->generator()->cleanWorkspace();
     return ZipProblem;
   }
