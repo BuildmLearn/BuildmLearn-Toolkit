@@ -269,7 +269,7 @@ void MatchFollowingSimulator::checkAnswer() {
       m_ui->m_listSecond->item(i)->setBackground(QBrush("red"));
     }
     m_ui->m_flipperTitle->setCurrentIndex(1);
-    m_ui->m_lblScore->setText(tr("Score - %1/%2").arg(QString::number(score),
+    m_ui->m_lblScore->setText(tr("Score - %1 of %2").arg(QString::number(score),
                                                                         QString::number(max_topics)));
     m_ui->m_flipperAnswer->setCurrentIndex(1);
   }

@@ -84,17 +84,17 @@ void ListDelegate::paint(QPainter * painter, const QStyleOptionViewItem & option
   }
 
   // Get First list topic and Second list topic.
-  QString first_list_topic;
-  if (index.data(Qt::UserRole + 3).toString().isEmpty() || index.data(Qt::UserRole + 3).toString().isNull())
-    first_list_topic = tr("First List Topic - ") + index.data(Qt::UserRole + 1).toString();
-  else
-    first_list_topic = index.data(Qt::UserRole + 3).toString() + " - " + index.data(Qt::UserRole + 1).toString();
+  //QString first_list_topic;
+  //if (index.data(Qt::UserRole + 3).toString().isEmpty() || index.data(Qt::UserRole + 3).toString().isNull())
+    //first_list_topic = tr("A - ") + index.data(Qt::UserRole + 1).toString();
+  //else
+   QString first_list_topic = index.data(Qt::UserRole + 3).toString() + " - " + index.data(Qt::UserRole + 1).toString();
     
-  QString second_list_topic;
-  if (index.data(Qt::UserRole + 4).toString().isEmpty() || index.data(Qt::UserRole + 4).toString().isNull())
-    second_list_topic = tr("Matching Topic - ") + index.data(Qt::UserRole + 2).toString();
-  else
-    second_list_topic = index.data(Qt::UserRole + 4).toString() + " - " + index.data(Qt::UserRole + 2).toString();
+  //QString second_list_topic;
+  //if (index.data(Qt::UserRole + 4).toString().isEmpty() || index.data(Qt::UserRole + 4).toString().isNull())
+    //second_list_topic = tr("B - ") + index.data(Qt::UserRole + 2).toString();
+  //else
+  QString second_list_topic = index.data(Qt::UserRole + 4).toString() + " - " + index.data(Qt::UserRole + 2).toString();
 
   // First List Topic.
   r = option.rect.adjusted(LIST_DELEGATE_DX1, LIST_DELEGATE_FDY1, LIST_DELEGATE_DX2, LIST_DELEGATE_FDY2);

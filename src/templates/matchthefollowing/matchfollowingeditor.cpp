@@ -85,11 +85,15 @@ MatchFollowingEditor::MatchFollowingEditor(TemplateCore *core, QWidget *parent)
   // Set Default Text.
   m_ui->m_txtFirstListTopic->lineEdit()->setPlaceholderText(tr("First Set Topic"));
   m_ui->m_txtSecondListTopic->lineEdit()->setPlaceholderText(tr("Matching Topic"));
-  m_ui->m_txtTemplateTitle->lineEdit()->setPlaceholderText(tr("Title of this Template"));
-  m_ui->m_txtFirstListTitle->lineEdit()->setPlaceholderText(tr("Title of the first list"));
-  m_ui->m_txtSecondListTitle->lineEdit()->setPlaceholderText(tr("Title of the second list"));
+  //m_ui->m_txtTemplateTitle->lineEdit()->setPlaceholderText(tr("Title of this Template"));
+  //m_ui->m_txtFirstListTitle->lineEdit()->setPlaceholderText(tr("Title of the first list"));
+  //m_ui->m_txtSecondListTitle->lineEdit()->setPlaceholderText(tr("Title of the second list"));
   m_ui->m_txtAuthor->lineEdit()->setPlaceholderText(tr("Author of this Collection"));
   m_ui->m_txtName->lineEdit()->setPlaceholderText(tr("Name of this Collection"));
+  m_ui->m_txtTemplateTitle->lineEdit()->setText("Match the following");
+  m_ui->m_txtFirstListTitle->lineEdit()->setText("A");
+  m_ui->m_txtSecondListTitle->lineEdit()->setText("B");
+  
 
   // Set Icons for the buttons.
   IconFactory *factory = IconFactory::instance();

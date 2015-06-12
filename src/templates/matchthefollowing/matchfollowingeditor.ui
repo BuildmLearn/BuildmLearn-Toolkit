@@ -27,8 +27,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>635</width>
-        <height>508</height>
+        <width>641</width>
+        <height>514</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout">
@@ -149,7 +149,7 @@
           <item row="0" column="0">
            <widget class="QLabel" name="label_8">
             <property name="text">
-             <string>Template Title</string>
+             <string>Title</string>
             </property>
            </widget>
           </item>
@@ -188,7 +188,7 @@
           </sizepolicy>
          </property>
          <property name="title">
-          <string>List editor</string>
+          <string>Enter two matching topics below</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_4">
           <item row="0" column="0">
@@ -224,7 +224,7 @@
        <item row="4" column="0">
         <widget class="QGroupBox" name="groupBox_3">
          <property name="title">
-          <string>MatchTheFollowing metadata</string>
+          <string>Metadata</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_6">
           <item row="0" column="0">
