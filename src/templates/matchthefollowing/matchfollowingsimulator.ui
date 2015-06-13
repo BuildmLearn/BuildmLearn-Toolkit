@@ -555,7 +555,7 @@
            <item>
             <widget class="QPushButton" name="m_btnTryAgain">
              <property name="toolTip">
-              <string>Check your answers</string>
+              <string>Try Again</string>
              </property>
              <property name="text">
               <string>Try Again</string>

@@ -14,7 +14,7 @@
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0" rowspan="2">
+   <item row="0" column="0" rowspan="3">
     <widget class="QGroupBox" name="m_groupQuestionEditor">
      <property name="title">
       <string>Question editor</string>
@@ -138,38 +138,61 @@ p, li { white-space: pre-wrap; }
      </layout>
     </widget>
    </item>
-   <item row="0" column="1">
+   <item row="0" column="1" rowspan="2" colspan="2">
     <widget class="QGroupBox" name="m_groupPassageEditor">
      <property name="title">
       <string>Passage editor</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_3">
-      <item row="2" column="0">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_10">
+        <property name="text">
+         <string>Title</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="LineEditWithStatus" name="m_txtTitle" native="true"/>
+      </item>
+      <item row="1" column="0">
        <widget class="QLabel" name="label_8">
         <property name="text">
          <string>Passage File</string>
         </property>
        </widget>
       </item>
-      <item row="2" column="2">
-       <layout class="QHBoxLayout" name="horizontalLayout_12">
+      <item row="1" column="1">
+       <layout class="QHBoxLayout" name="horizontalLayout_5">
         <item>
-         <widget class="QPushButton" name="m_btnComprehensionSelect">
+         <widget class="QPushButton" name="m_btnPassageSelect">
           <property name="text">
            <string>&amp;Select</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="m_lblPath">
-          <property name="text">
-           <string>File (Optional)</string>
+         <widget class="LabelWithStatus" name="m_lblPassageStatus" native="true">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="layoutDirection">
+           <enum>Qt::RightToLeft</enum>
           </property>
          </widget>
         </item>
        </layout>
       </item>
-      <item row="3" column="2">
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_7">
+        <property name="text">
+         <string>Passage</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
        <widget class="MaxLengthTextEdit" name="m_txtPassage">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -195,40 +218,69 @@ p, li { white-space: pre-wrap; }
         </property>
        </widget>
       </item>
-      <item row="4" column="0">
+      <item row="3" column="0">
        <widget class="QLabel" name="label_6">
         <property name="text">
          <string>Timer (Seconds)</string>
         </property>
        </widget>
       </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="label_7">
-        <property name="text">
-         <string>Passage</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="2">
-       <widget class="QLineEdit" name="lineEdit"/>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="label_10">
-        <property name="text">
-         <string>Title</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="2">
-       <widget class="LineEditWithStatus" name="m_txtTitle" native="true"/>
+      <item row="3" column="1">
+       <widget class="LineEditWithStatus" name="m_txtTimer" native="true"/>
       </item>
      </layout>
     </widget>
    </item>
-   <item row="1" column="1" rowspan="2">
+   <item row="3" column="0">
+    <widget class="QGroupBox" name="groupBox_3">
+     <property name="title">
+      <string>Comprehension metadata</string>
+     </property>
+     <layout class="QFormLayout" name="formLayout_2">
+      <property name="fieldGrowthPolicy">
+       <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+      </property>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>Author</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="LineEditWithStatus" name="m_txtAuthor" native="true"/>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_4">
+        <property name="text">
+         <string>Comprehension name</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="LineEditWithStatus" name="m_txtName" native="true"/>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_5">
+        <property name="text">
+         <string>Number of questions</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="LineEditWithStatus" name="m_txtNumberOfQuestions" native="true">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="2" column="1" rowspan="2" colspan="2">
     <widget class="QGroupBox" name="groupBox_2">
      <property name="title">
-      <string>Active questions</string>
+      <string>Active questions (minimum 3)</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
       <item row="1" column="0">
@@ -333,52 +385,6 @@ p, li { white-space: pre-wrap; }
      </layout>
     </widget>
    </item>
-   <item row="2" column="0">
-    <widget class="QGroupBox" name="groupBox_3">
-     <property name="title">
-      <string>Comprehension metadata</string>
-     </property>
-     <layout class="QFormLayout" name="formLayout_2">
-      <property name="fieldGrowthPolicy">
-       <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
-      </property>
-      <item row="0" column="0">
-       <widget class="QLabel" name="label_3">
-        <property name="text">
-         <string>Author</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="LineEditWithStatus" name="m_txtAuthor" native="true"/>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="label_4">
-        <property name="text">
-         <string>Comprehension name</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="LineEditWithStatus" name="m_txtName" native="true"/>
-      </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="label_5">
-        <property name="text">
-         <string>Number of questions</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="LineEditWithStatus" name="m_txtNumberOfQuestions" native="true">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
   </layout>
  </widget>
  <customwidgets>
@@ -397,6 +403,12 @@ p, li { white-space: pre-wrap; }
    <class>MaxLengthTextEdit</class>
    <extends>QTextEdit</extends>
    <header>maxlengthtextedit.h</header>
+  </customwidget>
+  <customwidget>
+   <class>LabelWithStatus</class>
+   <extends>QWidget</extends>
+   <header>labelwithstatus.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>
