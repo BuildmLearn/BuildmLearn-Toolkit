@@ -42,6 +42,7 @@
 #include "templates/mlearning/basicmlearningentrypoint.h"
 #include "templates/learnspellings/learnspellingsentrypoint.h"
 #include "templates/matchthefollowing/matchfollowingentrypoint.h"
+#include "templates/comprehension/comprehensionentrypoint.h"
 
 #if QT_VERSION >= 0x050000
 #include <QStandardPaths>
@@ -320,6 +321,9 @@ void TemplateFactory::setupTemplates() {
   
   TemplateEntryPoint *matchfollowing_entry = new MatchFollowingEntryPoint(this);
   m_availableTemplates.insert(matchfollowing_entry->typeIndentifier(), matchfollowing_entry);
+  
+  TemplateEntryPoint *comprehension_entry = new ComprehensionEntryPoint(this);
+  m_availableTemplates.insert(comprehension_entry->typeIndentifier(), comprehension_entry);
 }
 
 TemplateGenerator *TemplateFactory::generator() const {

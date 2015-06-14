@@ -30,9 +30,9 @@
     <number>0</number>
    </property>
    <item>
-    <widget class="QStackedWidget" name="m_phoneWidget">
+    <widget class="SlidingStackedWidget" name="m_phoneWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="m_pageStopped">
       <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -160,9 +160,12 @@
      <widget class="QWidget" name="m_pageComprehension">
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <item>
-        <widget class="QLabel" name="label_4">
+        <widget class="QLabel" name="m_lblTitle">
          <property name="text">
           <string>Title</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -174,17 +177,17 @@
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_5">
+        <widget class="QLabel" name="m_lblTimer">
          <property name="text">
           <string>Timer</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QTextBrowser" name="textBrowser"/>
+        <widget class="QTextEdit" name="m_txtPassage"/>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="m_btnQuestions">
          <property name="text">
           <string>Go To Questions</string>
          </property>
@@ -197,7 +200,7 @@
        <item>
         <widget class="QLabel" name="label">
          <property name="text">
-          <string>Score</string>
+          <string>You have completed the quiz</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -212,58 +215,34 @@
         </widget>
        </item>
        <item>
-        <layout class="QVBoxLayout" name="m_groupYour">
-         <item>
-          <widget class="QLabel" name="label_2">
-           <property name="text">
-            <string>Your Answers</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer name="verticalSpacer_4">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>40</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
+        <widget class="QLabel" name="m_lblTotalCorrect">
+         <property name="text">
+          <string>Total correct: %1</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
        </item>
        <item>
-        <layout class="QVBoxLayout" name="m_groupYour_2">
-         <item>
-          <widget class="QLabel" name="label_3">
-           <property name="text">
-            <string>Correct Answers</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer name="verticalSpacer_5">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>40</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
+        <widget class="QLabel" name="m_lblTotalWrong">
+         <property name="text">
+          <string>Total wrong: %1</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="m_lblTotalUnanswered">
+         <property name="text">
+          <string>Total unanswered: %1</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
        </item>
        <item>
         <spacer name="verticalSpacer">
@@ -273,21 +252,47 @@
          <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
-           <height>40</height>
+           <height>341</height>
           </size>
          </property>
         </spacer>
        </item>
        <item>
         <layout class="QGridLayout" name="gridLayout">
-         <item row="0" column="0">
+         <item row="0" column="2" rowspan="2">
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="1" column="1">
           <widget class="QPushButton" name="m_btnExit">
            <property name="text">
             <string>&amp;Exit</string>
            </property>
           </widget>
          </item>
-         <item row="0" column="2">
+         <item row="0" column="0" rowspan="2">
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="0" column="1">
           <widget class="QPushButton" name="m_btnRestart">
            <property name="text">
             <string>&amp;Restart</string>
@@ -302,6 +307,14 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>SlidingStackedWidget</class>
+   <extends>QStackedWidget</extends>
+   <header>templates/matchthefollowing/slidingstackedwidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

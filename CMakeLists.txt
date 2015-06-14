@@ -455,6 +455,13 @@ set(APP_SOURCES
   src/templates/matchthefollowing/slidingstackedwidget.cpp
   src/templates/matchthefollowing/listdelegate.cpp
   
+  src/templates/comprehension/comprehensionentrypoint.cpp
+  src/templates/comprehension/comprehensioncore.cpp
+  src/templates/comprehension/comprehensioneditor.cpp
+  src/templates/comprehension/comprehensionsimulator.cpp
+  src/templates/comprehension/comprehensionquestion.cpp
+  src/templates/comprehension/comprehensionitem.cpp
+  
   src/main.cpp
 )
 
@@ -506,6 +513,12 @@ set(APP_HEADERS
   src/templates/quiz/quizeditor.h
   src/templates/quiz/quizsimulator.h
   src/templates/quiz/quizitem.h
+  
+  src/templates/comprehension/comprehensionentrypoint.h
+  src/templates/comprehension/comprehensioncore.h
+  src/templates/comprehension/comprehensioneditor.h
+  src/templates/comprehension/comprehensionsimulator.h
+  src/templates/comprehension/comprehensionitem.h
 
   src/templates/flashcard/flashcardentrypoint.h
   src/templates/flashcard/flashcardcore.h
@@ -546,6 +559,10 @@ set(APP_FORMS
   src/templates/quiz/quizeditor.ui
   src/templates/quiz/quizsimulator.ui
   src/templates/quiz/quizitem.ui
+  
+  src/templates/comprehension/comprehensioneditor.ui
+  src/templates/comprehension/comprehensionsimulator.ui
+  src/templates/comprehension/comprehensionitem.ui
 
   src/templates/flashcard/flashcardeditor.ui
   src/templates/flashcard/flashcardsimulator.ui
