@@ -34,6 +34,7 @@
 #include "core/templatesimulator.h"
 
 #include "ui_comprehensionsimulator.h"
+#include "templates/comprehension/comprehensioneditor.h"
 
 
 namespace Ui {
@@ -68,9 +69,13 @@ class ComprehensionSimulator : public TemplateSimulator {
     void questionStart();
     void questionSubmitted();
 	void prepareSummary();
+	void counter();
 
   private:
     Ui::ComprehensionSimulator *m_ui;
+    ComprehensionEditor *editor;
+    QTime time;
+    QTimer *timer;
 };
 
 #endif // COMPREHENSIONSIMULATOR_H

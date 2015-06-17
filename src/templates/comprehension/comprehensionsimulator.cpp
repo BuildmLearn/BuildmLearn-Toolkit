@@ -40,6 +40,7 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QRadioButton>
+#include <QDebug>
 
 
 ComprehensionSimulator::ComprehensionSimulator(TemplateCore *core, QWidget *parent)
@@ -53,7 +54,11 @@ ComprehensionSimulator::ComprehensionSimulator(TemplateCore *core, QWidget *pare
   connect(m_ui->m_btnStart, SIGNAL(clicked()), this, SLOT(start()));
   connect(m_ui->m_btnRestart, SIGNAL(clicked()), this, SLOT(restart()));
   connect(m_ui->m_btnExit, SIGNAL(clicked()), this, SLOT(exit()));
-  
+
+  connect(m_ui->m_btnQuestions, SIGNAL(clicked()), this, SLOT(questionStart()));
+  timer = new QTimer(this);
+  connect(timer, SIGNAL(timeout()), this, SLOT(counter()));
+
 }
 
 ComprehensionSimulator::~ComprehensionSimulator() {
@@ -63,7 +68,43 @@ ComprehensionSimulator::~ComprehensionSimulator() {
 }
 
 bool ComprehensionSimulator::startSimulation() {
-  
+  editor = static_cast<ComprehensionEditor*>(core()->editor());
+
+  if (!editor->canGenerateApplications()) {
+    // There are no active questions or comprehension does not
+    // containt its name or author name.
+    return false;
+  }
+
+  // Remove existing questions.
+  while (m_ui->m_phoneWidget->count() > 4) {
+    QWidget *question_widget = m_ui->m_phoneWidget->widget(3);
+
+    m_ui->m_phoneWidget->removeWidget(question_widget);
+    question_widget->deleteLater();
+  }
+
+  // Load the questions, setup the comprehension and start it.
+  m_ui->m_btnStart->setEnabled(true);
+  m_ui->m_lblAuthor->setText(editor->m_ui->m_txtAuthor->lineEdit()->text());
+  m_ui->m_lblHeading->setText(editor->m_ui->m_txtName->lineEdit()->text());
+
+  m_ui->m_lblTitle->setText(editor->m_ui->m_txtTitle->lineEdit()->text());
+  m_ui->m_txtPassage->setDocument(editor->m_ui->m_txtPassage->document());
+
+  int question_number = 1;
+  QList<ComprehensionQuestion> questions = editor->activeQuestions();
+
+  foreach (const ComprehensionQuestion &question, questions) {
+    ComprehensionItem *item = new ComprehensionItem(m_ui->m_phoneWidget);
+
+    connect(item, SIGNAL(questionSubmitted()), this, SLOT(questionSubmitted()));
+
+    item->setQuestion(question, question_number++, questions.size());
+    m_ui->m_phoneWidget->insertWidget(m_ui->m_phoneWidget->count() - 1, item);
+  }
+
+  m_ui->m_phoneWidget->setCurrentIndex(1);
   return true;
 }
 
@@ -80,11 +121,42 @@ bool ComprehensionSimulator::goBack() {
 }
 
 void ComprehensionSimulator::start() {
+  int seconds = editor->m_ui->m_txtTimer->lineEdit()->text().toInt();
+  time.setHMS(0, seconds / 60, seconds % 60);
+  m_ui->m_lblTimer->setText(time.toString("mm:ss"));
+  timer->start(1000);
+
   m_ui->m_phoneWidget->slideInIdx(2);
+
 }
 
 void ComprehensionSimulator::prepareSummary() {
-  
+  int answered_correctly = 0;
+  int answered_wrongly = 0;
+  int unanswered = 0;
+
+  for (int i = 3; i < m_ui->m_phoneWidget->count() - 1; i++) {
+    ComprehensionItem *widget = static_cast<ComprehensionItem*>(m_ui->m_phoneWidget->widget(i));
+
+    switch (widget->state()) {
+      case ComprehensionItem::AnsweredCorrectly:
+        answered_correctly++;
+        break;
+
+      case ComprehensionItem::AnsweredWrongly:
+        answered_wrongly++;
+        break;
+
+      case ComprehensionItem::Unanswered:
+      default:
+        unanswered++;
+        break;
+    }
+  }
+
+  m_ui->m_lblTotalCorrect->setText(tr("Total correct %1").arg(answered_correctly));
+  m_ui->m_lblTotalWrong->setText(tr("Total wrong %1").arg(answered_wrongly));
+  m_ui->m_lblTotalUnanswered->setText(tr("Total unanswered %1").arg(unanswered));
 }
 
 void ComprehensionSimulator::questionSubmitted() {
@@ -114,4 +186,13 @@ void ComprehensionSimulator::exit() {
 
 void ComprehensionSimulator::questionStart() {
   m_ui->m_phoneWidget->slideInNext();
+}
+
+void ComprehensionSimulator::counter() {
+  time = time.addSecs(-1);
+  m_ui->m_lblTimer->setText(time.toString("mm:ss"));
+  if(time == QTime(0,0)) {
+    timer->stop();
+    questionStart();
+  }
 }

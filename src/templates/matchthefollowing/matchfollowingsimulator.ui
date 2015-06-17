@@ -352,6 +352,15 @@
            <property name="toolTip">
             <string>First list</string>
            </property>
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Plain</enum>
+           </property>
+           <property name="lineWidth">
+            <number>1</number>
+           </property>
           </widget>
          </item>
          <item row="1" column="6" colspan="7">
@@ -364,6 +373,12 @@
            </property>
            <property name="toolTip">
             <string>Second list</string>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Plain</enum>
            </property>
           </widget>
          </item>
