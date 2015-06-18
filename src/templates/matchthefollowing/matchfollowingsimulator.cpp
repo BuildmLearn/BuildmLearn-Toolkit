@@ -52,18 +52,18 @@ MatchFollowingSimulator::MatchFollowingSimulator(TemplateCore *core, QWidget *pa
   m_ui->m_lblScore->setFont(caption_font);
 
   // Setup styles.
-  QString style = "QPushButton {min-height:1.5em; font:1em; margin:0 1px 0 1px; color: white;\
-                   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #ff3232,\
-                   stop: 1 #e50000); border-style: outset;border-radius: 3px; border-width: 1px;\
-                   border-color: #ff0000;} QPushButton:pressed {background-color:\
+  QString style = "QPushButton {min-height:1.5em; font:1em; margin:0 1px 0 1px; color: white; \
+                   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #ff3232, \
+                   stop: 1 #e50000); border-style: outset;border-radius: 3px; border-width: 1px; \
+                   border-color: #ff0000;} QPushButton:pressed {background-color: \
                    qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #e50000, stop: 1 #ff3232);}";
 
   m_ui->m_btnStart->setStyleSheet(style);
 
-  style = "QPushButton {min-height:1.5em; font:10em; margin:0 1px 0 1px; color: black;\
-           background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #fdff5a,\
-           stop: 1 #fdff32); border-style: outset;border-radius: 3px; border-width: 2px;\
-           border-color: #fcff23;} QPushButton:pressed {background-color:\
+  style = "QPushButton {min-height:1.5em; font:10em; margin:0 1px 0 1px; color: black; \
+           background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #fdff5a, \
+           stop: 1 #fdff32); border-style: outset;border-radius: 3px; border-width: 2px; \
+           border-color: #fcff23;} QPushButton:pressed {background-color: \
            qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #fdff32, stop: 1 #fdff5a);}";
 
   m_ui->m_btnAnswer->setStyleSheet(style);
@@ -74,18 +74,16 @@ MatchFollowingSimulator::MatchFollowingSimulator(TemplateCore *core, QWidget *pa
   m_ui->m_listFirst->setStyleSheet(style);
   m_ui->m_listSecond->setStyleSheet(style);
 
-  style = "QLabel {margin:0 0 0 0; color: white;\
-           background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #000,\
-           stop: 0.9 #666, stop: 1 #AAA); border-style: outset; border-radius: 10px; border-width: 2px;\
-           border-color: black;}";
+  style = "QLabel {margin:0 0 0 0; color: white; background-color: qlineargradient(x1: 0, y1: 0, \
+           x2: 0, y2: 1,stop: 0 #000, stop: 0.9 #666, stop: 1 #AAA); border-style: outset; \
+           border-radius: 10px; border-width: 2px; border-color: black;}";
 
   m_ui->m_lblTemplateTitle->setStyleSheet(style);
   m_ui->m_lblScore->setStyleSheet(style);
 
-  style = "QLabel {margin:0 0 0 0; color: white;\
-           background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #4b6cb7,\
-           stop: 1 #182848); border-style: outset; border-radius: 10px; border-width: 2px;\
-           border-color: #181c48;}";
+  style = "QLabel {margin:0 0 0 0; color: white; background-color: qlineargradient(x1: 0, y1: 0, \
+					 x2: 0, y2: 1,stop: 0 #4b6cb7, stop: 1 #182848); border-style: outset; \
+					 border-radius: 10px; border-width: 2px; border-color: #181c48;}";
 
   m_ui->m_lblFirstListTitle->setStyleSheet(style);
   m_ui->m_lblSecondListTitle->setStyleSheet(style);

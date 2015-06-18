@@ -50,6 +50,41 @@ ComprehensionSimulator::ComprehensionSimulator(TemplateCore *core, QWidget *pare
   QFont caption_font = m_ui->m_lblHeading->font();
   caption_font.setPointSize(caption_font.pointSize() + SIMULATOR_HEADING_SIZE_INCREASE);
   m_ui->m_lblHeading->setFont(caption_font);
+  m_ui->m_lblTitle->setFont(caption_font);
+  m_ui->m_lblTimer->setFont(caption_font);
+  m_ui->m_lblComplete->setFont(caption_font);
+  
+  // Set styling.
+  QString style = "QPushButton {min-height:1.5em; font:1em; margin:0 1px 0 1px; color: white; \
+                   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #ff3232, \
+                   stop: 1 #e50000); border-style: outset;border-radius: 3px; border-width: 1px; \
+                   border-color: #ff0000;} QPushButton:pressed {background-color: \
+                   qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #e50000, stop: 1 #ff3232);}";
+
+  m_ui->m_btnStart->setStyleSheet(style);
+  m_ui->m_btnExit->setStyleSheet(style);
+  
+  style = "QPushButton{min-height:1.5em; font:1em; margin:0 1px 0 1px; color: white; \
+           background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #329932, stop: \
+           1 #004C00); border-style: outset;border-radius: 3px; border-width: 1px; \
+           border-color: #50873a;} QPushButton:pressed {background-color: \
+           qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #004C00, stop: 1 #329932);}";
+  
+  m_ui->m_btnQuestions->setStyleSheet(style);
+  m_ui->m_btnRestart->setStyleSheet(style);
+
+  style = "QLabel {margin:0 0 0 0; color: white; background-color: qlineargradient(x1: 0, y1: 0,\
+           x2: 0, y2: 1,stop: 0 #000, stop: 0.9 #666, stop: 1 #AAA); border-style: outset; \
+           border-radius: 10px; border-width: 2px; border-color: black;}";
+
+  m_ui->m_lblTitle->setStyleSheet(style);
+  m_ui->m_lblComplete->setStyleSheet(style);
+  m_ui->m_lblComplete->setWordWrap(true);
+
+  style = "QTextEdit {color: black; background-color: white;}";
+
+  m_ui->m_txtPassage->setStyleSheet(style);
+  m_ui->m_txtPassage->setReadOnly(true);
 
   connect(m_ui->m_btnStart, SIGNAL(clicked()), this, SLOT(start()));
   connect(m_ui->m_btnRestart, SIGNAL(clicked()), this, SLOT(restart()));
@@ -120,6 +155,7 @@ bool ComprehensionSimulator::goBack() {
   return false;
 }
 
+// Start the simulator.
 void ComprehensionSimulator::start() {
   int seconds = editor->m_ui->m_txtTimer->lineEdit()->text().toInt();
   time.setHMS(0, seconds / 60, seconds % 60);
@@ -130,6 +166,7 @@ void ComprehensionSimulator::start() {
 
 }
 
+// Prepare the score card.
 void ComprehensionSimulator::prepareSummary() {
   int answered_correctly = 0;
   int answered_wrongly = 0;
@@ -154,9 +191,9 @@ void ComprehensionSimulator::prepareSummary() {
     }
   }
 
-  m_ui->m_lblTotalCorrect->setText(tr("Total correct %1").arg(answered_correctly));
-  m_ui->m_lblTotalWrong->setText(tr("Total wrong %1").arg(answered_wrongly));
-  m_ui->m_lblTotalUnanswered->setText(tr("Total unanswered %1").arg(unanswered));
+  m_ui->m_lblTotalCorrect->setText(tr("Total correct: %1").arg(answered_correctly));
+  m_ui->m_lblTotalWrong->setText(tr("Total wrong: %1").arg(answered_wrongly));
+  m_ui->m_lblTotalUnanswered->setText(tr("Total unanswered: %1").arg(unanswered));
 }
 
 void ComprehensionSimulator::questionSubmitted() {
@@ -185,6 +222,7 @@ void ComprehensionSimulator::exit() {
 }
 
 void ComprehensionSimulator::questionStart() {
+  timer->stop();
   m_ui->m_phoneWidget->slideInNext();
 }
 

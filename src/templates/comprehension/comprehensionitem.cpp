@@ -40,6 +40,28 @@ ComprehensionItem::ComprehensionItem(QWidget *parent) : QWidget(parent), m_state
   caption_font.setPointSize(caption_font.pointSize() + SIMULATOR_HEADER_SIZE_INCREASE);
   m_ui->m_lblQuestionNumber->setFont(caption_font);
 
+  QString style = "QPushButton{min-height:1.5em; font:1em; margin:0 1px 0 1px; color: white; \
+				   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #ff3232, stop: \
+				   1 #e50000); border-style: outset;border-radius: 3px; border-width: 1px; \
+				   border-color: #ff0000;} QPushButton:pressed {background-color: \
+				   qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #e50000, stop: 1 #ff3232);}";
+
+  m_ui->m_btnNext->setStyleSheet(style);
+
+  style = "QPushButton{min-height:1.5em; font:1em; margin:0 1px 0 1px; color: white; \
+		   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #329932, stop: \
+		   1 #004C00); border-style: outset;border-radius: 3px; border-width: 1px; \
+		   border-color: #50873a;} QPushButton:pressed {background-color: \
+		   qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #004C00, stop: 1 #329932);}";
+
+  m_ui->m_btnConfirm->setStyleSheet(style);
+  
+  style = "QLabel {margin:0 0 0 0; color: white; background-color: qlineargradient(x1: 0, y1: 0,\
+           x2: 0, y2: 1,stop: 0 #000, stop: 0.9 #666, stop: 1 #AAA); border-style: outset; \
+           border-radius: 10px; border-width: 2px; border-color: black;}";
+
+  m_ui->m_lblQuestionNumber->setStyleSheet(style);
+  
   setupButtons();
   createConnections();
 }

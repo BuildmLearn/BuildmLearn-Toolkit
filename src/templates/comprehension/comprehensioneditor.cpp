@@ -91,12 +91,14 @@ ComprehensionEditor::ComprehensionEditor(TemplateCore *core, QWidget *parent)
 
   IconFactory *factory = IconFactory::instance();
 
+  // Set placeholders.
   m_ui->m_txtAuthor->lineEdit()->setPlaceholderText(tr("Author of this comprehension"));
   m_ui->m_txtName->lineEdit()->setPlaceholderText(tr("Name of this comprehension"));
   m_ui->m_txtTitle->lineEdit()->setPlaceholderText(tr("Title"));
   m_ui->m_txtTimer->lineEdit()->setPlaceholderText(tr("Time for reading the passage"));
   m_ui->m_txtPassage->document()->clear();
 
+  // Set options for the questions.
   m_ui->m_btnAnswerOne->setProperty("id", 0);
   m_ui->m_btnAnswerTwo->setProperty("id", 1);
   m_ui->m_btnAnswerThree->setProperty("id", 2);
@@ -115,6 +117,7 @@ ComprehensionEditor::ComprehensionEditor(TemplateCore *core, QWidget *parent)
   m_ui->m_btnAnswerThree->setIcon(m_iconNo);
   m_ui->m_btnAnswerFour->setIcon(m_iconNo);
 
+  // Connect signals to their respective slots.
   connect(m_ui->m_btnPassageSelect, SIGNAL(clicked()), this, SLOT(selectPassage()));
   connect(m_ui->m_txtAuthor->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(updateAuthorStatus()));
   connect(m_ui->m_txtName->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(updateNameStatus()));
@@ -174,6 +177,7 @@ QString ComprehensionEditor::authorName() {
   return m_ui->m_txtAuthor->lineEdit()->text();
 }
 
+// For updating number of questions.
 void ComprehensionEditor::updateQuestionCount() {
   m_ui->m_txtNumberOfQuestions->lineEdit()->setText(QString::number(m_ui->m_listQuestions->count()));
 
@@ -185,6 +189,7 @@ void ComprehensionEditor::updateQuestionCount() {
   }
 }
 
+// For adding a new question.
 void ComprehensionEditor::addQuestion(const QString &question, const QStringList &answers, int correct_answer) {
   ComprehensionQuestion new_question;
 
@@ -218,6 +223,7 @@ void ComprehensionEditor::addQuestion(const QString &question, const QStringList
   updateQuestionCount();
 }
 
+// Add a default question.
 void ComprehensionEditor::addQuestion() {
   addQuestion(tr("Question"),
               QStringList() << tr("Option 1") << tr("Option 2") <<
@@ -228,6 +234,7 @@ void ComprehensionEditor::addQuestion() {
   emit changed();
 }
 
+// Load the selected question.
 void ComprehensionEditor::loadQuestion(int index) {
   m_ui->m_txtQuestion->blockSignals(true);
   m_ui->m_txtAnswerOne->blockSignals(true);
@@ -279,6 +286,7 @@ void ComprehensionEditor::loadQuestion(int index) {
   QTimer::singleShot(0, this, SLOT(configureUpDown()));
 }
 
+// For removing a question.
 void ComprehensionEditor::removeQuestion() {
   int current_row = m_ui->m_listQuestions->currentRow();
 
@@ -577,17 +585,17 @@ QString ComprehensionEditor::generateBundleData() {
 }
 
 void ComprehensionEditor::selectPassage() {
-  QString selected_passage = QFileDialog::getOpenFileName(this, tr("Select picture for image"),
+  QString selected_passage = QFileDialog::getOpenFileName(this, tr("Select passage for the comprehension"),
                                                           m_ui->m_lblPassageStatus->label()->toolTip(),
                                                           tr("Text files (*.txt)"),
                                                           0);
 
   if (!selected_passage.isEmpty()) {
     loadPassage(selected_passage);
-    //saveImage();
   }
 }
 
+// Load and save passage.
 void ComprehensionEditor::loadPassage(const QString& passage_path) {
   if (!passage_path.isEmpty()) {
     QFile file(passage_path);
