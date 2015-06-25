@@ -87,7 +87,7 @@ class MatchFollowingEditor : public TemplateEditor {
     void configureUpDown();
     void moveTopicUp();
     void moveTopicDown();
-    void addTopic(const QString& title, const QString& secondListTopic);
+    void addTopic(const QString& firstListTopic, const QString& secondListTopic);
 
   private:
     Ui::MatchFollowingEditor *m_ui;

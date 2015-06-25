@@ -56,12 +56,6 @@ ComprehensionItem::ComprehensionItem(QWidget *parent) : QWidget(parent), m_state
 
   m_ui->m_btnConfirm->setStyleSheet(style);
   
-  style = "QLabel {margin:0 0 0 0; color: white; background-color: qlineargradient(x1: 0, y1: 0,\
-           x2: 0, y2: 1,stop: 0 #000, stop: 0.9 #666, stop: 1 #AAA); border-style: outset; \
-           border-radius: 10px; border-width: 2px; border-color: black;}";
-
-  m_ui->m_lblQuestionNumber->setStyleSheet(style);
-  
   setupButtons();
   createConnections();
 }

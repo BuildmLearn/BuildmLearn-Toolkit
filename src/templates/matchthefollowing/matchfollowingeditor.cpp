@@ -85,9 +85,6 @@ MatchFollowingEditor::MatchFollowingEditor(TemplateCore *core, QWidget *parent)
   // Set Default Text.
   m_ui->m_txtFirstListTopic->lineEdit()->setPlaceholderText(tr("First Set Topic"));
   m_ui->m_txtSecondListTopic->lineEdit()->setPlaceholderText(tr("Matching Topic"));
-  //m_ui->m_txtTemplateTitle->lineEdit()->setPlaceholderText(tr("Title of this Template"));
-  //m_ui->m_txtFirstListTitle->lineEdit()->setPlaceholderText(tr("Title of the first list"));
-  //m_ui->m_txtSecondListTitle->lineEdit()->setPlaceholderText(tr("Title of the second list"));
   m_ui->m_txtAuthor->lineEdit()->setPlaceholderText(tr("Author of this Collection"));
   m_ui->m_txtName->lineEdit()->setPlaceholderText(tr("Name of this Collection"));
   m_ui->m_txtTemplateTitle->lineEdit()->setText("Match the following");
@@ -175,6 +172,18 @@ QString MatchFollowingEditor::generateBundleData() {
                                                                                QString(),
                                                                                "1");
   FIND_DATA_ELEMENT(data_element, source_document);
+  
+  QDomElement template_title_element = source_document.createElement("templateTitle");
+  QDomElement first_list_title_element = source_document.createElement("firstListTitle");
+  QDomElement second_list_title_element = source_document.createElement("secondListTitle");
+
+  template_title_element.appendChild(source_document.createTextNode(m_ui->m_txtTemplateTitle->lineEdit()->text()));
+  first_list_title_element.appendChild(source_document.createTextNode(m_ui->m_txtFirstListTitle->lineEdit()->text()));
+  second_list_title_element.appendChild(source_document.createTextNode(m_ui->m_txtSecondListTitle->lineEdit()->text()));
+
+  data_element.appendChild(template_title_element);
+  data_element.appendChild(first_list_title_element);
+  data_element.appendChild(second_list_title_element);
 
   foreach (const MatchFollowingTopic &topic, activeTopics()) {
     QDomElement item_element = source_document.createElement("item");
@@ -208,12 +217,25 @@ bool MatchFollowingEditor::loadBundleData(const QString &bundle_data) {
     if (item.isElement()) {
       QString first_list_topic = item.namedItem("firstListTopic").toElement().text();
       QString second_list_topic = item.namedItem("secondListTopic").toElement().text();
+      
+      if (first_list_topic.isEmpty() || second_list_topic.isEmpty()) {
+        // TODO: error
+        continue;
+      }
+      else {
+        addTopic(first_list_topic, second_list_topic);
+      }
     }
   }
 
   // Load author & name.
   m_ui->m_txtAuthor->lineEdit()->setText(bundle_document.documentElement().namedItem("author").namedItem("name").toElement().text());
   m_ui->m_txtName->lineEdit()->setText(bundle_document.documentElement().namedItem("title").toElement().text());
+  
+  // Load template details
+  m_ui->m_txtTemplateTitle->lineEdit()->setText(bundle_document.documentElement().namedItem("data").namedItem("templateTitle").toElement().text());
+  m_ui->m_txtFirstListTitle->lineEdit()->setText(bundle_document.documentElement().namedItem("data").namedItem("firstListTitle").toElement().text());
+  m_ui->m_txtSecondListTitle->lineEdit()->setText(bundle_document.documentElement().namedItem("data").namedItem("secondListTitle").toElement().text());
 
   return true;
 }

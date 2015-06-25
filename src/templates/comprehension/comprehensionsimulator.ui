@@ -32,7 +32,7 @@
    <item>
     <widget class="SlidingStackedWidget" name="m_phoneWidget">
      <property name="currentIndex">
-      <number>3</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="m_pageStopped">
       <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -211,10 +211,20 @@
          <property name="text">
           <string>Timer</string>
          </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
        </item>
        <item>
-        <widget class="QTextEdit" name="m_txtPassage"/>
+        <widget class="QTextEdit" name="m_txtPassage">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Sunken</enum>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="Line" name="line_4">

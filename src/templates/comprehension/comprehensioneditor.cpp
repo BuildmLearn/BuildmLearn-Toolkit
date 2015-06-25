@@ -69,6 +69,7 @@ ComprehensionEditor::ComprehensionEditor(TemplateCore *core, QWidget *parent)
   m_ui->m_txtAnswerThree->setValidator(option_validator);
   m_ui->m_txtAnswerFour->setValidator(option_validator);
   m_ui->m_txtQuestion->setMaxLength(160);
+  m_ui->m_txtPassage->setMaxLength(1000);
 
   // Set tab order.
   QList<QWidget*> tab_order_widgets;
@@ -91,13 +92,13 @@ ComprehensionEditor::ComprehensionEditor(TemplateCore *core, QWidget *parent)
 
   IconFactory *factory = IconFactory::instance();
 
-  // Set placeholders.
+  // Set placeholders and default text.
   m_ui->m_txtAuthor->lineEdit()->setPlaceholderText(tr("Author of this comprehension"));
   m_ui->m_txtName->lineEdit()->setPlaceholderText(tr("Name of this comprehension"));
   m_ui->m_txtTitle->lineEdit()->setPlaceholderText(tr("Title"));
-  m_ui->m_txtTimer->lineEdit()->setPlaceholderText(tr("Time for reading the passage"));
+  m_ui->m_txtTimer->lineEdit()->setText("180");
   m_ui->m_txtPassage->document()->clear();
-
+  
   // Set options for the questions.
   m_ui->m_btnAnswerOne->setProperty("id", 0);
   m_ui->m_btnAnswerTwo->setProperty("id", 1);
@@ -441,14 +442,20 @@ void ComprehensionEditor::checkPassage() {
     m_ui->m_lblPassageStatus->setStatus(WidgetWithStatus::Error, tr("Passage is empty."), tr("Passage is empty."));
   }
   else {
-    int word_count = m_ui->m_txtPassage->toPlainText().split(QRegExp("(\\s|\\n|\\r)+"),
-                                               QString::SkipEmptyParts).count();
-    m_ui->m_lblPassageStatus->setStatus(WidgetWithStatus::Ok, tr("Words - %1, Char - %2.").arg
-                                        (QString::number(word_count),
-                                         QString::number(m_ui->m_txtPassage->document()->characterCount() - 1)),
-                                        tr("Words - %1, Char - %2.").arg
-                                        (QString::number(word_count),
-                                         QString::number(m_ui->m_txtPassage->document()->characterCount() - 1)));
+    m_wordCount = m_ui->m_txtPassage->toPlainText().split(QRegExp("(\\s|\\n|\\r)+"),
+															 QString::SkipEmptyParts).count();
+	if (m_wordCount < 50) {
+	  m_ui->m_lblPassageStatus->setStatus(WidgetWithStatus::Error, tr("Passage has %1 words, min 50 words required")
+										  .arg(QString::number(m_wordCount)), tr("Passage has %1 words, min 50 words \
+										  required").arg(QString::number(m_wordCount)));
+    }
+    else {
+	  int char_count = m_ui->m_txtPassage->document()->characterCount() - 1;
+      m_ui->m_lblPassageStatus->setStatus(WidgetWithStatus::Ok, tr("Words - %1, Char - %2.").arg(
+                                          QString::number(m_wordCount), QString::number(char_count)),
+                                          tr("Words - %1, Char - %2.").arg(QString::number(m_wordCount),
+                                          QString::number(char_count)));
+    }
   }
 }
 
@@ -498,7 +505,7 @@ bool ComprehensionEditor::canGenerateApplications() {
       !m_ui->m_txtTitle->lineEdit()->text().simplified().isEmpty() &&
       !m_ui->m_txtPassage->document()->isEmpty() &&
       !m_ui->m_txtTimer->lineEdit()->text().simplified().isEmpty() &&
-      activeQuestions().count() > 2;
+      m_wordCount > 49 && activeQuestions().count() > 2;
 }
 
 bool ComprehensionEditor::loadBundleData(const QString &bundle_data) {
@@ -528,14 +535,16 @@ bool ComprehensionEditor::loadBundleData(const QString &bundle_data) {
         addQuestion(question, answers, correct_answer);
       }
     }
-    else {
-      continue;
-    }
   }
 
   // Load author & name.
   m_ui->m_txtAuthor->lineEdit()->setText(bundle_document.documentElement().namedItem("author").namedItem("name").toElement().text());
   m_ui->m_txtName->lineEdit()->setText(bundle_document.documentElement().namedItem("title").toElement().text());
+
+  // Load passage details.
+  m_ui->m_txtTitle->lineEdit()->setText(bundle_document.documentElement().namedItem("data").namedItem("passageTitle").toElement().text());
+  m_ui->m_txtPassage->setHtml(bundle_document.documentElement().namedItem("data").namedItem("passage").toElement().text());
+  m_ui->m_txtTimer->lineEdit()->setText(bundle_document.documentElement().namedItem("data").namedItem("timer").toElement().text());
 
   return true;
 }
@@ -553,6 +562,18 @@ QString ComprehensionEditor::generateBundleData() {
                                                                                "1");
   FIND_DATA_ELEMENT(data_element, source_document);
 
+  QDomElement passage_title_element = source_document.createElement("passageTitle");
+  QDomElement passage_element = source_document.createElement("passage");
+  QDomElement timer_element = source_document.createElement("timer");
+  
+  passage_title_element.appendChild(source_document.createTextNode(m_ui->m_txtTitle->lineEdit()->text()));
+  passage_element.appendChild(source_document.createTextNode(m_ui->m_txtPassage->toHtml()));
+  timer_element.appendChild(source_document.createTextNode(m_ui->m_txtTimer->lineEdit()->text()));
+  
+  data_element.appendChild(passage_title_element);
+  data_element.appendChild(passage_element);
+  data_element.appendChild(timer_element);
+  
   foreach (const ComprehensionQuestion &question, activeQuestions()) {
     QDomElement item_element = source_document.createElement("item");
 

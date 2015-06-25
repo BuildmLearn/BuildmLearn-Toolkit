@@ -47,16 +47,9 @@ void ListDelegate::paint(QPainter * painter, const QStyleOptionViewItem & option
   // Color: #333.
   QPen font_pen(QColor::fromRgb(51,51,51), 1, Qt::SolidLine);
 
-  // Color: #fff.
-  QPen font_marked_pen(Qt::white, 1, Qt::SolidLine);
-
   // For highlighting the seleted item.
   if (option.state & QStyle::State_Selected) {
-    QLinearGradient gradient_selected(r.left(),r.top(),r.left(),r.height()+r.top());
-    gradient_selected.setColorAt(0.0, QColor::fromRgb(119,213,247));
-    gradient_selected.setColorAt(0.9, QColor::fromRgb(27,134,183));
-    gradient_selected.setColorAt(1.0, QColor::fromRgb(0,120,174));
-    painter->setBrush(gradient_selected);
+    painter->setBrush(QColor::fromRgb(119,213,247));
     painter->drawRect(r);
 
     // Creating border.
@@ -65,7 +58,7 @@ void ListDelegate::paint(QPainter * painter, const QStyleOptionViewItem & option
     painter->drawLine(r.topRight(),r.bottomRight());
     painter->drawLine(r.bottomLeft(),r.bottomRight());
     painter->drawLine(r.topLeft(),r.bottomLeft());
-    painter->setPen(font_marked_pen);
+    painter->setPen(font_pen);
   } 
   // For items which are not selected.
   else {
@@ -84,16 +77,9 @@ void ListDelegate::paint(QPainter * painter, const QStyleOptionViewItem & option
   }
 
   // Get First list topic and Second list topic.
-  //QString first_list_topic;
-  //if (index.data(Qt::UserRole + 3).toString().isEmpty() || index.data(Qt::UserRole + 3).toString().isNull())
-    //first_list_topic = tr("A - ") + index.data(Qt::UserRole + 1).toString();
-  //else
-   QString first_list_topic = index.data(Qt::UserRole + 3).toString() + " - " + index.data(Qt::UserRole + 1).toString();
+  QString first_list_topic = index.data(Qt::UserRole + 3).toString() + " - " + index.data(Qt::UserRole + 1).toString();
     
   //QString second_list_topic;
-  //if (index.data(Qt::UserRole + 4).toString().isEmpty() || index.data(Qt::UserRole + 4).toString().isNull())
-    //second_list_topic = tr("B - ") + index.data(Qt::UserRole + 2).toString();
-  //else
   QString second_list_topic = index.data(Qt::UserRole + 4).toString() + " - " + index.data(Qt::UserRole + 2).toString();
 
   // First List Topic.

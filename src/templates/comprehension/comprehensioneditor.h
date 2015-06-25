@@ -103,6 +103,7 @@ class ComprehensionEditor : public TemplateEditor {
     Ui::ComprehensionEditor *m_ui;
     QIcon m_iconYes;
     QIcon m_iconNo;
+    int m_wordCount;
 };
 
 #endif // COMPREHENSIONEDITOR_H

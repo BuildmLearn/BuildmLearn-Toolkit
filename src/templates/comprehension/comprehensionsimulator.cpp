@@ -53,6 +53,7 @@ ComprehensionSimulator::ComprehensionSimulator(TemplateCore *core, QWidget *pare
   m_ui->m_lblTitle->setFont(caption_font);
   m_ui->m_lblTimer->setFont(caption_font);
   m_ui->m_lblComplete->setFont(caption_font);
+  m_ui->m_lblComplete->setWordWrap(true);
   
   // Set styling.
   QString style = "QPushButton {min-height:1.5em; font:1em; margin:0 1px 0 1px; color: white; \
@@ -73,15 +74,8 @@ ComprehensionSimulator::ComprehensionSimulator(TemplateCore *core, QWidget *pare
   m_ui->m_btnQuestions->setStyleSheet(style);
   m_ui->m_btnRestart->setStyleSheet(style);
 
-  style = "QLabel {margin:0 0 0 0; color: white; background-color: qlineargradient(x1: 0, y1: 0,\
-           x2: 0, y2: 1,stop: 0 #000, stop: 0.9 #666, stop: 1 #AAA); border-style: outset; \
-           border-radius: 10px; border-width: 2px; border-color: black;}";
-
-  m_ui->m_lblTitle->setStyleSheet(style);
-  m_ui->m_lblComplete->setStyleSheet(style);
-  m_ui->m_lblComplete->setWordWrap(true);
-
-  style = "QTextEdit {color: black; background-color: white;}";
+  style = "QTextEdit {color: black; background-color: white;} QScrollBar {background-color: grey; border-style: \
+           outset;border-radius: 3px; border-width: 1px; border-color: black;}";
 
   m_ui->m_txtPassage->setStyleSheet(style);
   m_ui->m_txtPassage->setReadOnly(true);
@@ -159,7 +153,7 @@ bool ComprehensionSimulator::goBack() {
 void ComprehensionSimulator::start() {
   int seconds = editor->m_ui->m_txtTimer->lineEdit()->text().toInt();
   time.setHMS(0, seconds / 60, seconds % 60);
-  m_ui->m_lblTimer->setText(time.toString("mm:ss"));
+  m_ui->m_lblTimer->setText("- " + time.toString("mm:ss"));
   timer->start(1000);
 
   m_ui->m_phoneWidget->slideInIdx(2);
@@ -228,7 +222,7 @@ void ComprehensionSimulator::questionStart() {
 
 void ComprehensionSimulator::counter() {
   time = time.addSecs(-1);
-  m_ui->m_lblTimer->setText(time.toString("mm:ss"));
+  m_ui->m_lblTimer->setText("- " + time.toString("mm:ss"));
   if(time == QTime(0,0)) {
     timer->stop();
     questionStart();
