@@ -186,7 +186,7 @@ void ComprehensionEditor::updateQuestionCount() {
     m_ui->m_txtNumberOfQuestions->setStatus(WidgetWithStatus::Ok, tr("Passage contains at least three question."));
   }
   else {
-    m_ui->m_txtNumberOfQuestions->setStatus(WidgetWithStatus::Error, tr("Comprehension does not minimum three questions."));
+    m_ui->m_txtNumberOfQuestions->setStatus(WidgetWithStatus::Error, tr("Comprehension does not contain minimum three questions."));
   }
 }
 
