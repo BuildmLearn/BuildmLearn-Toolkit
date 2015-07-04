@@ -462,6 +462,12 @@ set(APP_SOURCES
   src/templates/comprehension/comprehensionquestion.cpp
   src/templates/comprehension/comprehensionitem.cpp
   
+  src/templates/dictation/dictationentrypoint.cpp
+  src/templates/dictation/dictationcore.cpp
+  src/templates/dictation/dictationeditor.cpp
+  src/templates/dictation/dictationsimulator.cpp
+  src/templates/dictation/dictationpassage.cpp
+  
   src/main.cpp
 )
 
@@ -543,6 +549,12 @@ set(APP_HEADERS
   src/templates/matchthefollowing/matchfollowingtopic.h
   src/templates/matchthefollowing/slidingstackedwidget.h
   src/templates/matchthefollowing/listdelegate.h
+  
+  src/templates/dictation/dictationentrypoint.h
+  src/templates/dictation/dictationcore.h
+  src/templates/dictation/dictationeditor.h
+  src/templates/dictation/dictationsimulator.h
+  src/templates/dictation/dictationpassage.h
 )
 
 # APP form files.
@@ -577,7 +589,8 @@ set(APP_FORMS
   src/templates/matchthefollowing/matchfollowingeditor.ui
   src/templates/matchthefollowing/matchfollowingsimulator.ui
 
-  
+  src/templates/dictation/dictationeditor.ui
+  src/templates/dictation/dictationsimulator.ui
 )
 
 # APP translations.

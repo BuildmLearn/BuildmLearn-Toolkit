@@ -172,10 +172,7 @@ void DictationEditor::addPassage(const QString &title) {
 }
 
 void DictationEditor::addPassage() {
-  addPassage(tr("Passage"),
-              QStringList() << tr("Option 1") << tr("Option 2") <<
-              tr("Option 3") << tr("Option 4"),
-              1);
+  addPassage(tr("Title"));
 
   launch();
   emit changed();
@@ -218,4 +215,260 @@ void DictationEditor::removePassage() {
   updatePassageCount();
   launch();
   emit changed();
+}
+
+void DictationEditor::savePassage() {
+  m_activePassage.setPassage(m_ui->m_txtPassage->toPlainText());
+  m_activePassage.setTitle(m_ui->m_txtTitle->lineEdit()->text());
+  
+  m_ui->m_listPassages->currentItem()->setData(Qt::UserRole, QVariant::fromValue(m_activePassage));
+  m_ui->m_listPassages->currentItem()->setText(m_activePassage.title());
+
+  emit changed();
+}
+
+void DictationEditor::movePassageUp() {
+  int index = m_ui->m_listPassages->currentRow();
+
+  m_ui->m_listPassages->insertItem(index - 1, m_ui->m_listPassages->takeItem(index));
+  m_ui->m_listPassages->setCurrentRow(index - 1);
+
+  emit changed();
+}
+
+void DictationEditor::movePassageDown() {
+  int index = m_ui->m_listPassages->currentRow();
+
+  m_ui->m_listPassages->insertItem(index + 1, m_ui->m_listPassages->takeItem(index));
+  m_ui->m_listPassages->setCurrentRow(index + 1);
+
+  emit changed();
+}
+
+void DictationEditor::configureUpDown() {
+  if (m_ui->m_listPassages->count() > 1) {
+    int index = m_ui->m_listPassages->currentRow();
+
+    if (index == 0) {
+      m_ui->m_btnPassageUp->setEnabled(false);
+      m_ui->m_btnPassageDown->setEnabled(true);
+    }
+    else if (index == m_ui->m_listPassages->count() - 1) {
+      m_ui->m_btnPassageUp->setEnabled(true);
+      m_ui->m_btnPassageDown->setEnabled(false);
+    }
+    else {
+      m_ui->m_btnPassageUp->setEnabled(true);
+      m_ui->m_btnPassageDown->setEnabled(true);
+    }
+  }
+  else {
+    m_ui->m_btnPassageUp->setEnabled(false);
+    m_ui->m_btnPassageDown->setEnabled(false);
+  }
+}
+
+void DictationEditor::setEditorsEnabled(bool enabled) {
+  m_ui->m_groupPassageEditor->setEnabled(enabled);
+}
+
+void DictationEditor::checkName() {
+  if (m_ui->m_txtName->lineEdit()->text().simplified().isEmpty()) {
+    m_ui->m_txtName->setStatus(WidgetWithStatus::Error, tr("Enter the name of the dictation."));
+  }
+  else {
+    m_ui->m_txtName->setStatus(WidgetWithStatus::Ok, tr("Name is okay."));
+  }
+}
+
+void DictationEditor::checkAuthor() {
+  if (m_ui->m_txtAuthor->lineEdit()->text().simplified().isEmpty()) {
+    m_ui->m_txtAuthor->setStatus(WidgetWithStatus::Error, tr("Enter the name of the author of the dictation."));
+  }
+  else {
+    m_ui->m_txtAuthor->setStatus(WidgetWithStatus::Ok, tr("Enter the name of the author of the dictation."));
+  }
+}
+
+void DictationEditor::checkTitle() {
+  if (m_ui->m_txtTitle->lineEdit()->text().simplified().isEmpty()) {
+    m_ui->m_txtTitle->setStatus(WidgetWithStatus::Error, tr("Enter the title of the passage."));
+  }
+  else {
+    m_ui->m_txtTitle->setStatus(WidgetWithStatus::Ok, tr("Enter the title of the passage."));
+  }
+}
+
+void DictationEditor::checkPassage() {
+  if (m_ui->m_txtPassage->document()->isEmpty()) {
+    m_ui->m_lblPassageStatus->setStatus(WidgetWithStatus::Error, tr("Passage is empty."), tr("Passage is empty."));
+  }
+  else {
+    int word_count = m_ui->m_txtPassage->toPlainText().split(QRegExp("(\\s|\\n|\\r)+"),
+                                               QString::SkipEmptyParts).count();
+    m_ui->m_lblPassageStatus->setStatus(WidgetWithStatus::Ok, tr("Words - %1, Char - %2.").arg
+                                        (QString::number(word_count),
+                                         QString::number(m_ui->m_txtPassage->document()->characterCount() - 1)),
+                                        tr("Words - %1, Char - %2.").arg
+                                        (QString::number(word_count),
+                                         QString::number(m_ui->m_txtPassage->document()->characterCount() - 1)));
+  }
+}
+
+void DictationEditor::checkTimer() {
+  if (m_ui->m_txtTimer->lineEdit()->text().simplified().isEmpty()) {
+    m_ui->m_txtTimer->setStatus(WidgetWithStatus::Error, tr("Enter the time for reading the passage."));
+  }
+  else {
+    m_ui->m_txtTimer->setStatus(WidgetWithStatus::Ok, tr("Enter the time for reading the passage."));
+  }
+}
+
+void DictationEditor::updateNameStatus() {
+  checkName();
+  launch();
+  emit changed();
+}
+
+void DictationEditor::updateAuthorStatus() {
+  checkAuthor();
+  launch();
+  emit changed();
+}
+
+void DictationEditor::updateTitleStatus() {
+  checkTitle();
+  launch();
+  emit changed();
+}
+
+void DictationEditor::onPassageChanged() {
+  checkPassage();
+  launch();
+  emit changed();
+}
+
+void DictationEditor::updateTimerStatus() {
+  checkTimer();
+  launch();
+  emit changed();
+}
+
+bool DictationEditor::canGenerateApplications() {
+  return
+      !m_ui->m_txtName->lineEdit()->text().simplified().isEmpty() &&
+      !m_ui->m_txtAuthor->lineEdit()->text().simplified().isEmpty() &&
+      !m_ui->m_txtTitle->lineEdit()->text().simplified().isEmpty() &&
+      !m_ui->m_txtPassage->document()->isEmpty() &&
+      !m_ui->m_txtTimer->lineEdit()->text().simplified().isEmpty() &&
+      activePassages().count() > 2;
+}
+
+bool DictationEditor::loadBundleData(const QString &bundle_data) {
+  QDomDocument bundle_document;
+  bundle_document.setContent(bundle_data);
+
+  QDomNodeList items = bundle_document.documentElement().elementsByTagName("item");
+/*
+  for (int i = 0; i < items.size(); i++) {
+    QDomNode item = items.at(i);
+
+    if (item.isElement()) {
+      QString passage = item.namedItem("passage").toElement().text();
+      int correct_answer = item.namedItem("answer").toElement().text().toInt();
+      QDomNodeList answer_items = item.toElement().elementsByTagName("option");
+      QList<QString> answers;
+
+      for (int j = 0; j < answer_items.size(); j++) {
+        answers.append(answer_items.at(j).toElement().text());
+      }
+
+      if (passage.isEmpty() || answers.size() < 2 || answers.size() > 4) {
+        // TODO: error
+        continue;
+      }
+      else {
+        addPassage(passage, answers, correct_answer);
+      }
+    }
+    else {
+      continue;
+    }
+  }
+
+  // Load author & name.
+  m_ui->m_txtAuthor->lineEdit()->setText(bundle_document.documentElement().namedItem("author").namedItem("name").toElement().text());
+  m_ui->m_txtName->lineEdit()->setText(bundle_document.documentElement().namedItem("title").toElement().text());
+*/
+  return true;
+}
+
+QString DictationEditor::generateBundleData() {
+  /*if (!canGenerateApplications()) {
+    return QString();
+  }*/
+/*
+  QDomDocument source_document = qApp->templateManager()->generateBundleHeader(core()->entryPoint()->typeIndentifier(),
+                                                                               m_ui->m_txtAuthor->lineEdit()->text(),
+                                                                               QString(),
+                                                                               m_ui->m_txtName->lineEdit()->text(),
+                                                                               QString(),
+                                                                               "1");
+  FIND_DATA_ELEMENT(data_element, source_document);
+
+  foreach (const DictationPassage &passage, activePassages()) {
+    QDomElement item_element = source_document.createElement("item");
+
+    // Fill in details about passage.
+    QDomElement passage_element = source_document.createElement("passage");
+    QDomElement answer_one_element = source_document.createElement("option");
+    QDomElement answer_two_element = source_document.createElement("option");
+    QDomElement answer_three_element = source_document.createElement("option");
+    QDomElement answer_four_element = source_document.createElement("option");
+    QDomElement answer_number_element = source_document.createElement("answer");
+
+    passage_element.appendChild(source_document.createTextNode(passage.passage()));
+    answer_one_element.appendChild(source_document.createTextNode(passage.answerOne()));
+    answer_two_element.appendChild(source_document.createTextNode(passage.answerTwo()));
+    answer_three_element.appendChild(source_document.createTextNode(passage.answerThree()));
+    answer_four_element.appendChild(source_document.createTextNode(passage.answerFour()));
+    answer_number_element.appendChild(source_document.createTextNode(QString::number(passage.correctAnswer())));
+
+    item_element.appendChild(passage_element);
+    item_element.appendChild(answer_one_element);
+    item_element.appendChild(answer_two_element);
+    item_element.appendChild(answer_three_element);
+    item_element.appendChild(answer_four_element);
+    item_element.appendChild(answer_number_element);
+
+    data_element.appendChild(item_element);
+  }
+*/
+  return source_document.toString(XML_BUNDLE_INDENTATION);
+}
+
+void DictationEditor::selectPassage() {
+  QString selected_passage = QFileDialog::getOpenFileName(this, tr("Select picture for image"),
+                                                          m_ui->m_lblPassageStatus->label()->toolTip(),
+                                                          tr("Text files (*.txt)"),
+                                                          0);
+
+  if (!selected_passage.isEmpty()) {
+    loadPassage(selected_passage);
+    //savePassage();
+  }
+}
+
+void DictationEditor::loadPassage(const QString& passage_path) {
+  if (!passage_path.isEmpty()) {
+    QFile file(passage_path);
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+      QString text = file.readAll();
+      QTextDocument *document = new QTextDocument(text);
+      m_ui->m_txtPassage->setDocument(document);
+    }
+    file.close();
+  }
+  onPassageChanged();
+  m_ui->m_lblPassageStatus->label()->setToolTip(QDir::toNativeSeparators(passage_path));
 }

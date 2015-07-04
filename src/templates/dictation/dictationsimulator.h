@@ -28,77 +28,47 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#ifndef DICTATIONEDITOR_H
-#define DICTATIONEDITOR_H
+#ifndef DICTATIONSIMULATOR_H
+#define DICTATIONSIMULATOR_H
 
-#include "core/templateeditor.h"
+#include "core/templatesimulator.h"
 
-#include "ui_dictationeditor.h"
-#include "templates/dictation/dictationpassage.h"
-
-#include <QIcon>
+#include "ui_dictationsimulator.h"
+#include "templates/dictation/dictationeditor.h"
 
 
 namespace Ui {
-  class DictationEditor;
+  class DictationSimulator;
 }
 
-class DictationSimulator;
-class QShowEvent;
+class TemplateCore;
+class QLabel;
+class QPushButton;
+class QRadioButton;
 
-/// \brief Editor for Dictation.
+/// \brief Simulator for Dictation template.
 /// \ingroup template-dictation
-class DictationEditor : public TemplateEditor {
+class DictationSimulator : public TemplateSimulator {
     Q_OBJECT
-
-    friend class DictationSimulator;
-    friend class DictationCore;
 
   public:
     // Constructors and destructors.
-    explicit DictationEditor(TemplateCore *core, QWidget *parent = 0);
-    virtual ~DictationEditor();
+    explicit DictationSimulator(TemplateCore *core, QWidget *parent = 0);
+    virtual ~DictationSimulator();
 
-    QString generateBundleData();
-    bool canGenerateApplications();
-    bool loadBundleData(const QString &bundle_data);
-
-    /// \brief Access to list of added questions.
-    /// \return Returns list of added questions.
-    QList<DictationPassage> activePassages() const;
-
-    QString projectName();
-    QString authorName();
+  public slots:
+    bool startSimulation();
+    bool stopSimulation();
+    bool goBack();
 
   private slots:
-    void updatePassageCount();
-    void addPassage(const QString &question, const QStringList &answers, int correct_answer);
-    void addPassage();
-    void loadPassage(int index);
-    void removePassage();
-    void savePassage();
-    void movePassageUp();
-    void movePassageDown();
-	
-	void selectPassage();
-	void loadPassage(const QString &passage_path);
-	
-    void configureUpDown();
-    void setEditorsEnabled(bool enabled);
-
-    void checkName();
-    void checkAuthor();
-    void checkTitle();
-    void checkPassage();
-    
-    void updateNameStatus();
-    void updateAuthorStatus();
-    void updateTitleStatus();
-    void onPassageChanged();
+    void start();
+    void restart();
+    void exit();
     
   private:
-    DictationPassage m_activePassage;
-    Ui::DictationEditor *m_ui;
+    Ui::DictationSimulator *m_ui;
+    DictationEditor *editor;
 };
 
-#endif // DICTATIONEDITOR_H
+#endif // DICTATIONSIMULATOR_H

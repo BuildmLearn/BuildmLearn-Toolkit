@@ -43,6 +43,7 @@
 #include "templates/learnspellings/learnspellingsentrypoint.h"
 #include "templates/matchthefollowing/matchfollowingentrypoint.h"
 #include "templates/comprehension/comprehensionentrypoint.h"
+#include "templates/dictation/dictationentrypoint.h"
 
 #if QT_VERSION >= 0x050000
 #include <QStandardPaths>
@@ -324,6 +325,9 @@ void TemplateFactory::setupTemplates() {
   
   TemplateEntryPoint *comprehension_entry = new ComprehensionEntryPoint(this);
   m_availableTemplates.insert(comprehension_entry->typeIndentifier(), comprehension_entry);
+  
+  TemplateEntryPoint *dictation_entry = new DictationEntryPoint(this);
+  m_availableTemplates.insert(dictation_entry->typeIndentifier(), dictation_entry);
 }
 
 TemplateGenerator *TemplateFactory::generator() const {
