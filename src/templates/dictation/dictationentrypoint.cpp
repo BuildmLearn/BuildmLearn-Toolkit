@@ -30,30 +30,31 @@
 
 #include "templates/dictation/dictationentrypoint.h"
 
-#include "core/templatefactory.h"
 #include "templates/dictation/dictationcore.h"
-#include "templates/dictation/dictationeditor.h"
-#include "templates/dictation/dictationsimulator.h"
+#include "core/templateeditor.h"
+#include "core/templatesimulator.h"
 
 
-DictationEntryPoint::DictationEntryPoint(TemplateFactory *parent) : TemplateEntryPoint(parent) {
+DictationEntryPoint::DictationEntryPoint(TemplateFactory *parent)
+  : TemplateEntryPoint(parent) {
   m_baseFolder = "dictation";
-  m_description = "Choose this template to create Dictation-like applications.";
+  m_description = "Choose this template to create Dictation like applications.";
   m_humanName = "Dictation";
   m_name = "dictation";
-  m_thumbnailPassage = "thumbnail.png";
-  m_typeIndentifier = "DictationTemplate";
+  m_thumbnailImage = "thumbnail.png";
+  m_typeIndentifier = "DictationsTemplate";
   m_mobileApplicationApkFile = "DictationTemplateApp.apk";
 }
 
 DictationEntryPoint::~DictationEntryPoint() {
+
 }
 
 TemplateCore *DictationEntryPoint::createNewCore() {
   return new DictationCore(this, this);
 }
 
-TemplateCore *DictationEntryPoint::loadCoreFromBundleData(const QString &raw_data) {
+TemplateCore *DictationEntryPoint::loadCoreFromBundleData(const QString& raw_data) {
   DictationCore *core = new DictationCore(this, this);
   if (core->editor()->loadBundleData(raw_data)) {
     return core;

@@ -35,19 +35,16 @@
 #include "miscellaneous/application.h"
 #include "miscellaneous/iofactory.h"
 #include "core/templatefactory.h"
-#include "core/templateentrypoint.h"
 #include "core/templategenerator.h"
-#include "definitions/definitions.h"
+#include "core/templateentrypoint.h"
 
 #include <QDir>
 #include <QTextStream>
-#include <QFile>
-#include <QDateTime>
 #include <QProcess>
 
 
-DictationCore::DictationCore(TemplateEntryPoint *entry_point, QObject *parent)
-  : TemplateCore(entry_point, parent) {
+DictationCore::DictationCore(TemplateEntryPoint* entry_point, QObject* parent)
+  :TemplateCore(entry_point, parent) {
   m_editor = new DictationEditor(this);
   m_simulator = new DictationSimulator(this);
 }
@@ -85,7 +82,7 @@ TemplateCore::GenerationResult DictationCore::generateMobileApplication(const QS
   QFile index_file(base_folder + "/assets/dictation_content.xml");
   index_file.open(QIODevice::WriteOnly | QIODevice::Text);
 
-  emit generationProgress(30, tr("Writting dictation data into file..."));
+  emit generationProgress(30, tr("Writting info data into file..."));
 
   QTextStream out(&index_file);
   out << dictation_data;
@@ -97,6 +94,7 @@ TemplateCore::GenerationResult DictationCore::generateMobileApplication(const QS
 
   // Copying of target apk file.
   QString new_apk_name = input_apk_file;
+
   if (!QFile::copy(APP_TEMPLATES_PATH + "/" + entryPoint()->baseFolder() + "/" + entryPoint()->mobileApplicationApkFile(),
                    base_folder + "/" + new_apk_name)) {
     qApp->templateManager()->generator()->cleanWorkspace();
@@ -159,3 +157,4 @@ DictationEditor *DictationCore::dictationEditor() {
 DictationSimulator *DictationCore::dictationSimulator() {
   return static_cast<DictationSimulator*>(m_simulator);
 }
+

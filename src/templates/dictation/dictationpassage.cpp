@@ -28,9 +28,7 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include "templates/dictation/dictationpassage.h"
-
-#include <QStringList>
+#include "dictationpassage.h"
 
 
 DictationPassage::DictationPassage() {
@@ -39,18 +37,18 @@ DictationPassage::DictationPassage() {
 DictationPassage::~DictationPassage() {
 }
 
-QString DictationPassage::title() const {
-  return m_title;
-}
-
-void DictationPassage::setTitle(const QString &title) {
-  m_title = title;
-}
-
 QString DictationPassage::passage() const {
-  return m_passage;
+    return m_passage;
 }
 
-void DictationPassage::setPassage(const QString &passage) {
-  m_passage = passage;
+void DictationPassage::setPassage(const QString& passage) {
+    m_passage = passage;
+}
+
+QString DictationPassage::title() const {
+    return m_title;
+}
+
+void DictationPassage::setTitle(const QString& title) {
+    m_title = title;
 }

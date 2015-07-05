@@ -33,8 +33,6 @@
 
 #include <QMetaType>
 
-#include <QStringList>
-
 
 class DictationPassage {
   public:
@@ -42,14 +40,14 @@ class DictationPassage {
     virtual ~DictationPassage();
 
     QString passage() const;
-    void setPassage(const QString &passage);
-    
+    void setPassage(const QString& passage);
+
     QString title() const;
-    void setTitle(const QString &title);
+    void setTitle(const QString& title);
 
   private:
     QString m_title;
-    QStringList m_passage;
+    QString m_passage;
 };
 
 Q_DECLARE_METATYPE(DictationPassage)

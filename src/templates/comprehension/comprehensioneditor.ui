@@ -155,7 +155,7 @@ p, li { white-space: pre-wrap; }
      <property name="title">
       <string>Passage editor</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout_3">
+     <layout class="QFormLayout" name="formLayout_3">
       <item row="0" column="0">
        <widget class="QLabel" name="label_10">
         <property name="text">
@@ -200,12 +200,12 @@ p, li { white-space: pre-wrap; }
       <item row="2" column="0">
        <widget class="QLabel" name="label_7">
         <property name="text">
-         <string>Passage</string>
+         <string>Passage (max 1000 char)</string>
         </property>
        </widget>
       </item>
       <item row="2" column="1">
-       <widget class="MaxLengthTextEdit" name="m_txtPassage">
+       <widget class="QTextEdit" name="m_txtPassage">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>1</horstretch>

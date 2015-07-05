@@ -34,25 +34,17 @@
 #include "core/templatesimulator.h"
 
 #include "ui_dictationsimulator.h"
-#include "templates/dictation/dictationeditor.h"
 
 
 namespace Ui {
   class DictationSimulator;
 }
 
-class TemplateCore;
-class QLabel;
-class QPushButton;
-class QRadioButton;
-
-/// \brief Simulator for Dictation template.
-/// \ingroup template-dictation
 class DictationSimulator : public TemplateSimulator {
     Q_OBJECT
 
   public:
-    // Constructors and destructors.
+    //Constructors and destructors.
     explicit DictationSimulator(TemplateCore *core, QWidget *parent = 0);
     virtual ~DictationSimulator();
 
@@ -64,11 +56,9 @@ class DictationSimulator : public TemplateSimulator {
   private slots:
     void start();
     void restart();
-    void exit();
     
   private:
     Ui::DictationSimulator *m_ui;
-    DictationEditor *editor;
 };
 
 #endif // DICTATIONSIMULATOR_H

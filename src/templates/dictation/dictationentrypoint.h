@@ -34,20 +34,20 @@
 #include "core/templateentrypoint.h"
 
 
-class TemplateFactory;
-
-/// \brief Entry point.
-/// \ingroup template-dictation
 class DictationEntryPoint : public TemplateEntryPoint {
     Q_OBJECT
 
   public:
-    // Constructors.
+    // Constructors and destructors.
     explicit DictationEntryPoint(TemplateFactory *parent);
     virtual ~DictationEntryPoint();
 
     TemplateCore *createNewCore();
-    TemplateCore *loadCoreFromBundleData(const QString &raw_data);
+    TemplateCore *loadCoreFromBundleData(const QString& raw_data);
+
+  signals:
+
+  public slots:
 };
 
 #endif // DICTATIONENTRYPOINT_H

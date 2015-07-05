@@ -36,18 +36,11 @@
 #include "ui_dictationeditor.h"
 #include "templates/dictation/dictationpassage.h"
 
-#include <QIcon>
-
 
 namespace Ui {
   class DictationEditor;
 }
 
-class DictationSimulator;
-class QShowEvent;
-
-/// \brief Editor for Dictation.
-/// \ingroup template-dictation
 class DictationEditor : public TemplateEditor {
     Q_OBJECT
 
@@ -55,50 +48,46 @@ class DictationEditor : public TemplateEditor {
     friend class DictationCore;
 
   public:
-    // Constructors and destructors.
     explicit DictationEditor(TemplateCore *core, QWidget *parent = 0);
     virtual ~DictationEditor();
 
-    QString generateBundleData();
     bool canGenerateApplications();
+    QString generateBundleData();
     bool loadBundleData(const QString &bundle_data);
 
-    /// \brief Access to list of added questions.
-    /// \return Returns list of added questions.
     QList<DictationPassage> activePassages() const;
 
     QString projectName();
     QString authorName();
 
-  private slots:
-    void updatePassageCount();
-    void addPassage(const QString &question, const QStringList &answers, int correct_answer);
-    void addPassage();
-    void loadPassage(int index);
-    void removePassage();
-    void savePassage();
-    void movePassageUp();
-    void movePassageDown();
-	
-	void selectPassage();
-	void loadPassage(const QString &passage_path);
-	
-    void configureUpDown();
-    void setEditorsEnabled(bool enabled);
-
-    void checkName();
+  private:
     void checkAuthor();
+    void checkName();
     void checkTitle();
     void checkPassage();
-    
-    void updateNameStatus();
-    void updateAuthorStatus();
-    void updateTitleStatus();
+   
+  private slots:
+    void setEditorsEnabled(bool enabled);
+    void updatePassageCount();
+    void addPassage();
+    void loadPassage(int index);
+    void savePassage();
+    void removePassage();
+    void onTitleChanged(const QString &new_title);
+    void onAuthorChanged(const QString &new_author);
+    void onNameChanged(const QString &new_name);
     void onPassageChanged();
-    
+    void selectPassage();
+    void selectPassage(const QString& passage_path);
+    void configureUpDown();
+    void movePassageUp();
+    void movePassageDown();
+    void addPassage(const QString& passage, const QString& title);
+
   private:
-    DictationPassage m_activePassage;
     Ui::DictationEditor *m_ui;
+    DictationPassage m_activePassage;
+    int m_wordCount;
 };
 
 #endif // DICTATIONEDITOR_H

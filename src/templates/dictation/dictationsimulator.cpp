@@ -31,20 +31,15 @@
 #include "templates/dictation/dictationsimulator.h"
 
 #include "core/templatecore.h"
-#include "templates/dictation/dictationcore.h"
 #include "templates/dictation/dictationeditor.h"
-//#include "templates/dictation/dictationitem.h"
 #include "definitions/definitions.h"
-
-#include <QMessageBox>
-#include <QLabel>
-#include <QPushButton>
-#include <QRadioButton>
-#include <QDebug>
+#include "miscellaneous/application.h"
+#include "miscellaneous/skinfactory.h"
 
 
 DictationSimulator::DictationSimulator(TemplateCore *core, QWidget *parent)
-  : TemplateSimulator(core, parent), m_ui(new Ui::DictationSimulator) {
+  : TemplateSimulator(core, parent),
+    m_ui(new Ui::DictationSimulator) {
   m_ui->setupUi(this);
 
   QFont caption_font = m_ui->m_lblHeading->font();
@@ -53,8 +48,6 @@ DictationSimulator::DictationSimulator(TemplateCore *core, QWidget *parent)
 
   connect(m_ui->m_btnStart, SIGNAL(clicked()), this, SLOT(start()));
   connect(m_ui->m_btnRestart, SIGNAL(clicked()), this, SLOT(restart()));
-  connect(m_ui->m_btnExit, SIGNAL(clicked()), this, SLOT(exit()));
-  
 }
 
 DictationSimulator::~DictationSimulator() {
@@ -64,22 +57,26 @@ DictationSimulator::~DictationSimulator() {
 }
 
 bool DictationSimulator::startSimulation() {
-  editor = static_cast<DictationEditor*>(core()->editor());
+  DictationEditor *editor = static_cast<DictationEditor*>(core()->editor());
 
   if (!editor->canGenerateApplications()) {
-    // There are no active questions or dictation does not
+    // There are no active passages or dictation does not
     // containt its name or author name.
     return false;
   }
 
-  // Remove existing questions.
+  m_ui->m_btnStart->setEnabled(true);
+  m_ui->m_lblAuthor->setText(editor->m_ui->m_txtAuthor->lineEdit()->text());
+  m_ui->m_lblHeading->setText(editor->m_ui->m_txtName->lineEdit()->text());
+
   
+  // Go to "start" page and begin.
   m_ui->m_phoneWidget->setCurrentIndex(1);
   return true;
 }
 
 bool DictationSimulator::stopSimulation() {
-  m_ui->m_phoneWidget->slideInIdx(0);
+  m_ui->m_phoneWidget->setCurrentIndex(0);
 
   emit canGoBackChanged(false);
 
@@ -91,21 +88,9 @@ bool DictationSimulator::goBack() {
 }
 
 void DictationSimulator::start() {
-  
-  m_ui->m_phoneWidget->slideInIdx(2);
-  
 }
 
 void DictationSimulator::restart() {
-  // Reset all the questions.
-  for (int i = 3; i < m_ui->m_phoneWidget->count() - 1; i++) {
-    static_cast<DictationItem*>(m_ui->m_phoneWidget->widget(i))->reset();
-  }
-
-  m_ui->m_phoneWidget->slideInIdx(1);
+  m_ui->m_phoneWidget->setCurrentIndex(1);
 }
 
-void DictationSimulator::exit() {
-  stopSimulation();
-  emit simulationStopRequested();
-}

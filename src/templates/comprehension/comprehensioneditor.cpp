@@ -69,8 +69,7 @@ ComprehensionEditor::ComprehensionEditor(TemplateCore *core, QWidget *parent)
   m_ui->m_txtAnswerThree->setValidator(option_validator);
   m_ui->m_txtAnswerFour->setValidator(option_validator);
   m_ui->m_txtQuestion->setMaxLength(160);
-  m_ui->m_txtPassage->setMaxLength(1000);
-
+  
   // Set tab order.
   QList<QWidget*> tab_order_widgets;
   tab_order_widgets << m_ui->m_txtQuestion << m_ui->m_btnAnswerOne << m_ui->m_txtAnswerOne <<
@@ -442,6 +441,11 @@ void ComprehensionEditor::checkPassage() {
     m_ui->m_lblPassageStatus->setStatus(WidgetWithStatus::Error, tr("Passage is empty."), tr("Passage is empty."));
   }
   else {
+	QString text = m_ui->m_txtPassage->toPlainText();
+	if (text.size() > 1000) {
+	  text.resize(1000);
+	  m_ui->m_txtPassage->setText(text);
+	}
     m_wordCount = m_ui->m_txtPassage->toPlainText().split(QRegExp("(\\s|\\n|\\r)+"),
 															 QString::SkipEmptyParts).count();
 	if (m_wordCount < 50) {
