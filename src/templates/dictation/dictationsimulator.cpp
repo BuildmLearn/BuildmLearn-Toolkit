@@ -45,6 +45,23 @@ DictationSimulator::DictationSimulator(TemplateCore *core, QWidget *parent)
   QFont caption_font = m_ui->m_lblHeading->font();
   caption_font.setPointSize(caption_font.pointSize() + SIMULATOR_HEADING_SIZE_INCREASE);
   m_ui->m_lblHeading->setFont(caption_font);
+  
+  QString style = "QPushButton {min-height:1.5em; font:1em; margin:0 1px 0 1px; color: white; \
+                   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #ff3232, \
+                   stop: 1 #e50000); border-style: outset;border-radius: 3px; border-width: 1px; \
+                   border-color: #ff0000;} QPushButton:pressed {background-color: \
+                   qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #e50000, stop: 1 #ff3232);}";
+
+  m_ui->m_btnStart->setStyleSheet(style);
+  
+  // Remove existing items.
+  m_ui->m_listItems->clear();
+
+  // Add new items.
+  foreach (const BasicmLearningItem &item, editor->activeItems()) {
+    QListWidgetItem *list_item = new QListWidgetItem(item.title(), m_ui->m_listItems);
+    list_item->setData(Qt::UserRole, QVariant::fromValue(item));
+  }
 
   connect(m_ui->m_btnStart, SIGNAL(clicked()), this, SLOT(start()));
   connect(m_ui->m_btnRestart, SIGNAL(clicked()), this, SLOT(restart()));

@@ -157,7 +157,44 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="m_pageSelect"/>
+     <widget class="QWidget" name="m_pageSelect">
+      <layout class="QVBoxLayout" name="verticalLayout_5">
+       <item>
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>List of Passages</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="Line" name="line_6">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QListView" name="m_listItems"/>
+       </item>
+       <item>
+        <widget class="Line" name="line_7">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="m_btnSelect">
+         <property name="text">
+          <string>&amp;Select</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
      <widget class="QWidget" name="m_pagePreferance">
       <layout class="QVBoxLayout" name="verticalLayout_4">
        <item>
