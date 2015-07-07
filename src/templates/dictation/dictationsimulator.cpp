@@ -32,6 +32,7 @@
 
 #include "core/templatecore.h"
 #include "templates/dictation/dictationeditor.h"
+#include "templates/dictation/dictationpassage.h"
 #include "definitions/definitions.h"
 #include "miscellaneous/application.h"
 #include "miscellaneous/skinfactory.h"
@@ -53,15 +54,6 @@ DictationSimulator::DictationSimulator(TemplateCore *core, QWidget *parent)
                    qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #e50000, stop: 1 #ff3232);}";
 
   m_ui->m_btnStart->setStyleSheet(style);
-  
-  // Remove existing items.
-  m_ui->m_listItems->clear();
-
-  // Add new items.
-  foreach (const BasicmLearningItem &item, editor->activeItems()) {
-    QListWidgetItem *list_item = new QListWidgetItem(item.title(), m_ui->m_listItems);
-    list_item->setData(Qt::UserRole, QVariant::fromValue(item));
-  }
 
   connect(m_ui->m_btnStart, SIGNAL(clicked()), this, SLOT(start()));
   connect(m_ui->m_btnRestart, SIGNAL(clicked()), this, SLOT(restart()));
@@ -80,6 +72,15 @@ bool DictationSimulator::startSimulation() {
     // There are no active passages or dictation does not
     // containt its name or author name.
     return false;
+  }
+
+  // Remove existing items.
+  m_ui->m_listItems->clear();
+
+  // Add new items.
+  foreach (const DictationPassage &passage, editor->activePassages()) {
+    QListWidgetItem *list_item = new QListWidgetItem(passage.title(), m_ui->m_listItems);
+    list_item->setData(Qt::UserRole, QVariant::fromValue(passage));
   }
 
   m_ui->m_btnStart->setEnabled(true);
@@ -105,9 +106,9 @@ bool DictationSimulator::goBack() {
 }
 
 void DictationSimulator::start() {
+m_ui->m_phoneWidget->setCurrentIndex(2);
 }
 
 void DictationSimulator::restart() {
   m_ui->m_phoneWidget->setCurrentIndex(1);
 }
-
