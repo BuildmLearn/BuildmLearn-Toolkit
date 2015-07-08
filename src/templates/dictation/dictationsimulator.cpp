@@ -32,7 +32,7 @@
 
 #include "core/templatecore.h"
 #include "templates/dictation/dictationeditor.h"
-#include "templates/dictation/dictationpassage.h"
+//#include "templates/dictation/dictationpassage.h"
 #include "definitions/definitions.h"
 #include "miscellaneous/application.h"
 #include "miscellaneous/skinfactory.h"
@@ -46,6 +46,8 @@ DictationSimulator::DictationSimulator(TemplateCore *core, QWidget *parent)
   QFont caption_font = m_ui->m_lblHeading->font();
   caption_font.setPointSize(caption_font.pointSize() + SIMULATOR_HEADING_SIZE_INCREASE);
   m_ui->m_lblHeading->setFont(caption_font);
+  m_ui->m_lblPassage->setFont(caption_font);
+  m_ui->m_lblTitle->setFont(caption_font);
   
   QString style = "QPushButton {min-height:1.5em; font:1em; margin:0 1px 0 1px; color: white; \
                    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #ff3232, \
@@ -56,6 +58,8 @@ DictationSimulator::DictationSimulator(TemplateCore *core, QWidget *parent)
   m_ui->m_btnStart->setStyleSheet(style);
 
   connect(m_ui->m_btnStart, SIGNAL(clicked()), this, SLOT(start()));
+  connect(m_ui->m_listItems, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(selectPassage(QListWidgetItem*)));
+  connect(m_ui->m_btnSelect, SIGNAL(clicked()), this, SLOT(select()));
   connect(m_ui->m_btnRestart, SIGNAL(clicked()), this, SLOT(restart()));
 }
 
@@ -102,7 +106,17 @@ bool DictationSimulator::stopSimulation() {
 }
 
 bool DictationSimulator::goBack() {
-  return false;
+  if (m_ui->m_phoneWidget->currentIndex() == 4) {
+    m_ui->m_phoneWidget->setCurrentIndex(2);
+    m_ui->m_listItems->setCurrentRow(-1);
+
+    emit canGoBackChanged(false);
+
+    return true;
+  }
+  else {
+    return false;
+  }
 }
 
 void DictationSimulator::start() {
@@ -111,4 +125,15 @@ m_ui->m_phoneWidget->setCurrentIndex(2);
 
 void DictationSimulator::restart() {
   m_ui->m_phoneWidget->setCurrentIndex(1);
+}
+
+void DictationSimulator::selectPassage(QListWidgetItem *passage) {
+  selected_passage = passage;
+}
+
+void DictationSimulator::select() {
+  m_ui->m_lblTitle->setText(selected_passage->data(Qt::UserRole).value<DictationPassage>().title());
+  m_ui->m_phoneWidget->setCurrentIndex(3);
+
+  emit canGoBackChanged(true);
 }

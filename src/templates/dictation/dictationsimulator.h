@@ -56,9 +56,12 @@ class DictationSimulator : public TemplateSimulator {
   private slots:
     void start();
     void restart();
+    void select();
+    void selectPassage(QListWidgetItem *passage);
     
   private:
     Ui::DictationSimulator *m_ui;
+    QListWidgetItem *selected_passage;
 };
 
 #endif // DICTATIONSIMULATOR_H
