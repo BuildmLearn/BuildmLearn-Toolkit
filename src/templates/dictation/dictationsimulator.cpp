@@ -31,11 +31,20 @@
 #include "templates/dictation/dictationsimulator.h"
 
 #include "core/templatecore.h"
+#include "core/templatefactory.h"
 #include "templates/dictation/dictationeditor.h"
-//#include "templates/dictation/dictationpassage.h"
 #include "definitions/definitions.h"
 #include "miscellaneous/application.h"
 #include "miscellaneous/skinfactory.h"
+#include "network-web/networkfactory.h"
+#include "gui/custommessagebox.h"
+
+#include <QInputDialog>
+#include <QFile>
+#include <QTextStream>
+#include <QDataStream>
+#include <QDir>
+#include <QDateTime>
 
 
 DictationSimulator::DictationSimulator(TemplateCore *core, QWidget *parent)
@@ -48,6 +57,7 @@ DictationSimulator::DictationSimulator(TemplateCore *core, QWidget *parent)
   m_ui->m_lblHeading->setFont(caption_font);
   m_ui->m_lblPassage->setFont(caption_font);
   m_ui->m_lblTitle->setFont(caption_font);
+  m_ui->m_lblScore->setFont(caption_font);
   
   QString style = "QPushButton {min-height:1.5em; font:1em; margin:0 1px 0 1px; color: white; \
                    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #ff3232, \
@@ -56,9 +66,21 @@ DictationSimulator::DictationSimulator(TemplateCore *core, QWidget *parent)
                    qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #e50000, stop: 1 #ff3232);}";
 
   m_ui->m_btnStart->setStyleSheet(style);
+  m_ui->m_btnBack->setStyleSheet(style);
+  m_ui->m_btnRestart->setStyleSheet(style);
+  
+  style = "QPushButton{min-height:1.5em; font:1em; margin:0 1px 0 1px; color: white; \
+           background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #329932, stop: \
+           1 #004C00); border-style: outset;border-radius: 3px; border-width: 1px; \
+           border-color: #50873a;} QPushButton:pressed {background-color: \
+           qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #004C00, stop: 1 #329932);}";
+  
+  m_ui->m_btnSelect->setStyleSheet(style);
+  m_ui->m_btnSubmit->setStyleSheet(style);
+  m_ui->m_btnRestart->setStyleSheet(style);
 
   connect(m_ui->m_btnStart, SIGNAL(clicked()), this, SLOT(start()));
-  connect(m_ui->m_listItems, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(selectPassage(QListWidgetItem*)));
+  //connect(m_ui->m_listItems, SIGNAL(currentRowChanged(int)), this, SLOT(selectPassage(int)));
   connect(m_ui->m_btnSelect, SIGNAL(clicked()), this, SLOT(select()));
   connect(m_ui->m_btnRestart, SIGNAL(clicked()), this, SLOT(restart()));
 }
@@ -80,7 +102,9 @@ bool DictationSimulator::startSimulation() {
 
   // Remove existing items.
   m_ui->m_listItems->clear();
-
+  
+  m_passages = editor->activePassages();
+  
   // Add new items.
   foreach (const DictationPassage &passage, editor->activePassages()) {
     QListWidgetItem *list_item = new QListWidgetItem(passage.title(), m_ui->m_listItems);
@@ -120,20 +144,91 @@ bool DictationSimulator::goBack() {
 }
 
 void DictationSimulator::start() {
-m_ui->m_phoneWidget->setCurrentIndex(2);
+  m_ui->m_phoneWidget->setCurrentIndex(2);
 }
 
 void DictationSimulator::restart() {
   m_ui->m_phoneWidget->setCurrentIndex(1);
 }
 
-void DictationSimulator::selectPassage(QListWidgetItem *passage) {
-  selected_passage = passage;
-}
+/*void DictationSimulator::selectPassage(QListWidgetItem *passage) {
+  selected_passage = passage->data(Qt::UserRole).value<DictationPassage>();
+}*/
 
 void DictationSimulator::select() {
-  m_ui->m_lblTitle->setText(selected_passage->data(Qt::UserRole).value<DictationPassage>().title());
+  //m_ui->m_lblTitle->setText(selected_passage->data(Qt::UserRole).value<DictationPassage>().title());
+  m_activePassage = m_ui->m_listItems->currentRow();
+  m_ui->m_lblTitle->setText(m_passages.at(m_activePassage).title());
   m_ui->m_phoneWidget->setCurrentIndex(3);
-
+  playPassage();
+  
   emit canGoBackChanged(true);
 }
+
+void DictationSimulator::playPassage() {
+  m_player = new QMediaPlayer;
+  QString url = QString("http://tts-api.com/tts.mp3?q=%1").arg(m_passages.at(m_activePassage).passage());
+  m_player->setMedia(QUrl(url));
+  m_player->setVolume(100);
+  m_player->play();
+}
+
+/*
+void DictationSimulator::playPassage() {
+#if defined(Q_OS_OS2)
+  if (SystemTrayIcon::isSystemTrayAvailable()) {
+    qApp->trayIcon()->showMessage(tr("Cannot play sound"), tr("Sound cannot play on this platform."),
+                                  QSystemTrayIcon::Warning);
+  }
+  else {
+    CustomMessageBox::show(this, QMessageBox::Warning, tr("Cannot play sound"), tr("Sound cannot play on this platform."));
+  }
+#else
+  // Play sound.
+  QByteArray output;
+
+  DictationPassage current_passage = m_passages.at(m_activePassage);
+
+  if (current_passage.audioFilePath().isEmpty() || !QFile::exists(current_passage.audioFilePath())) {
+    // Current passage does not contain downloaded audio file.
+    QString passage = m_passages.at(m_activePassage).passage();//.replace(' ', '+');
+    //QString passage = QUrl::toPercentEncoding(m_passages.at(m_activePassage).passage());
+    QString url = QString("http://tts-api.com/tts.mp3?q=%1").arg(passage);
+    QNetworkReply::NetworkError result_of_download = NetworkFactory::downloadFile(url, 10000, output);
+
+    if (result_of_download != QNetworkReply::NoError) {
+      // There was apparently some error.
+      if (SystemTrayIcon::isSystemTrayAvailable()) {
+        qApp->trayIcon()->showMessage(tr("Cannot play sound"), tr("Sound cannot play on this platform because sound file was not downloaded."),
+                                      QSystemTrayIcon::Warning);
+      }
+      else {
+        CustomMessageBox::show(this, QMessageBox::Warning, tr("Cannot play sound"), tr("Sound cannot play on this platform because sound file was not downloaded."));
+      }
+
+      return;
+    }
+
+    // Store downloaded sound file.
+    QString sound_file_name = qApp->templateManager()->tempDirectory() + QDir::separator() +
+                              "sound_" + QDateTime::currentDateTime().toString("yyyy-MM-dd-hhmmss") + ".mp3";
+    QFile sound_file(sound_file_name);
+    sound_file.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Unbuffered);
+    sound_file.write(output);
+    sound_file.close();
+
+    // We obtained new sound file for this particular passage.
+    // So, store the path.
+    // NOTE: Note that this is forgotten when new simulation is started.
+    m_passages[m_activePassage].setAudioFilePath(sound_file_name);
+  }
+    
+  m_player->setMedia(QUrl::fromLocalFile(m_passages.at(m_activePassage).audioFilePath()));
+  m_player->setVolume(100);
+  m_player->play();
+  
+  //IOFactory::playWaveFile(m_passages.at(m_activePassage).audioFilePath());
+#endif
+
+}
+*/

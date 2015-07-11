@@ -32,8 +32,11 @@
 #define DICTATIONSIMULATOR_H
 
 #include "core/templatesimulator.h"
+#include "templates/dictation/dictationpassage.h"
 
 #include "ui_dictationsimulator.h"
+
+#include <QMediaPlayer>
 
 
 namespace Ui {
@@ -57,11 +60,15 @@ class DictationSimulator : public TemplateSimulator {
     void start();
     void restart();
     void select();
-    void selectPassage(QListWidgetItem *passage);
+    //void selectPassage(QListWidgetItem *passage);
+		void playPassage();
     
   private:
     Ui::DictationSimulator *m_ui;
-    QListWidgetItem *selected_passage;
+    //QListWidgetItem *selected_passage;
+		QList<DictationPassage> m_passages;
+		int m_activePassage;
+		QMediaPlayer *m_player;
 };
 
 #endif // DICTATIONSIMULATOR_H
