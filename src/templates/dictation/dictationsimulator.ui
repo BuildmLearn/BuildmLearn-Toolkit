@@ -179,20 +179,6 @@
        <item>
         <widget class="QListWidget" name="m_listItems"/>
        </item>
-       <item>
-        <widget class="Line" name="line_7">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="m_btnSelect">
-         <property name="text">
-          <string>&amp;Select</string>
-         </property>
-        </widget>
-       </item>
       </layout>
      </widget>
      <widget class="QWidget" name="m_pageDictation">
@@ -244,13 +230,6 @@
        </item>
        <item>
         <layout class="QGridLayout" name="gridLayout_2">
-         <item row="0" column="1">
-          <widget class="QSlider" name="m_sliderPlay">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-          </widget>
-         </item>
          <item row="0" column="0">
           <widget class="PlainToolButton" name="m_btnPlayPause">
            <property name="toolTip">
@@ -266,19 +245,6 @@
             </size>
            </property>
           </widget>
-         </item>
-         <item row="0" column="2">
-          <spacer name="horizontalSpacer_5">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
          </item>
         </layout>
        </item>
@@ -304,7 +270,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QTextEdit" name="textEdit"/>
+        <widget class="QTextEdit" name="m_txtCorrectPassage"/>
        </item>
        <item>
         <layout class="QGridLayout" name="gridLayout">

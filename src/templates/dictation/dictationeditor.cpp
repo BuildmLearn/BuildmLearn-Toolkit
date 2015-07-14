@@ -251,9 +251,9 @@ void DictationEditor::checkPassage() {
 	}
     m_wordCount = m_ui->m_txtPassage->toPlainText().split(QRegExp("(\\s|\\n|\\r)+"),
 															 QString::SkipEmptyParts).count();
-	if (m_wordCount < 10) {
-	  m_ui->m_lblPassageStatus->setStatus(WidgetWithStatus::Error, tr("Passage has %1 words, min 10 words required")
-										  .arg(QString::number(m_wordCount)), tr("Passage has %1 words, min 10 words \
+	if (m_wordCount < 1) {
+	  m_ui->m_lblPassageStatus->setStatus(WidgetWithStatus::Error, tr("Passage has %1 words, min 2 words required")
+										  .arg(QString::number(m_wordCount)), tr("Passage has %1 words, min 2 words \
 										  required").arg(QString::number(m_wordCount)));
     }
     else {

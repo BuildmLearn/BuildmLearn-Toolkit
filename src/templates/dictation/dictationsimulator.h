@@ -37,6 +37,7 @@
 #include "ui_dictationsimulator.h"
 
 #include <QMediaPlayer>
+#include "miscellaneous/iconfactory.h"
 
 
 namespace Ui {
@@ -44,7 +45,7 @@ namespace Ui {
 }
 
 class DictationSimulator : public TemplateSimulator {
-    Q_OBJECT
+  Q_OBJECT
 
   public:
     //Constructors and destructors.
@@ -60,15 +61,19 @@ class DictationSimulator : public TemplateSimulator {
     void start();
     void restart();
     void select();
-    //void selectPassage(QListWidgetItem *passage);
-		void playPassage();
+    void playPause();
+    void moveSlider(qint64 position);
+    void submit();
+    void exit();
     
   private:
+		void playPassage();
     Ui::DictationSimulator *m_ui;
-    //QListWidgetItem *selected_passage;
-		QList<DictationPassage> m_passages;
+    QList<DictationPassage> m_passages;
 		int m_activePassage;
 		QMediaPlayer *m_player;
+		bool m_play;
+		IconFactory *m_factory;
 };
 
 #endif // DICTATIONSIMULATOR_H

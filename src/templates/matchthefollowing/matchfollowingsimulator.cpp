@@ -69,7 +69,8 @@ MatchFollowingSimulator::MatchFollowingSimulator(TemplateCore *core, QWidget *pa
   m_ui->m_btnAnswer->setStyleSheet(style);
   m_ui->m_btnTryAgain->setStyleSheet(style);
 
-  style = "QListWidget {color: black; background-color: white;}";
+  style = "QListWidget {color: black; background-color: white;} QScrollBar {background-color: grey; border-style: \
+           outset;border-radius: 3px; border-width: 1px; border-color: black;}";
 
   m_ui->m_listFirst->setStyleSheet(style);
   m_ui->m_listSecond->setStyleSheet(style);
