@@ -468,6 +468,12 @@ set(APP_SOURCES
   src/templates/dictation/dictationsimulator.cpp
   src/templates/dictation/dictationpassage.cpp
   
+  src/templates/videocollection/videocollectionentrypoint.cpp
+  src/templates/videocollection/videocollectioncore.cpp
+  src/templates/videocollection/videocollectioneditor.cpp
+  src/templates/videocollection/videocollectionsimulator.cpp
+  src/templates/videocollection/videocollectionvideo.cpp
+  
   src/main.cpp
 )
 
@@ -555,6 +561,11 @@ set(APP_HEADERS
   src/templates/dictation/dictationeditor.h
   src/templates/dictation/dictationsimulator.h
   src/templates/dictation/dictationpassage.h
+  
+  src/templates/videocollection/videocollectionentrypoint.h
+  src/templates/videocollection/videocollectioncore.h
+  src/templates/videocollection/videocollectioneditor.h
+  src/templates/videocollection/videocollectionsimulator.h
 )
 
 # APP form files.
@@ -591,6 +602,9 @@ set(APP_FORMS
 
   src/templates/dictation/dictationeditor.ui
   src/templates/dictation/dictationsimulator.ui
+  
+  src/templates/videocollection/videocollectioneditor.ui
+  src/templates/videocollection/videocollectionsimulator.ui
 )
 
 # APP translations.

@@ -1,19 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>DictationEditor</class>
- <widget class="QWidget" name="DictationEditor">
+ <class>VideoCollectionEditor</class>
+ <widget class="QWidget" name="VideoCollectionEditor">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>746</width>
-    <height>600</height>
+    <width>758</width>
+    <height>571</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
+  <layout class="QHBoxLayout" name="horizontalLayout">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
    <item>
     <widget class="QScrollArea" name="scrollArea">
      <property name="frameShape">
@@ -27,70 +39,33 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>728</width>
-        <height>582</height>
+        <width>758</width>
+        <height>571</height>
        </rect>
       </property>
-      <layout class="QGridLayout" name="gridLayout_3">
-       <item row="0" column="0">
-        <widget class="QGroupBox" name="m_groupPassageEditor">
-         <property name="title">
-          <string>Video editor</string>
-         </property>
-         <layout class="QGridLayout" name="gridLayout">
-          <item row="0" column="0">
-           <widget class="QLabel" name="label">
-            <property name="text">
-             <string>Title</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="LineEditWithStatus" name="m_txtTitle" native="true"/>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="label_8">
-            <property name="text">
-             <string>Url of video</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="LineEditWithStatus" name="m_txtTitle_2" native="true"/>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="label_7">
-            <property name="text">
-             <string>Description</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="QTextEdit" name="m_txtPassage">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-              <horstretch>1</horstretch>
-              <verstretch>1</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="horizontalScrollBarPolicy">
-             <enum>Qt::ScrollBarAlwaysOff</enum>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
+      <layout class="QGridLayout" name="gridLayout">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
        <item row="0" column="1" rowspan="3">
         <widget class="QGroupBox" name="groupBox_2">
          <property name="title">
-          <string>Active Videos</string>
+          <string>Active videos</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_2">
           <item row="1" column="0">
-           <widget class="PlainToolButton" name="m_btnPassageAdd">
+           <widget class="PlainToolButton" name="m_btnVideoAdd">
             <property name="toolTip">
-             <string>Add new passage.</string>
+             <string>Add new video.</string>
             </property>
             <property name="text">
              <string>...</string>
@@ -104,9 +79,9 @@
            </widget>
           </item>
           <item row="1" column="3">
-           <widget class="PlainToolButton" name="m_btnPassageDown">
+           <widget class="PlainToolButton" name="m_btnVideoDown">
             <property name="toolTip">
-             <string>Move passage down.</string>
+             <string>Move video down.</string>
             </property>
             <property name="text">
              <string>...</string>
@@ -120,12 +95,12 @@
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="PlainToolButton" name="m_btnPassageRemove">
+           <widget class="PlainToolButton" name="m_btnVideoRemove">
             <property name="enabled">
              <bool>false</bool>
             </property>
             <property name="toolTip">
-             <string>Remove selected passage.</string>
+             <string>Remove selected video.</string>
             </property>
             <property name="text">
              <string>...</string>
@@ -139,9 +114,9 @@
            </widget>
           </item>
           <item row="1" column="2">
-           <widget class="PlainToolButton" name="m_btnPassageUp">
+           <widget class="PlainToolButton" name="m_btnVideoUp">
             <property name="toolTip">
-             <string>Move passage up.</string>
+             <string>Move video up.</string>
             </property>
             <property name="text">
              <string>...</string>
@@ -168,7 +143,7 @@
            </spacer>
           </item>
           <item row="0" column="0" colspan="5">
-           <widget class="QListWidget" name="m_listPassages">
+           <widget class="QListWidget" name="m_listVideos">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>1</horstretch>
@@ -176,7 +151,7 @@
              </sizepolicy>
             </property>
             <property name="toolTip">
-             <string>This list contains already added passages.</string>
+             <string>This list contains already added videos.</string>
             </property>
            </widget>
           </item>
@@ -186,7 +161,7 @@
        <item row="1" column="0">
         <widget class="QGroupBox" name="groupBox_3">
          <property name="title">
-          <string>VideoCollection metadata</string>
+          <string>Videocollections metadata</string>
          </property>
          <layout class="QFormLayout" name="formLayout_2">
           <property name="fieldGrowthPolicy">
@@ -220,7 +195,96 @@
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="LineEditWithStatus" name="m_txtNumberOfPassages" native="true"/>
+           <widget class="LineEditWithStatus" name="m_txtNumberOfVideos" native="true"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QGroupBox" name="m_groupVideoEditor">
+         <property name="title">
+          <string>Video editor</string>
+         </property>
+         <layout class="QFormLayout" name="formLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>Url</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="LineEditWithStatus" name="m_txtVideo" native="true"/>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>Title</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="LineEditWithStatus" name="m_txtTitle" native="true"/>
+          </item>
+          <item row="4" column="1">
+           <layout class="QHBoxLayout" name="horizontalLayout_12">
+            <item>
+             <widget class="QLabel" name="label_5">
+              <property name="text">
+               <string>Thumbnail</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="LabelWithStatus" name="m_lblPictureFile" native="true">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="layoutDirection">
+               <enum>Qt::RightToLeft</enum>
+              </property>
+              <zorder>label_5</zorder>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="6" column="1">
+           <widget class="QLabel" name="m_lblPictureView">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>130</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>130</height>
+             </size>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignHCenter|Qt::AlignTop</set>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="0">
+           <widget class="QLabel" name="label_7">
+            <property name="text">
+             <string>Description</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="1">
+           <widget class="QTextEdit" name="textEdit"/>
           </item>
          </layout>
         </widget>
@@ -241,6 +305,12 @@
    <class>LineEditWithStatus</class>
    <extends>QWidget</extends>
    <header>lineeditwithstatus.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>LabelWithStatus</class>
+   <extends>QWidget</extends>
+   <header>labelwithstatus.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

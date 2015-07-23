@@ -28,41 +28,37 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include "templates/videocollection/videocollectionentrypoint.h"
+#ifndef VIDEOCOLLECTIONSIMULATOR_H
+#define VIDEOCOLLECTIONSIMULATOR_H
 
-#include "templates/videocollection/videocollectioncore.h"
-#include "core/templateeditor.h"
 #include "core/templatesimulator.h"
 
+#include "ui_videocollectionsimulator.h"
 
-VideoCollectionEntryPoint::VideoCollectionEntryPoint(TemplateFactory *parent)
-  : TemplateEntryPoint(parent) {
-  m_baseFolder = "videocollection";
-  m_description = "Choose this template to create applications containing collection of videos.";
-  m_humanName = "Video Collection";
-  m_name = "videocollection";
-  m_thumbnailImage = "thumbnail.png";
-  m_typeIndentifier = "VideoCollectionsTemplate";
-  m_mobileApplicationApkFile = "VideoCollectionTemplateApp.apk";
+
+namespace Ui {
+  class VideoCollectionSimulator;
 }
 
-VideoCollectionEntryPoint::~VideoCollectionEntryPoint() {
+class VideoCollectionSimulator : public TemplateSimulator {
+    Q_OBJECT
 
-}
+  public:
+    //Constructors and destructors.
+    explicit VideoCollectionSimulator(TemplateCore *core, QWidget *parent = 0);
+    virtual ~VideoCollectionSimulator();
 
-TemplateCore *VideoCollectionEntryPoint::createNewCore() {
-  return new VideoCollectionCore(this, this);
-}
+  public slots:
+    bool startSimulation();
+    bool stopSimulation();
+    bool goBack();
 
-TemplateCore *VideoCollectionEntryPoint::loadCoreFromBundleData(const QString& raw_data) {
-  VideoCollectionCore *core = new VideoCollectionCore(this, this);
-  if (core->editor()->loadBundleData(raw_data)) {
-    return core;
-  }
-  else {
-    core->simulator()->deleteLater();
-    core->editor()->deleteLater();
-    core->deleteLater();
-    return NULL;
-  }
-}
+  private slots:
+    void start();
+    void restart();
+    
+  private:
+    Ui::VideoCollectionSimulator *m_ui;
+};
+
+#endif // VIDEOCOLLECTIONSIMULATOR_H

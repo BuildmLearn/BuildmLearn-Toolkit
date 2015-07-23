@@ -44,6 +44,7 @@
 #include "templates/matchthefollowing/matchfollowingentrypoint.h"
 #include "templates/comprehension/comprehensionentrypoint.h"
 #include "templates/dictation/dictationentrypoint.h"
+#include "templates/videocollection/videocollectionentrypoint.h"
 
 #if QT_VERSION >= 0x050000
 #include <QStandardPaths>
@@ -328,6 +329,9 @@ void TemplateFactory::setupTemplates() {
   
   TemplateEntryPoint *dictation_entry = new DictationEntryPoint(this);
   m_availableTemplates.insert(dictation_entry->typeIndentifier(), dictation_entry);
+  
+  TemplateEntryPoint *videocollection_entry = new VideoCollectionEntryPoint(this);
+  m_availableTemplates.insert(videocollection_entry->typeIndentifier(), videocollection_entry);
 }
 
 TemplateGenerator *TemplateFactory::generator() const {

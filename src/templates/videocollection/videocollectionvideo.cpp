@@ -28,41 +28,45 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include "templates/videocollection/videocollectionentrypoint.h"
-
-#include "templates/videocollection/videocollectioncore.h"
-#include "core/templateeditor.h"
-#include "core/templatesimulator.h"
+#include "videocollectionvideo.h"
 
 
-VideoCollectionEntryPoint::VideoCollectionEntryPoint(TemplateFactory *parent)
-  : TemplateEntryPoint(parent) {
-  m_baseFolder = "videocollection";
-  m_description = "Choose this template to create applications containing collection of videos.";
-  m_humanName = "Video Collection";
-  m_name = "videocollection";
-  m_thumbnailImage = "thumbnail.png";
-  m_typeIndentifier = "VideoCollectionsTemplate";
-  m_mobileApplicationApkFile = "VideoCollectionTemplateApp.apk";
+VideoCollectionVideo::VideoCollectionVideo() {
 }
 
-VideoCollectionEntryPoint::~VideoCollectionEntryPoint() {
-
+VideoCollectionVideo::~VideoCollectionVideo() {
 }
 
-TemplateCore *VideoCollectionEntryPoint::createNewCore() {
-  return new VideoCollectionCore(this, this);
+QString VideoCollectionVideo::video() const {
+    return m_video;
 }
 
-TemplateCore *VideoCollectionEntryPoint::loadCoreFromBundleData(const QString& raw_data) {
-  VideoCollectionCore *core = new VideoCollectionCore(this, this);
-  if (core->editor()->loadBundleData(raw_data)) {
-    return core;
-  }
-  else {
-    core->simulator()->deleteLater();
-    core->editor()->deleteLater();
-    core->deleteLater();
-    return NULL;
-  }
+void VideoCollectionVideo::setVideo(const QString& video) {
+    m_video = video;
 }
+
+QString VideoCollectionVideo::hint() const {
+    return m_hint;
+}
+
+void VideoCollectionVideo::setHint(const QString& hint) {
+    m_hint = hint;
+}
+
+QString VideoCollectionVideo::picturePath() const {
+    return m_picturePath;
+}
+
+void VideoCollectionVideo::setPicturePath(const QString& picture_path) {
+    m_picturePath = picture_path;
+}
+QString VideoCollectionVideo::answer() const
+{
+  return m_answer;
+}
+
+void VideoCollectionVideo::setAnswer(const QString& answer)
+{
+  m_answer = answer;
+}
+

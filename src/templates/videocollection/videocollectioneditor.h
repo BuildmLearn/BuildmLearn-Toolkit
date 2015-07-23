@@ -28,41 +28,64 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include "templates/videocollection/videocollectionentrypoint.h"
+#ifndef VIDEOCOLLECTIONEDITOR_H
+#define VIDEOCOLLECTIONEDITOR_H
 
-#include "templates/videocollection/videocollectioncore.h"
 #include "core/templateeditor.h"
-#include "core/templatesimulator.h"
+
+#include "ui_videocollectioneditor.h"
+#include "templates/videocollection/videocollectionvideo.h"
 
 
-VideoCollectionEntryPoint::VideoCollectionEntryPoint(TemplateFactory *parent)
-  : TemplateEntryPoint(parent) {
-  m_baseFolder = "videocollection";
-  m_description = "Choose this template to create applications containing collection of videos.";
-  m_humanName = "Video Collection";
-  m_name = "videocollection";
-  m_thumbnailImage = "thumbnail.png";
-  m_typeIndentifier = "VideoCollectionsTemplate";
-  m_mobileApplicationApkFile = "VideoCollectionTemplateApp.apk";
+namespace Ui {
+  class VideoCollectionEditor;
 }
 
-VideoCollectionEntryPoint::~VideoCollectionEntryPoint() {
+class VideoCollectionEditor : public TemplateEditor {
+    Q_OBJECT
 
-}
+    friend class VideoCollectionSimulator;
+    friend class VideoCollectionCore;
 
-TemplateCore *VideoCollectionEntryPoint::createNewCore() {
-  return new VideoCollectionCore(this, this);
-}
+  public:
+    explicit VideoCollectionEditor(TemplateCore *core, QWidget *parent = 0);
+    virtual ~VideoCollectionEditor();
 
-TemplateCore *VideoCollectionEntryPoint::loadCoreFromBundleData(const QString& raw_data) {
-  VideoCollectionCore *core = new VideoCollectionCore(this, this);
-  if (core->editor()->loadBundleData(raw_data)) {
-    return core;
-  }
-  else {
-    core->simulator()->deleteLater();
-    core->editor()->deleteLater();
-    core->deleteLater();
-    return NULL;
-  }
-}
+    bool canGenerateApplications();
+    QString generateBundleData();
+    bool loadBundleData(const QString &bundle_data);
+
+    QList<VideoCollectionVideo> activeVideos() const;
+
+    QString projectName();
+    QString authorName();
+
+  private:
+    void checkAuthor();
+    void checkHint();
+    void checkVideo();
+    void checkAnswer();
+    void checkName();
+
+  private slots:
+    void setEditorsEnabled(bool enabled);
+    void updateVideoCount();
+    void addVideo();
+    void loadVideo(int index);
+    void saveVideo();
+    void removeVideo();
+    void onAnswerChanged(const QString &new_answer);
+    void onHintChanged(const QString &new_hint);
+    void onAuthorChanged(const QString &new_author);
+    void onNameChanged(const QString &new_name);
+    void configureUpDown();
+    void moveVideoUp();
+    void moveVideoDown();
+    void addVideo(const QString& video, const QString& answer, const QString& hint, const QString& picture_path);
+
+  private:
+    Ui::VideoCollectionEditor *m_ui;
+    VideoCollectionVideo m_activeVideo;
+};
+
+#endif // VIDEOCOLLECTIONEDITOR_H
