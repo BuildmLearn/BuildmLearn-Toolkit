@@ -62,9 +62,8 @@ class VideoCollectionEditor : public TemplateEditor {
 
   private:
     void checkAuthor();
-    void checkHint();
-    void checkVideo();
-    void checkAnswer();
+    void checkTitle();
+    void checkUrl();
     void checkName();
 
   private slots:
@@ -74,14 +73,14 @@ class VideoCollectionEditor : public TemplateEditor {
     void loadVideo(int index);
     void saveVideo();
     void removeVideo();
-    void onAnswerChanged(const QString &new_answer);
-    void onHintChanged(const QString &new_hint);
+    void onUrlChanged(const QString &new_url);
+    void onTitleChanged(const QString &new_title);
     void onAuthorChanged(const QString &new_author);
     void onNameChanged(const QString &new_name);
     void configureUpDown();
     void moveVideoUp();
     void moveVideoDown();
-    void addVideo(const QString& video, const QString& answer, const QString& hint, const QString& picture_path);
+    void addVideo(const QString& url, const QString& title, const QString& description, const QString& thumbnail_path);
 
   private:
     Ui::VideoCollectionEditor *m_ui;

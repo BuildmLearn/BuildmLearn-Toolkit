@@ -45,28 +45,29 @@ void VideoCollectionVideo::setVideo(const QString& video) {
     m_video = video;
 }
 
-QString VideoCollectionVideo::hint() const {
-    return m_hint;
+QString VideoCollectionVideo::title() const {
+    return m_title;
 }
 
-void VideoCollectionVideo::setHint(const QString& hint) {
-    m_hint = hint;
+void VideoCollectionVideo::setTitle(const QString& title) {
+    m_title = title;
 }
 
-QString VideoCollectionVideo::picturePath() const {
-    return m_picturePath;
+QString VideoCollectionVideo::thumbnailPath() const {
+    return m_thumbnailPath;
 }
 
-void VideoCollectionVideo::setPicturePath(const QString& picture_path) {
-    m_picturePath = picture_path;
+void VideoCollectionVideo::setThumbnailPath(const QString& thumbnail_path) {
+    m_thumbnailPath = thumbnail_path;
 }
-QString VideoCollectionVideo::answer() const
+
+QString VideoCollectionVideo::description() const
 {
-  return m_answer;
+  return m_description;
 }
 
-void VideoCollectionVideo::setAnswer(const QString& answer)
+void VideoCollectionVideo::setDescription(const QString& description)
 {
-  m_answer = answer;
+  m_description = description;
 }
 

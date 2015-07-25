@@ -56,19 +56,19 @@ VideoCollectionEditor::VideoCollectionEditor(TemplateCore *core, QWidget *parent
   m_ui->m_txtName->lineEdit()->setValidator(title_validator);
 
   // Set validators.
-  QRegExpValidator *video_validator = new QRegExpValidator(this);
-  QRegExpValidator *hint_validator = new QRegExpValidator(this);
+  QRegExpValidator *url_validator = new QRegExpValidator(this);
+  QRegExpValidator *video_title_validator = new QRegExpValidator(this);
 
-  video_validator->setRegExp(QRegExp(".{,100}"));
-  hint_validator->setRegExp(QRegExp(".{,30}"));
+  url_validator->setRegExp(QRegExp(".{,100}"));
+  video_title_validator->setRegExp(QRegExp(".{,30}"));
 
-  m_ui->m_txtVideo->lineEdit()->setValidator(video_validator);
-  m_ui->m_txtHint->lineEdit()->setValidator(hint_validator);
+  m_ui->m_txtUrl->lineEdit()->setValidator(url_validator);
+  m_ui->m_txtTitle->lineEdit()->setValidator(video_title_validator);
 
   // Set tab order.
   QList<QWidget*> tab_order_widgets;
-  tab_order_widgets << m_ui->m_txtVideo->lineEdit() << m_ui->m_btnPictureSelect  <<
-                       m_ui->m_txtAnswer->lineEdit() << m_ui->m_txtHint->lineEdit() <<
+  tab_order_widgets << m_ui->m_txtUrl->lineEdit()  <<
+                       m_ui->m_txtDescription << m_ui->m_txtTitle->lineEdit() <<
                        m_ui->m_txtAuthor->lineEdit() << m_ui->m_txtName->lineEdit() <<
                        m_ui->m_listVideos << m_ui->m_btnVideoAdd << m_ui->m_btnVideoRemove <<
                        m_ui->m_btnVideoUp << m_ui->m_btnVideoDown;
@@ -79,13 +79,12 @@ VideoCollectionEditor::VideoCollectionEditor(TemplateCore *core, QWidget *parent
 
   m_ui->m_txtNumberOfVideos->lineEdit()->setEnabled(false);
 
-  m_ui->m_lblPictureFile->label()->setWordWrap(true);
-  m_ui->m_txtAnswer->lineEdit()->setPlaceholderText(tr("Answer for the answer"));
-  m_ui->m_txtHint->lineEdit()->setPlaceholderText(tr("Hint for the answer"));
+  m_ui->m_lblThumbnailStatus->label()->setWordWrap(true);
+  m_ui->m_txtTitle->lineEdit()->setPlaceholderText(tr("Title for the video"));
 
-  m_ui->m_lblPictureFile->setStatus(WidgetWithStatus::Error, QString(), tr("No picture selected"));
-  m_ui->m_txtAuthor->lineEdit()->setPlaceholderText(tr("Author of this quiz"));
-  m_ui->m_txtName->lineEdit()->setPlaceholderText(tr("Name of this quiz"));
+  m_ui->m_lblThumbnailStatus->setStatus(WidgetWithStatus::Error, QString(), tr("No video selected"));
+  m_ui->m_txtAuthor->lineEdit()->setPlaceholderText(tr("Author of this collection"));
+  m_ui->m_txtName->lineEdit()->setPlaceholderText(tr("Name of this collection"));
 
   IconFactory *factory = IconFactory::instance();
 
@@ -94,12 +93,11 @@ VideoCollectionEditor::VideoCollectionEditor(TemplateCore *core, QWidget *parent
   m_ui->m_btnVideoUp->setIcon(factory->fromTheme("move-up"));
   m_ui->m_btnVideoDown->setIcon(factory->fromTheme("move-down"));
 
-  connect(m_ui->m_btnPictureSelect, SIGNAL(clicked()), this, SLOT(selectPicture()));
   connect(m_ui->m_txtAuthor->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(onAuthorChanged(QString)));
-  connect(m_ui->m_txtVideo->lineEdit(), SIGNAL(textEdited(QString)), this, SLOT(saveVideo()));
+  connect(m_ui->m_txtUrl->lineEdit(), SIGNAL(textEdited(QString)), this, SLOT(onUrlChanged(QString)));
   connect(m_ui->m_txtName->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(onNameChanged(QString)));
-  connect(m_ui->m_txtAnswer->lineEdit(), SIGNAL(textEdited(QString)), this, SLOT(onAnswerChanged(QString)));
-  connect(m_ui->m_txtHint->lineEdit(), SIGNAL(textEdited(QString)), this, SLOT(onHintChanged(QString)));
+  connect(m_ui->m_txtDescription, SIGNAL(textChanged()), this, SLOT(saveVideo()));
+  connect(m_ui->m_txtTitle->lineEdit(), SIGNAL(textEdited(QString)), this, SLOT(onTitleChanged(QString)));
   connect(m_ui->m_btnVideoAdd, SIGNAL(clicked()), this, SLOT(addVideo()));
   connect(m_ui->m_btnVideoRemove, SIGNAL(clicked()), this, SLOT(removeVideo()));
   connect(m_ui->m_listVideos, SIGNAL(currentRowChanged(int)), this, SLOT(loadVideo(int)));
@@ -113,6 +111,8 @@ VideoCollectionEditor::VideoCollectionEditor(TemplateCore *core, QWidget *parent
 
   checkAuthor();
   checkName();
+  checkUrl();
+  checkTitle();
   loadVideo(-1);
 }
 
@@ -158,16 +158,16 @@ QString VideoCollectionEditor::generateBundleData() {
 
     // Fill in details about video.
     QDomElement video_element = source_document.createElement("video");
-    QDomElement answer_element = source_document.createElement("answer");
-    QDomElement hint_element = source_document.createElement("hint");
+    QDomElement description_element = source_document.createElement("description");
+    QDomElement title_element = source_document.createElement("title");
     QDomElement image_element = source_document.createElement("image");
 
     video_element.appendChild(source_document.createTextNode(video.video()));
-    answer_element.appendChild(source_document.createTextNode(video.answer()));
-    hint_element.appendChild(source_document.createTextNode(video.hint()));
+    description_element.appendChild(source_document.createTextNode(video.description()));
+    title_element.appendChild(source_document.createTextNode(video.title()));
 
     // Read file with image, convert it to base64 and insert into XML bundle.
-    QByteArray picture_encoded = IOFactory::fileToBase64(video.picturePath());
+    QByteArray picture_encoded = IOFactory::fileToBase64(video.thumbnailPath());
 
     if (picture_encoded.isEmpty() || picture_encoded.isNull()) {
       return QString();
@@ -175,8 +175,8 @@ QString VideoCollectionEditor::generateBundleData() {
 
     image_element.appendChild(source_document.createTextNode(QString::fromUtf8(picture_encoded)));
     item_element.appendChild(video_element);
-    item_element.appendChild(answer_element);
-    item_element.appendChild(hint_element);
+    item_element.appendChild(description_element);
+    item_element.appendChild(title_element);
     item_element.appendChild(image_element);
 
     data_element.appendChild(item_element);
@@ -196,11 +196,11 @@ bool VideoCollectionEditor::loadBundleData(const QString &bundle_data) {
 
     if (item.isElement()) {
       QString video = item.namedItem("video").toElement().text();
-      QString answer = item.namedItem("answer").toElement().text();
-      QString hint = item.namedItem("hint").toElement().text();
+      QString description = item.namedItem("description").toElement().text();
+      QString title = item.namedItem("title").toElement().text();
       QString image_data = item.namedItem("image").toElement().text();
 
-      if (video.isEmpty() || answer.isEmpty() || image_data.isEmpty()) {
+      if (video.isEmpty() || description.isEmpty() || image_data.isEmpty()) {
         // TODO: error
         continue;
       }
@@ -213,7 +213,7 @@ bool VideoCollectionEditor::loadBundleData(const QString &bundle_data) {
 
         if (IOFactory::base64ToFile(image_data, target_image_file)) {
           // Picture from the item was saved to disk.
-          addVideo(video, answer, hint, target_image_file);
+          addVideo(video, description, title, target_image_file);
         }
         else {
           // TODO: errro
@@ -261,36 +261,39 @@ void VideoCollectionEditor::checkAuthor() {
   }
 }
 
-void VideoCollectionEditor::checkHint() {
-  if (m_ui->m_txtHint->lineEdit()->text().isEmpty()) {
-    m_ui->m_txtHint->setStatus(WidgetWithStatus::Warning,
-                               tr("Hint is not specified."));
+void VideoCollectionEditor::checkTitle() {
+  if (m_ui->m_txtTitle->lineEdit()->text().isEmpty()) {
+    m_ui->m_txtTitle->setStatus(WidgetWithStatus::Warning,
+                               tr("Title is not specified."));
   }
   else {
-    m_ui->m_txtHint->setStatus(WidgetWithStatus::Ok,
-                               tr("Hint is specified."));
+    m_ui->m_txtTitle->setStatus(WidgetWithStatus::Ok,
+                               tr("Title is specified."));
   }
 }
 
-void VideoCollectionEditor::checkVideo() {
-  if (m_ui->m_txtVideo->lineEdit()->text().isEmpty()) {
-    m_ui->m_txtVideo->setStatus(WidgetWithStatus::Warning,
-                               tr("Video is not specified."));
+void VideoCollectionEditor::checkUrl() {
+  if (m_ui->m_txtUrl->lineEdit()->text().isEmpty()) {
+    m_ui->m_txtUrl->setStatus(WidgetWithStatus::Warning,
+                               tr("Url is not specified."));
   }
   else {
-    m_ui->m_txtVideo->setStatus(WidgetWithStatus::Ok,
-                               tr("Video is specified."));
-  }
-}
-
-void VideoCollectionEditor::checkAnswer() {
-  if (m_ui->m_txtAnswer->lineEdit()->text().isEmpty()) {
-    m_ui->m_txtAnswer->setStatus(WidgetWithStatus::Error,
-                                 tr("Answer is not specified."));
-  }
-  else {
-    m_ui->m_txtAnswer->setStatus(WidgetWithStatus::Ok,
-                                 tr("Answer is specified."));
+	  QString url = m_ui->m_txtUrl->lineEdit()->text();
+	  if (url.contains("youtube.com/watch?v=", Qt::CaseInsensitive)) {
+			m_ui->m_txtUrl->setStatus(WidgetWithStatus::Ok,
+                                tr("Valid Youtube url is specified."));
+		}
+		else if (url.contains("dailymotion.com/video/", Qt::CaseInsensitive)) {
+			m_ui->m_txtUrl->setStatus(WidgetWithStatus::Ok,
+                                tr("Valid Dailymotion url is specified."));
+		}
+		else if (url.contains("vimeo.com/", Qt::CaseInsensitive)) {
+			m_ui->m_txtUrl->setStatus(WidgetWithStatus::Ok,
+                                tr("Valid Vimeo url is specified."));
+		}
+		else
+			m_ui->m_txtUrl->setStatus(WidgetWithStatus::Error,
+                                tr("No valid Youtube or Dailymotion or Vimeo Url is specified."));
   }
 }
 
@@ -345,39 +348,39 @@ void VideoCollectionEditor::moveVideoDown() {
 
   emit changed();
 }
-
+/*
 void VideoCollectionEditor::loadPicture(const QString& picture_path) {
   if (!picture_path.isEmpty()) {
-    m_ui->m_lblPictureView->setPixmap(QPixmap(picture_path).scaled(m_ui->m_lblPictureView->size(),
+    m_ui->m_lblThumbnailView->setPixmap(QPixmap(picture_path).scaled(m_ui->m_lblThumbnailView->size(),
                                                                    Qt::KeepAspectRatio));
-    m_ui->m_lblPictureFile->setStatus(WidgetWithStatus::Ok,
+    m_ui->m_lblThumbnailStatus->setStatus(WidgetWithStatus::Ok,
                                       tr("Picture is selected."),
                                       tr("Picture is selected."));
   }
   else {
-    m_ui->m_lblPictureView->setPixmap(QPixmap());
-    m_ui->m_lblPictureFile->setStatus(WidgetWithStatus::Error,
+    m_ui->m_lblThumbnailView->setPixmap(QPixmap());
+    m_ui->m_lblThumbnailStatus->setStatus(WidgetWithStatus::Error,
                                       tr("Picture is not selected."),
                                       tr("No picture is selected."));
   }
 
-  m_ui->m_lblPictureFile->label()->setToolTip(QDir::toNativeSeparators(picture_path));
+  m_ui->m_lblThumbnailStatus->label()->setToolTip(QDir::toNativeSeparators(picture_path));
 }
-
+*/
 void VideoCollectionEditor::addVideo(const QString &video,
-                                  const QString &answer,
-                                  const QString &hint,
+                                  const QString &description,
+                                  const QString &title,
                                   const QString &picture_path) {
   int marked_video = m_ui->m_listVideos->currentRow();
   VideoCollectionVideo new_video;
   QListWidgetItem *new_item = new QListWidgetItem();
 
   new_video.setVideo(video);
-  new_video.setHint(hint);
-  new_video.setAnswer(answer);
-  new_video.setPicturePath(picture_path);
+  new_video.setTitle(title);
+  new_video.setDescription(description);
+  new_video.setThumbnailPath(picture_path);
 
-  new_item->setText(new_video.video());
+  new_item->setText(new_video.title());
   new_item->setData(Qt::UserRole, QVariant::fromValue(new_video));
 
   if (m_ui->m_listVideos->count() == 0) {
@@ -398,12 +401,13 @@ void VideoCollectionEditor::addVideo(const QString &video,
 }
 
 void VideoCollectionEditor::addVideo() {
-  addVideo(tr("What animal do you see on the picture?"),
-              tr("cat"),
-              tr("This animal is hated by dog."),
+  addVideo(QString()/*tr("Url")*/,
+              tr("Description"),
+              tr("Title"),
+			  QString()/*
               APP_TEMPLATES_PATH + QDir::separator() +
               core()->entryPoint()->baseFolder() + QDir::separator() +
-              "cat.png");
+              "cat.png"*/);
   launch();
   emit changed();
 }
@@ -413,43 +417,47 @@ void VideoCollectionEditor::setEditorsEnabled(bool enabled) {
 }
 
 void VideoCollectionEditor::loadVideo(int index) {
-  m_ui->m_txtVideo->blockSignals(true);
-  m_ui->m_lblPictureFile->label()->blockSignals(true);
+  m_ui->m_txtUrl->blockSignals(true);
+  m_ui->m_lblThumbnailStatus->label()->blockSignals(true);
+  m_ui->m_txtTitle->blockSignals(true);
+  m_ui->m_txtDescription->blockSignals(true);
 
   if (index >= 0) {
     VideoCollectionVideo video = m_ui->m_listVideos->item(index)->data(Qt::UserRole).value<VideoCollectionVideo>();
 
-    m_ui->m_txtVideo->lineEdit()->setText(video.video());
-    m_ui->m_txtAnswer->lineEdit()->setText(video.answer());
-    m_ui->m_txtHint->lineEdit()->setText(video.hint());
-    loadPicture(video.picturePath());
+    m_ui->m_txtUrl->lineEdit()->setText(video.video());
+    m_ui->m_txtDescription->setText(video.description());
+    m_ui->m_txtTitle->lineEdit()->setText(video.title());
+    //loadPicture(video.thumbnailPath());
 
     m_activeVideo = video;
   }
   else {
-    m_ui->m_txtVideo->lineEdit()->setText(QString());
-    m_ui->m_txtAnswer->lineEdit()->setText(QString());
-    m_ui->m_txtHint->lineEdit()->setText(QString());
-    loadPicture(QString());
+    m_ui->m_txtUrl->lineEdit()->setText(QString());
+    m_ui->m_txtDescription->clear();
+    m_ui->m_txtTitle->lineEdit()->setText(QString());
+    //loadPicture(QString());
   }
 
-  m_ui->m_txtVideo->blockSignals(false);
-  m_ui->m_lblPictureFile->label()->blockSignals(false);
+  m_ui->m_txtUrl->blockSignals(false);
+  m_ui->m_lblThumbnailStatus->label()->blockSignals(false);
+  m_ui->m_txtTitle->blockSignals(false);
+  m_ui->m_txtDescription->blockSignals(false);
 
-  checkAnswer();
-  checkHint();
+  //checkDescription();
+  checkTitle();
 
   QTimer::singleShot(0, this, SLOT(configureUpDown()));
 }
 
 void VideoCollectionEditor::saveVideo() {
-  m_activeVideo.setVideo(m_ui->m_txtVideo->lineEdit()->text());
-  m_activeVideo.setAnswer(m_ui->m_txtAnswer->lineEdit()->text());
-  m_activeVideo.setHint(m_ui->m_txtHint->lineEdit()->text());
-  m_activeVideo.setPicturePath(m_ui->m_lblPictureFile->label()->toolTip());
+  m_activeVideo.setVideo(m_ui->m_txtUrl->lineEdit()->text());
+  m_activeVideo.setDescription(m_ui->m_txtDescription->toPlainText());
+  m_activeVideo.setTitle(m_ui->m_txtTitle->lineEdit()->text());
+  m_activeVideo.setThumbnailPath(m_ui->m_lblThumbnailStatus->label()->toolTip());
 
   m_ui->m_listVideos->currentItem()->setData(Qt::UserRole, QVariant::fromValue(m_activeVideo));
-  m_ui->m_listVideos->currentItem()->setText(m_activeVideo.video());
+  m_ui->m_listVideos->currentItem()->setText(m_activeVideo.title());
 
   emit changed();
 }
@@ -473,17 +481,10 @@ void VideoCollectionEditor::removeVideo() {
   emit changed();
 }
 
-void VideoCollectionEditor::onAnswerChanged(const QString& new_answer) {
-  Q_UNUSED(new_answer)
+void VideoCollectionEditor::onTitleChanged(const QString& new_title) {
+  Q_UNUSED(new_title)
 
-  checkAnswer();
-  saveVideo();
-}
-
-void VideoCollectionEditor::onHintChanged(const QString& new_hint) {
-  Q_UNUSED(new_hint)
-
-  checkHint();
+  checkTitle();
   saveVideo();
 }
 
@@ -505,14 +506,11 @@ void VideoCollectionEditor::onNameChanged(const QString& new_name) {
   emit changed();
 }
 
-void VideoCollectionEditor::selectPicture() {
-  QString selected_picture = QFileDialog::getOpenFileName(this, tr("Select picture for video"),
-                                                          m_ui->m_lblPictureFile->label()->toolTip(),
-                                                          tr("Images (*.gif *.jpg *.png)"),
-                                                          0);
+void VideoCollectionEditor::onUrlChanged(const QString& new_url) {
+  Q_UNUSED(new_url)
 
-  if (!selected_picture.isEmpty()) {
-    loadPicture(selected_picture);
-    saveVideo();
-  }
+  checkUrl();
+
+  launch();
+  emit changed();
 }

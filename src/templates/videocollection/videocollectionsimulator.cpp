@@ -65,6 +65,11 @@ bool VideoCollectionSimulator::startSimulation() {
     return false;
   }
 
+  // Load the videos.
+  m_ui->m_btnStart->setEnabled(true);
+  m_ui->m_lblAuthor->setText(editor->m_ui->m_txtAuthor->lineEdit()->text());
+  m_ui->m_lblHeading->setText(editor->m_ui->m_txtName->lineEdit()->text());
+
   // Go to "start" page and begin.
   m_ui->m_phoneWidget->setCurrentIndex(1);
   return true;
@@ -83,6 +88,7 @@ bool VideoCollectionSimulator::goBack() {
 }
 
 void VideoCollectionSimulator::start() {
+  m_ui->m_phoneWidget->setCurrentIndex(1);
 }
 
 void VideoCollectionSimulator::restart() {

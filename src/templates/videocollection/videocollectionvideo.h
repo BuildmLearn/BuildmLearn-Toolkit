@@ -42,20 +42,20 @@ class VideoCollectionVideo {
     QString video() const;
     void setVideo(const QString& video);
 
-    QString hint() const;
-    void setHint(const QString& hint);
+    QString title() const;
+    void setTitle(const QString& title);
 
-    QString picturePath() const;
-    void setPicturePath(const QString& picture_path);
+    QString thumbnailPath() const;
+    void setThumbnailPath(const QString& picture_path);
 
-    QString answer() const;
-    void setAnswer(const QString& answer);
+    QString description() const;
+    void setDescription(const QString& description);
 
   private:
     QString m_video;
-    QString m_answer;
-    QString m_hint;
-    QString m_picturePath;
+    QString m_description;
+    QString m_title;
+    QString m_thumbnailPath;
 };
 
 Q_DECLARE_METATYPE(VideoCollectionVideo)
