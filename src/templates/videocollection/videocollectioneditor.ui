@@ -229,13 +229,6 @@
           <item row="4" column="1">
            <layout class="QHBoxLayout" name="horizontalLayout_12">
             <item>
-             <widget class="QLabel" name="label_5">
-              <property name="text">
-               <string>Thumbnail</string>
-              </property>
-             </widget>
-            </item>
-            <item>
              <widget class="LabelWithStatus" name="m_lblThumbnailStatus" native="true">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Expanding" vsizetype="Preferred">

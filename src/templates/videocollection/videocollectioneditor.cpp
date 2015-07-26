@@ -36,6 +36,17 @@
 #include "miscellaneous/iconfactory.h"
 #include "miscellaneous/iofactory.h"
 #include "core/templatefactory.h"
+#include "network-web/networkfactory.h"
+#include "gui/custommessagebox.h"
+
+#include <QInputDialog>
+#include <QFile>
+#include <QTextStream>
+#include <QDataStream>
+#include <QDir>
+#include <QDateTime>
+#include <QDebug>
+#include <QTextStream>
 
 #include <QTimer>
 #include <QFileDialog>
@@ -44,6 +55,10 @@
 VideoCollectionEditor::VideoCollectionEditor(TemplateCore *core, QWidget *parent)
   : TemplateEditor(core, parent), m_ui(new Ui::VideoCollectionEditor) {
   m_ui->setupUi(this);
+
+	// Set up Network access manager
+	//QNetworkAccessManager *manager = new QNetworkAccessManager(this);
+	//QNetworkReply *reply  = new QNetworkReply(this);;
 
   // Set validators.
   QRegExpValidator *author_validator = new QRegExpValidator(this);
@@ -56,13 +71,13 @@ VideoCollectionEditor::VideoCollectionEditor(TemplateCore *core, QWidget *parent
   m_ui->m_txtName->lineEdit()->setValidator(title_validator);
 
   // Set validators.
-  QRegExpValidator *url_validator = new QRegExpValidator(this);
+  //QRegExpValidator *url_validator = new QRegExpValidator(this);
   QRegExpValidator *video_title_validator = new QRegExpValidator(this);
 
-  url_validator->setRegExp(QRegExp(".{,100}"));
+  //url_validator->setRegExp(QRegExp(".{,100}"));
   video_title_validator->setRegExp(QRegExp(".{,30}"));
 
-  m_ui->m_txtUrl->lineEdit()->setValidator(url_validator);
+  //m_ui->m_txtUrl->lineEdit()->setValidator(url_validator);
   m_ui->m_txtTitle->lineEdit()->setValidator(video_title_validator);
 
   // Set tab order.
@@ -103,6 +118,8 @@ VideoCollectionEditor::VideoCollectionEditor(TemplateCore *core, QWidget *parent
   connect(m_ui->m_listVideos, SIGNAL(currentRowChanged(int)), this, SLOT(loadVideo(int)));
   connect(m_ui->m_btnVideoUp, SIGNAL(clicked()), this, SLOT(moveVideoUp()));
   connect(m_ui->m_btnVideoDown, SIGNAL(clicked()), this, SLOT(moveVideoDown()));
+  //connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(downloadingError(QNetworkReply::NetworkError)));
+	//connect(reply, SIGNAL(readyRead()), this, SLOT(sourceDownloaded()));
 
   setEditorsEnabled(false);
   updateVideoCount();
@@ -118,7 +135,8 @@ VideoCollectionEditor::VideoCollectionEditor(TemplateCore *core, QWidget *parent
 
 VideoCollectionEditor::~VideoCollectionEditor() {
   qDebug("Destroying VideoCollectionEditor instance.");
-
+	
+	//delete manager;
   delete m_ui;
 }
 
@@ -212,7 +230,7 @@ bool VideoCollectionEditor::loadBundleData(const QString &bundle_data) {
                                     QString("/image_%1.png").arg(i);
 
         if (IOFactory::base64ToFile(image_data, target_image_file)) {
-          // Picture from the item was saved to disk.
+          // Thumbnail from the item was saved to disk.
           addVideo(video, description, title, target_image_file);
         }
         else {
@@ -279,21 +297,97 @@ void VideoCollectionEditor::checkUrl() {
   }
   else {
 	  QString url = m_ui->m_txtUrl->lineEdit()->text();
-	  if (url.contains("youtube.com/watch?v=", Qt::CaseInsensitive)) {
-			m_ui->m_txtUrl->setStatus(WidgetWithStatus::Ok,
-                                tr("Valid Youtube url is specified."));
+	  
+	  if (url.contains("youtube.com/watch?v=", Qt::CaseInsensitive) or 
+				url.contains("dailymotion.com/video/", Qt::CaseInsensitive) or
+				url.contains("vimeo.com/", Qt::CaseInsensitive)) {	
+			
+			QByteArray output;
+			QNetworkReply::NetworkError result_of_download = NetworkFactory::downloadFile(url, 10000, output);
+			
+			if (result_of_download != QNetworkReply::NoError) {
+				m_ui->m_txtUrl->setStatus(WidgetWithStatus::Error,
+																	tr("Couldn't find the video"));
+				// There was apparently some error.
+				if (SystemTrayIcon::isSystemTrayAvailable()) {
+					qApp->trayIcon()->showMessage(tr("Cannot get video details"), tr("Video was not found, check the url again"),
+																				QSystemTrayIcon::Warning);
+				}
+				else {
+					CustomMessageBox::show(this, QMessageBox::Warning, tr("Cannot get video details"), tr("Video was not found, check the url again"));
+				}
+
+				return;
+			}
+
+			QString source_code(output);
+			source_code.replace("&#39;","'"); 
+			
+			/*
+			QStringList list = source_code.split("<span id=\"eow-title\" class=\"watch-title \" dir=\"ltr\" title="");
+			list = list[1].split('>');
+			qDebug()<<list[1];
+			QString title = list[1].remove("\"</span");
+			*/
+			
+			QStringList list = source_code.split("<meta property=\"og:title\" content=\"");
+			list = list[1].split("\"");
+			QString title = list[0];
+			m_ui->m_txtTitle->lineEdit()->setText(title);
+			
+			list = source_code.split("<meta property=\"og:description\" content=\"");
+			list = list[1].split("\"");
+			QString description = list[0];
+			m_ui->m_txtDescription->setText(description);
+			
+			list = source_code.split("<meta property=\"og:image\" content=\"");
+			list = list[1].split("\"");
+			QString thumbnail_url = list[0];
+			
+			result_of_download = NetworkFactory::downloadFile(thumbnail_url, 10000, output);
+			
+			if (result_of_download != QNetworkReply::NoError) {
+				m_ui->m_txtUrl->setStatus(WidgetWithStatus::Error,
+																	tr("Couldn't find the thumbnail"));
+				// There was apparently some error.
+				if (SystemTrayIcon::isSystemTrayAvailable()) {
+					qApp->trayIcon()->showMessage(tr("Cannot get thumbnail"), tr("Thumbnail was not found"),
+																				QSystemTrayIcon::Warning);
+				}
+				else {
+					CustomMessageBox::show(this, QMessageBox::Warning, tr("Cannot get thumbnail"), tr("Thumbnail was not found"));
+				}
+
+				return;
+			}
+			
+			QString thumbnail_file_name = qApp->templateManager()->tempDirectory() + QDir::separator() +
+                              "thumbnail_" + QDateTime::currentDateTime().toString("yyyy-MM-dd-hhmmss") + ".jpg";
+			QFile thumbnail_file(thumbnail_file_name);
+			thumbnail_file.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Unbuffered);
+			thumbnail_file.write(output);
+			thumbnail_file.close();
+			
+			loadThumbnail(thumbnail_file_name);
+			
+			saveVideo();
+			
+			m_ui->m_txtUrl->setStatus(WidgetWithStatus::Warning,
+                                tr("Video details are loaded successfully"));
+			
 		}
-		else if (url.contains("dailymotion.com/video/", Qt::CaseInsensitive)) {
+		/*else if (url.contains("dailymotion.com/video/", Qt::CaseInsensitive)) {
 			m_ui->m_txtUrl->setStatus(WidgetWithStatus::Ok,
                                 tr("Valid Dailymotion url is specified."));
 		}
 		else if (url.contains("vimeo.com/", Qt::CaseInsensitive)) {
 			m_ui->m_txtUrl->setStatus(WidgetWithStatus::Ok,
                                 tr("Valid Vimeo url is specified."));
-		}
+		}*/
 		else
 			m_ui->m_txtUrl->setStatus(WidgetWithStatus::Error,
-                                tr("No valid Youtube or Dailymotion or Vimeo Url is specified."));
+                                tr("No valid Youtube or Dailymotion or Vimeo video Url is specified."));
+      //return;
   }
 }
 
@@ -348,29 +442,29 @@ void VideoCollectionEditor::moveVideoDown() {
 
   emit changed();
 }
-/*
-void VideoCollectionEditor::loadPicture(const QString& picture_path) {
-  if (!picture_path.isEmpty()) {
-    m_ui->m_lblThumbnailView->setPixmap(QPixmap(picture_path).scaled(m_ui->m_lblThumbnailView->size(),
+
+void VideoCollectionEditor::loadThumbnail(const QString& thumbnail_path) {
+  if (!thumbnail_path.isEmpty()) {
+    m_ui->m_lblThumbnailView->setPixmap(QPixmap(thumbnail_path).scaled(m_ui->m_lblThumbnailView->size(),
                                                                    Qt::KeepAspectRatio));
     m_ui->m_lblThumbnailStatus->setStatus(WidgetWithStatus::Ok,
-                                      tr("Picture is selected."),
-                                      tr("Picture is selected."));
+                                      tr("Thumbnail is selected."),
+                                      tr("Thumbnail is selected."));
   }
   else {
     m_ui->m_lblThumbnailView->setPixmap(QPixmap());
     m_ui->m_lblThumbnailStatus->setStatus(WidgetWithStatus::Error,
-                                      tr("Picture is not selected."),
-                                      tr("No picture is selected."));
+                                      tr("Thumbnail is not selected."),
+                                      tr("No thumbnail is selected."));
   }
 
-  m_ui->m_lblThumbnailStatus->label()->setToolTip(QDir::toNativeSeparators(picture_path));
+  m_ui->m_lblThumbnailStatus->label()->setToolTip(QDir::toNativeSeparators(thumbnail_path));
 }
-*/
+
 void VideoCollectionEditor::addVideo(const QString &video,
                                   const QString &description,
                                   const QString &title,
-                                  const QString &picture_path) {
+                                  const QString &thumbnail_path) {
   int marked_video = m_ui->m_listVideos->currentRow();
   VideoCollectionVideo new_video;
   QListWidgetItem *new_item = new QListWidgetItem();
@@ -378,7 +472,7 @@ void VideoCollectionEditor::addVideo(const QString &video,
   new_video.setVideo(video);
   new_video.setTitle(title);
   new_video.setDescription(description);
-  new_video.setThumbnailPath(picture_path);
+  new_video.setThumbnailPath(thumbnail_path);
 
   new_item->setText(new_video.title());
   new_item->setData(Qt::UserRole, QVariant::fromValue(new_video));
@@ -428,7 +522,7 @@ void VideoCollectionEditor::loadVideo(int index) {
     m_ui->m_txtUrl->lineEdit()->setText(video.video());
     m_ui->m_txtDescription->setText(video.description());
     m_ui->m_txtTitle->lineEdit()->setText(video.title());
-    //loadPicture(video.thumbnailPath());
+    //loadThumbnail(video.thumbnailPath());
 
     m_activeVideo = video;
   }
@@ -436,7 +530,7 @@ void VideoCollectionEditor::loadVideo(int index) {
     m_ui->m_txtUrl->lineEdit()->setText(QString());
     m_ui->m_txtDescription->clear();
     m_ui->m_txtTitle->lineEdit()->setText(QString());
-    //loadPicture(QString());
+    //loadThumbnail(QString());
   }
 
   m_ui->m_txtUrl->blockSignals(false);

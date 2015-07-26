@@ -73,6 +73,7 @@ class VideoCollectionEditor : public TemplateEditor {
     void loadVideo(int index);
     void saveVideo();
     void removeVideo();
+    void loadThumbnail(const QString &thumbnail_path);
     void onUrlChanged(const QString &new_url);
     void onTitleChanged(const QString &new_title);
     void onAuthorChanged(const QString &new_author);
@@ -81,6 +82,8 @@ class VideoCollectionEditor : public TemplateEditor {
     void moveVideoUp();
     void moveVideoDown();
     void addVideo(const QString& url, const QString& title, const QString& description, const QString& thumbnail_path);
+    //void downloadingError(int error_code);
+    //void sourceDownloaded();
 
   private:
     Ui::VideoCollectionEditor *m_ui;
