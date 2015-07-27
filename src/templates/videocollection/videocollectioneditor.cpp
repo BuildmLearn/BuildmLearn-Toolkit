@@ -59,7 +59,9 @@ VideoCollectionEditor::VideoCollectionEditor(TemplateCore *core, QWidget *parent
 	// Set up Network access manager
 	//QNetworkAccessManager *manager = new QNetworkAccessManager(this);
 	//QNetworkReply *reply  = new QNetworkReply(this);;
-
+	m_ui->m_listVideos->setIconSize(QSize(75,75));
+	m_ui->m_listVideos->setWordWrap(true);
+	
   // Set validators.
   QRegExpValidator *author_validator = new QRegExpValidator(this);
   QRegExpValidator *title_validator = new QRegExpValidator(this);
@@ -386,7 +388,7 @@ void VideoCollectionEditor::checkUrl() {
 		}*/
 		else
 			m_ui->m_txtUrl->setStatus(WidgetWithStatus::Error,
-                                tr("No valid Youtube or Dailymotion or Vimeo video Url is specified."));
+                                tr("No valid Youtube or Dailymotion or Vimeo video url is specified."));
       //return;
   }
 }
@@ -468,7 +470,7 @@ void VideoCollectionEditor::addVideo(const QString &video,
   int marked_video = m_ui->m_listVideos->currentRow();
   VideoCollectionVideo new_video;
   QListWidgetItem *new_item = new QListWidgetItem();
-
+	
   new_video.setVideo(video);
   new_video.setTitle(title);
   new_video.setDescription(description);
@@ -495,13 +497,13 @@ void VideoCollectionEditor::addVideo(const QString &video,
 }
 
 void VideoCollectionEditor::addVideo() {
-  addVideo(QString()/*tr("Url")*/,
+  addVideo(QString(),
               tr("Description"),
               tr("Title"),
 			  QString()/*
               APP_TEMPLATES_PATH + QDir::separator() +
               core()->entryPoint()->baseFolder() + QDir::separator() +
-              "cat.png"*/);
+              "thumbnail.png"*/);
   launch();
   emit changed();
 }
@@ -522,7 +524,7 @@ void VideoCollectionEditor::loadVideo(int index) {
     m_ui->m_txtUrl->lineEdit()->setText(video.video());
     m_ui->m_txtDescription->setText(video.description());
     m_ui->m_txtTitle->lineEdit()->setText(video.title());
-    //loadThumbnail(video.thumbnailPath());
+    loadThumbnail(video.thumbnailPath());
 
     m_activeVideo = video;
   }
@@ -530,7 +532,7 @@ void VideoCollectionEditor::loadVideo(int index) {
     m_ui->m_txtUrl->lineEdit()->setText(QString());
     m_ui->m_txtDescription->clear();
     m_ui->m_txtTitle->lineEdit()->setText(QString());
-    //loadThumbnail(QString());
+    loadThumbnail(QString());
   }
 
   m_ui->m_txtUrl->blockSignals(false);
@@ -552,6 +554,7 @@ void VideoCollectionEditor::saveVideo() {
 
   m_ui->m_listVideos->currentItem()->setData(Qt::UserRole, QVariant::fromValue(m_activeVideo));
   m_ui->m_listVideos->currentItem()->setText(m_activeVideo.title());
+  m_ui->m_listVideos->currentItem()->setIcon(QIcon(m_activeVideo.thumbnailPath()));
 
   emit changed();
 }
