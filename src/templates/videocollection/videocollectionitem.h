@@ -28,39 +28,40 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#ifndef VIDEOCOLLECTIONSIMULATOR_H
-#define VIDEOCOLLECTIONSIMULATOR_H
+#ifndef VIDEOCOLLECTIONITEM_H
+#define VIDEOCOLLECTIONITEM_H
 
-#include "core/templatesimulator.h"
+#include <QWidget>
 
-#include "ui_videocollectionsimulator.h"
+#include "ui_videocollectionitem.h"
+
+#include "templates/videocollection/videocollectionvideo.h"
 
 
 namespace Ui {
-  class VideoCollectionSimulator;
+  class VideoCollectionItem;
 }
 
-class VideoCollectionSimulator : public TemplateSimulator {
+class VideoCollectionItem : public QWidget {
     Q_OBJECT
 
   public:
-    //Constructors and destructors.
-    explicit VideoCollectionSimulator(TemplateCore *core, QWidget *parent = 0);
-    virtual ~VideoCollectionSimulator();
+    // Constructors and destructors.
+    explicit VideoCollectionItem(QWidget *parent = 0);
+    virtual ~VideoCollectionItem();
 
-  public slots:
-    bool startSimulation();
-    bool stopSimulation();
-    bool goBack();
+    /// \brief Sets new video for this widget.
+    /// \param video Video object.
+    /// \param video_number Number of the video.
+    void setVideo(const VideoCollectionVideo &video, int video_number, int total_videos);
 
-  private slots:
-    void start();
-    void restart();
-    void moveToNextVideo();
-    void moveToPreviousVideo();
-
+  signals:
+    void previousCardRequested();
+	void goToList();
+	void nextCardRequested();
+    
   private:
-    Ui::VideoCollectionSimulator *m_ui;
+    Ui::VideoCollectionItem *m_ui;
 };
 
-#endif // VIDEOCOLLECTIONSIMULATOR_H
+#endif // VIDEOCOLLECTIONITEM_H

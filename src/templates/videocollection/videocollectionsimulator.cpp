@@ -32,6 +32,7 @@
 
 #include "core/templatecore.h"
 #include "templates/videocollection/videocollectioneditor.h"
+#include "templates/videocollection/videocollectionitem.h"
 #include "definitions/definitions.h"
 #include "miscellaneous/application.h"
 #include "miscellaneous/skinfactory.h"
@@ -60,16 +61,38 @@ bool VideoCollectionSimulator::startSimulation() {
   VideoCollectionEditor *editor = static_cast<VideoCollectionEditor*>(core()->editor());
 
   if (!editor->canGenerateApplications()) {
-    // There are no active videos or quiz does not
+    // There are no active videos or collection does not
     // containt its name or author name.
     return false;
   }
 
-  // Load the videos.
+  // Remove existing videos.
+  while (m_ui->m_phoneWidget->count() > 4) {
+    QWidget *video_widget = m_ui->m_phoneWidget->widget(3);
+
+    m_ui->m_phoneWidget->removeWidget(video_widget);
+    video_widget->deleteLater();
+  }
+
+  // Load the videos, setup the collection and start it.
   m_ui->m_btnStart->setEnabled(true);
   m_ui->m_lblAuthor->setText(editor->m_ui->m_txtAuthor->lineEdit()->text());
   m_ui->m_lblHeading->setText(editor->m_ui->m_txtName->lineEdit()->text());
 
+  int video_number = 1;
+  //QList<VideoCollectionVideo> videos = editor->activevideos();
+  
+/*
+  foreach (const VideoCollectionVideo &video, videos) {
+    VideoCollectionItem *item = new VideoCollectionItem(m_ui->m_phoneWidget);
+
+    connect(item, SIGNAL(nextVideoRequested()), this, SLOT(moveToNextVideo()));
+    connect(item, SIGNAL(previousVideoRequested()), this, SLOT(moveToPreviousVideo()));
+
+    item->setVideo(video, video_number++, videos.size());
+    m_ui->m_phoneWidget->insertWidget(m_ui->m_phoneWidget->count() - 1, item);
+  }
+*/
   // Go to "start" page and begin.
   m_ui->m_phoneWidget->setCurrentIndex(1);
   return true;
@@ -88,9 +111,17 @@ bool VideoCollectionSimulator::goBack() {
 }
 
 void VideoCollectionSimulator::start() {
-  m_ui->m_phoneWidget->setCurrentIndex(1);
+  moveToNextVideo();
 }
 
 void VideoCollectionSimulator::restart() {
   m_ui->m_phoneWidget->setCurrentIndex(1);
+}
+
+void VideoCollectionSimulator::moveToNextVideo() {
+  m_ui->m_phoneWidget->setCurrentIndex(m_ui->m_phoneWidget->currentIndex() + 1);
+}
+
+void VideoCollectionSimulator::moveToPreviousVideo() {
+  m_ui->m_phoneWidget->setCurrentIndex(m_ui->m_phoneWidget->currentIndex() - 1);
 }

@@ -473,6 +473,7 @@ set(APP_SOURCES
   src/templates/videocollection/videocollectioneditor.cpp
   src/templates/videocollection/videocollectionsimulator.cpp
   src/templates/videocollection/videocollectionvideo.cpp
+  src/templates/videocollection/videocollectionitem.cpp
   
   src/main.cpp
 )
@@ -566,6 +567,7 @@ set(APP_HEADERS
   src/templates/videocollection/videocollectioncore.h
   src/templates/videocollection/videocollectioneditor.h
   src/templates/videocollection/videocollectionsimulator.h
+  src/templates/videocollection/videocollectionitem.h
 )
 
 # APP form files.
@@ -605,6 +607,7 @@ set(APP_FORMS
   
   src/templates/videocollection/videocollectioneditor.ui
   src/templates/videocollection/videocollectionsimulator.ui
+  src/templates/videocollection/videocollectionitem.ui
 )
 
 # APP translations.

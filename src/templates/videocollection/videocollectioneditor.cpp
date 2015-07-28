@@ -364,7 +364,7 @@ void VideoCollectionEditor::checkUrl() {
 			}
 			
 			QString thumbnail_file_name = qApp->templateManager()->tempDirectory() + QDir::separator() +
-                              "thumbnail_" + QDateTime::currentDateTime().toString("yyyy-MM-dd-hhmmss") + ".jpg";
+																		"thumbnail_" + QDateTime::currentDateTime().toString("yyyy-MM-dd-hhmmss") + ".jpg";
 			QFile thumbnail_file(thumbnail_file_name);
 			thumbnail_file.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Unbuffered);
 			thumbnail_file.write(output);

@@ -28,39 +28,29 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#ifndef VIDEOCOLLECTIONSIMULATOR_H
-#define VIDEOCOLLECTIONSIMULATOR_H
+#include "templates/videocollection/videocollectionitem.h"
 
-#include "core/templatesimulator.h"
-
-#include "ui_videocollectionsimulator.h"
+#include "definitions/definitions.h"
 
 
-namespace Ui {
-  class VideoCollectionSimulator;
+VideoCollectionItem::VideoCollectionItem(QWidget *parent) : QWidget(parent), m_ui(new Ui::VideoCollectionItem) {
+  m_ui->setupUi(this);
+  
+  QFont caption_font = m_ui->m_lblTitle->font();
+  caption_font.setPointSize(caption_font.pointSize() + SIMULATOR_HEADER_SIZE_INCREASE);
+  m_ui->m_lblTitle->setFont(caption_font);
+
+  connect(m_ui->m_btnPrevious, SIGNAL(clicked()), this, SIGNAL(previousVideoRequested()));
+  connect(m_ui->m_btnList, SIGNAL(clicked()), this, SIGNAL(goToList()));
+  connect(m_ui->m_btnNext, SIGNAL(clicked()), this, SIGNAL(nextVideRequested()));
 }
 
-class VideoCollectionSimulator : public TemplateSimulator {
-    Q_OBJECT
+VideoCollectionItem::~VideoCollectionItem() {
+  delete m_ui;
+}
 
-  public:
-    //Constructors and destructors.
-    explicit VideoCollectionSimulator(TemplateCore *core, QWidget *parent = 0);
-    virtual ~VideoCollectionSimulator();
-
-  public slots:
-    bool startSimulation();
-    bool stopSimulation();
-    bool goBack();
-
-  private slots:
-    void start();
-    void restart();
-    void moveToNextVideo();
-    void moveToPreviousVideo();
-
-  private:
-    Ui::VideoCollectionSimulator *m_ui;
-};
-
-#endif // VIDEOCOLLECTIONSIMULATOR_H
+void VideoCollectionItem::setVideo(const VideoCollectionVideo &video, int video_number, int total_videos) {
+  m_ui->m_btnPrevious->setEnabled(video_number != 1);
+  m_ui->m_lblTitle->setText(video.title());
+  //m_ui->m_lblVideoNumber->setText(tr("Video number %1 of %2").arg(QString::number(video_number), QString::number(total_videos)));
+}
