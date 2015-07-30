@@ -56,12 +56,12 @@ VideoCollectionEditor::VideoCollectionEditor(TemplateCore *core, QWidget *parent
   : TemplateEditor(core, parent), m_ui(new Ui::VideoCollectionEditor) {
   m_ui->setupUi(this);
 
-	// Set up Network access manager
-	//QNetworkAccessManager *manager = new QNetworkAccessManager(this);
-	//QNetworkReply *reply  = new QNetworkReply(this);;
-	m_ui->m_listVideos->setIconSize(QSize(75,75));
-	m_ui->m_listVideos->setWordWrap(true);
-	
+  // Set up Network access manager
+  //QNetworkAccessManager *manager = new QNetworkAccessManager(this);
+  //QNetworkReply *reply  = new QNetworkReply(this);;
+  m_ui->m_listVideos->setIconSize(QSize(75,75));
+  m_ui->m_listVideos->setWordWrap(true);
+
   // Set validators.
   QRegExpValidator *author_validator = new QRegExpValidator(this);
   QRegExpValidator *title_validator = new QRegExpValidator(this);
@@ -121,7 +121,7 @@ VideoCollectionEditor::VideoCollectionEditor(TemplateCore *core, QWidget *parent
   connect(m_ui->m_btnVideoUp, SIGNAL(clicked()), this, SLOT(moveVideoUp()));
   connect(m_ui->m_btnVideoDown, SIGNAL(clicked()), this, SLOT(moveVideoDown()));
   //connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(downloadingError(QNetworkReply::NetworkError)));
-	//connect(reply, SIGNAL(readyRead()), this, SLOT(sourceDownloaded()));
+  //connect(reply, SIGNAL(readyRead()), this, SLOT(sourceDownloaded()));
 
   setEditorsEnabled(false);
   updateVideoCount();
@@ -137,8 +137,8 @@ VideoCollectionEditor::VideoCollectionEditor(TemplateCore *core, QWidget *parent
 
 VideoCollectionEditor::~VideoCollectionEditor() {
   qDebug("Destroying VideoCollectionEditor instance.");
-	
-	//delete manager;
+
+  //delete manager;
   delete m_ui;
 }
 
@@ -298,96 +298,96 @@ void VideoCollectionEditor::checkUrl() {
                                tr("Url is not specified."));
   }
   else {
-	  QString url = m_ui->m_txtUrl->lineEdit()->text();
-	  
-	  if (url.contains("youtube.com/watch?v=", Qt::CaseInsensitive) or 
-				url.contains("dailymotion.com/video/", Qt::CaseInsensitive) or
-				url.contains("vimeo.com/", Qt::CaseInsensitive)) {	
-			
-			QByteArray output;
-			QNetworkReply::NetworkError result_of_download = NetworkFactory::downloadFile(url, 10000, output);
-			
-			if (result_of_download != QNetworkReply::NoError) {
-				m_ui->m_txtUrl->setStatus(WidgetWithStatus::Error,
-																	tr("Couldn't find the video"));
-				// There was apparently some error.
-				if (SystemTrayIcon::isSystemTrayAvailable()) {
-					qApp->trayIcon()->showMessage(tr("Cannot get video details"), tr("Video was not found, check the url again"),
-																				QSystemTrayIcon::Warning);
-				}
-				else {
-					CustomMessageBox::show(this, QMessageBox::Warning, tr("Cannot get video details"), tr("Video was not found, check the url again"));
-				}
+    QString url = m_ui->m_txtUrl->lineEdit()->text();
 
-				return;
-			}
+    if (url.contains("youtube.com/watch?v=", Qt::CaseInsensitive) or
+        url.contains("dailymotion.com/video/", Qt::CaseInsensitive) or
+        url.contains("vimeo.com/", Qt::CaseInsensitive)) {
 
-			QString source_code(output);
-			source_code.replace("&#39;","'"); 
-			
-			/*
-			QStringList list = source_code.split("<span id=\"eow-title\" class=\"watch-title \" dir=\"ltr\" title="");
-			list = list[1].split('>');
-			qDebug()<<list[1];
-			QString title = list[1].remove("\"</span");
-			*/
-			
-			QStringList list = source_code.split("<meta property=\"og:title\" content=\"");
-			list = list[1].split("\"");
-			QString title = list[0];
-			m_ui->m_txtTitle->lineEdit()->setText(title);
-			
-			list = source_code.split("<meta property=\"og:description\" content=\"");
-			list = list[1].split("\"");
-			QString description = list[0];
-			m_ui->m_txtDescription->setText(description);
-			
-			list = source_code.split("<meta property=\"og:image\" content=\"");
-			list = list[1].split("\"");
-			QString thumbnail_url = list[0];
-			
-			result_of_download = NetworkFactory::downloadFile(thumbnail_url, 10000, output);
-			
-			if (result_of_download != QNetworkReply::NoError) {
-				m_ui->m_txtUrl->setStatus(WidgetWithStatus::Error,
-																	tr("Couldn't find the thumbnail"));
-				// There was apparently some error.
-				if (SystemTrayIcon::isSystemTrayAvailable()) {
-					qApp->trayIcon()->showMessage(tr("Cannot get thumbnail"), tr("Thumbnail was not found"),
-																				QSystemTrayIcon::Warning);
-				}
-				else {
-					CustomMessageBox::show(this, QMessageBox::Warning, tr("Cannot get thumbnail"), tr("Thumbnail was not found"));
-				}
+      QByteArray output;
+      QNetworkReply::NetworkError result_of_download = NetworkFactory::downloadFile(url, 10000, output);
 
-				return;
-			}
-			
-			QString thumbnail_file_name = qApp->templateManager()->tempDirectory() + QDir::separator() +
-																		"thumbnail_" + QDateTime::currentDateTime().toString("yyyy-MM-dd-hhmmss") + ".jpg";
-			QFile thumbnail_file(thumbnail_file_name);
-			thumbnail_file.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Unbuffered);
-			thumbnail_file.write(output);
-			thumbnail_file.close();
-			
-			loadThumbnail(thumbnail_file_name);
-			
-			saveVideo();
-			
-			m_ui->m_txtUrl->setStatus(WidgetWithStatus::Warning,
+      if (result_of_download != QNetworkReply::NoError) {
+        m_ui->m_txtUrl->setStatus(WidgetWithStatus::Error,
+                                  tr("Couldn't find the video"));
+        // There was apparently some error.
+        if (SystemTrayIcon::isSystemTrayAvailable()) {
+          qApp->trayIcon()->showMessage(tr("Cannot get video details"), tr("Video was not found, check the url again"),
+                                        QSystemTrayIcon::Warning);
+        }
+        else {
+          CustomMessageBox::show(this, QMessageBox::Warning, tr("Cannot get video details"), tr("Video was not found, check the url again"));
+        }
+
+        return;
+      }
+
+      QString source_code(output);
+      source_code.replace("&#39;","'");
+
+      /*
+      QStringList list = source_code.split("<span id=\"eow-title\" class=\"watch-title \" dir=\"ltr\" title="");
+      list = list[1].split('>');
+      qDebug()<<list[1];
+      QString title = list[1].remove("\"</span");
+      */
+
+      QStringList list = source_code.split("<meta property=\"og:title\" content=\"");
+      list = list[1].split("\"");
+      QString title = list[0];
+      m_ui->m_txtTitle->lineEdit()->setText(title);
+
+      list = source_code.split("<meta property=\"og:description\" content=\"");
+      list = list[1].split("\"");
+      QString description = list[0];
+      m_ui->m_txtDescription->setText(description);
+
+      list = source_code.split("<meta property=\"og:image\" content=\"");
+      list = list[1].split("\"");
+      QString thumbnail_url = list[0];
+
+      result_of_download = NetworkFactory::downloadFile(thumbnail_url, 10000, output);
+
+      if (result_of_download != QNetworkReply::NoError) {
+        m_ui->m_txtUrl->setStatus(WidgetWithStatus::Error,
+                                  tr("Couldn't find the thumbnail"));
+        // There was apparently some error.
+        if (SystemTrayIcon::isSystemTrayAvailable()) {
+          qApp->trayIcon()->showMessage(tr("Cannot get thumbnail"), tr("Thumbnail was not found"),
+                                        QSystemTrayIcon::Warning);
+        }
+        else {
+          CustomMessageBox::show(this, QMessageBox::Warning, tr("Cannot get thumbnail"), tr("Thumbnail was not found"));
+        }
+
+        return;
+      }
+
+      QString thumbnail_file_name = qApp->templateManager()->tempDirectory() + QDir::separator() +
+                                    "thumbnail_" + QDateTime::currentDateTime().toString("yyyy-MM-dd-hhmmss") + ".jpg";
+      QFile thumbnail_file(thumbnail_file_name);
+      thumbnail_file.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Unbuffered);
+      thumbnail_file.write(output);
+      thumbnail_file.close();
+
+      loadThumbnail(thumbnail_file_name);
+
+      saveVideo();
+
+      m_ui->m_txtUrl->setStatus(WidgetWithStatus::Warning,
                                 tr("Video details are loaded successfully"));
-			
-		}
-		/*else if (url.contains("dailymotion.com/video/", Qt::CaseInsensitive)) {
-			m_ui->m_txtUrl->setStatus(WidgetWithStatus::Ok,
+
+    }
+    /*else if (url.contains("dailymotion.com/video/", Qt::CaseInsensitive)) {
+      m_ui->m_txtUrl->setStatus(WidgetWithStatus::Ok,
                                 tr("Valid Dailymotion url is specified."));
-		}
-		else if (url.contains("vimeo.com/", Qt::CaseInsensitive)) {
-			m_ui->m_txtUrl->setStatus(WidgetWithStatus::Ok,
+    }
+    else if (url.contains("vimeo.com/", Qt::CaseInsensitive)) {
+      m_ui->m_txtUrl->setStatus(WidgetWithStatus::Ok,
                                 tr("Valid Vimeo url is specified."));
-		}*/
-		else
-			m_ui->m_txtUrl->setStatus(WidgetWithStatus::Error,
+    }*/
+    else
+      m_ui->m_txtUrl->setStatus(WidgetWithStatus::Error,
                                 tr("No valid Youtube or Dailymotion or Vimeo video url is specified."));
       //return;
   }
@@ -470,7 +470,7 @@ void VideoCollectionEditor::addVideo(const QString &video,
   int marked_video = m_ui->m_listVideos->currentRow();
   VideoCollectionVideo new_video;
   QListWidgetItem *new_item = new QListWidgetItem();
-	
+
   new_video.setVideo(video);
   new_video.setTitle(title);
   new_video.setDescription(description);
@@ -500,7 +500,7 @@ void VideoCollectionEditor::addVideo() {
   addVideo(QString(),
               tr("Description"),
               tr("Title"),
-			  QString()/*
+        QString()/*
               APP_TEMPLATES_PATH + QDir::separator() +
               core()->entryPoint()->baseFolder() + QDir::separator() +
               "thumbnail.png"*/);

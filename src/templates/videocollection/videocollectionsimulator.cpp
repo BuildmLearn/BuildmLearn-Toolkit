@@ -43,12 +43,37 @@ VideoCollectionSimulator::VideoCollectionSimulator(TemplateCore *core, QWidget *
     m_ui(new Ui::VideoCollectionSimulator) {
   m_ui->setupUi(this);
 
+  //m_ui->m_listVideos->setIconSize(QSize(50,50));
+  //m_ui->m_listVideos->setWordWrap(true);
+
   QFont caption_font = m_ui->m_lblHeading->font();
   caption_font.setPointSize(caption_font.pointSize() + SIMULATOR_HEADING_SIZE_INCREASE);
   m_ui->m_lblHeading->setFont(caption_font);
 
+  QString style = "QPushButton {min-height:1.5em; font:1em; margin:0 1px 0 1px; color: white; \
+                   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #ff3232, \
+                   stop: 1 #e50000); border-style: outset;border-radius: 3px; border-width: 1px; \
+                   border-color: #ff0000;} QPushButton:pressed {background-color: \
+                   qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #e50000, stop: 1 #ff3232);}";
+
+  m_ui->m_btnStart->setStyleSheet(style);
+  
+  style = "QPushButton{min-height:1.5em; font:1em; margin:0 1px 0 1px; color: white; \
+           background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #329932, stop: \
+           1 #004C00); border-style: outset;border-radius: 3px; border-width: 1px; \
+           border-color: #50873a;} QPushButton:pressed {background-color: \
+           qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #004C00, stop: 1 #329932);}";
+  
+  m_ui->m_btnRestart->setStyleSheet(style);
+  
+  style = "QListWidget {color: black; background-color: white;} QScrollBar {background-color: grey; border-style: \
+           outset;border-radius: 3px; border-width: 1px; border-color: black;}";
+           
+  m_ui->m_listVideos->setStyleSheet(style);
+
   connect(m_ui->m_btnStart, SIGNAL(clicked()), this, SLOT(start()));
   connect(m_ui->m_btnRestart, SIGNAL(clicked()), this, SLOT(restart()));
+  
 }
 
 VideoCollectionSimulator::~VideoCollectionSimulator() {
@@ -80,19 +105,25 @@ bool VideoCollectionSimulator::startSimulation() {
   m_ui->m_lblHeading->setText(editor->m_ui->m_txtName->lineEdit()->text());
 
   int video_number = 1;
-  //QList<VideoCollectionVideo> videos = editor->activevideos();
+  QList<VideoCollectionVideo> videos = editor->activeVideos();
   
-/*
   foreach (const VideoCollectionVideo &video, videos) {
     VideoCollectionItem *item = new VideoCollectionItem(m_ui->m_phoneWidget);
 
     connect(item, SIGNAL(nextVideoRequested()), this, SLOT(moveToNextVideo()));
     connect(item, SIGNAL(previousVideoRequested()), this, SLOT(moveToPreviousVideo()));
 
-    item->setVideo(video, video_number++, videos.size());
+    item->setVideo(video, video_number, videos.size());
     m_ui->m_phoneWidget->insertWidget(m_ui->m_phoneWidget->count() - 1, item);
+    
+    QListWidgetItem *new_item = new QListWidgetItem();
+    new_item->setText(video.title() + "\n" + video.description());
+	new_item->setIcon(QIcon(video.thumbnailPath()));
+	m_ui->m_listVideos->insertItem(video_number-1, new_item);
+	
+	video_number++;
   }
-*/
+
   // Go to "start" page and begin.
   m_ui->m_phoneWidget->setCurrentIndex(1);
   return true;
