@@ -22,6 +22,9 @@
      <property name="alignment">
       <set>Qt::AlignCenter</set>
      </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
     </widget>
    </item>
    <item>
@@ -32,10 +35,17 @@
     </widget>
    </item>
    <item>
-    <widget class="QWidget" name="widget" native="true"/>
+    <widget class="QWidget" name="m_widgetVideo" native="true"/>
    </item>
    <item>
-    <widget class="QPlainTextEdit" name="m_txtDescription"/>
+    <widget class="QPlainTextEdit" name="m_txtDescription">
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOff</enum>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="Line" name="line_2">
@@ -49,21 +59,21 @@
      <item>
       <widget class="QPushButton" name="m_btnPrevious">
        <property name="text">
-        <string>Previous</string>
+        <string>&amp;Previous</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="m_btnList">
        <property name="text">
-        <string>Back to List</string>
+        <string>&amp;Back to List</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="m_btnNext">
        <property name="text">
-        <string>Next</string>
+        <string>&amp;Next</string>
        </property>
       </widget>
      </item>

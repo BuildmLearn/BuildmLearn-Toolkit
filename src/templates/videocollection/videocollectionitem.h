@@ -56,9 +56,9 @@ class VideoCollectionItem : public QWidget {
     void setVideo(const VideoCollectionVideo &video, int video_number, int total_videos);
 
   signals:
-    void previousCardRequested();
+    void previousVideoRequested();
 	void goToList();
-	void nextCardRequested();
+	void nextVideoRequested();
     
   private:
     Ui::VideoCollectionItem *m_ui;

@@ -120,9 +120,7 @@ VideoCollectionEditor::VideoCollectionEditor(TemplateCore *core, QWidget *parent
   connect(m_ui->m_listVideos, SIGNAL(currentRowChanged(int)), this, SLOT(loadVideo(int)));
   connect(m_ui->m_btnVideoUp, SIGNAL(clicked()), this, SLOT(moveVideoUp()));
   connect(m_ui->m_btnVideoDown, SIGNAL(clicked()), this, SLOT(moveVideoDown()));
-  //connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(downloadingError(QNetworkReply::NetworkError)));
-  //connect(reply, SIGNAL(readyRead()), this, SLOT(sourceDownloaded()));
-
+  
   setEditorsEnabled(false);
   updateVideoCount();
 
@@ -185,15 +183,15 @@ QString VideoCollectionEditor::generateBundleData() {
     video_element.appendChild(source_document.createTextNode(video.video()));
     description_element.appendChild(source_document.createTextNode(video.description()));
     title_element.appendChild(source_document.createTextNode(video.title()));
-
+    
     // Read file with image, convert it to base64 and insert into XML bundle.
     QByteArray picture_encoded = IOFactory::fileToBase64(video.thumbnailPath());
 
     if (picture_encoded.isEmpty() || picture_encoded.isNull()) {
       return QString();
     }
-
-    image_element.appendChild(source_document.createTextNode(QString::fromUtf8(picture_encoded)));
+		
+		image_element.appendChild(source_document.createTextNode(QString::fromUtf8(picture_encoded)));
     item_element.appendChild(video_element);
     item_element.appendChild(description_element);
     item_element.appendChild(title_element);
@@ -220,7 +218,7 @@ bool VideoCollectionEditor::loadBundleData(const QString &bundle_data) {
       QString title = item.namedItem("title").toElement().text();
       QString image_data = item.namedItem("image").toElement().text();
 
-      if (video.isEmpty() || description.isEmpty() || image_data.isEmpty()) {
+			if (video.isEmpty() || description.isEmpty() || image_data.isEmpty()) {
         // TODO: error
         continue;
       }
@@ -229,8 +227,9 @@ bool VideoCollectionEditor::loadBundleData(const QString &bundle_data) {
         // https://www.google.cz/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=qt%20base64%20to%20file
         QString output_directory = qApp->templateManager()->tempDirectory();
         QString target_image_file = output_directory +
-                                    QString("/image_%1.png").arg(i);
+                                    QString("/image_%1.jpg").arg(i);
 
+        qDebug()<<target_image_file;
         if (IOFactory::base64ToFile(image_data, target_image_file)) {
           // Thumbnail from the item was saved to disk.
           addVideo(video, description, title, target_image_file);
@@ -464,9 +463,9 @@ void VideoCollectionEditor::loadThumbnail(const QString& thumbnail_path) {
 }
 
 void VideoCollectionEditor::addVideo(const QString &video,
-                                  const QString &description,
-                                  const QString &title,
-                                  const QString &thumbnail_path) {
+																		 const QString &description,
+																		 const QString &title,
+																		 const QString &thumbnail_path) {
   int marked_video = m_ui->m_listVideos->currentRow();
   VideoCollectionVideo new_video;
   QListWidgetItem *new_item = new QListWidgetItem();
@@ -478,6 +477,9 @@ void VideoCollectionEditor::addVideo(const QString &video,
 
   new_item->setText(new_video.title());
   new_item->setData(Qt::UserRole, QVariant::fromValue(new_video));
+  
+  if(!new_video.thumbnailPath().isNull() && !new_video.thumbnailPath().isEmpty())
+    new_item->setIcon(QIcon(new_video.thumbnailPath()));
 
   if (m_ui->m_listVideos->count() == 0) {
     // We are adding first video.

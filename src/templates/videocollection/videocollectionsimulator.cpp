@@ -73,7 +73,7 @@ VideoCollectionSimulator::VideoCollectionSimulator(TemplateCore *core, QWidget *
 
   connect(m_ui->m_btnStart, SIGNAL(clicked()), this, SLOT(start()));
   connect(m_ui->m_btnRestart, SIGNAL(clicked()), this, SLOT(restart()));
-  
+  connect(m_ui->m_listVideos, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(loadVideo()));
 }
 
 VideoCollectionSimulator::~VideoCollectionSimulator() {
@@ -92,6 +92,7 @@ bool VideoCollectionSimulator::startSimulation() {
   }
 
   // Remove existing videos.
+  m_ui->m_listVideos->clear();
   while (m_ui->m_phoneWidget->count() > 4) {
     QWidget *video_widget = m_ui->m_phoneWidget->widget(3);
 
@@ -111,6 +112,7 @@ bool VideoCollectionSimulator::startSimulation() {
     VideoCollectionItem *item = new VideoCollectionItem(m_ui->m_phoneWidget);
 
     connect(item, SIGNAL(nextVideoRequested()), this, SLOT(moveToNextVideo()));
+    connect(item, SIGNAL(goToList()), this, SLOT(goToList()));
     connect(item, SIGNAL(previousVideoRequested()), this, SLOT(moveToPreviousVideo()));
 
     item->setVideo(video, video_number, videos.size());
@@ -149,10 +151,21 @@ void VideoCollectionSimulator::restart() {
   m_ui->m_phoneWidget->setCurrentIndex(1);
 }
 
+void VideoCollectionSimulator::loadVideo() {
+  int index = m_ui->m_listVideos->currentRow();
+  m_ui->m_phoneWidget->setCurrentIndex(m_ui->m_phoneWidget->currentIndex() + index + 1);
+  
+  //emit canGoBackChanged(true);
+}
+
 void VideoCollectionSimulator::moveToNextVideo() {
   m_ui->m_phoneWidget->setCurrentIndex(m_ui->m_phoneWidget->currentIndex() + 1);
 }
 
 void VideoCollectionSimulator::moveToPreviousVideo() {
   m_ui->m_phoneWidget->setCurrentIndex(m_ui->m_phoneWidget->currentIndex() - 1);
+}
+
+void VideoCollectionSimulator::goToList() {
+  m_ui->m_phoneWidget->setCurrentIndex(2);
 }

@@ -183,6 +183,9 @@
            <height>75</height>
           </size>
          </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
         </widget>
        </item>
       </layout>

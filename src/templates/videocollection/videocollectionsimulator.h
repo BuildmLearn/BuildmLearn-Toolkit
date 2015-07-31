@@ -58,6 +58,8 @@ class VideoCollectionSimulator : public TemplateSimulator {
     void restart();
     void moveToNextVideo();
     void moveToPreviousVideo();
+    void goToList();
+    void loadVideo();
 
   private:
     Ui::VideoCollectionSimulator *m_ui;
