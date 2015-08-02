@@ -32,7 +32,7 @@
 
 #include "definitions/definitions.h"
 
-#include <QWebView> 
+#include <QtWebKitWidgets/QWebView> 
  
  
 VideoCollectionItem::VideoCollectionItem(QWidget *parent) : QWidget(parent), m_ui(new Ui::VideoCollectionItem) {
@@ -42,9 +42,9 @@ VideoCollectionItem::VideoCollectionItem(QWidget *parent) : QWidget(parent), m_u
   caption_font.setPointSize(caption_font.pointSize() + SIMULATOR_HEADER_SIZE_INCREASE);
   m_ui->m_lblTitle->setFont(caption_font);
   
-  QWebView *view = new QWebView(parent);
-  view->load(QUrl("https://www.youtube.com/watch?v=fuLAhfWPNjI"));
-  view->show();
+  //QWebView *view = new QWebView(m_ui->m_widgetVideo);
+  //m_ui->m_webVideo->load(QUrl(""));
+  //view->show();
 
   connect(m_ui->m_btnPrevious, SIGNAL(clicked()), this, SIGNAL(previousVideoRequested()));
   connect(m_ui->m_btnList, SIGNAL(clicked()), this, SIGNAL(goToList()));

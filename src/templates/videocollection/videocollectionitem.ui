@@ -35,7 +35,13 @@
     </widget>
    </item>
    <item>
-    <widget class="QWidget" name="m_widgetVideo" native="true"/>
+    <widget class="QWebView" name="m_webVideo">
+     <property name="url">
+      <url>
+       <string>about:blank</string>
+      </url>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="QPlainTextEdit" name="m_txtDescription">
@@ -81,6 +87,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QWebView</class>
+   <extends>QWidget</extends>
+   <header>QtWebKitWidgets/QWebView</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
