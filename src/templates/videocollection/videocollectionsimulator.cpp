@@ -49,6 +49,7 @@ VideoCollectionSimulator::VideoCollectionSimulator(TemplateCore *core, QWidget *
   QFont caption_font = m_ui->m_lblHeading->font();
   caption_font.setPointSize(caption_font.pointSize() + SIMULATOR_HEADING_SIZE_INCREASE);
   m_ui->m_lblHeading->setFont(caption_font);
+  m_ui->m_lblSelect->setFont(caption_font);
 
   QString style = "QPushButton {min-height:1.5em; font:1em; margin:0 1px 0 1px; color: white; \
                    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #ff3232, \
@@ -115,7 +116,7 @@ bool VideoCollectionSimulator::startSimulation() {
     connect(item, SIGNAL(goToList()), this, SLOT(goToList()));
     connect(item, SIGNAL(previousVideoRequested()), this, SLOT(moveToPreviousVideo()));
 
-    item->setVideo(video, video_number, videos.size());
+    item->setVideo(video, video_number);//, videos.size());
     m_ui->m_phoneWidget->insertWidget(m_ui->m_phoneWidget->count() - 1, item);
     
     QListWidgetItem *new_item = new QListWidgetItem();

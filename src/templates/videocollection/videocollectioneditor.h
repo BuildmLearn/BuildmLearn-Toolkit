@@ -64,6 +64,7 @@ class VideoCollectionEditor : public TemplateEditor {
     void checkAuthor();
     void checkTitle();
     void checkUrl();
+    void urlChanged();
     void checkName();
 
   private slots:

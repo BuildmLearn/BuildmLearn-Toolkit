@@ -180,7 +180,7 @@ QString VideoCollectionEditor::generateBundleData() {
     QDomElement title_element = source_document.createElement("title");
     QDomElement image_element = source_document.createElement("image");
 
-    video_element.appendChild(source_document.createTextNode(video.video()));
+    video_element.appendChild(source_document.createTextNode(video.url()));
     description_element.appendChild(source_document.createTextNode(video.description()));
     title_element.appendChild(source_document.createTextNode(video.title()));
     
@@ -292,16 +292,38 @@ void VideoCollectionEditor::checkTitle() {
 }
 
 void VideoCollectionEditor::checkUrl() {
-  if (m_ui->m_txtUrl->lineEdit()->text().isEmpty()) {
+	if (m_ui->m_txtUrl->lineEdit()->text().isEmpty()) {
     m_ui->m_txtUrl->setStatus(WidgetWithStatus::Warning,
                                tr("Url is not specified."));
   }
   else {
-    QString url = m_ui->m_txtUrl->lineEdit()->text();
+		QString url = m_ui->m_txtUrl->lineEdit()->text();
 
-    if (url.contains("youtube.com/watch?v=", Qt::CaseInsensitive) or
-        url.contains("dailymotion.com/video/", Qt::CaseInsensitive) or
-        url.contains("vimeo.com/", Qt::CaseInsensitive)) {
+    if (url.contains("https://www.youtube.com/watch?v=", Qt::CaseInsensitive) or
+        url.contains("http://www.dailymotion.com/video/", Qt::CaseInsensitive) or
+        url.contains("https://vimeo.com/", Qt::CaseInsensitive)) {
+
+      m_ui->m_txtUrl->setStatus(WidgetWithStatus::Ok,
+                                tr("Video details are loaded successfully"));
+
+    }
+    else
+      m_ui->m_txtUrl->setStatus(WidgetWithStatus::Error,
+                                tr("No valid Youtube or Dailymotion or Vimeo video url is specified."));
+  }
+}
+
+void VideoCollectionEditor::urlChanged() {
+	if (m_ui->m_txtUrl->lineEdit()->text().isEmpty()) {
+    m_ui->m_txtUrl->setStatus(WidgetWithStatus::Warning,
+                               tr("Url is not specified."));
+  }
+  else {
+		QString url = m_ui->m_txtUrl->lineEdit()->text();
+
+    if (url.contains("https://www.youtube.com/watch?v=", Qt::CaseInsensitive) or
+        url.contains("http://www.dailymotion.com/video/", Qt::CaseInsensitive) or
+        url.contains("https://vimeo.com/", Qt::CaseInsensitive)) {
 
       QByteArray output;
       QNetworkReply::NetworkError result_of_download = NetworkFactory::downloadFile(url, 10000, output);
@@ -373,7 +395,7 @@ void VideoCollectionEditor::checkUrl() {
 
       saveVideo();
 
-      m_ui->m_txtUrl->setStatus(WidgetWithStatus::Warning,
+      m_ui->m_txtUrl->setStatus(WidgetWithStatus::Ok,
                                 tr("Video details are loaded successfully"));
 
     }
@@ -470,7 +492,7 @@ void VideoCollectionEditor::addVideo(const QString &video,
   VideoCollectionVideo new_video;
   QListWidgetItem *new_item = new QListWidgetItem();
 
-  new_video.setVideo(video);
+  new_video.setUrl(video);
   new_video.setTitle(title);
   new_video.setDescription(description);
   new_video.setThumbnailPath(thumbnail_path);
@@ -500,12 +522,12 @@ void VideoCollectionEditor::addVideo(const QString &video,
 
 void VideoCollectionEditor::addVideo() {
   addVideo(QString(),
-              tr("Description"),
-              tr("Title"),
-        QString()/*
-              APP_TEMPLATES_PATH + QDir::separator() +
-              core()->entryPoint()->baseFolder() + QDir::separator() +
-              "thumbnail.png"*/);
+           tr("Description"),
+           tr("Title"),
+					 QString()/*
+					 APP_TEMPLATES_PATH + QDir::separator() +
+					 core()->entryPoint()->baseFolder() + QDir::separator() +
+					 "thumbnail.png"*/);
   launch();
   emit changed();
 }
@@ -523,7 +545,7 @@ void VideoCollectionEditor::loadVideo(int index) {
   if (index >= 0) {
     VideoCollectionVideo video = m_ui->m_listVideos->item(index)->data(Qt::UserRole).value<VideoCollectionVideo>();
 
-    m_ui->m_txtUrl->lineEdit()->setText(video.video());
+    m_ui->m_txtUrl->lineEdit()->setText(video.url());
     m_ui->m_txtDescription->setText(video.description());
     m_ui->m_txtTitle->lineEdit()->setText(video.title());
     loadThumbnail(video.thumbnailPath());
@@ -543,13 +565,14 @@ void VideoCollectionEditor::loadVideo(int index) {
   m_ui->m_txtDescription->blockSignals(false);
 
   //checkDescription();
+  checkUrl();
   checkTitle();
 
   QTimer::singleShot(0, this, SLOT(configureUpDown()));
 }
 
 void VideoCollectionEditor::saveVideo() {
-  m_activeVideo.setVideo(m_ui->m_txtUrl->lineEdit()->text());
+  m_activeVideo.setUrl(m_ui->m_txtUrl->lineEdit()->text());
   m_activeVideo.setDescription(m_ui->m_txtDescription->toPlainText());
   m_activeVideo.setTitle(m_ui->m_txtTitle->lineEdit()->text());
   m_activeVideo.setThumbnailPath(m_ui->m_lblThumbnailStatus->label()->toolTip());
@@ -608,7 +631,7 @@ void VideoCollectionEditor::onNameChanged(const QString& new_name) {
 void VideoCollectionEditor::onUrlChanged(const QString& new_url) {
   Q_UNUSED(new_url)
 
-  checkUrl();
+  urlChanged();
 
   launch();
   emit changed();

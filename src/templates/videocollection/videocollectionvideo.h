@@ -39,8 +39,8 @@ class VideoCollectionVideo {
     explicit VideoCollectionVideo();
     virtual ~VideoCollectionVideo();
 
-    QString video() const;
-    void setVideo(const QString& video);
+    QString url() const;
+    void setUrl(const QString& url);
 
     QString title() const;
     void setTitle(const QString& title);
@@ -52,7 +52,7 @@ class VideoCollectionVideo {
     void setDescription(const QString& description);
 
   private:
-    QString m_video;
+    QString m_url;
     QString m_description;
     QString m_title;
     QString m_thumbnailPath;

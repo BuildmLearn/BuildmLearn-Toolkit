@@ -153,7 +153,7 @@
      <widget class="QWidget" name="m_pageList">
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <widget class="QLabel" name="label">
+        <widget class="QLabel" name="m_lblSelect">
          <property name="text">
           <string>Select a Video</string>
          </property>
@@ -171,6 +171,12 @@
        </item>
        <item>
         <widget class="QListWidget" name="m_listVideos">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="horizontalScrollBarPolicy">
           <enum>Qt::ScrollBarAlwaysOff</enum>
          </property>

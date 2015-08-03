@@ -53,7 +53,7 @@ class VideoCollectionItem : public QWidget {
     /// \brief Sets new video for this widget.
     /// \param video Video object.
     /// \param video_number Number of the video.
-    void setVideo(const VideoCollectionVideo &video, int video_number, int total_videos);
+    void setVideo(const VideoCollectionVideo &video, int video_number);//, int total_videos);
 
   signals:
     void previousVideoRequested();

@@ -37,12 +37,12 @@ VideoCollectionVideo::VideoCollectionVideo() {
 VideoCollectionVideo::~VideoCollectionVideo() {
 }
 
-QString VideoCollectionVideo::video() const {
-    return m_video;
+QString VideoCollectionVideo::url() const {
+    return m_url;
 }
 
-void VideoCollectionVideo::setVideo(const QString& video) {
-    m_video = video;
+void VideoCollectionVideo::setUrl(const QString& url) {
+    m_url = url;
 }
 
 QString VideoCollectionVideo::title() const {

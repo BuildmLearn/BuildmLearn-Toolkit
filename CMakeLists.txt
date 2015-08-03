@@ -318,7 +318,7 @@ endif(${USE_QT_5})
 
 # Setup libraries.
 if(${USE_QT_5})
-  find_package(Qt5 REQUIRED Sql Widgets Xml XmlPatterns Network LinguistTools Multimedia)
+  find_package(Qt5 REQUIRED Sql Widgets Xml XmlPatterns Network LinguistTools Multimedia WebKitWidgets)
 else(${USE_QT_5})
   set(QT_MIN_VERSION ${MINIMUM_QT_VERSION})
   if(OS2)
@@ -716,6 +716,7 @@ if(${USE_QT_5})
     Network
     Xml
     Multimedia
+    WebKitWidgets
   )
 # Setup compilation for Qt 4.
 else(${USE_QT_5})
