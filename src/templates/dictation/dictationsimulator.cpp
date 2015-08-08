@@ -53,7 +53,7 @@ DictationSimulator::DictationSimulator(TemplateCore *core, QWidget *parent)
   : TemplateSimulator(core, parent),
     m_ui(new Ui::DictationSimulator) {
   m_ui->setupUi(this);
-  m_player = new QMediaPlayer;
+  //m_player = new QMediaPlayer;
   QFont caption_font = m_ui->m_lblHeading->font();
   caption_font.setPointSize(caption_font.pointSize() + SIMULATOR_HEADING_SIZE_INCREASE);
   m_ui->m_lblHeading->setFont(caption_font);
@@ -96,7 +96,7 @@ DictationSimulator::DictationSimulator(TemplateCore *core, QWidget *parent)
 
   m_factory = IconFactory::instance();
 
-  m_ui->m_btnPlayPause->setIcon(m_factory->fromTheme("player-pause"));
+  //m_ui->m_btnPlayPause->setIcon(m_factory->fromTheme("player-pause"));
   m_play = true;
   //m_ui->m_sliderPlay->setMinimum(0);
   //m_ui->m_sliderPlay->setSingleStep(1);
@@ -105,8 +105,8 @@ DictationSimulator::DictationSimulator(TemplateCore *core, QWidget *parent)
   //connect(m_ui->m_btnSelect, SIGNAL(clicked()), this, SLOT(select()));
   connect(m_ui->m_listItems, SIGNAL(itemClicked(QListWidgetItem *)), this, SLOT(select()));
   connect(m_ui->m_btnBack, SIGNAL(clicked()), this, SLOT(goBack()));
-  connect(m_ui->m_btnPlayPause, SIGNAL(clicked()), this, SLOT(playPause()));
-  connect(m_player, SIGNAL(positionChanged(qint64)), this, SLOT(moveSlider(qint64)));
+  //connect(m_ui->m_btnPlayPause, SIGNAL(clicked()), this, SLOT(playPause()));
+  //connect(m_player, SIGNAL(positionChanged(qint64)), this, SLOT(moveSlider(qint64)));
   connect(m_ui->m_btnSubmit, SIGNAL(clicked()), this, SLOT(submit()));
   connect(m_ui->m_btnRestart, SIGNAL(clicked()), this, SLOT(restart()));
   connect(m_ui->m_btnExit, SIGNAL(clicked()), this, SLOT(restart()));
@@ -115,7 +115,7 @@ DictationSimulator::DictationSimulator(TemplateCore *core, QWidget *parent)
 DictationSimulator::~DictationSimulator() {
   //qDebug("Destroying DictationSimulator instance.");
 
-  delete m_player;
+  //delete m_player;
   delete m_ui;
 }
 
@@ -203,30 +203,30 @@ void DictationSimulator::select() {//QListWidgetItem *passage) {
   m_ui->m_sliderPlay->setMaximum(m_player->duration() / 500);
   m_player->setVolume(100);
   m_player->play();
-}*/
+}
 
 void DictationSimulator::playPause() {
   if(m_play) {
     m_ui->m_btnPlayPause->setIcon(m_factory->fromTheme("player-play"));
     m_play = false;
-    m_player->pause();
+    //m_player->pause();
   }
   else {
     m_ui->m_btnPlayPause->setIcon(m_factory->fromTheme("player-pause"));
     m_play = true;
-    m_player->play();
+    //m_player->play();
   }
-}
+}*/
 
-void DictationSimulator::moveSlider(qint64 position) {
+//void DictationSimulator::moveSlider(qint64 position) {
   //qDebug()<<position;
   /*if(position % 500 == 0) {
     m_ui->m_sliderPlay->setValue(position / 500);
   }*/
-}
+//}
 
 void DictationSimulator::playPassage() {
-#if defined(Q_OS_OS2)
+/*#if defined(Q_OS_OS2)
   if (SystemTrayIcon::isSystemTrayAvailable()) {
     qApp->trayIcon()->showMessage(tr("Cannot play sound"), tr("Sound cannot play on this platform."),
                                   QSystemTrayIcon::Warning);
@@ -274,12 +274,15 @@ void DictationSimulator::playPassage() {
     m_passages[m_activePassage].setAudioFilePath(sound_file_name);
   }
     
-  m_player->setMedia(QUrl::fromLocalFile(m_passages.at(m_activePassage).audioFilePath()));
-  m_player->setVolume(100);
-  m_player->play();
+  //m_player->setMedia(QUrl::fromLocalFile(m_passages.at(m_activePassage).audioFilePath()));
+  //m_player->setVolume(100);
+  //m_player->play();
   
   //IOFactory::playWaveFile(m_passages.at(m_activePassage).audioFilePath());
-#endif
+#endif*/
+  QString passage = m_passages.at(m_activePassage).passage();
+  QString url = QString("http://tts-api.com/tts.mp3?q=%1").arg(passage);
+  m_ui->m_webRead->load(QUrl(url));
 }
 
 void DictationSimulator::submit() {
