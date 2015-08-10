@@ -61,6 +61,9 @@ class DictationSimulator : public TemplateSimulator {
     void start();
     void restart();
     void select();
+    void loading(int progress);
+    void onEnterPassageChanged();
+    void loadingFinished(bool success);
     //void playPause();
     //void moveSlider(qint64 position);
     void submit();

@@ -76,21 +76,22 @@ DictationSimulator::DictationSimulator(TemplateCore *core, QWidget *parent)
            background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #329932, stop: \
            1 #004C00); border-style: outset;border-radius: 3px; border-width: 1px; \
            border-color: #50873a;} QPushButton:pressed {background-color: \
-           qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #004C00, stop: 1 #329932);}";
+           qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #004C00, stop: 1 #329932);} \
+           QPushButton:!enabled {background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, \
+           stop: 0 #D3D3D3, stop: 1 #7e7e7e);}";
   
-  //m_ui->m_btnSelect->setStyleSheet(style);
   m_ui->m_btnSubmit->setStyleSheet(style);
   m_ui->m_btnRestart->setStyleSheet(style);
   
   style = "QTextEdit {color: black; background-color: white;} QScrollBar {background-color: grey; border-style: \
-           outset;border-radius: 3px; border-width: 1px; border-color: black;}";
+           outset; border-radius: 3px; border-width: 1px; border-color: black;}";
   
   m_ui->m_txtPassage->setStyleSheet(style);
   m_ui->m_txtCorrectPassage->setStyleSheet(style);
   m_ui->m_txtCorrectPassage->setReadOnly(true);
 
   style = "QListWidget {color: black; background-color: white;} QScrollBar {background-color: grey; border-style: \
-           outset;border-radius: 3px; border-width: 1px; border-color: black;}";
+           outset; border-radius: 3px; border-width: 1px; border-color: black;}";
            
   m_ui->m_listItems->setStyleSheet(style);
 
@@ -110,6 +111,9 @@ DictationSimulator::DictationSimulator(TemplateCore *core, QWidget *parent)
   connect(m_ui->m_btnSubmit, SIGNAL(clicked()), this, SLOT(submit()));
   connect(m_ui->m_btnRestart, SIGNAL(clicked()), this, SLOT(restart()));
   connect(m_ui->m_btnExit, SIGNAL(clicked()), this, SLOT(restart()));
+  connect(m_ui->m_webRead, SIGNAL(loadProgress(int)), this, SLOT(loading(int)));
+  connect(m_ui->m_webRead, SIGNAL(loadFinished(bool)), this, SLOT(loadingFinished(bool)));
+  connect(m_ui->m_txtPassage, SIGNAL(textChanged()), this, SLOT(onEnterPassageChanged()));
 }
 
 DictationSimulator::~DictationSimulator() {
@@ -192,6 +196,8 @@ void DictationSimulator::select() {//QListWidgetItem *passage) {
   m_activePassage = m_ui->m_listItems->currentRow();
   m_ui->m_lblTitle->setText(m_passages.at(m_activePassage).title());
   m_ui->m_phoneWidget->setCurrentIndex(3);
+  m_ui->m_readWidget->setCurrentIndex(0);
+  m_ui->m_btnSubmit->setEnabled(false);
   playPassage();
   
   emit canGoBackChanged(true);
@@ -282,7 +288,26 @@ void DictationSimulator::playPassage() {
 #endif*/
   QString passage = m_passages.at(m_activePassage).passage();
   QString url = QString("http://tts-api.com/tts.mp3?q=%1").arg(passage);
+  m_ui->m_progressLoading->setValue(0);
   m_ui->m_webRead->load(QUrl(url));
+}
+
+void DictationSimulator::loading(int progress) {
+  m_ui->m_progressLoading->setValue(progress);
+}
+
+void DictationSimulator::loadingFinished(bool success) {
+	Q_UNUSED(success);
+	m_ui->m_readWidget->setCurrentIndex(1);
+}
+
+void DictationSimulator::onEnterPassageChanged() {
+	QString passage_entered = m_ui->m_txtPassage->toPlainText().simplified();
+  
+  if (passage_entered.isEmpty() || passage_entered.isNull())
+		m_ui->m_btnSubmit->setEnabled(false);
+	else
+		m_ui->m_btnSubmit->setEnabled(true);
 }
 
 void DictationSimulator::submit() {
@@ -295,23 +320,26 @@ void DictationSimulator::submit() {
   m_ui->m_txtCorrectPassage->insertPlainText(correct_passage);
   
   QList<int> position;
-  int pos = correct_passage.indexOf(" ");
+  int word_position = correct_passage.indexOf(" ");
   position << 0;
   
-  while(pos != -1) {
-    position << pos + 1;
+  
+  
+  while(word_position != -1) {
+    position << word_position + 1;
     ////qDebug()<<pos+1;
-    pos = correct_passage.indexOf(" ", pos + 1);
+    word_position = correct_passage.indexOf(" ", word_position + 1);
   }
   
   //position << correct_passage.size();
   
   QList<int> begin;
   QList<int> end;
-  QStringList store_words;
-  bool correct = true;
-  //qDebug()<<"end.at(0) = "<<end.at(0);
-  int j = 0, start;
+  QStringList store_entered_words;
+  QStringList store_correct_words;
+  bool correct = true, completely_wrong = true;
+  //qDebug()<<"First";
+  int j = 0, start, score2 = 0;
   /*for (int i = 0; i < entered_words.size(); ++i) {
     //qDebug()<<"entered_words.at(i) = "<<entered_words.at(i)<<" correct_words.at(j) = "<<correct_words.at(j) ;
     if(entered_words.at(i) != correct_words.at(j) || !correct) {
@@ -339,37 +367,46 @@ void DictationSimulator::submit() {
   }
   */
   
-  for (int i = 0; i < correct_words.size(); ++i) {
-    if(j == entered_words.size()) {
-      begin << position.at(i);
-      correct = false;
+  for (int i = 0; i < correct_words.size(); i++) {
+		//qDebug()<<"Inside loop, begin size = "<<begin.size();
+    if (j >= entered_words.size()) {
+      if (correct) 
+				begin << position.at(i);
+
+			correct = false;				
       break; 
     }
-    //qDebug()<<"correct_words.at(i) = "<<correct_words.at(i)<<" entered_words.at(j) = "<<entered_words.at(j) ;
     
     if(correct_words.at(i) != entered_words.at(j) || !correct) {
       if (correct) {
         begin << position.at(i);
         //qDebug()<<"i="<<j<<" Begin = "<<position.at(i);
+        //qDebug()<<"begin size = "<<begin.size();
         start = i;
         correct = false;
       }
-      store_words << entered_words.at(j);
-      for (int k = 0; k < store_words.size(); ++k) {
-        //qDebug()<<"store_words.at(k) "<<store_words.at(k)<<", correct_words.at(i) "<<correct_words.at(i);
-        if(store_words.at(k) == correct_words.at(i)) {
+      store_entered_words << entered_words.at(j);
+      for (int k = 0; k < store_entered_words.size(); ++k) {
+        //qDebug()<<"store_words.at(k) "<<store_entered_words.at(k)<<", correct_words.at(i) "<<correct_words.at(i);
+        if(store_entered_words.at(k) == correct_words.at(i)) {
           j = start + k;
           end << position.at(i);
           //qDebug()<<"j="<<j<<" start="<<start<<" end = "<<position.at(i);
-          store_words.clear();
+          store_entered_words.clear();
           correct = true;
+          score2++;
           break;
         }
       }
         //store_words << correct_words.at(j);
     }
+    else
+			score2++;
+			
     j++;
   }
+  
+  //qDebug()<<"Out of for loop, end size = "<<end.size();
   
   if (!correct)
     end << correct_passage.size() + 1;
@@ -381,15 +418,28 @@ void DictationSimulator::submit() {
 
   QList< QTextCursor > cursor;
   
+  //qDebug()<<"Begin wrong markings, begin size = "<<begin.size()<<" , end size = "<<end.size();
+  
   for(int i = 0; i < begin.size(); i++) {
+		//qDebug()<<"i = "<<i;
     cursor << QTextCursor(m_ui->m_txtCorrectPassage->document());
     cursor[i].setPosition(begin.at(i), QTextCursor::MoveAnchor);
     cursor[i].setPosition(end.at(i) - 1, QTextCursor::KeepAnchor);
     cursor[i].setCharFormat(fmt);
   }
   
-  m_ui->m_lblScore->setText(tr("Score - %1 of %2").arg(QString::number(correct_words.size() - begin.size()),
-                                                       QString::number(correct_words.size())));
+  int score;
+  if (correct_words.size() <= entered_words.size()) {
+		score = correct_words.size() - begin.size();
+		//qDebug()<<"correct_words.size() = "<<correct_words.size()<<" , begin.size() = "<<begin.size();
+	}
+	else {
+		score = entered_words.size() - begin.size() + 1;
+		//qDebug()<<"entered_words.size() = "<<entered_words.size()<<" , begin.size() = "<<begin.size();
+	}
+	
+		m_ui->m_lblScore->setText(tr("Score - %1 of %2").arg(QString::number(score2),
+																												 QString::number(correct_words.size())));
   
   m_ui->m_phoneWidget->setCurrentIndex(4);
 }
