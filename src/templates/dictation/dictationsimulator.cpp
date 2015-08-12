@@ -297,17 +297,17 @@ void DictationSimulator::loading(int progress) {
 }
 
 void DictationSimulator::loadingFinished(bool success) {
-	Q_UNUSED(success);
-	m_ui->m_readWidget->setCurrentIndex(1);
+  Q_UNUSED(success);
+  m_ui->m_readWidget->setCurrentIndex(1);
 }
 
 void DictationSimulator::onEnterPassageChanged() {
-	QString passage_entered = m_ui->m_txtPassage->toPlainText().simplified();
+  QString passage_entered = m_ui->m_txtPassage->toPlainText().simplified();
   
   if (passage_entered.isEmpty() || passage_entered.isNull())
-		m_ui->m_btnSubmit->setEnabled(false);
-	else
-		m_ui->m_btnSubmit->setEnabled(true);
+    m_ui->m_btnSubmit->setEnabled(false);
+  else
+    m_ui->m_btnSubmit->setEnabled(true);
 }
 
 void DictationSimulator::submit() {
@@ -368,12 +368,12 @@ void DictationSimulator::submit() {
   */
   
   for (int i = 0; i < correct_words.size(); i++) {
-		//qDebug()<<"Inside loop, begin size = "<<begin.size();
+    //qDebug()<<"Inside loop, begin size = "<<begin.size();
     if (j >= entered_words.size()) {
       if (correct) 
-				begin << position.at(i);
+        begin << position.at(i);
 
-			correct = false;				
+      correct = false;        
       break; 
     }
     
@@ -401,8 +401,8 @@ void DictationSimulator::submit() {
         //store_words << correct_words.at(j);
     }
     else
-			score2++;
-			
+      score2++;
+      
     j++;
   }
   
@@ -421,7 +421,7 @@ void DictationSimulator::submit() {
   //qDebug()<<"Begin wrong markings, begin size = "<<begin.size()<<" , end size = "<<end.size();
   
   for(int i = 0; i < begin.size(); i++) {
-		//qDebug()<<"i = "<<i;
+    //qDebug()<<"i = "<<i;
     cursor << QTextCursor(m_ui->m_txtCorrectPassage->document());
     cursor[i].setPosition(begin.at(i), QTextCursor::MoveAnchor);
     cursor[i].setPosition(end.at(i) - 1, QTextCursor::KeepAnchor);
@@ -430,16 +430,16 @@ void DictationSimulator::submit() {
   
   int score;
   if (correct_words.size() <= entered_words.size()) {
-		score = correct_words.size() - begin.size();
-		//qDebug()<<"correct_words.size() = "<<correct_words.size()<<" , begin.size() = "<<begin.size();
-	}
-	else {
-		score = entered_words.size() - begin.size() + 1;
-		//qDebug()<<"entered_words.size() = "<<entered_words.size()<<" , begin.size() = "<<begin.size();
-	}
-	
-		m_ui->m_lblScore->setText(tr("Score - %1 of %2").arg(QString::number(score2),
-																												 QString::number(correct_words.size())));
+    score = correct_words.size() - begin.size();
+    //qDebug()<<"correct_words.size() = "<<correct_words.size()<<" , begin.size() = "<<begin.size();
+  }
+  else {
+    score = entered_words.size() - begin.size() + 1;
+    //qDebug()<<"entered_words.size() = "<<entered_words.size()<<" , begin.size() = "<<begin.size();
+  }
+  
+  m_ui->m_lblScore->setText(tr("Score - %1 of %2").arg(QString::number(score2),
+                                                       QString::number(correct_words.size())));
   
   m_ui->m_phoneWidget->setCurrentIndex(4);
 }

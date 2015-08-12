@@ -41,6 +41,8 @@ namespace Ui {
   class MatchFollowingEditor;
 }
 
+/// \brief Editor for Match the following.
+/// \ingroup template-matchthefollowing
 class MatchFollowingEditor : public TemplateEditor {
     Q_OBJECT
 
@@ -55,6 +57,8 @@ class MatchFollowingEditor : public TemplateEditor {
     QString generateBundleData();
     bool loadBundleData(const QString &bundle_data);
 
+    /// \brief Access to list of added topics.
+    /// \return Returns list of added topics.
     QList<MatchFollowingTopic> activeTopics() const;
 
     QString projectName();

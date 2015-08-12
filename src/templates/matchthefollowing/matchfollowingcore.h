@@ -37,6 +37,8 @@
 class MatchFollowingEditor;
 class MatchFollowingSimulator;
 
+/// \brief Main core of Match the following template.
+/// \ingroup template-matchthefollowing
 class MatchFollowingCore : public TemplateCore {
     Q_OBJECT
 

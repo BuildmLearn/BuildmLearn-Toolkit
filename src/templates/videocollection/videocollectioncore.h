@@ -37,6 +37,8 @@
 class VideoCollectionEditor;
 class VideoCollectionSimulator;
 
+/// \brief Main core of Video Collection template.
+/// \ingroup template-videocollection
 class VideoCollectionCore : public TemplateCore {
     Q_OBJECT
 

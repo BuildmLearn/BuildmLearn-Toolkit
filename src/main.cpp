@@ -145,6 +145,26 @@
 /// This module contains all classes related to Learn Spellings template.
 /// Learn Spellings template helps its users to learn to pronunciate particular
 /// words or phrases.
+///
+/// \defgroup template-dictation Dictation template
+/// \brief Dictation template classes.
+///
+/// This module contains all classes related to Dictation template.
+///
+/// \defgroup template-comprehension Comprehension template
+/// \brief Comprehension template classes.
+///
+/// This module contains all classes related to Comprehension template.
+///
+/// \defgroup template-matchthefollowing Match The Following template
+/// \brief Match The Following template classes.
+///
+/// This module contains all classes related to Match The Following template.
+///
+/// \defgroup template-videocollection Video Collecton template
+/// \brief Video Collecton template classes.
+///
+/// This module contains all classes related to Video Collecton template.
 
 /// \brief main Main entry point to the application.
 ///

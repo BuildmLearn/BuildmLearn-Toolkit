@@ -34,6 +34,8 @@
 #include <QMetaType>
 
 
+/// \brief Container for one topic.
+/// \ingroup template-matchthefollowing
 class MatchFollowingTopic {
   public:
     explicit MatchFollowingTopic();

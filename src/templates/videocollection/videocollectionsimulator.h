@@ -40,6 +40,8 @@ namespace Ui {
   class VideoCollectionSimulator;
 }
 
+/// \brief Simulator for Video Collection template.
+/// \ingroup template-videocollection
 class VideoCollectionSimulator : public TemplateSimulator {
     Q_OBJECT
 

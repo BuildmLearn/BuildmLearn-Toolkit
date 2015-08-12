@@ -44,6 +44,8 @@ namespace Ui {
   class DictationSimulator;
 }
 
+/// \brief Simulator for Dictation template.
+/// \ingroup template-dictation
 class DictationSimulator : public TemplateSimulator {
   Q_OBJECT
 
@@ -70,13 +72,13 @@ class DictationSimulator : public TemplateSimulator {
     void exit();
     
   private:
-		void playPassage();
+    void playPassage();
     Ui::DictationSimulator *m_ui;
     QList<DictationPassage> m_passages;
-		int m_activePassage;
-		//QMediaPlayer *m_player;
-		bool m_play;
-		IconFactory *m_factory;
+    int m_activePassage;
+    //QMediaPlayer *m_player;
+    bool m_play;
+    IconFactory *m_factory;
 };
 
 #endif // DICTATIONSIMULATOR_H

@@ -34,6 +34,8 @@
 #include <QMetaType>
 
 
+/// \brief Container for one video.
+/// \ingroup template-videocollection
 class VideoCollectionVideo {
   public:
     explicit VideoCollectionVideo();

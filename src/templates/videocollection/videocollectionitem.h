@@ -42,6 +42,8 @@ namespace Ui {
   class VideoCollectionItem;
 }
 
+/// \brief Widget which represents single video in Video Collection template.
+/// \ingroup template-videocollection
 class VideoCollectionItem : public QWidget {
     Q_OBJECT
 

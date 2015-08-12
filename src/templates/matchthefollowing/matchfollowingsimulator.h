@@ -40,6 +40,8 @@ namespace Ui {
   class MatchFollowingSimulator;
 }
 
+/// \brief Simulator for Match the following template.
+/// \ingroup template-matchthefollowing
 class MatchFollowingSimulator : public TemplateSimulator {
     Q_OBJECT
 

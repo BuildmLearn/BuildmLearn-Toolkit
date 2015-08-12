@@ -41,6 +41,8 @@ namespace Ui {
   class VideoCollectionEditor;
 }
 
+/// \brief Editor for Video collection.
+/// \ingroup template-videocollection
 class VideoCollectionEditor : public TemplateEditor {
     Q_OBJECT
 

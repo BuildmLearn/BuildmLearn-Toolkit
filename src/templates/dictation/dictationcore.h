@@ -37,6 +37,8 @@
 class DictationEditor;
 class DictationSimulator;
 
+/// \brief Main core of Dictation template.
+/// \ingroup template-dictation
 class DictationCore : public TemplateCore {
     Q_OBJECT
 

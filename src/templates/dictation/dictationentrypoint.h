@@ -33,7 +33,8 @@
 
 #include "core/templateentrypoint.h"
 
-
+/// \brief Entry point.
+/// \ingroup template-dictation
 class DictationEntryPoint : public TemplateEntryPoint {
     Q_OBJECT
 

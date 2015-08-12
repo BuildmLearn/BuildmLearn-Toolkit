@@ -31,7 +31,9 @@
 #include <QPainter>
 #include <QAbstractItemDelegate>
  
- 
+
+/// \brief List delegate for Match the following template.
+/// \ingroup template-matchthefollowing
 class ListDelegate : public QAbstractItemDelegate {
   public:
     explicit ListDelegate();

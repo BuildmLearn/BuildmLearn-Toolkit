@@ -34,6 +34,8 @@
 #include <QMetaType>
 
 
+/// \brief Container for one passage.
+/// \ingroup template-dictation
 class DictationPassage {
   public:
     explicit DictationPassage();
@@ -44,9 +46,9 @@ class DictationPassage {
 
     QString title() const;
     void setTitle(const QString& title);
-		
-		QString audioFilePath() const;
-		void setAudioFilePath(const QString &audioFilePath);
+        
+    QString audioFilePath() const;
+    void setAudioFilePath(const QString &audioFilePath);
 
   private:
     QString m_title;

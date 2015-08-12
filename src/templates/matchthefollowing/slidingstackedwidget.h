@@ -38,7 +38,8 @@
 #include <QDebug>
 #include <QEasingCurve>
 
-
+/// \brief QStackedWidget with sliding animation.
+/// \ingroup template-matchthefollowing
 class SlidingStackedWidget : public QStackedWidget
 {
   Q_OBJECT

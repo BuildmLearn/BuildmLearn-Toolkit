@@ -34,6 +34,8 @@
 #include "core/templateentrypoint.h"
 
 
+/// \brief Entry point.
+/// \ingroup template-videocollection
 class VideoCollectionEntryPoint : public TemplateEntryPoint {
     Q_OBJECT
 

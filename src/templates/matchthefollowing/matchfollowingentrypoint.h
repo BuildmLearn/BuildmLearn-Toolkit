@@ -34,6 +34,8 @@
 #include "core/templateentrypoint.h"
 
 
+/// \brief Entry point.
+/// \ingroup template-matchthefollowing
 class MatchFollowingEntryPoint : public TemplateEntryPoint {
     Q_OBJECT
 

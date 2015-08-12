@@ -2,9 +2,9 @@ BuildmLearn Toolkit
 ===================
 BuildmLearn Toolkit is an easy-to-use program that helps the users make mobile apps without any knowledge of application development.
 
-Portage
+Portage-2015
 -------
-Portage branch contains code developed by BuildmLearn development team and Martin Rotter. This code is developed as part of GSoC 2014 program by Martin Rotter.
+Portage-2015 branch contains code developed by BuildmLearn development team and Pulkit Gupta. This code is developed as part of GSoC 2015 program by Pulkit Gupta.
 
 Packages
 --------
@@ -24,7 +24,7 @@ Links
 -----
 * [www.buildmlearn.org](http://buildmlearn.org/)  ~homepage,
 * [buildmlearn.github.io/BuildmLearn-Toolkit/docs/](http://buildmlearn.github.io/BuildmLearn-Toolkit/docs/)  ~API documentation,
-* [www.martin-rotter.8u.cz](http://www.martin-rotter.8u.cz/)  ~author's homepage,
+* [www.pulkitgupta.net](http://pulkitgupta.net/)  ~author's homepage,
 * [www.transifex.com/projects/p/buildmlearn-toolkit](https://www.transifex.com/projects/p/buildmlearn-toolkit/)  ~translations,
 * [www.build.opensuse.org/project/show/home:skunkos:buildmlearn] (https://build.opensuse.org/project/show/home:skunkos:buildmlearn)  ~OBS homepage,
 * [www.cmake.org](http://www.cmake.org/)  ~build system,
@@ -34,7 +34,7 @@ License for use and distribution
 ---------------------------------
 All the code in this repository (unless specified otherwise) is governed by the BSD (3-Clause) License quoted below.
 
-Copyright (c) 2012, BuildmLearn Contributors listed at http://buildmlearn.org/people/
+Copyright (c) 2015, BuildmLearn Contributors listed at http://buildmlearn.org/people/
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without

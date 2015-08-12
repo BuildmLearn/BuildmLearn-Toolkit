@@ -41,6 +41,8 @@ namespace Ui {
   class DictationEditor;
 }
 
+/// \brief Editor for Dictation.
+/// \ingroup template-dictation
 class DictationEditor : public TemplateEditor {
     Q_OBJECT
 
@@ -55,6 +57,8 @@ class DictationEditor : public TemplateEditor {
     QString generateBundleData();
     bool loadBundleData(const QString &bundle_data);
 
+    /// \brief Access to list of added passages.
+    /// \return Returns list of added passages.
     QList<DictationPassage> activePassages() const;
 
     QString projectName();
