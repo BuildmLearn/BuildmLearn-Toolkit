@@ -73,9 +73,9 @@ class ComprehensionSimulator : public TemplateSimulator {
 
   private:
     Ui::ComprehensionSimulator *m_ui;
-    ComprehensionEditor *editor;
-    QTime time;
-    QTimer *timer;
+    ComprehensionEditor *m_editor;
+    QTime m_time;
+    QTimer *m_timer;
 };
 
 #endif // COMPREHENSIONSIMULATOR_H

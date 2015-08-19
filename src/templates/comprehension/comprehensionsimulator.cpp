@@ -85,8 +85,8 @@ ComprehensionSimulator::ComprehensionSimulator(TemplateCore *core, QWidget *pare
   connect(m_ui->m_btnExit, SIGNAL(clicked()), this, SLOT(exit()));
 
   connect(m_ui->m_btnQuestions, SIGNAL(clicked()), this, SLOT(questionStart()));
-  timer = new QTimer(this);
-  connect(timer, SIGNAL(timeout()), this, SLOT(counter()));
+  m_timer = new QTimer(this);
+  connect(m_timer, SIGNAL(timeout()), this, SLOT(counter()));
 
 }
 
@@ -97,9 +97,9 @@ ComprehensionSimulator::~ComprehensionSimulator() {
 }
 
 bool ComprehensionSimulator::startSimulation() {
-  editor = static_cast<ComprehensionEditor*>(core()->editor());
+  m_editor = static_cast<ComprehensionEditor*>(core()->editor());
 
-  if (!editor->canGenerateApplications()) {
+  if (!m_editor->canGenerateApplications()) {
     // There are no active questions or comprehension does not
     // containt its name or author name.
     return false;
@@ -115,14 +115,14 @@ bool ComprehensionSimulator::startSimulation() {
 
   // Load the questions, setup the comprehension and start it.
   m_ui->m_btnStart->setEnabled(true);
-  m_ui->m_lblAuthor->setText(editor->m_ui->m_txtAuthor->lineEdit()->text());
-  m_ui->m_lblHeading->setText(editor->m_ui->m_txtName->lineEdit()->text());
+  m_ui->m_lblAuthor->setText(m_editor->m_ui->m_txtAuthor->lineEdit()->text());
+  m_ui->m_lblHeading->setText(m_editor->m_ui->m_txtName->lineEdit()->text());
 
-  m_ui->m_lblTitle->setText(editor->m_ui->m_txtTitle->lineEdit()->text());
-  m_ui->m_txtPassage->setDocument(editor->m_ui->m_txtPassage->document());
+  m_ui->m_lblTitle->setText(m_editor->m_ui->m_txtTitle->lineEdit()->text());
+  m_ui->m_txtPassage->setDocument(m_editor->m_ui->m_txtPassage->document());
 
   int question_number = 1;
-  QList<ComprehensionQuestion> questions = editor->activeQuestions();
+  QList<ComprehensionQuestion> questions = m_editor->activeQuestions();
 
   foreach (const ComprehensionQuestion &question, questions) {
     ComprehensionItem *item = new ComprehensionItem(m_ui->m_phoneWidget);
@@ -151,10 +151,10 @@ bool ComprehensionSimulator::goBack() {
 
 // Start the simulator.
 void ComprehensionSimulator::start() {
-  int seconds = editor->m_ui->m_txtTimer->lineEdit()->text().toInt();
-  time.setHMS(0, seconds / 60, seconds % 60);
-  m_ui->m_lblTimer->setText("- " + time.toString("mm:ss"));
-  timer->start(1000);
+  int seconds = m_editor->m_ui->m_txtTimer->lineEdit()->text().toInt();
+  m_time.setHMS(0, seconds / 60, seconds % 60);
+  m_ui->m_lblTimer->setText("- " + m_time.toString("mm:ss"));
+  m_timer->start(1000);
 
   m_ui->m_phoneWidget->slideInIdx(2);
 
@@ -216,15 +216,15 @@ void ComprehensionSimulator::exit() {
 }
 
 void ComprehensionSimulator::questionStart() {
-  timer->stop();
+  m_timer->stop();
   m_ui->m_phoneWidget->slideInNext();
 }
 
 void ComprehensionSimulator::counter() {
-  time = time.addSecs(-1);
-  m_ui->m_lblTimer->setText("- " + time.toString("mm:ss"));
-  if(time == QTime(0,0)) {
-    timer->stop();
+  m_time = m_time.addSecs(-1);
+  m_ui->m_lblTimer->setText("- " + m_time.toString("mm:ss"));
+  if(m_time == QTime(0,0)) {
+    m_timer->stop();
     questionStart();
   }
 }

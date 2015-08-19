@@ -42,8 +42,8 @@
      <widget class="QWidget" name="m_pageVideo">
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
-        <widget class="QWebView" name="m_webVideo">
-         <property name="url">
+        <widget class="QWebView" name="m_webVideo" native="true">
+         <property name="url" stdset="0">
           <url>
            <string>about:blank</string>
           </url>
@@ -105,7 +105,10 @@ p, li { white-space: pre-wrap; }
      <item>
       <widget class="QPushButton" name="m_btnList">
        <property name="text">
-        <string>&amp;Back to List</string>
+        <string>&amp;To List</string>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
        </property>
       </widget>
      </item>

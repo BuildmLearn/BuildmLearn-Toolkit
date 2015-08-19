@@ -140,30 +140,32 @@ bool MatchFollowingSimulator::startSimulation() {
 
   // Randomize the lists.
   QList<MatchFollowingTopic> topics = editor->activeTopics();
-  int topic_number = 0, max_topics = editor->activeTopics().count();
+  int max_topics = editor->activeTopics().count();
   QList<int> first_topics_position, second_topics_position;
 
   for (int i = 0; i < max_topics; ++i) {
-  first_topics_position.append(i);
-  second_topics_position.append(i);
+	first_topics_position.append(i);
+	second_topics_position.append(i);
   }
 
   std::random_shuffle(first_topics_position.begin(), first_topics_position.end());
   std::random_shuffle(second_topics_position.begin(), second_topics_position.end());
 
+  int i = 0;
+
   // Load the topics.
   foreach (const MatchFollowingTopic &topic, topics) {
     QListWidgetItem *new_first_topic = new QListWidgetItem();
     new_first_topic->setText(topic.firstListTopic());
-    new_first_topic->setData(Qt::UserRole, topic_number);
-    m_ui->m_listFirst->insertItem(first_topics_position.at(topic_number), new_first_topic);
+    new_first_topic->setData(Qt::UserRole, topic.secondListTopic());
+    m_ui->m_listFirst->insertItem(first_topics_position.at(i), new_first_topic);
 
     QListWidgetItem *new_second_topic = new QListWidgetItem();
     new_second_topic->setText(topic.secondListTopic());
-    new_second_topic->setData(Qt::UserRole, topic_number);
-    m_ui->m_listSecond->insertItem(second_topics_position.at(topic_number), new_second_topic);
+    new_second_topic->setData(Qt::UserRole, topic.secondListTopic());
+    m_ui->m_listSecond->insertItem(second_topics_position.at(i), new_second_topic);
 
-    topic_number++;
+    i++;
   }
 
   // Go to "start" page and begin.
@@ -244,7 +246,10 @@ void MatchFollowingSimulator::checkAnswer() {
   int max_topics = editor->activeTopics().count(), score = 0;
 
   for (int i = 0; i < max_topics; ++i) {
-    if (m_ui->m_listFirst->item(i)->data(Qt::UserRole).toInt() == m_ui->m_listSecond->item(i)->data(Qt::UserRole).toInt()) {
+	qDebug()<<m_ui->m_listFirst->item(i)->data(Qt::UserRole).toString()<<" , "<<m_ui->m_listSecond->item(i)->data(Qt::UserRole).toString();
+    if (m_ui->m_listFirst->item(i)->data(Qt::UserRole).toString() == 
+		m_ui->m_listSecond->item(i)->data(Qt::UserRole).toString()) {
+			
       score++;
       m_ui->m_listFirst->item(i)->setBackground(QBrush("green"));
       m_ui->m_listSecond->item(i)->setBackground(QBrush("green"));

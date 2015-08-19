@@ -179,7 +179,7 @@
        <item row="1" column="0">
         <widget class="QGroupBox" name="groupBox_3">
          <property name="title">
-          <string>Videocollections metadata</string>
+          <string>Collections metadata</string>
          </property>
          <layout class="QFormLayout" name="formLayout_2">
           <property name="fieldGrowthPolicy">
