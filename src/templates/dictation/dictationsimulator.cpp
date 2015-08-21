@@ -138,7 +138,9 @@ void DictationSimulator::select() {
   m_activePassage = m_ui->m_listItems->currentRow();
   
   if (m_activePassage < 0)
-    m_activePassage = 1;
+    m_activePassage = 0;
+  
+  qDebug()<<m_activePassage;
   
   m_ui->m_lblTitle->setText(m_passages.at(m_activePassage).title());
   m_ui->m_phoneWidget->setCurrentIndex(3);
