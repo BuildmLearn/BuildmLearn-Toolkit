@@ -34,6 +34,7 @@
 #include "core/templatefactory.h"
 #include "templates/dictation/dictationeditor.h"
 #include "definitions/definitions.h"
+#include "miscellaneous/application.h"
 
 
 DictationSimulator::DictationSimulator(TemplateCore *core, QWidget *parent)
@@ -52,7 +53,8 @@ DictationSimulator::DictationSimulator(TemplateCore *core, QWidget *parent)
 
   // Connecting signals and slots.
   connect(m_ui->m_btnStart, SIGNAL(clicked()), this, SLOT(start()));
-  connect(m_ui->m_listItems, SIGNAL(itemClicked(QListWidgetItem *)), this, SLOT(select()));
+  //connect(m_ui->m_listItems, SIGNAL(itemClicked(QListWidgetItem *)), this, SLOT(select()));
+  connect(m_ui->m_btnSelect, SIGNAL(clicked()), this, SLOT(select()));
   connect(m_ui->m_btnBack, SIGNAL(clicked()), this, SLOT(goBack()));
   connect(m_ui->m_btnSubmit, SIGNAL(clicked()), this, SLOT(submit()));
   connect(m_ui->m_btnRestart, SIGNAL(clicked()), this, SLOT(restart()));
@@ -134,10 +136,22 @@ void DictationSimulator::restart() {
 // Set initial things after user has chosen the passage.
 void DictationSimulator::select() {
   m_activePassage = m_ui->m_listItems->currentRow();
+  
+  if (m_activePassage < 0)
+    m_activePassage = 1;
+  
   m_ui->m_lblTitle->setText(m_passages.at(m_activePassage).title());
   m_ui->m_phoneWidget->setCurrentIndex(3);
   m_ui->m_readWidget->setCurrentIndex(0);
   m_ui->m_btnSubmit->setEnabled(false);
+  
+  if (m_ui->m_rbSlow->isChecked())
+    m_speed = 3.0;
+  else if (m_ui->m_rbFast->isChecked())
+    m_speed = 0.0;
+  else
+    m_speed = 1.5;
+  
   playPassage();
   
   emit canGoBackChanged(true);
@@ -146,9 +160,25 @@ void DictationSimulator::select() {
 // Play passage by using QWebView.
 void DictationSimulator::playPassage() {
   QString passage = m_passages.at(m_activePassage).passage();
-  QString url = QString("http://tts-api.com/tts.mp3?q=%1").arg(passage);
   m_ui->m_progressLoading->setValue(0);
-  m_ui->m_webRead->load(QUrl(url));
+  QString html_file_name = qApp->templateManager()->tempDirectory() + QDir::separator() +
+                           "sound_" + QDateTime::currentDateTime().toString("yyyy-MM-dd-hhmmss") + ".html";
+  QFile html_file(html_file_name);
+  html_file.open(QIODevice::WriteOnly);
+  
+  QTextStream outStream(&html_file);
+  outStream << "<html> \n" << "<style>#player {width: 100%;}</style> \n" << "<body> \n";
+  outStream << "<audio id=\"player\" controls autoplay> \n";
+  outStream << "<source src = \"http://mary.dfki.de:59125/process?";
+  outStream << "INPUT_TYPE=TEXT&OUTPUT_TYPE=AUDIO&INPUT_TEXT=" << passage;
+  outStream << "%0A&OUTPUT_TEXT=&effect_Rate_selected=on&effect_Rate_parameters=durScale%3A" << m_speed;
+  outStream << "%3B&effect_Rate_default=Default&effect_Rate_help=Help";
+  outStream << "&exampleTexts=&VOICE_SELECTIONS=dfki-spike-hsmm%20en_GB%20male%20hmm";
+  outStream << "&AUDIO_OUT=WAVE_FILE&LOCALE=en_GB&VOICE=dfki-spike-hsmm&AUDIO=WAVE_FILE\" type=\"audio/wav\"> \n";
+  outStream << "Audio is not supported. \n" << "</audio> \n" << "</body> \n" << "</html>";
+  html_file.close();
+  
+  m_ui->m_webRead->load(QUrl::fromLocalFile(html_file_name)); 
 }
 
 void DictationSimulator::loading(int progress) {

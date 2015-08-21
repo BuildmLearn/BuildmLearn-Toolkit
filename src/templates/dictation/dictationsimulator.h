@@ -71,6 +71,7 @@ class DictationSimulator : public TemplateSimulator {
     Ui::DictationSimulator *m_ui;
     QList<DictationPassage> m_passages;
     int m_activePassage;
+    float m_speed;
 };
 
 #endif // DICTATIONSIMULATOR_H
