@@ -33,6 +33,7 @@
 
 #include "core/templateentrypoint.h"
 
+
 /// \brief Entry point.
 /// \ingroup template-dictation
 class DictationEntryPoint : public TemplateEntryPoint {
@@ -45,10 +46,6 @@ class DictationEntryPoint : public TemplateEntryPoint {
 
     TemplateCore *createNewCore();
     TemplateCore *loadCoreFromBundleData(const QString& raw_data);
-
-  signals:
-
-  public slots:
 };
 
 #endif // DICTATIONENTRYPOINT_H

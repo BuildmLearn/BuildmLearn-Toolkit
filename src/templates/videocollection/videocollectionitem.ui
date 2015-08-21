@@ -78,6 +78,9 @@ p, li { white-space: pre-wrap; }
    </item>
    <item>
     <widget class="QTextEdit" name="m_txtDescription">
+     <property name="styleSheet">
+      <string notr="true">QTextEdit {color: black; background-color: white;} QScrollBar {background-color: grey; border-style: outset; border-radius: 3px; border-width: 1px; border-color: black;}</string>
+     </property>
      <property name="horizontalScrollBarPolicy">
       <enum>Qt::ScrollBarAlwaysOff</enum>
      </property>
@@ -97,6 +100,9 @@ p, li { white-space: pre-wrap; }
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QPushButton" name="m_btnPrevious">
+       <property name="styleSheet">
+        <string notr="true">QPushButton {min-height:1.5em; font:1em; margin:0 1px 0 1px; color: white; background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #329932, stop: 1 #004C00); border-style: outset;border-radius: 3px; border-width: 1px;  border-color: #50873a;} QPushButton:pressed {background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #004C00, stop: 1 #329932);}</string>
+       </property>
        <property name="text">
         <string>&amp;Previous</string>
        </property>
@@ -104,6 +110,9 @@ p, li { white-space: pre-wrap; }
      </item>
      <item>
       <widget class="QPushButton" name="m_btnList">
+       <property name="styleSheet">
+        <string notr="true">QPushButton {min-height:1.5em; font:1em; margin:0 1px 0 1px; color: white; background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #ff3232, stop: 1 #e50000); border-style: outset;border-radius: 3px; border-width: 1px; border-color: #ff0000;} QPushButton:pressed {background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #e50000, stop: 1 #ff3232);}</string>
+       </property>
        <property name="text">
         <string>&amp;To List</string>
        </property>
@@ -114,6 +123,9 @@ p, li { white-space: pre-wrap; }
      </item>
      <item>
       <widget class="QPushButton" name="m_btnNext">
+       <property name="styleSheet">
+        <string notr="true">QPushButton {min-height:1.5em; font:1em; margin:0 1px 0 1px; color: white; background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #329932, stop: 1 #004C00); border-style: outset;border-radius: 3px; border-width: 1px;  border-color: #50873a;} QPushButton:pressed {background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #004C00, stop: 1 #329932);}</string>
+       </property>
        <property name="text">
         <string>&amp;Next</string>
        </property>

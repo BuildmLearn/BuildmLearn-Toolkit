@@ -38,25 +38,17 @@ DictationPassage::~DictationPassage() {
 }
 
 QString DictationPassage::passage() const {
-    return m_passage;
+  return m_passage;
 }
 
 void DictationPassage::setPassage(const QString& passage) {
-    m_passage = passage;
+  m_passage = passage;
 }
 
 QString DictationPassage::title() const {
-    return m_title;
+	return m_title;
 }
 
 void DictationPassage::setTitle(const QString& title) {
-    m_title = title;
-}
-
-QString DictationPassage::audioFilePath() const {
-    return m_audioFilePath;
-}
-
-void DictationPassage::setAudioFilePath(const QString &audioFilePath) {
-    m_audioFilePath = audioFilePath;
+  m_title = title;
 }

@@ -31,8 +31,6 @@
 #include "templates/videocollection/videocollectionitem.h"
 
 #include "definitions/definitions.h"
-
-#include <QtWebKitWidgets/QWebView> 
  
  
 VideoCollectionItem::VideoCollectionItem(QWidget *parent) : QWidget(parent), m_ui(new Ui::VideoCollectionItem) {
@@ -41,28 +39,6 @@ VideoCollectionItem::VideoCollectionItem(QWidget *parent) : QWidget(parent), m_u
   QFont caption_font = m_ui->m_lblTitle->font();
   caption_font.setPointSize(caption_font.pointSize() + SIMULATOR_HEADER_SIZE_INCREASE);
   m_ui->m_lblTitle->setFont(caption_font);
-  
-  QString style = "QPushButton {min-height:1.5em; font:1em; margin:0 1px 0 1px; color: white; \
-                   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #ff3232, \
-                   stop: 1 #e50000); border-style: outset;border-radius: 3px; border-width: 1px; \
-                   border-color: #ff0000;} QPushButton:pressed {background-color: \
-                   qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #e50000, stop: 1 #ff3232);}";
-
-  m_ui->m_btnList->setStyleSheet(style);
-  
-  style = "QPushButton{min-height:1.5em; font:1em; margin:0 1px 0 1px; color: white; \
-           background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #329932, stop: \
-           1 #004C00); border-style: outset;border-radius: 3px; border-width: 1px; \
-           border-color: #50873a;} QPushButton:pressed {background-color: \
-           qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #004C00, stop: 1 #329932);}";
-  
-  m_ui->m_btnPrevious->setStyleSheet(style);
-  m_ui->m_btnNext->setStyleSheet(style);
-  
-  style = "QTextEdit {color: black; background-color: white;} QScrollBar {background-color: grey; border-style: \
-           outset;border-radius: 3px; border-width: 1px; border-color: black;}";
-                    
-  m_ui->m_txtDescription->setStyleSheet(style);
   
   QWebSettings::globalSettings()->setAttribute(QWebSettings::PluginsEnabled, true);
   
@@ -79,14 +55,14 @@ void VideoCollectionItem::setVideo(const VideoCollectionVideo &video, int video_
   m_ui->m_btnPrevious->setEnabled(video_number != 1);
   m_ui->m_lblTitle->setText(video.title());
   m_ui->m_txtDescription->setText(video.description());
+
   if (video.url().contains("https://www.youtube.com/watch?v=", Qt::CaseInsensitive)) {
-	m_ui->m_videoWidget->setCurrentIndex(0);
-	QString embed_url = video.url();
-	embed_url.replace("watch?v=","embed/");
-	m_ui->m_webVideo->load(QUrl(embed_url));
+		m_ui->m_videoWidget->setCurrentIndex(0);
+		QString embed_url = video.url();
+		embed_url.replace("watch?v=","embed/");
+		m_ui->m_webVideo->load(QUrl(embed_url));
   }
   else
-	m_ui->m_videoWidget->setCurrentIndex(1);
-	
-  //m_ui->m_lblVideoNumber->setText(tr("Video number %1 of %2").arg(QString::number(video_number), QString::number(total_videos)));
+		m_ui->m_videoWidget->setCurrentIndex(1);
+
 }

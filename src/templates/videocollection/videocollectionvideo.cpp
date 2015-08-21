@@ -38,27 +38,27 @@ VideoCollectionVideo::~VideoCollectionVideo() {
 }
 
 QString VideoCollectionVideo::url() const {
-    return m_url;
+  return m_url;
 }
 
 void VideoCollectionVideo::setUrl(const QString& url) {
-    m_url = url;
+  m_url = url;
 }
 
 QString VideoCollectionVideo::title() const {
-    return m_title;
+  return m_title;
 }
 
 void VideoCollectionVideo::setTitle(const QString& title) {
-    m_title = title;
+  m_title = title;
 }
 
 QString VideoCollectionVideo::thumbnailPath() const {
-    return m_thumbnailPath;
+  return m_thumbnailPath;
 }
 
 void VideoCollectionVideo::setThumbnailPath(const QString& thumbnail_path) {
-    m_thumbnailPath = thumbnail_path;
+  m_thumbnailPath = thumbnail_path;
 }
 
 QString VideoCollectionVideo::description() const

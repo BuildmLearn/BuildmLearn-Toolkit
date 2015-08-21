@@ -46,10 +46,6 @@ class VideoCollectionEntryPoint : public TemplateEntryPoint {
 
     TemplateCore *createNewCore();
     TemplateCore *loadCoreFromBundleData(const QString& raw_data);
-
-  signals:
-
-  public slots:
 };
 
 #endif // VIDEOCOLLECTIONENTRYPOINT_H

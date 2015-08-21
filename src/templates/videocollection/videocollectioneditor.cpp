@@ -39,47 +39,24 @@
 #include "network-web/networkfactory.h"
 #include "gui/custommessagebox.h"
 
-#include <QInputDialog>
-#include <QFile>
-#include <QTextStream>
-#include <QDataStream>
-#include <QDir>
-#include <QDateTime>
-#include <QDebug>
-#include <QTextStream>
-
 #include <QTimer>
-#include <QFileDialog>
 
 
 VideoCollectionEditor::VideoCollectionEditor(TemplateCore *core, QWidget *parent)
   : TemplateEditor(core, parent), m_ui(new Ui::VideoCollectionEditor) {
   m_ui->setupUi(this);
 
-  // Set up Network access manager
-  //QNetworkAccessManager *manager = new QNetworkAccessManager(this);
-  //QNetworkReply *reply  = new QNetworkReply(this);;
-  m_ui->m_listVideos->setIconSize(QSize(75,75));
-  m_ui->m_listVideos->setWordWrap(true);
-
   // Set validators.
   QRegExpValidator *author_validator = new QRegExpValidator(this);
   QRegExpValidator *title_validator = new QRegExpValidator(this);
-
+	QRegExpValidator *video_title_validator = new QRegExpValidator(this);
+	
   author_validator->setRegExp(QRegExp(".{,50}"));
   title_validator->setRegExp(QRegExp(".{,100}"));
+  video_title_validator->setRegExp(QRegExp(".{,30}"));
 
   m_ui->m_txtAuthor->lineEdit()->setValidator(author_validator);
   m_ui->m_txtName->lineEdit()->setValidator(title_validator);
-
-  // Set validators.
-  //QRegExpValidator *url_validator = new QRegExpValidator(this);
-  QRegExpValidator *video_title_validator = new QRegExpValidator(this);
-
-  //url_validator->setRegExp(QRegExp(".{,100}"));
-  video_title_validator->setRegExp(QRegExp(".{,30}"));
-
-  //m_ui->m_txtUrl->lineEdit()->setValidator(url_validator);
   m_ui->m_txtTitle->lineEdit()->setValidator(video_title_validator);
 
   // Set tab order.
@@ -94,9 +71,11 @@ VideoCollectionEditor::VideoCollectionEditor(TemplateCore *core, QWidget *parent
     setTabOrder(tab_order_widgets.at(i - 1), tab_order_widgets.at(i));
   }
 
-  m_ui->m_txtNumberOfVideos->lineEdit()->setEnabled(false);
+	m_ui->m_txtNumberOfVideos->lineEdit()->setEnabled(false);
 
   m_ui->m_lblThumbnailStatus->label()->setWordWrap(true);
+  
+  // Set default values.
   m_ui->m_txtTitle->lineEdit()->setPlaceholderText(tr("Title for the video"));
 
   m_ui->m_lblThumbnailStatus->setStatus(WidgetWithStatus::Error, QString(), tr("No video selected"));
@@ -110,6 +89,7 @@ VideoCollectionEditor::VideoCollectionEditor(TemplateCore *core, QWidget *parent
   m_ui->m_btnVideoUp->setIcon(factory->fromTheme("move-up"));
   m_ui->m_btnVideoDown->setIcon(factory->fromTheme("move-down"));
 
+  // Connect signals and slots.
   connect(m_ui->m_txtAuthor->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(onAuthorChanged(QString)));
   connect(m_ui->m_txtUrl->lineEdit(), SIGNAL(textEdited(QString)), this, SLOT(onUrlChanged(QString)));
   connect(m_ui->m_txtName->lineEdit(), SIGNAL(textChanged(QString)), this, SLOT(onNameChanged(QString)));
@@ -136,7 +116,6 @@ VideoCollectionEditor::VideoCollectionEditor(TemplateCore *core, QWidget *parent
 VideoCollectionEditor::~VideoCollectionEditor() {
   qDebug("Destroying VideoCollectionEditor instance.");
 
-  //delete manager;
   delete m_ui;
 }
 
@@ -235,7 +214,7 @@ bool VideoCollectionEditor::loadBundleData(const QString &bundle_data) {
           addVideo(video, description, title, target_image_file);
         }
         else {
-          // TODO: errro
+          // TODO: errror
         }
       }
     }
@@ -313,6 +292,7 @@ void VideoCollectionEditor::checkUrl() {
   }
 }
 
+// Parse the title, description and thumbnail if the url is valid.
 void VideoCollectionEditor::urlChanged() {
 	if (m_ui->m_txtUrl->lineEdit()->text().isEmpty()) {
     m_ui->m_txtUrl->setStatus(WidgetWithStatus::Warning,
@@ -346,13 +326,6 @@ void VideoCollectionEditor::urlChanged() {
       QString source_code(output);
       source_code.replace("&#39;","'");
 
-      /*
-      QStringList list = source_code.split("<span id=\"eow-title\" class=\"watch-title \" dir=\"ltr\" title="");
-      list = list[1].split('>');
-      qDebug()<<list[1];
-      QString title = list[1].remove("\"</span");
-      */
-
       QStringList list = source_code.split("<meta property=\"og:title\" content=\"");
       list = list[1].split("\"");
       QString title = list[0];
@@ -378,7 +351,8 @@ void VideoCollectionEditor::urlChanged() {
                                         QSystemTrayIcon::Warning);
         }
         else {
-          CustomMessageBox::show(this, QMessageBox::Warning, tr("Cannot get thumbnail"), tr("Thumbnail was not found"));
+          CustomMessageBox::show(this, QMessageBox::Warning, tr("Cannot get thumbnail"), 
+																 tr("Thumbnail was not found"));
         }
 
         return;
@@ -399,18 +373,9 @@ void VideoCollectionEditor::urlChanged() {
                                 tr("Video details are loaded successfully"));
 
     }
-    /*else if (url.contains("dailymotion.com/video/", Qt::CaseInsensitive)) {
-      m_ui->m_txtUrl->setStatus(WidgetWithStatus::Ok,
-                                tr("Valid Dailymotion url is specified."));
-    }
-    else if (url.contains("vimeo.com/", Qt::CaseInsensitive)) {
-      m_ui->m_txtUrl->setStatus(WidgetWithStatus::Ok,
-                                tr("Valid Vimeo url is specified."));
-    }*/
     else
       m_ui->m_txtUrl->setStatus(WidgetWithStatus::Error,
                                 tr("No valid Youtube or Dailymotion or Vimeo video url is specified."));
-      //return;
   }
 }
 
@@ -524,10 +489,7 @@ void VideoCollectionEditor::addVideo() {
   addVideo(QString(),
            tr("Description"),
            tr("Title"),
-					 QString()/*
-					 APP_TEMPLATES_PATH + QDir::separator() +
-					 core()->entryPoint()->baseFolder() + QDir::separator() +
-					 "thumbnail.png"*/);
+					 QString());
   launch();
   emit changed();
 }
@@ -564,7 +526,6 @@ void VideoCollectionEditor::loadVideo(int index) {
   m_ui->m_txtTitle->blockSignals(false);
   m_ui->m_txtDescription->blockSignals(false);
 
-  //checkDescription();
   checkUrl();
   checkTitle();
 

@@ -85,8 +85,6 @@ class VideoCollectionEditor : public TemplateEditor {
     void moveVideoUp();
     void moveVideoDown();
     void addVideo(const QString& url, const QString& title, const QString& description, const QString& thumbnail_path);
-    //void downloadingError(int error_code);
-    //void sourceDownloaded();
 
   private:
     Ui::VideoCollectionEditor *m_ui;

@@ -47,7 +47,6 @@ VideoCollectionEntryPoint::VideoCollectionEntryPoint(TemplateFactory *parent)
 }
 
 VideoCollectionEntryPoint::~VideoCollectionEntryPoint() {
-
 }
 
 TemplateCore *VideoCollectionEntryPoint::createNewCore() {

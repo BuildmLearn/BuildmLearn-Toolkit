@@ -31,11 +31,9 @@
 #ifndef VIDEOCOLLECTIONITEM_H
 #define VIDEOCOLLECTIONITEM_H
 
-#include <QWidget>
+#include "templates/videocollection/videocollectionvideo.h"
 
 #include "ui_videocollectionitem.h"
-
-#include "templates/videocollection/videocollectionvideo.h"
 
 
 namespace Ui {
@@ -59,8 +57,8 @@ class VideoCollectionItem : public QWidget {
 
   signals:
     void previousVideoRequested();
-	void goToList();
-	void nextVideoRequested();
+		void goToList();
+		void nextVideoRequested();
     
   private:
     Ui::VideoCollectionItem *m_ui;

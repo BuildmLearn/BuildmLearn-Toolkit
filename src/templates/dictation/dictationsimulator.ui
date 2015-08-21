@@ -32,7 +32,7 @@
    <item>
     <widget class="SlidingStackedWidget" name="m_phoneWidget">
      <property name="currentIndex">
-      <number>3</number>
+      <number>4</number>
      </property>
      <widget class="QWidget" name="m_pageStopped">
       <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -135,6 +135,9 @@
            <property name="enabled">
             <bool>false</bool>
            </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {min-height:1.5em; font:1em; margin:0 1px 0 1px; color: white; background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #ff3232, stop: 1 #e50000); border-style: outset;border-radius: 3px; border-width: 1px; border-color: #ff0000;} QPushButton:pressed {background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #e50000, stop: 1 #ff3232);}</string>
+           </property>
            <property name="text">
             <string>&amp;Start</string>
            </property>
@@ -177,7 +180,11 @@
         </widget>
        </item>
        <item>
-        <widget class="QListWidget" name="m_listItems"/>
+        <widget class="QListWidget" name="m_listItems">
+         <property name="styleSheet">
+          <string notr="true">QListWidget {color: black; background-color: white;} QScrollBar {background-color: grey; border-style: outset; border-radius: 3px; border-width: 1px; border-color: black;}</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -221,6 +228,9 @@
            <height>0</height>
           </size>
          </property>
+         <property name="styleSheet">
+          <string notr="true">QTextEdit {color: black; background-color: white;} QScrollBar {background-color: grey; border-style: outset; border-radius: 3px; border-width: 1px; border-color: black;}</string>
+         </property>
          <property name="horizontalScrollBarPolicy">
           <enum>Qt::ScrollBarAlwaysOff</enum>
          </property>
@@ -230,6 +240,9 @@
         <layout class="QHBoxLayout" name="horizontalLayout_6">
          <item>
           <widget class="QPushButton" name="m_btnBack">
+           <property name="styleSheet">
+            <string notr="true">QPushButton {min-height:1.5em; font:1em; margin:0 1px 0 1px; color: white; background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #ff3232, stop: 1 #e50000); border-style: outset;border-radius: 3px; border-width: 1px; border-color: #ff0000;} QPushButton:pressed {background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #e50000, stop: 1 #ff3232);}</string>
+           </property>
            <property name="text">
             <string>&amp;Back</string>
            </property>
@@ -237,6 +250,9 @@
          </item>
          <item>
           <widget class="QPushButton" name="m_btnSubmit">
+           <property name="styleSheet">
+            <string notr="true">QPushButton {min-height:1.5em; font:1em; margin:0 1px 0 1px; color: white; background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #329932, stop: 1 #004C00); border-style: outset;border-radius: 3px; border-width: 1px;  border-color: #50873a;} QPushButton:pressed {background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #004C00, stop: 1 #329932);} QPushButton:!enabled {background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #D3D3D3, stop: 1 #7e7e7e);}</string>
+           </property>
            <property name="text">
             <string>&amp;Submit</string>
            </property>
@@ -325,7 +341,7 @@ p, li { white-space: pre-wrap; }
             <number>0</number>
            </property>
            <item>
-            <widget class="QWebView" name="m_webRead">
+            <widget class="QWebView" name="m_webRead" native="true">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -338,7 +354,7 @@ p, li { white-space: pre-wrap; }
                <height>100</height>
               </size>
              </property>
-             <property name="url">
+             <property name="url" stdset="0">
               <url>
                <string>about:blank</string>
               </url>
@@ -371,7 +387,11 @@ p, li { white-space: pre-wrap; }
         </widget>
        </item>
        <item>
-        <widget class="QTextEdit" name="m_txtCorrectPassage"/>
+        <widget class="QTextEdit" name="m_txtCorrectPassage">
+         <property name="styleSheet">
+          <string notr="true">QTextEdit {color: black; background-color: white;} QScrollBar {background-color: grey; border-style: outset; border-radius: 3px; border-width: 1px; border-color: black;}</string>
+         </property>
+        </widget>
        </item>
        <item>
         <layout class="QGridLayout" name="gridLayout">
@@ -390,6 +410,9 @@ p, li { white-space: pre-wrap; }
          </item>
          <item row="1" column="1">
           <widget class="QPushButton" name="m_btnExit">
+           <property name="styleSheet">
+            <string notr="true">QPushButton {min-height:1.5em; font:1em; margin:0 1px 0 1px; color: white; background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #ff3232, stop: 1 #e50000); border-style: outset;border-radius: 3px; border-width: 1px; border-color: #ff0000;} QPushButton:pressed {background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #e50000, stop: 1 #ff3232);}</string>
+           </property>
            <property name="text">
             <string>&amp;Exit</string>
            </property>
@@ -410,6 +433,9 @@ p, li { white-space: pre-wrap; }
          </item>
          <item row="0" column="1">
           <widget class="QPushButton" name="m_btnRestart">
+           <property name="styleSheet">
+            <string notr="true">QPushButton {min-height:1.5em; font:1em; margin:0 1px 0 1px; color: white; background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #329932, stop: 1 #004C00); border-style: outset;border-radius: 3px; border-width: 1px;  border-color: #50873a;} QPushButton:pressed {background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #004C00, stop: 1 #329932);}</string>
+           </property>
            <property name="text">
             <string>&amp;Restart</string>
            </property>

@@ -34,26 +34,13 @@
 #include "core/templatefactory.h"
 #include "templates/dictation/dictationeditor.h"
 #include "definitions/definitions.h"
-#include "miscellaneous/application.h"
-#include "miscellaneous/skinfactory.h"
-#include "network-web/networkfactory.h"
-#include "gui/custommessagebox.h"
-
-#include <QInputDialog>
-#include <QFile>
-#include <QTextStream>
-#include <QDataStream>
-#include <QDir>
-#include <QDateTime>
-#include <QDebug>
-#include <QTextStream>
 
 
 DictationSimulator::DictationSimulator(TemplateCore *core, QWidget *parent)
   : TemplateSimulator(core, parent),
     m_ui(new Ui::DictationSimulator) {
   m_ui->setupUi(this);
-  //m_player = new QMediaPlayer;
+  
   QFont caption_font = m_ui->m_lblHeading->font();
   caption_font.setPointSize(caption_font.pointSize() + SIMULATOR_HEADING_SIZE_INCREASE);
   m_ui->m_lblHeading->setFont(caption_font);
@@ -61,53 +48,12 @@ DictationSimulator::DictationSimulator(TemplateCore *core, QWidget *parent)
   m_ui->m_lblTitle->setFont(caption_font);
   m_ui->m_lblScore->setFont(caption_font);
   m_ui->m_lblDescription->setWordWrap(true);
-  
-  QString style = "QPushButton {min-height:1.5em; font:1em; margin:0 1px 0 1px; color: white; \
-                   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #ff3232, \
-                   stop: 1 #e50000); border-style: outset;border-radius: 3px; border-width: 1px; \
-                   border-color: #ff0000;} QPushButton:pressed {background-color: \
-                   qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #e50000, stop: 1 #ff3232);}";
-
-  m_ui->m_btnStart->setStyleSheet(style);
-  m_ui->m_btnBack->setStyleSheet(style);
-  m_ui->m_btnExit->setStyleSheet(style);
-  
-  style = "QPushButton{min-height:1.5em; font:1em; margin:0 1px 0 1px; color: white; \
-           background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #329932, stop: \
-           1 #004C00); border-style: outset;border-radius: 3px; border-width: 1px; \
-           border-color: #50873a;} QPushButton:pressed {background-color: \
-           qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #004C00, stop: 1 #329932);} \
-           QPushButton:!enabled {background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, \
-           stop: 0 #D3D3D3, stop: 1 #7e7e7e);}";
-  
-  m_ui->m_btnSubmit->setStyleSheet(style);
-  m_ui->m_btnRestart->setStyleSheet(style);
-  
-  style = "QTextEdit {color: black; background-color: white;} QScrollBar {background-color: grey; border-style: \
-           outset; border-radius: 3px; border-width: 1px; border-color: black;}";
-  
-  m_ui->m_txtPassage->setStyleSheet(style);
-  m_ui->m_txtCorrectPassage->setStyleSheet(style);
   m_ui->m_txtCorrectPassage->setReadOnly(true);
 
-  style = "QListWidget {color: black; background-color: white;} QScrollBar {background-color: grey; border-style: \
-           outset; border-radius: 3px; border-width: 1px; border-color: black;}";
-           
-  m_ui->m_listItems->setStyleSheet(style);
-
-  m_factory = IconFactory::instance();
-
-  //m_ui->m_btnPlayPause->setIcon(m_factory->fromTheme("player-pause"));
-  m_play = true;
-  //m_ui->m_sliderPlay->setMinimum(0);
-  //m_ui->m_sliderPlay->setSingleStep(1);
-
+	// Connecting signals and slots.
   connect(m_ui->m_btnStart, SIGNAL(clicked()), this, SLOT(start()));
-  //connect(m_ui->m_btnSelect, SIGNAL(clicked()), this, SLOT(select()));
   connect(m_ui->m_listItems, SIGNAL(itemClicked(QListWidgetItem *)), this, SLOT(select()));
   connect(m_ui->m_btnBack, SIGNAL(clicked()), this, SLOT(goBack()));
-  //connect(m_ui->m_btnPlayPause, SIGNAL(clicked()), this, SLOT(playPause()));
-  //connect(m_player, SIGNAL(positionChanged(qint64)), this, SLOT(moveSlider(qint64)));
   connect(m_ui->m_btnSubmit, SIGNAL(clicked()), this, SLOT(submit()));
   connect(m_ui->m_btnRestart, SIGNAL(clicked()), this, SLOT(restart()));
   connect(m_ui->m_btnExit, SIGNAL(clicked()), this, SLOT(restart()));
@@ -117,9 +63,8 @@ DictationSimulator::DictationSimulator(TemplateCore *core, QWidget *parent)
 }
 
 DictationSimulator::~DictationSimulator() {
-  //qDebug("Destroying DictationSimulator instance.");
+  qDebug("Destroying DictationSimulator instance.");
 
-  //delete m_player;
   delete m_ui;
 }
 
@@ -148,7 +93,6 @@ bool DictationSimulator::startSimulation() {
   m_ui->m_btnStart->setEnabled(true);
   m_ui->m_lblAuthor->setText(editor->m_ui->m_txtAuthor->lineEdit()->text());
   m_ui->m_lblHeading->setText(editor->m_ui->m_txtName->lineEdit()->text());
-
   
   // Go to "start" page and begin.
   m_ui->m_phoneWidget->setCurrentIndex(1);
@@ -187,12 +131,8 @@ void DictationSimulator::restart() {
   m_ui->m_txtPassage->document()->clear();
 }
 
-/*void DictationSimulator::selectPassage(QListWidgetItem *passage) {
-  selected_passage = passage->data(Qt::UserRole).value<DictationPassage>();
-}*/
-
-void DictationSimulator::select() {//QListWidgetItem *passage) {
-  //m_ui->m_lblTitle->setText(selected_passage->data(Qt::UserRole).value<DictationPassage>().title());
+// Set initial things after user has chosen the passage.
+void DictationSimulator::select() {
   m_activePassage = m_ui->m_listItems->currentRow();
   m_ui->m_lblTitle->setText(m_passages.at(m_activePassage).title());
   m_ui->m_phoneWidget->setCurrentIndex(3);
@@ -203,89 +143,8 @@ void DictationSimulator::select() {//QListWidgetItem *passage) {
   emit canGoBackChanged(true);
 }
 
-/*void DictationSimulator::playPassage() {
-  QString url = QString("http://tts-api.com/tts.mp3?q=%1").arg(m_passages.at(m_activePassage).passage());
-  m_player->setMedia(QUrl(url));
-  m_ui->m_sliderPlay->setMaximum(m_player->duration() / 500);
-  m_player->setVolume(100);
-  m_player->play();
-}
-
-void DictationSimulator::playPause() {
-  if(m_play) {
-    m_ui->m_btnPlayPause->setIcon(m_factory->fromTheme("player-play"));
-    m_play = false;
-    //m_player->pause();
-  }
-  else {
-    m_ui->m_btnPlayPause->setIcon(m_factory->fromTheme("player-pause"));
-    m_play = true;
-    //m_player->play();
-  }
-}*/
-
-//void DictationSimulator::moveSlider(qint64 position) {
-  //qDebug()<<position;
-  /*if(position % 500 == 0) {
-    m_ui->m_sliderPlay->setValue(position / 500);
-  }*/
-//}
-
+// Play passage by using QWebView.
 void DictationSimulator::playPassage() {
-/*#if defined(Q_OS_OS2)
-  if (SystemTrayIcon::isSystemTrayAvailable()) {
-    qApp->trayIcon()->showMessage(tr("Cannot play sound"), tr("Sound cannot play on this platform."),
-                                  QSystemTrayIcon::Warning);
-  }
-  else {
-    CustomMessageBox::show(this, QMessageBox::Warning, tr("Cannot play sound"), tr("Sound cannot play on this platform."));
-  }
-#else
-  // Play sound.
-  QByteArray output;
-
-  DictationPassage current_passage = m_passages.at(m_activePassage);
-
-  if (current_passage.audioFilePath().isEmpty() || !QFile::exists(current_passage.audioFilePath())) {
-    // Current passage does not contain downloaded audio file.
-    QString passage = m_passages.at(m_activePassage).passage();//.replace(' ', '+');
-    //QString passage = QUrl::toPercentEncoding(m_passages.at(m_activePassage).passage());
-    QString url = QString("http://tts-api.com/tts.mp3?q=%1").arg(passage);
-    QNetworkReply::NetworkError result_of_download = NetworkFactory::downloadFile(url, 10000, output);
-
-    if (result_of_download != QNetworkReply::NoError) {
-      // There was apparently some error.
-      if (SystemTrayIcon::isSystemTrayAvailable()) {
-        qApp->trayIcon()->showMessage(tr("Cannot play sound"), tr("Sound cannot play on this platform because sound file was not downloaded."),
-                                      QSystemTrayIcon::Warning);
-      }
-      else {
-        CustomMessageBox::show(this, QMessageBox::Warning, tr("Cannot play sound"), tr("Sound cannot play on this platform because sound file was not downloaded."));
-      }
-
-      return;
-    }
-
-    // Store downloaded sound file.
-    QString sound_file_name = qApp->templateManager()->tempDirectory() + QDir::separator() +
-                              "sound_" + QDateTime::currentDateTime().toString("yyyy-MM-dd-hhmmss") + ".mp3";
-    QFile sound_file(sound_file_name);
-    sound_file.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Unbuffered);
-    sound_file.write(output);
-    sound_file.close();
-
-    // We obtained new sound file for this particular passage.
-    // So, store the path.
-    // NOTE: Note that this is forgotten when new simulation is started.
-    m_passages[m_activePassage].setAudioFilePath(sound_file_name);
-  }
-    
-  //m_player->setMedia(QUrl::fromLocalFile(m_passages.at(m_activePassage).audioFilePath()));
-  //m_player->setVolume(100);
-  //m_player->play();
-  
-  //IOFactory::playWaveFile(m_passages.at(m_activePassage).audioFilePath());
-#endif*/
   QString passage = m_passages.at(m_activePassage).passage();
   QString url = QString("http://tts-api.com/tts.mp3?q=%1").arg(passage);
   m_ui->m_progressLoading->setValue(0);
@@ -301,6 +160,7 @@ void DictationSimulator::loadingFinished(bool success) {
   m_ui->m_readWidget->setCurrentIndex(1);
 }
 
+// For enabling submit button after user start writing something. 
 void DictationSimulator::onEnterPassageChanged() {
   QString passage_entered = m_ui->m_txtPassage->toPlainText().simplified();
   
@@ -310,6 +170,7 @@ void DictationSimulator::onEnterPassageChanged() {
     m_ui->m_btnSubmit->setEnabled(true);
 }
 
+// For calculating the score and displaying the result
 void DictationSimulator::submit() {
   
   QString passage_entered = m_ui->m_txtPassage->toPlainText().simplified();
@@ -323,56 +184,26 @@ void DictationSimulator::submit() {
   int word_position = correct_passage.indexOf(" ");
   position << 0;
   
-  
-  
+  // Insert the starting position of each word in the passage in 'position' QList.
   while(word_position != -1) {
     position << word_position + 1;
-    ////qDebug()<<pos+1;
     word_position = correct_passage.indexOf(" ", word_position + 1);
   }
   
-  //position << correct_passage.size();
-  
+  // 'begin' stores the beginning position of the wrong word and 'end' stores the ending position of the wrong word.
   QList<int> begin;
   QList<int> end;
   QStringList store_entered_words;
   QStringList store_correct_words;
-  bool correct = true, completely_wrong = true;
-  //qDebug()<<"First";
-  int j = 0, start, score2 = 0;
-  /*for (int i = 0; i < entered_words.size(); ++i) {
-    //qDebug()<<"entered_words.at(i) = "<<entered_words.at(i)<<" correct_words.at(j) = "<<correct_words.at(j) ;
-    if(entered_words.at(i) != correct_words.at(j) || !correct) {
-      if (correct) {
-        begin << position.at(j);
-        //qDebug()<<"j="<<j<<" Begin = "<<position.at(j);
-        start = j;
-        correct = false;
-      }
-      store_words << correct_words.at(j);
-      for (int k = 0; k < store_words.size(); ++k) {
-        //qDebug()<<"store_words.at(k) "<<store_words.at(k)<<", entered_words.at(i) "<<entered_words.at(i);
-        if(store_words.at(k) == entered_words.at(i)) {
-          j = start + k;
-          end << position.at(j);
-          //qDebug()<<"j="<<j<<" start="<<start<<" end = "<<position.at(j);
-          store_words.clear();
-          correct = true;
-          break;
-        }
-      }
-        //store_words << correct_words.at(j);
-    }
-    j++;
-  }
-  */
+  bool correct = true;
+  int j = 0, start, score = 0;
   
+  // Start checking the entered passage with the correct passage.
   for (int i = 0; i < correct_words.size(); i++) {
-    //qDebug()<<"Inside loop, begin size = "<<begin.size();
     if (j >= entered_words.size()) {
-      if (correct) 
+      if (correct) {
         begin << position.at(i);
-
+			}
       correct = false;        
       break; 
     }
@@ -380,65 +211,47 @@ void DictationSimulator::submit() {
     if(correct_words.at(i) != entered_words.at(j) || !correct) {
       if (correct) {
         begin << position.at(i);
-        //qDebug()<<"i="<<j<<" Begin = "<<position.at(i);
-        //qDebug()<<"begin size = "<<begin.size();
         start = i;
         correct = false;
       }
       store_entered_words << entered_words.at(j);
       for (int k = 0; k < store_entered_words.size(); ++k) {
-        //qDebug()<<"store_words.at(k) "<<store_entered_words.at(k)<<", correct_words.at(i) "<<correct_words.at(i);
         if(store_entered_words.at(k) == correct_words.at(i)) {
           j = start + k;
           end << position.at(i);
-          //qDebug()<<"j="<<j<<" start="<<start<<" end = "<<position.at(i);
           store_entered_words.clear();
           correct = true;
-          score2++;
+          score++;
           break;
         }
       }
-        //store_words << correct_words.at(j);
     }
-    else
-      score2++;
-      
+    else {
+      score++;
+    }
     j++;
   }
   
-  //qDebug()<<"Out of for loop, end size = "<<end.size();
-  
+  // If last word is incorrect, then insert the ending position of passage in 'end' QList.
   if (!correct)
     end << correct_passage.size() + 1;
   
+  // Set the background color of wrong words as red.
   QTextCharFormat fmt;
   fmt.setBackground(Qt::red);
 
-  //QVector<QTextCursor> cursor(begin.size(), m_ui->m_correctPassage->document());
-
   QList< QTextCursor > cursor;
   
-  //qDebug()<<"Begin wrong markings, begin size = "<<begin.size()<<" , end size = "<<end.size();
-  
+  // Mark the wrong words with red color.
   for(int i = 0; i < begin.size(); i++) {
-    //qDebug()<<"i = "<<i;
     cursor << QTextCursor(m_ui->m_txtCorrectPassage->document());
     cursor[i].setPosition(begin.at(i), QTextCursor::MoveAnchor);
     cursor[i].setPosition(end.at(i) - 1, QTextCursor::KeepAnchor);
     cursor[i].setCharFormat(fmt);
   }
   
-  int score;
-  if (correct_words.size() <= entered_words.size()) {
-    score = correct_words.size() - begin.size();
-    //qDebug()<<"correct_words.size() = "<<correct_words.size()<<" , begin.size() = "<<begin.size();
-  }
-  else {
-    score = entered_words.size() - begin.size() + 1;
-    //qDebug()<<"entered_words.size() = "<<entered_words.size()<<" , begin.size() = "<<begin.size();
-  }
-  
-  m_ui->m_lblScore->setText(tr("Score - %1 of %2").arg(QString::number(score2),
+  // Display the score.
+  m_ui->m_lblScore->setText(tr("Score - %1 of %2").arg(QString::number(score),
                                                        QString::number(correct_words.size())));
   
   m_ui->m_phoneWidget->setCurrentIndex(4);
