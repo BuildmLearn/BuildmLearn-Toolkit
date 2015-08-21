@@ -29,15 +29,13 @@
 */
 
 #include "templates/matchthefollowing/matchfollowingeditor.h"
-#include "templates/matchthefollowing/listdelegate.h"
+#include "templates/matchthefollowing/matchfollowinglistdelegate.h"
 #include "templates/matchthefollowing/matchfollowingcore.h"
 #include "templates/matchthefollowing/matchfollowingentrypoint.h"
 #include "miscellaneous/iconfactory.h"
-#include "miscellaneous/iofactory.h"
 #include "core/templatefactory.h"
 
 #include <QTimer>
-#include <QFileDialog>
 
 
 MatchFollowingEditor::MatchFollowingEditor(TemplateCore *core, QWidget *parent)
@@ -386,7 +384,7 @@ void MatchFollowingEditor::addTopic(const QString &firstListTopic,
   bool nullDelegate = false;
   if (m_ui->m_listTopics->itemDelegate() == NULL) {
     nullDelegate = true;
-    m_ui->m_listTopics->setItemDelegate(new ListDelegate());
+    m_ui->m_listTopics->setItemDelegate(new MatchFollowingListDelegate());
   }
 
   int marked_topic = m_ui->m_listTopics->currentRow();

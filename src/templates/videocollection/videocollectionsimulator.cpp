@@ -38,11 +38,8 @@
 
 VideoCollectionSimulator::VideoCollectionSimulator(TemplateCore *core, QWidget *parent)
   : TemplateSimulator(core, parent),
-    m_ui(new Ui::VideoCollectionSimulator) {
+  m_ui(new Ui::VideoCollectionSimulator) {
   m_ui->setupUi(this);
-
-  //m_ui->m_listVideos->setIconSize(QSize(50,50));
-  //m_ui->m_listVideos->setWordWrap(true);
 
   QFont caption_font = m_ui->m_lblHeading->font();
   caption_font.setPointSize(caption_font.pointSize() + SIMULATOR_HEADING_SIZE_INCREASE);
@@ -98,10 +95,10 @@ bool VideoCollectionSimulator::startSimulation() {
     
     QListWidgetItem *new_item = new QListWidgetItem();
     new_item->setText(video.title() + "\n" + video.description());
-	new_item->setIcon(QIcon(video.thumbnailPath()));
-	m_ui->m_listVideos->insertItem(video_number-1, new_item);
-	
-	video_number++;
+    new_item->setIcon(QIcon(video.thumbnailPath()));
+    m_ui->m_listVideos->insertItem(video_number-1, new_item);
+  
+    video_number++;
   }
 
   // Go to "start" page and begin.

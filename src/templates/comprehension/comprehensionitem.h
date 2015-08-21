@@ -31,7 +31,7 @@
 #ifndef COMPREHENSIONITEM_H
 #define COMPREHENSIONITEM_H
 
-#include <QWidget>
+//#include <QWidget>
 
 #include "ui_comprehensionitem.h"
 

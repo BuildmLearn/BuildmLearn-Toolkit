@@ -30,8 +30,6 @@
 
 #include "templates/comprehension/comprehensionquestion.h"
 
-#include <QStringList>
-
 
 ComprehensionQuestion::ComprehensionQuestion() {
   m_answers = QStringList();

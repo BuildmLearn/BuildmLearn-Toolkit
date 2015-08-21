@@ -28,14 +28,15 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include "templates/matchthefollowing/listdelegate.h"
+#include "templates/matchthefollowing/matchfollowinglistdelegate.h"
 #include "definitions/definitions.h"
 
 
-ListDelegate::ListDelegate() {
+MatchFollowingListDelegate::MatchFollowingListDelegate() {
 }
 
-void ListDelegate::paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const {
+void MatchFollowingListDelegate::paint(QPainter * painter, const QStyleOptionViewItem & option, 
+                                       const QModelIndex & index) const {
   QRect r = option.rect;
 
   // Color: #C4C4C4.
@@ -94,12 +95,12 @@ void ListDelegate::paint(QPainter * painter, const QStyleOptionViewItem & option
 }
 
 // Size of the ListWidgetItem.
-QSize ListDelegate::sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const{
+QSize MatchFollowingListDelegate::sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const {
   Q_UNUSED(option);
   Q_UNUSED(index);
   return QSize(LIST_DELEGATE_WIDTH, LIST_DELEGATE_HEIGHT);
 }
 
-ListDelegate::~ListDelegate()
+MatchFollowingListDelegate::~MatchFollowingListDelegate()
 {
 }

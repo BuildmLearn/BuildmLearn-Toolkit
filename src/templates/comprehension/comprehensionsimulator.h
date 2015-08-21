@@ -41,11 +41,6 @@ namespace Ui {
   class ComprehensionSimulator;
 }
 
-class TemplateCore;
-class QLabel;
-class QPushButton;
-class QRadioButton;
-
 /// \brief Simulator for Comprehension template.
 /// \ingroup template-comprehension
 class ComprehensionSimulator : public TemplateSimulator {
@@ -68,8 +63,8 @@ class ComprehensionSimulator : public TemplateSimulator {
     
     void questionStart();
     void questionSubmitted();
-	void prepareSummary();
-	void counter();
+    void prepareSummary();
+    void counter();
 
   private:
     Ui::ComprehensionSimulator *m_ui;

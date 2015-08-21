@@ -34,12 +34,12 @@
 
 /// \brief List delegate for Match the following template.
 /// \ingroup template-matchthefollowing
-class ListDelegate : public QAbstractItemDelegate {
+class MatchFollowingListDelegate : public QAbstractItemDelegate {
   public:
-    explicit ListDelegate();
+    explicit MatchFollowingListDelegate();
  
     void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const;
     QSize sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const;
  
-    virtual ~ListDelegate();
+    virtual ~MatchFollowingListDelegate();
 };

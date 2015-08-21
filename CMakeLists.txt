@@ -453,7 +453,7 @@ set(APP_SOURCES
   src/templates/matchthefollowing/matchfollowingsimulator.cpp
   src/templates/matchthefollowing/matchfollowingtopic.cpp
   src/templates/matchthefollowing/slidingstackedwidget.cpp
-  src/templates/matchthefollowing/listdelegate.cpp
+  src/templates/matchthefollowing/matchfollowinglistdelegate.cpp
   
   src/templates/comprehension/comprehensionentrypoint.cpp
   src/templates/comprehension/comprehensioncore.cpp
@@ -555,7 +555,7 @@ set(APP_HEADERS
   src/templates/matchthefollowing/matchfollowingsimulator.h
   src/templates/matchthefollowing/matchfollowingtopic.h
   src/templates/matchthefollowing/slidingstackedwidget.h
-  src/templates/matchthefollowing/listdelegate.h
+  src/templates/matchthefollowing/matchfollowinglistdelegate.h
   
   src/templates/dictation/dictationentrypoint.h
   src/templates/dictation/dictationcore.h

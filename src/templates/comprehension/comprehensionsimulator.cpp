@@ -36,12 +36,6 @@
 #include "templates/comprehension/comprehensionitem.h"
 #include "definitions/definitions.h"
 
-#include <QMessageBox>
-#include <QLabel>
-#include <QPushButton>
-#include <QRadioButton>
-#include <QDebug>
-
 
 ComprehensionSimulator::ComprehensionSimulator(TemplateCore *core, QWidget *parent)
   : TemplateSimulator(core, parent), m_ui(new Ui::ComprehensionSimulator) {
@@ -54,30 +48,6 @@ ComprehensionSimulator::ComprehensionSimulator(TemplateCore *core, QWidget *pare
   m_ui->m_lblTimer->setFont(caption_font);
   m_ui->m_lblComplete->setFont(caption_font);
   m_ui->m_lblComplete->setWordWrap(true);
-  
-  // Set styling.
-  QString style = "QPushButton {min-height:1.5em; font:1em; margin:0 1px 0 1px; color: white; \
-                   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #ff3232, \
-                   stop: 1 #e50000); border-style: outset;border-radius: 3px; border-width: 1px; \
-                   border-color: #ff0000;} QPushButton:pressed {background-color: \
-                   qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #e50000, stop: 1 #ff3232);}";
-
-  m_ui->m_btnStart->setStyleSheet(style);
-  m_ui->m_btnExit->setStyleSheet(style);
-  
-  style = "QPushButton{min-height:1.5em; font:1em; margin:0 1px 0 1px; color: white; \
-           background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #329932, stop: \
-           1 #004C00); border-style: outset;border-radius: 3px; border-width: 1px; \
-           border-color: #50873a;} QPushButton:pressed {background-color: \
-           qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #004C00, stop: 1 #329932);}";
-  
-  m_ui->m_btnQuestions->setStyleSheet(style);
-  m_ui->m_btnRestart->setStyleSheet(style);
-
-  style = "QTextEdit {color: black; background-color: white;} QScrollBar {background-color: grey; border-style: \
-           outset;border-radius: 3px; border-width: 1px; border-color: black;}";
-
-  m_ui->m_txtPassage->setStyleSheet(style);
   m_ui->m_txtPassage->setReadOnly(true);
 
   connect(m_ui->m_btnStart, SIGNAL(clicked()), this, SLOT(start()));

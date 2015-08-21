@@ -36,8 +36,6 @@
 #include "ui_comprehensioneditor.h"
 #include "templates/comprehension/comprehensionquestion.h"
 
-#include <QIcon>
-
 
 namespace Ui {
   class ComprehensionEditor;
@@ -80,8 +78,8 @@ class ComprehensionEditor : public TemplateEditor {
     void moveQuestionUp();
     void moveQuestionDown();
 	
-	void selectPassage();
-	void loadPassage(const QString &passage_path);
+	  void selectPassage();
+	  void loadPassage(const QString &passage_path);
 	
     void configureUpDown();
     void setEditorsEnabled(bool enabled);

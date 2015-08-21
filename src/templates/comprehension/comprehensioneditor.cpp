@@ -36,12 +36,7 @@
 #include "core/templatecore.h"
 #include "core/templateentrypoint.h"
 
-#include <QToolTip>
 #include <QTimer>
-#include <QShowEvent>
-#include <QDomDocument>
-#include <QDomElement>
-#include <QDomAttr>
 #include <QFileDialog>
 
 
@@ -441,20 +436,20 @@ void ComprehensionEditor::checkPassage() {
     m_ui->m_lblPassageStatus->setStatus(WidgetWithStatus::Error, tr("Passage is empty."), tr("Passage is empty."));
   }
   else {
-	QString text = m_ui->m_txtPassage->toPlainText();
-	if (text.size() > 1000) {
-	  text.resize(1000);
-	  m_ui->m_txtPassage->setText(text);
-	}
+  QString text = m_ui->m_txtPassage->toPlainText();
+  if (text.size() > 1000) {
+    text.resize(1000);
+    m_ui->m_txtPassage->setText(text);
+  }
     m_wordCount = m_ui->m_txtPassage->toPlainText().split(QRegExp("(\\s|\\n|\\r)+"),
-															 QString::SkipEmptyParts).count();
-	if (m_wordCount < 50) {
-	  m_ui->m_lblPassageStatus->setStatus(WidgetWithStatus::Error, tr("Passage has %1 words, min 50 words required")
-										  .arg(QString::number(m_wordCount)), tr("Passage has %1 words, min 50 words \
-										  required").arg(QString::number(m_wordCount)));
+                               QString::SkipEmptyParts).count();
+  if (m_wordCount < 50) {
+    m_ui->m_lblPassageStatus->setStatus(WidgetWithStatus::Error, tr("Passage has %1 words, min 50 words required")
+                      .arg(QString::number(m_wordCount)), tr("Passage has %1 words, min 50 words \
+                      required").arg(QString::number(m_wordCount)));
     }
     else {
-	  int char_count = m_ui->m_txtPassage->document()->characterCount() - 1;
+    int char_count = m_ui->m_txtPassage->document()->characterCount() - 1;
       m_ui->m_lblPassageStatus->setStatus(WidgetWithStatus::Ok, tr("Words - %1, Char - %2.").arg(
                                           QString::number(m_wordCount), QString::number(char_count)),
                                           tr("Words - %1, Char - %2.").arg(QString::number(m_wordCount),

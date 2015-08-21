@@ -50,7 +50,7 @@ DictationSimulator::DictationSimulator(TemplateCore *core, QWidget *parent)
   m_ui->m_lblDescription->setWordWrap(true);
   m_ui->m_txtCorrectPassage->setReadOnly(true);
 
-	// Connecting signals and slots.
+  // Connecting signals and slots.
   connect(m_ui->m_btnStart, SIGNAL(clicked()), this, SLOT(start()));
   connect(m_ui->m_listItems, SIGNAL(itemClicked(QListWidgetItem *)), this, SLOT(select()));
   connect(m_ui->m_btnBack, SIGNAL(clicked()), this, SLOT(goBack()));
@@ -203,7 +203,7 @@ void DictationSimulator::submit() {
     if (j >= entered_words.size()) {
       if (correct) {
         begin << position.at(i);
-			}
+      }
       correct = false;        
       break; 
     }

@@ -32,7 +32,7 @@
    <item>
     <widget class="SlidingStackedWidget" name="m_phoneWidget">
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="m_pageStopped">
       <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -86,6 +86,9 @@
         <widget class="QPushButton" name="m_btnStart">
          <property name="enabled">
           <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {min-height:1.5em; font:1em; margin:0 1px 0 1px; color: white; background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #329932, stop: 1 #004C00); border-style: outset;border-radius: 3px; border-width: 1px;  border-color: #50873a;} QPushButton:pressed {background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #004C00, stop: 1 #329932);} QPushButton:!enabled {background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #D3D3D3, stop: 1 #7e7e7e);}</string>
          </property>
          <property name="text">
           <string>&amp;Start</string>
@@ -382,6 +385,9 @@
            <property name="toolTip">
             <string>First list</string>
            </property>
+           <property name="styleSheet">
+            <string notr="true">QListWidget {color: black; background-color: white;} QScrollBar {background-color: grey; border-style: outset;border-radius: 3px; border-width: 1px; border-color: black;}</string>
+           </property>
            <property name="frameShape">
             <enum>QFrame::Box</enum>
            </property>
@@ -403,6 +409,9 @@
            </property>
            <property name="toolTip">
             <string>Second list</string>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QListWidget {color: black; background-color: white;} QScrollBar {background-color: grey; border-style: outset;border-radius: 3px; border-width: 1px; border-color: black;}</string>
            </property>
            <property name="frameShape">
             <enum>QFrame::Box</enum>
@@ -588,6 +597,9 @@
                <verstretch>0</verstretch>
               </sizepolicy>
              </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton {min-height:1.5em; font:1em; margin:0 1px 0 1px; color: white; background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #329932, stop: 1 #004C00); border-style: outset;border-radius: 3px; border-width: 1px;  border-color: #50873a;} QPushButton:pressed {background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #004C00, stop: 1 #329932);}</string>
+             </property>
              <property name="text">
               <string>Check Answer</string>
              </property>
@@ -601,6 +613,9 @@
             <widget class="QPushButton" name="m_btnTryAgain">
              <property name="toolTip">
               <string>Try Again</string>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton {min-height:1.5em; font:1em; margin:0 1px 0 1px; color: white; background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #ff3232, stop: 1 #e50000); border-style: outset;border-radius: 3px; border-width: 1px; border-color: #ff0000;} QPushButton:pressed {background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #e50000, stop: 1 #ff3232);}</string>
              </property>
              <property name="text">
               <string>Try Again</string>

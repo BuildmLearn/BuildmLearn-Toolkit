@@ -33,9 +33,6 @@
 #include "core/templatecore.h"
 #include "templates/matchthefollowing/matchfollowingeditor.h"
 #include "definitions/definitions.h"
-#include "miscellaneous/application.h"
-#include "miscellaneous/skinfactory.h"
-#include "matchfollowingtopic.h"
 #include "miscellaneous/iconfactory.h"
 #include <algorithm>
 
@@ -50,30 +47,6 @@ MatchFollowingSimulator::MatchFollowingSimulator(TemplateCore *core, QWidget *pa
   m_ui->m_lblHeading->setFont(caption_font);
   m_ui->m_lblTemplateTitle->setFont(caption_font);
   m_ui->m_lblScore->setFont(caption_font);
-
-  // Setup styles.
-  QString style = "QPushButton {min-height:1.5em; font:1em; margin:0 1px 0 1px; color: white; \
-                   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #ff3232, \
-                   stop: 1 #e50000); border-style: outset;border-radius: 3px; border-width: 1px; \
-                   border-color: #ff0000;} QPushButton:pressed {background-color: \
-                   qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #e50000, stop: 1 #ff3232);}";
-  
-  m_ui->m_btnStart->setStyleSheet(style);
- 
-  style = "QPushButton {min-height:1.5em; font:10em; margin:0 1px 0 1px; color: black; \
-           background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #fdff5a, \
-           stop: 1 #fdff32); border-style: outset;border-radius: 3px; border-width: 2px; \
-           border-color: #fcff23;} QPushButton:pressed {background-color: \
-           qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #fdff32, stop: 1 #fdff5a);}";
-
-  m_ui->m_btnAnswer->setStyleSheet(style);
-  m_ui->m_btnTryAgain->setStyleSheet(style);
-
-  style = "QListWidget {color: black; background-color: white;} QScrollBar {background-color: grey; border-style: \
-           outset;border-radius: 3px; border-width: 1px; border-color: black;}";
-
-  m_ui->m_listFirst->setStyleSheet(style);
-  m_ui->m_listSecond->setStyleSheet(style);
 
   // Setup icons for buttons.
   IconFactory *factory = IconFactory::instance();
@@ -144,8 +117,8 @@ bool MatchFollowingSimulator::startSimulation() {
   QList<int> first_topics_position, second_topics_position;
 
   for (int i = 0; i < max_topics; ++i) {
-	first_topics_position.append(i);
-	second_topics_position.append(i);
+  first_topics_position.append(i);
+  second_topics_position.append(i);
   }
 
   std::random_shuffle(first_topics_position.begin(), first_topics_position.end());
@@ -246,10 +219,10 @@ void MatchFollowingSimulator::checkAnswer() {
   int max_topics = editor->activeTopics().count(), score = 0;
 
   for (int i = 0; i < max_topics; ++i) {
-	qDebug()<<m_ui->m_listFirst->item(i)->data(Qt::UserRole).toString()<<" , "<<m_ui->m_listSecond->item(i)->data(Qt::UserRole).toString();
+  qDebug()<<m_ui->m_listFirst->item(i)->data(Qt::UserRole).toString()<<" , "<<m_ui->m_listSecond->item(i)->data(Qt::UserRole).toString();
     if (m_ui->m_listFirst->item(i)->data(Qt::UserRole).toString() == 
-		m_ui->m_listSecond->item(i)->data(Qt::UserRole).toString()) {
-			
+    m_ui->m_listSecond->item(i)->data(Qt::UserRole).toString()) {
+      
       score++;
       m_ui->m_listFirst->item(i)->setBackground(QBrush("green"));
       m_ui->m_listSecond->item(i)->setBackground(QBrush("green"));

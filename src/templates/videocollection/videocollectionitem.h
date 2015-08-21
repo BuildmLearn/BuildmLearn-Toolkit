@@ -57,8 +57,8 @@ class VideoCollectionItem : public QWidget {
 
   signals:
     void previousVideoRequested();
-		void goToList();
-		void nextVideoRequested();
+    void goToList();
+    void nextVideoRequested();
     
   private:
     Ui::VideoCollectionItem *m_ui;

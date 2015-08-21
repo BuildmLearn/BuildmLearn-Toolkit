@@ -51,18 +51,17 @@ VideoCollectionItem::~VideoCollectionItem() {
   delete m_ui;
 }
 
-void VideoCollectionItem::setVideo(const VideoCollectionVideo &video, int video_number) {//, int total_videos) {
+void VideoCollectionItem::setVideo(const VideoCollectionVideo &video, int video_number) {
   m_ui->m_btnPrevious->setEnabled(video_number != 1);
   m_ui->m_lblTitle->setText(video.title());
   m_ui->m_txtDescription->setText(video.description());
 
   if (video.url().contains("https://www.youtube.com/watch?v=", Qt::CaseInsensitive)) {
-		m_ui->m_videoWidget->setCurrentIndex(0);
-		QString embed_url = video.url();
-		embed_url.replace("watch?v=","embed/");
-		m_ui->m_webVideo->load(QUrl(embed_url));
+    m_ui->m_videoWidget->setCurrentIndex(0);
+    QString embed_url = video.url();
+    embed_url.replace("watch?v=","embed/");
+    m_ui->m_webVideo->load(QUrl(embed_url));
   }
   else
-		m_ui->m_videoWidget->setCurrentIndex(1);
-
+    m_ui->m_videoWidget->setCurrentIndex(1);
 }

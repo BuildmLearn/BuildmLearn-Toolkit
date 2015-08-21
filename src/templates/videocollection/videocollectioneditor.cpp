@@ -49,8 +49,8 @@ VideoCollectionEditor::VideoCollectionEditor(TemplateCore *core, QWidget *parent
   // Set validators.
   QRegExpValidator *author_validator = new QRegExpValidator(this);
   QRegExpValidator *title_validator = new QRegExpValidator(this);
-	QRegExpValidator *video_title_validator = new QRegExpValidator(this);
-	
+  QRegExpValidator *video_title_validator = new QRegExpValidator(this);
+  
   author_validator->setRegExp(QRegExp(".{,50}"));
   title_validator->setRegExp(QRegExp(".{,100}"));
   video_title_validator->setRegExp(QRegExp(".{,30}"));
@@ -71,7 +71,7 @@ VideoCollectionEditor::VideoCollectionEditor(TemplateCore *core, QWidget *parent
     setTabOrder(tab_order_widgets.at(i - 1), tab_order_widgets.at(i));
   }
 
-	m_ui->m_txtNumberOfVideos->lineEdit()->setEnabled(false);
+  m_ui->m_txtNumberOfVideos->lineEdit()->setEnabled(false);
 
   m_ui->m_lblThumbnailStatus->label()->setWordWrap(true);
   
@@ -132,9 +132,9 @@ void VideoCollectionEditor::updateVideoCount() {
 
 bool VideoCollectionEditor::canGenerateApplications() {
   return
-      !m_ui->m_txtName->lineEdit()->text().simplified().isEmpty() &&
-      !m_ui->m_txtAuthor->lineEdit()->text().simplified().isEmpty() &&
-      !activeVideos().isEmpty();
+    !m_ui->m_txtName->lineEdit()->text().simplified().isEmpty() &&
+    !m_ui->m_txtAuthor->lineEdit()->text().simplified().isEmpty() &&
+    !activeVideos().isEmpty();
 }
 
 QString VideoCollectionEditor::generateBundleData() {
@@ -169,8 +169,8 @@ QString VideoCollectionEditor::generateBundleData() {
     if (picture_encoded.isEmpty() || picture_encoded.isNull()) {
       return QString();
     }
-		
-		image_element.appendChild(source_document.createTextNode(QString::fromUtf8(picture_encoded)));
+    
+    image_element.appendChild(source_document.createTextNode(QString::fromUtf8(picture_encoded)));
     item_element.appendChild(video_element);
     item_element.appendChild(description_element);
     item_element.appendChild(title_element);
@@ -197,7 +197,7 @@ bool VideoCollectionEditor::loadBundleData(const QString &bundle_data) {
       QString title = item.namedItem("title").toElement().text();
       QString image_data = item.namedItem("image").toElement().text();
 
-			if (video.isEmpty() || description.isEmpty() || image_data.isEmpty()) {
+      if (video.isEmpty() || description.isEmpty() || image_data.isEmpty()) {
         // TODO: error
         continue;
       }
@@ -262,21 +262,21 @@ void VideoCollectionEditor::checkAuthor() {
 void VideoCollectionEditor::checkTitle() {
   if (m_ui->m_txtTitle->lineEdit()->text().isEmpty()) {
     m_ui->m_txtTitle->setStatus(WidgetWithStatus::Warning,
-                               tr("Title is not specified."));
+                                tr("Title is not specified."));
   }
   else {
     m_ui->m_txtTitle->setStatus(WidgetWithStatus::Ok,
-                               tr("Title is specified."));
+                                tr("Title is specified."));
   }
 }
 
 void VideoCollectionEditor::checkUrl() {
-	if (m_ui->m_txtUrl->lineEdit()->text().isEmpty()) {
+  if (m_ui->m_txtUrl->lineEdit()->text().isEmpty()) {
     m_ui->m_txtUrl->setStatus(WidgetWithStatus::Warning,
-                               tr("Url is not specified."));
+                              tr("Url is not specified."));
   }
   else {
-		QString url = m_ui->m_txtUrl->lineEdit()->text();
+    QString url = m_ui->m_txtUrl->lineEdit()->text();
 
     if (url.contains("https://www.youtube.com/watch?v=", Qt::CaseInsensitive) or
         url.contains("http://www.dailymotion.com/video/", Qt::CaseInsensitive) or
@@ -294,12 +294,12 @@ void VideoCollectionEditor::checkUrl() {
 
 // Parse the title, description and thumbnail if the url is valid.
 void VideoCollectionEditor::urlChanged() {
-	if (m_ui->m_txtUrl->lineEdit()->text().isEmpty()) {
+  if (m_ui->m_txtUrl->lineEdit()->text().isEmpty()) {
     m_ui->m_txtUrl->setStatus(WidgetWithStatus::Warning,
                                tr("Url is not specified."));
   }
   else {
-		QString url = m_ui->m_txtUrl->lineEdit()->text();
+    QString url = m_ui->m_txtUrl->lineEdit()->text();
 
     if (url.contains("https://www.youtube.com/watch?v=", Qt::CaseInsensitive) or
         url.contains("http://www.dailymotion.com/video/", Qt::CaseInsensitive) or
@@ -317,7 +317,8 @@ void VideoCollectionEditor::urlChanged() {
                                         QSystemTrayIcon::Warning);
         }
         else {
-          CustomMessageBox::show(this, QMessageBox::Warning, tr("Cannot get video details"), tr("Video was not found, check the url again"));
+          CustomMessageBox::show(this, QMessageBox::Warning, tr("Cannot get video details"), 
+                                 tr("Video was not found, check the url again"));
         }
 
         return;
@@ -352,7 +353,7 @@ void VideoCollectionEditor::urlChanged() {
         }
         else {
           CustomMessageBox::show(this, QMessageBox::Warning, tr("Cannot get thumbnail"), 
-																 tr("Thumbnail was not found"));
+                                 tr("Thumbnail was not found"));
         }
 
         return;
@@ -436,23 +437,23 @@ void VideoCollectionEditor::loadThumbnail(const QString& thumbnail_path) {
     m_ui->m_lblThumbnailView->setPixmap(QPixmap(thumbnail_path).scaled(m_ui->m_lblThumbnailView->size(),
                                                                    Qt::KeepAspectRatio));
     m_ui->m_lblThumbnailStatus->setStatus(WidgetWithStatus::Ok,
-                                      tr("Thumbnail is selected."),
-                                      tr("Thumbnail is selected."));
+                                          tr("Thumbnail is selected."),
+                                          tr("Thumbnail is selected."));
   }
   else {
     m_ui->m_lblThumbnailView->setPixmap(QPixmap());
     m_ui->m_lblThumbnailStatus->setStatus(WidgetWithStatus::Error,
-                                      tr("Thumbnail is not selected."),
-                                      tr("No thumbnail is selected."));
+                                          tr("Thumbnail is not selected."),
+                                          tr("No thumbnail is selected."));
   }
 
   m_ui->m_lblThumbnailStatus->label()->setToolTip(QDir::toNativeSeparators(thumbnail_path));
 }
 
 void VideoCollectionEditor::addVideo(const QString &video,
-																		 const QString &description,
-																		 const QString &title,
-																		 const QString &thumbnail_path) {
+                                     const QString &description,
+                                     const QString &title,
+                                     const QString &thumbnail_path) {
   int marked_video = m_ui->m_listVideos->currentRow();
   VideoCollectionVideo new_video;
   QListWidgetItem *new_item = new QListWidgetItem();
@@ -489,7 +490,7 @@ void VideoCollectionEditor::addVideo() {
   addVideo(QString(),
            tr("Description"),
            tr("Title"),
-					 QString());
+           QString());
   launch();
   emit changed();
 }

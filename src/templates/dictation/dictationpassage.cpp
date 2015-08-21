@@ -46,7 +46,7 @@ void DictationPassage::setPassage(const QString& passage) {
 }
 
 QString DictationPassage::title() const {
-	return m_title;
+  return m_title;
 }
 
 void DictationPassage::setTitle(const QString& title) {
