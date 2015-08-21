@@ -377,7 +377,7 @@ void DictationEditor::addPassage(const QString &title, const QString &passage) {
 
 void DictationEditor::addPassage() {
   addPassage(tr("Title of the passage"),
-             tr("Write a passage here"));
+             tr("Write a passage here."));
   launch();
   emit changed();
 }
