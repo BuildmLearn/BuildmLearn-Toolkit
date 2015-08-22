@@ -52,3 +52,11 @@ QString DictationPassage::title() const {
 void DictationPassage::setTitle(const QString& title) {
   m_title = title;
 }
+
+QString DictationPassage::audioFilePath() const {
+  return m_audioFilePath;
+}
+
+void DictationPassage::setAudioFilePath(const QString& audioFilePath) {
+  m_audioFilePath = audioFilePath;
+}

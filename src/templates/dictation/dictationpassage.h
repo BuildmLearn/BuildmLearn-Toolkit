@@ -46,10 +46,14 @@ class DictationPassage {
 
     QString title() const;
     void setTitle(const QString& title);
+    
+    QString audioFilePath() const;
+    void setAudioFilePath(const QString& audioFilePath);
         
   private:
     QString m_title;
     QString m_passage;
+    QString m_audioFilePath;
 };
 
 Q_DECLARE_METATYPE(DictationPassage)

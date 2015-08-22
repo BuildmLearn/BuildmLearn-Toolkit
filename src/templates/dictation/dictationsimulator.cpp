@@ -35,6 +35,8 @@
 #include "templates/dictation/dictationeditor.h"
 #include "definitions/definitions.h"
 #include "miscellaneous/application.h"
+#include "gui/custommessagebox.h"
+#include "network-web/networkfactory.h"
 
 
 DictationSimulator::DictationSimulator(TemplateCore *core, QWidget *parent)
@@ -53,13 +55,11 @@ DictationSimulator::DictationSimulator(TemplateCore *core, QWidget *parent)
 
   // Connecting signals and slots.
   connect(m_ui->m_btnStart, SIGNAL(clicked()), this, SLOT(start()));
-  //connect(m_ui->m_listItems, SIGNAL(itemClicked(QListWidgetItem *)), this, SLOT(select()));
   connect(m_ui->m_btnSelect, SIGNAL(clicked()), this, SLOT(select()));
   connect(m_ui->m_btnBack, SIGNAL(clicked()), this, SLOT(goBack()));
   connect(m_ui->m_btnSubmit, SIGNAL(clicked()), this, SLOT(submit()));
   connect(m_ui->m_btnRestart, SIGNAL(clicked()), this, SLOT(restart()));
   connect(m_ui->m_btnExit, SIGNAL(clicked()), this, SLOT(restart()));
-  connect(m_ui->m_webRead, SIGNAL(loadProgress(int)), this, SLOT(loading(int)));
   connect(m_ui->m_webRead, SIGNAL(loadFinished(bool)), this, SLOT(loadingFinished(bool)));
   connect(m_ui->m_txtPassage, SIGNAL(textChanged()), this, SLOT(onEnterPassageChanged()));
 }
@@ -111,11 +111,9 @@ bool DictationSimulator::stopSimulation() {
 
 bool DictationSimulator::goBack() {
   if (m_ui->m_phoneWidget->currentIndex() == 3) {
+    m_ui->m_webRead->back();
     m_ui->m_phoneWidget->setCurrentIndex(2);
-    m_ui->m_listItems->setCurrentRow(-1);
-
     emit canGoBackChanged(false);
-
     return true;
   }
   else {
@@ -140,12 +138,13 @@ void DictationSimulator::select() {
   if (m_activePassage < 0)
     m_activePassage = 0;
   
-  qDebug()<<m_activePassage;
-  
   m_ui->m_lblTitle->setText(m_passages.at(m_activePassage).title());
   m_ui->m_phoneWidget->setCurrentIndex(3);
   m_ui->m_readWidget->setCurrentIndex(0);
   m_ui->m_btnSubmit->setEnabled(false);
+  
+  bool speed_changed = false;
+  int speed = m_speed;
   
   if (m_ui->m_rbSlow->isChecked())
     m_speed = 3.0;
@@ -153,38 +152,84 @@ void DictationSimulator::select() {
     m_speed = 0.0;
   else
     m_speed = 1.5;
+    
+  if (m_speed != speed)
+    speed_changed = true;
   
+  downloadSound(speed_changed);
   playPassage();
   
   emit canGoBackChanged(true);
 }
 
+void DictationSimulator::downloadSound(bool speed_changed) {
+  #if defined(Q_OS_OS2)
+    if (SystemTrayIcon::isSystemTrayAvailable()) {
+      qApp->trayIcon()->showMessage(tr("Cannot play sound"), tr("Sound cannot play on this platform."),
+                                    QSystemTrayIcon::Warning);
+    }
+    else {
+      CustomMessageBox::show(this, QMessageBox::Warning, tr("Cannot play sound"), tr("Sound cannot play on this platform."));
+    }
+  #else
+    // Play sound.
+    QByteArray output;
+
+    DictationPassage current_passage = m_passages.at(m_activePassage);
+
+    if (current_passage.audioFilePath().isEmpty() || !QFile::exists(current_passage.audioFilePath()) || speed_changed) {
+      // Current passage does not contain downloaded audio file.
+      QString passage = current_passage.passage();             
+      QString url = QString(PASSAGE_TTS_SERVICE_URL).arg(passage).arg(QString::number(m_speed));
+                     
+      QNetworkReply::NetworkError result_of_download = NetworkFactory::downloadFile(url, 10000, output);
+
+      if (result_of_download != QNetworkReply::NoError) {
+        // There was apparently some error.
+        if (SystemTrayIcon::isSystemTrayAvailable()) {
+          qApp->trayIcon()->showMessage(tr("Cannot play sound"), tr("Sound cannot play on this platform because sound file was not downloaded."),
+                                        QSystemTrayIcon::Warning);
+        }
+        else {
+          CustomMessageBox::show(this, QMessageBox::Warning, tr("Cannot play sound"), tr("Sound cannot play on this platform because sound file was not downloaded."));
+        }
+        // Change speed to try downloading the sound file again next time.
+        m_speed = 0.1; 
+        return;
+      }
+
+      // Store downloaded sound file.
+      QString sound_file_name = qApp->templateManager()->tempDirectory() + QDir::separator() +
+                                "sound_" + QDateTime::currentDateTime().toString("yyyy-MM-dd-hhmmss") + ".wav";
+      QFile sound_file(sound_file_name);
+      sound_file.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Unbuffered);
+      sound_file.write(output);
+      sound_file.close();
+
+      // We obtained new sound file for this particular word.
+      // So, store the path.
+      // NOTE: Note that this is forgotten when new simulation is started.
+      m_passages[m_activePassage].setAudioFilePath(sound_file_name);
+    }
+
+  #endif
+}
+
 // Play passage by using QWebView.
 void DictationSimulator::playPassage() {
-  QString passage = m_passages.at(m_activePassage).passage();
-  m_ui->m_progressLoading->setValue(0);
   QString html_file_name = qApp->templateManager()->tempDirectory() + QDir::separator() +
-                           "sound_" + QDateTime::currentDateTime().toString("yyyy-MM-dd-hhmmss") + ".html";
+                           "html_" + QDateTime::currentDateTime().toString("yyyy-MM-dd-hhmmss") + ".html";
   QFile html_file(html_file_name);
   html_file.open(QIODevice::WriteOnly);
   
   QTextStream outStream(&html_file);
   outStream << "<html> \n" << "<style>#player {width: 100%;}</style> \n" << "<body> \n";
   outStream << "<audio id=\"player\" controls autoplay> \n";
-  outStream << "<source src = \"http://mary.dfki.de:59125/process?";
-  outStream << "INPUT_TYPE=TEXT&OUTPUT_TYPE=AUDIO&INPUT_TEXT=" << passage;
-  outStream << "%0A&OUTPUT_TEXT=&effect_Rate_selected=on&effect_Rate_parameters=durScale%3A" << m_speed;
-  outStream << "%3B&effect_Rate_default=Default&effect_Rate_help=Help";
-  outStream << "&exampleTexts=&VOICE_SELECTIONS=dfki-spike-hsmm%20en_GB%20male%20hmm";
-  outStream << "&AUDIO_OUT=WAVE_FILE&LOCALE=en_GB&VOICE=dfki-spike-hsmm&AUDIO=WAVE_FILE\" type=\"audio/wav\"> \n";
+  outStream << "<source src = \"" + m_passages.at(m_activePassage).audioFilePath() + "\" type=\"audio/wav\"> \n";
   outStream << "Audio is not supported. \n" << "</audio> \n" << "</body> \n" << "</html>";
   html_file.close();
   
   m_ui->m_webRead->load(QUrl::fromLocalFile(html_file_name)); 
-}
-
-void DictationSimulator::loading(int progress) {
-  m_ui->m_progressLoading->setValue(progress);
 }
 
 void DictationSimulator::loadingFinished(bool success) {

@@ -60,7 +60,6 @@ class DictationSimulator : public TemplateSimulator {
     void start();
     void restart();
     void select();
-    void loading(int progress);
     void onEnterPassageChanged();
     void loadingFinished(bool success);
     void submit();
@@ -68,6 +67,7 @@ class DictationSimulator : public TemplateSimulator {
     
   private:
     void playPassage();
+    void downloadSound(bool speed_changed);
     Ui::DictationSimulator *m_ui;
     QList<DictationPassage> m_passages;
     int m_activePassage;
