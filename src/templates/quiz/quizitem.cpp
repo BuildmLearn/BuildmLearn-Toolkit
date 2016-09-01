@@ -73,6 +73,7 @@ void QuizItem::clearStylesheets() {
 
 void QuizItem::setQuestion(const QuizQuestion &question, int question_number, int total_questions) {
   m_question = question;
+  m_ui->m_lblQuestionText->setWordWrap(true);
 
   m_ui->m_rbAnswerOne->setText(question.answerOne());
   m_ui->m_rbAnswerTwo->setText(question.answerTwo());
@@ -148,6 +149,7 @@ void QuizItem::onSubmitClicked() {
 
     foreach (QRadioButton *button, m_answerButtons) {
       button->setEnabled(false);
+      button->setChecked(false);
     }
 
     m_ui->m_btnConfirm->setEnabled(false);

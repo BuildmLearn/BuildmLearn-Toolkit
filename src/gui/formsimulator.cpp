@@ -162,6 +162,7 @@ void FormSimulator::closeEvent(QCloseEvent *e) {
 
   emit closed();
   e->accept();
+  stopSimulation();
 }
 
 void FormSimulator::setupIcons() {
