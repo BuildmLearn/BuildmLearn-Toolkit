@@ -139,7 +139,7 @@ if(APPLE)
 endif(APPLE)
 
 # Options declaration.
-option(USE_QT_5 "Use Qt 5 for building" OFF)
+option(USE_QT_5 "Use Qt 5 for building" ON)
 option(BUNDLE_ICON_THEMES "Equip installation with custom icon themes" ON)
 option(INSTALL_ALL_LANGUAGES "Install all available localizations" ON)
 option(DISABLE_STORE "Disable BuildmLearn Store features" OFF)
@@ -447,6 +447,18 @@ set(APP_SOURCES
   src/templates/learnspellings/learnspellingssimulator.cpp
   src/templates/learnspellings/learnspellingsitem.cpp
 
+  src/templates/comprehension/comprehensionentrypoint.cpp
+  src/templates/comprehension/comprehensioncore.cpp
+  src/templates/comprehension/comprehensioneditor.cpp
+  src/templates/comprehension/comprehensionsimulator.cpp
+  src/templates/comprehension/comprehensionpassage.cpp
+  src/templates/comprehension/comprehensionpassageitem.cpp
+  src/templates/comprehension/comprehensionquestionitem.cpp
+  src/templates/comprehension/comprehensionquestion.cpp
+  
+  
+  
+  
   src/main.cpp
 )
 
@@ -514,6 +526,17 @@ set(APP_HEADERS
   src/templates/learnspellings/learnspellingscore.h
   src/templates/learnspellings/learnspellingseditor.h
   src/templates/learnspellings/learnspellingssimulator.h
+  
+  src/templates/comprehension/comprehensionentrypoint.h
+  src/templates/comprehension/comprehensioncore.h
+  src/templates/comprehension/comprehensioneditor.h
+  src/templates/comprehension/comprehensionsimulator.h
+  src/templates/comprehension/comprehensionpassage.h
+  src/templates/comprehension/comprehensionpassageitem.h
+  src/templates/comprehension/comprehensionquestionitem.h
+  src/templates/comprehension/comprehensionquestion.h
+  
+  
 )
 
 # APP form files.
@@ -540,6 +563,13 @@ set(APP_FORMS
 
   src/templates/learnspellings/learnspellingseditor.ui
   src/templates/learnspellings/learnspellingssimulator.ui
+  
+  src/templates/comprehension/comprehensioneditor.ui
+  src/templates/comprehension/comprehensionsimulator.ui
+  src/templates/comprehension/comprehensionpassageitem.ui
+  src/templates/comprehension/comprehensionquestionitem.ui
+  
+  
 )
 
 # APP translations.
