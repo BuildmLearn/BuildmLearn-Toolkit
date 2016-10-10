@@ -35,10 +35,11 @@
 #include <QDir>
 #include <QFile>
 #include <QTextStream>
-
+#include <QUrl>
+  
 #if !defined(Q_OS_OS2)
 #if QT_VERSION >= 0x050000
-#include <QSound>
+#include <QMediaPlayer>
 #else
 #include <MediaObject>
 #include <AudioOutput>
@@ -51,7 +52,10 @@ IOFactory::IOFactory() {
 
 void IOFactory::playWaveFile(const QString &file_path) {
 #if QT_VERSION >= 0x050000
-  QSound::play(file_path);
+  QMediaPlayer *player = new QMediaPlayer();
+  player->setMedia(QUrl::fromLocalFile(file_path));
+  player->setVolume(100);
+  player->play();
 #elif !defined(Q_OS_OS2)
   Phonon::AudioOutput *out = new Phonon::AudioOutput(Phonon::MusicCategory, qApp);
   out->setVolume(100.0f);

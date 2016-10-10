@@ -73,7 +73,8 @@
 #define CERTIFICATE_PATH                "certificate.pem"
 #define KEY_PATH                        "key.pk8"
 //#define TTS_SERVICE_URL                 "http://translate.google.com/translate_tts?tl=en&q=%1"
-#define TTS_SERVICE_URL                 "http://mary.dfki.de:59125/process?INPUT_TEXT=%1&INPUT_TYPE=TEXT&OUTPUT_TYPE=AUDIO&AUDIO=WAVE_FILE&LOCALE=en_US"
+//#define TTS_SERVICE_URL                 "http://mary.dfki.de:59125/process?INPUT_TEXT=%1&INPUT_TYPE=TEXT&OUTPUT_TYPE=AUDIO&AUDIO=WAVE_FILE&LOCALE=en_US"
+#define TTS_SERVICE_URL                  "http://tts-api.com/tts.mp3?q=%1"
 
 #define STORE_API_KEY                   "BuildmLearnToolkit"
 #define STORE_ENDPOINT                  "http://croozeus.com/buildmlearn/api/v1/storeAPI.php"
