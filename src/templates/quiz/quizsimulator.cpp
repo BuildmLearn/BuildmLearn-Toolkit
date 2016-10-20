@@ -40,6 +40,7 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QRadioButton>
+#include <QDir>
 
 
 QuizSimulator::QuizSimulator(TemplateCore *core, QWidget *parent)
@@ -96,6 +97,10 @@ bool QuizSimulator::startSimulation() {
   }
 
   m_ui->m_phoneWidget->setCurrentIndex(1);
+  m_ui->m_quizBar->setPixmap(QPixmap(APP_TEMPLATES_PATH + QDir::separator() +
+                                            "quiz" + QDir::separator() +
+                                            "QuizBar.png"));
+  m_ui->m_barText->setStyleSheet("background-color: rgb(221, 221, 221);color: black");
   return true;
 }
 

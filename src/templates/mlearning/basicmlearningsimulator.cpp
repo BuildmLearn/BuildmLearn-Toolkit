@@ -32,6 +32,9 @@
 
 #include "templates/mlearning/basicmlearningeditor.h"
 #include "core/templatecore.h"
+#include "definitions/definitions.h"
+
+#include <QDir>
 
 
 BasicmLearningSimulator::BasicmLearningSimulator(TemplateCore *core, QWidget *parent) :
@@ -65,6 +68,10 @@ bool BasicmLearningSimulator::startSimulation() {
   }
 
   m_ui->m_phoneWidget->setCurrentIndex(1);
+  m_ui->m_mlearningBar->setPixmap(QPixmap(APP_TEMPLATES_PATH + QDir::separator() +
+                                            "mlearning" + QDir::separator() +
+                                            "MlearningBar.png"));
+  m_ui->m_barText->setStyleSheet("background-color: rgb(221, 221, 221);color: black");
 
   return true;
 }

@@ -92,6 +92,10 @@ bool LearnSpellingsSimulator::startSimulation() {
   m_ui->m_lblAuthor->setText(editor->m_ui->m_txtAuthor->lineEdit()->text());
   m_ui->m_lblHeading->setText(editor->m_ui->m_txtName->lineEdit()->text());
   m_ui->m_phoneWidget->setCurrentIndex(1);
+  m_ui->m_learnspellingBar->setPixmap(QPixmap(APP_TEMPLATES_PATH + QDir::separator() +
+                                            "learnspellings" + QDir::separator() +
+                                            "SpellingBar.png"));
+  m_ui->m_barText->setStyleSheet("background-color: rgb(221, 221, 221);color: black");
 
   return true;
 }
