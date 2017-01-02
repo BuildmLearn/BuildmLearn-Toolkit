@@ -189,6 +189,16 @@
         </widget>
        </item>
        <item>
+           <widget class="QLabel" name="m_lblTotalPercentileScore">
+               <property  name="text">
+                   <string>Accuracy : %1</string>
+               </property>
+               <property  name="alignment">
+                   <set>Qt::AlignCenter</set>
+               </property>
+           </widget>
+       </item>
+       <item>
         <spacer name="verticalSpacer">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
